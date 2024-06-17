@@ -1,15 +1,3 @@
-// 檔案位置: styles/global.scss
-// 變數覆蓋用 (Variable overrides)
-
-// 全站配色 colors
-
-// $purple-1: #685beb;
-// .bg-purple-1 {
-//   background-color: $purple-1;
-// }
-// $purple-2: #958cea;
-// $primary: $purple-2;
-
 // 定義中文版型 - Chi B
 $chi-b-styles: (
   h1: (
@@ -226,72 +214,12 @@ $eng-styles: (
   }
 }
 
-// // 定义自定义颜色变量
-// $purple-1: #685beb;
-// $purple-2: #958cea;
-// $purple-3: #dbd7ff;
-// $black-1: #000000;
-// $black-2: #1a1a1a;
-// $black-3: #272727;
-// $black-4: #484848;
-// $black-5: #686868;
-// $black-6: #888888;
-// $black-7: #a1a1a1;
-// $black-8: #d1d1d1;
-// $white: #ffffff;
-// $A: #ff9900;
-// $B: #00a3ff;
-// $C: #f12222;
-// $D: #9e00ff;
-// $E: #3ead2c;
-
-// // 使用 @each 动态生成类名
-// @each $color-name,
-//   $color-value
-//     in (
-//       purple-1: $purple-1,
-//       purple-2: $purple-2,
-//       purple-3: $purple-3,
-//       black-1: $black-1,
-//       black-2: $black-2,
-//       black-3: $black-3,
-//       black-4: $black-4,
-//       black-5: $black-5,
-//       black-6: $black-6,
-//       black-7: $black-7,
-//       black-8: $black-8,
-//       A: $A,
-//       B: $B,
-//       C: $C,
-//       D: $D,
-//       E: $E
-//     )
-// {
-//   .bg-#{$color-name} {
-//     background-color: $color-value;
-//   }
-
-//   .text-#{$color-name} {
-//     color: $color-value;
-//   }
-// }
-
 // ↑↑↑  變數覆蓋(Variable overrides) 要寫在這行"上面"  ↑↑↑
 // 這裡導入所有 bootstrap 樣式
 // 最後營運階段(實務)可以用部份導入來進行最佳化
 // 參考: https://getbootstrap.com/docs/5.3/customize/sass/#importing
 @import '~bootstrap/scss/bootstrap';
 // ↓↓↓  其它客製樣式要寫在這行的"下面" ↓↓↓
-
-// bs5內建圖示字體
-// 如果有使用其它圖示字體可以註解不使用
-@import '~bootstrap-icons/font/bootstrap-icons';
-
-// google Noto Sans TC 字體
-@import 'https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&display=swap';
-
-// 這段代碼用來選擇 <main> 元素的直接子元素中 class 為 container 的元素，
-// 並設置其內邊距（padding）為 60px（上方）、15px（左右側）、0（下方）
 
 * {
   box-sizing: border-box;
@@ -351,22 +279,3 @@ table {
   --D: #9e00ff;
   --E: #3ead2c;
 }
-
-// body {
-//   color: rgb(var(--foreground-rgb));
-//   background: linear-gradient(
-//       to bottom,
-//       transparent,
-//       rgb(var(--background-end-rgb))
-//     )
-//     rgb(var(--background-start-rgb));
-// }
-
-// a {
-//   color: inherit;
-//   text-decoration: none;
-// }
-
-// main > .container {
-//   padding: 60px 15px 0;
-// }
