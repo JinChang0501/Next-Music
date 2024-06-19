@@ -5,7 +5,9 @@ export default function Index() {
       <div className={`${styles.test} ${styles.spacing} eng-h1 ps-5`}>
         HIIII
       </div>
-      <div className="chi-b-h1">早安</div>
+      <button className="btn btn-purple1 chi-b-h1">早安</button>
+      <div className="chi-b-h2">嗨</div>
+      <div className="eng-h1 fs-1 btn btn-outline-purple1">HII</div>
     </>
   )
 }

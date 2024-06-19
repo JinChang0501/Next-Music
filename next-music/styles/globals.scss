@@ -1,3 +1,37 @@
+// 導入 Bootstrap 變數和函數
+@import 'node_modules/bootstrap/scss/functions';
+@import 'node_modules/bootstrap/scss/variables';
+@import 'node_modules/bootstrap/scss/mixins';
+
+// 覆寫 Bootstrap 顏色變量
+$theme-colors: (
+  'primary': #0d6efd,
+  'secondary': #6c757d,
+  'success': #198754,
+  'info': #0dcaf0,
+  'warning': #ffc107,
+  'danger': #dc3545,
+  'light': #f8f9fa,
+  'dark': #212529,
+  // 新增自定義顏色
+  'purple1': #685beb,
+  'purple2': #958cea,
+  'purple3': #dbd7ff,
+  'black1': #000000,
+  'black2': #1a1a1a,
+  'black3': #272727,
+  'black4': #484848,
+  'black5': #686868,
+  'black6': #888888,
+  'black7': #a1a1a1,
+  'black8': #d1d1d1,
+  'A': #ff9900,
+  'B': #00a3ff,
+  'C': #f12222,
+  'D': #9e00ff,
+  'E': #3ead2c,
+);
+
 // 定義中文版型 - Chi B
 $chi-b-styles: (
   h1: (
@@ -261,21 +295,24 @@ table {
   border-spacing: 0;
 }
 
-:root {
-  --purple-1: #685beb;
-  --purple-2: #958cea;
-  --purple-3: #dbd7ff;
-  --black-1: #000000;
-  --black-2: #1a1a1a;
-  --black-3: #272727;
-  --black-4: #484848;
-  --black-5: #686868;
-  --black-6: #888888;
-  --black-7: #a1a1a1;
-  --black-8: #d1d1d1;
-  --A: #ff9900;
-  --B: #00a3ff;
-  --C: #f12222;
-  --D: #9e00ff;
-  --E: #3ead2c;
-}
+// :root {
+//   --purple-1: #685beb;
+//   --purple-2: #958cea;
+//   --purple-3: #dbd7ff;
+//   --black-1: #000000;
+//   --black-2: #1a1a1a;
+//   --black-3: #272727;
+//   --black-4: #484848;
+//   --black-5: #686868;
+//   --black-6: #888888;
+//   --black-7: #a1a1a1;
+//   --black-8: #d1d1d1;
+//   --A: #ff9900;
+//   --B: #00a3ff;
+//   --C: #f12222;
+//   --D: #9e00ff;
+//   --E: #3ead2c;
+// }
+
+// 導入 Bootstrap 的其他組件樣式
+@import 'node_modules/bootstrap/scss/bootstrap';
