@@ -1,6 +1,6 @@
 # NEXT-MUSIC
 
-##  開始順序
+## 開始順序
 
 clone 專案
 
@@ -41,12 +41,10 @@ npm run dev
 - 不能通過`URL`直接訪問，需要通過`import`語句引入到組件中
 
 ```jsx
-import exampleImage from '../assets/example.png';
+import exampleImage from "../assets/example.png";
 
 function MyComponent() {
-  return (
-    <img src={exampleImage} alt="Example" />
-  );
+  return <img src={exampleImage} alt="Example" />;
 }
 ```
 
@@ -63,7 +61,7 @@ function MyComponent() {
 - `layout`資料夾是共同使用版面
   - `admin-layout`是登入後版面
   - `default-layout`是共用版面 ex: navbar、footer
-  - `landing-layout`是head及title
+  - `landing-layout`是 head 及 title
 
 ### configs
 
@@ -101,7 +99,7 @@ function MyComponent() {
 
 # globals.scss
 
-- `globals.scss`已建好`style guide`，裡面有`figma`字型樣式`(bootstrap自定義)`、`figma`顏色樣式`(css自定義)`、`css`消除預設樣式
+- `globals.scss`已建好`style guide`，裡面有`figma`字型、顏色樣式`(bootstrap自定義)`、`css`消除預設樣式
 
 - `@import '~bootstrap/scss/bootstrap';`這行上面放`bootstrap`的自定樣式，下面放`CSS`的自定樣式
 
@@ -109,13 +107,7 @@ function MyComponent() {
 
 - 字型可使用`bootstrap`類名跟`figma`同名稱的樣式
 
-- className="chi-b-h1"
-- className="chi-b-h2"
-- className="chi-b-h3"
-- className="chi-b-h4"
-- className="chi-b-h5"
-- className="chi-b-h6"
-- className="chi-b-p"
+- 目前字型樣式無法跟`bootstrap`其他樣式共同使用，`ex:btn、border,etc` `TODO:bugfix`
 
 - className="chi-b-h1"
 - className="chi-b-h2"
@@ -133,52 +125,89 @@ function MyComponent() {
 - className="chi-b-h6"
 - className="chi-b-p"
 
-- 顏色需使用`css`自定義樣式使用，需單獨建立`scss`或`css`檔裡面撰寫，以下為目前樣式，如需新增按照此格式新增
+- className="chi-b-h1"
+- className="chi-b-h2"
+- className="chi-b-h3"
+- className="chi-b-h4"
+- className="chi-b-h5"
+- className="chi-b-h6"
+- className="chi-b-p"
 
-- purple-1
-- purple-2
-- purple-3
-- black-1
-- black-2
-- black-3
-- black-4
-- black-5
-- black-6
-- black-7
-- black-8
+- purple1
+- purple2
+- purple3
+- black1
+- black2
+- black3
+- black4
+- black5
+- black6
+- black7
+- black8
 - A
 - B
 - C
 - D
 - E
 
-- 如需在一個元素中套用多個`css`類名及`bootstrap`類名，以下是示範
+# jsx style 寫法
 
-scss or css
-
-```scss
-.test {
-  font-size: 30px;
-  color: var(--purple-1);
-  border: 10px solid var(--purple-3);
-}
-
-.spacing {
-  letter-spacing: 5px;
-}
-```
+## 字符串模板添加類名，前提要有 module.scss
 
 ```jsx
-import styles from './test.module.scss'
+import styles from "./test.module.scss";
 export default function Index() {
   return (
     <>
-      <div className={`${styles.test} ${styles.spacing} eng-h1 ps-5`}>HIIII</div>
+      <div className={`${styles.test} ${styles.spacing} eng-h1 ps-5`}>
+        HIIII
+      </div>
       <div className="chi-b-h1">早安</div>
     </>
+  );
+}
+```
+
+## style 內聯寫法 ( camelCase )
+
+```jsx
+export default function Footer() {
+  return (
+    <>
+      <footer
+        className="footer bg-purple2 py-3 text-center"
+        style={{ marginTop: "auto" }}
+      ></footer>
+    </>
+  );
+}
+```
+
+## style jsx
+
+```jsx
+export default function DefaultLayout({ title = 'Music', children }) {
+  return (
+    <div className="stickyfooter">
+      <Head>
+        <title>{title}</title>
+      </Head>
+      <Nav />
+      <div className="container">
+        <div>{children}</div>
+      </div>
+      <Footer />
+      <style jsx>{`
+        .stickyfooter {
+          display: flex;
+          flex-direction: column;
+          min-height: 100vh;
+        }
+      `}</style>
+    </div>
   )
 }
-``` 
+```
 
 ## storage.scss
 

@@ -3,15 +3,15 @@ import Head from 'next/head'
 import Nav from './nav'
 import Footer from './footer'
 
-const DefaultLayout = ({ title = 'Music', children }) => {
+export default function DefaultLayout({ title = 'Music', children }) {
   return (
     <div className="stickyfooter">
       <Head>
         <title>{title}</title>
       </Head>
+      <Nav />
       <div className="container">
-        <Nav />
-        <div className="content">{children}</div>
+        <div>{children}</div>
       </div>
       <Footer />
       <style jsx>{`
@@ -24,5 +24,3 @@ const DefaultLayout = ({ title = 'Music', children }) => {
     </div>
   )
 }
-
-export default DefaultLayout
