@@ -281,10 +281,35 @@ section {
   display: block;
 }
 
+img {
+  display: block;
+  border: 0;
+}
+
+i,
+em {
+  font-style: normal;
+}
+
+a,
+u,
+ins,
+s,
+del {
+  text-decoration: none;
+}
+
+input,
+button {
+  outline: none;
+  border: none;
+}
+
 ol,
 ul {
   list-style: none;
 }
+
 blockquote,
 q {
   quotes: none;

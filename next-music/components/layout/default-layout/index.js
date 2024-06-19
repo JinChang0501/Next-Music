@@ -1,13 +1,28 @@
-import styles from './test.module.scss'
-export default function Index() {
+import React from 'react'
+import Head from 'next/head'
+import Nav from './nav'
+import Footer from './footer'
+
+const DefaultLayout = ({ title = 'Music', children }) => {
   return (
-    <>
-      <div className={`${styles.test} ${styles.spacing} eng-h1 ps-5`}>
-        HIIII
+    <div className="stickyfooter">
+      <Head>
+        <title>{title}</title>
+      </Head>
+      <div className="container">
+        <Nav />
+        <div className="content">{children}</div>
       </div>
-      <button className="btn btn-purple1 chi-b-h1">早安</button>
-      <div className="chi-b-h2">嗨</div>
-      <div className="eng-h1 fs-1 btn btn-outline-purple1">HII</div>
-    </>
+      <Footer />
+      <style jsx>{`
+        .stickyfooter {
+          display: flex;
+          flex-direction: column;
+          min-height: 100vh;
+        }
+      `}</style>
+    </div>
   )
 }
+
+export default DefaultLayout
