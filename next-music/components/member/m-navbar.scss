@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.img-size {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+}
+
+.short-underline {
+  display: inline-block;
+  position: relative;
+}
+.short-underline::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -2px; /* 這裡調整距離文字的距離 */
+  transform: translateX(-50%);
+  width: 35px; /* 設置底線的寬度 */
+  height: 2px; /* 設置底線的高度 */
+  background-color: black; /* 設置底線的顏色 */
+}
