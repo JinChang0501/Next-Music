@@ -5,22 +5,24 @@ import Footer from './footer'
 
 export default function DefaultLayout({ title = 'Music', children }) {
   return (
-    <div className="stickyfooter">
-      <Head>
-        <title>{title}</title>
-      </Head>
-      <Nav />
-      <div className="container">
-        <div>{children}</div>
+    <>
+      <div className="stickyfooter">
+        <Head>
+          <title>{title}</title>
+        </Head>
+        <Nav />
+        <div className="container">
+          <div>{children}</div>
+        </div>
+        <Footer />
+        <style jsx>{`
+          .stickyfooter {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+          }
+        `}</style>
       </div>
-      <Footer />
-      <style jsx>{`
-        .stickyfooter {
-          display: flex;
-          flex-direction: column;
-          min-height: 100vh;
-        }
-      `}</style>
-    </div>
+    </>
   )
 }
