@@ -79,9 +79,13 @@ function MyComponent() {
 
 - 裡面已建好大家的資料夾，裡面已有`index.js`在裡面寫即可
 
-- `_app.js`頂層路由，導入`globals.scss`、`bootstrap`、`DefaultLayout`
+- `_app.js`頂層`components`，導入`globals.scss`、`bootstrap`、`DefaultLayout`
+
+- `_document.js`包含`html`、`head`、`body`、`main`、`script`標籤
 
 - `admin.js`登入的檔案??? JIN 在自己看老師檔案查一下 XD
+
+- `dashboard.js`套用`AdminLayout`，取代原本的`DefaultLayout`
 
 - `index.js`我們的主要網頁，在裡面導入所有東西
 
