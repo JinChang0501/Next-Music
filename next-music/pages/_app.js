@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 // 樣式
 import '@/styles/globals.scss'
 import DefaultLayout from '@/components/layout/default-layout'
+
 export default function MyApp({ Component, pageProps }) {
   // 導入bootstrap的JS函式庫
   // 要document物件出現後才能導入 bootstrap的js函式庫
