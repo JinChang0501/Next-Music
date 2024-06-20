@@ -9,6 +9,7 @@ export default function MyApp({ Component, pageProps }) {
   useEffect(() => {
     import('bootstrap/dist/js/bootstrap')
   }, [])
+
   // 使用預設排版檔案
   // 對應`components/layout/default-layout/index.js` 或 `components/layout/default-layout.js`
   const getLayout =
