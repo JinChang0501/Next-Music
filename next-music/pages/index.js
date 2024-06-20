@@ -2,7 +2,7 @@ import { products } from '@/data/products'
 export default function Index() {
   return (
     <>
-      <table className="table">
+      <table className="table table-bordered table-striped table-hover mt-3">
         <thead>
           <tr>
             <th>#</th>

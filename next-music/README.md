@@ -41,10 +41,10 @@ npm run dev
 - 不能通過`URL`直接訪問，需要通過`import`語句引入到組件中
 
 ```jsx
-import exampleImage from "../assets/example.png";
+import exampleImage from '../assets/example.png'
 
 function MyComponent() {
-  return <img src={exampleImage} alt="Example" />;
+  return <img src={exampleImage} alt="Example" />
 }
 ```
 
@@ -86,6 +86,18 @@ function MyComponent() {
 - `dashboard.js`套用`AdminLayout`，取代原本的`DefaultLayout`
 
 - `index.js`我們的主要網頁，在裡面導入所有東西
+
+- 新增頁面`title` ( `return`上面添加`useEffect` )
+
+```jsx
+import { useEffect } from 'react'
+export default function Custom404() {
+  useEffect(() => {
+    document.title = '404找不到頁面'
+  }, [])
+  return <h1>404 - Page Not Found</h1>
+}
+```
 
 ### public
 
@@ -152,19 +164,34 @@ function MyComponent() {
 
 # jsx style 寫法
 
-## 字符串模板添加類名，前提要有 module.scss
+## className ( 使用`bootstrap`類名 )
 
 ```jsx
-import styles from "./test.module.scss";
 export default function Index() {
   return (
     <>
+      <div className={'eng-h1'}>HIIII</div>
+    </>
+  )
+}
+```
+
+## module.scss ( 導入 module.scss )
+
+```jsx
+import styles from './test.module.scss'
+export default function Index() {
+  return (
+    <>
+      <div className={styles.myClass}>Styled with CSS Module</div>
+      <div className={`${styles.test} ${styles.spacing}`}>
+        Styled with CSS Module
+      </div>
       <div className={`${styles.test} ${styles.spacing} eng-h1 ps-5`}>
         HIIII
       </div>
-      <div className="chi-b-h1">早安</div>
     </>
-  );
+  )
 }
 ```
 
@@ -176,10 +203,10 @@ export default function Footer() {
     <>
       <footer
         className="footer bg-purple2 py-3 text-center"
-        style={{ marginTop: "auto" }}
+        style={{ marginTop: 'auto' }}
       ></footer>
     </>
-  );
+  )
 }
 ```
 
