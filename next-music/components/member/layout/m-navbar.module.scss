@@ -13,9 +13,9 @@
   content: '';
   position: absolute;
   left: 50%;
-  bottom: -2px; /* 這裡調整距離文字的距離 */
+  bottom: -5px; /* 這裡調整距離文字的距離 */
   transform: translateX(-50%);
-  width: 35px; /* 設置底線的寬度 */
+  width: 50px; /* 設置底線的寬度 */
   height: 2px; /* 設置底線的高度 */
   background-color: black; /* 設置底線的顏色 */
 }
