@@ -3,7 +3,21 @@
 @import 'node_modules/bootstrap/scss/variables';
 @import 'node_modules/bootstrap/scss/mixins';
 
-// #region 覆寫 Bootstrap 顏色變量
+// #region 覆寫 container
+
+$container-max-widths: (
+  xs: 334px,
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1600px
+);
+
+// #endregion 覆寫 container
+
+// #region 覆寫 color
+
 $theme-colors: (
   'primary': #0d6efd,
   'secondary': #6c757d,
@@ -32,9 +46,13 @@ $theme-colors: (
   'E': #3ead2c,
 );
 
-// #endregion 覆蓋 Bootstrap 的默認變量
+// #endregion 覆蓋 覆寫 color
+
+// #region 覆寫 card-border-radius
 
 $card-border-radius: 0;
+
+// #endregion 覆寫 card-border-radius
 
 // ↑↑↑  變數覆蓋(Variable overrides) 要寫在這行"上面"  ↑↑↑
 // 這裡導入所有 bootstrap 樣式
