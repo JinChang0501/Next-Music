@@ -5,10 +5,9 @@ import { Navbar } from 'react-bootstrap'
 export default function Member() {
   return (
     <>
-      <Navbar />
       <div className="container-fluid">
         <div className="row">
-          <div className="col-3">
+          <div className="col-3 bg-purple1">
             <MNavbar />
           </div>
         </div>
@@ -16,3 +15,7 @@ export default function Member() {
     </>
   )
 }
+
+// Member.getLayout = function getLayout(page){
+//   return <MemberLayout>{children}</MemberLayout>
+// }
