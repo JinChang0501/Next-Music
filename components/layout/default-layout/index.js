@@ -9,13 +9,16 @@ export default function DefaultLayout({ title = 'Music', children }) {
       <div className="stickyfooter">
         <Head>
           <title>{title}</title>
+          <meta name="viewport" content="width=device-width" />
         </Head>
         <Nav />
-
-        <div className="container h-100 d-inline-block">
-          <div>{children}</div>
-        </div>
-
+        <main className="flex-shrink-0">
+          <div className="container">
+            <div>{children}</div>
+          </div>
+          {/* 全域的載入動畫指示器 */}
+          {/* {loader()} */}
+        </main>
         <Footer />
         <style jsx>{`
           .stickyfooter {
