@@ -2,7 +2,7 @@ import { products } from '@/data/products'
 export default function Index() {
   return (
     <>
-    <div style={{height:'100px'}} className="w-100 bg-purple1 text-warning mt-3 d-flex justify-content-center align-items-center ">測試 container : 桌機版 1600px ; 手機版 334px</div>
+    <div style={{height:'100px'}} className="w-100 bg-purple1 text-warning d-flex justify-content-center align-items-center ">測試 container : 桌機版 1600px ; 手機版 334px</div>
       <table className="table table-bordered table-striped table-hover mt-3">
         <thead>
           <tr>
