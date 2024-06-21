@@ -113,37 +113,33 @@ export default function Custom404() {
 
 - `globals.scss`已建好`style guide`，裡面有`figma`字型、顏色樣式`(bootstrap自定義)`、`css`消除預設樣式
 
-- `@import '~bootstrap/scss/bootstrap';`這行上面放`bootstrap`的自定樣式，下面放`CSS`的自定樣式
-
-- 如需新增全域樣式按照以上規則新增
+- `@import '~bootstrap/scss/bootstrap';`這行上面放`bootstrap`的覆蓋樣式，下面放`bootstrap`的自訂樣式和`CSS`的自定樣式
 
 - 字型可使用`bootstrap`類名跟`figma`同名稱的樣式
 
-- 目前字型樣式無法跟`bootstrap`其他樣式共同使用，`ex:btn、border,etc` `TODO:bugfix`
+- chi-b-h1
+- chi-b-h2
+- chi-b-h3
+- chi-b-h4
+- chi-b-h5
+- chi-b-h6
+- chi-b-p
 
-- className="chi-b-h1"
-- className="chi-b-h2"
-- className="chi-b-h3"
-- className="chi-b-h4"
-- className="chi-b-h5"
-- className="chi-b-h6"
-- className="chi-b-p"
+- chi-b-h1
+- chi-b-h2
+- chi-b-h3
+- chi-b-h4
+- chi-b-h5
+- chi-b-h6
+- chi-b-p
 
-- className="chi-b-h1"
-- className="chi-b-h2"
-- className="chi-b-h3"
-- className="chi-b-h4"
-- className="chi-b-h5"
-- className="chi-b-h6"
-- className="chi-b-p"
-
-- className="chi-b-h1"
-- className="chi-b-h2"
-- className="chi-b-h3"
-- className="chi-b-h4"
-- className="chi-b-h5"
-- className="chi-b-h6"
-- className="chi-b-p"
+- chi-b-h1
+- chi-b-h2
+- chi-b-h3
+- chi-b-h4
+- chi-b-h5
+- chi-b-h6
+- chi-b-p
 
 - purple1
 - purple2
