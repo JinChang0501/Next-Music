@@ -1,23 +1,20 @@
 import React from 'react'
 import styles from './m-navbar.module.scss'
-import classNames from 'classnames'
 
 export default function MNavbar() {
   return (
     <>
-      <button className="btn btn-purple1 eng-h1">Click</button>
       <div className="container-fluid">
         <div className="row">
           <div className="text-center my-3">
-            {/* <img
-              id="himg"
-              src="./img/angel-1284369__340.jpg"
+            <img
+              src="images/member/img/angel-1284369__340.jpg"
               alt=""
-              className="img-size mx-auto"
-            /> */}
+              className={`${styles['img-size']} mx-auto`}
+            ></img>
           </div>
           <p
-            className={`${styles['short-underline']} text-center chr-h4 m-0 mb-3`}
+            className={`${styles['short-underline']} text-center chb-h5 m-0 mb-3`}
 
             //   classNames(
             //   styles['short-underline'],
