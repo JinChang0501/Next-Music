@@ -7,7 +7,7 @@ import Nav from '@/components/layout/default-layout/nav'
 
 // https://github.com/mfee-react/project-guide/blob/main/project-docs/3.howto-layout.md
 MNavbar
-export default function MemberLayout({ title = 'Music | 會員', children }) {
+export default function MemberDLayout({ title = 'Music | 會員', children }) {
   return (
     <>
       <div className="stickyfooter">
@@ -15,14 +15,18 @@ export default function MemberLayout({ title = 'Music | 會員', children }) {
           <title>{title}</title>
         </Head>
         <Nav />
+
         <div className="container-fluid">
           <div className="row">
-            <div className="col-3">
+            <div className="col-2 bg-black6">
               <MNavbar />
             </div>
-            <div className="col-9">{children}</div>
+            <div className="col-10">
+              <div className="container">{children}</div>
+            </div>
           </div>
         </div>
+
         <Footer />
         <style jsx>{`
           .stickyfooter {

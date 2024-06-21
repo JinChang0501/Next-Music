@@ -1,14 +1,23 @@
-import React from 'react'
-import MemberLayout from '@/components/member/layout'
+// pages/index.js
+import MemberDLayout from '@/components/member/computer-layout'
+import MemberPLayout from '@/components/member/mobile-layout'
+import useWindowSize from '@/hooks/member/useWindowSize'
 
-export default function Account() {
-  return (
-    <>
-      <p className="chb-h1">帳號設定頁</p>
-    </>
+const Account = () => {
+  const size = useWindowSize()
+  const isDesktop = size.width >= 768 // 假設 768px 以上為桌面佈局
+
+  return isDesktop ? (
+    <MemberDLayout>
+      <h1>這是桌面佈局</h1>
+    </MemberDLayout>
+  ) : (
+    <MemberPLayout>
+      <h1>這是移動佈局</h1>
+    </MemberPLayout>
   )
 }
 
-Account.getLayout = function getLayout(page) {
-  return <MemberLayout>{page}</MemberLayout>
-}
+Account.getLayout = (page) => page
+
+export default Account

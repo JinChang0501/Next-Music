@@ -1,14 +1,14 @@
 import React from 'react'
 import MemberDLayout from '@/components/member/computer-layout'
 
-export default function Collection() {
+export default function Account() {
   return (
     <>
-      <p className="chb-h1">收藏庫</p>
+      <p className="chb-h1">帳號設定頁</p>
     </>
   )
 }
 
-Collection.getLayout = function getLayout(page) {
+Account.getLayout = function getLayout(page) {
   return <MemberDLayout>{page}</MemberDLayout>
 }

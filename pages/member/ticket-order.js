@@ -1,5 +1,5 @@
 import React from 'react'
-import MemberLayout from '@/components/member/layout'
+import MemberDLayout from '@/components/member/computer-layout'
 
 export default function TicketOrder() {
   return (
@@ -10,5 +10,5 @@ export default function TicketOrder() {
 }
 
 TicketOrder.getLayout = function getLayout(page) {
-  return <MemberLayout>{page}</MemberLayout>
+  return <MemberDLayout>{page}</MemberDLayout>
 }
