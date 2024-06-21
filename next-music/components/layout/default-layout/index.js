@@ -11,7 +11,9 @@ export default function DefaultLayout({ title = 'Music', children }) {
           <title>{title}</title>
         </Head>
         <Nav />
+        <div className="container">
           <div>{children}</div>
+        </div>
         <Footer />
         <style jsx>{`
           .stickyfooter {
