@@ -34,56 +34,49 @@ $theme-colors: (
 
 // 定義中文版型 - Chi B
 $chi-b-styles: (
-  h1: (
-    font-family: 'Roboto',
+  h1: (font-family: 'Roboto',
     font-size: 64px,
     font-style: normal,
     font-weight: 600,
     letter-spacing: 6.4px,
     line-height: normal,
   ),
-  h2: (
-    font-family: 'Roboto',
+  h2: (font-family: 'Roboto',
     font-size: 48px,
     font-style: normal,
     font-weight: 600,
     letter-spacing: 4.8px,
     line-height: normal,
   ),
-  h3: (
-    font-family: 'Roboto',
+  h3: (font-family: 'Roboto',
     font-size: 40px,
     font-style: normal,
     font-weight: 600,
     letter-spacing: 4px,
     line-height: normal,
   ),
-  h4: (
-    font-family: 'Roboto',
+  h4: (font-family: 'Roboto',
     font-size: 32px,
     font-style: normal,
     font-weight: 600,
     letter-spacing: 3.2px,
     line-height: normal,
   ),
-  h5: (
-    font-family: 'Roboto',
+  h5: (font-family: 'Roboto',
     font-size: 24px,
     font-style: normal,
     font-weight: 600,
     letter-spacing: 2.4px,
     line-height: normal,
   ),
-  h6: (
-    font-family: 'Roboto',
+  h6: (font-family: 'Roboto',
     font-size: 20px,
     font-style: normal,
     font-weight: 600,
     letter-spacing: 2px,
     line-height: normal,
   ),
-  p: (
-    font-family: 'Roboto',
+  p: (font-family: 'Roboto',
     font-size: 16px,
     font-style: normal,
     font-weight: 600,
@@ -106,56 +99,49 @@ $chi-b-styles: (
 
 // 定義中文版型 - Chi R
 $chi-r-styles: (
-  h1: (
-    font-family: 'Roboto',
+  h1: (font-family: 'Roboto',
     font-size: 64px,
     font-style: normal,
     font-weight: 400,
     letter-spacing: 6.4px,
     line-height: normal,
   ),
-  h2: (
-    font-family: 'Roboto',
+  h2: (font-family: 'Roboto',
     font-size: 48px,
     font-style: normal,
     font-weight: 400,
     letter-spacing: 4.8px,
     line-height: normal,
   ),
-  h3: (
-    font-family: 'Roboto',
+  h3: (font-family: 'Roboto',
     font-size: 40px,
     font-style: normal,
     font-weight: 400,
     letter-spacing: 4px,
     line-height: normal,
   ),
-  h4: (
-    font-family: 'Roboto',
+  h4: (font-family: 'Roboto',
     font-size: 32px,
     font-style: normal,
     font-weight: 400,
     letter-spacing: 3.2px,
     line-height: normal,
   ),
-  h5: (
-    font-family: 'Roboto',
+  h5: (font-family: 'Roboto',
     font-size: 24px,
     font-style: normal,
     font-weight: 400,
     letter-spacing: 2.4px,
     line-height: normal,
   ),
-  h6: (
-    font-family: 'Roboto',
+  h6: (font-family: 'Roboto',
     font-size: 20px,
     font-style: normal,
     font-weight: 400,
     letter-spacing: 2px,
     line-height: normal,
   ),
-  p: (
-    font-family: 'Roboto',
+  p: (font-family: 'Roboto',
     font-size: 16px,
     font-style: normal,
     font-weight: 400,
@@ -178,56 +164,49 @@ $chi-r-styles: (
 
 // 定義英文版型
 $eng-styles: (
-  h1: (
-    font-family: 'Alata',
+  h1: (font-family: 'Alata',
     font-size: 64px,
     font-style: normal,
     font-weight: 400,
     letter-spacing: 1.92px,
     line-height: normal,
   ),
-  h2: (
-    font-family: 'Alata',
+  h2: (font-family: 'Alata',
     font-size: 48px,
     font-style: normal,
     font-weight: 400,
     letter-spacing: 1.44px,
     line-height: normal,
   ),
-  h3: (
-    font-family: 'Alata',
+  h3: (font-family: 'Alata',
     font-size: 40px,
     font-style: normal,
     font-weight: 400,
     letter-spacing: 1.2px,
     line-height: normal,
   ),
-  h4: (
-    font-family: 'Alata',
+  h4: (font-family: 'Alata',
     font-size: 32px,
     font-style: normal,
     font-weight: 400,
     letter-spacing: 0.96px,
     line-height: normal,
   ),
-  h5: (
-    font-family: 'Alata',
+  h5: (font-family: 'Alata',
     font-size: 24px,
     font-style: normal,
     font-weight: 400,
     letter-spacing: 0.72px,
     line-height: normal,
   ),
-  h6: (
-    font-family: 'Alata',
+  h6: (font-family: 'Alata',
     font-size: 20px,
     font-style: normal,
     font-weight: 400,
     letter-spacing: 0.6px,
     line-height: normal,
   ),
-  p: (
-    font-family: 'Alata',
+  p: (font-family: 'Alata',
     font-size: 16px,
     font-style: normal,
     font-weight: 400,
@@ -319,6 +298,9 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+// 覆蓋 Bootstrap 的默認變量
+$card-border-radius: 0;
 
 // 導入 Bootstrap 的其他組件樣式
 @import 'node_modules/bootstrap/scss/bootstrap';
