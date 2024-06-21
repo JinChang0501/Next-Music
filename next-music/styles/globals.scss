@@ -3,7 +3,7 @@
 @import 'node_modules/bootstrap/scss/variables';
 @import 'node_modules/bootstrap/scss/mixins';
 
-// 覆寫 Bootstrap 顏色變量
+// #region 覆寫 Bootstrap 顏色變量
 $theme-colors: (
   'primary': #0d6efd,
   'secondary': #6c757d,
@@ -32,9 +32,18 @@ $theme-colors: (
   'E': #3ead2c,
 );
 
-//Jin needs test
-// [自定義][電腦版][文字] Start==============================================================
-// 中文普通 Regular
+// #endregion 覆蓋 Bootstrap 的默認變量
+
+$card-border-radius: 0;
+
+// ↑↑↑  變數覆蓋(Variable overrides) 要寫在這行"上面"  ↑↑↑
+// 這裡導入所有 bootstrap 樣式
+// 最後營運階段(實務)可以用部份導入來進行最佳化
+// 參考: https://getbootstrap.com/docs/5.3/customize/sass/#importing
+@import '~bootstrap/scss/bootstrap';
+// ↓↓↓  其它客製樣式要寫在這行的"下面" ↓↓↓
+
+//#region chr
 .chr-h1 {
   font-family: 'Roboto';
   font-size: 64px;
@@ -45,12 +54,12 @@ $theme-colors: (
 }
 
 .chr-h2 {
-    font-family: 'Roboto';
-    font-size: 48px;
-    font-style: normal;
-    font-weight: 400;
-    letter-spacing: 4.8px;
-    line-height: normal;
+  font-family: 'Roboto';
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 4.8px;
+  line-height: normal;
 }
 
 .chr-h3 {
@@ -89,6 +98,16 @@ $theme-colors: (
   line-height: normal;
 }
 
+.chr-h7 {
+  font-family: 'Roboto';
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 1.8px;
+  line-height: normal;
+}
+
+
 .chr-p {
   font-family: 'Roboto';
   font-size: 16px;
@@ -98,7 +117,28 @@ $theme-colors: (
   line-height: normal;
 }
 
-//中文粗體 Bold
+
+.chr-p-14 {
+  font-family: "Roboto", Helvetica;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 1.4px;
+  line-height: normal;
+}
+
+.chr-p-12 {
+  font-family: "Roboto", Helvetica;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 1.2px;
+  line-height: normal;
+}
+
+//#endregion chr
+
+//#region chb
 
 .chb-h1 {
   font-family: 'Roboto';
@@ -154,308 +194,21 @@ $theme-colors: (
   line-height: normal;
 }
 
+.chb-h7 {
+  font-family: 'Roboto';
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  line-height: normal;
+}
+
 .chb-p {
   font-family: 'Roboto';
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
   letter-spacing: 1.6px;
-  line-height: normal;
-}
-
-
-// 英文
-.eng-h1{
-  font-family: 'Alata';
-  font-size: 64px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 1.92px;
-  line-height: normal;
-}
-
-.eng-h2{
-  font-family: 'Alata';
-  font-size: 48px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 1.44px;
-  line-height: normal;
-}
-
-.eng-h3{
-  font-family: 'Alata';
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 1.2px;
-  line-height: normal;
-}
-
-.eng-h4{
-  font-family: 'Alata';
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 0.96px;
-  line-height: normal;
-}
-
-.eng-h5{
-  font-family: 'Alata';
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 0.72px;
-  line-height: normal;
-}
-
-.eng-h6{
-  font-family: 'Alata';
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 0.6px;
-  line-height: normal;
-}
-
-.eng-p{
-  font-family: 'Alata';
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 0.48px;
-  line-height: normal;
-}
-// [自定義][電腦版][文字] End==============================================================
-
-
-
-// [自定義][電腦版][按鈕文字] Start===========================================================
-/* 按鈕中文普通 Regular */
-.btn.chr-h1 {
-  font-family: 'Roboto';
-  font-size: 64px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 6.4px;
-  line-height: normal;
-}
-
-.btn.chr-h2 {
-  font-family: 'Roboto';
-  font-size: 48px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 4.8px;
-  line-height: normal;
-}
-
-.btn.chr-h3 {
-  font-family: 'Roboto';
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 4px;
-  line-height: normal;
-}
-
-.btn.chr-h4 {
-  font-family: 'Roboto';
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 3.2px;
-  line-height: normal;
-}
-
-.btn.chr-h5 {
-  font-family: 'Roboto';
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 2.4px;
-  line-height: normal;
-}
-
-.btn.chr-h6 {
-  font-family: 'Roboto';
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 2px;
-  line-height: normal;
-}
-
-.btn.chr-p {
-  font-family: 'Roboto';
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 1.6px;
-  line-height: normal;
-}
-
-/* 按鈕中文粗體 Bold */
-.btn.chb-h1 {
-  font-family: 'Roboto';
-  font-size: 64px;
-  font-style: normal;
-  font-weight: 600;
-  letter-spacing: 6.4px;
-  line-height: normal;
-}
-
-.btn.chb-h2 {
-  font-family: 'Roboto';
-  font-size: 48px;
-  font-style: normal;
-  font-weight: 600;
-  letter-spacing: 4.8px;
-  line-height: normal;
-}
-
-.btn.chb-h3 {
-  font-family: 'Roboto';
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 600;
-  letter-spacing: 4px;
-  line-height: normal;
-}
-
-.btn.chb-h4 {
-  font-family: 'Roboto';
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 600;
-  letter-spacing: 3.2px;
-  line-height: normal;
-}
-
-.btn.chb-h5 {
-  font-family: 'Roboto';
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 600;
-  letter-spacing: 2.4px;
-  line-height: normal;
-}
-
-.btn.chb-h6 {
-  font-family: 'Roboto';
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 600;
-  letter-spacing: 2px;
-  line-height: normal;
-}
-
-.btn.chb-p {
-  font-family: 'Roboto';
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
-  letter-spacing: 1.6px;
-  line-height: normal;
-}
-
-/* 按鈕英文 */
-.btn.eng-h1 {
-  font-family: 'Alata';
-  font-size: 64px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 1.92px;
-  line-height: normal;
-}
-
-.btn.eng-h2 {
-  font-family: 'Alata';
-  font-size: 48px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 1.44px;
-  line-height: normal;
-}
-
-.btn.eng-h3 {
-  font-family: 'Alata';
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 1.2px;
-  line-height: normal;
-}
-
-.btn.eng-h4 {
-  font-family: 'Alata';
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 0.96px;
-  line-height: normal;
-}
-
-.btn.eng-h5 {
-  font-family: 'Alata';
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 0.72px;
-  line-height: normal;
-}
-
-.btn.eng-h6 {
-  font-family: 'Alata';
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 0.6px;
-  line-height: normal;
-}
-
-.btn.eng-p {
-  font-family: 'Alata';
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 0.48px;
-  line-height: normal;
-}
-// [自定義][電腦版][按鈕文字] End===========================================================
-
-
-
-
-// [自定義][手機板][文字] Start===============================================================
-
-/* [手機板] 中文 Regular */
-.chr-p-12 {
-  font-family: "Roboto", Helvetica;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 1.2px;
-  line-height: normal;
-}
-
-.chr-p-14 {
-  font-family: "Roboto", Helvetica;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 1.4px;
-  line-height: normal;
-}
-
-/* [手機板] 中文 Bold  */
-.chb-p-12 {
-  font-family: "Roboto", Helvetica;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 600;
-  letter-spacing: 1.2px;
   line-height: normal;
 }
 
@@ -468,32 +221,7 @@ $theme-colors: (
   line-height: normal;
 }
 
-
-// [自定義][手機板][文字] End ===============================================================
-
-
-// [自定義][手機板][按鈕文字] Start===========================================================
-/* [手機板]按鈕中文 Regular */
-.btn.chr-p-12 {
-  font-family: "Roboto", Helvetica;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 1.2px;
-  line-height: normal;
-}
-
-.btn.chr-p-14 {
-  font-family: "Roboto", Helvetica;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 1.4px;
-  line-height: normal;
-}
-
-/* [手機板]按鈕中文 Bold  */
-.btn.chb-p-12 {
+.chb-p-12 {
   font-family: "Roboto", Helvetica;
   font-size: 12px;
   font-style: normal;
@@ -502,222 +230,85 @@ $theme-colors: (
   line-height: normal;
 }
 
-.btn.chb-p-14 {
-  font-family: "Roboto", Helvetica;
-  font-size: 14px;
+//#endregion chb
+
+//#region eng
+
+.eng-h1 {
+  font-family: 'Alata';
+  font-size: 64px;
   font-style: normal;
-  font-weight: 600;
-  letter-spacing: 1.4px;
+  font-weight: 400;
+  letter-spacing: 1.92px;
   line-height: normal;
 }
 
-// [自定義][手機板][按鈕文字] End===========================================================
-
-
-
-
-
-// 定義中文版型 - Chi B
-$chi-b-styles: (
-  h1: (font-family: 'Roboto',
-    font-size: 64px,
-    font-style: normal,
-    font-weight: 600,
-    letter-spacing: 6.4px,
-    line-height: normal,
-  ),
-  h2: (font-family: 'Roboto',
-    font-size: 48px,
-    font-style: normal,
-    font-weight: 600,
-    letter-spacing: 4.8px,
-    line-height: normal,
-  ),
-  h3: (font-family: 'Roboto',
-    font-size: 40px,
-    font-style: normal,
-    font-weight: 600,
-    letter-spacing: 4px,
-    line-height: normal,
-  ),
-  h4: (font-family: 'Roboto',
-    font-size: 32px,
-    font-style: normal,
-    font-weight: 600,
-    letter-spacing: 3.2px,
-    line-height: normal,
-  ),
-  h5: (font-family: 'Roboto',
-    font-size: 24px,
-    font-style: normal,
-    font-weight: 600,
-    letter-spacing: 2.4px,
-    line-height: normal,
-  ),
-  h6: (font-family: 'Roboto',
-    font-size: 20px,
-    font-style: normal,
-    font-weight: 600,
-    letter-spacing: 2px,
-    line-height: normal,
-  ),
-  p: (font-family: 'Roboto',
-    font-size: 16px,
-    font-style: normal,
-    font-weight: 600,
-    letter-spacing: 1.6px,
-    line-height: normal,
-  ),
-);
-
-// 使用 @each 动态生成类名
-@each $key, $value in $chi-b-styles {
-  .chi-b-#{$key} {
-    font-family: map-get($value, font-family);
-    font-size: map-get($value, font-size);
-    font-style: map-get($value, font-style);
-    font-weight: map-get($value, font-weight);
-    letter-spacing: map-get($value, letter-spacing);
-    line-height: map-get($value, line-height);
-  }
+.eng-h2 {
+  font-family: 'Alata';
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 1.44px;
+  line-height: normal;
 }
 
-// 定義中文版型 - Chi R
-$chi-r-styles: (
-  h1: (font-family: 'Roboto',
-    font-size: 64px,
-    font-style: normal,
-    font-weight: 400,
-    letter-spacing: 6.4px,
-    line-height: normal,
-  ),
-  h2: (font-family: 'Roboto',
-    font-size: 48px,
-    font-style: normal,
-    font-weight: 400,
-    letter-spacing: 4.8px,
-    line-height: normal,
-  ),
-  h3: (font-family: 'Roboto',
-    font-size: 40px,
-    font-style: normal,
-    font-weight: 400,
-    letter-spacing: 4px,
-    line-height: normal,
-  ),
-  h4: (font-family: 'Roboto',
-    font-size: 32px,
-    font-style: normal,
-    font-weight: 400,
-    letter-spacing: 3.2px,
-    line-height: normal,
-  ),
-  h5: (font-family: 'Roboto',
-    font-size: 24px,
-    font-style: normal,
-    font-weight: 400,
-    letter-spacing: 2.4px,
-    line-height: normal,
-  ),
-  h6: (font-family: 'Roboto',
-    font-size: 20px,
-    font-style: normal,
-    font-weight: 400,
-    letter-spacing: 2px,
-    line-height: normal,
-  ),
-  p: (font-family: 'Roboto',
-    font-size: 16px,
-    font-style: normal,
-    font-weight: 400,
-    letter-spacing: 1.6px,
-    line-height: normal,
-  ),
-);
-
-// 使用 @each 动态生成类名
-@each $key, $value in $chi-r-styles {
-  .chi-r-#{$key} {
-    font-family: map-get($value, font-family);
-    font-size: map-get($value, font-size);
-    font-style: map-get($value, font-style);
-    font-weight: map-get($value, font-weight);
-    letter-spacing: map-get($value, letter-spacing);
-    line-height: map-get($value, line-height);
-  }
+.eng-h3 {
+  font-family: 'Alata';
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 1.2px;
+  line-height: normal;
 }
 
-// 定義英文版型
-$eng-styles: (
-  h1: (font-family: 'Alata',
-    font-size: 64px,
-    font-style: normal,
-    font-weight: 400,
-    letter-spacing: 1.92px,
-    line-height: normal,
-  ),
-  h2: (font-family: 'Alata',
-    font-size: 48px,
-    font-style: normal,
-    font-weight: 400,
-    letter-spacing: 1.44px,
-    line-height: normal,
-  ),
-  h3: (font-family: 'Alata',
-    font-size: 40px,
-    font-style: normal,
-    font-weight: 400,
-    letter-spacing: 1.2px,
-    line-height: normal,
-  ),
-  h4: (font-family: 'Alata',
-    font-size: 32px,
-    font-style: normal,
-    font-weight: 400,
-    letter-spacing: 0.96px,
-    line-height: normal,
-  ),
-  h5: (font-family: 'Alata',
-    font-size: 24px,
-    font-style: normal,
-    font-weight: 400,
-    letter-spacing: 0.72px,
-    line-height: normal,
-  ),
-  h6: (font-family: 'Alata',
-    font-size: 20px,
-    font-style: normal,
-    font-weight: 400,
-    letter-spacing: 0.6px,
-    line-height: normal,
-  ),
-  p: (font-family: 'Alata',
-    font-size: 16px,
-    font-style: normal,
-    font-weight: 400,
-    letter-spacing: 0.48px,
-    line-height: normal,
-  ),
-);
-
-// 使用 @each 动态生成类名
-@each $key, $value in $eng-styles {
-  .eng-#{$key} {
-    font-family: map-get($value, font-family);
-    font-size: map-get($value, font-size);
-    font-style: map-get($value, font-style);
-    font-weight: map-get($value, font-weight);
-    letter-spacing: map-get($value, letter-spacing);
-    line-height: map-get($value, line-height);
-  }
+.eng-h4 {
+  font-family: 'Alata';
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.96px;
+  line-height: normal;
 }
 
-// ↑↑↑  變數覆蓋(Variable overrides) 要寫在這行"上面"  ↑↑↑
-// 這裡導入所有 bootstrap 樣式
-// 最後營運階段(實務)可以用部份導入來進行最佳化
-// 參考: https://getbootstrap.com/docs/5.3/customize/sass/#importing
-@import '~bootstrap/scss/bootstrap';
-// ↓↓↓  其它客製樣式要寫在這行的"下面" ↓↓↓
+.eng-h5 {
+  font-family: 'Alata';
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.72px;
+  line-height: normal;
+}
+
+.eng-h6 {
+  font-family: 'Alata';
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.6px;
+  line-height: normal;
+}
+
+.eng-h7 {
+  font-family: 'Alata';
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.54px;
+  line-height: normal;
+}
+
+.eng-p {
+  font-family: 'Alata';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.48px;
+  line-height: normal;
+}
+
+//#endregion eng
+
+//#region reset css
 
 * {
   box-sizing: border-box;
@@ -784,8 +375,4 @@ table {
   border-spacing: 0;
 }
 
-// 覆蓋 Bootstrap 的默認變量
-$card-border-radius: 0;
-
-// 導入 Bootstrap 的其他組件樣式
-@import 'node_modules/bootstrap/scss/bootstrap';
+//#endregion reset css
