@@ -4,7 +4,7 @@ export default function Index() {
     <>
       <div
         style={{ height: '100px' }}
-        className="w-100 bg-purple1 text-warning d-flex justify-content-center align-items-center "
+        className="w-100 bg-black5 text-warning d-flex justify-content-center align-items-center "
       >
         測試 container : 桌機版 1600px ; 手機版 334px
       </div>

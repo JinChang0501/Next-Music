@@ -3,18 +3,47 @@
 @import 'node_modules/bootstrap/scss/variables';
 @import 'node_modules/bootstrap/scss/mixins';
 
-// #region 覆寫 container
+// #region 使用 Bootstrap 的 mixin 定義 music-container
 
-$container-max-widths: (
-  xs: 334px,
-  sm: 540px,
-  md: 720px,
-  lg: 960px,
-  xl: 1140px,
-  xxl: 1600px
-);
+$container-padding-x-large: 160px;
+$container-padding-x-small: 28px;
 
-// #endregion 覆寫 container
+@mixin large-container($padding-x: $container-padding-x-large) {
+  width: 100%;
+  padding-right: $padding-x;
+  padding-left: $padding-x;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@mixin small-container($padding-x: $container-padding-x-small) {
+  width: 100%;
+  padding-right: $padding-x;
+  padding-left: $padding-x;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+// 定義媒體查詢
+@media (min-width: 1921px) {
+  .music-container {
+    @include large-container($container-padding-x-large);
+  }
+}
+
+@media (max-width: 1920px) and (min-width: 391px) {
+  .music-container {
+    @include large-container($container-padding-x-large);
+  }
+}
+
+@media (max-width: 390px) {
+  .music-container {
+    @include small-container($container-padding-x-small);
+  }
+}
+
+// #endregion 使用 Bootstrap 的 mixin 定義 music-container
 
 // #region 覆寫 color
 
@@ -62,6 +91,7 @@ $card-border-radius: 0;
 // ↓↓↓  其它客製樣式要寫在這行的"下面" ↓↓↓
 
 //#region chr
+
 .chr-h1 {
   font-family: 'Roboto';
   font-size: 64px;
@@ -337,7 +367,21 @@ $card-border-radius: 0;
 html,
 body {
   max-width: 100vw;
+  height: 100%;
   overflow-x: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+footer {
+  margin-top: auto;
 }
 
 article,

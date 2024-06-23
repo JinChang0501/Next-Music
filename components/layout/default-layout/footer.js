@@ -4,10 +4,7 @@ import { FaMusic } from 'react-icons/fa6'
 export default function Footer() {
   return (
     <>
-      <footer
-        className="footer bg-purple2 py-3 text-center"
-        style={{ marginTop: 'auto' }}
-      >
+      <footer className="footer bg-purple2 py-3 text-center mt-auto">
         <span className="text-body-secondary fw-bolder">
           <FaMusic />
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Lose yourself in
