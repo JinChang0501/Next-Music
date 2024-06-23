@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+      crossorigin="anonymous"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .img-size {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+      }
+
+      .short-underline {
+        display: inline-block;
+        position: relative;
+      }
+      .short-underline::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: -2px; /* 這裡調整距離文字的距離 */
+        transform: translateX(-50%);
+        width: 35px; /* 設置底線的寬度 */
+        height: 2px; /* 設置底線的高度 */
+        background-color: black; /* 設置底線的顏色 */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="text-center my-3">
+          <img
+            id="himg"
+            src="./img/angel-1284369__340.jpg"
+            alt=""
+            class="img-size mx-auto"
+          />
+        </div>
+        <!-- <div class="text-center" style="text-underline-offset: 8px">我好帥</div> -->
+        <p class="short-underline text-center fs-5 m-0 mb-3">我好帥</p>
+
+        <div>
+          <ul class="list-unstyled m-0 mb-3">
+            <a href="" class="text-decoration-none text-center fw-bold m-0 fs-4"
+              ><li class="my-2">行事曆</li></a
+            >
+            <a href="" class="text-decoration-none text-center fw-bold fs-4">
+              <li class="my-2">收藏庫</li>
+            </a>
+            <a href="" class="text-decoration-none text-center fw-bold fs-4">
+              <li class="my-2">我的票券</li></a
+            ><a href="" class="text-decoration-none text-center fw-bold fs-4"
+              ><li class="my-2">商城購買紀錄</li></a
+            >
+            <a href="" class="text-decoration-none text-center fw-bold fs-4"
+              ><li class="my-2">帳號設定</li></a
+            >
+          </ul>
+        </div>
+        <div class="text-center position-absolute bottom-0 mb-3">
+          <span class="fs-6">jin@gmail.com</span>
+          <br />
+          <a href="" class="text-decoration-none">登出</a>
+        </div>
+      </div>
+    </div>
+    <!-- JavaScript Bundle with Popper -->
+    <script>
+      const himg = document.querySelector('#himg')
+
+      himg.addEventListener('click')
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
