@@ -3,46 +3,124 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <!-- CSS only -->
+    <title>固定navbar、footer和left bar</title>
+    <!-- 引入Bootstrap CSS -->
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
-      crossorigin="anonymous"
     />
     <style>
-      .box1 {
-        background-color: aqua;
-        height: 56px;
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
       }
-      .box2 {
-        background-color: rgb(193, 179, 248);
-        height: 100px;
+      .navbar,
+      .footer {
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
       }
-      .box3 {
-        background-color: rgb(122, 236, 0);
-        height: 56px;
+      .navbar {
+        top: 0;
+      }
+      .footer {
+        bottom: 0;
+      }
+      .left-bar {
+        padding-top: 60px; /* Navbar的高度 */
+        background-color: #f4f4f4;
+        height: 100vh; /* 填滿整個視窗高度 */
+      }
+      .main-content {
+        padding-top: 60px; /* Navbar的高度 */
+        padding-left: 20px; /* 左側欄位的寬度 */
+        overflow-y: auto;
+        height: calc(100vh - 60px); /* 計算剩餘高度，扣除navbar的高度 */
+      }
+      .img-size {
+        max-width: 160px;
+        max-height: 160px;
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        object-fit: cover; /* 或者 background-size: cover; */
+      }
+      /* 新增的 CSS */
+      .bottom-content {
+        position: absolute;
+        bottom: 50px;
+        left: 0;
+        width: 100%;
+        padding: 10px;
+        background-color: #f4f4f4;
       }
     </style>
   </head>
   <body>
-    <div>
-      <div class="box1"></div>
-      <div class="box2 h-100">
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
+    <!-- Navbar -->
+    <div class="navbar">Navbar</div>
+
+    <!-- 主要內容 -->
+    <div class="container-fluid">
+      <div class="row">
+        <!-- 左側欄位 -->
+        <div class="col-2 left-bar">
+          <!-- top -->
+          <div>
+            <div class="text-center">
+              <img
+                src="./public/images/member/img/angel-1284369__340.jpg"
+                alt=""
+                class="img-size"
+              />
+            </div>
+            <div><p class="text-center">測試字</p></div>
+          </div>
+          <!-- fct -->
+          <div>
+            <ul class="list-unstyled text-center">
+              <a href=""><li>123</li></a>
+              <a href=""><li>123</li></a>
+              <a href=""><li>123</li></a>
+              <a href=""><li>123</li></a>
+              <a href=""><li>123</li></a>
+            </ul>
+          </div>
+          <!-- bottom -->
+          <div class="bottom-content text-center">
+            <span class="fs-6">jin@gmail.com</span>
+            <br />
+            <a href="" class="text-decoration-none"> 登出 </a>
+          </div>
+        </div>
+
+        <!-- 主要內容區域 -->
+        <div class="col-10 main-content">
+          <h1>Main Content</h1>
+          <p>
+            測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字
+          </p>
+          <p>
+            測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字
+          </p>
+          <p>
+            測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字
+          </p>
+          <p>
+            測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字
+          </p>
+          <p>
+            測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字測試字
+          </p>
+        </div>
       </div>
-      <div class="box3"></div>
     </div>
-    <!-- JavaScript Bundle with Popper -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
-      crossorigin="anonymous"
-    ></script>
+
+    <!-- Footer -->
+    <div class="footer">Footer</div>
   </body>
 </html>
