@@ -6,27 +6,21 @@ import Footer from './footer'
 export default function DefaultLayout({ title = 'Music', children }) {
   return (
     <>
-      <div className="stickyfooter">
-        <Head>
-          <title>{title}</title>
-          <meta name="viewport" content="width=device-width" />
-        </Head>
+      <Head>
+        <title>{title}</title>
+      </Head>
+      <div className="d-flex flex-column vh-100">
         <Nav />
-        <main className="flex-shrink-0">
-          <div className="container">
-            <div>{children}</div>
+        {/* main 裡面放背景顏色或背景 */}
+        <main className="flex-grow-1 bg-purple1">
+          {/* 使用自定義 container */}
+          <div className="music-container">
+            {children}
+            {/* 全域的載入動畫指示器 */}
+            {/* {loader()} */}
           </div>
-          {/* 全域的載入動畫指示器 */}
-          {/* {loader()} */}
         </main>
         <Footer />
-        <style jsx>{`
-          .stickyfooter {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-          }
-        `}</style>
       </div>
     </>
   )
