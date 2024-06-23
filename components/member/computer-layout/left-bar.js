@@ -1,18 +1,21 @@
 import React from 'react'
-import styles from './m-navbar.module.scss'
+import styles from './left-bar.module.scss'
 import Link from 'next/link'
 
 export default function LeftBar() {
   return (
     <>
-      <div className=" left-bar">
+      <div className="left-bar">
         <div>
           <div className="bg-warning py-4">
-            <img
-              src="/images/member/img/angel-1284369__340.jpg"
-              className={`${styles['img-size']} mx-auto`}
-            ></img>
+            <div className={`${styles.imgF} mx-auto`}>
+              <img
+                src="/images/member/img/angel-1284369__340.jpg"
+                className={`${styles['img-size']} mx-auto`}
+              ></img>
+            </div>
           </div>
+
           <div className="bg-secondary text-center">
             <p
               className={`${styles['short-underline']} chb-h5 m-0 mb-3 text-white`}
@@ -83,6 +86,12 @@ export default function LeftBar() {
           width: 100%;
           padding: 10px;
           background-color: #f4f4f4;
+        }
+        /* 在手機板上隱藏 .left-bar */
+        @media (max-width: 576px) {
+          .left-bar {
+            display: none;
+          }
         }
       `}</style>
     </>
