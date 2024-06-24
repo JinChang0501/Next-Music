@@ -73,7 +73,17 @@ $theme-colors: (
   'D': #9e00ff,
   'E': #3ead2c,
 );
+// 設置頁籤的邊框圓角為 0
+$nav-tabs-border-radius: 0;
+$nav-pills-border-radius: 0;
 
+$nav-tabs-link-active-color: #685beb; //應用中的頁籤的字顏色
+$nav-link-color: #888888;
+
+// 設置頁籤文字大小和粗細
+$nav-link-font-size: 1.25rem; // 設置文字大小
+$nav-link-font-weight: bold; // 設置文字粗細
+$nav-link-hover-color: #685beb;
 // #endregion 覆蓋 覆寫 color
 
 // #region 覆寫 card-border-radius
@@ -154,7 +164,6 @@ $card-border-radius: 0;
   line-height: normal;
 }
 
-
 .chr-p {
   font-family: 'Roboto';
   font-size: 16px;
@@ -164,9 +173,8 @@ $card-border-radius: 0;
   line-height: normal;
 }
 
-
 .chr-p-14 {
-  font-family: "Roboto", Helvetica;
+  font-family: 'Roboto', Helvetica;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -175,7 +183,7 @@ $card-border-radius: 0;
 }
 
 .chr-p-12 {
-  font-family: "Roboto", Helvetica;
+  font-family: 'Roboto', Helvetica;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -260,7 +268,7 @@ $card-border-radius: 0;
 }
 
 .chb-p-14 {
-  font-family: "Roboto", Helvetica;
+  font-family: 'Roboto', Helvetica;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
@@ -269,7 +277,7 @@ $card-border-radius: 0;
 }
 
 .chb-p-12 {
-  font-family: "Roboto", Helvetica;
+  font-family: 'Roboto', Helvetica;
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
