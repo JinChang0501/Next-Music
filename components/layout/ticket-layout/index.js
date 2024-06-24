@@ -4,6 +4,8 @@ import Nav from '../default-layout/nav'
 import Footer from '../default-layout/footer'
 
 export default function TicketLayout({ children }) {
+  // #region 動態獲取 nav、footer 高度，返回給 content
+
   const navRef = useRef(null)
   const footerRef = useRef(null)
   const [contentHeight, setContentHeight] = useState('100vh')
@@ -24,11 +26,22 @@ export default function TicketLayout({ children }) {
     // Add event listener for window resize
     window.addEventListener('resize', handleResize)
 
+    // Intersection Observer for observing height changes
+    const observer = new ResizeObserver(handleResize)
+    const navNode = navRef.current
+    const footerNode = footerRef.current
+    if (navNode) observer.observe(navNode)
+    if (footerNode) observer.observe(footerNode)
+
     // Cleanup the event listener on component unmount
     return () => {
       window.removeEventListener('resize', handleResize)
+      if (navNode) observer.unobserve(navNode)
+      if (footerNode) observer.unobserve(footerNode)
     }
   }, [])
+
+  // #endregion 動態獲取 nav、footer 高度，返回給 content
 
   return (
     <>
@@ -40,7 +53,7 @@ export default function TicketLayout({ children }) {
         <nav ref={navRef}>
           <Nav />
         </nav>
-        <main className="bg-purple1" style={{ height: contentHeight }}>
+        <main style={{ height: contentHeight }}>
           <div className="music-container h-100">{children}</div>
         </main>
         {/* 需要把 <footer /> 包裝在 <footer> 標籤裡 useRef 才能夠正確訪問 */}
