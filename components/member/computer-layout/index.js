@@ -2,8 +2,22 @@ import Footer from '@/components/layout/default-layout/footer'
 import Head from 'next/head'
 import Nav from '@/components/layout/default-layout/nav'
 import LeftBar from './left-bar'
+import { useEffect, useState } from 'react'
 
 export default function MemberDLayout({ title = 'Music | 會員', children }) {
+  const [isDesktop, setIsDesktop] = useState(true)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth > 576) // 螢幕寬度 > 576px 為電腦板
+    }
+
+    handleResize() // 初始設定一次
+
+    window.addEventListener('resize', handleResize) // 監聽視窗大小變化
+
+    return () => window.removeEventListener('resize', handleResize) // 清除事件監聽器
+  }, [])
   return (
     <>
       <Head>
@@ -13,16 +27,35 @@ export default function MemberDLayout({ title = 'Music | 會員', children }) {
       <div className="fixed-top w-100">
         <Nav />
       </div>
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-2 p-0">
-            <LeftBar />
-          </div>
-          <div className="col-10 p-0 main-content pb-5">
-            <div className="container overflow-auto">{children}</div>
+      {isDesktop ? (
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-2 p-0">
+              <LeftBar />
+            </div>
+            <div className="col-10 p-0 main-content pb-5">
+              <div className="music-container overflow-auto">
+                <div className="mx-auto">{children}</div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-2 p-0">
+              <LeftBar />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-12 p-0 main-content pb-5">
+              <div className="music-container overflow-auto">
+                <div className="mx-auto">{children}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="fixed-bottom w-100">
         <Footer />
       </div>
@@ -44,6 +77,12 @@ export default function MemberDLayout({ title = 'Music | 會員', children }) {
           padding-left: 20px; /* 左側欄位的寬度 */
           overflow-y: auto;
           height: calc(100vh - 117px); /* 計算剩餘高度，扣除navbar的高度 */
+        }
+        /* 新增的 CSS */
+        @media (max-width: 576px) {
+          .col-12 {
+            width: 100% !important;
+          }
         }
       `}</style>
     </>
