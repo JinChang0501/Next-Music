@@ -71,7 +71,9 @@ export default function Ticket() {
         <div className={`${style.progressBar} col-7`}>
           <div className={`${style.progressBarBlock}`}>
             <div className={`${style.numBlock} bg-purple1 chb-h5`}>1</div>
-            <div className={`${style.text} chb-h5`}>選擇座位</div>
+            <div className={`${style.progressBarBlockText} chb-h5`}>
+              選擇座位
+            </div>
           </div>
           <div className={`${style.progressBarIconBlock}`}>
             <FaChevronRight
@@ -80,7 +82,11 @@ export default function Ticket() {
           </div>
           <div className={`${style.progressBarBlock}`}>
             <div className={`${style.numBlock} bg-black20 chb-h5`}>2</div>
-            <div className={`${style.text} chb-h5 text-black30`}>選擇座位</div>
+            <div
+              className={`${style.progressBarBlockText} chb-h5 text-black30`}
+            >
+              選擇座位
+            </div>
           </div>
           <div className={`${style.progressBarIconBlock}`}>
             <FaChevronRight
@@ -89,12 +95,39 @@ export default function Ticket() {
           </div>
           <div className={`${style.progressBarBlock}`}>
             <div className={`${style.numBlock} bg-black20 chb-h5`}>3</div>
-            <div className={`${style.text} chb-h5 text-black30`}>選擇座位</div>
+            <div
+              className={`${style.progressBarBlockText} chb-h5 text-black30`}
+            >
+              選擇座位
+            </div>
           </div>
         </div>
 
         {/* timeCounter */}
-        <div className={`${style.timeCounter} col-5 bg-success`}></div>
+        <div className={`${style.timeCounter} col-5`}>
+          <div className={`${style.timeCounterClock}`}>
+            <div className={`${style.timeCounterClockBlock} text-dark chb-h4`}>
+              1
+            </div>
+            <div className={`${style.timeCounterClockBlock} text-dark chb-h4`}>
+              0
+            </div>
+            <div
+              className={`${style.timeCounterClockColon} text-black30 chb-h3`}
+            >
+              :
+            </div>
+            <div className={`${style.timeCounterClockBlock} text-dark chb-h4`}>
+              0
+            </div>
+            <div className={`${style.timeCounterClockBlock} text-dark chb-h4`}>
+              0
+            </div>
+          </div>
+          <div className={`${style.timeCounterText} text-black80 chb-p`}>
+            請於10分鐘內完成訂票
+          </div>
+        </div>
       </div>
 
       {/* content */}
@@ -134,5 +167,5 @@ export default function Ticket() {
 }
 
 Ticket.getLayout = function getLayout(page) {
-  return <TicketLayout>{page}</TicketLayout>
+  return <TicketLayout title="Ticket">{page}</TicketLayout>
 }
