@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import MemberDLayout from '@/components/member/computer-layout'
 import tickets from '@/data/member/tickets.json'
+import styles from '@/components/member/computer-layout/left-bar.module.scss'
 
 // import { Dropdown } from 'react-bootstrap'
 
 export default function TicketOrder() {
   const [activeTab, setActiveTab] = useState('concert') //頁籤 預設先給concert
-  const [ticketStatus, setTicketStatus] = useState('0') //下拉選單 預設是0 0就是 "全部"
+  const [ticketStatus, setTicketStatus] = useState('0') //下拉選單 預設是0， 0就是 "全部"
 
   const concertTickets = [
     // { id: 0, status: '全部', name: '全部' },
@@ -91,7 +92,7 @@ export default function TicketOrder() {
         >
           {/* dropdown */}
           <div className="row">
-            <div className="col-3">
+            <div className="col-sm-6">
               <div className="w-100 d-flex">
                 <label
                   htmlFor="activity"
@@ -139,7 +140,7 @@ export default function TicketOrder() {
         >
           {/* dropdown */}
           <div className="row">
-            <div className="col-3">
+            <div className="col-sm-6">
               <div className="w-100 d-flex">
                 <label
                   htmlFor="activity"
@@ -198,5 +199,5 @@ export default function TicketOrder() {
 }
 
 TicketOrder.getLayout = function getLayout(page) {
-  return <MemberDLayout title="Music | 會員訂票紀錄">{page}</MemberDLayout>
+  return <MemberDLayout title="Music | 我的票券">{page}</MemberDLayout>
 }

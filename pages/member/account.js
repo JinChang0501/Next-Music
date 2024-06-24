@@ -1,6 +1,7 @@
 // pages/index.js
 import MemberDLayout from '@/components/member/computer-layout'
-
+import styles from '@/components/member/computer-layout/left-bar.module.scss'
+import Link from 'next/link'
 import { IoEyeSharp } from 'react-icons/io5'
 import { IoEyeOffSharp } from 'react-icons/io5'
 
@@ -10,10 +11,9 @@ export default function Account() {
       <p className="chb-h4 text-purple1">帳號設定</p>
       <hr className="custom-hr" />
 
-      {/*  */}
       <form>
         <div className="row">
-          <div className="col-6">
+          {/* <div className="col-6">
             <div className="mb-3">
               <label htmlFor="id" className="form-label">
                 會員編號
@@ -29,8 +29,8 @@ export default function Account() {
                 will never share your email with anyone else.
               </div>
             </div>
-          </div>
-          <div className="col-6">
+          </div> */}
+          <div className="col-sm-6">
             <div className="mb-3">
               <label htmlFor="name" className="form-label">
                 會員姓名
@@ -42,27 +42,27 @@ export default function Account() {
                 aria-describedby="emailHelp"
                 name="name"
               />
-              <div id="emailHelp" className="form-text">
-                will never share your email with anyone else.
-              </div>
+            </div>
+          </div>
+          {/* Email */}
+          <div className="col-sm-6">
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label">
+                電子信箱
+              </label>
+              <input
+                type="email"
+                className="form-control"
+                id="email"
+                name="email"
+              />
             </div>
           </div>
         </div>
-        {/* Email */}
-        <div className="mb-3">
-          <label htmlFor="email" className="form-label">
-            電子信箱
-          </label>
-          <input
-            type="email"
-            className="form-control"
-            id="email"
-            name="email"
-          />
-        </div>
+
         {/* 電話號碼 */}
         <div className="row">
-          <div className="col-4">
+          <div className="col-sm-4">
             <div className="mb-3">
               <label htmlFor="phone_number" className="form-label">
                 電話號碼
@@ -77,7 +77,7 @@ export default function Account() {
               />
             </div>
           </div>
-          <div className="col-4">
+          <div className="col-sm-4">
             <div className="mb-3">
               <label htmlFor="birthday" className="form-label">
                 生日
@@ -90,7 +90,7 @@ export default function Account() {
               />
             </div>
           </div>
-          <div className="col-4">
+          <div className="col-sm-4">
             <div className="mb-3">
               <label htmlFor="gender" className="form-label">
                 Gender
@@ -137,14 +137,14 @@ export default function Account() {
         <div className="accordion-item">
           <h2 className="accordion-header" id="headingOne">
             <button
-              className="accordion-button"
+              className="accordion-button bg-purple3"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#collapseOne"
               aria-expanded="true"
               aria-controls="collapseOne"
             >
-              Accordion Item #1
+              更新密碼
             </button>
           </h2>
           <div

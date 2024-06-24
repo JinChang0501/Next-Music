@@ -11,6 +11,7 @@
   max-width: 160px;
   max-height: 160px;
 }
+
 .short-underline {
   display: inline-block;
   position: relative;
@@ -24,4 +25,27 @@
   width: 50px; /* 設置底線的寬度 */
   height: 2px; /* 設置底線的高度 */
   background-color: rgb(255, 255, 255); /* 設置底線的顏色 */
+}
+
+@media (max-width: 576px) {
+  .img-size {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover; /* 或者 background-size: cover; */
+  }
+  .imgF {
+    max-width: 100px;
+    max-height: 100px;
+  }
+  .short-underline::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -5px; /* 這裡調整距離文字的距離 */
+    transform: translateX(-50%);
+    width: 30px; /* 設置底線的寬度 */
+    height: 1px; /* 設置底線的高度 */
+    background-color: rgb(255, 255, 255); /* 設置底線的顏色 */
+  }
 }

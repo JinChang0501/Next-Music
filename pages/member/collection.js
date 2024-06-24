@@ -26,6 +26,7 @@ export default function Collection() {
     <>
       <p className="chb-h4 text-purple1">收藏庫</p>
       <hr className="custom-hr" />
+      {/*  */}
       <ul className="nav nav-tabs mb-3" id="myTab" role="tablist">
         <li className="nav-item" role="presentation">
           <button
@@ -66,7 +67,7 @@ export default function Collection() {
         >
           {/* dropdown */}
           <div className="row">
-            <div className="col-3">
+            <div className="col-sm-3">
               <div className="w-100 d-flex">
                 <label
                   htmlFor="activity"
@@ -94,7 +95,8 @@ export default function Collection() {
                 </select>
               </div>
             </div>
-            <div className="col-9">{renderPage()}</div>
+
+            <div className="col-sm-9">{renderPage()}</div>
           </div>
         </div>
         <div

@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Nav from '@/components/layout/default-layout/nav'
 import LeftBar from './left-bar'
 import { useEffect, useState } from 'react'
+import PhoneBar from './phone-bar'
 
 export default function MemberDLayout({ title = 'Music | 會員', children }) {
   const [isDesktop, setIsDesktop] = useState(true)
@@ -35,7 +36,7 @@ export default function MemberDLayout({ title = 'Music | 會員', children }) {
             </div>
             <div className="col-10 p-0 main-content pb-5">
               <div className="music-container overflow-auto">
-                <div className="mx-auto">{children}</div>
+                <div className="mx-auto mt-3">{children}</div>
               </div>
             </div>
           </div>
@@ -43,12 +44,12 @@ export default function MemberDLayout({ title = 'Music | 會員', children }) {
       ) : (
         <div className="container-fluid">
           <div className="row">
-            <div className="col-2 p-0">
-              <LeftBar />
+            <div className="col-12 p-0">
+              <PhoneBar />
             </div>
           </div>
           <div className="row">
-            <div className="col-12 p-0 main-content pb-5">
+            <div className="col-10 main-content pb-5 mx-auto px-0 my-3">
               <div className="music-container overflow-auto">
                 <div className="mx-auto">{children}</div>
               </div>
