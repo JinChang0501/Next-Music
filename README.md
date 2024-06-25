@@ -110,16 +110,28 @@ Ticket.getLayout = function getLayout(page) {
 }
 ```
 
-### 新增頁面`title` ( `return`上面添加`useEffect` )
+### 新增頁面`title` ( 使用`Head`組件設置標題 )
+
+- 即時渲染：瀏覽器在初次加載頁面時就能獲得正確的標題，這對於用戶體驗和`SEO`都有好處
+
+- 可維護性：每個頁面獨立設置標題，代碼清晰，便於維護
+
+- 統一管理：如果未來需要變更標題的格式或結構，只需修改`Head`組件中的設置，簡化了維護工作
 
 ```jsx
-import { useEffect } from 'react'
+import Head from 'next/head'
+
 export default function Custom404() {
-  useEffect(() => {
-    document.title = '404找不到頁面'
-  }, [])
-  return <h1>404 - Page Not Found</h1>
+  return (
+    <>
+      <Head>
+        <title>404找不到頁面</title>
+      </Head>
+      <h1>404 - Page Not Found</h1>
+    </>
+  )
 }
+
 ```
 
 ### `DefaultLayout`頂天立地
@@ -221,14 +233,13 @@ export default function Footer() {
 - purple1
 - purple2
 - purple3
-- black1
-- black2
-- black3
-- black4
-- black5
-- black6
-- black7
-- black8
+- black95
+- black90
+- black80
+- black60
+- black40
+- black30
+- black20
 - A
 - B
 - C

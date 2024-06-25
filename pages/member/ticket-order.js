@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import MemberDLayout from '@/components/member/computer-layout'
 import tickets from '@/data/member/tickets.json'
+import styles from '@/components/member/computer-layout/left-bar.module.scss'
 
 // import { Dropdown } from 'react-bootstrap'
 
 export default function TicketOrder() {
   const [activeTab, setActiveTab] = useState('concert') //頁籤 預設先給concert
-  const [ticketStatus, setTicketStatus] = useState('0') //下拉選單 預設是0 0就是 "全部"
+  const [ticketStatus, setTicketStatus] = useState('0') //下拉選單 預設是0， 0就是 "全部"
 
   const concertTickets = [
     // { id: 0, status: '全部', name: '全部' },
@@ -46,9 +47,9 @@ export default function TicketOrder() {
       <p className="chb-h4 text-purple1">我的票券</p>
       <hr className="custom-hr" />
       <ul className="nav nav-tabs mb-3" id="myTab" role="tablist">
-        <li className="nav-item" role="presentation">
+        <li className="nav-item col-6 col-md-3" role="presentation">
           <button
-            className={`nav-link ${
+            className={`nav-link w-100 ${
               activeTab === 'concert' ? 'active' : ''
             } px-5`}
             id="concert-tab"
@@ -62,9 +63,9 @@ export default function TicketOrder() {
             演唱會
           </button>
         </li>
-        <li className="nav-item" role="presentation">
+        <li className="nav-item col-6 col-md-3" role="presentation">
           <button
-            className={`nav-link ${
+            className={`nav-link w-100 ${
               activeTab === 'festival' ? 'active' : ''
             } px-5`}
             id="festival-tab"
@@ -89,14 +90,47 @@ export default function TicketOrder() {
           role="tabpanel"
           aria-labelledby="concert-tab"
         >
-          {/* dropdown */}
+          {/* 演唱會票券dropdown */}
           <div className="row">
-            <div className="col-3">
-              <div className="w-100 d-flex">
+            <div className="col-12 col-lg-3 py-3 d-flex flex-row">
+              <div className="col-6 text-center">
                 <label
                   htmlFor="activity"
                   className="chb-h6 flex-fill text-center"
                 >
+                  <span>票券狀態：</span>
+                </label>
+              </div>
+              <div className="col-6">
+                <select
+                  required
+                  id="activity"
+                  name="activity"
+                  className="align-item-center h-100 w-100"
+                  // 票的篩選功能
+                  value={ticketStatus}
+                  onChange={handleStatusChange}
+                >
+                  <option value="0" className="text-center">
+                    - - 全部 - -
+                  </option>
+                  <option value="1" className="text-center">
+                    - - 未使用 - -
+                  </option>
+                  <option value="2" className="text-center">
+                    - - 已使用 - -
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          {/*  */}
+          {/* dropdown */}
+          {/* <div className="row">
+            <div className="col-12 col-lg-6 py-3">
+              <div className="w-100 d-flex">
+                <label htmlFor="activity" className="chb-h6 flex-fill ***">
                   <span>票券狀態：</span>
                 </label>
                 <select
@@ -120,7 +154,8 @@ export default function TicketOrder() {
               </div>
             </div>
             <div className="col-9"></div>
-          </div>
+          </div> */}
+          {/*  */}
           <div className="ticket-list">
             {getFilteredTickets().map((ticket) => (
               <div key={ticket.id} className="ticket-item">
@@ -137,9 +172,43 @@ export default function TicketOrder() {
           role="tabpanel"
           aria-labelledby="festival-tab"
         >
-          {/* dropdown */}
+          {/* 音樂祭票券dropdown */}
           <div className="row">
-            <div className="col-3">
+            <div className="col-12 col-lg-3 py-3 d-flex flex-row">
+              <div className="col-6 text-center">
+                <label
+                  htmlFor="activity"
+                  className="chb-h6 flex-fill text-center"
+                >
+                  <span>票券狀態：</span>
+                </label>
+              </div>
+              <div className="col-6">
+                <select
+                  required
+                  id="activity"
+                  name="activity"
+                  className="align-item-center h-100 w-100"
+                  // 票的篩選功能
+                  value={ticketStatus}
+                  onChange={handleStatusChange}
+                >
+                  <option value="0" className="text-center">
+                    - - 全部 - -
+                  </option>
+                  <option value="1" className="text-center">
+                    - - 未使用 - -
+                  </option>
+                  <option value="2" className="text-center">
+                    - - 已使用 - -
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          {/* dropdown */}
+          {/* <div className="row">
+            <div className="col-12 col-lg-6 py-3">
               <div className="w-100 d-flex">
                 <label
                   htmlFor="activity"
@@ -168,7 +237,7 @@ export default function TicketOrder() {
               </div>
             </div>
             <div className="col-9"></div>
-          </div>
+          </div> */}
           <div className="ticket-list">
             {getFilteredTickets().map((ticket) => (
               <div key={ticket.id} className="ticket-item">
@@ -198,5 +267,5 @@ export default function TicketOrder() {
 }
 
 TicketOrder.getLayout = function getLayout(page) {
-  return <MemberDLayout title="Music | 會員訂票紀錄">{page}</MemberDLayout>
+  return <MemberDLayout title="Music | 我的票券">{page}</MemberDLayout>
 }

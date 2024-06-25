@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './m-navbar.module.scss'
+import styles from './left-bar.module.scss'
 import Link from 'next/link'
 
 export default function MNavbar() {

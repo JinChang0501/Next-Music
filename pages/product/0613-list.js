@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+// import React from 'react'
 
 export default function List() {
   // Toggle the side navigation
@@ -29,6 +30,7 @@ export default function List() {
 
   return (
     <>
+      {/* 可能放商品推播 */}
       <div className="row mt-2 mb-3">
         <h5 className="card-text d-flex justify-content-between align-items-center">
           <span className="ps-3">Nike Air Force 1 (91)</span>
@@ -68,11 +70,12 @@ export default function List() {
           </div>
         </h5>
       </div>
+      {/* 內容正式開始 */}
       <div className="row">
         <div className="col-sm-12">
           <div className="d-flex" id="wrapper">
-            {/* left-search start*/}
-            <div className="col-12 col-sm-3 bg-white me-3" id="sidebar-wrapper">
+          {/* 左邊的Search */}
+            <div className="bg-white me-3 col-xs-3" id="sidebar-wrapper">
               <div className="scroll">
                 <div className="cats">
                   <div>
@@ -316,26 +319,12 @@ export default function List() {
                 </div>
               </div>
             </div>
-            {/* left-search end*/}
-            {/* 商品卡 start*/}
-            <div className="col-12 col-sm-9" id="page-content-wrapper">
+
+          {/* 商品列表 */}
+            <div id="page-content-wrapper" className="col-xs-9">
               <div className="container-fluid">
                 <div className="row row-cols-1 row-cols-md-3 g-4">
-                  <div className="col">
-                    <div className="card w-350 no-border f-16">
-                      <img
-                        src="/images/product/list/t-1.jpg"
-                        className="card-img-top"
-                        alt="..."
-                      />
-                      <div className="card-body no-space-x">
-                        <p className="card-text">活動名稱</p>
-                        <p className="card-text">商品名稱</p>
-                        <p className="card-text">價格</p>
-                        <a className="btn-bc1-white bold" href="[pid]" role="button">詳細資訊</a>
-                      </div>
-                    </div>
-                  </div>
+                  {/* 單個card */}
                   <div className="col">
                     <div className="card w-350 no-border f-16">
                       <img
@@ -352,6 +341,7 @@ export default function List() {
                       </div>
                     </div>
                   </div>
+                   {/* 單個card */}
                   <div className="col">
                     <div className="card w-350 no-border f-16">
                       <img
@@ -368,6 +358,24 @@ export default function List() {
                       </div>
                     </div>
                   </div>
+                   {/* 單個card */}
+                  <div className="col">
+                    <div className="card w-350 no-border f-16">
+                      <img
+                        src="/images/product/list/p1-thumb.webp"
+                        className="card-img-top"
+                        alt="..."
+                      />
+                      <div className="card-body no-space-x">
+                        <p className="card-text note-text">新品上市</p>
+                        <p className="card-text">Nike Air Force 1 Shadow</p>
+                        <p className="card-text type-text">女鞋</p>
+                        <p className="card-text type-text mb-2">3 種顏色</p>
+                        <span className="h-currency bold h-now">$1,990</span>
+                      </div>
+                    </div>
+                  </div>
+                   {/* 單個card */}
                   <div className="col">
                     <div className="card w-350 no-border f-16">
                       <img
@@ -387,7 +395,7 @@ export default function List() {
                 </div>
               </div>
             </div>
-            {/* 商品卡 end*/}
+          {/* 商品列表 end */}
           </div>
         </div>
       </div>

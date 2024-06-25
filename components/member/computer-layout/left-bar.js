@@ -27,7 +27,7 @@ export default function LeftBar() {
 
         {/* 功能列 */}
         <div className="bg-primary">
-          <ul className="list-unstyled m-0 my-3">
+          <ul className="list-unstyled m-0">
             <Link
               href=""
               className="text-decoration-none text-center fw-bold m-0 chr-h5"
