@@ -13,7 +13,7 @@ export default function PhoneBar() {
                 src="/images/member/img/beautiful-2405131__340.jpg"
                 alt=""
                 className={`${styles['img-size']} mx-auto`}
-              />
+              ></img>
             </div>
           </div>
 
