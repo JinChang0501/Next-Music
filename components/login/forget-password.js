@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import { BsGoogle } from 'react-icons/bs'
+import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 export default function ForgetPassword() {
   const [isActive, setIsActive] = useState(false)
+  const router = useRouter()
 
   const handleRegisterClick = () => {
     setIsActive(true)
@@ -12,6 +14,11 @@ export default function ForgetPassword() {
     setIsActive(false)
   }
 
+  const handleNextStep = (e) => {
+    e.preventDefault() // 阻止表單默認行為
+    router.push('/login/reset-password') // 導航到重設密碼頁面
+  }
+
   return (
     <>
       <div
@@ -19,7 +26,7 @@ export default function ForgetPassword() {
         id="container"
       >
         <div className="form-container sign-up">
-          <form>
+          {/* <form>
             <h1>註冊帳戶</h1>
             <div className="w-100">
               <label htmlFor="name">姓名:</label>
@@ -55,10 +62,33 @@ export default function ForgetPassword() {
             </div>
 
             <button>點我註冊</button>
+          </form> */}
+          <form>
+            <h1 style={{ marginBottom: '20px' }}>重設密碼</h1>
+            <div className="w-100">
+              <label htmlFor="passwords1">新密碼:</label>
+              <input
+                type="password"
+                placeholder="輸入新密碼"
+                id="passwords1"
+                name="passwords"
+              />
+            </div>
+            <div className="w-100">
+              <label htmlFor="passwordw2">再次輸入新密碼:</label>
+              <input
+                type="password"
+                placeholder="再次輸入新密碼"
+                id="passwordw2"
+                name="passwords"
+              />
+            </div>
+            {/* <Link href="/login/forget-password">忘記密碼?</Link> */}
+            <button className="mt-5">更新</button>
           </form>
         </div>
         <div className="form-container sign-in">
-          <form>
+          <form onSubmit={handleNextStep}>
             <h1 style={{ marginBottom: '20px' }}>忘記密碼</h1>
             <div className="w-100">
               <label htmlFor="email">電子信箱:</label>
@@ -86,15 +116,15 @@ export default function ForgetPassword() {
               </div>
             </div>
 
-            <a href="#">忘記密碼?</a>
-            <button>登入</button>
+            {/* <a href="#">忘記密碼?</a> */}
+            <button className="mt-5">下一步</button>
           </form>
         </div>
         <div className="toggle-container">
           <div className="toggle">
             <div className="toggle-panel toggle-left">
-              <h1>歡迎回來!</h1>
-              <p>輸入您的個人詳細資料以使用所有網站功能</p>
+              <h1>開始重設密碼吧!</h1>
+              <p>更新完成後將跳轉回登入頁面，再請重新登入~~</p>
               <button className="hidden" onClick={handleLoginClick} id="login">
                 返回登入
               </button>
@@ -107,7 +137,7 @@ export default function ForgetPassword() {
                 onClick={handleRegisterClick}
                 id="register"
               >
-                返回登入
+                重設密碼
               </button>
             </div>
           </div>

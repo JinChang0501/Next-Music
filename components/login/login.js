@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React, { useState } from 'react'
 import { BsGoogle } from 'react-icons/bs'
 
@@ -60,16 +61,34 @@ export default function Login() {
         <div className="form-container sign-in">
           <form>
             <h1 style={{ marginBottom: '20px' }}>登入</h1>
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
-            <a href="#">忘記密碼?</a>
-            <button>登入</button>
-            <button>
+            <div className="w-100">
+              <label htmlFor="email">電子信箱:</label>
+              <input
+                type="email"
+                placeholder="請輸入信箱"
+                id="email"
+                name="email"
+              />
+            </div>
+
+            <div className="w-100">
+              <label htmlFor="passwords">密碼:</label>
+              <input
+                type="password"
+                placeholder="請輸入密碼"
+                id="passwords"
+                name="passwords"
+              />
+            </div>
+            <Link href="/login/reset-password">忘記密碼?</Link>
+            <button className="w-50 chr-h5">登入</button>
+            <button className="w-50">
               <a href="#" className="icon">
-                <i
+                <BsGoogle className="text-white" />
+                {/* <i
                   className="fa-brands fa-google-plus-g"
                   style={{ color: 'aliceblue' }}
-                ></i>
+                ></i> */}
               </a>
             </button>
           </form>
