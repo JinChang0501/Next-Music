@@ -21,13 +21,38 @@ export default function Login() {
         <div className="form-container sign-up">
           <form>
             <h1>註冊帳戶</h1>
-            <div>
-              <label htmlFor="name"></label>
+            <div className="w-100">
+              <label htmlFor="name">姓名:</label>
               <input type="text" placeholder="Name" id="name" />
             </div>
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
-            <input type="password" placeholder="Password" />
+            <div className="w-100">
+              <label htmlFor="name">驗證碼:</label>
+              <div className="d-flex flex-row align-item-center mb-2">
+                <div className="w-75">
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    id="passwords2"
+                    className="m-0"
+                  />
+                </div>
+                <div>
+                  <div className="w-25">
+                    <button className="btn m-0 text-nowrap px-2">
+                      (60)重發驗證碼
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="w-100">
+              <label htmlFor="passwords1">密碼:</label>
+              <input type="password" placeholder="Password" id="passwords1" />
+            </div>
+            <div className="w-100">
+              <label htmlFor="passwords2">確認密碼:</label>
+              <input type="password" placeholder="Password" id="passwords2" />
+            </div>
 
             <button>點我註冊</button>
           </form>
