@@ -1,0 +1,100 @@
+// #region flex center
+
+.progressBar,
+.numBlock,
+.progressBarBlockText,
+.progressBarIconBlock,
+.timeCounterClock,
+.timeCounterClockBlock,
+.timeCounterText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// #endregion flex center
+
+// #region progressBar + timeCounter
+
+.progressBarHeight {
+  height: 80px;
+}
+
+// #endregion progressBar + timeCounter
+
+// #region progressBar
+
+.progressBar {
+  padding: 0 20px;
+}
+
+.progressBarBlock {
+  width: 261px;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.numBlock {
+  width: 34px;
+  height: 38px;
+  color: white;
+}
+
+.progressBarBlockText {
+  width: 110px;
+  height: 100%;
+}
+
+.progressBarIconBlock {
+  width: 68px;
+  height: 100%;
+}
+
+.progressBarIcon {
+  width: 35px;
+  height: 35px;
+}
+
+// #endregion progressBar
+
+// #region timeCounter
+
+.timeCounter {
+  padding: 0 50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.timeCounterClock {
+  width: 235px;
+  height: 100%;
+}
+
+.timeCounterClockBlock {
+  width: 50px;
+  height: 61px;
+  border: 1px solid #a1a1a1;
+  border-radius: 10px;
+}
+
+.timeCounterClock > .timeCounterClockBlock:not(:last-child) {
+  margin-right: 5px;
+}
+
+.timeCounterClockColon {
+  width: 10px;
+  height: 61px;
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.timeCounterText {
+  width: 179px;
+  height: 100%;
+}
+
+// #endregion timeCounter

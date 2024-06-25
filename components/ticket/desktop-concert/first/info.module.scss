@@ -1,0 +1,34 @@
+// #region info
+
+.info {
+  height: 250px;
+  padding: 20px 0;
+}
+
+.infoTitle {
+  height: 35px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.infoTitleIcon {
+  width: 35px;
+  height: 35px;
+}
+
+.infoContent {
+  height: 155px;
+  padding: 0 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+
+.infoContent > div:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+// #endregion info

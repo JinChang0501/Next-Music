@@ -1,9 +1,11 @@
 import React, { useRef, useEffect, useState } from 'react'
 import TicketLayout from '@/components/layout/ticket-layout'
+import ProgressBar from '@/components/ticket/desktop-concert/first/progressBar'
+import TicketArea from '@/components/ticket/desktop-concert/first/ticketArea'
+import RightTitle from '@/components/ticket/desktop-concert/first/rightTitle'
+import Info from '@/components/ticket/desktop-concert/first/info'
 import style from '@/styles/ticket/desktop-select-seat.module.scss'
 import Image from 'next/image'
-import { FaChevronRight } from 'react-icons/fa'
-import { BsInfoCircle } from 'react-icons/bs'
 
 export default function Ticket() {
   // #region 動態獲取 breadcrumb、progressBar 高度，返回給 content
@@ -64,72 +66,7 @@ export default function Ticket() {
       </div>
 
       {/* progressBar + timeCounter */}
-      <div
-        ref={progressBarRef}
-        className={`${style.progressBarHeight} row d-flex`}
-      >
-        {/* progressBar */}
-        <div className={`${style.progressBar} col-7`}>
-          <div className={`${style.progressBarBlock}`}>
-            <div className={`${style.numBlock} bg-purple1 chb-h5`}>1</div>
-            <div className={`${style.progressBarBlockText} chb-h5 text-black`}>
-              選擇座位
-            </div>
-          </div>
-          <div className={`${style.progressBarIconBlock}`}>
-            <FaChevronRight
-              className={`${style.progressBarIcon} text-black20`}
-            />
-          </div>
-          <div className={`${style.progressBarBlock}`}>
-            <div className={`${style.numBlock} bg-black20 chb-h5`}>2</div>
-            <div
-              className={`${style.progressBarBlockText} chb-h5 text-black30`}
-            >
-              支付方式
-            </div>
-          </div>
-          <div className={`${style.progressBarIconBlock}`}>
-            <FaChevronRight
-              className={`${style.progressBarIcon} text-black20`}
-            />
-          </div>
-          <div className={`${style.progressBarBlock}`}>
-            <div className={`${style.numBlock} bg-black20 chb-h5`}>3</div>
-            <div
-              className={`${style.progressBarBlockText} chb-h5 text-black30`}
-            >
-              完成購票
-            </div>
-          </div>
-        </div>
-
-        {/* timeCounter */}
-        <div className={`${style.timeCounter} col-5`}>
-          <div className={`${style.timeCounterClock}`}>
-            <div className={`${style.timeCounterClockBlock} text-black chb-h4`}>
-              1
-            </div>
-            <div className={`${style.timeCounterClockBlock} text-black chb-h4`}>
-              0
-            </div>
-            <div
-              className={`${style.timeCounterClockColon} text-black30 chb-h3`}
-            >
-              :
-            </div>
-            <div className={`${style.timeCounterClockBlock} text-black chb-h4`}>
-              0
-            </div>
-            <div className={`${style.timeCounterClockBlock} text-black chb-h4`}>
-              0
-            </div>
-          </div>
-          <div className={`${style.timeCounterText} text-black80 chb-p`}>
-            請於10分鐘內完成訂票
-          </div>
-        </div>
-      </div>
+      <ProgressBar progressBarRef={progressBarRef} />
 
       {/* content */}
       <div className="row d-flex flex-nowrap" style={{ height: contentHeight }}>
@@ -141,72 +78,18 @@ export default function Ticket() {
         {/* Right */}
         <div className={`${style.right}`}>
           {/* rightTitle */}
-          <div className={`${style.rightTitle}`}>
-            <div className="chb-h5 text-black">一生到底 One Life, One Shot</div>
-            <div className="chb-h6 text-black">滅火器 Fire EX.</div>
-            <div className="chb-p text-black">
-              2024/06/15 19:30 · 臺北流行音樂中心
-            </div>
-          </div>
+          <RightTitle />
 
           {/* ticketAreaTitle */}
-          <div className={`${style.ticketAreaTitle} chb-p text-black`}>
+          <div className={`${style.ticketAreaTitle} chb-h6 text-black`}>
             演唱會區域
           </div>
 
           {/* ticketArea */}
-          <div className={`${style.ticketArea} chb-h5`}>
-            <div className={`${style.ticketAreaBlock}`}>
-              <div className={`${style.ticketAreaBlockLeft}`}>
-                <div className={`${style.ticketAreaSquare} bg-A`}></div>
-                <div>A&nbsp;區</div>
-              </div>
-              <div>$&nbsp;8600</div>
-            </div>
-            <div className={`${style.ticketAreaBlock}`}>
-              <div className={`${style.ticketAreaBlockLeft}`}>
-                <div className={`${style.ticketAreaSquare} bg-B`}></div>
-                <div>B&nbsp;區</div>
-              </div>
-              <div>$&nbsp;6300</div>
-            </div>
-            <div className={`${style.ticketAreaBlock}`}>
-              <div className={`${style.ticketAreaBlockLeft}`}>
-                <div className={`${style.ticketAreaSquare} bg-C`}></div>
-                <div>C&nbsp;區</div>
-              </div>
-              <div>$&nbsp;4900</div>
-            </div>
-            <div className={`${style.ticketAreaBlock}`}>
-              <div className={`${style.ticketAreaBlockLeft}`}>
-                <div className={`${style.ticketAreaSquare} bg-D`}></div>
-                <div>D&nbsp;區</div>
-              </div>
-              <div>$&nbsp;3500</div>
-            </div>
-            <div className={`${style.ticketAreaBlock}`}>
-              <div className={`${style.ticketAreaBlockLeft}`}>
-                <div className={`${style.ticketAreaSquare} bg-E`}></div>
-                <div>E&nbsp;區</div>
-              </div>
-              <div>$&nbsp;1900</div>
-            </div>
-          </div>
+          <TicketArea />
 
           {/* info */}
-          <div className={`${style.info}`}>
-            {/* info title */}
-            <div className={`${style.infoTitle}`}>
-              <BsInfoCircle className={`${style.infoTitleIcon}`} />
-            </div>
-            {/* info content */}
-            <div className={`${style.infoContent} chb-p`}>
-              <div>1.&nbsp;點選尚未售出座位區域，可以放大該區域</div>
-              <div>2.&nbsp;選取座位後會依序顯示在右側</div>
-              <div>3.&nbsp;訂票上限&nbsp;6&nbsp;張</div>
-              <div>4.&nbsp;電子票券將會發送到您的電子郵件</div>
-            </div>
-          </div>
+          <Info />
         </div>
       </div>
     </>
