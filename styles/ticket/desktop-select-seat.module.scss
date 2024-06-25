@@ -1,3 +1,19 @@
+// #region flex-center
+
+.progressBar,
+.numBlock,
+.progressBarBlockText,
+.progressBarIconBlock,
+.timeCounterClock,
+.timeCounterClockBlock,
+.timeCounterText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// #endregion flex-center
+
 // #region breadcrumb
 
 .breadcrumb {
@@ -18,43 +34,30 @@
 
 .progressBar {
   padding: 0 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .progressBarBlock {
   width: 261px;
   height: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 
 .numBlock {
   width: 34px;
   height: 38px;
-  margin-right: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   color: white;
 }
 
-.text {
+.progressBarBlockText {
   width: 110px;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .progressBarIconBlock {
   width: 68px;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .progressBarIcon {
@@ -68,6 +71,38 @@
 
 .timeCounter {
   padding: 0 50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.timeCounterClock {
+  width: 235px;
+  height: 100%;
+}
+
+.timeCounterClockBlock {
+  width: 50px;
+  height: 61px;
+  border: 1px solid #a1a1a1;
+  border-radius: 10px;
+}
+
+.timeCounterClock > .timeCounterClockBlock:not(:last-child) {
+  margin-right: 5px;
+}
+
+.timeCounterClockColon {
+  width: 10px;
+  height: 61px;
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.timeCounterText {
+  width: 179px;
+  height: 100%;
 }
 
 // #endregion timeCounter
@@ -87,7 +122,6 @@
 
 .right {
   width: 640px;
-  height: 100%;
   padding: 0 20px;
   overflow-x: hidden;
   overflow-y: auto;
@@ -100,6 +134,14 @@
 .rightTitle {
   height: 190px;
   padding: 0 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+
+.rightTitle > div:not(:last-child) {
+  margin-bottom: 25px;
 }
 
 // #endregion rightTitle
@@ -110,6 +152,9 @@
   height: 48px;
   padding: 15px 0;
   margin-bottom: 10px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
 }
 
 // #endregion ticketAreaTitle
@@ -117,15 +162,31 @@
 // #region ticketArea
 
 .ticketArea {
+  color: black;
+}
+
+.ticketAreaBlock {
   height: 77px;
   padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ticketArea > .ticketAreaBlock:not(:last-child) {
   margin-bottom: 20px;
 }
 
-.lastOne {
-  height: 77px;
-  padding: 30px;
-  margin-bottom: 10px;
+.ticketAreaBlockLeft {
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ticketAreaSquare {
+  width: 17px;
+  height: 17px;
 }
 
 // #endregion ticketArea
@@ -133,17 +194,20 @@
 // #region info
 
 .info {
-  height: 251px;
+  height: 250px;
   padding: 20px 0;
 }
 
 .infoTitle {
   height: 35px;
   margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .infoContent {
-  height: 156px;
+  height: 155px;
   padding: 10px 0;
 }
 

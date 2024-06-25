@@ -3,6 +3,7 @@ import TicketLayout from '@/components/layout/ticket-layout'
 import style from '@/styles/ticket/desktop-select-seat.module.scss'
 import Image from 'next/image'
 import { FaChevronRight } from 'react-icons/fa'
+import { BsInfoCircle } from 'react-icons/bs'
 
 export default function Ticket() {
   // #region 動態獲取 breadcrumb、progressBar 高度，返回給 content
@@ -71,7 +72,9 @@ export default function Ticket() {
         <div className={`${style.progressBar} col-7`}>
           <div className={`${style.progressBarBlock}`}>
             <div className={`${style.numBlock} bg-purple1 chb-h5`}>1</div>
-            <div className={`${style.text} chb-h5`}>選擇座位</div>
+            <div className={`${style.progressBarBlockText} chb-h5 text-black`}>
+              選擇座位
+            </div>
           </div>
           <div className={`${style.progressBarIconBlock}`}>
             <FaChevronRight
@@ -80,7 +83,11 @@ export default function Ticket() {
           </div>
           <div className={`${style.progressBarBlock}`}>
             <div className={`${style.numBlock} bg-black20 chb-h5`}>2</div>
-            <div className={`${style.text} chb-h5 text-black30`}>選擇座位</div>
+            <div
+              className={`${style.progressBarBlockText} chb-h5 text-black30`}
+            >
+              支付方式
+            </div>
           </div>
           <div className={`${style.progressBarIconBlock}`}>
             <FaChevronRight
@@ -89,12 +96,39 @@ export default function Ticket() {
           </div>
           <div className={`${style.progressBarBlock}`}>
             <div className={`${style.numBlock} bg-black20 chb-h5`}>3</div>
-            <div className={`${style.text} chb-h5 text-black30`}>選擇座位</div>
+            <div
+              className={`${style.progressBarBlockText} chb-h5 text-black30`}
+            >
+              完成購票
+            </div>
           </div>
         </div>
 
         {/* timeCounter */}
-        <div className={`${style.timeCounter} col-5 bg-success`}></div>
+        <div className={`${style.timeCounter} col-5`}>
+          <div className={`${style.timeCounterClock}`}>
+            <div className={`${style.timeCounterClockBlock} text-black chb-h4`}>
+              1
+            </div>
+            <div className={`${style.timeCounterClockBlock} text-black chb-h4`}>
+              0
+            </div>
+            <div
+              className={`${style.timeCounterClockColon} text-black30 chb-h3`}
+            >
+              :
+            </div>
+            <div className={`${style.timeCounterClockBlock} text-black chb-h4`}>
+              0
+            </div>
+            <div className={`${style.timeCounterClockBlock} text-black chb-h4`}>
+              0
+            </div>
+          </div>
+          <div className={`${style.timeCounterText} text-black80 chb-p`}>
+            請於10分鐘內完成訂票
+          </div>
+        </div>
       </div>
 
       {/* content */}
@@ -106,23 +140,65 @@ export default function Ticket() {
 
         {/* Right */}
         <div className={`${style.right} bg-info`}>
-          {/* title */}
-          <div className={`${style.rightTitle} bg-black1`}></div>
+          {/* rightTitle */}
+          <div className={`${style.rightTitle}`}>
+            <div className="chb-h5 text-black">一生到底 One Life, One Shot</div>
+            <div className="chb-h6 text-black">滅火器 Fire EX.</div>
+            <div className="chb-p text-black">
+              2024/06/15 19:30 · 臺北流行音樂中心
+            </div>
+          </div>
 
           {/* ticketAreaTitle */}
-          <div className={`${style.ticketAreaTitle} bg-black5`}></div>
+          <div className={`${style.ticketAreaTitle} chb-p text-black`}>
+            演唱會區域
+          </div>
 
           {/* ticketArea */}
-          <div className={`${style.ticketArea} bg-A`}></div>
-          <div className={`${style.ticketArea} bg-B`}></div>
-          <div className={`${style.ticketArea} bg-C`}></div>
-          <div className={`${style.ticketArea} bg-D`}></div>
-          <div className={`${style.lastOne} bg-E`}></div>
+          <div className={`${style.ticketArea} chb-h5`}>
+            <div className={`${style.ticketAreaBlock}`}>
+              <div className={`${style.ticketAreaBlockLeft}`}>
+                <div className={`${style.ticketAreaSquare} bg-A`}></div>
+                <div>A&nbsp;區</div>
+              </div>
+              <div>$&nbsp;8600</div>
+            </div>
+            <div className={`${style.ticketAreaBlock}`}>
+              <div className={`${style.ticketAreaBlockLeft}`}>
+                <div className={`${style.ticketAreaSquare} bg-B`}></div>
+                <div>B&nbsp;區</div>
+              </div>
+              <div>$&nbsp;6300</div>
+            </div>
+            <div className={`${style.ticketAreaBlock}`}>
+              <div className={`${style.ticketAreaBlockLeft}`}>
+                <div className={`${style.ticketAreaSquare} bg-C`}></div>
+                <div>C&nbsp;區</div>
+              </div>
+              <div>$&nbsp;4900</div>
+            </div>
+            <div className={`${style.ticketAreaBlock}`}>
+              <div className={`${style.ticketAreaBlockLeft}`}>
+                <div className={`${style.ticketAreaSquare} bg-D`}></div>
+                <div>D&nbsp;區</div>
+              </div>
+              <div>$&nbsp;3500</div>
+            </div>
+            <div className={`${style.ticketAreaBlock}`}>
+              <div className={`${style.ticketAreaBlockLeft}`}>
+                <div className={`${style.ticketAreaSquare} bg-E`}></div>
+                <div>E&nbsp;區</div>
+              </div>
+              <div>$&nbsp;1900</div>
+            </div>
+          </div>
 
           {/* info */}
           <div className={`${style.info} bg-white`}>
             {/* info title */}
-            <div className={`${style.infoTitle} bg-dark`}></div>
+            <div className={`${style.infoTitle}`}>
+              <BsInfoCircle />
+            </div>
 
             {/* info content */}
             <div className={`${style.infoContent} bg-warning`}></div>
@@ -134,5 +210,5 @@ export default function Ticket() {
 }
 
 Ticket.getLayout = function getLayout(page) {
-  return <TicketLayout>{page}</TicketLayout>
+  return <TicketLayout title="Ticket">{page}</TicketLayout>
 }
