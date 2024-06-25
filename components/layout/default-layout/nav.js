@@ -1,5 +1,6 @@
 import React from 'react'
-import { BsPersonCircle, BsBell, BsCart } from "react-icons/bs";
+import Link from 'next/link'
+import { BsPersonCircle, BsBell, BsCart } from 'react-icons/bs'
 
 export default function Nav() {
   return (
@@ -7,13 +8,13 @@ export default function Nav() {
       <nav
         className="navbar navbar-expand-lg navbar-dark bg-dark"
         aria-label="Eighth navbar example"
-        style={{ borderBottom: "1px solid var(--Primary-03, #DBD7FF)" }}
+        style={{ borderBottom: '1px solid var(--Primary-03, #DBD7FF)' }}
       >
         <div className="container">
           {/* Logo */}
-          <a className="navbar-brand" href="/">
+          <Link className="navbar-brand" href="/">
             Logoo
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -29,34 +30,34 @@ export default function Nav() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a
+                <Link
                   className="nav-link active"
                   aria-current="page"
-                  href="activity.html"
+                  href="/activity"
                 >
                   演出活動
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="product.html">
+                <Link className="nav-link" href="/product">
                   周邊商城
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="artist.html">
+                <Link className="nav-link" href="/artist">
                   音樂人
-                </a>
+                </Link>
               </li>
             </ul>
             {/* 右方icon */}
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0 icon-lg-size">
               <li className="icon-margin">
-                <a href="#" className="nav-link">
+                <Link href="#" className="nav-link">
                   <BsCart />
-                </a>
+                </Link>
               </li>
               <li className="icon-margin dropdown">
-                <a
+                <Link
                   className="nav-link"
                   href="#"
                   id="navbarDropdown01"
@@ -65,25 +66,25 @@ export default function Nav() {
                   aria-expanded="false"
                 >
                   <BsBell />
-                </a>
+                </Link>
                 <ul
-                  className="dropdown-menu dropdown-menu-end"
+                  className="dropdown-menu dropdown-menu-dark dropdown-menu-end"
                   aria-labelledby="navbarDropdown01"
                 >
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <Link className="dropdown-item" href="#">
                       通知1
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <Link className="dropdown-item" href="#">
                       通知2
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </li>
               <li className="icon-margin dropdown">
-                <a
+                <Link
                   className="nav-link"
                   href="#"
                   id="navbarDropdown02"
@@ -92,20 +93,20 @@ export default function Nav() {
                   aria-expanded="false"
                 >
                   <BsPersonCircle />
-                </a>
+                </Link>
                 <ul
-                  className="dropdown-menu dropdown-menu-end"
+                  className="dropdown-menu dropdown-menu-dark dropdown-menu-end"
                   aria-labelledby="navbarDropdown02"
                 >
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <Link className="dropdown-item" href="/member/account">
                       會員中心
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <Link className="dropdown-item" href="#">
                       登出
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </li>
@@ -113,12 +114,11 @@ export default function Nav() {
           </div>
         </div>
       </nav>
-
-      <nav className="navbar navbar-expand-lg bg-purple3">
+      {/* <nav className="navbar navbar-expand-lg bg-purple3">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+          <Link className="navbar-brand" href="#">
             Navbar
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -133,9 +133,9 @@ export default function Nav() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
+                <Link className="nav-link active" aria-current="page" href="#">
                   Home
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">
@@ -192,7 +192,7 @@ export default function Nav() {
             </form>
           </div>
         </div>
-      </nav>
+      </nav> */}
     </>
   )
 }

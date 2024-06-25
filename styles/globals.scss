@@ -55,7 +55,8 @@ $theme-colors: (
   'warning': #ffc107,
   'danger': #dc3545,
   'light': #f8f9fa,
-  'dark': #212529,
+  // 'dark': #212529,
+  'dark': #000000,
   // 新增自定義顏色
   'purple1': #685beb,
   'purple2': #958cea,
@@ -77,11 +78,24 @@ $theme-colors: (
 
 // #endregion 覆蓋 覆寫 color
 
+// #region 覆寫 border-radius
+
+$border-radius: 0;
+
+// #endregion 覆寫 border-radius
+
 // #region 覆寫 card-border-radius
 
 $card-border-radius: 0;
 
 // #endregion 覆寫 card-border-radius
+
+// #region dark mode 下拉選單 覆寫
+
+$dropdown-dark-bg: #1a1a1a;
+$dropdown-border-radius: $border-radius;
+
+// #endregion dark mode 下拉選單 覆寫
 
 // ↑↑↑  變數覆蓋(Variable overrides) 要寫在這行"上面"  ↑↑↑
 // 這裡導入所有 bootstrap 樣式
