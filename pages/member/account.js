@@ -13,23 +13,6 @@ export default function Account() {
 
       <form>
         <div className="row">
-          {/* <div className="col-6">
-            <div className="mb-3">
-              <label htmlFor="id" className="form-label">
-                會員編號
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="id"
-                aria-describedby="emailHelp"
-                name="id"
-              />
-              <div id="emailHelp" className="form-text">
-                will never share your email with anyone else.
-              </div>
-            </div>
-          </div> */}
           <div className="col-sm-6">
             <div className="mb-3">
               <label htmlFor="name" className="form-label">

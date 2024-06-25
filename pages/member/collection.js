@@ -67,21 +67,23 @@ export default function Collection() {
           role="tabpanel"
           aria-labelledby="home-tab"
         >
-          {/* dropdown */}
+          {/* 活動dropdown */}
           <div className="row">
-            <div className="col-12 col-sm-3 py-3">
-              <div className="w-100 d-flex">
+            <div className="col-12 col-lg-3 py-3 d-flex flex-row">
+              <div className="col-6 text-center">
                 <label
                   htmlFor="activity"
                   className="chb-h6 flex-fill text-center"
                 >
-                  <span>活動：</span>
+                  <span>活動種類：</span>
                 </label>
+              </div>
+              <div className="col-6">
                 <select
                   required
                   id="activity"
                   name="activity"
-                  className="align-item-center flex-fill"
+                  className="align-item-center h-100 w-100"
                   value={selectedActivity}
                   onChange={handleChange}
                 >
@@ -97,31 +99,35 @@ export default function Collection() {
                 </select>
               </div>
             </div>
-
-            <div className="col-sm-9">{renderPage()}</div>
           </div>
         </div>
+
+        {/* ---------------------------------------------------- */}
         <div
           className="tab-pane fade"
           id="profile"
           role="tabpanel"
           aria-labelledby="profile-tab"
         >
-          {/* dropdown */}
+          {/* 活動dropdown */}
           <div className="row">
-            <div className="col-12 col-sm-3 py-3">
-              <div className="w-100 d-flex">
+            <div className="col-12 col-lg-3 py-3 d-flex flex-row">
+              <div className="col-6 text-center">
                 <label
                   htmlFor="activity"
                   className="chb-h6 flex-fill text-center"
                 >
                   <span>藝人：</span>
                 </label>
+              </div>
+              <div className="col-6">
                 <select
                   required
                   id="activity"
                   name="activity"
-                  className="align-item-center flex-fill"
+                  className="align-item-center h-100 w-100"
+                  value={selectedActivity}
+                  onChange={handleChange}
                   disabled
                 >
                   <option value="0" className="text-center">
@@ -130,8 +136,6 @@ export default function Collection() {
                 </select>
               </div>
             </div>
-            {/*  */}
-            <div className="col-9"></div>
           </div>
         </div>
       </div>

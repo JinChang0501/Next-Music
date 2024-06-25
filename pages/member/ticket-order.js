@@ -90,14 +90,47 @@ export default function TicketOrder() {
           role="tabpanel"
           aria-labelledby="concert-tab"
         >
-          {/* dropdown */}
+          {/* 演唱會票券dropdown */}
           <div className="row">
-            <div className="col-12 col-lg-6 py-3">
-              <div className="w-100 d-flex">
+            <div className="col-12 col-lg-3 py-3 d-flex flex-row">
+              <div className="col-6 text-center">
                 <label
                   htmlFor="activity"
                   className="chb-h6 flex-fill text-center"
                 >
+                  <span>票券狀態：</span>
+                </label>
+              </div>
+              <div className="col-6">
+                <select
+                  required
+                  id="activity"
+                  name="activity"
+                  className="align-item-center h-100 w-100"
+                  // 票的篩選功能
+                  value={ticketStatus}
+                  onChange={handleStatusChange}
+                >
+                  <option value="0" className="text-center">
+                    - - 全部 - -
+                  </option>
+                  <option value="1" className="text-center">
+                    - - 未使用 - -
+                  </option>
+                  <option value="2" className="text-center">
+                    - - 已使用 - -
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          {/*  */}
+          {/* dropdown */}
+          {/* <div className="row">
+            <div className="col-12 col-lg-6 py-3">
+              <div className="w-100 d-flex">
+                <label htmlFor="activity" className="chb-h6 flex-fill ***">
                   <span>票券狀態：</span>
                 </label>
                 <select
@@ -121,7 +154,8 @@ export default function TicketOrder() {
               </div>
             </div>
             <div className="col-9"></div>
-          </div>
+          </div> */}
+          {/*  */}
           <div className="ticket-list">
             {getFilteredTickets().map((ticket) => (
               <div key={ticket.id} className="ticket-item">
@@ -138,8 +172,42 @@ export default function TicketOrder() {
           role="tabpanel"
           aria-labelledby="festival-tab"
         >
-          {/* dropdown */}
+          {/* 音樂祭票券dropdown */}
           <div className="row">
+            <div className="col-12 col-lg-3 py-3 d-flex flex-row">
+              <div className="col-6 text-center">
+                <label
+                  htmlFor="activity"
+                  className="chb-h6 flex-fill text-center"
+                >
+                  <span>票券狀態：</span>
+                </label>
+              </div>
+              <div className="col-6">
+                <select
+                  required
+                  id="activity"
+                  name="activity"
+                  className="align-item-center h-100 w-100"
+                  // 票的篩選功能
+                  value={ticketStatus}
+                  onChange={handleStatusChange}
+                >
+                  <option value="0" className="text-center">
+                    - - 全部 - -
+                  </option>
+                  <option value="1" className="text-center">
+                    - - 未使用 - -
+                  </option>
+                  <option value="2" className="text-center">
+                    - - 已使用 - -
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          {/* dropdown */}
+          {/* <div className="row">
             <div className="col-12 col-lg-6 py-3">
               <div className="w-100 d-flex">
                 <label
@@ -169,7 +237,7 @@ export default function TicketOrder() {
               </div>
             </div>
             <div className="col-9"></div>
-          </div>
+          </div> */}
           <div className="ticket-list">
             {getFilteredTickets().map((ticket) => (
               <div key={ticket.id} className="ticket-item">

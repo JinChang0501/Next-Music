@@ -51,7 +51,7 @@ export default function MemberDLayout({ title = 'Music | 會員', children }) {
           </div>
           <div className="row">
             <div className="col-10 main-content pb-5 mx-auto px-0 my-3">
-              <div className="music-container overflow-auto">
+              <div className="music-container overflow-auto py-3">
                 <div className="mx-auto">{children}</div>
               </div>
             </div>
