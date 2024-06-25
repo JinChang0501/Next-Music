@@ -206,9 +206,22 @@
   align-items: center;
 }
 
+.infoTitleIcon {
+  width: 35px;
+  height: 35px;
+}
+
 .infoContent {
   height: 155px;
-  padding: 10px 0;
+  padding: 0 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+
+.infoContent > div:not(:last-child) {
+  margin-bottom: 20px;
 }
 
 // #endregion info

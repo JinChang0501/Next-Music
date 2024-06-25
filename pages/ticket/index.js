@@ -139,7 +139,7 @@ export default function Ticket() {
         </div>
 
         {/* Right */}
-        <div className={`${style.right} bg-info`}>
+        <div className={`${style.right}`}>
           {/* rightTitle */}
           <div className={`${style.rightTitle}`}>
             <div className="chb-h5 text-black">一生到底 One Life, One Shot</div>
@@ -194,14 +194,18 @@ export default function Ticket() {
           </div>
 
           {/* info */}
-          <div className={`${style.info} bg-white`}>
+          <div className={`${style.info}`}>
             {/* info title */}
             <div className={`${style.infoTitle}`}>
-              <BsInfoCircle />
+              <BsInfoCircle className={`${style.infoTitleIcon}`} />
             </div>
-
             {/* info content */}
-            <div className={`${style.infoContent} bg-warning`}></div>
+            <div className={`${style.infoContent} chb-p`}>
+              <div>1.&nbsp;點選尚未售出座位區域，可以放大該區域</div>
+              <div>2.&nbsp;選取座位後會依序顯示在右側</div>
+              <div>3.&nbsp;訂票上限&nbsp;6&nbsp;張</div>
+              <div>4.&nbsp;電子票券將會發送到您的電子郵件</div>
+            </div>
           </div>
         </div>
       </div>
