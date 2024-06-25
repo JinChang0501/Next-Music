@@ -69,7 +69,7 @@ export default function Collection() {
         >
           {/* dropdown */}
           <div className="row">
-            <div className="col-sm-3">
+            <div className="col-12 col-sm-3 py-3">
               <div className="w-100 d-flex">
                 <label
                   htmlFor="activity"
@@ -109,7 +109,7 @@ export default function Collection() {
         >
           {/* dropdown */}
           <div className="row">
-            <div className="col-3">
+            <div className="col-12 col-sm-3 py-3">
               <div className="w-100 d-flex">
                 <label
                   htmlFor="activity"

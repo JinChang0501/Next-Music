@@ -47,9 +47,9 @@ export default function TicketOrder() {
       <p className="chb-h4 text-purple1">我的票券</p>
       <hr className="custom-hr" />
       <ul className="nav nav-tabs mb-3" id="myTab" role="tablist">
-        <li className="nav-item" role="presentation">
+        <li className="nav-item col-6 col-md-3" role="presentation">
           <button
-            className={`nav-link ${
+            className={`nav-link w-100 ${
               activeTab === 'concert' ? 'active' : ''
             } px-5`}
             id="concert-tab"
@@ -63,9 +63,9 @@ export default function TicketOrder() {
             演唱會
           </button>
         </li>
-        <li className="nav-item" role="presentation">
+        <li className="nav-item col-6 col-md-3" role="presentation">
           <button
-            className={`nav-link ${
+            className={`nav-link w-100 ${
               activeTab === 'festival' ? 'active' : ''
             } px-5`}
             id="festival-tab"
@@ -92,7 +92,7 @@ export default function TicketOrder() {
         >
           {/* dropdown */}
           <div className="row">
-            <div className="col-sm-6">
+            <div className="col-12 col-lg-6 py-3">
               <div className="w-100 d-flex">
                 <label
                   htmlFor="activity"
@@ -140,7 +140,7 @@ export default function TicketOrder() {
         >
           {/* dropdown */}
           <div className="row">
-            <div className="col-sm-6">
+            <div className="col-12 col-lg-6 py-3">
               <div className="w-100 d-flex">
                 <label
                   htmlFor="activity"

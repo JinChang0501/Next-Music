@@ -2,7 +2,7 @@ import Footer from '@/components/layout/default-layout/footer'
 import Head from 'next/head'
 import Nav from '@/components/layout/default-layout/nav'
 import LeftBar from './left-bar'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import PhoneBar from './phone-bar'
 
 export default function MemberDLayout({ title = 'Music | 會員', children }) {
@@ -19,6 +19,7 @@ export default function MemberDLayout({ title = 'Music | 會員', children }) {
 
     return () => window.removeEventListener('resize', handleResize) // 清除事件監聽器
   }, [])
+
   return (
     <>
       <Head>
