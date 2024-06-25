@@ -1,0 +1,91 @@
+//#region chloe 測試
+
+.artist-img-s {
+  width: 100%;
+}
+
+.artist-img-l {
+  width: 80%;
+}
+
+.bannerSty {
+  width: 100vw;
+  height: 400px;
+  background-color: #8f5353;
+}
+
+.mt-120 {
+  margin-top: 120px;
+}
+
+.mb-120 {
+  margin-bottom: 120px;
+}
+
+.my-120 {
+  margin-top: 120px;
+  margin-bottom: 120px;
+}
+
+.img-border {
+  border: 1px solid var(--Primary-02, #958CEA);
+  background: rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(5px);
+}
+
+.custom-bg-01 {
+  background-image: url('https://i.postimg.cc/CLWYD3d9/temp-Imagea-Dk-U5o.avif');
+  background-size: cover;
+  background-position: center;
+  height: 25rem;
+}
+
+.custom-bg-02 {
+  background-image: url('https://i.postimg.cc/bvgK6WNy/temp-Images-RSjn-S.avif');
+  background-size: cover;
+  background-position: center;
+  height: 25rem;
+}
+
+.of-hide {
+  overflow: hidden;
+}
+
+.cover {
+  object-fit: cover;
+  object-position: 50%, 50%;
+  background-position: center;
+}
+
+.contain {
+  object-fit: contain;
+  position: center;
+}
+
+/* 以下是navbar */
+.navbar-light-a {
+  /* 變數待修改 */
+  background-color: transparent;
+}
+
+.navbar-dark-a {
+  background-color: #000000;
+}
+
+.icon-lg-size {
+  font-size: larger;
+}
+
+.icon-margin {
+  margin: 0px;
+}
+
+.outline {
+  border: 1px solid #685BEB;
+}
+
+.gap-40 {
+  gap: 2.5rem;
+}
+
+//#region chloe 測試
