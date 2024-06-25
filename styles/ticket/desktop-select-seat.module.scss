@@ -122,7 +122,6 @@
 
 .right {
   width: 640px;
-  height: 100%;
   padding: 0 20px;
   overflow-x: hidden;
   overflow-y: auto;
@@ -135,6 +134,14 @@
 .rightTitle {
   height: 190px;
   padding: 0 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+
+.rightTitle > div:not(:last-child) {
+  margin-bottom: 25px;
 }
 
 // #endregion rightTitle
@@ -145,6 +152,9 @@
   height: 48px;
   padding: 15px 0;
   margin-bottom: 10px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
 }
 
 // #endregion ticketAreaTitle
@@ -152,15 +162,31 @@
 // #region ticketArea
 
 .ticketArea {
+  color: black;
+}
+
+.ticketAreaBlock {
   height: 77px;
   padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ticketArea > .ticketAreaBlock:not(:last-child) {
   margin-bottom: 20px;
 }
 
-.lastOne {
-  height: 77px;
-  padding: 30px;
-  margin-bottom: 10px;
+.ticketAreaBlockLeft {
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ticketAreaSquare {
+  width: 17px;
+  height: 17px;
 }
 
 // #endregion ticketArea
@@ -168,17 +194,20 @@
 // #region info
 
 .info {
-  height: 251px;
+  height: 250px;
   padding: 20px 0;
 }
 
 .infoTitle {
   height: 35px;
   margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .infoContent {
-  height: 156px;
+  height: 155px;
   padding: 10px 0;
 }
 
