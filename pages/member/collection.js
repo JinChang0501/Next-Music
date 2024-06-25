@@ -28,9 +28,10 @@ export default function Collection() {
       <hr className="custom-hr" />
       {/*  */}
       <ul className="nav nav-tabs mb-3" id="myTab" role="tablist">
-        <li className="nav-item" role="presentation">
+        {/* col-6 */}
+        <li className="nav-item col-6 col-md-3" role="presentation">
           <button
-            className="nav-link active px-5"
+            className="nav-link active w-100"
             id="home-tab"
             data-bs-toggle="tab"
             data-bs-target="#home"
@@ -42,9 +43,10 @@ export default function Collection() {
             活動
           </button>
         </li>
-        <li className="nav-item" role="presentation">
+
+        <li className="nav-item col-6 col-md-3" role="presentation">
           <button
-            className="nav-link px-5"
+            className="nav-link px-5 w-100"
             id="profile-tab"
             data-bs-toggle="tab"
             data-bs-target="#profile"
