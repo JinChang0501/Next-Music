@@ -1,9 +1,46 @@
-import React from 'react'
+import React, { useState } from 'react'
 import MemberDLayout from '@/components/member/computer-layout'
+import tickets from '@/data/member/tickets.json'
 
-import { Dropdown } from 'react-bootstrap'
+// import { Dropdown } from 'react-bootstrap'
 
 export default function TicketOrder() {
+  const [activeTab, setActiveTab] = useState('concert') //頁籤 預設先給concert
+  const [ticketStatus, setTicketStatus] = useState('0') //下拉選單 預設是0 0就是 "全部"
+
+  const concertTickets = [
+    // { id: 0, status: '全部', name: '全部' },
+    { status: '未使用', name: '演唱會 1' },
+    { status: '已使用', name: '演唱會 2' },
+    // 添加更多票券資料
+  ]
+
+  const festivalTickets = [
+    // { id: 0, status: '全部', name: '全部' },
+    { status: '未使用', name: '音樂祭 1' },
+    { status: '已使用', name: '音樂祭 2' },
+    // 添加更多票券資料
+  ]
+
+  const handleTabChange = (tab) => {
+    setActiveTab(tab)
+    setTicketStatus('0') // 重置票券狀態
+  }
+
+  const handleStatusChange = (e) => {
+    setTicketStatus(e.target.value)
+  }
+
+  const getFilteredTickets = () => {
+    const tickets = activeTab === 'concert' ? concertTickets : festivalTickets
+    if (ticketStatus === '0') {
+      return tickets
+    }
+    return tickets.filter(
+      (ticket) => ticket.status === (ticketStatus === '1' ? '未使用' : '已使用')
+    )
+  }
+
   return (
     <>
       <p className="chb-h4 text-purple1">我的票券</p>
@@ -11,28 +48,32 @@ export default function TicketOrder() {
       <ul className="nav nav-tabs mb-3" id="myTab" role="tablist">
         <li className="nav-item" role="presentation">
           <button
-            className="nav-link active px-5"
-            id="home-tab"
+            className={`nav-link ${
+              activeTab === 'concert' ? 'active' : ''
+            } px-5`}
+            id="concert-tab"
             data-bs-toggle="tab"
-            data-bs-target="#home"
             type="button"
             role="tab"
-            aria-controls="home"
-            aria-selected="true"
+            aria-controls="concert"
+            aria-selected={activeTab === 'concert'}
+            onClick={() => handleTabChange('concert')}
           >
             演唱會
           </button>
         </li>
         <li className="nav-item" role="presentation">
           <button
-            className="nav-link px-5"
-            id="profile-tab"
+            className={`nav-link ${
+              activeTab === 'festival' ? 'active' : ''
+            } px-5`}
+            id="festival-tab"
             data-bs-toggle="tab"
-            data-bs-target="#profile"
             type="button"
             role="tab"
-            aria-controls="profile"
-            aria-selected="false"
+            aria-controls="festival"
+            aria-selected={activeTab === 'festival'}
+            onClick={() => handleTabChange('festival')}
           >
             音樂祭
           </button>
@@ -41,10 +82,12 @@ export default function TicketOrder() {
 
       <div className="tab-content" id="myTabContent">
         <div
-          className="tab-pane fade show active"
-          id="home"
+          className={`tab-pane fade ${
+            activeTab === 'concert' ? 'show active' : ''
+          }`}
+          id="concert"
           role="tabpanel"
-          aria-labelledby="home-tab"
+          aria-labelledby="concert-tab"
         >
           {/* dropdown */}
           <div className="row">
@@ -61,6 +104,8 @@ export default function TicketOrder() {
                   id="activity"
                   name="activity"
                   className="align-item-center flex-fill"
+                  value={ticketStatus}
+                  onChange={handleStatusChange}
                 >
                   <option value="0" className="text-center">
                     - - 全部 - -
@@ -76,12 +121,21 @@ export default function TicketOrder() {
             </div>
             <div className="col-9"></div>
           </div>
+          <div className="ticket-list">
+            {getFilteredTickets().map((ticket) => (
+              <div key={ticket.id} className="ticket-item">
+                {ticket.name} - {ticket.status}
+              </div>
+            ))}
+          </div>
         </div>
         <div
-          className="tab-pane fade"
-          id="profile"
+          className={`tab-pane fade ${
+            activeTab === 'festival' ? 'show active' : ''
+          }`}
+          id="festival"
           role="tabpanel"
-          aria-labelledby="profile-tab"
+          aria-labelledby="festival-tab"
         >
           {/* dropdown */}
           <div className="row">
@@ -98,6 +152,8 @@ export default function TicketOrder() {
                   id="activity"
                   name="activity"
                   className="align-item-center flex-fill"
+                  value={ticketStatus}
+                  onChange={handleStatusChange}
                 >
                   <option value="0" className="text-center">
                     - - 全部 - -
@@ -111,8 +167,14 @@ export default function TicketOrder() {
                 </select>
               </div>
             </div>
-            {/*  */}
             <div className="col-9"></div>
+          </div>
+          <div className="ticket-list">
+            {getFilteredTickets().map((ticket) => (
+              <div key={ticket.id} className="ticket-item">
+                {ticket.name} - {ticket.status}
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -123,11 +185,18 @@ export default function TicketOrder() {
           width: 100%; /* 分隔線寬度 */
           margin: 1rem auto; /* 上下邊距和自動水平對齊 */
         }
+        .ticket-list {
+          margin-top: 20px;
+        }
+        .ticket-item {
+          padding: 10px;
+          border-bottom: 1px solid #ccc;
+        }
       `}</style>
     </>
   )
 }
 
 TicketOrder.getLayout = function getLayout(page) {
-  return <MemberDLayout>{page}</MemberDLayout>
+  return <MemberDLayout title="Music | 會員訂票紀錄">{page}</MemberDLayout>
 }

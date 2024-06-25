@@ -19,7 +19,7 @@ export default function Collection() {
       case '2':
         return <Festivals />
       default:
-        return <AllActivities />
+      // return <AllActivities />
     }
   }
   return (
@@ -144,5 +144,5 @@ export default function Collection() {
 }
 
 Collection.getLayout = function getLayout(page) {
-  return <MemberDLayout>{page}</MemberDLayout>
+  return <MemberDLayout title="Music | 會員收藏庫">{page}</MemberDLayout>
 }

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bootstrap Table</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <style>
+      .same-width-text {
+        width: 150px; /* 根据日期文本的长度调整宽度 */
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      .col img {
+        width: 160px;
+        height: 160px;
+      }
+      /* @media 查詢 */
+      @media (max-width: 576px) {
+        .col img {
+          width: 80px; /* 在螢幕寬度小於576px時，將圖片寬度設為100px */
+          height: 80px; /* 同上，將圖片高度設為100px */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-4 pb-5">
+      <div class="row">
+        <div class="col-12 bg-primary p-2 position-relative">
+          <div
+            class="p-0 m-0 fs-3 text-center d-flex align-items-center justify-content-center"
+          >
+            <a href="#" class="text-white d-flex align-items-center"
+              ><i class="bi bi-arrow-left-circle position-absolute start-3"></i>
+            </a>
+            <p class="text-center p-0 m-0 fs-2 mx-auto">訂單紀錄</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-12 bg-primary py-2">
+          <div class="px-5 m-0 fs-3 d-flex justify-content-between">
+            <p class="text-center p-0 m-0 fs-5">訂單編號:0000001</p>
+            <p class="text-center p-0 m-0 fs-5">已完成</p>
+          </div>
+        </div>
+
+        <div class="col-12 bg-primary py-2">
+          <div class="row text-center">
+            <div class="col">活動資訊</div>
+          </div>
+        </div>
+        <div class="col-12 bg-success py-2">
+          <div class="px-sm-5 m-0 fs-3 d-flex justify-content-between">
+            <p class="text-center p-0 m-0 fs-5">
+              <i class="bi bi-play-circle-fill pe-2"></i>活動名稱
+            </p>
+            <p class="text-center p-0 m-0 fs-5">一生到底，One Life, One Shot</p>
+          </div>
+          <div class="px-sm-5 m-0 fs-3 d-flex justify-content-between">
+            <p class="text-center p-0 m-0 fs-5">
+              <i class="bi bi-music-note-beamed pe-2"></i>演出藝人
+            </p>
+            <p class="text-center p-0 m-0 fs-5">滅火氣 Fire Ex</p>
+          </div>
+          <div class="px-sm-5 m-0 fs-3 d-flex justify-content-between">
+            <p class="text-center p-0 m-0 fs-5">
+              <i class="bi bi-geo-alt-fill pe-2"></i>活動地點
+            </p>
+            <p class="text-center p-0 m-0 fs-5">台北流行音樂中心</p>
+          </div>
+          <div class="px-sm-5 m-0 fs-3 d-flex justify-content-between">
+            <p class="text-center p-0 m-0 fs-5">
+              <i class="bi bi-clock-fill pe-2"></i>活動時間
+            </p>
+            <p class="text-center p-0 m-0 fs-5">2024/06/31 19:30</p>
+          </div>
+        </div>
+        <div class="col-12 bg-primary py-2">
+          <div class="row text-center">
+            <div class="col">票夾</div>
+          </div>
+        </div>
+
+        <div class="col-12 bg-warning py-2">
+          <!-- c1 -->
+          <div class="row text-center mb-3">
+            <div class="col my-auto p-0">
+              <img
+                src="./public/images/member/img/beautiful-2405131__340.jpg"
+                alt=""
+              />
+            </div>
+            <div class="col my-auto p-0">A區第5排8號</div>
+            <div class="col my-auto p-0">$700</div>
+            <div class="col my-auto p-0">
+              <button class="btn btn-primary">查看明細</button>
+            </div>
+          </div>
+          <!-- c3 -->
+          <div class="row text-center mb-3">
+            <div class="col p-0">
+              <img
+                src="./public/images/member/img/beautiful-2405131__340.jpg"
+                alt=""
+              />
+            </div>
+            <div class="col my-auto p-0">A區第5排8號</div>
+            <div class="col my-auto p-0">$700</div>
+            <div class="col my-auto p-0">
+              <button class="btn btn-primary">查看明細</button>
+            </div>
+          </div>
+          <!-- c3 -->
+          <div class="row text-center mb-3">
+            <div class="col p-0">
+              <img
+                src="./public/images/member/img/beautiful-2405131__340.jpg"
+                alt=""
+              />
+            </div>
+            <div class="col my-auto p-0">A區第5排8號</div>
+            <div class="col my-auto p-0">$700</div>
+            <div class="col my-auto p-0">
+              <button class="btn btn-primary">查看明細</button>
+            </div>
+          </div>
+        </div>
+        <!--  -->
+        <div class="col-12 bg-success py-2">
+          <div class="px-sm-5 m-0 fs-3 d-flex justify-content-between">
+            <p class="text-center p-0 m-0 fs-5">共3張票</p>
+            <p class="text-center p-0 m-0 fs-5">總金額: $2100</p>
+          </div>
+        </div>
+        <!--  -->
+        <div class="col-12 bg-success py-2">
+          <div class="px-sm-5 m-0 fs-3 mx-auto">
+            <p class="text-center p-0 m-0 fs-5">訂單詳細資訊</p>
+          </div>
+        </div>
+        <!--  -->
+        <!--  -->
+        <div class="col-12 bg-success py-2">
+          <div class="px-sm-5 m-0 fs-3 d-flex justify-content-between">
+            <p class="text-center p-0 m-0 fs-5">訂單時間</p>
+            <p class="text-center p-0 m-0 fs-5">2024/06/31 19:30</p>
+          </div>
+          <div class="px-sm-5 m-0 fs-3 d-flex justify-content-between">
+            <p class="text-center p-0 m-0 fs-5">訂購人</p>
+            <p class="text-center p-0 m-0 fs-5">黃大安</p>
+          </div>
+          <div class="px-sm-5 m-0 fs-3 d-flex justify-content-between">
+            <p class="text-center p-0 m-0 fs-5">付款方式</p>
+            <p class="text-center p-0 m-0 fs-5">LINE PAY</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
