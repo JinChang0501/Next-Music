@@ -1,8 +1,8 @@
 // #region rightTitle
 
 .rightTitle {
-  height: 190px;
-  padding: 0 30px;
+  // height: 130px;
+  padding: 20px 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,7 +10,7 @@
 }
 
 .rightTitle > div:not(:last-child) {
-  margin-bottom: 25px;
+  margin-bottom: 10px;
 }
 
 // #endregion rightTitle

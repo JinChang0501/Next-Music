@@ -1,10 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react'
 import TicketLayout from '@/components/layout/ticket-layout'
-import ProgressBar from '@/components/ticket/desktop-concert/first/progressBar'
+import ProgressBar from '@/components/ticket/progressBar'
 import TicketArea from '@/components/ticket/desktop-concert/first/ticketArea'
 import RightTitle from '@/components/ticket/desktop-concert/first/rightTitle'
 import Info from '@/components/ticket/desktop-concert/first/info'
-import style from '@/styles/ticket/desktop-select-seat.module.scss'
+import style from '@/styles/ticket/desktop-concert/first.module.scss'
 import Image from 'next/image'
 
 export default function Ticket() {
