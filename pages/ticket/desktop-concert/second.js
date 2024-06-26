@@ -1,8 +1,12 @@
 import React, { useRef, useEffect, useState } from 'react'
 import TicketLayout from '@/components/layout/ticket-layout'
 import ProgressBar from '@/components/ticket/progressBar'
-
+import RightTitle from '@/components/ticket/desktop-concert/second/rightTitle'
+import TicketSeatBlock from '@/components/ticket/desktop-concert/second/ticketSeatBlock'
+import PriceTotal from '@/components/ticket/desktop-concert/second/priceTotal'
+import Info from '@/components/ticket/desktop-concert/second/info'
 import style from '@/styles/ticket/desktop-concert/second.module.scss'
+import DesktopWhiteNoIconBtnPurple from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnPurple'
 import Image from 'next/image'
 
 export default function Ticket() {
@@ -70,20 +74,28 @@ export default function Ticket() {
       <div className="row d-flex flex-nowrap" style={{ height: contentHeight }}>
         {/* Image */}
         <div className={`${style.image}`}>
-          <Image src="/images/ticket/test.jpg" alt="test" layout="fill" />
+          <Image src="/images/ticket/test.jpg" fill alt="test" priority />
         </div>
 
         {/* Right */}
         <div className={`${style.right}`}>
-          {/* rigjtTitle */}
+          {/* rightTitle */}
+          <RightTitle />
 
           {/* ticketSeatBlock */}
+          <TicketSeatBlock />
 
           {/* priceTotal */}
+          <PriceTotal />
 
           {/* info */}
+          <Info />
 
-          {/* button */}
+          {/* nextButton */}
+          <DesktopWhiteNoIconBtnPurple
+            text="下一步"
+            className={`${style.nextButton} w-100 chb-h6`}
+          />
         </div>
       </div>
     </>

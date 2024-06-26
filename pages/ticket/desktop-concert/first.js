@@ -72,7 +72,7 @@ export default function Ticket() {
       <div className="row d-flex flex-nowrap" style={{ height: contentHeight }}>
         {/* Image */}
         <div className={`${style.image}`}>
-          <Image src="/images/ticket/test.jpg" alt="test" layout="fill" />
+          <Image src="/images/ticket/test.jpg" fill alt="test" priority />
         </div>
 
         {/* Right */}
