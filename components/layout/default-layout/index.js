@@ -12,7 +12,7 @@ export default function DefaultLayout({ title = 'Music', children }) {
       <div className="d-flex flex-column vh-100">
         <Nav />
         {/* main 裡面放背景顏色或背景 */}
-        <main className="flex-grow-1 bg-black1">
+        <main className="flex-grow-1 bg-dark">
           {/* 使用自定義 container */}
           <div className="music-container">
             {children}
