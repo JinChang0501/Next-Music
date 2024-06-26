@@ -122,7 +122,20 @@ $nav-link-font-size: 1.25rem; // 設置文字大小
 $nav-link-font-weight: bold; // 設置文字粗細
 $nav-link-hover-color: #685beb;
 
-// #endregion 設置頁籤文字大小和粗細
+// #endregion 
+
+// #region 麵包屑樣式修改
+
+
+$breadcrumb-padding-y: 0.5rem;
+$breadcrumb-padding-x: 0;
+$breadcrumb-item-padding-x: .8rem;
+$breadcrumb-margin-bottom: 1rem;
+$breadcrumb-divider-color: $gray-600;
+$breadcrumb-active-color: #d1d1d1;
+$breadcrumb-divider: quote("⟩");
+
+// #endregion 
 
 // ↑↑↑  變數覆蓋(Variable overrides) 要寫在這行"上面"  ↑↑↑
 // 這裡導入所有 bootstrap 樣式
