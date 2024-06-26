@@ -42,74 +42,76 @@ import ProgressBar from '@/components/product/progressBar'
 export default function BtnTest() {
   return (
     <>
-      <div>
-        <ProgressBar />
+      <div className="bg-white">
+        <div>
+          <ProgressBar />
+        </div>
+        <div>
+          <h1>White Desktop Custom Button</h1>
+        </div>
+        <div>
+          <DesktopWhiteIconBtnBlack
+            text="Remove"
+            className="chb-h4"
+            icon={BsRepeat}
+            iconWidth={30}
+            iconHeight={30}
+            iconMarginRight={20}
+          />
+        </div>
+        <div>
+          <DesktopWhiteIconBtnPurple />
+        </div>
+        <div>
+          <DesktopWhiteNoIconBtnBlack text="123" className="chb-h7" />
+        </div>
+        <div>
+          <DesktopWhiteNoIconBtnPurple />
+        </div>
+        <div>
+          <DesktopWhitePureIconBtnBlack
+            icon={BsPhoneVibrateFill}
+            iconWidth={100}
+            iconHeight={100}
+          />
+        </div>
+        <div>
+          <DesktopWhitePureIconBtnPurple />
+        </div>
+        <div>
+          <h1>White Phone Custom Button</h1>
+        </div>
+        <div>
+          <PhoneWhiteIconBtnBlack
+            text="Remove"
+            className="chb-p"
+            icon={BsRepeat}
+            iconWidth={10}
+            iconHeight={10}
+            iconMarginRight={10}
+          />
+        </div>
+        <div>
+          <PhoneWhiteIconBtnPurple />
+        </div>
+        <div>
+          <PhoneWhiteNoIconBtnBlack text="456" className="chb-p" />
+        </div>
+        <div>
+          <PhoneWhiteNoIconBtnPurple />
+        </div>
+        <div>
+          <PhoneWhitePureIconBtnBlack
+            icon={BsPhoneVibrateFill}
+            iconWidth={50}
+            iconHeight={50}
+          />
+        </div>
+        <div>
+          <PhoneWhitePureIconBtnPurple />
+        </div>
       </div>
       <div>
-        <h1>White Desktop Custom Button</h1>
-      </div>
-      <div>
-        <DesktopWhiteIconBtnBlack
-          text="Remove"
-          className="chb-h4"
-          icon={BsRepeat}
-          iconWidth={30}
-          iconHeight={30}
-          iconMarginRight={20}
-        />
-      </div>
-      <div>
-        <DesktopWhiteIconBtnPurple />
-      </div>
-      <div>
-        <DesktopWhiteNoIconBtnBlack text="123" className="chb-h7" />
-      </div>
-      <div>
-        <DesktopWhiteNoIconBtnPurple />
-      </div>
-      <div>
-        <DesktopWhitePureIconBtnBlack
-          icon={BsPhoneVibrateFill}
-          iconWidth={100}
-          iconHeight={100}
-        />
-      </div>
-      <div>
-        <DesktopWhitePureIconBtnPurple />
-      </div>
-      <div>
-        <h1>White Phone Custom Button</h1>
-      </div>
-      <div>
-        <PhoneWhiteIconBtnBlack
-          text="Remove"
-          className="chb-p"
-          icon={BsRepeat}
-          iconWidth={10}
-          iconHeight={10}
-          iconMarginRight={10}
-        />
-      </div>
-      <div>
-        <PhoneWhiteIconBtnPurple />
-      </div>
-      <div>
-        <PhoneWhiteNoIconBtnBlack text="456" className="chb-p" />
-      </div>
-      <div>
-        <PhoneWhiteNoIconBtnPurple />
-      </div>
-      <div>
-        <PhoneWhitePureIconBtnBlack
-          icon={BsPhoneVibrateFill}
-          iconWidth={50}
-          iconHeight={50}
-        />
-      </div>
-      <div>
-        <PhoneWhitePureIconBtnPurple />
-      </div>
-      <div className="bg-black">
         <div className="text-white">
           <h1>Black Desktop Custom Button</h1>
         </div>
