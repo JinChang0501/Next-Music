@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
+import styles from '@/styles/product.module.css'
 
 // Import Swiper styles
 import 'swiper/css';
@@ -27,9 +28,9 @@ export default function CarouselIndex() {
         }}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper"
+        className={`mySwiper ${styles['h-400']}`}
       >
-        <SwiperSlide><img src="/images/product/list/mountain-top.jpg" /></SwiperSlide>
+        <SwiperSlide ><img src="/images/product/list/mountain-top.jpg" /></SwiperSlide>
         <SwiperSlide><img src="/images/product/list/mountain-top.jpg" /></SwiperSlide>
         <SwiperSlide><img src="/images/product/list/mountain-top.jpg" /></SwiperSlide>
         

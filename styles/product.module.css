@@ -1,0 +1,44 @@
+/* margin-top:100px || bottom:100px */
+.mt-100 {
+    margin-top: 100px;
+  }
+  .mb-100 {
+    margin-bottom: 100px;
+  }
+  
+  .my-100 {
+    margin-top: 100px;
+    margin-bottom: 100px;
+  }
+  
+  .mt-80 {
+    margin-top: 80px;
+  }
+  .pt-80 {
+    padding-top: 80px;
+  }
+  .mt-28 {
+    margin-top: 28px;
+  }
+
+  .text-white {
+   color: white;
+  }
+  .text-purple3 {
+    color: #dbd7ff,
+    ;
+  }
+  
+  .w-350 {
+    width: 350px;
+  }
+
+  .h-400 {
+    height: 400px;
+  }
+  .bg-bk {
+    background-color: #000 ;
+  }
+  .bg-white {
+    background-color: #fff;
+  }

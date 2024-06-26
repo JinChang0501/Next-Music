@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import CarouselIndex from '@/components/product/carousel-index'
 import CardProduct from '@/components/product/card-product'
-
+import styles from '@/styles/product.module.css'
 
 export default function List() {
   // Toggle the side navigation
@@ -38,39 +38,35 @@ export default function List() {
       <div className="row">
         <CarouselIndex />
       </div>
-     
-      
       {/* 內容正式開始 */}
-      <div className="container mt-100">
+      <div className={` ${styles['my-100']}`}>
         <div className="row">
           {/* left-search start*/}
           <div className="col-md-3" id="sidebar-wrapper">
           側邊欄
           </div>
-            {/* left-search end*/}
-            {/* 商品卡 start*/}
-            
-            <div className="col-md-9" id="page-content-wrapper">
-              <div className="chb-h2 text-white">所有商品</div>
-              <div className="container-fluid pt-80">
-                <div className="row row-cols-1 row-cols-md-3 pt-80 g-4">
-                  <CardProduct/>
-                  <CardProduct/>
-                  <CardProduct/>
-                  <CardProduct/>
-                  <CardProduct/>
-                  <CardProduct/>
-                  <CardProduct/>
-                  <CardProduct/>
-                  <CardProduct/>
-                  <CardProduct/>
-                  <CardProduct/>
-                  <CardProduct/>
-                  
-                 </div> 
+          {/* left-search end*/}
+          {/* 商品卡 start*/}
+          <div className="col-md-9" id="page-content-wrapper">
+            <div className="chb-h2 text-white">所有商品</div>
+            <div className="container-fluid pt-80">
+              <div className={`row row-cols-1 row-cols-md-3 ${styles['mt-80']}`}>
+                <CardProduct/>
+                <CardProduct/>
+                <CardProduct/>
+                <CardProduct/>
+                <CardProduct/>
+                <CardProduct/>
+                <CardProduct/>
+                <CardProduct/>
+                <CardProduct/>
+                <CardProduct/>
+                <CardProduct/>
+                <CardProduct/>
               </div>
             </div>
-            {/* 商品卡 end*/}
+          </div>
+          {/* 商品卡 end*/}
         </div>
       </div>
     </>
