@@ -1,122 +1,130 @@
 import Link from 'next/link'
-import React, { useState } from 'react'
-import { BsGoogle } from 'react-icons/bs'
 
-export default function Login() {
-  const [isActive, setIsActive] = useState(false)
-
-  const handleRegisterClick = () => {
-    setIsActive(true)
-  }
-
-  const handleLoginClick = () => {
-    setIsActive(false)
-  }
-
+export default function LoginModal({
+  isActive,
+  handleRegisterClick,
+  handleLoginClick,
+}) {
   return (
     <>
-      <div
-        className={`custom-container ${isActive ? 'active' : ''} mx-auto mt-5`}
-        id="container"
-      >
-        <div className="form-container sign-up">
-          <form>
-            <h1>註冊帳戶</h1>
-            <div className="w-100">
-              <label htmlFor="name">姓名:</label>
-              <input type="text" placeholder="Name" id="name" />
-            </div>
-            <div className="w-100">
-              <label htmlFor="name">驗證碼:</label>
-              <div className="d-flex flex-row align-item-center mb-2">
-                <div className="w-75">
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    id="passwords2"
-                    className="m-0"
-                  />
+      <div className="bg-primary">
+        <div
+          className="modal fade"
+          id="exampleModal"
+          tabIndex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+
+              <div
+                className={`custom-container ${
+                  isActive ? 'active' : ''
+                } mx-auto`}
+                id="container"
+              >
+                <div className="form-container sign-up">
+                  <form>
+                    <h1>註冊帳戶</h1>
+                    <div className="w-100">
+                      <label htmlFor="name">姓名:</label>
+                      <input type="text" placeholder="Name" id="name" />
+                    </div>
+                    <div className="w-100">
+                      <label htmlFor="name">驗證碼:</label>
+                      <div className="d-flex flex-row align-item-center mb-2">
+                        <div className="w-75">
+                          <input
+                            type="password"
+                            placeholder="Password"
+                            id="passwords2"
+                            className="m-0"
+                          />
+                        </div>
+                        <div>
+                          <div className="w-25">
+                            <button className="btn m-0 text-nowrap px-2">
+                              (60)重發驗證碼
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="w-100">
+                      <label htmlFor="passwords1">密碼:</label>
+                      <input
+                        type="password"
+                        placeholder="Password"
+                        id="passwords1"
+                      />
+                    </div>
+                    <div className="w-100">
+                      <label htmlFor="passwords2">確認密碼:</label>
+                      <input
+                        type="password"
+                        placeholder="Password"
+                        id="passwords2"
+                      />
+                    </div>
+
+                    <button>點我註冊</button>
+                  </form>
                 </div>
-                <div>
-                  <div className="w-25">
-                    <button className="btn m-0 text-nowrap px-2">
-                      (60)重發驗證碼
+                <div className="form-container sign-in">
+                  <form>
+                    <h1 style={{ marginBottom: '20px' }}>登入</h1>
+                    <input type="email" placeholder="Email" />
+                    <input type="password" placeholder="Password" />
+                    <Link href="/login/forget-password">忘記密碼?</Link>
+                    <button>登入</button>
+                    <button>
+                      <a href="#" className="icon">
+                        <i
+                          className="fa-brands fa-google-plus-g"
+                          style={{ color: 'aliceblue' }}
+                        ></i>
+                      </a>
                     </button>
+                  </form>
+                </div>
+                <div className="toggle-container">
+                  <div className="toggle">
+                    <div className="toggle-panel toggle-left">
+                      <h1>歡迎回來!</h1>
+                      <p>輸入您的個人詳細資料以使用所有網站功能</p>
+                      <button
+                        className="hidden"
+                        onClick={handleLoginClick}
+                        id="login"
+                      >
+                        返回登入
+                      </button>
+                    </div>
+                    <div className="toggle-panel toggle-right">
+                      <h1>嗨，歡迎!</h1>
+                      <p>使用您的個人詳細資料註冊以使用所有網站功能</p>
+                      <button
+                        className="hidden"
+                        onClick={handleRegisterClick}
+                        id="register"
+                      >
+                        點我註冊
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="w-100">
-              <label htmlFor="passwords1">密碼:</label>
-              <input type="password" placeholder="Password" id="passwords1" />
-            </div>
-            <div className="w-100">
-              <label htmlFor="passwords2">確認密碼:</label>
-              <input type="password" placeholder="Password" id="passwords2" />
-            </div>
-
-            <button>點我註冊</button>
-          </form>
-        </div>
-        <div className="form-container sign-in">
-          <form>
-            <h1 style={{ marginBottom: '20px' }}>登入</h1>
-            <div className="w-100">
-              <label htmlFor="email">電子信箱:</label>
-              <input
-                type="email"
-                placeholder="請輸入信箱"
-                id="email"
-                name="email"
-              />
-            </div>
-
-            <div className="w-100">
-              <label htmlFor="passwords">密碼:</label>
-              <input
-                type="password"
-                placeholder="請輸入密碼"
-                id="passwords"
-                name="passwords"
-              />
-            </div>
-            <Link href="/login/reset-password">忘記密碼?</Link>
-            <button className="w-50 chr-h5">登入</button>
-            <button className="w-50">
-              <a href="#" className="icon">
-                <BsGoogle className="text-white" />
-                {/* <i
-                  className="fa-brands fa-google-plus-g"
-                  style={{ color: 'aliceblue' }}
-                ></i> */}
-              </a>
-            </button>
-          </form>
-        </div>
-        <div className="toggle-container">
-          <div className="toggle">
-            <div className="toggle-panel toggle-left">
-              <h1>歡迎回來!</h1>
-              <p>輸入您的個人詳細資料以使用所有網站功能</p>
-              <button className="hidden" onClick={handleLoginClick} id="login">
-                返回登入
-              </button>
-            </div>
-            <div className="toggle-panel toggle-right">
-              <h1>嗨，歡迎!</h1>
-              <p>使用您的個人詳細資料註冊以使用所有網站功能</p>
-              <button
-                className="hidden"
-                onClick={handleRegisterClick}
-                id="register"
-              >
-                點我註冊
-              </button>
-            </div>
           </div>
         </div>
       </div>
-
       <style jsx>
         {`
           body {
@@ -131,10 +139,11 @@ export default function Login() {
 
           .custom-container {
             background-color: #fff;
+
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
             position: relative;
             overflow: hidden;
-            width: 800px;
+            width: 768px;
             max-width: 100%;
             min-height: 480px;
           }
@@ -169,6 +178,13 @@ export default function Login() {
             text-transform: uppercase;
             margin-top: 10px;
             cursor: pointer;
+          }
+
+          .modal-content .btn-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1001; /* 确保按钮在所有内容的前面 */
           }
 
           .custom-container button.hidden {
@@ -264,7 +280,6 @@ export default function Login() {
             height: 100%;
             overflow: hidden;
             transition: all 0.6s ease-in-out;
-
             z-index: 1000;
           }
 
@@ -319,6 +334,18 @@ export default function Login() {
 
           .custom-container.active .toggle-right {
             transform: translateX(200%);
+          }
+
+          .modal-dialog {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+          }
+
+          .modal-content {
+            width: 800px;
+            /* height: auto; */
           }
         `}
       </style>

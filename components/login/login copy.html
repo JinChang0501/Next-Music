@@ -38,7 +38,7 @@
 
       .custom-container {
         background-color: #fff;
-        border-radius: 30px;
+
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
         position: relative;
         overflow: hidden;
@@ -71,12 +71,19 @@
         font-size: 12px;
         padding: 10px 45px;
         border: 1px solid transparent;
-        border-radius: 8px;
+
         font-weight: 600;
         letter-spacing: 0.5px;
         text-transform: uppercase;
         margin-top: 10px;
         cursor: pointer;
+      }
+
+      .modal-content .btn-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 1001; /* 确保按钮在所有内容的前面 */
       }
 
       .custom-container button.hidden {
@@ -100,7 +107,7 @@
         margin: 8px 0;
         padding: 10px 15px;
         font-size: 13px;
-        border-radius: 8px;
+
         width: 100%;
         outline: none;
       }
@@ -155,7 +162,7 @@
 
       .social-icons a {
         border: 1px solid #ccc;
-        border-radius: 20%;
+
         display: inline-flex;
         justify-content: center;
         align-items: center;
@@ -172,13 +179,11 @@
         height: 100%;
         overflow: hidden;
         transition: all 0.6s ease-in-out;
-        border-radius: 150px 0 0 100px;
         z-index: 1000;
       }
 
       .custom-container.active .toggle-container {
         transform: translateX(-100%);
-        border-radius: 0 150px 100px 0;
       }
 
       .toggle {
@@ -244,7 +249,6 @@
     </style>
   </head>
   <body>
-    <!-- Button trigger modal -->
     <button
       type="button"
       class="btn btn-primary"
@@ -265,70 +269,66 @@
       >
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">會員登入</h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <div class="custom-container" id="container">
-                <div class="form-container sign-up">
-                  <form>
-                    <h1>註冊帳戶</h1>
-                    <div class="social-icons">
-                      <a href="#" class="icon"
-                        ><i class="fa-brands fa-google-plus-g"></i
-                      ></a>
-                      <a href="#" class="icon"
-                        ><i class="fa-brands fa-facebook-f"></i
-                      ></a>
-                      <a href="#" class="icon"
-                        ><i class="fa-brands fa-github"></i
-                      ></a>
-                      <a href="#" class="icon"
-                        ><i class="fa-brands fa-linkedin-in"></i
-                      ></a>
-                    </div>
-                    <span>or use your email for registeration</span>
-                    <input type="text" placeholder="Name" />
-                    <input type="email" placeholder="Email" />
-                    <input type="password" placeholder="Password" />
-                    <button>點我註冊</button>
-                  </form>
-                </div>
-                <div class="form-container sign-in">
-                  <form>
-                    <h1 style="margin-bottom: 20px">登入</h1>
-                    <input type="email" placeholder="Email" />
-                    <input type="password" placeholder="Password" />
-                    <a href="#">忘記密碼?</a>
-                    <button>登入</button>
-                    <button>
-                      <a href="#" class="icon"
-                        ><i
-                          class="fa-brands fa-google-plus-g"
-                          style="color: aliceblue"
-                        ></i
-                      ></a>
-                    </button>
-                  </form>
-                </div>
-                <div class="toggle-container">
-                  <div class="toggle">
-                    <div class="toggle-panel toggle-left">
-                      <h1>歡迎回來!</h1>
-                      <p>輸入您的個人詳細資料以使用所有網站功能</p>
-                      <button class="hidden" id="login">Sign In</button>
-                    </div>
-                    <div class="toggle-panel toggle-right">
-                      <h1>嗨，歡迎!</h1>
-                      <p>使用您的個人詳細資料註冊以使用所有網站功能</p>
-                      <button class="hidden" id="register">點我註冊</button>
-                    </div>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+
+            <div class="custom-container" id="container">
+              <div class="form-container sign-up">
+                <form>
+                  <h1>註冊帳戶</h1>
+                  <div class="social-icons">
+                    <a href="#" class="icon"
+                      ><i class="fa-brands fa-google-plus-g"></i
+                    ></a>
+                    <a href="#" class="icon"
+                      ><i class="fa-brands fa-facebook-f"></i
+                    ></a>
+                    <a href="#" class="icon"
+                      ><i class="fa-brands fa-github"></i
+                    ></a>
+                    <a href="#" class="icon"
+                      ><i class="fa-brands fa-linkedin-in"></i
+                    ></a>
+                  </div>
+                  <span>or use your email for registeration</span>
+                  <input type="text" placeholder="Name" />
+                  <input type="email" placeholder="Email" />
+                  <input type="password" placeholder="Password" />
+                  <button>點我註冊</button>
+                </form>
+              </div>
+              <div class="form-container sign-in">
+                <form>
+                  <h1 style="margin-bottom: 20px">登入</h1>
+                  <input type="email" placeholder="Email" />
+                  <input type="password" placeholder="Password" />
+                  <a href="#">忘記密碼?</a>
+                  <button>登入</button>
+                  <button>
+                    <a href="#" class="icon"
+                      ><i
+                        class="fa-brands fa-google-plus-g"
+                        style="color: aliceblue"
+                      ></i
+                    ></a>
+                  </button>
+                </form>
+              </div>
+              <div class="toggle-container">
+                <div class="toggle">
+                  <div class="toggle-panel toggle-left">
+                    <h1>歡迎回來!</h1>
+                    <p>輸入您的個人詳細資料以使用所有網站功能</p>
+                    <button class="hidden" id="login">Sign In</button>
+                  </div>
+                  <div class="toggle-panel toggle-right">
+                    <h1>嗨，歡迎!</h1>
+                    <p>使用您的個人詳細資料註冊以使用所有網站功能</p>
+                    <button class="hidden" id="register">點我註冊</button>
                   </div>
                 </div>
               </div>

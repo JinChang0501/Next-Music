@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import MemberDLayout from '@/components/member/computer-layout'
 import Concerts from '@/components/member/computer-layout/concerts'
 import Festivals from '@/components/member/computer-layout/festivals'
-
-import { Dropdown } from 'react-bootstrap'
+import CollectionCard from '@/components/member/computer-layout/collection-card'
+import cardData from '@/data/member/cardData'
 
 export default function Collection() {
   const [selectedActivity, setSelectedActivity] = useState('0')
@@ -59,7 +59,6 @@ export default function Collection() {
           </button>
         </li>
       </ul>
-
       <div className="tab-content" id="myTabContent">
         <div
           className="tab-pane fade show active"
@@ -139,6 +138,19 @@ export default function Collection() {
           </div>
         </div>
       </div>
+
+      <div className="row">
+        {cardData.map((card, index) => (
+          <div key={index} className="col-6 col-md-3">
+            <CollectionCard
+              imageSrc={card.imageSrc}
+              title={card.title}
+              description={card.description}
+            />
+          </div>
+        ))}
+      </div>
+
       <style jsx>{`
         .custom-hr {
           border: 0;

@@ -1,0 +1,57 @@
+.card {
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: red;
+  background: none;
+  border: none;
+}
+
+.close-btn .bi-x-circle-fill {
+  font-size: 24px; /* 根据需要调整图标大小 */
+  color: #ff0000; /* 根据需要调整颜色 */
+}
+.text-truncate-ellipsis {
+  white-space: nowrap; /* 强制文本在同一行显示 */
+  overflow: hidden; /* 隐藏溢出文本 */
+  text-overflow: ellipsis; /* 显示省略号 */
+}
+
+.multiline-ellipsis {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3; /* 显示的行数 */
+  overflow: hidden;
+  text-overflow: ellipsis; /* 显示省略号 */
+  line-height: 1.5em; /* 行高 */
+  max-height: 4.5em; /* 行高 * 行数 */
+}
+
+.collection-card {
+  margin-bottom: 20px; /* 调整卡片之间的间距 */
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.card-text {
+  font-size: 16px;
+}
+@media (max-width: 576px) {
+  .card-title {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .card-text {
+    font-size: 12px;
+  }
+}

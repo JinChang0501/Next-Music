@@ -1,8 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import { BsPersonCircle, BsBell, BsCart } from 'react-icons/bs'
+import LoginModal from './login-modal'
 
 export default function Nav() {
+  // const [isActive, setIsActive] = useState(false)
+
+  // const handleRegisterClick = () => {
+  //   setIsActive(true)
+  // }
+
+  // const handleLoginClick = () => {
+  //   setIsActive(false)
+  // }
+
   return (
     <>
       <nav
@@ -99,9 +110,28 @@ export default function Nav() {
                   aria-labelledby="navbarDropdown02"
                 >
                   <li>
-                    <Link className="dropdown-item" href="/member/account">
+                    <Link
+                      className="dropdown-item"
+                      href="/login/login-modal"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                    >
                       會員中心
                     </Link>
+
+                    {/* <button
+                      className="btn btn-primary"
+                      onClick={handleRegisterClick}
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                    >
+                      會員中心
+                    </button>
+                    <LoginModal
+                      isActive={isActive}
+                      handleRegisterClick={handleRegisterClick}
+                      handleLoginClick={handleLoginClick}
+                    /> */}
                   </li>
                   <li>
                     <Link className="dropdown-item" href="#">

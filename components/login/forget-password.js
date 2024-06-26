@@ -1,9 +1,10 @@
-import Link from 'next/link'
 import React, { useState } from 'react'
-import { BsGoogle } from 'react-icons/bs'
+import { useRouter } from 'next/router'
+import Link from 'next/link'
 
-export default function Login() {
+export default function ForgetPassword() {
   const [isActive, setIsActive] = useState(false)
+  const router = useRouter()
 
   const handleRegisterClick = () => {
     setIsActive(true)
@@ -13,6 +14,11 @@ export default function Login() {
     setIsActive(false)
   }
 
+  const handleNextStep = (e) => {
+    e.preventDefault() // 阻止表單默認行為
+    router.push('/login/reset-password') // 導航到重設密碼頁面
+  }
+
   return (
     <>
       <div
@@ -20,7 +26,7 @@ export default function Login() {
         id="container"
       >
         <div className="form-container sign-up">
-          <form>
+          {/* <form>
             <h1>註冊帳戶</h1>
             <div className="w-100">
               <label htmlFor="name">姓名:</label>
@@ -56,61 +62,82 @@ export default function Login() {
             </div>
 
             <button>點我註冊</button>
-          </form>
-        </div>
-        <div className="form-container sign-in">
+          </form> */}
           <form>
-            <h1 style={{ marginBottom: '20px' }}>登入</h1>
+            <h1 style={{ marginBottom: '20px' }}>重設密碼</h1>
             <div className="w-100">
-              <label htmlFor="email">電子信箱:</label>
-              <input
-                type="email"
-                placeholder="請輸入信箱"
-                id="email"
-                name="email"
-              />
-            </div>
-
-            <div className="w-100">
-              <label htmlFor="passwords">密碼:</label>
+              <label htmlFor="passwords1">新密碼:</label>
               <input
                 type="password"
-                placeholder="請輸入密碼"
-                id="passwords"
+                placeholder="輸入新密碼"
+                id="passwords1"
                 name="passwords"
               />
             </div>
-            <Link href="/login/reset-password">忘記密碼?</Link>
-            <button className="w-50 chr-h5">登入</button>
-            <button className="w-50">
-              <a href="#" className="icon">
-                <BsGoogle className="text-white" />
-                {/* <i
-                  className="fa-brands fa-google-plus-g"
-                  style={{ color: 'aliceblue' }}
-                ></i> */}
-              </a>
-            </button>
+            <div className="w-100">
+              <label htmlFor="passwordw2">再次輸入新密碼:</label>
+              <input
+                type="password"
+                placeholder="再次輸入新密碼"
+                id="passwordw2"
+                name="passwords"
+              />
+            </div>
+            {/* <Link href="/login/forget-password">忘記密碼?</Link> */}
+            <button className="mt-5">更新</button>
+          </form>
+        </div>
+        <div className="form-container sign-in">
+          <form onSubmit={handleNextStep}>
+            <h1 style={{ marginBottom: '20px' }}>忘記密碼</h1>
+            <div className="w-100">
+              <label htmlFor="email">電子信箱:</label>
+              <input type="email" placeholder="Email" id="email" />
+            </div>
+
+            <div className="w-100">
+              <label htmlFor="name">驗證碼:</label>
+              <div className="d-flex flex-row align-item-center mb-2">
+                <div className="w-75">
+                  <input
+                    type="password"
+                    placeholder="Verification code"
+                    id="passwords2"
+                    className="m-0"
+                  />
+                </div>
+                <div>
+                  <div className="w-25">
+                    <button className="btn m-0 text-nowrap px-2">
+                      (60)重發驗證碼
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* <a href="#">忘記密碼?</a> */}
+            <button className="mt-5">下一步</button>
           </form>
         </div>
         <div className="toggle-container">
           <div className="toggle">
             <div className="toggle-panel toggle-left">
-              <h1>歡迎回來!</h1>
-              <p>輸入您的個人詳細資料以使用所有網站功能</p>
+              <h1>開始重設密碼吧!</h1>
+              <p>更新完成後將跳轉回登入頁面，再請重新登入~~</p>
               <button className="hidden" onClick={handleLoginClick} id="login">
                 返回登入
               </button>
             </div>
             <div className="toggle-panel toggle-right">
-              <h1>嗨，歡迎!</h1>
-              <p>使用您的個人詳細資料註冊以使用所有網站功能</p>
+              <h1>沒關係!</h1>
+              <p>我們都有忘記的時候，我們一起把它救回來吧!!</p>
               <button
                 className="hidden"
                 onClick={handleRegisterClick}
                 id="register"
               >
-                點我註冊
+                重設密碼
               </button>
             </div>
           </div>
