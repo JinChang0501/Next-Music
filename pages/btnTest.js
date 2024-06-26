@@ -18,21 +18,33 @@ import PhoneWhitePureIconBtnPurple from '@/components/common/button/phoneWhiteBu
 
 // desktop black
 import DesktopBlackIconBtnBlack from '@/components/common/button/desktopBlackButton/desktopBlackIconBtnBlack'
+import DesktopBlackIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackIconBtnPurple'
 import DesktopBlackNoIconBtnBlack from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnBlack'
+import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
 import DesktopBlackPureIconBtnBlack from '@/components/common/button/desktopBlackButton/desktopBlackPureIconBtnBlack'
+import DesktopBlackPureIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackPureIconBtnPurple'
 
 // phone phone
 import PhoneBlackIconBtnBlack from '@/components/common/button/phoneBlackButton/phoneBlackIconBtnBlack'
+import PhoneBlackIconBtnPurple from '@/components/common/button/phoneBlackButton/phoneBlackIconBtnPurple'
 import PhoneBlackNoIconBtnBlack from '@/components/common/button/phoneBlackButton/phoneBlackNoIconBtnBlack'
+import PhoneBlackNoIconBtnPurple from '@/components/common/button/phoneBlackButton/phoneBlackNoIconBtnPurple'
 import PhoneBlackPureIconBtnBlack from '@/components/common/button/phoneBlackButton/phoneBlackPureIconBtnBlack'
+import PhoneBlackPureIconBtnPurple from '@/components/common/button/phoneBlackButton/phoneBlackPureIconBtnPurple'
 
 // icon
 import { BsRepeat } from 'react-icons/bs'
 import { BsPhoneVibrateFill } from 'react-icons/bs'
 
+// product progressBar
+import ProgressBar from '@/components/product/progressBar'
+
 export default function BtnTest() {
   return (
     <>
+      <div>
+        <ProgressBar />
+      </div>
       <div>
         <h1>White Desktop Custom Button</h1>
       </div>
@@ -112,7 +124,13 @@ export default function BtnTest() {
           />
         </div>
         <div>
+          <DesktopBlackIconBtnPurple />
+        </div>
+        <div>
           <DesktopBlackNoIconBtnBlack text="123" className="chb-h5" />
+        </div>
+        <div>
+          <DesktopBlackNoIconBtnPurple />
         </div>
         <div>
           <DesktopBlackPureIconBtnBlack
@@ -120,6 +138,9 @@ export default function BtnTest() {
             iconWidth={50}
             iconHeight={50}
           />
+        </div>
+        <div>
+          <DesktopBlackPureIconBtnPurple />
         </div>
         <div className="text-white">
           <h1>Black Phone Custom Button</h1>
@@ -135,7 +156,13 @@ export default function BtnTest() {
           />
         </div>
         <div>
+          <PhoneBlackIconBtnPurple />
+        </div>
+        <div>
           <PhoneBlackNoIconBtnBlack text="456" className="chb-p" />
+        </div>
+        <div>
+          <PhoneBlackNoIconBtnPurple />
         </div>
         <div>
           <PhoneBlackPureIconBtnBlack
@@ -143,6 +170,9 @@ export default function BtnTest() {
             iconWidth={50}
             iconHeight={50}
           />
+        </div>
+        <div>
+          <PhoneBlackPureIconBtnPurple />
         </div>
       </div>
       <style jsx>{`
