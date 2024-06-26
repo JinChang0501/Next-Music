@@ -2,18 +2,14 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import styles from './default.module.css'
 import { BsPersonCircle, BsBell, BsCart } from 'react-icons/bs'
-import LoginModal from './login-modal'
+import LoginModal from '@/components/login/login-modal'
 
 export default function Nav() {
-  // const [isActive, setIsActive] = useState(false)
+  const [wakeModal, setWakeModal] = useState(false)
 
-  // const handleRegisterClick = () => {
-  //   setIsActive(true)
-  // }
-
-  // const handleLoginClick = () => {
-  //   setIsActive(false)
-  // }
+  const handleModal= ()=>{
+    
+  }
 
   return (
     <>
@@ -110,6 +106,15 @@ export default function Nav() {
                   className="dropdown-menu dropdown-menu-dark dropdown-menu-end"
                   aria-labelledby="navbarDropdown02"
                 >
+                  <div className={`${styles['mouse-cursor']}`} onClick={}>
+                    <div
+                      className="dropdown-item"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                    >
+                      登入
+                    </div>
+                  </div>
                   <li>
                     <Link
                       className="dropdown-item"
@@ -117,9 +122,8 @@ export default function Nav() {
                       data-bs-toggle="modal"
                       data-bs-target="#exampleModal"
                     >
-                      會員中心
+                      註冊
                     </Link>
-
                     {/* <button
                       className="btn btn-primary"
                       onClick={handleRegisterClick}
@@ -135,9 +139,9 @@ export default function Nav() {
                     /> */}
                   </li>
                   <li>
-                    <Link className="dropdown-item" href="#">
+                    {/* <Link className="dropdown-item" href="#">
                       登出
-                    </Link>
+                    </Link> */}
                   </li>
                 </ul>
               </li>
