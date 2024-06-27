@@ -10,8 +10,8 @@ const ticketData = [
     member_id: 201,
     order_num: 'ORD001',
     created_at: '2024-06-23T10:00:00Z',
-    activity_name: '活动1',
-    activity_place: '地点1',
+    activity_name: '活動1',
+    activity_place: '地點1',
     activity_time: '2024-06-23 10:00',
   },
   {
@@ -25,8 +25,8 @@ const ticketData = [
     member_id: 202,
     order_num: 'ORD002',
     created_at: '2024-06-23T10:05:00Z',
-    activity_name: '活动2',
-    activity_place: '地点2',
+    activity_name: '活動活動活動活動活動2',
+    activity_place: '地點地點地點地點地點地點地點地點2',
     activity_time: '2024-06-23 10:05',
   },
   {
