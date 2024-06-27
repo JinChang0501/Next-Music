@@ -2,7 +2,7 @@ import React from 'react';
 import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
 import Link from 'next/link';
 // import required modules
-import styles from '@/styles/product.module.css'
+import styles from '@/styles/product/product.module.scss'
 
 
 export default function CardProduct() {

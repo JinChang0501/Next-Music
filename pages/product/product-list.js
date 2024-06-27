@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import CarouselIndex from '@/components/product/carousel-index'
 import CardProduct from '@/components/product/card-product'
-import styles from '@/styles/product.module.css'
+import styles from '@/styles/product/product.module.scss'
 
 export default function List() {
   // Toggle the side navigation
@@ -32,7 +32,7 @@ export default function List() {
 
   return (
     <>
-      <h2>麵包屑</h2>
+      <h2 className="text-white">麵包屑</h2>
       
       {/* 商品推播 */}
       <div className="row">
@@ -42,7 +42,7 @@ export default function List() {
       <div className={` ${styles['my-100']}`}>
         <div className="row">
           {/* left-search start*/}
-          <div className="col-md-3" id="sidebar-wrapper">
+          <div className="col-md-3 text-white" id="sidebar-wrapper">
           側邊欄
           </div>
           {/* left-search end*/}

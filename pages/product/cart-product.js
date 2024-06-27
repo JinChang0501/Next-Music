@@ -1,11 +1,17 @@
 import { useEffect } from 'react'
-import styles from '@/styles/product.module.css'
-import ProgressBar from '@/components/product/cart/progressBar'
+import styles from '@/styles/product/product.module.scss'
+import CartLayout from '@/components/layout/cart-layout'
+import ProgressBar from '@/components/product/progressBar'
 
 export default function CartProduct() {
     return (
         <>
-        <ProgressBar  />
+        <ProgressBar />
+        
         </>
     )
 }
+CartProduct.getLayout = function getLayout(page) {
+    return <CartLayout title="cart">{page}</CartLayout>
+  }
+  
