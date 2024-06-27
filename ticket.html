@@ -4,9 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bootstrap Table</title>
+    <!-- CSS only -->
     <link
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
       rel="stylesheet"
+      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+      crossorigin="anonymous"
     />
     <link
       rel="stylesheet"
@@ -34,29 +37,43 @@
           </tr>
         </thead>
         <tbody>
+          <!-- -->
+
           <tr>
             <td class="align-middle">12345</td>
-            <td class="align-middle">2024-06-23</td>
-            <td class="bg-warning d-flex flex-column mx-auto">
+            <td class="align-middle">2024-06-23 19:30</td>
+            <td class="bg-warning d-flex justify-content-center flex-column">
               <div
-                class="text-left justify-content-center mt-2 mx-auto same-width-text"
+                class="d-flex mt-2 same-width-text bg-primary w-100 justify-content-center"
               >
-                <i class="bi bi-ticket-perforated-fill"></i>
-                <span class="ms-2">一生到底，fuck codeing</span>
+                <div class="bg-success px-4">
+                  <i class="bi bi-ticket-perforated-fill"></i>
+                </div>
+                <div class="bg-secondary same-width-text">
+                  <span>一生一生一生一生一生</span>
+                </div>
               </div>
 
               <div
-                class="text-left justify-content-center mt-2 mx-auto same-width-text"
+                class="d-flex mt-2 same-width-text bg-primary w-100 justify-content-center"
               >
-                <i class="bi bi-clock-fill me-2"></i>
-                <span>2024/06/15 19:30</span>
+                <div class="bg-success px-4">
+                  <i class="bi bi-clock-fill"></i>
+                </div>
+                <div class="bg-secondary same-width-text">
+                  <span>2024/06/15 19:30</span>
+                </div>
               </div>
 
               <div
-                class="text-left justify-content-center mt-2 mx-auto same-width-text"
+                class="d-flex mt-2 same-width-text bg-primary w-100 justify-content-center"
               >
-                <i class="bi bi-geo-alt-fill me-2"></i>
-                <span>臺北流行音樂中心</span>
+                <div class="bg-success px-4">
+                  <i class="bi bi-geo-alt-fill"></i>
+                </div>
+                <div class="bg-secondary same-width-text">
+                  <span>臺北流行音樂中心</span>
+                </div>
               </div>
             </td>
             <td class="align-middle">2</td>
@@ -99,8 +116,11 @@
       </table>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
