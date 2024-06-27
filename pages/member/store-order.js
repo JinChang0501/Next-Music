@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import MemberDLayout from '@/components/member/computer-layout'
-import tickets from '@/data/member/tickets.json'
+// import tickets from '@/data/member/tickets.json'
 import styles from '@/components/member/computer-layout/left-bar.module.scss'
 
 // import { Dropdown } from 'react-bootstrap'

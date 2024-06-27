@@ -1,86 +1,21 @@
-import React, { useState } from 'react'
 import MemberDLayout from '@/components/member/computer-layout'
-import tickets from '@/data/member/tickets.json'
 import styles from '@/components/member/computer-layout/left-bar.module.scss'
+import PageTab from '@/components/member/computer-layout/page-tab'
+import Tickets from '@/components/member/computer-layout/tickets'
+import ticketData from '@/data/member/ticketData'
+import { useTab } from '@/hooks/member/useTab'
 
 // import { Dropdown } from 'react-bootstrap'
 
 export default function TicketOrder() {
-  const [activeTab, setActiveTab] = useState('concert') //頁籤 預設先給concert
-  const [ticketStatus, setTicketStatus] = useState('0') //下拉選單 預設是0， 0就是 "全部"
-
-  const concertTickets = [
-    // { id: 0, status: '全部', name: '全部' },
-    { status: '未使用', name: '演唱會 1' },
-    { status: '已使用', name: '演唱會 2' },
-    // 添加更多票券資料
-  ]
-
-  const festivalTickets = [
-    // { id: 0, status: '全部', name: '全部' },
-    { status: '未使用', name: '音樂祭 1' },
-    { status: '已使用', name: '音樂祭 2' },
-    // 添加更多票券資料
-  ]
-
-  const handleTabChange = (tab) => {
-    setActiveTab(tab)
-    setTicketStatus('0') // 重置票券狀態
-  }
-
-  const handleStatusChange = (e) => {
-    setTicketStatus(e.target.value)
-  }
-
-  const getFilteredTickets = () => {
-    const tickets = activeTab === 'concert' ? concertTickets : festivalTickets
-    if (ticketStatus === '0') {
-      return tickets
-    }
-    return tickets.filter(
-      (ticket) => ticket.status === (ticketStatus === '1' ? '未使用' : '已使用')
-    )
-  }
-
+  const { activeTab, ticketStatus, handleStatusChange, getFilteredTickets } =
+    useTab()
   return (
     <>
       <p className="chb-h4 text-purple1">我的票券</p>
       <hr className="custom-hr" />
-      <ul className="nav nav-tabs mb-3" id="myTab" role="tablist">
-        <li className="nav-item col-6 col-md-3" role="presentation">
-          <button
-            className={`nav-link w-100 ${
-              activeTab === 'concert' ? 'active' : ''
-            } px-5`}
-            id="concert-tab"
-            data-bs-toggle="tab"
-            type="button"
-            role="tab"
-            aria-controls="concert"
-            aria-selected={activeTab === 'concert'}
-            onClick={() => handleTabChange('concert')}
-          >
-            演唱會
-          </button>
-        </li>
-        <li className="nav-item col-6 col-md-3" role="presentation">
-          <button
-            className={`nav-link w-100 ${
-              activeTab === 'festival' ? 'active' : ''
-            } px-5`}
-            id="festival-tab"
-            data-bs-toggle="tab"
-            type="button"
-            role="tab"
-            aria-controls="festival"
-            aria-selected={activeTab === 'festival'}
-            onClick={() => handleTabChange('festival')}
-          >
-            音樂祭
-          </button>
-        </li>
-      </ul>
 
+      <PageTab />
       <div className="tab-content" id="myTabContent">
         <div
           className={`tab-pane fade ${
@@ -125,37 +60,6 @@ export default function TicketOrder() {
             </div>
           </div>
 
-          {/*  */}
-          {/* dropdown */}
-          {/* <div className="row">
-            <div className="col-12 col-lg-6 py-3">
-              <div className="w-100 d-flex">
-                <label htmlFor="activity" className="chb-h6 flex-fill ***">
-                  <span>票券狀態：</span>
-                </label>
-                <select
-                  required
-                  id="activity"
-                  name="activity"
-                  className="align-item-center flex-fill"
-                  value={ticketStatus}
-                  onChange={handleStatusChange}
-                >
-                  <option value="0" className="text-center">
-                    - - 全部 - -
-                  </option>
-                  <option value="1" className="text-center">
-                    - - 未使用 - -
-                  </option>
-                  <option value="2" className="text-center">
-                    - - 已使用 - -
-                  </option>
-                </select>
-              </div>
-            </div>
-            <div className="col-9"></div>
-          </div> */}
-          {/*  */}
           <div className="ticket-list">
             {getFilteredTickets().map((ticket) => (
               <div key={ticket.id} className="ticket-item">
@@ -206,38 +110,7 @@ export default function TicketOrder() {
               </div>
             </div>
           </div>
-          {/* dropdown */}
-          {/* <div className="row">
-            <div className="col-12 col-lg-6 py-3">
-              <div className="w-100 d-flex">
-                <label
-                  htmlFor="activity"
-                  className="chb-h6 flex-fill text-center"
-                >
-                  <span>票券狀態：</span>
-                </label>
-                <select
-                  required
-                  id="activity"
-                  name="activity"
-                  className="align-item-center flex-fill"
-                  value={ticketStatus}
-                  onChange={handleStatusChange}
-                >
-                  <option value="0" className="text-center">
-                    - - 全部 - -
-                  </option>
-                  <option value="1" className="text-center">
-                    - - 未使用 - -
-                  </option>
-                  <option value="2" className="text-center">
-                    - - 已使用 - -
-                  </option>
-                </select>
-              </div>
-            </div>
-            <div className="col-9"></div>
-          </div> */}
+
           <div className="ticket-list">
             {getFilteredTickets().map((ticket) => (
               <div key={ticket.id} className="ticket-item">
@@ -260,55 +133,19 @@ export default function TicketOrder() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className="align-middle">12345</td>
-              <td className="align-middle">2024-06-23</td>
-              <td className="bg-warning d-flex flex-column mx-auto">
-                <div className="text-left justify-content-center mt-2 mx-auto same-width-text">
-                  <i className="bi bi-ticket-perforated-fill"></i>
-                  <span className="ms-2">一生到底，fuck codeing</span>
-                </div>
-
-                <div className="text-left justify-content-center mt-2 mx-auto same-width-text">
-                  <i className="bi bi-clock-fill me-2"></i>
-                  <span>2024/06/15 19:30</span>
-                </div>
-
-                <div className="text-left justify-content-center mt-2 mx-auto same-width-text">
-                  <i className="bi bi-geo-alt-fill me-2"></i>
-                  <span>臺北流行音樂中心</span>
-                </div>
-              </td>
-              <td className="align-middle">2</td>
-              <td className="align-middle">
-                <button className="btn btn-primary">查看明細</button>
-              </td>
-            </tr>
-
-            <tr>
-              <td className="align-middle">12345</td>
-              <td className="align-middle">2024-06-23</td>
-              <td className="bg-warning d-flex flex-column mx-auto">
-                <div className="text-left justify-content-center mt-2 mx-auto same-width-text">
-                  <i className="bi bi-ticket-perforated-fill"></i>
-                  <span className="ms-2">一生到底，fuck codeing</span>
-                </div>
-
-                <div className="text-left justify-content-center mt-2 mx-auto same-width-text">
-                  <i className="bi bi-clock-fill me-2"></i>
-                  <span>2024/06/15 19:30</span>
-                </div>
-
-                <div className="text-left justify-content-center mt-2 mx-auto same-width-text">
-                  <i className="bi bi-geo-alt-fill me-2"></i>
-                  <span>臺北流行音樂中心</span>
-                </div>
-              </td>
-              <td className="align-middle">2</td>
-              <td className="align-middle">
-                <button className="btn btn-primary">查看明細</button>
-              </td>
-            </tr>
+            {ticketData.map((v, i) => {
+              return (
+                <Tickets
+                  key={i}
+                  tid={v.tid}
+                  created_at={v.created_at}
+                  price={v.price}
+                  activity_name={v.activity_name}
+                  activity_place={v.activity_place}
+                  activity_time={v.activity_time}
+                />
+              )
+            })}
           </tbody>
         </table>
       </div>
