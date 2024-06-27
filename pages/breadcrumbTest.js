@@ -1,6 +1,7 @@
+import React from 'react'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 
-export default function Aid() {
+export default function breadcrumbTest() {
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
     { label: '演出活動', href: '/activity' },
@@ -9,7 +10,7 @@ export default function Aid() {
   return (
     <>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
-      <h1>Home Page Content</h1>
+      <div style={{ backgroundColor: '#fff', width: '100%' }}>看高度的</div>
     </>
   )
 }

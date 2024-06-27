@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-export default function BreadcrumbsDark({ breadcrumbs }) {
+export default function Breadcrumbs({ breadcrumbs }) {
   return (
     <>
       <div className="music-container">
@@ -20,7 +20,9 @@ export default function BreadcrumbsDark({ breadcrumbs }) {
               } else {
                 return (
                   <li key={index} className="breadcrumb-item">
-                    <Link href={breadItem.href}>{breadItem.label}</Link>
+                    <Link style={{ color: '#958cea' }} href={breadItem.href}>
+                      {breadItem.label}
+                    </Link>
                   </li>
                 )
               }

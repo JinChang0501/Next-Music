@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import styles from '@/styles/home.module.css'
+import DesktopBlackNoIconBtnBlack from "@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnBlack"
 
 export default function Index() {
   return (
@@ -12,9 +13,10 @@ export default function Index() {
             <div className="eng-h1 my-2">Lose Yourself in Music</div>
             <div className="eng-h1 my-2">Find Yourself in the Festivity</div>
             <div className="eng-p my-2">
-              <button className="btn btn-lg btn-primary" href="#">
+              <DesktopBlackNoIconBtnBlack text={'MY ACCOUNT'} />
+              {/* <button className="btn btn-lg btn-primary" href="#">
                 MY ACCOUNT
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
@@ -80,13 +82,17 @@ export default function Index() {
         {/* 音樂人 start */}
         <>
           {/* 背景畫面待修改 */}
-          <div className={`row mb-5 ${styles['mt-120']} ${styles['bg-img-flow']}`}>
+          <div
+            className={`row mb-5 ${styles['mt-120']} ${styles['bg-img-flow']}`}
+          >
             <div className="d-flex flex-column align-items-center">
               <div className="eng-h1 text-white">Discover More</div>
               <div className="chb-h3 text-purple1">挖掘你還未聽過的好聲音</div>
             </div>
           </div>
-          <div className={`row d-flex justify-content-md-center justify-content-around align-items-center ${styles['mt-80']} ${styles['mb-120']}`}>
+          <div
+            className={`row d-flex justify-content-md-center justify-content-around align-items-center ${styles['mt-80']} ${styles['mb-120']}`}
+          >
             {/* 最大那顆，到時候要隨著滑鼠事件移動 */}
             <div className="col-md-4 col-8 d-flex flex-column align-items-center order-md-3 mb-5 mb-md-0">
               <img
