@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import CarouselIndex from '@/components/product/carousel-index'
 import CardProduct from '@/components/product/card-product'
 import styles from '@/styles/product/product.module.scss'
+// import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 
 export default function List() {
   // Toggle the side navigation
@@ -32,8 +33,8 @@ export default function List() {
 
   return (
     <>
-      <h2 className="text-white">麵包屑</h2>
-      
+      <div className="text-white">麵包屑</div>
+      {/* <Breadcrumbs /> */}
       {/* 商品推播 */}
       <div className="row">
         <CarouselIndex />

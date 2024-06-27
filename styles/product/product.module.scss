@@ -8,10 +8,10 @@
 .mt-40 {
   margin-top: 40px;
 }
-
 .mt-28 {
   margin-top: 28px;
 }
+
 .mb-100 {
   margin-bottom: 100px;
 }
@@ -22,12 +22,18 @@
   margin-top: 100px;
   margin-bottom: 100px;
 }
-
+.my-20 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
 .pt-80 {
   padding-top: 80px;
 }
 
+.px-30 {
+  padding: 0 30px;
+}
 
 
 
@@ -49,20 +55,39 @@
   color: #dbd7ff,
   ;
 }
-
+.text-center {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.w-795 {
+  width: 795px;
+}
+.w-400 {
+  width: 400px;
+}
 .w-350 {
   width: 350px;
+}
+.w-50 {
+  width: 50%;
 }
 
 .h-725 {
   height: 725px;
 }
-.w-795 {
-  width: 795px;
+.h-120 {
+  height: 120px;
 }
-.w-50 {
-  width: 50%;
+.h-54 {
+  height: 54px;
 }
+.wh-100 {
+  width: 100px;
+  height: 100px;
+}
+
 .bg-bk {
   background-color: #000 ;
 }
@@ -75,4 +100,11 @@
 align-items: flex-start;
 gap: 40px;
 align-self: stretch;
+}
+
+.payment-first {
+  display: "flex";
+padding: 0px 30px;
+justify-content: space-between;
+
 }
