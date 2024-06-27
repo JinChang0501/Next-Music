@@ -164,5 +164,9 @@ export default function Collection() {
 }
 
 Collection.getLayout = function getLayout(page) {
-  return <MemberDLayout title="Music | 會員收藏庫">{page}</MemberDLayout>
+  return (
+    <MemberDLayout title="Music | 會員收藏庫" pageName="collection">
+      {page}
+    </MemberDLayout>
+  )
 }

@@ -213,7 +213,11 @@ export default function Account() {
   )
 }
 Account.getLayout = function getLayout(page) {
-  return <MemberDLayout title="Music | 會員帳號設定">{page}</MemberDLayout>
+  return (
+    <MemberDLayout title="Music | 會員帳號設定" pageName="account">
+      {page}
+    </MemberDLayout>
+  )
 }
 
 // const Account = () => {

@@ -199,5 +199,9 @@ export default function StoreOrder() {
 }
 
 StoreOrder.getLayout = function getLayout(page) {
-  return <MemberDLayout title="Music | 商城購物紀錄">{page}</MemberDLayout>
+  return (
+    <MemberDLayout title="Music | 商城購物紀錄" pageName="store-order">
+      {page}
+    </MemberDLayout>
+  )
 }

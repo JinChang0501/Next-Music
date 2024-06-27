@@ -170,5 +170,9 @@ export default function TicketOrder() {
 }
 
 TicketOrder.getLayout = function getLayout(page) {
-  return <MemberDLayout title="Music | 我的票券">{page}</MemberDLayout>
+  return (
+    <MemberDLayout title="Music | 我的票券" pageName="ticket-order">
+      {page}
+    </MemberDLayout>
+  )
 }
