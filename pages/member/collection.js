@@ -140,12 +140,12 @@ export default function Collection() {
       </div>
 
       <div className="row">
-        {cardData.map((card, index) => (
+        {cardData.map((v, index) => (
           <div key={index} className="col-6 col-md-3">
             <CollectionCard
-              imageSrc={card.imageSrc}
-              title={card.title}
-              description={card.description}
+              imageSrc={v.imageSrc}
+              title={v.title}
+              description={v.description}
             />
           </div>
         ))}
