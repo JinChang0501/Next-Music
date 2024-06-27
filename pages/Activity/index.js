@@ -3,6 +3,7 @@ import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import BannerA from '@/components/activity/banner-a'
 import LeftBar from '@/components/activity/left-bar'
 import Tabs from '@/components/activity/tabs'
+import ActivityCard from '@/components/activity/activity-card'
 
 export default function Activity() {
   const breadcrumbsURL = [
@@ -18,6 +19,11 @@ export default function Activity() {
           <LeftBar />
           <div className="col-md-9 col-12">
             <Tabs />
+            <ActivityCard />
+            <ActivityCard />
+            <ActivityCard />
+            <ActivityCard />
+            <ActivityCard />
           </div>
         </div>
       </div>
