@@ -1,50 +1,73 @@
 import React from 'react'
-import styles from './left-bar.module.scss'
+import styles from './phone-bar.module.scss'
 import Link from 'next/link'
 
-export default function PhoneBar() {
+export default function PhoneBar({ pageName = '' }) {
   return (
     <>
       <div className="left-bar">
-        <div className="row align-items-center bg-success px-4">
+        <div className="row chb-h4 my-2 mb-3">會員中心</div>
+
+        <div className="row align-items-center bg-success p-3">
           <div className="col-6 bg-warning d-flex justify-content-center">
-            <div className={styles.imgF}>
-              <img
-                src="/images/member/img/beautiful-2405131__340.jpg"
-                alt=""
-                className={`${styles['img-size']} mx-auto`}
-              ></img>
-            </div>
+            <img
+              src="/images/member/img/beautiful-2405131__340.jpg"
+              alt=""
+              className={`${styles['img-size']}`}
+            ></img>
           </div>
 
-          <div className="text-center col-6">
-            <p
-              className={`${styles['short-underline']} chb-sm-h5 m-0 mb-3 text-white`}
-            >
-              三個字
-            </p>
+          <div className="text-center col-6 bg-primary">
+            <p className="chb-h6 m-0 text-white">錢錢錢</p>
           </div>
         </div>
 
         <div className="row">
-          <div className="col-12 px-4">
+          <div className="col-12 p-0">
             <div className="menu-container">
               <div className="menu-wrapper px-0 ">
-                <div className="menu-item">
-                  <Link href="ticket-order">行事曆</Link>
-                </div>
-                <div className="menu-item">
-                  <Link href="collection">收藏庫</Link>
-                </div>
-                <div className="menu-item">
-                  <Link href="ticket-order">我的票券</Link>
-                </div>
-                <div className="menu-item">
-                  <Link href="store-order">商城購物紀錄</Link>
-                </div>
-                <div className="menu-item">
-                  <Link href="account">帳戶設定</Link>
-                </div>
+                <Link
+                  href="ticket-order"
+                  className={`me-3 chb-h5 ${
+                    pageName === 'test' ? 'text-purple1' : 'text-black60'
+                  }`}
+                >
+                  行事曆
+                </Link>
+                <Link
+                  href="collection"
+                  className={`me-3 chb-h5 ${
+                    pageName === 'collection' ? 'text-purple1' : 'text-black60'
+                  }`}
+                >
+                  收藏庫
+                </Link>
+                <Link
+                  href="ticket-order"
+                  className={`me-3 chb-h5 ${
+                    pageName === 'ticket-order'
+                      ? 'text-purple1'
+                      : 'text-black60'
+                  }`}
+                >
+                  我的票券
+                </Link>
+                <Link
+                  href="store-order"
+                  className={`me-3 chb-h5 ${
+                    pageName === 'store-order' ? 'text-purple1' : 'text-black60'
+                  }`}
+                >
+                  商城購物紀錄
+                </Link>
+                <Link
+                  href="account"
+                  className={`me-3 chb-h5 ${
+                    pageName === 'account' ? 'text-purple1' : 'text-black60'
+                  }`}
+                >
+                  帳戶設定
+                </Link>
               </div>
             </div>
           </div>
