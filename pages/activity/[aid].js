@@ -1,4 +1,5 @@
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
+import MainMusicInfo from '@/components/activity/main-music-info'
 
 export default function Aid() {
   const breadcrumbsURL = [
@@ -9,7 +10,9 @@ export default function Aid() {
   return (
     <>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
-      <h1>Home Page Content</h1>
+      <div className='music-container'>
+        <MainMusicInfo />
+      </div>
     </>
   )
 }
