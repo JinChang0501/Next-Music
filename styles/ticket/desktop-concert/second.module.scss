@@ -1,0 +1,37 @@
+// #region breadcrumb
+
+.breadcrumb {
+  height: 60px;
+}
+
+// #endregion breadcrumb
+
+// #region image
+
+.image {
+  width: calc(100% - 640px);
+  height: 100%;
+  padding: 0;
+  position: relative;
+}
+
+// #endregion image
+
+// #region right
+
+.right {
+  width: 640px;
+  padding: 0 20px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+// #endregion right
+
+// #region nextButton
+
+.nextButton {
+  margin: 20px 0;
+}
+
+// #endregion nextButton

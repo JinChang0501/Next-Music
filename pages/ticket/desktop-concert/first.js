@@ -1,13 +1,13 @@
 import React, { useRef, useEffect, useState } from 'react'
-import TicketLayout from '@/components/layout/ticket-layout'
-import ProgressBar from '@/components/ticket/desktop-concert/first/progressBar'
+import TicketFixedContentLayout from '@/components/layout/ticket-layout/ticketFixedContentLayout'
+import ProgressBar from '@/components/ticket/progressBar'
 import TicketArea from '@/components/ticket/desktop-concert/first/ticketArea'
 import RightTitle from '@/components/ticket/desktop-concert/first/rightTitle'
 import Info from '@/components/ticket/desktop-concert/first/info'
-import style from '@/styles/ticket/desktop-select-seat.module.scss'
+import style from '@/styles/ticket/desktop-concert/first.module.scss'
 import Image from 'next/image'
 
-export default function Ticket() {
+export default function First() {
   // #region 動態獲取 breadcrumb、progressBar 高度，返回給 content
 
   // breadcrumbRef 和 progressBarRef 是用來獲取 DOM 元素的引用
@@ -72,7 +72,7 @@ export default function Ticket() {
       <div className="row d-flex flex-nowrap" style={{ height: contentHeight }}>
         {/* Image */}
         <div className={`${style.image}`}>
-          <Image src="/images/ticket/test.jpg" alt="test" layout="fill" />
+          <Image src="/images/ticket/test.jpg" fill alt="test" priority />
         </div>
 
         {/* Right */}
@@ -96,6 +96,10 @@ export default function Ticket() {
   )
 }
 
-Ticket.getLayout = function getLayout(page) {
-  return <TicketLayout title="Ticket">{page}</TicketLayout>
+First.getLayout = function getLayout(page) {
+  return (
+    <TicketFixedContentLayout title="Select-Seat">
+      {page}
+    </TicketFixedContentLayout>
+  )
 }

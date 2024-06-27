@@ -5,15 +5,15 @@
 }
 
 .ticketAreaBlock {
-  height: 77px;
-  padding: 30px;
+  padding: 10px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border: 2px solid #685BEB;
 }
 
 .ticketArea > .ticketAreaBlock:not(:last-child) {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .ticketAreaBlockLeft {

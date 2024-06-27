@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Nav from '../default-layout/nav'
 import Footer from '../default-layout/footer'
 
-export default function TicketLayout({ children, title = '' }) {
+export default function TicketFixedContentLayout({ children, title = '' }) {
   // #region 動態獲取 nav、footer 高度，返回給 content
 
   const navRef = useRef(null)
@@ -46,7 +46,7 @@ export default function TicketLayout({ children, title = '' }) {
   return (
     <>
       <Head>
-        <title>{title ? 'Music | ' + title : 'Music'}</title>
+        <title>{title ? 'Ticket | ' + title : 'Ticket'}</title>
       </Head>
       <div className="d-flex flex-column vh-100">
         {/* 需要把 <Nav /> 包裝在 <nav> 標籤裡 useRef 才能夠正確訪問 */}
