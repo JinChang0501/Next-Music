@@ -7,9 +7,7 @@ import LoginModal from '@/components/login/login-modal'
 export default function Nav() {
   const [wakeModal, setWakeModal] = useState(false)
 
-  const handleModal= ()=>{
-    
-  }
+  const handleModal = () => {}
 
   return (
     <>
@@ -106,7 +104,7 @@ export default function Nav() {
                   className="dropdown-menu dropdown-menu-dark dropdown-menu-end"
                   aria-labelledby="navbarDropdown02"
                 >
-                  <div className={`${styles['mouse-cursor']}`} onClick={}>
+                  <div className={`${styles['mouse-cursor']}`}>
                     <div
                       className="dropdown-item"
                       data-bs-toggle="modal"
