@@ -54,8 +54,8 @@ export default function MemberDLayout({
             </div>
           </div>
           <div className="row">
-            <div className="col-12 main-content pb-5 px-0 my-3">
-              <div className="overflow-auto py-3">
+            <div className=" pb-5 px-3 my-3">
+              <div className="py-3">
                 <div className="mx-auto mb-3">{children}</div>
               </div>
             </div>
