@@ -9,8 +9,7 @@ export default function CardProduct() {
   return (
     <>
       <div className="col">
-        <div className={`card mb-3 `}>
-        
+        <div className={`card ${styles['mt-28']}`}>
           <img
             src="/images/product/list/t-1.jpg"
             className="card-img-top"

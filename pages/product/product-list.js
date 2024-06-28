@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import CarouselIndex from '@/components/product/carousel-index'
 import CardProduct from '@/components/product/card-product'
 import styles from '@/styles/product/product.module.scss'
@@ -31,10 +32,13 @@ export default function List() {
     }
   }, [])
 
+  const breadcrumbsURL = [
+    { label: '首頁', href: '/' },
+    { label: '周邊商城', href: '/product' },
+  ]
   return (
     <>
-      <div className="text-white">麵包屑</div>
-      {/* <Breadcrumbs /> */}
+      <Breadcrumbs breadcrumbs={breadcrumbsURL} />
       {/* 商品推播 */}
       <div className="row">
         <CarouselIndex />
@@ -52,18 +56,18 @@ export default function List() {
             <div className="chb-h2 text-white">所有商品</div>
             <div className="container-fluid pt-80">
               <div className={`row row-cols-1 row-cols-md-3 ${styles['mt-80']}`}>
-                <CardProduct/>
-                <CardProduct/>
-                <CardProduct/>
-                <CardProduct/>
-                <CardProduct/>
-                <CardProduct/>
-                <CardProduct/>
-                <CardProduct/>
-                <CardProduct/>
-                <CardProduct/>
-                <CardProduct/>
-                <CardProduct/>
+                <CardProduct />
+                <CardProduct />
+                <CardProduct />
+                <CardProduct />
+                <CardProduct />
+                <CardProduct />
+                <CardProduct />
+                <CardProduct />
+                <CardProduct />
+                <CardProduct />
+                <CardProduct />
+                <CardProduct />
               </div>
             </div>
           </div>

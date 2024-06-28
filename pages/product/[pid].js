@@ -1,12 +1,19 @@
 import React from 'react'
+import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import styles from '@/styles/product/product.module.scss'
 import Carousel from '@/components/product/carousel'
 import CardProduct from '@/components/product/card-product'
 import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
 import DesktopBlackNoIconBtnBlack from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnBlack'
 export default function Detail() {
+  const breadcrumbsURL = [
+    { label: '首頁', href: '/' },
+    { label: '周邊商城', href: '/product' },
+    { label: '商品資訊', href: '/product[pid]' },
+  ]
   return (
     <>
+      <Breadcrumbs breadcrumbs={breadcrumbsURL} />
       {/* 第一個區塊 */}
       <div className={`row ${styles['mt-80']} ${styles['ml-136']}`}>
         {/* 左 */}

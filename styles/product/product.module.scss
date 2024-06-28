@@ -18,15 +18,25 @@
 .mb-60 {
   margin-bottom: 60px;
 }
+.mb-40 {
+  margin-bottom: 40px;
+}
 .my-100 {
   margin-top: 100px;
   margin-bottom: 100px;
+}
+.my-40{
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 .my-20 {
   margin-top: 20px;
   margin-bottom: 20px;
 }
-
+.mx-400 {
+  margin-left: 400px;
+  margin-right: 400px;
+}
 .pt-80 {
   padding-top: 80px;
 }
@@ -34,7 +44,10 @@
 .px-30 {
   padding: 0 30px;
 }
-
+.btn-760 {
+  width: 760px;
+  padding: 30px 20px;
+}
 
 
 .ml-136 {
@@ -61,14 +74,27 @@
   justify-content: center;
   align-items: center;
 }
+.text-center-x {
+  text-align: center; 
+}
+
 .w-795 {
   width: 795px;
+}
+.w-500 {
+  width: 500px;
 }
 .w-400 {
   width: 400px;
 }
 .w-350 {
   width: 350px;
+}
+.w-180 {
+  width: 180px;
+}
+.w-160 {
+  width: 160px;
 }
 .w-50 {
   width: 50%;
@@ -83,6 +109,10 @@
 .h-54 {
   height: 54px;
 }
+.h-40 {
+  height: 40px;
+}
+
 .wh-100 {
   width: 100px;
   height: 100px;
@@ -95,16 +125,12 @@
   background-color: #fff;
 }
 
-.sid-button {
-  display: flex;
-align-items: flex-start;
-gap: 40px;
-align-self: stretch;
-}
-
-.payment-first {
+.payment-btn {
   display: "flex";
 padding: 0px 30px;
 justify-content: space-between;
-
 }
+.check-input {
+  border: 2px solid black;
+}
+$form-check-input-checked-bg-color: #685beb;
