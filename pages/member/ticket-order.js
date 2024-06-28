@@ -1,15 +1,32 @@
 import MemberDLayout from '@/components/member/computer-layout'
-import styles from '@/components/member/computer-layout/left-bar.module.scss'
+// import styles from '@/components/member/computer-layout/left-bar.module.scss'
 import PageTab from '@/components/member/computer-layout/page-tab'
 import Tickets from '@/components/member/computer-layout/tickets'
+import TicketMobile from '@/components/member/mobile-layout/ticket-mobile'
 import ticketData from '@/data/member/ticketData'
 import { useTab } from '@/hooks/member/useTab'
+import { useEffect, useState } from 'react'
 
 // import { Dropdown } from 'react-bootstrap'
 
 export default function TicketOrder() {
   const { activeTab, ticketStatus, handleStatusChange, getFilteredTickets } =
     useTab()
+
+  const [isDesktop, setIsDesktop] = useState(true)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth > 576) // 螢幕寬度 > 576px 為電腦板
+    }
+
+    handleResize() // 初始設定一次
+
+    window.addEventListener('resize', handleResize) // 監聽視窗大小變化
+
+    return () => window.removeEventListener('resize', handleResize) // 清除事件監聽器
+  }, [])
+
   return (
     <>
       <p className="chb-h4 text-purple1">我的票券</p>
@@ -122,32 +139,38 @@ export default function TicketOrder() {
       </div>
 
       <div className="container mt-4">
-        <table className="table table-bordered text-center">
-          <thead>
-            <tr>
-              <th className="col-2">訂單編號</th>
-              <th className="col-2">訂單時間</th>
-              <th className="col-2">活動資訊</th>
-              <th className="col-2">購買票數</th>
-              <th className="col-2">明細</th>
-            </tr>
-          </thead>
+        {isDesktop ? (
+          <table className="table table-bordered text-center">
+            <thead>
+              <tr>
+                <th className="col-2">訂單編號</th>
+                <th className="col-2">訂單時間</th>
+                <th className="col-2">活動資訊</th>
+                <th className="col-2">購買票數</th>
+                <th className="col-2">明細</th>
+              </tr>
+            </thead>
+            <tbody>
+              {ticketData.map((v, i) => {
+                return (
+                  <Tickets
+                    key={i}
+                    tid={v.tid}
+                    created_at={v.created_at}
+                    price={v.price}
+                    activity_name={v.activity_name}
+                    activity_place={v.activity_place}
+                    activity_time={v.activity_time}
+                  />
+                )
+              })}
+            </tbody>
+          </table>
+        ) : (
           <tbody>
-            {ticketData.map((v, i) => {
-              return (
-                <Tickets
-                  key={i}
-                  tid={v.tid}
-                  created_at={v.created_at}
-                  price={v.price}
-                  activity_name={v.activity_name}
-                  activity_place={v.activity_place}
-                  activity_time={v.activity_time}
-                />
-              )
-            })}
+            <TicketMobile />
           </tbody>
-        </table>
+        )}
       </div>
 
       <style jsx>{`
