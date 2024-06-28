@@ -1,0 +1,19 @@
+.same-width-text {
+  width: 150px; /* 根据日期文本的长度调整宽度 */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.img160 {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+}
+/* @media 查詢 */
+@media (max-width: 576px) {
+  .col img {
+    width: 80px; /* 在螢幕寬度小於576px時，將圖片寬度設為100px */
+    height: 80px; /* 同上，將圖片高度設為100px */
+  }
+}

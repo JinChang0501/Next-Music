@@ -53,38 +53,6 @@ export default function Tickets({
           <button className="btn btn-primary">查看明細</button>
         </td>
       </tr>
-      {/* <tr>
-        <td className="align-middle">{tid}</td>
-        <td className="align-middle">{created_at}</td>
-        <td className="bg-warning d-flex flex-column mx-auto">
-          <div
-            className={`text-left justify-content-center mt-2 mx-auto ${styles['same-width-text']}`}
-          >
-            <i className="bi bi-ticket-perforated-fill"></i>
-            <BsFillTicketPerforatedFill />
-            <span className="ms-2">{activity_name}</span>
-          </div>
-
-          <div
-            className={`text-left justify-content-center mt-2 mx-auto ${styles['same-width-text']}`}
-          >
-            <BsClockFill />
-            <i className="bi bi-clock-fill me-2"></i>
-            <span>{activity_time}</span>
-          </div>
-
-          <div
-            className={`text-left justify-content-center mt-2 mx-auto ${styles['same-width-text']}`}
-          >
-            <i className="bi bi-geo-alt-fill me-2"></i>
-            <span>{activity_place}</span>
-          </div>
-        </td>
-        <td className="align-middle">2</td>
-        <td className="align-middle">
-          <button className="btn btn-primary">查看明細</button>
-        </td>
-      </tr> */}
     </>
   )
 }
