@@ -22,7 +22,7 @@ export default function TicketMobile() {
               <div
                 className={`${styles['same-width-text']} d-flex mt-2  w-100 justify-content-center`}
               >
-                <div className=" px-2">
+                <div className="px-2">
                   {/* <i className="bi bi-ticket-perforated-fill"></i> */}
                   <BsFillTicketPerforatedFill />
                 </div>
