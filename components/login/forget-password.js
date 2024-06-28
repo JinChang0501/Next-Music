@@ -14,9 +14,16 @@ export default function ForgetPassword() {
     setIsActive(false)
   }
 
+  const backToLoginPage = () => {
+    router.push('/login')
+  }
+
   const handleNextStep = (e) => {
     e.preventDefault() // 阻止表單默認行為
-    router.push('/login/reset-password') // 導航到重設密碼頁面
+    setIsActive(true)
+    // router.push('/login/reset-password')
+
+    // 導航到重設密碼頁面
   }
 
   return (
@@ -94,7 +101,6 @@ export default function ForgetPassword() {
               <label htmlFor="email">電子信箱:</label>
               <input type="email" placeholder="Email" id="email" />
             </div>
-
             <div className="w-100">
               <label htmlFor="name">驗證碼:</label>
               <div className="d-flex flex-row align-item-center mb-2">
@@ -115,9 +121,15 @@ export default function ForgetPassword() {
                 </div>
               </div>
             </div>
-
             {/* <a href="#">忘記密碼?</a> */}
-            <button className="mt-5">下一步</button>
+            {/* <button className="mt-5">下一步</button> */}{' '}
+            <button
+              className="mt-5"
+              onClick={handleRegisterClick}
+              id="register"
+            >
+              下一步
+            </button>
           </form>
         </div>
         <div className="toggle-container">
@@ -125,20 +137,20 @@ export default function ForgetPassword() {
             <div className="toggle-panel toggle-left">
               <h1>開始重設密碼吧!</h1>
               <p>更新完成後將跳轉回登入頁面，再請重新登入~~</p>
-              <button className="hidden" onClick={handleLoginClick} id="login">
+              <button className="hidden" onClick={backToLoginPage} id="login">
                 返回登入
               </button>
             </div>
             <div className="toggle-panel toggle-right">
               <h1>沒關係!</h1>
               <p>我們都有忘記的時候，我們一起把它救回來吧!!</p>
-              <button
+              {/* <button
                 className="hidden"
                 onClick={handleRegisterClick}
                 id="register"
               >
                 重設密碼
-              </button>
+              </button> */}
             </div>
           </div>
         </div>

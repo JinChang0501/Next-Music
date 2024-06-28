@@ -80,7 +80,7 @@ export default function Login() {
                 name="passwords"
               />
             </div>
-            <Link href="/login/reset-password">忘記密碼?</Link>
+            <Link href="/login/forget-password">忘記密碼?</Link>
             <button className="w-50 chr-h5">登入</button>
             <button className="w-50">
               <a href="#" className="icon">
