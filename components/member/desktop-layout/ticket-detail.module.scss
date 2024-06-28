@@ -1,7 +1,13 @@
 .same-width-text {
-  width: 150px; /* 根据日期文本的长度调整宽度 */
+  width: 300px; /* 根据日期文本的長度调整宽度 */
   overflow: hidden;
   white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.truncate-text {
+  white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
 }
 
@@ -15,5 +21,35 @@
   .col img {
     width: 80px; /* 在螢幕寬度小於576px時，將圖片寬度設為100px */
     height: 80px; /* 同上，將圖片高度設為100px */
+  }
+}
+
+.marqee {
+  height: 20px;
+  width: 150px;
+  overflow: hidden;
+  position: relative;
+}
+
+.marqee > span {
+  padding-left: 0;
+  display: flex;
+  list-style-type: none;
+  animation: marqee 5s linear infinite;
+  position: absolute;
+  white-space: nowrap;
+  margin-right: 2em;
+  font-weight: bold;
+}
+
+@keyframes marqee {
+  0% {
+    left: 100%;
+    transform: translateX(0%);
+  }
+
+  100% {
+    left: 0;
+    transform: translateX(-100%);
   }
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './ticket-detail.module.scss'
 import { BsArrowLeftCircle } from 'react-icons/bs'
 import { BsClockFill } from 'react-icons/bs'
@@ -6,10 +6,23 @@ import { BsFillTicketPerforatedFill } from 'react-icons/bs'
 import { BsFillGeoAltFill } from 'react-icons/bs'
 import { BsMusicNoteBeamed } from 'react-icons/bs'
 import DesktopWhiteNoIconBtnPurple from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnPurple'
-
 import TicketDetailCard from './ticket-detail-card'
 
 export default function TicketDetail() {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 576) // 螢幕寬度 > 576px 為電腦板
+    }
+
+    handleResize() // 初始設定一次
+
+    window.addEventListener('resize', handleResize) // 監聽視窗大小變化
+
+    return () => window.removeEventListener('resize', handleResize) // 清除事件監聽器
+  }, [])
+
   return (
     <>
       <div className="row">
@@ -25,7 +38,7 @@ export default function TicketDetail() {
 
       <div className="row mt-3 border border-2 border-purple1">
         <div className="col-12 bg-purple1 py-2">
-          <div className="px-5 m-0 fs-3 d-flex justify-content-between">
+          <div className="px-md-5 m-0 fs-3 d-flex justify-content-between">
             <p className="text-center p-0 m-0 chb-h5 text-white">
               訂單編號:0000001
             </p>
@@ -43,25 +56,27 @@ export default function TicketDetail() {
           <div className="px-sm-5 m-0 fs-3 d-flex justify-content-between">
             <div className="d-flex">
               <div className="">
-                <BsFillTicketPerforatedFill className="pe-3 chb-h3" />
+                <BsFillTicketPerforatedFill className="pe-3 chb-h2" />
               </div>
-              <div className=" d-flex flex-column">
+              <div className="d-flex flex-column">
                 <span className="text-center chb-h5 my-auto">活動名稱</span>
               </div>
             </div>
-            <div>
-              <span className="text-center p-0 m-0 chr-h5">
-                一生到底，One Life, One Shot
-              </span>
+            <div
+              className={`${styles['same-width-text']} ${
+                isMobile ? styles['marqee'] : styles['']
+              } my-auto `}
+            >
+              <span className="chr-h5">一生到底，One Life, One Shot</span>
             </div>
           </div>
           {/* 演出藝人 */}
           <div className="px-sm-5 m-0 fs-3 d-flex justify-content-between">
             <div className="d-flex">
               <div className="">
-                <BsMusicNoteBeamed className="pe-3 chb-h3" />
+                <BsMusicNoteBeamed className="pe-3 chb-h2" />
               </div>
-              <div className=" d-flex flex-column">
+              <div className="d-flex flex-column">
                 <span className="text-center chb-h5 my-auto">演出藝人</span>
               </div>
             </div>
@@ -73,7 +88,7 @@ export default function TicketDetail() {
           <div className="px-sm-5 m-0 fs-3 d-flex justify-content-between">
             <div className="d-flex">
               <div className="">
-                <BsFillGeoAltFill className="pe-3 chb-h3" />
+                <BsFillGeoAltFill className="pe-3 chb-h2" />
               </div>
               <div className=" d-flex flex-column">
                 <span className="text-center chb-h5 my-auto">活動地點</span>
@@ -89,7 +104,7 @@ export default function TicketDetail() {
           <div className="px-sm-5 m-0 fs-3 d-flex justify-content-between">
             <div className="d-flex">
               <div className="">
-                <BsClockFill className="pe-3 chb-h3" />
+                <BsClockFill className="pe-3 chb-h2" />
               </div>
               <div className=" d-flex flex-column">
                 <span className="text-center chb-h5 my-auto">活動時間</span>
@@ -115,7 +130,7 @@ export default function TicketDetail() {
         </div>
 
         <div className="col-12 py-2 border-top border-2 border-purple2">
-          <div className="px-sm-5 m-0 fs-3 d-flex justify-content-between">
+          <div className="px-sm-5 m-0 d-flex justify-content-between">
             <p className="text-center p-0 m-0 chb-h5">共3張票</p>
             <p className="text-center p-0 m-0 chb-h5">總金額: $2100</p>
           </div>
@@ -128,15 +143,15 @@ export default function TicketDetail() {
         </div>
 
         <div className="col-12 py-2">
-          <div className="px-sm-5 m-0 fs-3 d-flex justify-content-between mb-2">
+          <div className="px-sm-5 m-0 d-flex justify-content-between mb-2">
             <p className="text-center p-0 m-0 chb-h5">訂單時間</p>
             <p className="text-center p-0 m-0 chr-h5">2024/06/31 19:30</p>
           </div>
-          <div className="px-sm-5 m-0 fs-3 d-flex justify-content-between mb-2">
+          <div className="px-sm-5 m-0 d-flex justify-content-between mb-2">
             <p className="text-center p-0 m-0 chb-h5">訂購人</p>
             <p className="text-center p-0 m-0 chr-h5">黃大安</p>
           </div>
-          <div className="px-sm-5 m-0 fs-3 d-flex justify-content-between mb-2">
+          <div className="px-sm-5 m-0 d-flex justify-content-between mb-2">
             <p className="text-center p-0 m-0 chb-h5">付款方式</p>
             <p className="text-center p-0 m-0 chr-h5">LINE PAY</p>
           </div>
