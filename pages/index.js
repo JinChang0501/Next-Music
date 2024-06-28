@@ -2,6 +2,8 @@ import Link from "next/link"
 import Image from "next/image"
 import styles from '@/styles/home.module.css'
 import DesktopBlackNoIconBtnBlack from "@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnBlack"
+import DesktopWhiteNoIconBtnBlack from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnBlack';
+import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple';
 
 export default function Index() {
   return (
@@ -43,11 +45,11 @@ export default function Index() {
                 演出活演出活動演出活動演出活動演出活動演出活動演出活動演出活動演出活動演出活動演出活動動
               </div>
               <div className="row text-nowrap">
-                <div className="col-3">
-                  <button className="btn btn-outline-secondary">活動資訊</button>
+                <div className="col-5">
+                  <DesktopWhiteNoIconBtnBlack text="活動資訊" />
                 </div>
-                <div className="col-3">
-                  <button className="btn btn-primary">立即購票</button>
+                <div className="col-7">
+                  <DesktopBlackNoIconBtnPurple text="立即購票" />
                 </div>
               </div>
             </div>
@@ -68,11 +70,11 @@ export default function Index() {
                 演出活演出活動演出活動演出活動演出活動演出活動演出活動演出活動演出活動演出活動演出活動動
               </div>
               <div className="row text-nowrap">
-                <div className="col-3">
-                  <button className="btn btn-outline-secondary">活動資訊</button>
+                <div className="col-5">
+                 <DesktopWhiteNoIconBtnBlack text="活動資訊" />
                 </div>
-                <div className="col-3">
-                  <button className="btn btn-primary">立即購票</button>
+                <div className="col-7">
+                  <DesktopBlackNoIconBtnPurple text="立即購票" />
                 </div>
               </div>
             </div>
@@ -87,7 +89,7 @@ export default function Index() {
           >
             <div className="d-flex flex-column align-items-center">
               <div className="eng-h1 text-white">Discover More</div>
-              <div className="chb-h3 text-purple1">挖掘你還未聽過的好聲音</div>
+              <div className="chb-h3 text-purple3">挖掘你還未聽過的好聲音</div>
             </div>
           </div>
           <div

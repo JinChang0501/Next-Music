@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function MNavbar() {
   return (
-    <div className={`${styles.h} h-100 d-flex flex-column`}>
+    <div className={`h-100 d-flex flex-column`}>
       <div className="text-center my-3">
         <img
           src="images/member/img/angel-1284369__340.jpg"
