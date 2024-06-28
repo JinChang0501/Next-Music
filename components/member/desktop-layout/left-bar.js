@@ -5,9 +5,9 @@ import Link from 'next/link'
 export default function LeftBar() {
   return (
     <>
-      <div className="left-bar">
+      <div className="left-bar bg-black80">
         <div>
-          <div className="bg-warning py-4">
+          <div className="py-4">
             <div className={`${styles.imgF} mx-auto`}>
               <img
                 src="/images/member/img/angel-1284369__340.jpg"
@@ -16,7 +16,7 @@ export default function LeftBar() {
             </div>
           </div>
 
-          <div className="bg-secondary text-center">
+          <div className="text-center">
             <p
               className={`${styles['short-underline']} chb-h5 m-0 mb-3 text-white`}
             >
@@ -26,7 +26,7 @@ export default function LeftBar() {
         </div>
 
         {/* 功能列 */}
-        <div className="bg-primary">
+        <div className="">
           <ul className="list-unstyled m-0">
             <Link
               href=""
@@ -62,8 +62,8 @@ export default function LeftBar() {
         </div>
         {/* 信箱與登出 */}
 
-        <div className="bottom-content text-center bg-danger py-3">
-          <span className="chr-h6">jin@gmail.com</span>
+        <div className="bottom-content text-center bg-black80 py-3">
+          <span className="chr-h6 text-white">jin@gmail.com</span>
           <br />
           <a href="" className="text-decoration-none">
             登出

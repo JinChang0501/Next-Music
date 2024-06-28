@@ -1,5 +1,5 @@
 import React from 'react'
-import MemberDLayout from '@/components/member/computer-layout'
+import MemberDLayout from '@/components/member/desktop-layout'
 import MemberPLayout from '@/components/member/mobile-layout'
 import useWindowSize from '@/hooks/member/useWindowSize'
 

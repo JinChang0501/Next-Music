@@ -4,3 +4,9 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+//讓文字不要因為字數長短而改變對齊位置
+.text-container {
+  display: flex;
+  align-items: center;
+}

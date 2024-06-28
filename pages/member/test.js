@@ -1,6 +1,6 @@
 import React from 'react'
-import LeftBar from '@/components/member/computer-layout/left-bar'
-import MemberDLayout from '@/components/member/computer-layout'
+import LeftBar from '@/components/member/desktop-layout/left-bar'
+import MemberDLayout from '@/components/member/desktop-layout'
 
 export default function Test() {
   return <></>

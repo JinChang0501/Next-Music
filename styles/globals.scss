@@ -431,6 +431,273 @@ $form-check-input-checked-bg-color: #685beb;
 }
 
 //#endregion eng
+@media (max-width: 390px) {
+  .music-container {
+    @include small-container($container-padding-x-small);
+  }
+
+  //#region chr
+  .chr-h1 {
+    font-family: 'Roboto';
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 4px;
+    line-height: normal;
+  }
+
+  .chr-h2 {
+    font-family: 'Roboto';
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 3.2px;
+    line-height: normal;
+  }
+
+  .chr-h3 {
+    font-family: 'Roboto';
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 2.4px;
+    line-height: normal;
+  }
+
+  .chr-h4 {
+    font-family: 'Roboto';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 2px;
+    line-height: normal;
+  }
+
+  .chr-h5 {
+    font-family: 'Roboto';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 1.8px;
+    line-height: normal;
+  }
+
+  .chr-h6 {
+    font-family: 'Roboto';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 1.6px;
+    line-height: normal;
+  }
+
+  .chr-h7 {
+    font-family: 'Roboto', Helvetica;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 1.4px;
+    line-height: normal;
+  }
+
+  .chr-p {
+    font-family: 'Roboto', Helvetica;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 1.2px;
+    line-height: normal;
+  }
+  .chr-p-10 {
+    font-family: 'Roboto', Helvetica;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 1px;
+    line-height: normal;
+  }
+
+  .chr-p-8 {
+    font-family: 'Roboto', Helvetica;
+    font-size: 8px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0.8px;
+    line-height: normal;
+  }
+
+  //#endregion chr
+
+  //#region chb
+
+  .chb-h1 {
+    font-family: 'Roboto';
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 4px;
+    line-height: normal;
+  }
+
+  .chb-h2 {
+    font-family: 'Roboto';
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 3.2px;
+    line-height: normal;
+  }
+
+  .chb-h3 {
+    font-family: 'Roboto';
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 2.4px;
+    line-height: normal;
+  }
+
+  .chb-h4 {
+    font-family: 'Roboto';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 2px;
+    line-height: normal;
+  }
+
+  .chb-h5 {
+    font-family: 'Roboto';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 1.8px;
+    line-height: normal;
+  }
+
+  .chb-h6 {
+    font-family: 'Roboto';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 1.6px;
+    line-height: normal;
+  }
+
+  .chb-h7 {
+    font-family: 'Roboto', Helvetica;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 1.4px;
+    line-height: normal;
+  }
+
+  .chb-p {
+    font-family: 'Roboto', Helvetica;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    line-height: normal;
+  }
+
+  .chb-p-10 {
+    font-family: 'Roboto', Helvetica;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 1px;
+    line-height: normal;
+  }
+
+  .chb-p-8 {
+    font-family: 'Roboto', Helvetica;
+    font-size: 8px;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    line-height: normal;
+  }
+
+  //#endregion chb
+
+  //#region eng
+
+  .eng-h1 {
+    font-family: 'Alata';
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 1.2px;
+    line-height: normal;
+  }
+
+  .eng-h2 {
+    font-family: 'Alata';
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0.96px;
+    line-height: normal;
+  }
+
+  .eng-h3 {
+    font-family: 'Alata';
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0.72px;
+    line-height: normal;
+  }
+
+  .eng-h4 {
+    font-family: 'Alata';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0.6px;
+    line-height: normal;
+  }
+
+  .eng-h5 {
+    font-family: 'Alata';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0.54px;
+    line-height: normal;
+  }
+
+  .eng-h6 {
+    font-family: 'Alata';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0.48px;
+    line-height: normal;
+  }
+
+  .eng-h7 {
+    font-family: 'Alata';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0.42px;
+    line-height: normal;
+  }
+
+  .eng-p {
+    font-family: 'Alata';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0.36px;
+    line-height: normal;
+  }
+
+  //#endregion eng
+}
 
 //#region reset css
 

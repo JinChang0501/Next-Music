@@ -5,7 +5,11 @@ import LeftBar from './left-bar'
 import { useEffect, useState, useRef } from 'react'
 import PhoneBar from './phone-bar'
 
-export default function MemberDLayout({ title = 'Music | 會員', children }) {
+export default function MemberDLayout({
+  title = 'Music | 會員',
+  children,
+  pageName = '',
+}) {
   const [isDesktop, setIsDesktop] = useState(true)
 
   useEffect(() => {
@@ -43,15 +47,15 @@ export default function MemberDLayout({ title = 'Music | 會員', children }) {
           </div>
         </div>
       ) : (
-        <div className="container-fluid">
+        <div className="music-container">
           <div className="row">
-            <div className="col-12 p-0">
-              <PhoneBar />
+            <div className="col-12">
+              <PhoneBar {...{ pageName }} />
             </div>
           </div>
           <div className="row">
-            <div className="col-12 main-content pb-5 mx-auto px-0 my-3">
-              <div className="music-container overflow-auto py-3">
+            <div className="col-12 main-content pb-5 px-0 my-3">
+              <div className="overflow-auto py-3">
                 <div className="mx-auto mb-3">{children}</div>
               </div>
             </div>

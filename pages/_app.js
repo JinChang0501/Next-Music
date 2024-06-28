@@ -2,6 +2,8 @@ import { useEffect } from 'react'
 // 樣式
 import '@/styles/globals.scss'
 import DefaultLayout from '@/components/layout/default-layout'
+//Jin的自訂Provider -> 我的票夾
+import { TabProvider } from '@/hooks/member/useTab'
 
 export default function MyApp({ Component, pageProps }) {
   // 導入bootstrap的JS函式庫
@@ -15,5 +17,6 @@ export default function MyApp({ Component, pageProps }) {
   const getLayout =
     Component.getLayout || ((page) => <DefaultLayout>{page}</DefaultLayout>)
 
-  return getLayout(<Component {...pageProps} />)
+  return <TabProvider>{getLayout(<Component {...pageProps} />)}</TabProvider>
 }
+//Jin的自訂Provider -> 我的票夾

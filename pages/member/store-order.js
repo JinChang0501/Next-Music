@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import MemberDLayout from '@/components/member/computer-layout'
+import MemberDLayout from '@/components/member/desktop-layout'
 // import tickets from '@/data/member/tickets.json'
-import styles from '@/components/member/computer-layout/left-bar.module.scss'
+import styles from '@/components/member/desktop-layout/left-bar.module.scss'
 
 // import { Dropdown } from 'react-bootstrap'
 
@@ -199,5 +199,9 @@ export default function StoreOrder() {
 }
 
 StoreOrder.getLayout = function getLayout(page) {
-  return <MemberDLayout title="Music | 商城購物紀錄">{page}</MemberDLayout>
+  return (
+    <MemberDLayout title="Music | 商城購物紀錄" pageName="store-order">
+      {page}
+    </MemberDLayout>
+  )
 }

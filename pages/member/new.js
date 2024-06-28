@@ -1,4 +1,4 @@
-import MemberDLayout from '@/components/member/computer-layout'
+import MemberDLayout from '@/components/member/desktop-layout'
 import React from 'react'
 import { ClockFill } from './ClockFill'
 import { Component } from './Component'

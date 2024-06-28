@@ -4,7 +4,9 @@ import { useState } from 'react'
 
 const TabContext = createContext(null)
 
-export default function TabProvider({ children }) {
+//沒有default是部分導出 在_app.js裡面要部份導入
+//export default function TabProvider({ children })
+export function TabProvider({ children }) {
   const [activeTab, setActiveTab] = useState('concert') //頁籤 預設先給concert
   const [ticketStatus, setTicketStatus] = useState('0') //下拉選單 預設是0， 0就是 "全部"
 
