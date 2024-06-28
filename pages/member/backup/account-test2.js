@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import MemberDLayout from '@/components/member/computer-layout'
+import MemberDLayout from '@/components/member/desktop-layout'
 import MemberPLayout from '@/components/member/mobile-layout'
 
 export default function Account() {

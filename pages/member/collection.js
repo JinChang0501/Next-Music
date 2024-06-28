@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import MemberDLayout from '@/components/member/computer-layout'
-import Concerts from '@/components/member/computer-layout/concerts'
-import Festivals from '@/components/member/computer-layout/festivals'
-import CollectionCard from '@/components/member/computer-layout/collection-card'
+import MemberDLayout from '@/components/member/desktop-layout'
+import Concerts from '@/components/member/desktop-layout/concerts'
+import Festivals from '@/components/member/desktop-layout/festivals'
+import CollectionCard from '@/components/member/desktop-layout/collection-card'
 import cardData from '@/data/member/cardData'
 
 export default function Collection() {

@@ -1,6 +1,6 @@
 // pages/index.js
-import MemberDLayout from '@/components/member/computer-layout'
-import styles from '@/components/member/computer-layout/left-bar.module.scss'
+import MemberDLayout from '@/components/member/desktop-layout'
+import styles from '@/components/member/desktop-layout/left-bar.module.scss'
 import Link from 'next/link'
 import { IoEyeSharp } from 'react-icons/io5'
 import { IoEyeOffSharp } from 'react-icons/io5'
