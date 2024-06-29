@@ -4,6 +4,7 @@ import { BsFillTicketPerforatedFill } from 'react-icons/bs'
 import { BsFillGeoAltFill } from 'react-icons/bs'
 import { BsArrowRightCircleFill } from 'react-icons/bs'
 import styles from './ticket-mobile.module.scss'
+import Link from 'next/link'
 
 export default function TicketMobile() {
   return (
@@ -65,7 +66,9 @@ export default function TicketMobile() {
             <div className="h-100 d-flex align-items-center">
               {/* <i className="bi bi-arrow-right-circle-fill my-auto"></i> */}
               <button className={styles['no-background']}>
-                <BsArrowRightCircleFill className="my-auto text-purple3" />
+                <Link href="/member/ticket-detail">
+                  <BsArrowRightCircleFill className="my-auto text-purple3" />
+                </Link>
               </button>
             </div>
           </div>
