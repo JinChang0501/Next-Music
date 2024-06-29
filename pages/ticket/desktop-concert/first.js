@@ -84,7 +84,11 @@ export default function First() {
       </div>
 
       {/* progressBar + timeCounter */}
-      <ProgressBar progressBarRef={progressBarRef} title={'Select-Seat'} />
+      <ProgressBar
+        progressBarRef={progressBarRef}
+        title={'Select-Seat'}
+        isStarted={isStarted}
+      />
 
       {/* content */}
       <div className="row d-flex flex-nowrap" style={{ height: contentHeight }}>
