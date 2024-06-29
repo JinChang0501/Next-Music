@@ -1,0 +1,35 @@
+// #region form
+
+.form {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.form >,
+.formBlock:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.formBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.formBlock > div:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+.formInput {
+  width: 100%;
+  height: 46px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 0 20px;
+  border: 1px solid #a1a1a1;
+  cursor: not-allowed;
+}
+
+// #endregion form

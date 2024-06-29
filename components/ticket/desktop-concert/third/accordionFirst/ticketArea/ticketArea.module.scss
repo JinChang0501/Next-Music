@@ -1,0 +1,19 @@
+// #region ticketArea
+
+.ticketArea {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ticketAreaBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ticketAreaBlock > div:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+// #endregion ticketArea

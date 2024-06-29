@@ -10,7 +10,7 @@ export default function TicketFormLayout({ children, title = '' }) {
       </Head>
       <div className="d-flex flex-column vh-100">
         <Nav />
-        <main className="flex-grow-1 bg-white">
+        <main className="flex-grow-1 bg-white overflow-y-scroll">
           <div className="music-container">{children}</div>
         </main>
         <Footer />

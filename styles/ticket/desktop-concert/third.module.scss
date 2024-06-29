@@ -13,22 +13,3 @@
 }
 
 // #endregion thirdContainer
-
-// #endregion image
-
-// #region
-
-.image {
-  width: 100%;
-  height: 350px;
-  padding: 0;
-  position: relative;
-  img {
-    object-fit: contain;
-    object-position: center;
-    width: 100%;
-    height: 100%;
-  }
-}
-
-// #endregion image

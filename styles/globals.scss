@@ -159,7 +159,12 @@ $accordion-button-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/20
 $accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-caret-down-fill' viewBox='0 0 16 16'><path d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/></svg>");
 
 // #endregion accordion
+
+// #region checkBox
+
 $form-check-input-checked-bg-color: #685beb;
+
+// #endregion checkBox
 
 // ↑↑↑  變數覆蓋(Variable overrides) 要寫在這行"上面"  ↑↑↑
 // 這裡導入所有 bootstrap 樣式
@@ -431,6 +436,9 @@ $form-check-input-checked-bg-color: #685beb;
 }
 
 //#endregion eng
+
+// #region RWD music-container font-size
+
 @media (max-width: 390px) {
   .music-container {
     @include small-container($container-padding-x-small);
@@ -698,6 +706,8 @@ $form-check-input-checked-bg-color: #685beb;
 
   //#endregion eng
 }
+
+// #endregion RWD music-container font-size
 
 //#region reset css
 
