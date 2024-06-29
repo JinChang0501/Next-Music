@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from './ticket-detail.module.scss'
 import { BsArrowLeftCircle } from 'react-icons/bs'
 import { BsClockFill } from 'react-icons/bs'
@@ -23,6 +23,19 @@ export default function TicketDetail() {
     return () => window.removeEventListener('resize', handleResize) // 清除事件監聽器
   }, [])
 
+  const [isMarquee, setIsMarquee] = useState(false)
+  const textRef = useRef(null)
+
+  useEffect(() => {
+    if (textRef.current) {
+      const textWidth = textRef.current.scrollWidth
+      if (textWidth > 150) {
+        setIsMarquee(true)
+      } else {
+        setIsMarquee(false)
+      }
+    }
+  }, [])
   return (
     <>
       <div className="row">
@@ -62,12 +75,15 @@ export default function TicketDetail() {
                 <span className="text-center chb-h5 my-auto">活動名稱</span>
               </div>
             </div>
-            <div
-              className={`${styles['same-width-text']} ${
-                isMobile ? styles['marqee'] : styles['']
-              } my-auto `}
-            >
-              <span className="chr-h5">一生到底，One Life, One Shot</span>
+            <div className={`${styles['marqee-container']} my-auto`}>
+              <span
+                ref={textRef}
+                className={`${styles['marqee-content']} ${
+                  isMarquee ? styles.marqee : ''
+                }`}
+              >
+                一生到底，One Life, One Shot
+              </span>
             </div>
           </div>
           {/* 演出藝人 */}
