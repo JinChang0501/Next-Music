@@ -3,11 +3,10 @@ import Link from 'next/link'
 import styles from './default.module.css'
 import { BsPersonCircle, BsBell, BsCart } from 'react-icons/bs'
 import LoginModal from '@/components/login/login-modal'
+import LoginModalT from '@/components/login/login-modal-t'
 
 export default function Nav() {
   const [wakeModal, setWakeModal] = useState(false)
-
-  const handleModal = () => {}
 
   return (
     <>
@@ -113,6 +112,8 @@ export default function Nav() {
                       登入
                     </div>
                   </div>
+                  <LoginModalT />
+
                   <li>
                     <Link
                       className="dropdown-item"

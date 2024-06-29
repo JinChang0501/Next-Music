@@ -186,6 +186,13 @@ export default function Login() {
             height: 100%;
           }
 
+          .btn-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1001; /* 确保按钮在所有内容的前面 */
+          }
+
           .custom-container input {
             background-color: #eee;
             border: none;
