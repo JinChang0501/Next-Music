@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Nav from '../default-layout/nav'
 import Footer from '../default-layout/footer'
 
-export default function TicketFormLayout({ children, title = '' }) {
+export default function TicketWhiteLayout({ children, title = '' }) {
   return (
     <>
       <Head>

@@ -1,5 +1,5 @@
 import React from 'react'
-import TicketFormLayout from '@/components/layout/ticket-layout/ticketFormLayout'
+import TicketWhiteLayout from '@/components/layout/ticket-layout/ticketWhiteLayout'
 import ProgressBar from '@/components/ticket/progressBar'
 import AccordionFirst from '@/components/ticket/desktop-concert/third/accordionFirst'
 import AccordionSecond from '@/components/ticket/desktop-concert/third/accordionSecond'
@@ -16,11 +16,15 @@ export default function Third() {
       </div>
 
       {/* progressBar + timeCounter */}
-      <ProgressBar />
+      <ProgressBar title={'payment'} />
 
       {/* Form */}
       <div className={`${style.thirdContainer}`}>
-        <div className="accordion" id="accordionPanelsStayOpenExample">
+        <div
+          className="accordion"
+          id="accordionPanelsStayOpenExample"
+          style={{ marginTop: '20px' }}
+        >
           {/* AccordionFirst */}
           <AccordionFirst />
 
@@ -39,5 +43,5 @@ export default function Third() {
 }
 
 Third.getLayout = function getLayout(page) {
-  return <TicketFormLayout title="payment">{page}</TicketFormLayout>
+  return <TicketWhiteLayout title="payment">{page}</TicketWhiteLayout>
 }

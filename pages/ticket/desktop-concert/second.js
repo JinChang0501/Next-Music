@@ -1,5 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
 import TicketFixedContentLayout from '@/components/layout/ticket-layout/ticketFixedContentLayout'
+import Mask from '@/components/ticket/mask'
+import Start from '@/components/ticket/start'
 import ProgressBar from '@/components/ticket/progressBar'
 import RightTitle from '@/components/ticket/desktop-concert/second/rightTitle'
 import TicketSeatBlock from '@/components/ticket/desktop-concert/second/ticketSeatBlock'
@@ -60,15 +62,30 @@ export default function Second() {
 
   // #endregion 動態獲取 breadcrumb、progressBar 高度，返回給 content
 
+  const [isStarted, setIsStarted] = useState(false)
+
+  const handleStart = () => {
+    setIsStarted(true)
+  }
+
   return (
     <>
+      {!isStarted && (
+        <>
+          {/* Mask */}
+          <Mask />
+
+          {/* Start */}
+          <Start onStart={handleStart} />
+        </>
+      )}
       {/* breadcrumb */}
       <div ref={breadcrumbRef} className={`${style.breadcrumb} row`}>
         <div className="col-12 p-0 bg-warning"></div>
       </div>
 
       {/* progressBar + timeCounter */}
-      <ProgressBar progressBarRef={progressBarRef} />
+      <ProgressBar progressBarRef={progressBarRef} title={'Select-Seat'} />
 
       {/* content */}
       <div className="row d-flex flex-nowrap" style={{ height: contentHeight }}>
