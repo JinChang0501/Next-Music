@@ -2,11 +2,29 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import styles from './default.module.css'
 import { BsPersonCircle, BsBell, BsCart } from 'react-icons/bs'
-import LoginModal from '@/components/login/login-modal'
-import LoginModalT from '@/components/login/login-modal-t'
+
+import Login from '@/components/login/login'
+import ForgetPassword from '@/components/login/forget-password'
 
 export default function Nav() {
-  const [wakeModal, setWakeModal] = useState(false)
+  const [wakeLogin, setWakeLogin] = useState(false)
+  const [wakeForgetPassword, setWakeForgetPassword] = useState(false)
+
+  const handleWakeLogin = () => {
+    setWakeLogin(true)
+  }
+
+  const handleCloseLogin = () => {
+    setWakeLogin(false)
+  }
+
+  const handleWakeForgetPassword = () => {
+    setWakeForgetPassword(true)
+  }
+
+  const handleCloseForgetPassword = () => {
+    setWakeForgetPassword(false)
+  }
 
   return (
     <>
@@ -104,15 +122,15 @@ export default function Nav() {
                   aria-labelledby="navbarDropdown02"
                 >
                   <div className={`${styles['mouse-cursor']}`}>
-                    <div
+                    <button
                       className="dropdown-item"
-                      data-bs-toggle="modal"
-                      data-bs-target="#exampleModal"
+                      // data-bs-toggle="modal"
+                      // data-bs-target="#exampleModal"
+                      onClick={handleWakeLogin}
                     >
                       登入
-                    </div>
+                    </button>
                   </div>
-                  <LoginModalT />
 
                   <li>
                     <Link
@@ -148,6 +166,16 @@ export default function Nav() {
           </div>
         </div>
       </nav>
+
+      <Login
+        isVisible={wakeLogin}
+        onClose={handleCloseLogin}
+        handleWakeForgetPassword={handleWakeForgetPassword}
+      />
+      <ForgetPassword
+        isVisible={wakeForgetPassword}
+        onClose={handleCloseForgetPassword}
+      />
     </>
   )
 }
