@@ -6,12 +6,7 @@ export default function ActivityImage() {
   return (
     <>
       <div className={`${style.activityImage}`}>
-        <Image
-          src="/images/ticket/desktop-third-size2.jpg"
-          alt="test"
-          fill
-          priority
-        />
+        <Image src="/images/ticket/fireextp.jpeg" alt="test" fill priority />
       </div>
     </>
   )

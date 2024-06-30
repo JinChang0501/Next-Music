@@ -74,7 +74,7 @@ export default function Second() {
       <div className="row d-flex flex-nowrap" style={{ height: contentHeight }}>
         {/* Image */}
         <div className={`${style.image}`}>
-          <Image src="/images/ticket/test.jpg" fill alt="test" priority />
+          <Image src="/images/ticket/10cm.jpg" fill alt="test" priority />
         </div>
 
         {/* Right */}

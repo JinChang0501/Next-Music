@@ -10,9 +10,9 @@ export default function TicketWhiteLayout({ children, title = '' }) {
       <Head>
         <title>{title ? 'Ticket | ' + title : 'Ticket'}</title>
       </Head>
-      <div className="d-flex flex-column vh-100">
+      <div className="d-flex flex-column vh-100 overflow-y-scroll">
         <Nav />
-        <main className="flex-grow-1 bg-white overflow-y-scroll">
+        <main className="flex-grow-1 bg-white">
           <div className="music-container">{children}</div>
         </main>
         <Footer />
