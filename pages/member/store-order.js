@@ -1,197 +1,72 @@
-import React, { useState } from 'react'
 import MemberDLayout from '@/components/member/desktop-layout'
-// import tickets from '@/data/member/tickets.json'
-import styles from '@/components/member/desktop-layout/left-bar.module.scss'
+import OrderCard from '@/components/member/desktop-layout/order-card'
+import OrderCardMobile from '@/components/member/mobile-layout/order-card-mobile'
+import { useTab } from '@/hooks/member/useTab'
+import { useEffect, useState } from 'react'
 
 // import { Dropdown } from 'react-bootstrap'
 
 export default function StoreOrder() {
-  const [activeTab, setActiveTab] = useState('concert') //頁籤 預設先給concert
-  const [ticketStatus, setTicketStatus] = useState('0') //下拉選單 預設是0 0就是 "全部"
+  const { activeTab, ticketStatus, handleStatusChange, getFilteredTickets } =
+    useTab()
 
-  const concertTickets = [
-    // { id: 0, status: '全部', name: '全部' },
-    { status: '未使用', name: '演唱會 1' },
-    { status: '已使用', name: '演唱會 2' },
-    // 添加更多票券資料
-  ]
+  const [isDesktop, setIsDesktop] = useState(true)
 
-  const festivalTickets = [
-    // { id: 0, status: '全部', name: '全部' },
-    { status: '未使用', name: '音樂祭 1' },
-    { status: '已使用', name: '音樂祭 2' },
-    // 添加更多票券資料
-  ]
-
-  const handleTabChange = (tab) => {
-    setActiveTab(tab)
-    setTicketStatus('0') // 重置票券狀態
-  }
-
-  const handleStatusChange = (e) => {
-    setTicketStatus(e.target.value)
-  }
-
-  const getFilteredTickets = () => {
-    const tickets = activeTab === 'concert' ? concertTickets : festivalTickets
-    if (ticketStatus === '0') {
-      return tickets
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth > 576) // 螢幕寬度 > 576px 為電腦板
     }
-    return tickets.filter(
-      (ticket) => ticket.status === (ticketStatus === '1' ? '未使用' : '已使用')
-    )
-  }
+
+    handleResize() // 初始設定一次
+
+    window.addEventListener('resize', handleResize) // 監聽視窗大小變化
+
+    return () => window.removeEventListener('resize', handleResize) // 清除事件監聽器
+  }, [])
 
   return (
     <>
-      <p className="chb-h4 text-purple1">商城購物紀錄</p>
+      <p className="chb-h4 text-purple1">周邊購買紀錄</p>
       <hr className="custom-hr" />
-      <ul className="nav nav-tabs mb-3" id="myTab" role="tablist">
-        <li className="nav-item" role="presentation">
-          <button
-            className={`nav-link ${
-              activeTab === 'concert' ? 'active' : ''
-            } px-5`}
-            id="concert-tab"
-            data-bs-toggle="tab"
-            type="button"
-            role="tab"
-            aria-controls="concert"
-            aria-selected={activeTab === 'concert'}
-            onClick={() => handleTabChange('concert')}
-          >
-            演唱會
-          </button>
-        </li>
-        <li className="nav-item" role="presentation">
-          <button
-            className={`nav-link ${
-              activeTab === 'festival' ? 'active' : ''
-            } px-5`}
-            id="festival-tab"
-            data-bs-toggle="tab"
-            type="button"
-            role="tab"
-            aria-controls="festival"
-            aria-selected={activeTab === 'festival'}
-            onClick={() => handleTabChange('festival')}
-          >
-            音樂祭
-          </button>
-        </li>
-      </ul>
-
-      <div className="tab-content" id="myTabContent">
-        <div
-          className={`tab-pane fade ${
-            activeTab === 'concert' ? 'show active' : ''
-          }`}
-          id="concert"
-          role="tabpanel"
-          aria-labelledby="concert-tab"
-        >
-          {/* dropdown */}
-          <div className="row">
-            <div className="col-sm-6">
-              <div className="w-100 d-flex">
-                <label
-                  htmlFor="activity"
-                  className="chb-h6 flex-fill text-center"
-                >
-                  <span>票券狀態：</span>
-                </label>
-                <select
-                  required
-                  id="activity"
-                  name="activity"
-                  className="align-item-center flex-fill"
-                  value={ticketStatus}
-                  onChange={handleStatusChange}
-                >
-                  <option value="0" className="text-center">
-                    - - 全部 - -
-                  </option>
-                  <option value="1" className="text-center">
-                    - - 未使用 - -
-                  </option>
-                  <option value="2" className="text-center">
-                    - - 已使用 - -
-                  </option>
-                </select>
-              </div>
-            </div>
-            <div className="col-9"></div>
+      {/* 活動dropdown */}
+      <div className="row">
+        <div className="col-12 col-lg-3 py-3 d-flex flex-row">
+          <div className="col-6 text-center">
+            <label htmlFor="activity" className="chb-h6 flex-fill text-center">
+              <span className="chb-h5">訂單狀態：</span>
+            </label>
           </div>
-          <div className="ticket-list">
-            {getFilteredTickets().map((ticket) => (
-              <div key={ticket.id} className="ticket-item">
-                {ticket.name} - {ticket.status}
-              </div>
-            ))}
-          </div>
-        </div>
-        <div
-          className={`tab-pane fade ${
-            activeTab === 'festival' ? 'show active' : ''
-          }`}
-          id="festival"
-          role="tabpanel"
-          aria-labelledby="festival-tab"
-        >
-          {/* dropdown */}
-          <div className="row">
-            <div className="col-sm-6">
-              <div className="w-100 d-flex">
-                <label
-                  htmlFor="activity"
-                  className="chb-h6 flex-fill text-center"
-                >
-                  <span>票券狀態：</span>
-                </label>
-                <select
-                  required
-                  id="activity"
-                  name="activity"
-                  className="align-item-center flex-fill"
-                  value={ticketStatus}
-                  onChange={handleStatusChange}
-                >
-                  <option value="0" className="text-center">
-                    - - 全部 - -
-                  </option>
-                  <option value="1" className="text-center">
-                    - - 未使用 - -
-                  </option>
-                  <option value="2" className="text-center">
-                    - - 已使用 - -
-                  </option>
-                </select>
-              </div>
-            </div>
-            <div className="col-9"></div>
-          </div>
-          <div className="ticket-list">
-            {getFilteredTickets().map((ticket) => (
-              <div key={ticket.id} className="ticket-item">
-                {ticket.name} - {ticket.status}
-              </div>
-            ))}
+          <div className="col-6">
+            <select
+              required
+              id="activity"
+              name="activity"
+              className="align-item-center h-100 w-100"
+            >
+              <option value="0" className="text-center">
+                - - 全部 - -
+              </option>
+              <option value="1" className="text-center">
+                - - 未完成 - -
+              </option>
+              <option value="2" className="text-center">
+                - - 已完成 - -
+              </option>
+            </select>
           </div>
         </div>
       </div>
+      {/* map寫在下面 */}
+      <div className="row mx-0">
+        {isDesktop ? <OrderCard /> : <OrderCardMobile />}
+      </div>
+
       <style jsx>{`
         .custom-hr {
           border: 0;
           border-top: 4px solid #007bff; /* 設置粗細和顏色 */
           width: 100%; /* 分隔線寬度 */
           margin: 1rem auto; /* 上下邊距和自動水平對齊 */
-        }
-        .ticket-list {
-          margin-top: 20px;
-        }
-        .ticket-item {
-          padding: 10px;
-          border-bottom: 1px solid #ccc;
         }
       `}</style>
     </>
@@ -200,7 +75,7 @@ export default function StoreOrder() {
 
 StoreOrder.getLayout = function getLayout(page) {
   return (
-    <MemberDLayout title="Music | 商城購物紀錄" pageName="store-order">
+    <MemberDLayout title="Music | 周邊購買紀錄" pageName="store-order">
       {page}
     </MemberDLayout>
   )
