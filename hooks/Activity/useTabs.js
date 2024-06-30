@@ -5,10 +5,10 @@ import { useState } from 'react'
 const TabContext = createContext(null)
 
 export default function TabProvider({ children }) {
-  const [activeTab, setActiveTab] = useState('allActivity') //頁籤 預設先給allActivity
+  const [activeTab, setActiveTab] = useState('activity') //頁籤 預設先給activity
 
-  const handleTabChange = (tab) => {
-    setActiveTab(tab)
+  const handleTabChange = (tabs) => {
+    setActiveTab(tabs)
   }
 
   return (

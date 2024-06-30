@@ -1,22 +1,23 @@
+import React from 'react'
 import { useTabs } from '@/hooks/activity/useTabs'
 
 // 待修改，研究頁籤 換頁要換內容
-export default function IntroTabs() {
+export default function ActivityTabs() {
   const { handleTabChange, activeTab } = useTabs()
   return (
     <>
-      <ul className="nav nav-tabs mb-3" id="introTab" role="tablist">
+      <ul className="nav nav-tabs mb-3" id="activityTab" role="tablist">
         <li className="nav-item col-6 col-md-3" role="presentation">
           <button
-            className={`nav-link w-100 ${activeTab === 'allActivity' ? 'active' : ''
+            className={`nav-link w-100 ${activeTab === 'activity' ? 'active' : ''
               } px-5`}
-            id="allActivity-tab"
+            id="activity-tab"
             data-bs-toggle="tab"
             type="button"
             role="tab"
-            aria-controls="allActivity"
-            aria-selected={activeTab === 'allActivity'}
-            onClick={() => handleTabChange('allActivity')}
+            aria-controls="activity"
+            aria-selected={activeTab === 'activity'}
+            onClick={() => handleTabChange('activity')}
           >
             所有活動
           </button>
