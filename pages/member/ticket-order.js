@@ -50,7 +50,7 @@ export default function TicketOrder() {
                   htmlFor="activity"
                   className="chb-h6 flex-fill text-center"
                 >
-                  <span>票券狀態：</span>
+                  <span className="chb-h5">票券狀態：</span>
                 </label>
               </div>
               <div className="col-6">
@@ -101,7 +101,7 @@ export default function TicketOrder() {
                   htmlFor="activity"
                   className="chb-h6 flex-fill text-center"
                 >
-                  <span>票券狀態：</span>
+                  <span className="chb-h5">票券狀態：</span>
                 </label>
               </div>
               <div className="col-6">

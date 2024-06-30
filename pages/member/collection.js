@@ -62,7 +62,7 @@ export default function Collection() {
                   htmlFor="activity"
                   className="chb-h6 flex-fill text-center"
                 >
-                  <span>活動種類：</span>
+                  <span className="chb-h5">活動種類：</span>
                 </label>
               </div>
               <div className="col-6">
@@ -104,7 +104,7 @@ export default function Collection() {
                   htmlFor="activity"
                   className="chb-h6 flex-fill text-center"
                 >
-                  <span>藝人：</span>
+                  <span className="chb-h5">藝人：</span>
                 </label>
               </div>
               <div className="col-6">
