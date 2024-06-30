@@ -2,7 +2,7 @@ import React from 'react'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import BannerA from '@/components/activity/banner-a'
 import LeftBar from '@/components/activity/left-bar'
-import Tabs from '@/components/activity/intro-tabs'
+import IntroTabs from '@/components/activity/intro-tabs'
 import ActivityCard from '@/components/activity/activity-card'
 
 export default function Activity() {
@@ -18,7 +18,7 @@ export default function Activity() {
         <div className="row">
           <LeftBar />
           <div className="col-md-9 col-12">
-            <Tabs />
+            {/* <IntroTabs /> */}
             <ActivityCard />
             <ActivityCard />
             <ActivityCard />

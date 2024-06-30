@@ -11,7 +11,7 @@ export default function DesktopWhiteNoIconBtnBlack({
       </button>
       <style jsx>{`
         .DesktopWhiteNoIconBtnBlack {
-          padding: 18px 42px;
+          padding: 12px 20px;
           color: black;
           background-color: white;
           border: 1px solid #000;

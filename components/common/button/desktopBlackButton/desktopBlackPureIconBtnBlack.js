@@ -2,8 +2,8 @@ import React from 'react'
 import { BsPlus } from 'react-icons/bs'
 
 export default function DesktopBlackPureIconBtnBlack({
-  iconWidth = 60,
-  iconHeight = 60,
+  iconWidth = 40,
+  iconHeight = 40,
   icon: IconComponent = BsPlus,
 }) {
   return (
@@ -18,7 +18,7 @@ export default function DesktopBlackPureIconBtnBlack({
       </button>
       <style jsx>{`
         .DesktopBlackPureIconBtnBlack {
-          padding: 6px;
+          padding: 8px;
           color: white;
           background-color: black;
           border: 1px solid #fff;

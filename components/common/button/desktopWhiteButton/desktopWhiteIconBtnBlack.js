@@ -6,7 +6,7 @@ export default function DesktopWhiteIconBtnBlack({
   className = 'chb-h5',
   iconWidth = 48,
   iconHeight = 48,
-  iconMarginRight = 12,
+  iconMarginRight = 6,
   icon: IconComponent = BsPlus,
 }) {
   return (
@@ -23,7 +23,7 @@ export default function DesktopWhiteIconBtnBlack({
       </button>
       <style jsx>{`
         .DesktopWhiteIconBtnBlack {
-          padding: 6px 28px 6px 20px;
+          padding: 0px 14px 0px 6px;
           color: black;
           background-color: white;
           border: 1px solid #000;
