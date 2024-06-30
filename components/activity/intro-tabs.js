@@ -1,7 +1,9 @@
+import { useTabs } from '@/hooks/activity/useTabs'
 import React from 'react'
 
 // 待修改，研究頁籤 換頁要換內容
-export default function Tabs() {
+export default function IntroTabs() {
+  const { handleTabChange, activeTab } = useTabs()
   return (
     <>
       {/* 簡介：頁籤 start */}
@@ -9,7 +11,9 @@ export default function Tabs() {
         <div className="col-12 mb-4">
           <ul className="nav nav-tabs">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
+              {/* 這邊要改 */}
+              <a className={`nav-link ${activeTab === 'concert' ? 'active' : ''
+                }`} aria-current="page" href="#">
                 簡介
               </a>
             </li>

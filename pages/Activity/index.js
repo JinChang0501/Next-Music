@@ -2,7 +2,7 @@ import React from 'react'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import BannerA from '@/components/activity/banner-a'
 import LeftBar from '@/components/activity/left-bar'
-import Tabs from '@/components/activity/tabs'
+import Tabs from '@/components/activity/intro-tabs'
 import ActivityCard from '@/components/activity/activity-card'
 
 export default function Activity() {

@@ -2,7 +2,7 @@ import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import MainMusicInfo from '@/components/activity/main-music-info'
 import ArtistFollowCard from '@/components/activity/artist-follow-card'
 import artistData from '@/data/activity/artist-data'
-import Tabs from '@/components/activity/tabs'
+import IntroTabs from '@/components/activity/intro-tabs'
 import RecommondCard from '@/components/activity/recommond-card'
 
 export default function Aid() {
@@ -29,7 +29,7 @@ export default function Aid() {
         </div>
         {/* 音樂人 end */}
         {/* 簡介：頁籤 start */}
-        <Tabs className="my-80" />
+        <IntroTabs className="my-80" />
         {/* 簡介：頁籤 end */}
         {/*  推薦活動 start  */}
         <div className="row my-5">
