@@ -1,4 +1,4 @@
-import { React, useEffect } from 'react'
+import { useEffect } from 'react'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import styles from '@/styles/product/product.module.scss'
 import CartLayout from '@/components/layout/cart-layout'

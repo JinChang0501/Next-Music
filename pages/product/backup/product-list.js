@@ -1,8 +1,9 @@
-import { useEffect } from 'react'
+import { React, useEffect } from 'react'
+import styles from '@/styles/product/product.module.scss'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import CarouselIndex from '@/components/product/carousel-index'
 import CardProduct from '@/components/product/card-product'
-import styles from '@/styles/product/product.module.scss'
+import LeftBar from '@/components/product/left-bar'
 // import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 
 export default function List() {
@@ -40,22 +41,17 @@ export default function List() {
     <>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
       {/* 商品推播 */}
-      <div className="row">
-        <CarouselIndex />
-      </div>
+      <CarouselIndex />
       {/* 內容正式開始 */}
-      <div className={` ${styles['my-100']}`}>
+      <div className={`${styles['mx-160']} ${styles['my-100']}`}>
         <div className="row">
           {/* left-search start*/}
-          <div className="col-md-3 text-white" id="sidebar-wrapper">
-          側邊欄
-          </div>
+          <LeftBar className={`styles['w-400']`}/>
           {/* left-search end*/}
-          {/* 商品卡 start*/}
-          <div className="col-md-9" id="page-content-wrapper">
-            <div className="chb-h2 text-white">所有商品</div>
-            <div className="container-fluid pt-80">
-              <div className={`row row-cols-1 row-cols-md-3 ${styles['mt-80']}`}>
+          <div className="col-md-9">
+            <div className="chb-h3 text-white">所有商品</div>
+            <div className="container-fluid ">
+              <div className={`row row-cols-1 row-cols-md-3 ${styles['mt-52']}`}>
                 <CardProduct />
                 <CardProduct />
                 <CardProduct />
@@ -71,7 +67,6 @@ export default function List() {
               </div>
             </div>
           </div>
-          {/* 商品卡 end*/}
         </div>
       </div>
     </>

@@ -14,7 +14,7 @@ export default function CartLayout({ title = 'Music', children }) {
         {/* main 裡面放背景顏色或背景 */}
         <main className="flex-grow-1 bg-white">
           {/* 使用自定義 container */}
-          <div className="music-container">
+          <div className={`music-container`}>
             {children}
             {/* 全域的載入動畫指示器 */}
             {/* {loader()} */}

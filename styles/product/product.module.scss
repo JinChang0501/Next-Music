@@ -1,9 +1,12 @@
-/* margin-top:100px || bottom:100px */
+/* margin */
 .mt-100 {
   margin-top: 100px;
 }
 .mt-80 {
   margin-top: 80px;
+}
+.mt-52 {
+  margin-top: 52px;
 }
 .mt-40 {
   margin-top: 40px;
@@ -29,6 +32,7 @@
   margin-top: 40px;
   margin-bottom: 40px;
 }
+
 .my-20 {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -36,6 +40,11 @@
 .mx-400 {
   margin-left: 400px;
   margin-right: 400px;
+}
+
+.mx-160 {
+  margin-left: 160px;
+  margin-right: 160px;
 }
 .pt-80 {
   padding-top: 80px;
@@ -78,6 +87,12 @@
   text-align: center; 
 }
 
+.w-1060 {
+ width: 1060px; 
+}
+.w-800 {
+  width:800px;
+}
 .w-795 {
   width: 795px;
 }
@@ -87,7 +102,7 @@
 .w-400 {
   width: 400px;
 }
-.w-350 {
+.w-335 {
   width: 350px;
 }
 .w-180 {
@@ -133,4 +148,17 @@ justify-content: space-between;
 .check-input {
   border: 2px solid black;
 }
-$form-check-input-checked-bg-color: #685beb;
+// $form-check-input-checked-bg-color: #685beb;
+.card {
+  border: 1px solid #685beb;
+}
+.center-item {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+.cart-total {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
