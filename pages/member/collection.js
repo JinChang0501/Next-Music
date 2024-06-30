@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import MemberDLayout from '@/components/member/desktop-layout'
-import Concerts from '@/components/member/desktop-layout/concerts'
-import Festivals from '@/components/member/desktop-layout/festivals'
 import CollectionCard from '@/components/member/desktop-layout/collection-card'
 import cardData from '@/data/member/cardData'
 
@@ -12,16 +10,6 @@ export default function Collection() {
     setSelectedActivity(event.target.value)
   }
 
-  const renderPage = () => {
-    switch (selectedActivity) {
-      case '1':
-        return <Concerts />
-      case '2':
-        return <Festivals />
-      default:
-      // return <AllActivities />
-    }
-  }
   return (
     <>
       <p className="chb-h4 text-purple1">收藏庫</p>
