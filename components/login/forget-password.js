@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
-import Link from 'next/link'
+import { BsFillXCircleFill } from 'react-icons/bs'
 
-export default function ForgetPassword() {
+export default function ForgetPassword({ isVisible, onClose }) {
   const [isActive, setIsActive] = useState(false)
   const router = useRouter()
 
@@ -10,7 +10,7 @@ export default function ForgetPassword() {
     setIsActive(true)
   }
 
-  const handleLoginClick = () => {
+  const handleLeftClick = () => {
     setIsActive(false)
   }
 
@@ -25,147 +25,141 @@ export default function ForgetPassword() {
 
     // 導航到重設密碼頁面
   }
+  if (!isVisible) return null
 
   return (
     <>
-      <div
-        className={`custom-container ${isActive ? 'active' : ''} mx-auto mt-5`}
-        id="container"
-      >
-        <div className="form-container sign-up">
-          {/* <form>
-            <h1>註冊帳戶</h1>
-            <div className="w-100">
-              <label htmlFor="name">姓名:</label>
-              <input type="text" placeholder="Name" id="name" />
-            </div>
-            <div className="w-100">
-              <label htmlFor="name">驗證碼:</label>
-              <div className="d-flex flex-row align-item-center mb-2">
-                <div className="w-75">
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    id="passwords2"
-                    className="m-0"
-                  />
-                </div>
-                <div>
-                  <div className="w-25">
-                    <button className="btn m-0 text-nowrap px-2">
-                      (60)重發驗證碼
-                    </button>
+      <div className="modal-bgc">
+        <div
+          className={`custom-container ${
+            isActive ? 'active' : ''
+          } modal-overlay`}
+          id="container"
+        >
+          <button
+            className="close-btn"
+            onClick={() => {
+              onClose()
+              handleLeftClick()
+            }}
+          >
+            <BsFillXCircleFill className="chr-h4" />
+          </button>
+          <div className="form-container sign-up">
+            <form>
+              <h1 style={{ marginBottom: '20px' }}>重設密碼</h1>
+              <div className="w-100">
+                <label htmlFor="passwords1">新密碼:</label>
+                <input
+                  type="password"
+                  placeholder="輸入新密碼"
+                  id="passwords1"
+                  name="passwords"
+                />
+              </div>
+              <div className="w-100">
+                <label htmlFor="passwordw2">再次輸入新密碼:</label>
+                <input
+                  type="password"
+                  placeholder="再次輸入新密碼"
+                  id="passwordw2"
+                  name="passwords"
+                />
+              </div>
+              {/* <Link href="/login/forget-password">忘記密碼?</Link> */}
+              <button className="mt-5">更新</button>
+            </form>
+          </div>
+          <div className="form-container sign-in">
+            {/* onSubmit={handleNextStep} */}
+            <form>
+              <h1 style={{ marginBottom: '20px' }}>忘記密碼</h1>
+              <div className="w-100">
+                <label htmlFor="email">電子信箱:</label>
+                <input
+                  type="email"
+                  placeholder="輸入註冊信箱"
+                  id="email"
+                  name="email"
+                />
+              </div>
+              <div className="w-100">
+                <label htmlFor="verifyCode">驗證碼:</label>
+                <div className="d-flex flex-row align-item-center mb-2">
+                  <div className="w-75">
+                    <input
+                      type="text"
+                      placeholder="驗證碼"
+                      id="verifyCode"
+                      className="m-0"
+                    />
+                  </div>
+                  <div>
+                    <div className="w-25">
+                      <button className="btn m-0 text-nowrap px-2">
+                        (60)重發驗證碼
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="w-100">
-              <label htmlFor="passwords1">密碼:</label>
-              <input type="password" placeholder="Password" id="passwords1" />
-            </div>
-            <div className="w-100">
-              <label htmlFor="passwords2">確認密碼:</label>
-              <input type="password" placeholder="Password" id="passwords2" />
-            </div>
-
-            <button>點我註冊</button>
-          </form> */}
-          <form>
-            <h1 style={{ marginBottom: '20px' }}>重設密碼</h1>
-            <div className="w-100">
-              <label htmlFor="passwords1">新密碼:</label>
-              <input
-                type="password"
-                placeholder="輸入新密碼"
-                id="passwords1"
-                name="passwords"
-              />
-            </div>
-            <div className="w-100">
-              <label htmlFor="passwordw2">再次輸入新密碼:</label>
-              <input
-                type="password"
-                placeholder="再次輸入新密碼"
-                id="passwordw2"
-                name="passwords"
-              />
-            </div>
-            {/* <Link href="/login/forget-password">忘記密碼?</Link> */}
-            <button className="mt-5">更新</button>
-          </form>
-        </div>
-        <div className="form-container sign-in">
-          <form onSubmit={handleNextStep}>
-            <h1 style={{ marginBottom: '20px' }}>忘記密碼</h1>
-            <div className="w-100">
-              <label htmlFor="email">電子信箱:</label>
-              <input type="email" placeholder="Email" id="email" />
-            </div>
-            <div className="w-100">
-              <label htmlFor="name">驗證碼:</label>
-              <div className="d-flex flex-row align-item-center mb-2">
-                <div className="w-75">
-                  <input
-                    type="password"
-                    placeholder="Verification code"
-                    id="passwords2"
-                    className="m-0"
-                  />
-                </div>
-                <div>
-                  <div className="w-25">
-                    <button className="btn m-0 text-nowrap px-2">
-                      (60)重發驗證碼
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* <a href="#">忘記密碼?</a> */}
-            {/* <button className="mt-5">下一步</button> */}{' '}
-            <button
-              className="mt-5"
-              onClick={handleRegisterClick}
-              id="register"
-            >
-              下一步
-            </button>
-          </form>
-        </div>
-        <div className="toggle-container">
-          <div className="toggle">
-            <div className="toggle-panel toggle-left">
-              <h1>開始重設密碼吧!</h1>
-              <p>更新完成後將跳轉回登入頁面，再請重新登入~~</p>
-              <button className="hidden" onClick={backToLoginPage} id="login">
-                返回登入
+              {/* <a href="#">忘記密碼?</a> */}
+              {/* <button className="mt-5">下一步</button> */}{' '}
+              <button className="mt-5" onClick={handleNextStep} id="register">
+                下一步
               </button>
-            </div>
-            <div className="toggle-panel toggle-right">
-              <h1>沒關係!</h1>
-              <p>我們都有忘記的時候，我們一起把它救回來吧!!</p>
-              {/* <button
+            </form>
+          </div>
+          <div className="toggle-container">
+            <div className="toggle">
+              <div className="toggle-panel toggle-left">
+                <h1>開始重設密碼吧!</h1>
+                <p>更新完成後將跳轉回登入頁面，再請重新登入~~</p>
+                <button className="hidden" onClick={handleLeftClick} id="login">
+                  返回登入
+                </button>
+              </div>
+              <div className="toggle-panel toggle-right">
+                <h1>沒關係!</h1>
+                <p>我們都有忘記的時候，我們一起把它救回來吧!!</p>
+                {/* <button
                 className="hidden"
                 onClick={handleRegisterClick}
                 id="register"
               >
                 重設密碼
               </button> */}
+              </div>
             </div>
           </div>
         </div>
       </div>
-
       <style jsx>
         {`
-          body {
-            background-color: #c9d6ff;
-            background: linear-gradient(to right, #e2e2e2, #c9d6ff);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            height: 100vh;
+          .modal-bgc {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.5); /* 半透明黑色 */
+            width: 100%;
+            height: 100%;
+          }
+          .modal-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1080;
+          }
+
+          .custom-container .close-btn {
+            position: absolute;
+            padding: 0px;
+            margin: 0px;
+            top: 8px;
+            right: 8px;
+            color: red;
+            background: none;
+            border: none;
+            z-index: 1081;
           }
 
           .custom-container {
