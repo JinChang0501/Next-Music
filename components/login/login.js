@@ -1,8 +1,12 @@
-import Link from 'next/link'
 import React, { useState } from 'react'
 import { BsGoogle } from 'react-icons/bs'
+import { BsFillXCircleFill } from 'react-icons/bs'
 
-export default function Login() {
+export default function Login({
+  isVisible,
+  onClose,
+  handleWakeForgetPassword,
+}) {
   const [isActive, setIsActive] = useState(false)
 
   const handleRegisterClick = () => {
@@ -12,106 +16,144 @@ export default function Login() {
   const handleLoginClick = () => {
     setIsActive(false)
   }
+  if (!isVisible) return null
 
   return (
     <>
-      <div
-        className={`custom-container ${isActive ? 'active' : ''} mx-auto mt-5`}
-        id="container"
-      >
-        <div className="form-container sign-up">
-          <form>
-            <h1>註冊帳戶</h1>
-            <div className="w-100">
-              <label htmlFor="name">姓名:</label>
-              <input type="text" placeholder="Name" id="name" />
-            </div>
-            <div className="w-100">
-              <label htmlFor="name">驗證碼:</label>
-              <div className="d-flex flex-row align-item-center mb-2">
-                <div className="w-75">
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    id="passwords2"
-                    className="m-0"
-                  />
-                </div>
-                <div>
-                  <div className="w-25">
-                    <button className="btn m-0 text-nowrap px-2">
-                      (60)重發驗證碼
-                    </button>
+      <div className="modal-bgc">
+        <div
+          className={`custom-container ${
+            isActive ? 'active' : ''
+          }  modal-overlay`}
+          id="container"
+        >
+          <button
+            className="close-btn"
+            onClick={() => {
+              onClose()
+              handleLoginClick()
+            }}
+          >
+            <BsFillXCircleFill className="chr-h4" />
+          </button>
+          <div className="form-container sign-up">
+            <form>
+              <h1>註冊帳戶</h1>
+              <div className="w-100">
+                <label htmlFor="name">姓名:</label>
+                <input
+                  type="text"
+                  placeholder="請輸入姓名"
+                  id="name"
+                  name="name"
+                />
+              </div>
+              <div className="w-100">
+                <label htmlFor="verifyCode">驗證碼:</label>
+                <div className="d-flex flex-row align-item-center mb-2">
+                  <div className="w-75">
+                    <input
+                      type="text"
+                      placeholder="驗證碼"
+                      id="verifyCode"
+                      className="m-0"
+                    />
+                  </div>
+                  <div>
+                    <div className="w-25">
+                      <button className="btn m-0 text-nowrap px-2">
+                        (60)重發驗證碼
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="w-100">
-              <label htmlFor="passwords1">密碼:</label>
-              <input type="password" placeholder="Password" id="passwords1" />
-            </div>
-            <div className="w-100">
-              <label htmlFor="passwords2">確認密碼:</label>
-              <input type="password" placeholder="Password" id="passwords2" />
-            </div>
+              <div className="w-100">
+                <label htmlFor="passwords1">密碼:</label>
+                <input
+                  type="password"
+                  placeholder="密碼"
+                  id="passwords1"
+                  name="passwords"
+                />
+              </div>
+              <div className="w-100">
+                <label htmlFor="passwords2">確認密碼:</label>
+                <input
+                  type="password"
+                  placeholder="再次輸入密碼"
+                  id="passwords2"
+                  name="passwords"
+                />
+              </div>
 
-            <button>點我註冊</button>
-          </form>
-        </div>
-        <div className="form-container sign-in">
-          <form>
-            <h1 style={{ marginBottom: '20px' }}>登入</h1>
-            <div className="w-100">
-              <label htmlFor="email">電子信箱:</label>
-              <input
-                type="email"
-                placeholder="請輸入信箱"
-                id="email"
-                name="email"
-              />
-            </div>
+              <button>點我註冊</button>
+            </form>
+          </div>
+          <div className="form-container sign-in">
+            <form>
+              <h1 style={{ marginBottom: '20px' }}>登入</h1>
+              <div className="w-100">
+                <label htmlFor="email">電子信箱:</label>
+                <input
+                  type="email"
+                  placeholder="請輸入信箱"
+                  id="email"
+                  name="email"
+                />
+              </div>
 
-            <div className="w-100">
-              <label htmlFor="passwords">密碼:</label>
-              <input
-                type="password"
-                placeholder="請輸入密碼"
-                id="passwords"
-                name="passwords"
-              />
-            </div>
-            <Link href="/login/forget-password">忘記密碼?</Link>
-            <button className="w-50 chr-h5">登入</button>
-            <button className="w-50">
-              <a href="#" className="icon">
-                <BsGoogle className="text-white" />
-                {/* <i
-                  className="fa-brands fa-google-plus-g"
-                  style={{ color: 'aliceblue' }}
-                ></i> */}
-              </a>
-            </button>
-          </form>
-        </div>
-        <div className="toggle-container">
-          <div className="toggle">
-            <div className="toggle-panel toggle-left">
-              <h1>歡迎回來!</h1>
-              <p>輸入您的個人詳細資料以使用所有網站功能</p>
-              <button className="hidden" onClick={handleLoginClick} id="login">
-                返回登入
-              </button>
-            </div>
-            <div className="toggle-panel toggle-right">
-              <h1>嗨，歡迎!</h1>
-              <p>使用您的個人詳細資料註冊以使用所有網站功能</p>
+              <div className="w-100">
+                <label htmlFor="passwords">密碼:</label>
+                <input
+                  type="password"
+                  placeholder="請輸入密碼"
+                  id="passwords"
+                  name="passwords"
+                />
+              </div>
               <button
-                className="hidden"
-                onClick={handleRegisterClick}
-                id="register"
+                type="button"
+                className="forget-password-btn"
+                onClick={() => {
+                  handleWakeForgetPassword()
+                  onClose()
+                }}
               >
-                點我註冊
+                忘記密碼?
               </button>
+              <button className="w-50 chr-h5">登入</button>
+              <button className="w-50">
+                <a href="#" className="icon">
+                  <BsGoogle className="text-white" />
+                </a>
+              </button>
+            </form>
+          </div>
+          <div className="toggle-container">
+            <div className="toggle">
+              <div className="toggle-panel toggle-left">
+                <h1>歡迎回來!</h1>
+                <p>輸入您的個人詳細資料以使用所有網站功能</p>
+                <button
+                  className="hidden"
+                  onClick={handleLoginClick}
+                  id="login"
+                >
+                  返回登入
+                </button>
+              </div>
+              <div className="toggle-panel toggle-right">
+                <h1>嗨，歡迎!</h1>
+                <p>使用您的個人詳細資料註冊以使用所有網站功能</p>
+                <button
+                  className="hidden"
+                  onClick={handleRegisterClick}
+                  id="register"
+                >
+                  點我註冊
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -119,14 +161,36 @@ export default function Login() {
 
       <style jsx>
         {`
-          body {
-            background-color: #c9d6ff;
-            background: linear-gradient(to right, #e2e2e2, #c9d6ff);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            height: 100vh;
+          .modal-bgc {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.5); /* 半透明黑色 */
+            width: 100%;
+            height: 100%;
+          }
+          .modal-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1080;
+          }
+
+          .custom-container .close-btn {
+            position: absolute;
+            padding: 0px;
+            margin: 0px;
+            top: 8px;
+
+            right: 8px;
+            color: red;
+            background: none;
+            border: none;
+            z-index: 1081;
+          }
+          .custom-container .forget-password-btn {
+            background: none;
+            color: blue;
+            font-size: 18px;
           }
 
           .custom-container {
