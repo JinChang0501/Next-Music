@@ -6,12 +6,11 @@ import style from '@/styles/ticket/desktop-concert/fourth.module.scss'
 export default function Fourth() {
   return (
     <>
-      {/* breadcrumb */}
       <div className={`${style.breadcrumb} row`}>
         <div className="col-12 p-0 bg-warning"></div>
       </div>
 
-      <ProgressBar title={'finish'} />
+      <ProgressBar />
     </>
   )
 }

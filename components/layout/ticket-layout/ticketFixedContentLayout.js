@@ -2,6 +2,8 @@ import React, { useRef, useEffect, useState } from 'react'
 import Head from 'next/head'
 import Nav from '../default-layout/nav'
 import Footer from '../default-layout/footer'
+// 多個地方需使用到 title 這個 props，所以 import TitleContextProvider
+import { TitleContextProvider } from '@/context/ticket/useTitle'
 
 export default function TicketFixedContentLayout({ children, title = '' }) {
   // #region 動態獲取 nav、footer 高度，返回給 content
@@ -44,7 +46,7 @@ export default function TicketFixedContentLayout({ children, title = '' }) {
   // #endregion 動態獲取 nav、footer 高度，返回給 content
 
   return (
-    <>
+    <TitleContextProvider title={title}>
       <Head>
         <title>{title ? 'Ticket | ' + title : 'Ticket'}</title>
       </Head>
@@ -61,6 +63,6 @@ export default function TicketFixedContentLayout({ children, title = '' }) {
           <Footer />
         </footer>
       </div>
-    </>
+    </TitleContextProvider>
   )
 }

@@ -5,36 +5,3 @@
 }
 
 // #endregion breadcrumb
-
-// #region image
-
-.image {
-  width: calc(100% - 640px);
-  height: 100%;
-  padding: 0;
-  position: relative;
-}
-
-// #endregion image
-
-// #region right
-
-.right {
-  width: 640px;
-  padding: 0 20px;
-  overflow-x: hidden;
-  overflow-y: hidden;
-}
-
-// #endregion right
-
-// #region ticketAreaTitle
-
-.ticketAreaTitle {
-  height: 48px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-// #endregion ticketAreaTitle

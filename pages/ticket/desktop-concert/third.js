@@ -16,7 +16,7 @@ export default function Third() {
       </div>
 
       {/* progressBar + timeCounter */}
-      <ProgressBar title={'payment'} />
+      <ProgressBar />
 
       {/* Form */}
       <div className={`${style.thirdContainer}`}>
