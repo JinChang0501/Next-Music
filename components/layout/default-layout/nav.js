@@ -122,25 +122,20 @@ export default function Nav() {
                   aria-labelledby="navbarDropdown02"
                 >
                   <div className={`${styles['mouse-cursor']}`}>
-                    <button
-                      className="dropdown-item"
-                      // data-bs-toggle="modal"
-                      // data-bs-target="#exampleModal"
-                      onClick={handleWakeLogin}
-                    >
+                    <button className="dropdown-item" onClick={handleWakeLogin}>
                       登入
                     </button>
                   </div>
 
                   <li>
-                    <Link
-                      className="dropdown-item"
-                      href="/login/login-modal"
-                      data-bs-toggle="modal"
-                      data-bs-target="#exampleModal"
-                    >
-                      註冊
-                    </Link>
+                    <div className={`${styles['mouse-cursor']}`}>
+                      <button
+                        className="dropdown-item"
+                        onClick={handleWakeLogin}
+                      >
+                        註冊
+                      </button>
+                    </div>
                     {/* <button
                       className="btn btn-primary"
                       onClick={handleRegisterClick}
