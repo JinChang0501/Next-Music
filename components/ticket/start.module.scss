@@ -1,0 +1,39 @@
+// #region flexCenter
+
+.startIconBlock,
+.startTextBlock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// #endregion flexCenter
+
+// #region startBlock
+
+.start {
+  width: 450px;
+  height: 280px;
+  padding: 20px 24px 10px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: white;
+  border-radius: 20px;
+  z-index: 1000;
+}
+
+.startIcon {
+  width: 55px;
+  height: 55px;
+}
+
+.startTextBlock {
+  padding: 10px 0;
+}
+
+// #endregion startBlock

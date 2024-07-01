@@ -1,9 +1,11 @@
 import React from 'react'
-import TicketFormLayout from '@/components/layout/ticket-layout/ticketFormLayout'
+import TicketWhiteLayout from '@/components/layout/ticket-layout/ticketWhiteLayout'
 import ProgressBar from '@/components/ticket/progressBar'
+import AccordionFirst from '@/components/ticket/desktop-concert/third/accordionFirst'
+import AccordionSecond from '@/components/ticket/desktop-concert/third/accordionSecond'
+import AccordionThird from '@/components/ticket/desktop-concert/third/accordionThird'
 import style from '@/styles/ticket/desktop-concert/third.module.scss'
 import DesktopWhiteNoIconBtnPurple from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnPurple'
-import Image from 'next/image'
 
 export default function Third() {
   return (
@@ -18,90 +20,28 @@ export default function Third() {
 
       {/* Form */}
       <div className={`${style.thirdContainer}`}>
-        <div className="accordion" id="accordionPanelsStayOpenExample">
-          <div className="accordion-item">
-            <h2 className="accordion-header">
-              <button
-                className="accordion-button chb-h5"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#panelsStayOpen-collapseOne"
-              >
-                請確認票券座位
-              </button>
-            </h2>
-            <div
-              id="panelsStayOpen-collapseOne"
-              className="accordion-collapse collapse show"
-            >
-              <div className="accordion-body">
-                {/* image */}
-                <div className={`${style.image}`}>
-                  <Image
-                    src="/images/ticket/desktop-third-size2.jpg"
-                    alt="test"
-                    fill
-                    priority
-                  />
-                </div>
+        <div
+          className="accordion"
+          id="accordionPanelsStayOpenExample"
+          style={{ marginTop: '20px' }}
+        >
+          {/* AccordionFirst */}
+          <AccordionFirst />
 
-                {/* info */}
-                <div></div>
+          {/* AccordionSecond */}
+          <AccordionSecond />
 
-                {/* ticketArea */}
-                <div></div>
-
-                {/* ticketSeat */}
-                <div></div>
-
-                {/* totalPrice */}
-                <div></div>
-              </div>
-            </div>
-          </div>
-          <div className="accordion-item">
-            <h2 className="accordion-header">
-              <button
-                className="accordion-button collapsed  chb-h5"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#panelsStayOpen-collapseTwo"
-              >
-                請確認購買資訊
-              </button>
-            </h2>
-            <div
-              id="panelsStayOpen-collapseTwo"
-              className="accordion-collapse collapse"
-            >
-              <div className="accordion-body">456</div>
-            </div>
-          </div>
-          <div className="accordion-item">
-            <h2 className="accordion-header">
-              <button
-                className="accordion-button collapsed  chb-h5"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#panelsStayOpen-collapseThree"
-              >
-                請確認支付方式
-              </button>
-            </h2>
-            <div
-              id="panelsStayOpen-collapseThree"
-              className="accordion-collapse collapse"
-            >
-              <div className="accordion-body">789</div>
-            </div>
-          </div>
+          {/* AccordionThird */}
+          <AccordionThird />
         </div>
-        <DesktopWhiteNoIconBtnPurple className="w-100" />
+        <div style={{ margin: '30px 0' }}>
+          <DesktopWhiteNoIconBtnPurple text="付款" className="w-100 chb-h6" />
+        </div>
       </div>
     </>
   )
 }
 
 Third.getLayout = function getLayout(page) {
-  return <TicketFormLayout title="payment">{page}</TicketFormLayout>
+  return <TicketWhiteLayout title="payment">{page}</TicketWhiteLayout>
 }

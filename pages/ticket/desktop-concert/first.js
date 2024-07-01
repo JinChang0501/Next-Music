@@ -1,11 +1,11 @@
 import React, { useRef, useEffect, useState } from 'react'
 import TicketFixedContentLayout from '@/components/layout/ticket-layout/ticketFixedContentLayout'
+import Mask from '@/components/ticket/mask'
+import Start from '@/components/ticket/start'
 import ProgressBar from '@/components/ticket/progressBar'
-import TicketArea from '@/components/ticket/desktop-concert/first/ticketArea'
-import RightTitle from '@/components/ticket/desktop-concert/first/rightTitle'
-import Info from '@/components/ticket/desktop-concert/first/info'
+import Left from '@/components/ticket/desktop-concert/first/Left'
+import Right from '@/components/ticket/desktop-concert/first/Right'
 import style from '@/styles/ticket/desktop-concert/first.module.scss'
-import Image from 'next/image'
 
 export default function First() {
   // #region 動態獲取 breadcrumb、progressBar 高度，返回給 content
@@ -58,39 +58,39 @@ export default function First() {
 
   // #endregion 動態獲取 breadcrumb、progressBar 高度，返回給 content
 
+  const [isStarted, setIsStarted] = useState(false)
+
+  const handleStart = () => {
+    setIsStarted(true)
+  }
+
   return (
     <>
+      {!isStarted && (
+        <>
+          {/* Mask */}
+          <Mask />
+
+          {/* Start */}
+          <Start onStart={handleStart} />
+        </>
+      )}
+
       {/* breadcrumb */}
       <div ref={breadcrumbRef} className={`${style.breadcrumb} row`}>
         <div className="col-12 p-0 bg-warning"></div>
       </div>
 
       {/* progressBar + timeCounter */}
-      <ProgressBar progressBarRef={progressBarRef} />
+      <ProgressBar progressBarRef={progressBarRef} isStarted={isStarted} />
 
       {/* content */}
       <div className="row d-flex flex-nowrap" style={{ height: contentHeight }}>
-        {/* Image */}
-        <div className={`${style.image}`}>
-          <Image src="/images/ticket/test.jpg" fill alt="test" priority />
-        </div>
+        {/* Left */}
+        <Left />
 
         {/* Right */}
-        <div className={`${style.right}`}>
-          {/* rightTitle */}
-          <RightTitle />
-
-          {/* ticketAreaTitle */}
-          <div className={`${style.ticketAreaTitle} chb-h6 text-black`}>
-            演唱會區域
-          </div>
-
-          {/* ticketArea */}
-          <TicketArea />
-
-          {/* info */}
-          <Info />
-        </div>
+        <Right />
       </div>
     </>
   )
@@ -98,7 +98,7 @@ export default function First() {
 
 First.getLayout = function getLayout(page) {
   return (
-    <TicketFixedContentLayout title="Select-Seat">
+    <TicketFixedContentLayout title="select-Seat">
       {page}
     </TicketFixedContentLayout>
   )

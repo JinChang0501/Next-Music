@@ -1,0 +1,13 @@
+// #region mask
+
+.mask {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($color: #000000, $alpha: 0.4);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 500;
+}
+
+// #endregion mask

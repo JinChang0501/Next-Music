@@ -4,7 +4,6 @@ import style from './rightTitle.module.scss'
 export default function RightTitle() {
   return (
     <>
-      {/* rightTitle */}
       <div className={`${style.rightTitle} border-bottom border-black30`}>
         <div className="chb-h5 text-black">一生到底 One Life, One Shot</div>
         <div className="chb-h6 text-black">滅火器 Fire EX.</div>
