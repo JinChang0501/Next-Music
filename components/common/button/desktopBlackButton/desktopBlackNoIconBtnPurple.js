@@ -11,7 +11,7 @@ export default function DesktopBlackNoIconBtnPurple({
       </button>
       <style jsx>{`
         .DesktopBlackNoIconBtnPurple {
-          padding: 18px 42px;
+          padding: 12px 20px;
           color: white;
           background-color: #685beb;
           display: flex;

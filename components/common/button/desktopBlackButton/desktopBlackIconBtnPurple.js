@@ -6,7 +6,7 @@ export default function DesktopBlackIconBtnPurple({
   className = 'chb-h5',
   iconWidth = 48,
   iconHeight = 48,
-  iconMarginRight = 12,
+  iconMarginRight = 6,
   icon: IconComponent = BsPlus,
 }) {
   return (
@@ -23,7 +23,7 @@ export default function DesktopBlackIconBtnPurple({
       </button>
       <style jsx>{`
         .DesktopBlackIconBtnPurple {
-          padding: 6px 28px 6px 20px;
+          padding: 0px 14px 0px 6px;
           color: white;
           background-color: #685beb;
           display: flex;
