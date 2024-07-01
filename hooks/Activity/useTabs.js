@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 const TabContext = createContext(null)
 
-export default function TabProvider({ children }) {
+export function ActTabProvider({ children }) {
   const [activeTab, setActiveTab] = useState('activity') //頁籤 預設先給activity
 
   const handleTabChange = (tabs) => {
