@@ -46,6 +46,10 @@
   margin-left: 160px;
   margin-right: 160px;
 }
+.ml-136 {
+  margin-left: 136px;
+}
+// padding
 .pt-80 {
   padding-top: 80px;
 }
@@ -59,9 +63,7 @@
 }
 
 
-.ml-136 {
-  margin-left: 136px;
-}
+
 
 .g-40 {
   display: flex;
@@ -96,6 +98,9 @@
 .w-795 {
   width: 795px;
 }
+.w-780 {
+  width: 780px;
+}
 .w-500 {
   width: 500px;
 }
@@ -112,7 +117,7 @@
   width: 160px;
 }
 .w-50 {
-  width: 50%;
+  width: 50px;
 }
 
 .h-725 {
@@ -140,12 +145,7 @@
   background-color: #fff;
 }
 
-.payment-btn {
-  display: "flex";
-padding: 0px 30px;
-justify-content: space-between;
-}
-.check-input {
+.input-border {
   border: 2px solid black;
 }
 // $form-check-input-checked-bg-color: #685beb;

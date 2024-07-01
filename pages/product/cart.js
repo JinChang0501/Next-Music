@@ -4,7 +4,7 @@ import styles from '@/styles/product/product.module.scss'
 import CartLayout from '@/components/layout/cart-layout'
 import ProgressBar from '@/components/product/progressBar'
 import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
-import Select from '@/components/product/select'
+import InputNumber from '@/components/product/input-number'
 
 export default function Cart() {
   const breadcrumbsURL = [
@@ -38,7 +38,7 @@ export default function Cart() {
                 <td>
                   <div className={`chb-p ${styles['center-item']}`}>
                     <div className="form-check">
-                      <input className={`form-check-input ${styles['check-input']}`} type="checkbox" value="" id="flexCheck" />
+                      <input className={`form-check-input ${styles['input-border']}`} type="checkbox" value="" id="flexCheck" />
                     </div>
                   </div>
                 </td>
@@ -55,7 +55,7 @@ export default function Cart() {
                   <p className={`chb-p ${styles['text-center']}`}>$700</p>
                 </td>
                 <td>
-                  <Select />
+                  <InputNumber />
                 </td>
                 <td><p className={`chb-p ${styles['text-center']}`}>小計</p></td>
                 <td>
@@ -68,7 +68,7 @@ export default function Cart() {
                 <td>
                   <div className={`chb-p ${styles['text-center']}`}>
                     <div className="form-check">
-                      <input className={`form-check-input ${styles['check-input']}`} type="checkbox" value="" id="flexCheck" />
+                      <input className={`form-check-input ${styles['input-border']}`} type="checkbox" value="" id="flexCheck" />
                     </div>
                   </div>
                 </td>
@@ -85,7 +85,7 @@ export default function Cart() {
                   <p className={`chb-p ${styles['text-center']}`}>$700</p>
                 </td>
                 <td>
-                  <Select />
+                  <InputNumber />
                 </td>
                 <td>
                   <p className={`chb-p ${styles['text-center']}`}>小計</p>
