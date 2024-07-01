@@ -41,7 +41,11 @@ export default function OrderInfo() {
                 onClick={toggleSelectBlock}
               >
                 <div className="chb-h5">查看座位</div>
-                <BsCaretDownFill className={`${style.orderSelectIcon}`} />
+                <BsCaretDownFill
+                  className={`${style.orderSelectIcon} ${
+                    selectBlockVisible ? style.rotate180 : style.rotate0
+                  }`}
+                />
               </button>
               <div
                 ref={selectBlockRef}
