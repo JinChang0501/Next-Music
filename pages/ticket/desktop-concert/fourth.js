@@ -19,7 +19,33 @@ export default function Fourth() {
       <Order />
 
       {/* ticket */}
-      <ConcertTicket />
+      <div className={`${style.orderTicketAccordion}`}>
+        <div className="accordion" id="accordionPanelsStayOpenExample">
+          <div className="accordion-item">
+            <h2 className="accordion-header">
+              <button
+                className="accordion-button chb-h5"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseOne"
+              >
+                展開票券
+              </button>
+            </h2>
+            <div
+              id="panelsStayOpen-collapseOne"
+              className="accordion-collapse collapse show"
+            >
+              <div className="accordion-body">
+                <div className={`${style.orderTicketBody}`}>
+                  {/* ConcertTicket */}
+                  <ConcertTicket />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* button */}
       <Button />
