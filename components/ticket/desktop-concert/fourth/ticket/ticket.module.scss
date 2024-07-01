@@ -1,3 +1,14 @@
+// #region flexCenter
+
+.orderTicketLeft,
+.orderTicketRight {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// #endregion flexCenter
+
 // #region ticket
 
 .orderTicketAccordion {
@@ -37,9 +48,6 @@
   height: 100%;
   padding-left: 26px;
   padding-right: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
 
   &::before {
@@ -64,9 +72,6 @@
   height: 100%;
   padding-left: 12px;
   padding-right: 26px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
 
   &::before {

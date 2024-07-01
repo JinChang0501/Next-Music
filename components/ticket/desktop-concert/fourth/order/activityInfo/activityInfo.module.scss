@@ -1,17 +1,22 @@
-// #region activity
+// #region flexCenter
 
-.activityInfo {
-  width: 850px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
+.activityInfo,
 .activityTitle {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+// #endregion flexCenter
+
+// #region activity
+
+.activityInfo {
+  width: 850px;
+  flex-direction: column;
+}
+
+.activityTitle {
   padding: 30px 20px 20px;
   margin-bottom: 10px;
 }

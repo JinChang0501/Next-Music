@@ -1,0 +1,35 @@
+// #region phone 390px
+
+@media (max-width: 390px) {
+  // #region title
+
+  .title {
+    height: 85px;
+    padding: 10px 0px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid #d1d1d1;
+  }
+
+  .titleIcon {
+    width: 25px;
+    height: 25px;
+    margin-right: 30px;
+  }
+
+  .titleText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .titleText > div:not(:last-child) {
+    margin-bottom: 2px;
+  }
+
+  // #endregion title
+}
+
+// #endregion phone 390px

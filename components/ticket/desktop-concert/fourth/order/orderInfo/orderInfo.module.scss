@@ -1,17 +1,21 @@
-// #region order
+// #region flexCenter
 
-.orderInfo {
-  width: 380px;
+.orderInfo,.orderTitle{
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
+// #endregion flexCenter
+
+// #region order
+
+.orderInfo {
+  width: 380px;
+  flex-direction: column;
+}
+
 .orderTitle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 30px 20px 20px;
   margin-bottom: 10px;
 }

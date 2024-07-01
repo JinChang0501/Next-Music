@@ -1,8 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react'
-import TicketFixedContentLayout from '@/components/layout/ticket-layout/ticketFixedContentLayout'
+import FixedContentLayout from '@/components/layout/ticket-layout/desktopLayout/fixedContentLayout'
 import Mask from '@/components/ticket/mask'
 import Start from '@/components/ticket/start'
 import ProgressBar from '@/components/ticket/progressBar'
+import Title from '@/components/ticket/phone-concert/title'
+import Phone3D from '@/components/ticket/phone-concert/phone3D'
 import Left from '@/components/ticket/desktop-concert/first/Left'
 import Right from '@/components/ticket/desktop-concert/first/Right'
 import style from '@/styles/ticket/desktop-concert/first.module.scss'
@@ -15,6 +17,8 @@ export default function First() {
   const breadcrumbRef = useRef(null)
   const progressBarRef = useRef(null)
   const [contentHeight, setContentHeight] = useState('100%')
+  const [isStarted, setIsStarted] = useState(false)
+  const [isPhoneView, setIsPhoneView] = useState(false)
 
   // useEffect 用於在組件渲染後執行副作用，比如事件監聽器的添加和清理
   useEffect(() => {
@@ -31,6 +35,7 @@ export default function First() {
         }px)`
         setContentHeight(availableHeight)
       }
+      setIsPhoneView(window.innerWidth <= 390)
     }
 
     // 初次計算內容高度，確保在組件首次渲染時設置正確的高度
@@ -58,11 +63,37 @@ export default function First() {
 
   // #endregion 動態獲取 breadcrumb、progressBar 高度，返回給 content
 
-  const [isStarted, setIsStarted] = useState(false)
-
   const handleStart = () => {
     setIsStarted(true)
   }
+
+  // #region PhoneView
+
+  if (isPhoneView) {
+    return (
+      <>
+        {!isStarted && (
+          <>
+            {/* Mask */}
+            <Mask />
+
+            {/* Start */}
+            <Start onStart={handleStart} />
+          </>
+        )}
+
+        <Title />
+
+        <ProgressBar progressBarRef={progressBarRef} isStarted={isStarted} />
+
+        <Phone3D />
+      </>
+    )
+  }
+
+  // #endregion PhoneView
+
+  // #region DesktopView
 
   return (
     <>
@@ -94,12 +125,10 @@ export default function First() {
       </div>
     </>
   )
+
+  // #endregion DesktopView
 }
 
 First.getLayout = function getLayout(page) {
-  return (
-    <TicketFixedContentLayout title="select-Seat">
-      {page}
-    </TicketFixedContentLayout>
-  )
+  return <FixedContentLayout title="select-Seat">{page}</FixedContentLayout>
 }

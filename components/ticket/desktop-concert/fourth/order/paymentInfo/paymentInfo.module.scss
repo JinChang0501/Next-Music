@@ -1,17 +1,23 @@
-// #region payment
+// #region flexCenter
 
-.paymentInfo {
-  width: 280px;
+.paymentInfo,
+.paymentTitle,
+.paymentBody {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
+// #endregion flexCenter
+
+// #region payment
+
+.paymentInfo {
+  width: 280px;
+  flex-direction: column;
+}
+
 .paymentTitle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 30px 20px 20px;
   margin-bottom: 10px;
 }
@@ -19,10 +25,7 @@
 .paymentBody {
   width: 100%;
   height: 180px;
-  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   padding: 10px 20px 0;
 }
 

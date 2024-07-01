@@ -1,5 +1,5 @@
 import React from 'react'
-import TicketWhiteLayout from '@/components/layout/ticket-layout/ticketWhiteLayout'
+import WhiteLayout from '@/components/layout/ticket-layout/desktopLayout/whiteLayout'
 import ProgressBar from '@/components/ticket/progressBar'
 import Order from '@/components/ticket/desktop-concert/fourth/order'
 import ConcertTicket from '@/components/ticket/desktop-concert/fourth/ticket'
@@ -54,5 +54,5 @@ export default function Fourth() {
 }
 
 Fourth.getLayout = function getLayout(page) {
-  return <TicketWhiteLayout title="finish">{page}</TicketWhiteLayout>
+  return <WhiteLayout title="finish">{page}</WhiteLayout>
 }

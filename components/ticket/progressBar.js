@@ -1,11 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import style from './progressBar.module.scss'
 import { FaChevronRight } from 'react-icons/fa'
-// 只需訪問一次或少數 title props，所以使用 import useTitle
 import { useTitle } from '@/context/ticket/useTitle'
+
 export default function ProgressBar({ progressBarRef, isStarted = true }) {
   const [time, setTime] = useState(10 * 60) // 初始設置為 10 分鐘 (600 秒)
   const title = useTitle() // 獲取 Context 中的 title
+  const [isPhoneView, setIsPhoneView] = useState(false)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsPhoneView(window.innerWidth <= 390)
+    }
+
+    // 初次加載時檢查螢幕寬度
+    handleResize()
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   useEffect(() => {
     if (isStarted && time > 0) {
@@ -42,6 +55,68 @@ export default function ProgressBar({ progressBarRef, isStarted = true }) {
   const textBlockClass = (step) => {
     return step.stepTitle === title ? 'text-black' : 'text-black30'
   }
+
+  // #region PhoneViewSwitch
+
+  const renderMobileView = () => {
+    let stepNumber, stepText
+
+    switch (title) {
+      case 'select-Seat':
+        stepNumber = 1
+        stepText = '選擇座位'
+        break
+      case 'payment':
+        stepNumber = 2
+        stepText = '支付方式'
+        break
+      case 'finish':
+        stepNumber = 3
+        stepText = '完成購票'
+        break
+      default:
+        stepNumber = 1
+        stepText = '選擇座位'
+    }
+
+    return (
+      <div className={`${style.progress}`}>
+        <div className={`${style.progressLeft}`}>
+          <div className={`${style.progressLeftSquare} chb-h6`}>
+            {stepNumber}
+          </div>
+          <div className={`${style.progressLeftText} chb-h5`}>{stepText}</div>
+        </div>
+        <div className={`${style.progressRight}`}>
+          <div className={`${style.progressRightClockBlock} chb-h6`}>
+            {minutes[0]}
+          </div>
+          <div className={`${style.progressRightClockBlock} chb-h6`}>
+            {minutes[1]}
+          </div>
+          <div className={`${style.progressRightClockColon} chb-h5`}>:</div>
+          <div className={`${style.progressRightClockBlock} chb-h6`}>
+            {seconds[0]}
+          </div>
+          <div className={`${style.progressRightClockBlock} chb-h6`}>
+            {seconds[1]}
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // #endregion PhoneViewSwitch
+
+  // #region PhoneView
+
+  if (isPhoneView) {
+    return renderMobileView()
+  }
+
+  // #endregion PhoneView
+
+  // #region DesktopView
 
   return (
     <div
@@ -100,4 +175,6 @@ export default function ProgressBar({ progressBarRef, isStarted = true }) {
       </div>
     </div>
   )
+
+  // #endregion DesktopView
 }

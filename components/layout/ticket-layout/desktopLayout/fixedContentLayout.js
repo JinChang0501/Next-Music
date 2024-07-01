@@ -1,20 +1,23 @@
 import React, { useRef, useEffect, useState } from 'react'
 import Head from 'next/head'
-import Nav from '../default-layout/nav'
-import Footer from '../default-layout/footer'
+import Nav from '../../default-layout/nav'
+import Footer from '../../default-layout/footer'
 // 多個地方需使用到 title 這個 props，所以 import TitleContextProvider
 import { TitleContextProvider } from '@/context/ticket/useTitle'
 
-export default function TicketFixedContentLayout({ children, title = '' }) {
-  // #region 動態獲取 nav、footer 高度，返回給 content
+export default function FixedContentLayout({ children, title = '' }) {
+  // #region 動態獲取 nav、footer 高度返回給 content，以及 windowWidth
 
   const navRef = useRef(null)
   const footerRef = useRef(null)
   const [contentHeight, setContentHeight] = useState('100vh')
+  const [isPhoneView, setIsPhoneView] = useState(false)
 
   useEffect(() => {
     const handleResize = () => {
-      if (navRef.current && footerRef.current) {
+      setIsPhoneView(window.innerWidth <= 390)
+
+      if (!isPhoneView && navRef.current && footerRef.current) {
         const navHeight = navRef.current.offsetHeight
         const footerHeight = footerRef.current.offsetHeight
         const availableHeight = `calc(100vh - ${navHeight + footerHeight}px)`
@@ -41,9 +44,30 @@ export default function TicketFixedContentLayout({ children, title = '' }) {
       if (navNode) observer.unobserve(navNode)
       if (footerNode) observer.unobserve(footerNode)
     }
-  }, [])
+  }, [isPhoneView])
 
-  // #endregion 動態獲取 nav、footer 高度，返回給 content
+  // #endregion 動態獲取 nav、footer 高度返回給 content，以及 windowWidth
+
+  // #region PhoneView
+
+  if (isPhoneView) {
+    return (
+      <TitleContextProvider title={title}>
+        <Head>
+          <title>{title ? 'Ticket | ' + title : 'Ticket'}</title>
+        </Head>
+        <div className="d-flex flex-column vh-100">
+          <main>
+            <div className="music-container h-100">{children}</div>
+          </main>
+        </div>
+      </TitleContextProvider>
+    )
+  }
+
+  // #endregion PhoneView
+
+  // #region DesktopView
 
   return (
     <TitleContextProvider title={title}>
@@ -65,4 +89,6 @@ export default function TicketFixedContentLayout({ children, title = '' }) {
       </div>
     </TitleContextProvider>
   )
+
+  // #endregion DesktopView
 }
