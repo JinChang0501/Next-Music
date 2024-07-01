@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import React from 'react'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import styles from '@/styles/product/product.module.scss'
 import CartLayout from '@/components/layout/cart-layout'
@@ -17,8 +17,8 @@ export default function Cart() {
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
       <ProgressBar />
       {/* <Link href="/product/cart">連至購物車</Link> */}
-      <div className={`row ${styles['mx-400']} ${styles['mb-40']}`}>
-        <div className={`first ${styles['my-20']}`}>
+      <div className={`container ${styles['mb-40']} ${styles['center-item']}`}>
+        <div className={`first ${styles['my-20']} ${styles['w-1060']}`}>
           <p className='chb-h5'>請確認購買商品 </p>
           {/* 表格 */}
           <table className={`table table-bordered border-dark`}>
@@ -126,7 +126,7 @@ export default function Cart() {
               </tr>
             </tbody>
           </table>
-          <div className={`${styles['mt-40']} ${styles['payment-first']}`}>
+          <div className={`${styles['mt-40']} ${styles['cart-total']}`}>
             <span className='chb-h5'>共1項商品，數量2個</span>
             <span className='chb-h5'>總價:NT$1400元 </span>
           </div>

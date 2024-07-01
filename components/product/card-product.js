@@ -1,15 +1,14 @@
-import React from 'react';
+import React from 'react'
 import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
-import Link from 'next/link';
+import Link from 'next/link'
 // import required modules
 import styles from '@/styles/product/product.module.scss'
-
 
 export default function CardProduct() {
   return (
     <>
       <div className="col">
-        <div className={`card ${styles['mt-28']}`}>
+        <div className={`card ${styles['card']} ${styles['mt-28']}`}>
           <img
             src="/images/product/list/t-1.jpg"
             className="card-img-top"
@@ -19,11 +18,11 @@ export default function CardProduct() {
             <p className="card-text chb-h6 text-purple3">活動名名稱</p>
             <p className="card-text chb-h6 text-white">商品名稱</p>
             <p className="card-text chb-h6 text-white">價格</p>
+            
             <DesktopBlackNoIconBtnPurple text="詳細資訊" className="chb-p" />
           </div>
-            
-          </div>
         </div>
+      </div>
     </>
-  );
+  )
 }
