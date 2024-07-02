@@ -8,7 +8,9 @@ export default function Form() {
       {formData.map((v) => (
         <div key={v.id} className={`${style.formBlock}`}>
           <div className="chb-h6">{v.title}</div>
-          <div className={`${style.formInput} text-black40`}>{v.info}</div>
+          <div className={`${style.formInput} text-black40 chb-h7`}>
+            {v.info}
+          </div>
         </div>
       ))}
     </div>
