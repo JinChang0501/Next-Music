@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react'
-import TicketFixedContentLayout from '@/components/layout/ticket-layout/ticketFixedContentLayout'
+import FixedContentLayout from '@/components/layout/ticket-layout/desktopLayout/fixedContentLayout'
 import ProgressBar from '@/components/ticket/progressBar'
 import RightTitle from '@/components/ticket/desktop-concert/second/rightTitle'
 import TicketSeatBlock from '@/components/ticket/desktop-concert/second/ticketSeatBlock'
@@ -103,9 +103,5 @@ export default function Second() {
 }
 
 Second.getLayout = function getLayout(page) {
-  return (
-    <TicketFixedContentLayout title="select-Seat">
-      {page}
-    </TicketFixedContentLayout>
-  )
+  return <FixedContentLayout title="select-Seat">{page}</FixedContentLayout>
 }

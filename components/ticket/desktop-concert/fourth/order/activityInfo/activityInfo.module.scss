@@ -1,0 +1,52 @@
+// #region flexCenter
+
+.activityInfo,
+.activityTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// #endregion flexCenter
+
+// #region activity
+
+.activityInfo {
+  width: 850px;
+  flex-direction: column;
+}
+
+.activityTitle {
+  padding: 30px 20px 20px;
+  margin-bottom: 10px;
+}
+
+.activityBody {
+  width: 100%;
+  height: 180px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px 0;
+}
+
+.activityImage {
+  width: 411px;
+  height: 170px;
+  margin-right: 20px;
+  position: relative;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+}
+
+.activityText {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+// #endregion activity

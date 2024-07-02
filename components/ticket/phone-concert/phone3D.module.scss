@@ -1,0 +1,21 @@
+// #region phone 390px
+
+@media (max-width: 390px) {
+  // #region image
+
+  .seatImage {
+    width: 100%;
+    height: 699px;
+    position: relative;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  // #endregion image
+}
+
+// #endregion phone 390px

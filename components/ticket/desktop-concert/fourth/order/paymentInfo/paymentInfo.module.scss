@@ -1,0 +1,36 @@
+// #region flexCenter
+
+.paymentInfo,
+.paymentTitle,
+.paymentBody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// #endregion flexCenter
+
+// #region payment
+
+.paymentInfo {
+  width: 280px;
+  flex-direction: column;
+}
+
+.paymentTitle {
+  padding: 30px 20px 20px;
+  margin-bottom: 10px;
+}
+
+.paymentBody {
+  width: 100%;
+  height: 180px;
+  flex-direction: column;
+  padding: 10px 20px 0;
+}
+
+.paymentBody > div:not(:last-child) {
+  margin-bottom: 50px;
+}
+
+// #endregion payment

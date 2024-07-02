@@ -1,5 +1,5 @@
 import React from 'react'
-import TicketWhiteLayout from '@/components/layout/ticket-layout/ticketWhiteLayout'
+import WhiteLayout from '@/components/layout/ticket-layout/desktopLayout/whiteLayout'
 import ProgressBar from '@/components/ticket/progressBar'
 import AccordionFirst from '@/components/ticket/desktop-concert/third/accordionFirst'
 import AccordionSecond from '@/components/ticket/desktop-concert/third/accordionSecond'
@@ -43,5 +43,5 @@ export default function Third() {
 }
 
 Third.getLayout = function getLayout(page) {
-  return <TicketWhiteLayout title="payment">{page}</TicketWhiteLayout>
+  return <WhiteLayout title="payment">{page}</WhiteLayout>
 }

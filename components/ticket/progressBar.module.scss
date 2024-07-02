@@ -98,3 +98,82 @@
 }
 
 // #endregion timeCounter
+
+// #region phone 390px
+
+@media screen and (max-width: 390px) {
+  // 隱藏大於390px的樣式
+  .progressBarHeight,
+  .progressBar,
+  .numBlock,
+  .progressBarBlockText,
+  .progressBarIconBlock,
+  .timeCounterClock,
+  .timeCounterClockBlock,
+  .timeCounterText {
+    display: none;
+  }
+
+  // 新增小於等於390px的樣式
+  .progress {
+    height: 60px;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .progressLeft {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .progressLeftSquare {
+    width: 28px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: #685beb;
+    margin-right: 10px;
+  }
+
+  .progressLeftText {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+  }
+
+  .progressRight {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .progressRight > div:not(:last-child) {
+    margin-right: 5px;
+  }
+
+  .progressRightClockBlock {
+    width: 35px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid #a1a1a1;
+    color: black;
+  }
+
+  .progressRightClockColon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #a1a1a1;
+  }
+}
+
+// #endregion phone 390px
