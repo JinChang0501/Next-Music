@@ -4,6 +4,7 @@ import '@/styles/globals.scss'
 import DefaultLayout from '@/components/layout/default-layout'
 //Jin的自訂Provider -> 我的票夾
 import { TabProvider } from '@/hooks/member/useTab'
+import { ActTabProvider } from '@/hooks/activity/useTabs'
 
 export default function MyApp({ Component, pageProps }) {
   // 導入bootstrap的JS函式庫
@@ -17,6 +18,6 @@ export default function MyApp({ Component, pageProps }) {
   const getLayout =
     Component.getLayout || ((page) => <DefaultLayout>{page}</DefaultLayout>)
 
-  return <TabProvider>{getLayout(<Component {...pageProps} />)}</TabProvider>
+  return <ActTabProvider><TabProvider>{getLayout(<Component {...pageProps} />)}</TabProvider></ActTabProvider>
 }
 //Jin的自訂Provider -> 我的票夾
