@@ -149,6 +149,19 @@
   border: 2px solid black;
 }
 // $form-check-input-checked-bg-color: #685beb;
+.paymentCircle {
+  width: 25px;
+  height: 25px;
+  margin-right: 20px;
+  border: 1px solid black;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.paymentBlockLeft {
+  display: flex;
+  align-items: center;
+}
+
 .card {
   border: 1px solid #685beb;
 }
