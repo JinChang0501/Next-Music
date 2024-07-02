@@ -1,0 +1,7 @@
+
+<Tab
+      tabName="測試" >>>這是頁籤上的文字
+      tabTarget="test" >>>這個是拿來綁定用 這裡的test要跟content裡面的id一致
+      ariaSelected={true} >>>預設focus (只有第一個頁籤給true)
+      classNames="col-4" >>>調整頁籤寬度用 使用col-..
+/>
