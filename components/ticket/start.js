@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import style from './start.module.scss'
 import { BsFillLockFill } from 'react-icons/bs'
-import DesktopWhiteNoIconBtnPurple from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnPurple'
+import DesktopWhiteNoIconBtnPurple from '../common/button/desktopWhiteButton/desktopWhiteNoIconBtnPurple'
+import PhoneWhiteNoIconBtnPurple from '../common/button/phoneWhiteButton/phoneWhiteNoIconBtnPurple'
 
 export default function Start({ onStart }) {
   const [isPhoneView, setIsPhoneView] = useState(false)
@@ -29,7 +30,7 @@ export default function Start({ onStart }) {
           請於10分鐘內完成購買
         </div>
         <div className={`${style.startTextBlock}`}>
-          <DesktopWhiteNoIconBtnPurple
+          <PhoneWhiteNoIconBtnPurple
             text="開始"
             className="chb-h5 w-100"
             onClick={onStart}
