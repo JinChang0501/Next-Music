@@ -10,6 +10,7 @@ import 'swiper/css/thumbs'
 
 // import required modules
 import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules'
+import styles from './progressBar.module.scss';
 
 // 範例出處
 // https://swiperjs.com/demos#thumbs-gallery
@@ -32,17 +33,17 @@ export default function Carousel() {
         navigation={true}
         thumbs={{ swiper: thumbsSwiper }}
         modules={[Autoplay, FreeMode, Navigation, Thumbs]}
-        className="mySwiper2"
+        className={`mySwiper2`}
       >
         <SwiperSlide>
           <img src="/images/product/slide/t-1.jpg" />
         </SwiperSlide>
-        <SwiperSlide>
+        {/* <SwiperSlide>
           <img src="/images/product/slide/t-2.jpg" />
         </SwiperSlide>
         <SwiperSlide>
           <img src="/images/product/slide/t-3.jpg" />
-        </SwiperSlide>
+        </SwiperSlide> */}
         <SwiperSlide>
           <img src="/images/product/slide/t-4.jpg" />
         </SwiperSlide>
@@ -57,23 +58,23 @@ export default function Carousel() {
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper"
+        className={`mySwiper`}
       >
         <SwiperSlide>
-          <img src="/images/product/slide/t-1.jpg" />
+          <img src="/images/product/slide/t-1s.jpg" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/images/product/slide/t-2.jpg" />
+          <img src="/images/product/slide/t-4s.jpg" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/images/product/slide/t-3.jpg" />
+          <img src="/images/product/slide/t-5s.jpg" />
         </SwiperSlide>
-        <SwiperSlide>
+        {/* <SwiperSlide>
           <img src="/images/product/slide/t-4.jpg" />
         </SwiperSlide>
         <SwiperSlide>
           <img src="/images/product/slide/t-5.jpg" />
-        </SwiperSlide>
+        </SwiperSlide> */}
       </Swiper>
     </>
   )

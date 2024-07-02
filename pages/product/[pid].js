@@ -5,6 +5,7 @@ import Carousel from '@/components/product/carousel'
 import CardProduct from '@/components/product/card-product'
 import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
 import DesktopBlackNoIconBtnBlack from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnBlack'
+
 export default function Detail() {
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
@@ -15,10 +16,10 @@ export default function Detail() {
     <>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
       {/* 第一個區塊 */}
-      <div className={`row ${styles['mx-160']}  ${styles['mt-80']} `}>
+      <div className={`row ${styles['mx-160']}  ${styles['mt-80']}`}>
         {/* 左 */}
         <div className={`col-sm-6 `}>
-          <div className="position-sticky">
+          <div className={`position-sticky`}>
             <Carousel />
           </div>
         </div>
@@ -32,7 +33,7 @@ export default function Detail() {
           <p className={`text-purple2 chb-h5 ${styles['mt-80']}`}>價格</p>
           {/*尺寸 */}
           <p className={`text-purple2 chb-h5 ${styles['mt-40']} ${styles['mb-60']}`}>尺寸: F</p>
-          <div className={`row row-cols-md-2`}>
+          <div className={`row row-cols-md-2 `}>
             <DesktopBlackNoIconBtnBlack text="加入購物車" />
             <DesktopBlackNoIconBtnPurple text="立即購買" />
           </div>
