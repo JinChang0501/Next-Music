@@ -5,7 +5,7 @@ import ProgressBar from '@/components/ticket/progressBar'
 import SelectTicket from '@/components/ticket/phone-concert/selectTicket'
 import style from '@/styles/ticket/phone-concert/second.module.scss'
 
-export default function First() {
+export default function Second() {
   return (
     <>
       {/* title */}
@@ -22,6 +22,6 @@ export default function First() {
   )
 }
 
-First.getLayout = function getLayout(page) {
+Second.getLayout = function getLayout(page) {
   return <FixedContentLayout title="select-Seat">{page}</FixedContentLayout>
 }
