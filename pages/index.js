@@ -11,7 +11,7 @@ export default function Index() {
       {/* banner一張（影片輪播） start */}
       <div className={`bg-purple3 ${styles['bannerSty']}`}>
         <div className="row">
-          <div className={`col-12 d-none d-md-block mx-auto text-white text-center ${styles['mt-120']}`}>
+          <div className={`col-12 d-none d-md-flex flex-column align-items-center mx-auto text-white text-center ${styles['mt-120']}`}>
             <div className="eng-h1 my-2">Lose Yourself in Music</div>
             <div className="eng-h1 my-2">Find Yourself in the Festivity</div>
             <div className="eng-p my-2">
@@ -71,7 +71,7 @@ export default function Index() {
               </div>
               <div className="row text-nowrap">
                 <div className="col-5">
-                 <DesktopWhiteNoIconBtnBlack text="活動資訊" />
+                  <DesktopWhiteNoIconBtnBlack text="活動資訊" />
                 </div>
                 <div className="col-7">
                   <DesktopBlackNoIconBtnPurple text="立即購票" />
