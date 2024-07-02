@@ -5,10 +5,11 @@ export default function DesktopWhitePureIconBtnBlack({
   iconWidth = 40,
   iconHeight = 40,
   icon: IconComponent = BsPlus,
+  onClick = () => {},
 }) {
   return (
     <>
-      <button className="DesktopWhitePureIconBtnBlack">
+      <button className="DesktopWhitePureIconBtnBlack" onClick={onClick}>
         <IconComponent
           style={{
             width: `${iconWidth}px`,

@@ -3,10 +3,14 @@ import React from 'react'
 export default function DesktopWhiteNoIconBtnBlack({
   text = 'button',
   className = 'chb-h6',
+  onClick = () => {},
 }) {
   return (
     <>
-      <button className={`DesktopWhiteNoIconBtnBlack ${className}`}>
+      <button
+        className={`DesktopWhiteNoIconBtnBlack ${className}`}
+        onClick={onClick}
+      >
         {text}
       </button>
       <style jsx>{`
