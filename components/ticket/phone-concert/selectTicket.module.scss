@@ -1,0 +1,172 @@
+// #region selectTicket
+
+.selectTicket {
+  width: 100%;
+  padding: 20px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 0;
+  background-color: white;
+}
+
+.selectTicketBody {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+// #region selectTicketTitle
+
+.titleBox {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transition: all 0.8s ease;
+}
+
+.titleBox.titleBoxMarginPadding {
+  padding: 20px 25px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #a1a1a1;
+}
+
+.titleText {
+  display: flex;
+  flex-direction: column;
+}
+
+.titleText > div:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.titleTotalBox {
+  display: flex;
+}
+
+.titleTotal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 20px;
+}
+
+.titleTotal > div:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.titleBoxIcon {
+  width: 100%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  transition: all 0.8s ease;
+}
+
+.titleBoxIcon.titleBoxIconRotate {
+  transform: rotate(180deg);
+}
+
+// #endregion selectTicketTitle
+
+// #region selectTicketBody
+
+.selectTicketBodyTitle {
+  width: 100%;
+  padding: 0 15px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  transition: all 0.8s ease;
+  overflow: hidden;
+}
+
+.selectTicketBodyIconBox {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.selectTicketBodyIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.selectTicketBodyText {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.selectTicketBodyTextBox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.selectTicketBodyText > .selectTicketBodyTextBox:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.selectTicketBodyTextIcon {
+  width: 15px;
+  height: 15px;
+  margin-right: 20px;
+  color: black;
+}
+
+// #endregion selectTicketBody
+
+// #region ticketSeatBody
+
+.ticketSeatBody {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  transition: all 0.8s ease;
+  overflow-y: auto;
+}
+
+.ticketSeatBlock {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 15px;
+  position: relative;
+  border: 2px solid #958cea;
+  margin-bottom: 15px;
+}
+
+.ticketSeatBlockTop {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+  border-bottom: 1px solid #d1d1d1;
+  margin-bottom: 10px;
+}
+
+.ticketSeatBlockTopSquare {
+  width: 17px;
+  height: 17px;
+  margin-right: 20px;
+}
+
+.ticketSeatBlockBottom {
+  padding: 5px 0;
+}
+
+.ticketSeatBlockClose {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+// #endregion ticketSeatBody
+
+// #endregion selectTicket

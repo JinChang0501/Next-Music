@@ -18,6 +18,10 @@ export default function MyApp({ Component, pageProps }) {
   const getLayout =
     Component.getLayout || ((page) => <DefaultLayout>{page}</DefaultLayout>)
 
-  return <ActTabProvider><TabProvider>{getLayout(<Component {...pageProps} />)}</TabProvider></ActTabProvider>
+  return (
+    <ActTabProvider>
+      <TabProvider>{getLayout(<Component {...pageProps} />)}</TabProvider>
+    </ActTabProvider>
+  )
 }
 //Jin的自訂Provider -> 我的票夾
