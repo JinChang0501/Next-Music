@@ -9,7 +9,7 @@ import Link from 'next/link'
 export default function TicketMobile() {
   return (
     <>
-      <div style={{ width: '336px', height: '108px' }} className="bg-purple3">
+      <div style={{ width: '326px', height: '108px' }} className="bg-purple3">
         <div className="d-flex w-100 h-100">
           <div style={{ width: '88px', height: '88px' }} className="m-auto">
             <img

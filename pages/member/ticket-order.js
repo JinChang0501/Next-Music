@@ -138,7 +138,7 @@ export default function TicketOrder() {
         </div>
       </div>
 
-      <div className="container mt-4">
+      <div className="container mt-4 px-0">
         {isDesktop ? (
           <table className="table table-bordered text-center">
             <thead>
