@@ -20,19 +20,9 @@ export default function Aid() {
         {/* 活動主資訊 start */}
         <MainMusicInfo />
         {/* 活動主資訊 end */}
-        {/* 音樂人 start */}
-        <div className="row my-5">
-          <div className="chb-h4 mb-40 text-purple1">音樂人</div>
-          {artistData.map((v, i) => {
-            return (
-              <ArtistFollowCard key={v.id} imgSrc={v.imageSrc} artist_name={v.artist_name} />
-            )
-          })}
-        </div>
-        {/* 音樂人 end */}
         {/* 簡介：頁籤 start */}
         {/* <ActivityTabs className="my-80" /> */}
-        <ul className="nav nav-tabs mb-3" id="activityTab" role="tablist">
+        <ul className="nav nav-tabs my-80" id="activityTab" role="tablist">
           <Tab
             tabName="節目介紹"
             tabTarget="tabTargetAid"
@@ -51,6 +41,16 @@ export default function Aid() {
           <TabContentIntro tabTargetIntro="tabTargetIntro" />
         </div>
         {/* 簡介：頁籤 end */}
+        {/* 音樂人 start */}
+        <div className="row my-5">
+          <div className="chb-h4 mb-40 text-purple1">音樂人</div>
+          {artistData.map((v, i) => {
+            return (
+              <ArtistFollowCard key={v.id} imgSrc={v.imageSrc} artist_name={v.artist_name} />
+            )
+          })}
+        </div>
+        {/* 音樂人 end */}
         {/*  推薦活動 start  */}
         <div className="row my-5">
           <div className="chb-h4 mb-40 text-purple1">推薦活動</div>
