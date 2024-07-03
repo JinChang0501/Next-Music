@@ -44,15 +44,10 @@ export default function Activity() {
               />
             </ul>
             <div className="tab-content" id="myTabContent">
-              <TabContentAll />
-              <TabContentConcert />
-              <TabContentFestival />
+              <TabContentAll tabTargetAll="tabTargetAll" />
+              <TabContentConcert tabTargetConcert="tabTargetConcert" />
+              <TabContentFestival tabTargetFestival="tabTargetFestival" />
             </div>
-            {/* <ActivityCard />
-            <ActivityCard />
-            <ActivityCard />
-            <ActivityCard />
-            <ActivityCard /> */}
           </div>
         </div>
       </div>
