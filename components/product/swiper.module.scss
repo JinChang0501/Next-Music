@@ -1,0 +1,182 @@
+/* margin */
+.mt-100 {
+  margin-top: 100px;
+}
+.mt-80 {
+  margin-top: 80px;
+}
+.mt-52 {
+  margin-top: 52px;
+}
+.mt-40 {
+  margin-top: 40px;
+}
+.mt-28 {
+  margin-top: 28px;
+}
+
+.mb-100 {
+  margin-bottom: 100px;
+}
+.mb-60 {
+  margin-bottom: 60px;
+}
+.mb-40 {
+  margin-bottom: 40px;
+}
+.my-100 {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+.my-40{
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.my-20 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.mx-400 {
+  margin-left: 400px;
+  margin-right: 400px;
+}
+
+.mx-160 {
+  margin-left: 160px;
+  margin-right: 160px;
+}
+.ml-136 {
+  margin-left: 136px;
+}
+// padding
+.pt-80 {
+  padding-top: 80px;
+}
+
+.px-30 {
+  padding: 0 30px;
+}
+.btn-760 {
+  width: 760px;
+  padding: 30px 20px;
+}
+
+
+
+
+.g-40 {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  align-self: stretch;
+}
+
+.text-white {
+ color: white;
+}
+.text-purple3 {
+  color: #dbd7ff,
+  ;
+}
+.text-center {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.text-center-x {
+  text-align: center; 
+}
+
+.w-1060 {
+ width: 1060px; 
+}
+.w-800 {
+  width:800px;
+}
+.w-795 {
+  width: 795px;
+}
+.w-780 {
+  width: 780px;
+}
+.w-500 {
+  width: 500px;
+}
+.w-400 {
+  width: 400px;
+}
+.w-335 {
+  width: 350px;
+}
+.w-180 {
+  width: 180px;
+}
+.w-160 {
+  width: 160px;
+}
+.w-50 {
+  width: 50px;
+}
+
+.h-725 {
+  height: 725px;
+}
+.h-120 {
+  height: 120px;
+}
+.h-54 {
+  height: 54px;
+}
+.h-40 {
+  height: 40px;
+}
+
+.wh-100 {
+  width: 100px;
+  height: 100px;
+}
+
+.bg-bk {
+  background-color: #000 ;
+}
+.bg-white {
+  background-color: #fff;
+}
+
+.input-border {
+  border: 2px solid black;
+}
+// $form-check-input-checked-bg-color: #685beb;
+.paymentCircle {
+  width: 25px;
+  height: 25px;
+  margin-right: 20px;
+  border: 1px solid black;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.paymentBlockLeft {
+  display: flex;
+  align-items: center;
+}
+
+.card {
+  border: 1px solid #685beb;
+}
+.center-item {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+.cart-total {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.pic {
+  width: 500px;
+  object-fit: fill;
+  
+}
