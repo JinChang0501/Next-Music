@@ -1,0 +1,194 @@
+// #region breadcrumb
+
+.breadcrumb {
+  width: 100%;
+  height: 60px;
+  background-color: salmon;
+}
+
+@media (max-width: 390px) {
+  .breadcrumb {
+    height: 60px;
+  }
+}
+
+// #endregion breadcrumb
+
+// #region thirdContainer
+
+.thirdContainer {
+  padding: 0 390px;
+}
+
+@media (max-width: 390px) {
+  .thirdContainer {
+    padding: 0;
+  }
+}
+
+// #endregion thirdContainer
+
+// #region accordion marginTop
+
+.accordionMarginTop {
+  margin-top: 20px;
+}
+
+@media (max-width: 390px) {
+  .accordionMarginTop {
+    margin-top: 0px;
+  }
+}
+
+// #endregion accordion marginTop
+
+// #region image
+
+.activityImage {
+  margin-top: 20px;
+  width: 100%;
+  height: 450px;
+  position: relative;
+  img {
+    object-fit: contain;
+    object-position: center;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// #endregion image
+
+// #region info
+
+.info {
+  padding-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  border-bottom: 1px solid #888888;
+}
+
+.infoBlock {
+  display: flex;
+  align-items: flex-start;
+}
+
+.infoTextIcon {
+  width: 30px;
+  height: 30px;
+}
+
+.info > .infoBlock:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+// #endregion info
+
+// #region selectTicket
+
+.selectTicket {
+  padding: 60px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  border-bottom: 1px solid #888888;
+}
+
+.selectTicketBottom {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+// #endregion selectTicket
+
+// #region selectTicketBox
+
+.selectTicketBox {
+  width: 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  background-color: rgb(255, 255, 255);
+}
+
+.selectTicketBoxFirst {
+  width: 80px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  cursor: pointer;
+}
+
+.selectTicketBoxIcon {
+  width: 23px;
+  height: 23px;
+  transition: all 0.8s ease;
+  transform: rotate(0deg);
+}
+
+.selectTicketBoxIcon.rotate{
+  transform: rotate(-180deg);
+}
+
+.selectTicketBoxOptionBox {
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.8s ease;
+  opacity: 0;
+}
+
+.selectTicketBoxOptionBox.open {
+  max-height: 275px; /* 根據需要調整此高度 */
+  opacity: 1;
+}
+
+.selectTicketBoxOption {
+  width: 100%;
+  padding: 3px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #685beb;
+  background-color: #dbd7ff;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.selectTicketBoxOption:hover {
+  background-color: #685beb;
+  color: white;
+  box-shadow: 0 0 10px #685beb;
+}
+
+.selectTicketBoxOptionBox > button {
+  margin-bottom: 10px;
+}
+
+// #endregion selectTicketBox
+
+// #region totalPrice
+
+.totalPrice {
+  height: 49px;
+  margin-left: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// #endregion totalPrice
