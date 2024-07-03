@@ -1,11 +1,24 @@
 import React, { useState } from 'react'
 import { BsGoogle } from 'react-icons/bs'
 import { BsFillXCircleFill } from 'react-icons/bs'
+//登入會用到
+import { initUserData, useAuth } from '@/hooks/use-auth'
+import { checkAuth, login, getUserById } from '@/services/user' //checkAuth logout
+import toast, { Toaster } from 'react-hot-toast'
+
+// 解析accessToken用的函式
+const parseJwt = (token) => {
+  const base64Payload = token.split('.')[1]
+  const payload = Buffer.from(base64Payload, 'base64')
+  return JSON.parse(payload.toString())
+}
 
 export default function Login({
   isVisible,
   onClose,
   handleWakeForgetPassword,
+  updateLoginStatus,
+  setWakeLogin,
 }) {
   const [isActive, setIsActive] = useState(false)
 
@@ -16,6 +29,75 @@ export default function Login({
   const handleLoginClick = () => {
     setIsActive(false)
   }
+
+  const [user, setUser] = useState({ email: '', password: '' })
+
+  // 登入後設定全域的會員資料用
+  const { setAuth } = useAuth()
+
+  // 輸入帳號 密碼用
+  const handleFieldChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value })
+  }
+
+  // 處理登入
+  const handleLogin = async (e) => {
+    e.preventDefault()
+    const res = await login(user)
+
+    console.log(res.data)
+
+    if (res.data.status === 'success') {
+      // 從JWT存取令牌中解析出會員資料
+      // 注意JWT存取令牌中只有id, email, google_uid, line_uid在登入時可以得到
+      const jwtUser = parseJwt(res.data.data.accessToken)
+      console.log(jwtUser)
+
+      const res1 = await getUserById(jwtUser.id)
+      console.log(res1.data)
+
+      if (res1.data.status === 'success') {
+        // 只需要initUserData中的定義屬性值，詳見use-auth勾子
+        const dbUser = res1.data.data.user
+        const userData = { ...initUserData }
+
+        for (const key in userData) {
+          if (Object.hasOwn(dbUser, key)) {
+            userData[key] = dbUser[key]
+          }
+        }
+
+        // 設定到全域狀態中
+        setAuth({
+          isAuth: true,
+          userData,
+        })
+
+        toast.success('已成功登入')
+        updateLoginStatus(true)
+        setWakeLogin(false)
+      } else {
+        toast.error('登入後無法得到會員資料')
+        // 這裡可以讓會員登出，因為這也算登入失敗，有可能會造成資料不統一
+      }
+    } else {
+      toast.error(`登入失敗`)
+    }
+  }
+
+  //處理檢查登入狀態
+  const handleCheckAuth = async () => {
+    const res = await checkAuth()
+
+    console.log(res.data)
+
+    if (res.data.status === 'success') {
+      toast.success('已登入會員')
+    } else {
+      toast.error(`非會員身份`)
+    }
+  }
+
   if (!isVisible) return null
 
   return (
@@ -100,16 +182,23 @@ export default function Login({
                   placeholder="請輸入信箱"
                   id="email"
                   name="email"
+                  value={user.email}
+                  onChange={() => {
+                    handleFieldChange()
+                    handleCheckAuth()
+                  }}
                 />
               </div>
 
               <div className="w-100">
-                <label htmlFor="passwords">密碼:</label>
+                <label htmlFor="password">密碼:</label>
                 <input
                   type="password"
                   placeholder="請輸入密碼"
-                  id="passwords"
-                  name="passwords"
+                  id="password"
+                  name="password"
+                  value={user.password}
+                  onChange={handleFieldChange}
                 />
               </div>
               <button
@@ -122,7 +211,9 @@ export default function Login({
               >
                 忘記密碼?
               </button>
-              <button className="w-50 chr-h5">登入</button>
+              <button className="w-50 chr-h5" onClick={handleLogin}>
+                登入
+              </button>
               <button className="w-50">
                 <a href="#" className="icon">
                   <BsGoogle className="text-white" />
@@ -393,6 +484,8 @@ export default function Login({
           }
         `}
       </style>
+      {/* 土司訊息視窗用 */}
+      <Toaster />
     </>
   )
 }
