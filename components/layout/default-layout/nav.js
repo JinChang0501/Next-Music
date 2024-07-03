@@ -6,9 +6,15 @@ import { BsPersonCircle, BsBell, BsCart } from 'react-icons/bs'
 import Login from '@/components/login/login'
 import ForgetPassword from '@/components/login/forget-password'
 
+//登入用
+import { initUserData, useAuth } from '@/hooks/use-auth'
+import { login, logout, getUserById } from '@/services/user' //checkAuth
+import toast, { Toaster } from 'react-hot-toast'
+
 export default function Nav() {
-  const [wakeLogin, setWakeLogin] = useState(false)
+  const [wakeLogin, setWakeLogin] = useState(false) //喚醒登入面板
   const [wakeForgetPassword, setWakeForgetPassword] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false) // 這裡要接Login元件傳回來的狀態
 
   const handleWakeLogin = () => {
     setWakeLogin(true)
@@ -25,6 +31,37 @@ export default function Nav() {
   const handleCloseForgetPassword = () => {
     setWakeForgetPassword(false)
   }
+
+  // 更新登入狀態
+  const updateLoginStatus = (loggedIn) => {
+    setIsLoggedIn(loggedIn)
+  }
+
+  // 登入後設定全域的會員資料用
+  const { setAuth } = useAuth()
+
+  //處理登出
+  const handleLogout = async () => {
+    const res = await logout()
+
+    console.log(res.data)
+
+    // 成功登出個回復初始會員狀態
+    if (res.data.status === 'success') {
+      toast.success('已成功登出')
+      updateLoginStatus(false)
+
+      setAuth({
+        isAuth: false,
+        userData: initUserData,
+      })
+    } else {
+      toast.error(`登出失敗`)
+    }
+  }
+  // if (isLoggedIn) {
+  //   setWakeLogin(false)
+  // }
 
   return (
     <>
@@ -121,7 +158,47 @@ export default function Nav() {
                   className="dropdown-menu dropdown-menu-dark dropdown-menu-end"
                   aria-labelledby="navbarDropdown02"
                 >
-                  <div className={`${styles['mouse-cursor']}`}>
+                  {isLoggedIn ? (
+                    <>
+                      <li>
+                        <Link className="dropdown-item" href="/member">
+                          會員中心
+                        </Link>
+                      </li>
+                      <li>
+                        <button
+                          className="dropdown-item"
+                          onClick={handleLogout}
+                        >
+                          登出
+                        </button>
+                      </li>
+                    </>
+                  ) : (
+                    <>
+                      <li>
+                        <div className={`${styles['mouse-cursor']}`}>
+                          <button
+                            className="dropdown-item"
+                            onClick={handleWakeLogin}
+                          >
+                            登入
+                          </button>
+                        </div>
+                      </li>
+                      <li>
+                        <div className={`${styles['mouse-cursor']}`}>
+                          <button
+                            className="dropdown-item"
+                            onClick={handleWakeLogin}
+                          >
+                            註冊
+                          </button>
+                        </div>
+                      </li>
+                    </>
+                  )}
+                  {/* <div className={`${styles['mouse-cursor']}`}>
                     <button className="dropdown-item" onClick={handleWakeLogin}>
                       登入
                     </button>
@@ -135,8 +212,8 @@ export default function Nav() {
                       >
                         註冊
                       </button>
-                    </div>
-                    {/* <button
+                    </div> */}
+                  {/* <button
                       className="btn btn-primary"
                       onClick={handleRegisterClick}
                       data-bs-toggle="modal"
@@ -149,12 +226,12 @@ export default function Nav() {
                       handleRegisterClick={handleRegisterClick}
                       handleLoginClick={handleLoginClick}
                     /> */}
-                  </li>
-                  <li>
-                    {/* <Link className="dropdown-item" href="#">
+                  {/* </li> */}
+                  {/* <li> */}
+                  {/* <Link className="dropdown-item" href="#">
                       登出
                     </Link> */}
-                  </li>
+                  {/* </li> */}
                 </ul>
               </li>
             </ul>
@@ -166,11 +243,14 @@ export default function Nav() {
         isVisible={wakeLogin}
         onClose={handleCloseLogin}
         handleWakeForgetPassword={handleWakeForgetPassword}
+        updateLoginStatus={updateLoginStatus}
+        setWakeLogin={setWakeLogin}
       />
       <ForgetPassword
         isVisible={wakeForgetPassword}
         onClose={handleCloseForgetPassword}
       />
+      <Toaster />
     </>
   )
 }
