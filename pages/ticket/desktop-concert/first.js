@@ -3,7 +3,7 @@ import FixedContentLayout from '@/components/layout/ticket-layout/desktopLayout/
 import Mask from '@/components/ticket/mask'
 import Start from '@/components/ticket/start'
 import ProgressBar from '@/components/ticket/progressBar'
-import Title from '@/components/ticket/phone-concert/title'
+import PhoneTitle from '@/components/ticket/phone-concert/phoneTitle'
 import Phone3D from '@/components/ticket/phone-concert/phone3D'
 import Left from '@/components/ticket/desktop-concert/first/Left'
 import Right from '@/components/ticket/desktop-concert/first/Right'
@@ -82,7 +82,7 @@ export default function First() {
           </>
         )}
 
-        <Title />
+        <PhoneTitle />
 
         <ProgressBar progressBarRef={progressBarRef} isStarted={isStarted} />
 

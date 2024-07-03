@@ -5,10 +5,10 @@ import formData from '@/data/ticket/desktop-concert/third/form'
 export default function PhoneAccordionSecond() {
   return (
     <>
-      <div class="accordion-item">
-        <h2 class="accordion-header">
+      <div className="accordion-item">
+        <h2 className="accordion-header">
           <button
-            class="accordion-button collapsed chb-h5"
+            className="accordion-button collapsed chb-h5"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#panelsStayOpen-collapseTwo"
@@ -18,9 +18,9 @@ export default function PhoneAccordionSecond() {
         </h2>
         <div
           id="panelsStayOpen-collapseTwo"
-          class="accordion-collapse collapse"
+          className="accordion-collapse collapse"
         >
-          <div class="accordion-body">
+          <div className="accordion-body">
             <div className={`${style.form}`}>
               {formData.map((v) => (
                 <div key={v.id} className={`${style.formBlock}`}>

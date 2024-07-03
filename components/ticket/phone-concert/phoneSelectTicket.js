@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import style from './selectTicket.module.scss'
+import style from './phoneSelectTicket.module.scss'
 import ticketSeatBlockData from '@/data/ticket/phone-concert/ticketSeatBlockData'
 import PhoneWhiteNoIconBtnPurple from '@/components/common/button/phoneWhiteButton/phoneWhiteNoIconBtnPurple'
 import { FaChevronUp } from 'react-icons/fa'
@@ -10,7 +10,7 @@ import {
   BsX,
 } from 'react-icons/bs'
 
-export default function SelectTicket() {
+export default function PhoneSelectTicket() {
   const [showTicket, setShowTicket] = useState(false)
   const [selectTicketBodyTitleHeight, setSelectTicketBodyTitleHeight] =
     useState(0)

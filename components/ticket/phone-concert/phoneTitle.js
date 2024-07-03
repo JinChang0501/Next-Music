@@ -1,8 +1,8 @@
 import React from 'react'
-import style from './title.module.scss'
+import style from './phoneTitle.module.scss'
 import { FaChevronLeft } from 'react-icons/fa'
 
-export default function Title() {
+export default function PhoneTitle() {
   return (
     <>
       <div className={`${style.title}`}>

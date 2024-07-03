@@ -8,10 +8,10 @@ import Image from 'next/image'
 export default function PhoneAccordionFirst() {
   return (
     <>
-      <div class="accordion-item">
-        <h2 class="accordion-header">
+      <div className="accordion-item">
+        <h2 className="accordion-header">
           <button
-            class="accordion-button chb-h5"
+            className="accordion-button chb-h5"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#panelsStayOpen-collapseOne"
@@ -21,9 +21,9 @@ export default function PhoneAccordionFirst() {
         </h2>
         <div
           id="panelsStayOpen-collapseOne"
-          class="accordion-collapse collapse show"
+          className="accordion-collapse collapse show"
         >
-          <div class="accordion-body">
+          <div className="accordion-body">
             {/* activityImage */}
 
             <div className={`${style.activityImage}`}>

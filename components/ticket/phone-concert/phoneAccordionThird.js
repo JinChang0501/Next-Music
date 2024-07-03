@@ -10,10 +10,10 @@ export default function PhoneAccordionThird() {
   }
   return (
     <>
-      <div class="accordion-item">
-        <h2 class="accordion-header">
+      <div className="accordion-item">
+        <h2 className="accordion-header">
           <button
-            class="accordion-button collapsed chb-h5"
+            className="accordion-button collapsed chb-h5"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#panelsStayOpen-collapseThree"
@@ -23,9 +23,9 @@ export default function PhoneAccordionThird() {
         </h2>
         <div
           id="panelsStayOpen-collapseThree"
-          class="accordion-collapse collapse"
+          className="accordion-collapse collapse"
         >
-          <div class="accordion-body">
+          <div className="accordion-body">
             <div className={style.payment}>
               <div className={style.paymentBlock}>
                 <div className={style.paymentBlockLeft}>

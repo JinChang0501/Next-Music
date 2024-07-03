@@ -14,7 +14,7 @@ export default function Third() {
       <ProgressBar />
 
       <div>
-        <div class="accordion" id="accordionPanelsStayOpenExample">
+        <div className="accordion" id="accordionPanelsStayOpenExample">
           {/* accordionFirst */}
 
           <PhoneAccordionFirst />

@@ -3,8 +3,8 @@ import FixedContentLayout from '@/components/layout/ticket-layout/desktopLayout/
 import ProgressBar from '@/components/ticket/progressBar'
 import LeftSecond from '@/components/ticket/desktop-concert/second/leftSecond'
 import RightSecond from '@/components/ticket/desktop-concert/second/rightSecond'
-import Title from '@/components/ticket/phone-concert/title'
-import SelectTicket from '@/components/ticket/phone-concert/selectTicket'
+import PhoneTitle from '@/components/ticket/phone-concert/phoneTitle'
+import PhoneSelectTicket from '@/components/ticket/phone-concert/phoneSelectTicket'
 import style from '@/styles/ticket/desktop-concert/second.module.scss'
 
 export default function Second() {
@@ -52,14 +52,14 @@ export default function Second() {
       {isPhoneView ? (
         <>
           {/* title */}
-          <Title />
+          <PhoneTitle />
 
           {/* progress */}
           <ProgressBar />
 
           {/* photo */}
           <div className={`${style.bottom}`}>
-            <SelectTicket />
+            <PhoneSelectTicket />
           </div>
         </>
       ) : (
