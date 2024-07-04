@@ -3,8 +3,24 @@ import { BsMusicNoteBeamed, BsBookmark, BsGeoAlt, BsCalendar4 } from "react-icon
 import DesktopWhiteNoIconBtnBlack from '../common/button/desktopWhiteButton/desktopWhiteNoIconBtnBlack';
 import DesktopBlackNoIconBtnPurple from '../common/button/desktopBlackButton/desktopBlackNoIconBtnPurple';
 import DesktopBlackPureIconBtnBlack from '../common/button/desktopBlackButton/desktopBlackPureIconBtnBlack';
+import { useState, useEffect } from 'react'
+import PhoneBlackPureIconBtnBlack from '../common/button/phoneBlackButton/phoneBlackPureIconBtnBlack';
 
 export default function ActivityCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/temp-Image7-Gw6zu.avif" }) {
+
+  const [isDesktop, setIsDesktop] = useState(true)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth > 576) // 螢幕寬度 > 576px 為電腦板
+    }
+    handleResize() // 初始設定一次
+
+    window.addEventListener('resize', handleResize) // 監聽視窗大小變化
+
+    return () => window.removeEventListener('resize', handleResize) // 清除事件監聽器
+  }, [])
+
   return (
     <>
       <div className="card mb-3 bg-dark outline">
@@ -20,15 +36,16 @@ export default function ActivityCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/t
           {/* 卡片文字 */}
           <div className="col-8 card-body d-flex flex-column justify-content-between">
             <div className="row d-flex justify-content-around">
-              {/* <div className="card-title col-10 col-md-11 chb-h4 text-purple3">一生到底</div>
-              <BsBookmark className="col-2 col-md-1 text-white" /> */}
               <div className="card-title col-10 chb-h4 text-purple3 p-0">一生到底</div>
-              <div className="col-1 p-0">
-                <DesktopBlackPureIconBtnBlack
+              <div className="col-1 p-0">{isDesktop ?
+                (<DesktopBlackPureIconBtnBlack
                   icon={BsBookmark}
                   iconWidth={28}
                   iconHeight={28}
-                />
+                />) : (
+                  <PhoneBlackPureIconBtnBlack
+                    icon={BsBookmark}
+                  />)}
               </div>
             </div>
             <div className="col-12 d-flex align-items-end">
@@ -37,14 +54,14 @@ export default function ActivityCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/t
                   <BsMusicNoteBeamed className="col-2 p-0" />
                   <div className="card-text col-10 chb-p p-0">滅火器 Fire EX.</div>
                 </div>
-                <div className="row my-2">
+                <div className="row my-2 d-md-flex d-none">
                   <BsGeoAlt className="col-2 p-0" />
                   <div className="card-text col-10 chb-p p-0">臺北流行音樂中心</div>
                 </div>
                 <div className="row my-2">
                   <BsCalendar4 className="col-2 p-0" />
                   <div className="card-text col-10 chb-p p-0">
-                    2024/06/15&nbsp;&nbsp;19:30
+                    2024/06/15
                   </div>
                 </div>
               </div>
