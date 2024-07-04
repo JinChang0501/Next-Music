@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import WhiteLayout from '@/components/layout/ticket-layout/desktopLayout/whiteLayout'
+import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import ProgressBar from '@/components/ticket/progressBar'
 import AccordionFirst from '@/components/ticket/desktop-music-festival/accordionFirst'
 import AccordionSecond from '@/components/ticket/desktop-music-festival/accordionSecond'
@@ -17,6 +18,13 @@ export default function Second() {
 
   const router = useRouter()
 
+  const breadcrumbsURL = [
+    { label: '首頁', href: '/' },
+    { label: '演出活動', href: '/activity' },
+    { label: '一生到底', href: '/activity/[aid]' },
+    { label: '支付方式', href: '/ticket/concert/first' },
+  ]
+
   const handleNext = () => {
     router.push('/ticket/musicFestival/third')
   }
@@ -33,7 +41,7 @@ export default function Second() {
   return (
     <>
       {/* breadcrumb */}
-      <div className={`${style.breadcrumb}`}></div>
+      <Breadcrumbs breadcrumbs={breadcrumbsURL} />
 
       {/* progressBar + timeCounter */}
       <ProgressBar />

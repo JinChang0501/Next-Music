@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import WhiteLayout from '@/components/layout/ticket-layout/desktopLayout/whiteLayout'
+import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import ProgressBar from '@/components/ticket/progressBar'
 import ActivityImage from '@/components/ticket/desktop-music-festival/activityImage'
 import Info from '@/components/ticket/desktop-music-festival/info'
@@ -16,6 +17,13 @@ export default function Third() {
   const [isMobile, setIsMobile] = useState(false)
 
   const router = useRouter()
+
+  const breadcrumbsURL = [
+    { label: '首頁', href: '/' },
+    { label: '演出活動', href: '/activity' },
+    { label: '一生到底', href: '/activity/[aid]' },
+    { label: '選擇座位', href: '/ticket/concert/first' },
+  ]
 
   const handleNext = () => {
     router.push('/ticket/musicFestival/second')
@@ -34,7 +42,7 @@ export default function Third() {
   return (
     <>
       {/* breadcrumb */}
-      <div className={`${style.breadcrumb}`}></div>
+      <Breadcrumbs breadcrumbs={breadcrumbsURL} />
 
       {/* progressBar + timeCounter */}
       <ProgressBar />
@@ -93,5 +101,5 @@ export default function Third() {
 }
 
 Third.getLayout = function getLayout(page) {
-  return <WhiteLayout title="payment">{page}</WhiteLayout>
+  return <WhiteLayout title="select-Seat">{page}</WhiteLayout>
 }

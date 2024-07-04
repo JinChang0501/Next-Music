@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react'
 import FixedContentLayout from '@/components/layout/ticket-layout/desktopLayout/fixedContentLayout'
+import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import ProgressBar from '@/components/ticket/progressBar'
 import LeftSecond from '@/components/ticket/desktop-concert/second/leftSecond'
 import RightSecond from '@/components/ticket/desktop-concert/second/rightSecond'
@@ -47,6 +48,13 @@ export default function Second() {
 
   // #endregion 動態獲取 breadcrumb、progressBar 高度，返回給 content
 
+  const breadcrumbsURL = [
+    { label: '首頁', href: '/' },
+    { label: '演出活動', href: '/activity' },
+    { label: '一生到底', href: '/activity/[aid]' },
+    { label: '選擇座位', href: '/ticket/concert/first' },
+  ]
+
   return (
     <>
       {isPhoneView ? (
@@ -65,8 +73,8 @@ export default function Second() {
       ) : (
         <>
           {/* breadcrumb */}
-          <div ref={breadcrumbRef} className={`${style.breadcrumb} row`}>
-            <div className="col-12 p-0 bg-warning"></div>
+          <div ref={breadcrumbRef}>
+            <Breadcrumbs breadcrumbs={breadcrumbsURL} />
           </div>
 
           {/* progressBar + timeCounter */}
