@@ -8,10 +8,14 @@ export default function DesktopWhiteIconBtnBlack({
   iconHeight = 48,
   iconMarginRight = 6,
   icon: IconComponent = BsPlus,
+  onClick = () => {},
 }) {
   return (
     <>
-      <button className={`DesktopWhiteIconBtnBlack ${className}`}>
+      <button
+        className={`DesktopWhiteIconBtnBlack ${className}`}
+        onClick={onClick}
+      >
         <IconComponent
           style={{
             marginRight: `${iconMarginRight}px`,

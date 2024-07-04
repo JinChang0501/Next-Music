@@ -5,10 +5,11 @@ export default function PhoneWhitePureIconBtnBlack({
   iconWidth = 40,
   iconHeight = 40,
   icon: IconComponent = BsPlus,
+  onClick = () => {},
 }) {
   return (
     <>
-      <button className="PhoneWhitePureIconBtnBlack">
+      <button className="PhoneWhitePureIconBtnBlack" onClick={onClick}>
         <IconComponent
           style={{
             width: `${iconWidth}px`,

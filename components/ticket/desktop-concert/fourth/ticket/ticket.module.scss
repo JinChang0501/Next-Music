@@ -30,7 +30,9 @@
   position: relative;
   background: url(../../../../../public/images/ticket/ticketbackgroundimage.jpg)
     no-repeat;
-
+  background-size: cover;
+  border-radius: 30px;
+  
   &::before {
     content: '';
     position: absolute;

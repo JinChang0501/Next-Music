@@ -1,22 +1,34 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import WhiteLayout from '@/components/layout/ticket-layout/desktopLayout/whiteLayout'
 import ProgressBar from '@/components/ticket/progressBar'
 import Order from '@/components/ticket/desktop-concert/fourth/order'
 import ConcertTicket from '@/components/ticket/desktop-concert/fourth/ticket'
 import Button from '@/components/ticket/desktop-concert/fourth/button'
+import PhoneOrder from '@/components/ticket/phone-concert/phoneOrder'
+import PhoneConcertTicket from '@/components/ticket/phone-concert/phoneConcertTicket'
+import PhoneButton from '@/components/ticket/phone-concert/phoneButton'
 import style from '@/styles/ticket/desktop-concert/fourth.module.scss'
 
 export default function Fourth() {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 390)
+    }
+
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
   return (
     <>
-      <div className={`${style.breadcrumb} row`}>
-        <div className="col-12 p-0 bg-warning"></div>
-      </div>
+      <div className={`${style.breadcrumb}`}></div>
 
       <ProgressBar />
 
       {/* order */}
-      <Order />
+      {isMobile ? <PhoneOrder /> : <Order />}
 
       {/* ticket */}
       <div className={`${style.orderTicketAccordion}`}>
@@ -39,7 +51,7 @@ export default function Fourth() {
               <div className="accordion-body">
                 <div className={`${style.orderTicketBody}`}>
                   {/* ConcertTicket */}
-                  <ConcertTicket />
+                  {isMobile ? <PhoneConcertTicket /> : <ConcertTicket />}
                 </div>
               </div>
             </div>
@@ -48,7 +60,7 @@ export default function Fourth() {
       </div>
 
       {/* button */}
-      <Button />
+      {isMobile ? <PhoneButton /> : <Button />}
     </>
   )
 }

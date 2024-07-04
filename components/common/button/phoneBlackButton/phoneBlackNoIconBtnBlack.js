@@ -3,10 +3,14 @@ import React from 'react'
 export default function PhoneBlackNoIconBtnBlack({
   text = 'button',
   className = 'chb-h6',
+  onClick = () => {},
 }) {
   return (
     <>
-      <button className={`PhoneBlackNoIconBtnBlack ${className}`}>
+      <button
+        className={`PhoneBlackNoIconBtnBlack ${className}`}
+        onClick={onClick}
+      >
         {text}
       </button>
       <style jsx>{`

@@ -8,10 +8,14 @@ export default function PhoneBlackIconBtnBlack({
   iconHeight = 36,
   iconMarginRight = 8,
   icon: IconComponent = BsPlus,
+  onClick = () => {},
 }) {
   return (
     <>
-      <button className={`PhoneBlackIconBtnBlack ${className}`}>
+      <button
+        className={`PhoneBlackIconBtnBlack ${className}`}
+        onClick={onClick}
+      >
         <IconComponent
           style={{
             marginRight: `${iconMarginRight}px`,

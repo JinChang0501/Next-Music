@@ -2,7 +2,7 @@ const ticketSeatData = [
   {
     id: 1,
     squareColor: 'bg-A',
-    text: 'A 區 • B 排 • 9  號',
+    text: 'A 區 • B 排 • 09 號',
     price: '$ 8600',
   },
   {
@@ -14,7 +14,7 @@ const ticketSeatData = [
   {
     id: 3,
     squareColor: 'bg-D',
-    text: 'D 區 • C 排 • 5  號',
+    text: 'D 區 • C 排 • 05 號',
     price: '$ 3500',
   },
   {
@@ -26,7 +26,7 @@ const ticketSeatData = [
   {
     id: 5,
     squareColor: 'bg-D',
-    text: 'D 區 • E 排 • 1  號',
+    text: 'D 區 • E 排 • 01 號',
     price: '$ 3500',
   },
   {
