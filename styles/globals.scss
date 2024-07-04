@@ -2,6 +2,7 @@
 @import 'node_modules/bootstrap/scss/functions';
 @import 'node_modules/bootstrap/scss/variables';
 @import 'node_modules/bootstrap/scss/mixins';
+@import url('https://fonts.googleapis.com/css2?family=Alata&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 // #region 使用 Bootstrap 的 mixin 定義 music-container
 
@@ -516,6 +517,7 @@ $form-check-input-checked-bg-color: #685beb;
     letter-spacing: 1.2px;
     line-height: normal;
   }
+
   .chr-p-10 {
     font-family: 'Roboto', Helvetica;
     font-size: 10px;

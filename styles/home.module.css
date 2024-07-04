@@ -10,8 +10,21 @@
 
 .bannerSty {
   width: 100%;
-  height: 400px;
-  background-color: #8f5353;
+  height: 600px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-image: url('https://i.postimg.cc/Vk2Tz92R/cove-default-bg.png');
+  background-color: #d8c1c1;
+}
+
+.p-relative {
+  position: relative;
+  top: 35%;
+}
+
+.p-absolute {
+  position: absolute;
 }
 
 .mt-120 {
@@ -98,12 +111,53 @@
   border: 1px solid #685BEB;
 }
 
-.gap-40 {
-  gap: 2.5rem;
+.bg-img-flow {
+  position: relative;
+  top: 0%;
+  height: 2000px;
+  background-size: cover;
+  background-position: center;
+  background-image: url("https://i.postimg.cc/Bb7JvBYJ/temp-Imagejx-Wr-Mn.avif");
 }
 
-.bg-img-flow {
-  background-image: url("https://i.postimg.cc/Bb7JvBYJ/temp-Imagejx-Wr-Mn.avif");
+@media (max-width: 390px) {
+  .bannerSty {
+    height: 240px;
+  }
+
+  .mt-120 {
+    margin-top: 60px;
+  }
+
+  .mb-120 {
+    margin-bottom: 60px;
+  }
+
+  .my-120 {
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+
+  .mt-80 {
+    margin-top: 40px;
+  }
+
+  .mb-80 {
+    margin-bottom: 40px;
+  }
+
+  .my-80 {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  .custom-bg-01 {
+    height: 11rem;
+  }
+
+  .custom-bg-02 {
+    height: 11rem;
+  }
 }
 
 /* //#region chloe 測試 */
