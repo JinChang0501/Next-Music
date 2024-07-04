@@ -9,24 +9,19 @@ export default function Index() {
   return (
     <>
       {/* banner一張（影片輪播） start */}
-      <div className={`bg-purple3 ${styles['bannerSty']}`}>
-        <div className="row">
-          <div className={`col-12 d-none d-md-flex flex-column align-items-center mx-auto text-white text-center ${styles['mt-120']}`}>
-            <div className="eng-h1 my-2">Lose Yourself in Music</div>
-            <div className="eng-h1 my-2">Find Yourself in the Festivity</div>
-            <div className="eng-p my-2">
-              <DesktopBlackNoIconBtnBlack text={'MY ACCOUNT'} />
-              {/* <button className="btn btn-lg btn-primary" href="#">
-                MY ACCOUNT
-              </button> */}
-            </div>
+      <div className={`${styles['bannerSty']}`}>
+        <div className={`d-none d-md-flex flex-column align-items-center text-align mx-auto text-white text-center ${styles['p-relative']}`}>
+          <div className="eng-h1 mb-2">Lose Yourself in Music</div>
+          <div className="eng-h1 mb-4">Find Yourself in the Festivity</div>
+          <div className="eng-p">
+            <DesktopBlackNoIconBtnBlack text="MY ACCOUNT" className="eng-h5" />
           </div>
         </div>
       </div>
       {/* banner（影片輪播） end */}
       <div className="music-container" >
         <div className={`row mb-5 ${styles['mt-120']}`}>
-          <div className="d-flex flex-column align-items-center">
+          <div className="d-flex flex-column align-items-center text-align">
             <div className="eng-h1 text-white">Activities</div>
             <div className="chb-h3 text-purple3">給你最盛大的視覺與聽覺饗宴</div>
           </div>
@@ -134,7 +129,6 @@ export default function Index() {
             </div>
           </div>
         </>
-
         {/* 音樂人 end */}
       </div>
     </>
