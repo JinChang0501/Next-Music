@@ -19,7 +19,8 @@ export default function Index() {
         </div>
       </div>
       {/* banner（影片輪播） end */}
-      <div className="music-container" >
+      {/* <div className={` ${styles['bg-img-flow']}`}></div> */}
+      <div className={`music-container`} >
         <div className={`row mb-5 ${styles['mt-120']}`}>
           <div className="d-flex flex-column align-items-center text-align">
             <div className="eng-h1 text-white">Activities</div>
@@ -77,60 +78,59 @@ export default function Index() {
         </div>
         {/* 第二個活動 end */}
         {/* 音樂人 start */}
-        <>
-          {/* 背景畫面待修改 */}
-          <div
-            className={`row mb-5 ${styles['mt-120']} ${styles['bg-img-flow']}`}
-          >
-            <div className="d-flex flex-column align-items-center">
-              <div className="eng-h1 text-white">Discover More</div>
-              <div className="chb-h3 text-purple3">挖掘你還未聽過的好聲音</div>
-            </div>
+
+        {/* 背景畫面待修改 */}
+        <div
+          className={`row mb-5 ${styles['mt-120']}`}
+        >
+          <div className="d-flex flex-column align-items-center">
+            <div className="eng-h1 text-white">Discover More</div>
+            <div className="chb-h3 text-purple3">挖掘你還未聽過的好聲音</div>
           </div>
-          <div
-            className={`row d-flex justify-content-md-center justify-content-around align-items-center ${styles['mt-80']} ${styles['mb-120']}`}
-          >
-            {/* 最大那顆，到時候要隨著滑鼠事件移動 */}
-            <div className="col-md-4 col-8 d-flex flex-column align-items-center order-md-3 mb-5 mb-md-0">
-              <img
-                src="https://i.postimg.cc/dtx1T54J/m-S62j-SACo-Ptq-Bo-YSHPi-Rwp.jpg"
-                className={`rounded-circle mb-4 ${styles['artist-img-l']}`}
-              />
-              <div className="chb-h4 text-white">音樂人</div>
-            </div>
-            {/* 其他顆 */}
-            <div className="col-md-2 col-5 d-flex flex-column align-items-center order-md-1 mb-5 mb-md-0">
-              <img
-                src="https://i.postimg.cc/BbjpZhmX/Wmwi-Dkfdq-VH87seo-RLnge-U.jpg"
-                className={`rounded-circle mb-4 ${styles['artist-img-s']}`}
-              />
-              <div className="chb-h4 text-white">音樂人</div>
-            </div>
-            <div className="col-md-2 col-5 d-flex flex-column align-items-center order-md-2 mb-5 mb-md-0">
-              <img
-                src="https://i.postimg.cc/BbjpZhmX/Wmwi-Dkfdq-VH87seo-RLnge-U.jpg"
-                className={`rounded-circle mb-4 ${styles['artist-img-s']}`}
-              />
-              <div className="chb-h4 text-white">音樂人</div>
-            </div>
-            <div className="col-md-2 col-5 d-flex flex-column align-items-center order-md-4">
-              <img
-                src="https://i.postimg.cc/BbjpZhmX/Wmwi-Dkfdq-VH87seo-RLnge-U.jpg"
-                className={`rounded-circle mb-4 ${styles['artist-img-s']}`}
-              />
-              <div className="chb-h4 text-white">音樂人</div>
-            </div>
-            <div className="col-md-2 col-5 d-flex flex-column align-items-center order-md-5">
-              <img
-                src="https://i.postimg.cc/BbjpZhmX/Wmwi-Dkfdq-VH87seo-RLnge-U.jpg"
-                className={`rounded-circle mb-4 ${styles['artist-img-s']}`}
-              />
-              <div className="chb-h4 text-white">音樂人</div>
-            </div>
+        </div>
+        <div
+          className={`row d-flex justify-content-md-center justify-content-around align-items-center ${styles['mt-80']} ${styles['mb-120']}`}
+        >
+          {/* 最大那顆，到時候要隨著滑鼠事件移動 */}
+          <div className="col-md-4 col-8 d-flex flex-column align-items-center order-md-3 mb-5 mb-md-0">
+            <img
+              src="https://i.postimg.cc/dtx1T54J/m-S62j-SACo-Ptq-Bo-YSHPi-Rwp.jpg"
+              className={`rounded-circle mb-4 ${styles['artist-img-l']}`}
+            />
+            <div className="chb-h4 text-white">音樂人</div>
           </div>
-        </>
-        {/* 音樂人 end */}
+          {/* 其他顆 */}
+          <div className="col-md-2 col-5 d-flex flex-column align-items-center order-md-1 mb-5 mb-md-0">
+            <img
+              src="https://i.postimg.cc/BbjpZhmX/Wmwi-Dkfdq-VH87seo-RLnge-U.jpg"
+              className={`rounded-circle mb-4 ${styles['artist-img-s']}`}
+            />
+            <div className="chb-h4 text-white">音樂人</div>
+          </div>
+          <div className="col-md-2 col-5 d-flex flex-column align-items-center order-md-2 mb-5 mb-md-0">
+            <img
+              src="https://i.postimg.cc/BbjpZhmX/Wmwi-Dkfdq-VH87seo-RLnge-U.jpg"
+              className={`rounded-circle mb-4 ${styles['artist-img-s']}`}
+            />
+            <div className="chb-h4 text-white">音樂人</div>
+          </div>
+          <div className="col-md-2 col-5 d-flex flex-column align-items-center order-md-4">
+            <img
+              src="https://i.postimg.cc/BbjpZhmX/Wmwi-Dkfdq-VH87seo-RLnge-U.jpg"
+              className={`rounded-circle mb-4 ${styles['artist-img-s']}`}
+            />
+            <div className="chb-h4 text-white">音樂人</div>
+          </div>
+          <div className="col-md-2 col-5 d-flex flex-column align-items-center order-md-5">
+            <img
+              src="https://i.postimg.cc/BbjpZhmX/Wmwi-Dkfdq-VH87seo-RLnge-U.jpg"
+              className={`rounded-circle mb-4 ${styles['artist-img-s']}`}
+            />
+            <div className="chb-h4 text-white">音樂人</div>
+          </div>
+        </div>
       </div>
+      {/* 音樂人 end */}
     </>
   )
 }

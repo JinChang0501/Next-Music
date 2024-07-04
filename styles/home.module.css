@@ -116,6 +116,11 @@
 }
 
 .bg-img-flow {
+  position: relative;
+  top: 0%;
+  height: 2000px;
+  background-size: cover;
+  background-position: center;
   background-image: url("https://i.postimg.cc/Bb7JvBYJ/temp-Imagejx-Wr-Mn.avif");
 }
 
