@@ -32,10 +32,10 @@ export default function Login({
     setIsActive(false)
   }
 
-  const [user, setUser] = useState({ email: '', password: '' })
-
   // 登入後設定全域的會員資料用
   const { setAuth } = useAuth()
+
+  const [user, setUser] = useState({ email: '', password: '' })
 
   // 輸入帳號 密碼用
   const handleFieldChange = (e) => {
@@ -88,18 +88,51 @@ export default function Login({
     }
   }
 
-  //處理檢查登入狀態
-  const handleCheckAuth = async () => {
-    const res = await checkAuth()
+  // 登入功能
+  const handleLoginForm = async (e) => {
+    // 阻擋表單預設送出行為
+    e.preventDefault()
 
-    console.log(res.data)
-
-    if (res.data.status === 'success') {
-      toast.success('已登入會員')
-    } else {
-      toast.error(`非會員身份`)
+    // 表單檢查 --- START
+    // 建立一個新的錯誤物件
+    const newErrors = {
+      email: '',
+      password: '',
     }
+
+    if (!user.email) {
+      newErrors.email = '信箱為必填'
+    }
+
+    if (!user.password) {
+      newErrors.password = '密碼為必填'
+    }
+
+    // 呈現錯誤訊息
+    setErrors(newErrors)
+
+    // 物件屬性值中有非空白字串時，代表有錯誤發生
+    const hasErrors = Object.values(newErrors).some((v) => v)
+
+    // 有錯誤，不送到伺服器，跳出submit函式
+    if (hasErrors) {
+      return
+    }
+    // 表單檢查 --- END
   }
+
+  //處理檢查登入狀態
+  // const handleCheckAuth = async () => {
+  //   const res = await checkAuth()
+
+  //   console.log(res.data)
+
+  //   if (res.data.status === 'success') {
+  //     toast.success('已登入會員')
+  //   } else {
+  //     toast.error(`非會員身份`)
+  //   }
+  // }
   //註冊功能
   // 狀態為物件，屬性對應到表單的欄位名稱
   const [userRegister, setUserRegister] = useState({
@@ -107,7 +140,6 @@ export default function Login({
     email: '',
     password: '',
     confirmPassword: '',
-    agree: false, // checkbox 同意會員註冊條款
   })
 
   // 錯誤訊息狀態
@@ -116,22 +148,25 @@ export default function Login({
     email: '',
     password: '',
     confirmPassword: '',
-    agree: false, // checkbox 同意會員註冊條款
   })
 
   // checkbox 呈現密碼用
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword)
+  }
+
+  const toggleShowConfirmPassword = () => {
+    setShowConfirmPassword(!showConfirmPassword)
+  }
+
   // 多欄位共用事件函式
   const handleRFieldChange = (e) => {
     console.log(e.target.name, e.target.value, e.target.type)
 
-    if (e.target.name === 'agree') {
-      setUser({ ...user, [e.target.name]: e.target.checked })
-    } else {
-      setUser({ ...user, [e.target.name]: e.target.value })
-    }
+    setUserRegister({ ...userRegister, [e.target.name]: e.target.value })
 
     // ES6特性: 計算得來的屬性名稱(computed property names)
     // [e.target.name]: e.target.value
@@ -148,36 +183,28 @@ export default function Login({
     const newErrors = {
       name: '',
       email: '',
-      username: '',
       password: '',
       confirmPassword: '',
     }
 
-    if (!user.name) {
+    if (!userRegister.name) {
       newErrors.name = '姓名為必填'
     }
-    if (!user.email) {
+    if (!userRegister.email) {
       newErrors.email = 'email為必填'
     }
-    if (!user.username) {
-      newErrors.username = '帳號為必填'
-    }
 
-    if (user.password !== user.confirmPassword) {
+    if (userRegister.password !== userRegister.confirmPassword) {
       newErrors.password = '密碼與確認密碼需要一致'
       newErrors.confirmPassword = '密碼與確認密碼需要一致'
     }
 
-    if (!user.password) {
+    if (!userRegister.password) {
       newErrors.password = '密碼為必填'
     }
 
-    if (!user.confirmPassword) {
+    if (!userRegister.confirmPassword) {
       newErrors.confirmPassword = '確認密碼為必填'
-    }
-
-    if (!user.agree) {
-      newErrors.agree = '請先同意會員註冊條款'
     }
 
     // 呈現錯誤訊息
@@ -199,14 +226,25 @@ export default function Login({
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(user),
+      body: JSON.stringify(userRegister),
     })
 
     const data = await res.json()
 
     console.log(data)
 
-    alert('送到伺服器')
+    // alert('送到伺服器')
+    toast.success('註冊成功!')
+
+    //註冊完後表單清空
+    setUserRegister({
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+    })
+    //讓面板回去登入
+    setIsActive(false)
   }
 
   if (!isVisible) return null
@@ -241,8 +279,8 @@ export default function Login({
                   placeholder="請輸入姓名"
                   id="name"
                   name="name"
-                  value={user.name}
-                  onChange={handleFieldChange}
+                  value={userRegister.name}
+                  onChange={handleRFieldChange}
                 />
               </div>
               <div className="col-12 error">{errors.name}</div>
@@ -255,51 +293,79 @@ export default function Login({
                   placeholder="輸入信箱"
                   id="email"
                   name="email"
-                  value={user.email}
-                  onChange={handleFieldChange}
+                  value={userRegister.email}
+                  onChange={handleRFieldChange}
                 />
               </div>
               <div className="col-12 error"> {errors.email}</div>
 
               <div className="w-100 mt-3">
-                <div></div>
                 <label htmlFor="password">密碼:</label>
-                <input
-                  className="mb-0"
-                  type={showPassword ? 'text' : 'password'}
-                  placeholder="密碼"
-                  id="password"
-                  name="password"
-                  value={user.password}
-                  onChange={handleFieldChange}
-                />
-                <div className="w-25">
-                  <button className="btn m-0 text-nowrap px-2">
-                    <IoEyeOffSharp className="chr-h7" />
-                  </button>
+                <div className="d-flex">
+                  <div className="m-0 w-100">
+                    <input
+                      className="m-0"
+                      type={showPassword ? 'text' : 'password'}
+                      placeholder="密碼"
+                      id="password"
+                      name="password"
+                      value={userRegister.password}
+                      onChange={handleRFieldChange}
+                    />
+                  </div>
+                  <div className="align-items-center m-0">
+                    <button
+                      className="btn m-0 border-0 h-100 px-4"
+                      onClick={toggleShowPassword}
+                    >
+                      {showPassword ? (
+                        <IoEyeSharp className="chr-h6" />
+                      ) : (
+                        <IoEyeOffSharp className="chr-h6" />
+                      )}
+                    </button>
+                  </div>
                 </div>
               </div>
               <div className="col-12 error">{errors.password}</div>
-
+              {/* 再次輸入密碼 */}
               <div className="w-100 mt-3">
-                <label htmlFor="confirmPassword">確認密碼:</label>
-                <input
-                  className="mb-0"
-                  type={showPassword ? 'text' : 'password'}
-                  placeholder="再次輸入密碼"
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  value={user.confirmPassword}
-                  onChange={handleFieldChange}
-                />
+                <label htmlFor="confirmPassword">再次輸入密碼:</label>
+                <div className="d-flex">
+                  <div className="m-0 w-100">
+                    <input
+                      className="m-0"
+                      type={showConfirmPassword ? 'text' : 'password'}
+                      placeholder="再次輸入密碼"
+                      id="confirmPassword"
+                      name="confirmPassword"
+                      value={userRegister.confirmPassword}
+                      onChange={handleRFieldChange}
+                    />
+                  </div>
+                  <div className="align-items-center m-0">
+                    <button
+                      className="btn m-0 border-0 h-100 px-4"
+                      onClick={toggleShowConfirmPassword}
+                    >
+                      {showConfirmPassword ? (
+                        <IoEyeSharp className="chr-h6" />
+                      ) : (
+                        <IoEyeOffSharp className="chr-h6" />
+                      )}
+                    </button>
+                  </div>
+                </div>
               </div>
               <div className="col-12 error">{errors.confirmPassword}</div>
 
-              <button className="mt-3">點我註冊</button>
+              <button type="submit" className="mt-3">
+                點我註冊
+              </button>
             </form>
           </div>
           <div className="form-container sign-in">
-            <form>
+            <form onSubmit={handleLoginForm}>
               <h1 style={{ marginBottom: '20px' }}>登入</h1>
               <div className="w-100">
                 <label htmlFor="email">電子信箱:</label>
@@ -314,17 +380,36 @@ export default function Login({
                   }}
                 />
               </div>
-              <div className="w-100">
+              <div className="col-12 error">{errors.email}</div>
+              <div className="w-100 mt-3">
                 <label htmlFor="password">密碼:</label>
-                <input
-                  type="password"
-                  placeholder="請輸入密碼"
-                  id="password"
-                  name="password"
-                  value={user.password}
-                  onChange={handleFieldChange}
-                />
+                <div className="d-flex">
+                  <div className="m-0 w-100">
+                    <input
+                      className="m-0"
+                      type={showPassword ? 'text' : 'password'}
+                      placeholder="密碼"
+                      id="password"
+                      name="password"
+                      value={user.password}
+                      onChange={handleFieldChange}
+                    />
+                  </div>
+                  <div className="align-items-center m-0">
+                    <button
+                      className="btn m-0 border-0 h-100 px-4"
+                      onClick={toggleShowPassword}
+                    >
+                      {showPassword ? (
+                        <IoEyeSharp className="chr-h6" />
+                      ) : (
+                        <IoEyeOffSharp className="chr-h6" />
+                      )}
+                    </button>
+                  </div>
+                </div>
               </div>
+              <div className="col-12 error">{errors.password}</div>
               <button
                 type="button"
                 className="forget-password-btn"

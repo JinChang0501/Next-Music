@@ -30,7 +30,7 @@ export default function StoreOrder() {
       <hr className="custom-hr" />
       {/* 活動dropdown */}
       <div className="row">
-        <div className="col-12 col-lg-3 py-3 d-flex flex-row">
+        <div className="col-12 col-lg-5 py-3 d-flex flex-row">
           <div className="col-6 text-center">
             <label htmlFor="activity" className="chb-h6 flex-fill text-center">
               <span className="chb-h5">訂單狀態：</span>

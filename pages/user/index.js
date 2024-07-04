@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { initUserData, useAuth } from '@/hooks/use-auth'
-import { login, logout, getUserById } from '@/services/user' //checkAuth
+import { login, logout, getUserById, checkAuth } from '@/services/user' //checkAuth
 import { useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 

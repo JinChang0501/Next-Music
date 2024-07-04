@@ -44,7 +44,7 @@ export default function TicketOrder() {
         >
           {/* 演唱會票券dropdown */}
           <div className="row">
-            <div className="col-12 col-lg-3 py-3 d-flex flex-row">
+            <div className="col-12 col-lg-5 py-3 d-flex flex-row">
               <div className="col-6 text-center">
                 <label
                   htmlFor="activity"
@@ -95,7 +95,7 @@ export default function TicketOrder() {
         >
           {/* 音樂祭票券dropdown */}
           <div className="row">
-            <div className="col-12 col-lg-3 py-3 d-flex flex-row">
+            <div className="col-12 col-lg-5 py-3 d-flex flex-row">
               <div className="col-6 text-center">
                 <label
                   htmlFor="activity"
