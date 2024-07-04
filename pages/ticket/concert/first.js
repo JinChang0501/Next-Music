@@ -7,7 +7,7 @@ import PhoneTitle from '@/components/ticket/phone-concert/phoneTitle'
 import Phone3D from '@/components/ticket/phone-concert/phone3D'
 import Left from '@/components/ticket/desktop-concert/first/Left'
 import Right from '@/components/ticket/desktop-concert/first/Right'
-import style from '@/styles/ticket/desktop-concert/first.module.scss'
+import style from '@/styles/ticket/concert/first.module.scss'
 
 export default function First() {
   // #region 動態獲取 breadcrumb、progressBar 高度，返回給 content
