@@ -110,13 +110,13 @@ export default function Nav() {
               </li>
             </ul>
             {/* 右方icon */}
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0 icon-lg-size">
-              <li className={`${styles['icon-margin']}`}>
+            <ul className={`navbar-nav d-flex flex-row ms-auto mb-2 mb-lg-0 ${styles['icon-lg-size']}`}>
+              <li className={`me-3 me-md-1`}>
                 <Link href="#" className="nav-link">
                   <BsCart />
                 </Link>
               </li>
-              <li className="icon-margin dropdown">
+              <li className={`me-3 me-md-1 dropdown`}>
                 <Link
                   className="nav-link"
                   href="#"
@@ -143,7 +143,7 @@ export default function Nav() {
                   </li>
                 </ul>
               </li>
-              <li className="icon-margin dropdown">
+              <li className={`me-3 me-md-1 dropdown`}>
                 <Link
                   className="nav-link"
                   href="#"
