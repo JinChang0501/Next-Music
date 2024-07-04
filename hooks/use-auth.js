@@ -123,6 +123,7 @@ export const AuthProvider = ({ children }) => {
         setAuth,
         favorites,
         setFavorites,
+        handleCheckAuth,
       }}
     >
       {children}
