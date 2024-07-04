@@ -128,6 +128,40 @@
   .bannerSty {
     height: 240px;
   }
+
+  .mt-120 {
+    margin-top: 60px;
+  }
+
+  .mb-120 {
+    margin-bottom: 60px;
+  }
+
+  .my-120 {
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+
+  .mt-80 {
+    margin-top: 40px;
+  }
+
+  .mb-80 {
+    margin-bottom: 40px;
+  }
+
+  .my-80 {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  .custom-bg-01 {
+    height: 11rem;
+  }
+
+  .custom-bg-02 {
+    height: 11rem;
+  }
 }
 
 /* //#region chloe 測試 */

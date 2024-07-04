@@ -78,10 +78,9 @@ export default function Index() {
         </div>
         {/* 第二個活動 end */}
         {/* 音樂人 start */}
-
         {/* 背景畫面待修改 */}
         <div
-          className={`row mb-5 ${styles['mt-120']}`}
+          className={`row ${styles['mb-120']} ${styles['mt-120']}`}
         >
           <div className="d-flex flex-column align-items-center">
             <div className="eng-h1 text-white">Discover More</div>
