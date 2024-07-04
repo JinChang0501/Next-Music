@@ -174,7 +174,7 @@ export default function Login({
           </div>
           <div className="form-container sign-in">
             <form>
-              <h1 style={{ marginBottom: '20px' }}>登入</h1>
+              <h1 style={{ marginBottom: '20px' }}>登我入</h1>
               <div className="w-100">
                 <label htmlFor="email">電子信箱:</label>
                 <input
@@ -183,8 +183,8 @@ export default function Login({
                   id="email"
                   name="email"
                   value={user.email}
-                  onChange={() => {
-                    handleFieldChange()
+                  onChange={(e) => {
+                    handleFieldChange(e)
                     handleCheckAuth()
                   }}
                 />
