@@ -1,0 +1,35 @@
+.payment {
+  margin: 15px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.payment > .paymentBlock:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+.paymentBlock {
+  display: flex;
+  justify-content: space-between;
+}
+
+.paymentBlockLeft {
+  display: flex;
+  align-items: center;
+}
+
+.paymentCircle {
+  width: 25px;
+  height: 25px;
+  margin-right: 20px;
+  border: 1px solid black;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.bg-bk {
+    background-color: black;
+}
+.bg-white {
+    background-color: #fff;
+}

@@ -1,10 +1,12 @@
-import { React, useEffect } from 'react'
+import { React, useState } from 'react'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import styles from '@/styles/product/product.module.scss'
 import CartLayout from '@/components/layout/cart-layout'
 import ProgressBar from '@/components/product/progressBar'
-import DesktopWhiteNoIconBtnBlack from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnBlack'
+
 import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
+import Transport from '@/components/product/transport'
+import EcPay from '@/components/product/ec-pay'
 
 export default function Payment() {
   const breadcrumbsURL = [
@@ -75,35 +77,11 @@ export default function Payment() {
         </div>
         <div className={`third ${styles['mt-40']} ${styles['w-800']}`}>
           <p className='chb-h5'>請選擇配送方式</p>
-          <div>
-            <div className={`form-check chb-h6 ${styles['']}`}>
-              <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-              <p className="form-check-label" for="flexRadioDefault1">
-                宅配到府
-              </p>
-              <div className="mb-3">
-                <p for="exampleInputEmail1" className="chb-p">收件地址</p>
-                <input type="text" className={`form-control ${styles['w-500']}`} />
-              </div>
-            </div>
-            <div className="form-check chb-h6">
-              <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"  checked/>
-              <p className={`form-check-label ${styles['mt-28']}`} for="flexRadioDefault2">
-                7-11超商付款取貨
-              </p>
-              {/* <DesktopWhiteNoIconBtnBlack text="選擇門市" className={`chb-h6 ${styles['h-40']}`} onClick={() => {
-                openWindow()}}/> */}
-              <DesktopWhiteNoIconBtnBlack text="選擇門市" className={`chb-h6 ${styles['h-40']}`} onClick={() => {
-              }}/>
-              {/* 門市名稱: <input type="text" value={store711.storename} disabled /> */}
-              <p className={`${styles['mt-28']}`}>門市名稱</p> <input type="text" className={`form-control ${styles['w-180']}`}   disabled />
-              {/* 門市地址: <input type="text" value={store711.storeaddress} disabled /> */}
-              <p className={`${styles['mt-28']}`}>門市地址</p><input type="text" className={`form-control ${styles['w-500']}`} disabled />
-            </div>
-          </div>
+          <Transport />
         </div>
         <div className={`fourth ${styles['mt-40']} ${styles['w-800']}`} disabled>
           <p className='chb-h5'>選擇『宅配到府』，請選擇付款方式</p>
+          <EcPay />
         </div>
         <div className={`fifth ${styles['my-40']} ${styles['w-800']}`}>
           <DesktopBlackNoIconBtnPurple text="下一步" className={`chb-h6 ${styles['btn-760']}`} />

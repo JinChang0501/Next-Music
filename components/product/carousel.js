@@ -51,6 +51,7 @@ export default function Carousel() {
           <img src="/images/product/slide/t-5.jpg" />
         </SwiperSlide>
       </Swiper>
+     
       <Swiper
         onSwiper={setThumbsSwiper}
         spaceBetween={10}
