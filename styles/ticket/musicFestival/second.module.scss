@@ -1,0 +1,44 @@
+// #region breadcrumb
+
+.breadcrumb {
+  width: 100%;
+  height: 60px;
+  background-color: salmon;
+}
+
+@media (max-width: 390px) {
+  .breadcrumb {
+    height: 36px;
+  }
+}
+
+// #endregion breadcrumb
+
+// #region thirdContainer
+
+.thirdContainer {
+  padding: 0 380px;
+}
+
+@media (max-width: 390px) {
+  .thirdContainer {
+    padding: 0;
+  }
+}
+
+// #endregion thirdContainer
+
+// #region accordion marginTop
+
+.accordionMarginTop{
+  margin-top: 20px;
+}
+
+@media (max-width: 390px) {
+  .accordionMarginTop {
+    margin-top: 0px;
+  }
+}
+
+// #endregion accordion marginTop
+

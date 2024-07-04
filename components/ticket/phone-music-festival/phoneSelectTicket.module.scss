@@ -1,95 +1,7 @@
-// #region breadcrumb
-
-.breadcrumb {
-  width: 100%;
-  height: 60px;
-  background-color: salmon;
-}
-
-@media (max-width: 390px) {
-  .breadcrumb {
-    height: 60px;
-  }
-}
-
-// #endregion breadcrumb
-
-// #region thirdContainer
-
-.thirdContainer {
-  padding: 0 390px;
-}
-
-@media (max-width: 390px) {
-  .thirdContainer {
-    padding: 0;
-  }
-}
-
-// #endregion thirdContainer
-
-// #region accordion marginTop
-
-.accordionMarginTop {
-  margin-top: 20px;
-}
-
-@media (max-width: 390px) {
-  .accordionMarginTop {
-    margin-top: 0px;
-  }
-}
-
-// #endregion accordion marginTop
-
-// #region image
-
-.activityImage {
-  margin-top: 20px;
-  width: 100%;
-  height: 450px;
-  position: relative;
-  img {
-    object-fit: contain;
-    object-position: center;
-    width: 100%;
-    height: 100%;
-  }
-}
-
-// #endregion image
-
-// #region info
-
-.info {
-  padding-bottom: 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  border-bottom: 1px solid #888888;
-}
-
-.infoBlock {
-  display: flex;
-  align-items: flex-start;
-}
-
-.infoTextIcon {
-  width: 30px;
-  height: 30px;
-}
-
-.info > .infoBlock:not(:last-child) {
-  margin-bottom: 30px;
-}
-
-// #endregion info
-
 // #region selectTicket
 
 .selectTicket {
-  padding: 60px 0;
+  padding: 30px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -98,7 +10,7 @@
 }
 
 .selectTicketBottom {
-  margin-top: 40px;
+  margin-top: 30px;
   display: flex;
   align-items: center;
   position: relative;
@@ -109,21 +21,20 @@
 // #region selectTicketBox
 
 .selectTicketBox {
-  width: 130px;
+  width: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid black;
   position: absolute;
   left: 0;
-  top: 0;
+  top: 7px;
   z-index: 999;
   background-color: rgb(255, 255, 255);
 }
 
 .selectTicketBoxFirst {
-  width: 80px;
-  margin: 10px 0;
+  width: 45px;
+  margin: 5px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -138,14 +49,16 @@
   transform: rotate(0deg);
 }
 
-.selectTicketBoxIcon.rotate{
+.selectTicketBoxIcon.rotate {
   transform: rotate(-180deg);
 }
 
 .selectTicketBoxOptionBox {
-  width: 100px;
+  width: 300px;
   display: flex;
-  flex-direction: column;
+  position: absolute;
+  left: 10px;
+  top: 35px;
   max-height: 0;
   overflow: hidden;
   transition: all 0.8s ease;
@@ -153,7 +66,7 @@
 }
 
 .selectTicketBoxOptionBox.open {
-  max-height: 275px; /* 根據需要調整此高度 */
+  max-height: 30px; /* 根據需要調整此高度 */
   opacity: 1;
 }
 
@@ -167,6 +80,7 @@
   background-color: #dbd7ff;
   transition: all 0.5s ease;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .selectTicketBoxOption:hover {
@@ -176,7 +90,7 @@
 }
 
 .selectTicketBoxOptionBox > button {
-  margin-bottom: 10px;
+  margin-right: 10px;
 }
 
 // #endregion selectTicketBox
@@ -185,7 +99,7 @@
 
 .totalPrice {
   height: 49px;
-  margin-left: 300px;
+  margin-left: 200px;
   display: flex;
   justify-content: center;
   align-items: center;

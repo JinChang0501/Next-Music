@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import WhiteLayout from '@/components/layout/ticket-layout/desktopLayout/whiteLayout'
 import ProgressBar from '@/components/ticket/progressBar'
 import Order from '@/components/ticket/desktop-concert/fourth/order'
-import ConcertTicket from '@/components/ticket/desktop-concert/fourth/ticket'
+import ConcertTicket from '@/components/ticket/desktop-concert/fourth/concertTicket'
 import Button from '@/components/ticket/desktop-concert/fourth/button'
 import PhoneOrder from '@/components/ticket/phone-concert/phoneOrder'
 import PhoneConcertTicket from '@/components/ticket/phone-concert/phoneConcertTicket'
 import PhoneButton from '@/components/ticket/phone-concert/phoneButton'
-import style from '@/styles/ticket/desktop-concert/fourth.module.scss'
+import style from '@/styles/ticket/concert/fourth.module.scss'
 
 export default function Fourth() {
   const [isMobile, setIsMobile] = useState(false)

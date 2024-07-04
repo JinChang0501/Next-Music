@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import WhiteLayout from '@/components/layout/ticket-layout/desktopLayout/whiteLayout'
 import ProgressBar from '@/components/ticket/progressBar'
-import AccordionFirst from '@/components/ticket/desktop-concert/third/accordionFirst'
-import AccordionSecond from '@/components/ticket/desktop-concert/third/accordionSecond'
-import AccordionThird from '@/components/ticket/desktop-concert/third/accordionThird'
-import PhoneAccordionFirst from '@/components/ticket/phone-concert/phoneAccordionFirst'
-import PhoneAccordionSecond from '@/components/ticket/phone-concert/phoneAccordionSecond'
-import PhoneAccordionThird from '@/components/ticket/phone-concert/phoneAccordionThird'
-import style from '@/styles/ticket/desktop-concert/third.module.scss'
+import AccordionFirst from '@/components/ticket/desktop-music-festival/accordionFirst'
+import AccordionSecond from '@/components/ticket/desktop-music-festival/accordionSecond'
+import AccordionThird from '@/components/ticket/desktop-music-festival/accordionThird'
+import PhoneAccordionFirst from '@/components/ticket/phone-music-festival/phoneAccordionFirst'
+import PhoneAccordionSecond from '@/components/ticket/phone-music-festival/phoneAccordionSecond'
+import PhoneAccordionThird from '@/components/ticket/phone-music-festival/phoneAccordionThird'
+import style from '@/styles/ticket/musicFestival/second.module.scss'
 import DesktopWhiteNoIconBtnPurple from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnPurple'
 import PhoneWhiteNoIconBtnPurple from '@/components/common/button/phoneWhiteButton/phoneWhiteNoIconBtnPurple'
 
-export default function Third() {
+export default function Second() {
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
@@ -39,13 +39,13 @@ export default function Third() {
         >
           {isMobile ? (
             <>
-              {/* AccordionFirst */}
+              {/* PhoneAccordionFirst */}
               <PhoneAccordionFirst />
 
-              {/* AccordionSecond */}
+              {/* PhoneAccordionSecond */}
               <PhoneAccordionSecond />
 
-              {/* AccordionThird */}
+              {/* PhoneAccordionThird */}
               <PhoneAccordionThird />
             </>
           ) : (
@@ -75,6 +75,6 @@ export default function Third() {
   )
 }
 
-Third.getLayout = function getLayout(page) {
+Second.getLayout = function getLayout(page) {
   return <WhiteLayout title="payment">{page}</WhiteLayout>
 }

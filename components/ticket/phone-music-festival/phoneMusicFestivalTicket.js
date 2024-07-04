@@ -1,9 +1,9 @@
 import React from 'react'
-import style from './ticket.module.scss'
+import style from './phoneMusicFestivalTicket.module.scss'
 import orderTicketData from '@/data/ticket/desktop-concert/fourth/orderTicketData'
 import { BsGeoAlt, BsClock, BsQrCode } from 'react-icons/bs'
 
-export default function ConcertTicket() {
+export default function PhoneMusicFestivalTicket() {
   return (
     <>
       {orderTicketData.map((v) => (
@@ -13,19 +13,12 @@ export default function ConcertTicket() {
               Lose yourself in music
             </div>
           </div>
-          <div className={`${style.orderTicketRight}`}>
-            <div
-              className={`${style.orderTicketRightText} eng-h7 text-black30`}
-            >
-              Find yourself in the festivity
-            </div>
-          </div>
           <div className={`${style.ticketTitle} text-white`}>
-            <div className="chb-h6">一生到底 One Life, One Shot</div>
+            <div className="chb-h7">一生到底 One Life, One Shot</div>
             <div className="chb-p">滅火器 Fire EX.</div>
             <div className="chb-p">#re159a753ct</div>
           </div>
-          <div className={`${style.ticketSeat} chb-h5 text-white`}>
+          <div className={`${style.ticketSeat} chb-h4 text-white`}>
             {v.ticketSeat}
           </div>
           <div className={`${style.ticketInfo} chb-p text-white`}>

@@ -5,7 +5,7 @@ import LeftSecond from '@/components/ticket/desktop-concert/second/leftSecond'
 import RightSecond from '@/components/ticket/desktop-concert/second/rightSecond'
 import PhoneTitle from '@/components/ticket/phone-concert/phoneTitle'
 import PhoneSelectTicket from '@/components/ticket/phone-concert/phoneSelectTicket'
-import style from '@/styles/ticket/desktop-concert/second.module.scss'
+import style from '@/styles/ticket/concert/second.module.scss'
 
 export default function Second() {
   // #region 動態獲取 breadcrumb、progressBar 高度，返回給 content

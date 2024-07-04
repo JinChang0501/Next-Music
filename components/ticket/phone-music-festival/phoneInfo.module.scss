@@ -1,0 +1,26 @@
+// #region info
+
+.info {
+  padding-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  border-bottom: 1px solid #888888;
+}
+
+.infoBlock {
+  display: flex;
+  align-items: flex-start;
+}
+
+.infoTextIcon {
+  width: 25px;
+  height: 25px;
+}
+
+.info > .infoBlock:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+// #endregion info
