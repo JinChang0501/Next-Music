@@ -2,10 +2,10 @@ import React from 'react'
 import { BsPlus } from 'react-icons/bs'
 
 export default function PhoneBlackPureIconBtnPurple({
-  iconWidth = 40,
-  iconHeight = 40,
+  iconWidth = 20,
+  iconHeight = 20,
   icon: IconComponent = BsPlus,
-  onClick = () => {},
+  onClick = () => { },
 }) {
   return (
     <>
@@ -19,7 +19,7 @@ export default function PhoneBlackPureIconBtnPurple({
       </button>
       <style jsx>{`
         .PhoneBlackPureIconBtnPurple {
-          padding: 4px;
+          padding: 8px;
           color: white;
           background-color: #685beb;
           display: flex;
