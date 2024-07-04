@@ -6,6 +6,7 @@ import LeftSecond from '@/components/ticket/desktop-concert/second/leftSecond'
 import RightSecond from '@/components/ticket/desktop-concert/second/rightSecond'
 import PhoneTitle from '@/components/ticket/phone-concert/phoneTitle'
 import PhoneSelectTicket from '@/components/ticket/phone-concert/phoneSelectTicket'
+import Phone3D from '@/components/ticket/phone-concert/phone3D'
 import style from '@/styles/ticket/concert/second.module.scss'
 
 export default function Second() {
@@ -65,9 +66,10 @@ export default function Second() {
           {/* progress */}
           <ProgressBar />
 
-          {/* photo */}
-          <div className={`${style.bottom}`}>
+          {/* photo and select ticket */}
+          <div className={style.zIndex}>
             <PhoneSelectTicket />
+            <Phone3D />
           </div>
         </>
       ) : (
