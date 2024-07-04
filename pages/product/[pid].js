@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
-import styles from '@/styles/product/product.module.scss'
+import styles from '@/styles/product/pc/product.module.scss'
 // import Carousel from '@/components/product/carousel'
 import CardProduct from '@/components/product/card-product'
 import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
@@ -80,14 +80,14 @@ export default function Detail() {
       {/* 第一個區塊 */}
       <div className={`row ${styles['mx-160']}  ${styles['mt-80']}`}>
         {/* 左 */}
-        <div className={`col-sm-6 `}>
-          <div className={`position-sticky `}>
+        <div className={`col-md-6 `}>
+          <div className={`position-sticky ${styles['w-456']} ${styles['ml-136']}`}>
             <SwiperTop />
             <SwiperBottom />
           </div>
         </div>
         {/* 右 */}
-        <div className={`col-sm-3  ${styles['ml-136']}`}>
+        <div className={`col-md-3 ${styles['ml-136']}`}>
           {/* 活動名稱 activity.name*/}
           <p className="text-white chb-h4">音樂祭名稱</p>
           {/* 商品名稱products.name */}
@@ -96,9 +96,9 @@ export default function Detail() {
           <p className={`text-purple2 chb-h5 ${styles['mt-80']}`}>價格</p>
           {/*尺寸 */}
           <p className={`text-purple2 chb-h5 ${styles['mt-40']} ${styles['mb-60']}`}>尺寸: F</p>
-          <div className={`row row-cols-md-2 `}>
-            <DesktopBlackNoIconBtnBlack text="加入購物車" />
-            <DesktopBlackNoIconBtnPurple text="立即購買" />
+          <div className={`row row-cols-md-2 ${styles['space-between']} `}>
+            <DesktopBlackNoIconBtnBlack text="加入購物車" onClick={""}/>
+            <DesktopBlackNoIconBtnPurple text="立即購買" onClick={""}/>
           </div>
         </div>
       </div>

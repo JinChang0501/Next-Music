@@ -1,4 +1,4 @@
-.payment {
+.transport {
   margin: 15px 0;
   display: flex;
   flex-direction: column;
@@ -8,17 +8,17 @@
   margin-bottom: 30px;
 }
 
-.paymentBlock {
+.transportBlock {
   display: flex;
   justify-content: space-between;
 }
 
-.paymentBlockLeft {
+.transportBlockLeft {
   display: flex;
   align-items: center;
 }
 
-.paymentCircle {
+.transportCircle {
   width: 25px;
   height: 25px;
   margin-right: 20px;
@@ -32,4 +32,7 @@
 }
 .bg-white {
     background-color: #fff;
+}
+.w-500 {
+  width: 500px;
 }
