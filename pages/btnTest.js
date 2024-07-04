@@ -42,7 +42,7 @@ import ProgressBar from '@/components/product/progressBar'
 export default function BtnTest() {
   return (
     <>
-      <div className="bg-white">
+      <div className="bg-white d-flex flex-column justify-content-center align-items-center">
         <div>
           <ProgressBar />
         </div>
@@ -111,7 +111,7 @@ export default function BtnTest() {
           <PhoneWhitePureIconBtnPurple />
         </div>
       </div>
-      <div>
+      <div className="d-flex flex-column justify-content-center align-items-center">
         <div className="text-white">
           <h1>Black Desktop Custom Button</h1>
         </div>
