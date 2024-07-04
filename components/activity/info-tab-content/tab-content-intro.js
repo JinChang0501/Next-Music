@@ -10,7 +10,7 @@ export default function TabContentIntro({ tabTargetIntro }) {
         role="tabpanel"
         aria-labelledby={`${tabTargetIntro}-tab`}
       >
-        <div className="chb-p">本場次購票方式為：「網站購票、信用卡付款、ibon取票」及「網站購票、ibon付款、ibon取票」及「ibon購票、付款、取票」三種，相關注意事項請詳閱【常見問題】的【iNDIEVOX 網站購票說明】及【ibon機台購票說明】。
+        <div className="chr-p text-purple3">本場次購票方式為：「網站購票、信用卡付款、ibon取票」及「網站購票、ibon付款、ibon取票」及「ibon購票、付款、取票」三種，相關注意事項請詳閱【常見問題】的【iNDIEVOX 網站購票說明】及【ibon機台購票說明】。
           本場次單筆訂單限購4張。
           本活動為：全區搖滾站席。
           開演時間為 19：30，將於 19：00 開放入場。

@@ -10,7 +10,7 @@ export default function TabContentAid({ tabTargetAid }) {
         role="tabpanel"
         aria-labelledby={`${tabTargetAid}-tab`}
       >
-        <div>先亂打一行字</div>
+        <div className="chr-p text-purple3">先亂打一行字</div>
       </div>
     </>
   )

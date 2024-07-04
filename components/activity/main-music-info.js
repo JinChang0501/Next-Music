@@ -8,7 +8,7 @@ export default function MainMusicInfo() {
     <>
       {/* 活動主資訊 start */}
       <div className="row d-flex justify-content-center align-items-center">
-        <div className="col-md-7 col-12 p-2 of-hide img-border">
+        <div className="col-md-7 col-12 p-2 mb-5 mb-sm-0 of-hide img-border">
           <div className="custom-bg-01" />
         </div>
         <div className="col-md-5 col-12 d-flex flex-column">
@@ -16,17 +16,17 @@ export default function MainMusicInfo() {
           <div className="row d-flex flex-column justify-content-between ms-md-3 ms-0">
             <div className="col-12 chb-h3 text-white mb-3">一生到底 One Life, One Shot</div>
             <div className="col-12 my-4 my-md-5">
-              <div className="row my-2">
-                <BsCalendar4 className="col-2 text-white" />
-                <div className="col-10 chb-h5 text-purple2">2024/06/15&nbsp;&nbsp;19:30</div>
+              <div className="d-flex my-2">
+                <BsCalendar4 className="chb-h5 text-white me-3 mt-1" />
+                <div className="chb-h5 text-purple2">2024/06/15&nbsp;&nbsp;19:30</div>
               </div>
-              <div className="row my-2">
-                <BsGeoAlt className="col-2 text-white" />
-                <div className="col-10 chb-h5 text-purple2">臺北流行音樂中心</div>
+              <div className="d-flex my-2">
+                <BsGeoAlt className="chb-h5 text-white me-3 mt-1" />
+                <div className="chb-h5 text-purple2">臺北流行音樂中心</div>
               </div>
-              <div className="row my-2">
-                <BsMusicNoteBeamed className="col-2 text-white" />
-                <div className="col-10 chb-h5 text-purple2">滅火器 Fire EX.</div>
+              <div className="d-flex my-2">
+                <BsMusicNoteBeamed className="chb-h5 text-white me-3 mt-1" />
+                <div className="chb-h5 text-purple2">滅火器 Fire EX.</div>
               </div>
             </div>
             <div className="col-12 text-nowrap mt-3">
@@ -34,9 +34,8 @@ export default function MainMusicInfo() {
                 <div className="col-4 me-2">
                   <DesktopBlackNoIconBtnPurple text='立即購票' className='chr-h5' />
                 </div>
-                <div className="col-4">
+                <div className="col-4 d-none d-md-block">
                   <DesktopBlackPureIconBtnBlack
-                    className="d-md-block d-none"
                     icon={BsBookmark}
                   />
                 </div>

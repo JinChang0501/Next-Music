@@ -22,7 +22,7 @@ export default function Aid() {
         {/* 活動主資訊 end */}
         {/* 簡介：頁籤 start */}
         {/* <ActivityTabs className="my-80" /> */}
-        <ul className="nav nav-tabs my-80" id="activityTab" role="tablist">
+        <ul className="nav nav-tabs mt-80 mb-40" id="activityTab" role="tablist">
           <Tab
             tabName="節目介紹"
             tabTarget="tabTargetAid"
@@ -74,8 +74,15 @@ export default function Aid() {
         }
         @media (max-width: 390px) {
           .mt-80 {
-          margin-top: 20px;
-        }
+            margin-top: 20px;
+          }
+          .mb-40 {
+            margin-bottom: 20px;
+          }
+          .my-80 {
+            margin-top: 20px;
+            margin-bottom: 20px;
+          } 
         }
       `}</style>
     </>
