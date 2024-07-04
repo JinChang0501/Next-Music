@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
-import styles from '@/styles/product/product.module.scss'
+import styles from '@/styles/product/pc/product.module.scss'
 import CartLayout from '@/components/layout/cart-layout'
 import ProgressBar from '@/components/product/progressBar'
 import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'

@@ -1,6 +1,6 @@
 import { React, useState } from 'react'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
-import styles from '@/styles/product/product.module.scss'
+import styles from '@/styles/product/pc/product.module.scss'
 import CartLayout from '@/components/layout/cart-layout'
 import ProgressBar from '@/components/product/progressBar'
 
@@ -50,7 +50,7 @@ export default function Payment() {
             </tr>
           </tbody>
           </table>
-          <div className={`${styles['mt-40']} ${styles['cart-total']}`}>
+          <div className={`${styles['mt-40']} ${styles['space-between']}`}>
             <span className="chb-h5">共1項商品，數量2個</span>
             <span className="chb-h5">總價:NT$1400元 </span>
           </div>

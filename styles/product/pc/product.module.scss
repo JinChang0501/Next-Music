@@ -61,17 +61,6 @@
   width: 760px;
   padding: 30px 20px;
 }
-
-
-
-
-.g-40 {
-  display: flex;
-  align-items: flex-start;
-  gap: 40px;
-  align-self: stretch;
-}
-
 .text-white {
  color: white;
 }
@@ -103,6 +92,9 @@
 }
 .w-500 {
   width: 500px;
+}
+.w-456 {
+  width: 456px;
 }
 .w-400 {
   width: 400px;
@@ -170,7 +162,7 @@
   flex-direction: column;
   align-items: center;
 }
-.cart-total {
+.space-between {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

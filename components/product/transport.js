@@ -10,23 +10,31 @@ export default function Transport() {
   }
   return (
     <>
-      <div className={`form-check chb-h6 ${styles['']}`}>
-        {/* <input
-          className={`form-check-input ${styles['paymentCircle']} ${styles["selected === 'ecPay' ? 'bg-bk' : 'bg-white'"]}`} 
-          onClick={() => handleCircleClick('ecPay')}
-          checked
-        /> */}
-        <button
-          className={`${styles['paymentCircle']} ${styles[selected === 'ecPay' ? 'bg-bk' : 'bg-white']}`}
-          onClick={() => handleCircleClick('ecPay')}
-        ></button>
-        <div>宅配到府</div>
+      <div className={styles.transport}>
+        <div className={styles.home}>
+          <div className={styles.transportBlock}>
+            <div className={styles.transportBlockLeft}>
+              <button
+                className={`${styles.transportCircle} ${
+                  selected === 'ecPay' ? 'bg-black' : 'bg-white'
+                }`}
+                onClick={() => handleCircleClick('ecPay')}
+              ></button>
+              <div className="chb-h6">宅配到府</div>
+            </div>
+            <div className={styles.ecPayImage}></div>
+          </div>
+          <div className={styles.transportBlock}>
+            <div className="mt-3">
+              <p for="exampleInputEmail1" className="chb-p">收件地址</p>
+              <input type="text" className=     {`form-control ${styles['w-500']}`} />
+            </div>
+          </div>
+        </div>
+        <div className={styles.market}></div>
       </div>
-              <div className="mb-3">
-                <p for="exampleInputEmail1" className="chb-p">收件地址</p>
-                <input type="text" className={`form-control ${styles['w-500']}`} />
-              </div>
-            
+{/* 舊 */}
+          
             <div className="form-check chb-h6">
               <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"  checked/>
               <p className={`form-check-label ${styles['mt-28']}`} for="flexRadioDefault2">

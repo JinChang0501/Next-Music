@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import styles from '@/styles/product/product.module.scss'
+import styles from '@/styles/product/pc/product.module.scss'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import CarouselIndex from '@/components/product/carousel-index'
 import CardProduct from '@/components/product/card-product'
@@ -46,7 +46,7 @@ export default function List() {
       <div className={`${styles['mx-160']} ${styles['my-100']}`}>
         <div className="row">
           {/* left-search start*/}
-          <LeftBar className={`styles['w-400']`}/>
+          <LeftBar className={`styles['w-400']`} />
           {/* left-search end*/}
           <div className="col-md-9">
             <div className="chb-h3 text-white">所有商品</div>
