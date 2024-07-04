@@ -167,6 +167,29 @@ $form-check-input-checked-bg-color: #685beb;
 
 // #endregion checkBox
 
+// 卡片樣式
+@media (min-width: 1921px) {
+  $card-spacer-y: $spacer;
+  $card-spacer-x: $spacer;
+  $card-cap-padding-y: $card-spacer-y * .5;
+  $card-cap-padding-x: $card-spacer-x;
+}
+
+@media (max-width: 1920px) and (min-width: 392px) {
+  $card-spacer-y: 8px;
+  $card-spacer-x: 0.5rem;
+  $card-cap-padding-y: 0.5rem;
+  $card-cap-padding-x: 0.5rem;
+}
+
+@media (max-width: 391px) {
+  $spacer: 0.5rem;
+  $card-spacer-y: 0.5rem;
+  $card-spacer-x: 0.5rem;
+  $card-cap-padding-y: 0.5rem;
+  $card-cap-padding-x: 0.5rem;
+}
+
 // ↑↑↑  變數覆蓋(Variable overrides) 要寫在這行"上面"  ↑↑↑
 // 這裡導入所有 bootstrap 樣式
 // 最後營運階段(實務)可以用部份導入來進行最佳化

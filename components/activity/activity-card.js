@@ -5,6 +5,7 @@ import DesktopBlackNoIconBtnPurple from '../common/button/desktopBlackButton/des
 import DesktopBlackPureIconBtnBlack from '../common/button/desktopBlackButton/desktopBlackPureIconBtnBlack';
 import { useState, useEffect } from 'react'
 import PhoneBlackPureIconBtnBlack from '../common/button/phoneBlackButton/phoneBlackPureIconBtnBlack';
+import PhoneBlackNoIconBtnPurple from '../common/button/phoneBlackButton/phoneBlackNoIconBtnPurple';
 
 export default function ActivityCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/temp-Image7-Gw6zu.avif" }) {
 
@@ -35,17 +36,19 @@ export default function ActivityCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/t
           </div>
           {/* 卡片文字 */}
           <div className="col-8 card-body d-flex flex-column justify-content-between">
-            <div className="row d-flex justify-content-around">
-              <div className="card-title col-10 chb-h4 text-purple3 p-0">一生到底</div>
-              <div className="col-1 p-0">{isDesktop ?
-                (<DesktopBlackPureIconBtnBlack
-                  icon={BsBookmark}
-                  iconWidth={28}
-                  iconHeight={28}
-                />) : (
-                  <PhoneBlackPureIconBtnBlack
+            <div className="d-flex">
+              <div className="card-title chb-h4 text-purple3 p-0">一生到底</div>
+              <div className="p-0 ms-auto">
+                {isDesktop ?
+                  (<DesktopBlackPureIconBtnBlack
                     icon={BsBookmark}
-                  />)}
+                    iconWidth={28}
+                    iconHeight={28}
+                  />) : (
+                    <PhoneBlackPureIconBtnBlack
+                      icon={BsBookmark}
+                    />
+                  )}
               </div>
             </div>
             <div className="col-12 d-flex align-items-end">
@@ -65,10 +68,15 @@ export default function ActivityCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/t
                   </div>
                 </div>
               </div>
-              <div className="col-4 d-flex justify-content-end gap-4 text-nowrap">
+              <div className="col-4 d-flex justify-content-end gap-2 text-nowrap">
                 <DesktopWhiteNoIconBtnBlack text="活動資訊" className="chr-p d-md-block d-none" />
                 {/* 如果變成手機大小，要變成手機按鈕的判斷式 */}
-                <DesktopBlackNoIconBtnPurple text="立即購票" className="chr-p" />
+                {isDesktop ? (
+                  <DesktopBlackNoIconBtnPurple text="立即購票" className="chr-p" />
+                ) : (
+                  <PhoneBlackNoIconBtnPurple text="立即購票" className="chr-p" />
+                )}
+
               </div>
             </div>
           </div>
