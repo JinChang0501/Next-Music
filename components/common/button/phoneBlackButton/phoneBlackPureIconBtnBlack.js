@@ -19,7 +19,7 @@ export default function PhoneBlackPureIconBtnBlack({
       </button>
       <style jsx>{`
         .PhoneBlackPureIconBtnBlack {
-          padding: 8px;
+          padding: 6px;
           color: white;
           background-color: black;
           border: 1px solid #fff;
