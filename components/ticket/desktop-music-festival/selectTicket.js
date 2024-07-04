@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import style from './selectTicket.module.scss'
 import { BsCaretDownFill } from 'react-icons/bs'
+import { TicketContext } from '@/context/ticket/selectNumber'
 
 export default function SelectTicket() {
   const [isOpen, setIsOpen] = useState(false)
 
-  const [selectedNumber, setSelectedNumber] = useState(1)
+  const { selectedNumber, setSelectedNumber } = useContext(TicketContext)
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen)
@@ -53,7 +54,7 @@ export default function SelectTicket() {
               {[1, 2, 3, 4, 5, 6].map((num) => (
                 <button
                   key={num}
-                  className={`${style.selectTicketBoxOption}`}
+                  className={`${style.selectTicketBoxOption} chb-h5`}
                   onClick={() => selectOption(num)}
                 >
                   {num}

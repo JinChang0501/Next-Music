@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import style from './phoneAccordionFirst.module.scss'
 import { BsFillTicketPerforatedFill, BsQrCode } from 'react-icons/bs'
 import Image from 'next/image'
+import { TicketContext } from '@/context/ticket/selectNumber'
 
 export default function PhoneAccordionFirst() {
+  const { selectedNumber } = useContext(TicketContext)
+
   return (
     <>
       <div className="accordion-item">
@@ -76,7 +79,7 @@ export default function PhoneAccordionFirst() {
             {/* totalPrice */}
 
             <div className={`${style.totalPrice} chb-h5 text-black`}>
-              <div>張數 : 6 張</div>
+              <div>張數 : {selectedNumber} 張</div>
               <div>總價 : 25,700</div>
             </div>
           </div>

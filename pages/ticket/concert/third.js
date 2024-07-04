@@ -10,9 +10,16 @@ import PhoneAccordionThird from '@/components/ticket/phone-concert/phoneAccordio
 import style from '@/styles/ticket/concert/third.module.scss'
 import DesktopWhiteNoIconBtnPurple from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnPurple'
 import PhoneWhiteNoIconBtnPurple from '@/components/common/button/phoneWhiteButton/phoneWhiteNoIconBtnPurple'
+import { useRouter } from 'next/router'
 
 export default function Third() {
   const [isMobile, setIsMobile] = useState(false)
+
+  const router = useRouter()
+
+  const handleNext = () => {
+    router.push('/ticket/concert/fourth')
+  }
 
   useEffect(() => {
     const handleResize = () => {
@@ -63,11 +70,19 @@ export default function Third() {
         </div>
         {isMobile ? (
           <div style={{ margin: '20px 0' }}>
-            <PhoneWhiteNoIconBtnPurple text="付款" className="w-100 chb-h6" />
+            <PhoneWhiteNoIconBtnPurple
+              text="付款"
+              className="w-100 chb-h6"
+              onClick={handleNext}
+            />
           </div>
         ) : (
           <div style={{ margin: '30px 0' }}>
-            <DesktopWhiteNoIconBtnPurple text="付款" className="w-100 chb-h6" />
+            <DesktopWhiteNoIconBtnPurple
+              text="付款"
+              className="w-100 chb-h6"
+              onClick={handleNext}
+            />
           </div>
         )}
       </div>

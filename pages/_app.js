@@ -6,6 +6,7 @@ import DefaultLayout from '@/components/layout/default-layout'
 import { TabProvider } from '@/hooks/member/useTab'
 import { ActTabProvider } from '@/hooks/Activity/useTabs'
 import { AuthProvider } from '@/hooks/use-auth'
+import { TicketProvider } from '@/context/ticket/selectNumber'
 
 export default function MyApp({ Component, pageProps }) {
   // 導入bootstrap的JS函式庫
@@ -20,11 +21,13 @@ export default function MyApp({ Component, pageProps }) {
     Component.getLayout || ((page) => <DefaultLayout>{page}</DefaultLayout>)
 
   return (
-    <AuthProvider>
-      <ActTabProvider>
-        <TabProvider>{getLayout(<Component {...pageProps} />)}</TabProvider>
-      </ActTabProvider>
-    </AuthProvider>
+    <TicketProvider>
+      <AuthProvider>
+        <ActTabProvider>
+          <TabProvider>{getLayout(<Component {...pageProps} />)}</TabProvider>
+        </ActTabProvider>
+      </AuthProvider>
+    </TicketProvider>
   )
 }
 //Jin的自訂Provider -> 我的票夾

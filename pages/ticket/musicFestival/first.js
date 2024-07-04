@@ -10,9 +10,16 @@ import PhoneSelectTicket from '@/components/ticket/phone-music-festival/phoneSel
 import style from '@/styles/ticket/musicFestival/first.module.scss'
 import DesktopWhiteNoIconBtnPurple from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnPurple'
 import PhoneWhiteNoIconBtnPurple from '@/components/common/button/phoneWhiteButton/phoneWhiteNoIconBtnPurple'
+import { useRouter } from 'next/router'
 
 export default function Third() {
   const [isMobile, setIsMobile] = useState(false)
+
+  const router = useRouter()
+
+  const handleNext = () => {
+    router.push('/ticket/musicFestival/second')
+  }
 
   useEffect(() => {
     const handleResize = () => {
@@ -65,11 +72,19 @@ export default function Third() {
         )}
         {isMobile ? (
           <div style={{ margin: '20px 0' }}>
-            <PhoneWhiteNoIconBtnPurple text="付款" className="w-100 chb-h6" />
+            <PhoneWhiteNoIconBtnPurple
+              text="下一步"
+              className="w-100 chb-h6"
+              onClick={handleNext}
+            />
           </div>
         ) : (
           <div style={{ margin: '60px 0' }}>
-            <DesktopWhiteNoIconBtnPurple text="付款" className="w-100 chb-h6" />
+            <DesktopWhiteNoIconBtnPurple
+              text="下一步"
+              className="w-100 chb-h6"
+              onClick={handleNext}
+            />
           </div>
         )}
       </div>
