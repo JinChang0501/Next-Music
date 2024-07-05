@@ -16,7 +16,7 @@ export default function RightSecond() {
 
   return (
     <>
-      <div className={`${style.right}`}>
+      <div className={`${style.right} col-xxl-3 col-xl-4 col-lg-5 col-md-6`}>
         {/* rightTitle */}
         <RightTitle />
 

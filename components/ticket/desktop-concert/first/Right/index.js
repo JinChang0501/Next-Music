@@ -8,18 +8,21 @@ import style from './right.module.scss'
 export default function Right() {
   return (
     <>
-      <div className={`${style.right}`}>
-        {/* rightTitle */}
-        <RightTitle />
+      <div className="col-xxl-3 col-xl-4 col-lg-5 col-md-6 p-0">
+        <div className={`${style.rightTop} `}>
+          {/* rightTitle */}
+          <RightTitle />
+        </div>
+        <div className={`${style.rightBottom} `}>
+          {/* ticketAreaTitle */}
+          <TicketAreaTitle />
 
-        {/* ticketAreaTitle */}
-        <TicketAreaTitle />
+          {/* ticketArea */}
+          <TicketArea />
 
-        {/* ticketArea */}
-        <TicketArea />
-
-        {/* info */}
-        <Info />
+          {/* info */}
+          <Info />
+        </div>
       </div>
     </>
   )
