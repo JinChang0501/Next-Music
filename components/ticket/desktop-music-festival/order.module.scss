@@ -1,0 +1,158 @@
+// #region order
+
+.order {
+  height: 380px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 50px;
+  margin-bottom: 60px;
+  border-bottom: 1px solid #a1a1a1;
+}
+
+// #endregion order
+
+// #region flexCenter
+
+.activityInfo,
+.activityTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// #endregion flexCenter
+
+// #region activity
+
+.activityInfo {
+  width: 850px;
+  flex-direction: column;
+}
+
+.activityTitle {
+  padding: 30px 20px 20px;
+  margin-bottom: 10px;
+}
+
+.activityBody {
+  width: 100%;
+  height: 180px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px 0;
+}
+
+.activityImage {
+  width: 411px;
+  height: 170px;
+  margin-right: 20px;
+  position: relative;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+}
+
+.activityText {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+// #endregion activity
+
+// #region flexCenter
+
+.orderInfo,
+.orderTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// #endregion flexCenter
+
+// #region order
+
+.orderInfo {
+  width: 380px;
+  flex-direction: column;
+}
+
+.orderTitle {
+  padding: 30px 20px 20px;
+  margin-bottom: 10px;
+}
+
+.orderBody {
+  width: 100%;
+  height: 180px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px 0;
+}
+
+.orderBodyLeft {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.orderBodyRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.orderBodyLeft > div:not(:last-child) {
+  margin-bottom: 50px;
+}
+
+.orderBodyRight > div:not(:last-child) {
+  margin-bottom: 50px;
+}
+
+// #endregion order
+
+// #region flexCenter
+
+.paymentInfo,
+.paymentTitle,
+.paymentBody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// #endregion flexCenter
+
+// #region payment
+
+.paymentInfo {
+  width: 280px;
+  flex-direction: column;
+}
+
+.paymentTitle {
+  padding: 30px 20px 20px;
+  margin-bottom: 10px;
+}
+
+.paymentBody {
+  width: 100%;
+  height: 180px;
+  flex-direction: column;
+  padding: 10px 20px 0;
+}
+
+.paymentBody > div:not(:last-child) {
+  margin-bottom: 50px;
+}
+
+// #endregion payment

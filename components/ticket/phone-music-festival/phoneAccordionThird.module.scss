@@ -1,0 +1,56 @@
+// #region payment
+
+.payment {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.payment > .paymentBlock:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.paymentBlock {
+  display: flex;
+  justify-content: space-between;
+}
+
+.paymentBlockLeft {
+  display: flex;
+  align-items: center;
+}
+
+.paymentCircle {
+  width: 18px;
+  height: 18px;
+  margin-right: 20px;
+  border: 1px solid black;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.ecPayImage {
+  width: 80px;
+  height: 25px;
+  position: relative;
+  img {
+    object-fit: contain;
+    object-position: center;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.linePayImage {
+  width: 100px;
+  height: 25px;
+  position: relative;
+  img {
+    object-fit: contain;
+    object-position: center;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// #endregion payment

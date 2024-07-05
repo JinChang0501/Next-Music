@@ -1,0 +1,108 @@
+// #region selectTicket
+
+.selectTicket {
+  padding: 30px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  border-bottom: 1px solid #888888;
+}
+
+.selectTicketBottom {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+// #endregion selectTicket
+
+// #region selectTicketBox
+
+.selectTicketBox {
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: 7px;
+  z-index: 999;
+  background-color: rgb(255, 255, 255);
+}
+
+.selectTicketBoxFirst {
+  width: 45px;
+  margin: 5px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  cursor: pointer;
+}
+
+.selectTicketBoxIcon {
+  width: 23px;
+  height: 23px;
+  transition: all 0.8s ease;
+  transform: rotate(0deg);
+}
+
+.selectTicketBoxIcon.rotate {
+  transform: rotate(-180deg);
+}
+
+.selectTicketBoxOptionBox {
+  width: 300px;
+  display: flex;
+  position: absolute;
+  left: 10px;
+  top: 35px;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.8s ease;
+  opacity: 0;
+}
+
+.selectTicketBoxOptionBox.open {
+  max-height: 30px; /* 根據需要調整此高度 */
+  opacity: 1;
+}
+
+.selectTicketBoxOption {
+  width: 100%;
+  padding: 3px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #685beb;
+  background-color: #dbd7ff;
+  transition: all 0.5s ease;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.selectTicketBoxOption:hover {
+  background-color: #685beb;
+  color: white;
+  box-shadow: 0 0 10px #685beb;
+}
+
+.selectTicketBoxOptionBox > button {
+  margin-right: 10px;
+}
+
+// #endregion selectTicketBox
+
+// #region totalPrice
+
+.totalPrice {
+  height: 49px;
+  margin-left: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// #endregion totalPrice

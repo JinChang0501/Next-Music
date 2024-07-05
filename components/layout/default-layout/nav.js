@@ -11,7 +11,7 @@ import { initUserData, useAuth } from '@/hooks/use-auth'
 import { login, logout, getUserById } from '@/services/user' //checkAuth
 import toast, { Toaster } from 'react-hot-toast'
 
-export default function Nav() {
+export default function Nav({ setAuth }) {
   const [wakeLogin, setWakeLogin] = useState(false) //喚醒登入面板
   const [wakeForgetPassword, setWakeForgetPassword] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false) // 這裡要接Login元件傳回來的狀態
@@ -38,7 +38,7 @@ export default function Nav() {
   }
 
   // 登入後設定全域的會員資料用
-  const { setAuth } = useAuth()
+  // const { setAuth } = useAuth()
 
   //處理登出
   const handleLogout = async () => {
@@ -110,13 +110,13 @@ export default function Nav() {
               </li>
             </ul>
             {/* 右方icon */}
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0 icon-lg-size">
-              <li className={`${styles['icon-margin']}`}>
+            <ul className={`navbar-nav d-flex flex-row ms-auto mb-2 mb-lg-0 ${styles['icon-lg-size']}`}>
+              <li className={`me-3 me-md-1`}>
                 <Link href="#" className="nav-link">
                   <BsCart />
                 </Link>
               </li>
-              <li className="icon-margin dropdown">
+              <li className={`me-3 me-md-1 dropdown`}>
                 <Link
                   className="nav-link"
                   href="#"
@@ -143,7 +143,7 @@ export default function Nav() {
                   </li>
                 </ul>
               </li>
-              <li className="icon-margin dropdown">
+              <li className={`me-3 me-md-1 dropdown`}>
                 <Link
                   className="nav-link"
                   href="#"
