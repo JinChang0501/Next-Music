@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 import { BsFillXCircleFill } from 'react-icons/bs'
+import toast, { Toaster } from 'react-hot-toast'
 
 export default function ForgetPassword({ isVisible, onClose }) {
   const [isActive, setIsActive] = useState(false)
@@ -19,11 +20,93 @@ export default function ForgetPassword({ isVisible, onClose }) {
   }
 
   const handleNextStep = (e) => {
-    e.preventDefault() // 阻止表單默認行為
     setIsActive(true)
     // router.push('/login/reset-password')
 
     // 導航到重設密碼頁面
+  }
+
+  const [userForgetPassword, setUserForgetPassword] = useState({
+    email: '',
+    verifyCode: '',
+  })
+
+  // 錯誤訊息狀態
+  const [errors, setErrors] = useState({
+    email: '',
+    verifyCode: '',
+  })
+
+  // 多欄位共用事件函式
+  const handleForgetFieldChange = (e) => {
+    console.log(e.target.name, e.target.value, e.target.type)
+
+    setUserForgetPassword({
+      ...userForgetPassword,
+      [e.target.name]: e.target.value,
+    })
+
+    // ES6特性: 計算得來的屬性名稱(computed property names)
+    // [e.target.name]: e.target.value
+    // ^^^^^^^^^^^^^^^ 這樣可以動態的設定物件的屬性名稱
+    // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Object_initializer#%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E5%90%8D
+  }
+
+  const handleForgetForm = async (e) => {
+    // 阻擋表單預設送出行為
+    e.preventDefault()
+
+    // 表單檢查 --- START
+    // 建立一個新的錯誤物件
+    const newErrors = {
+      email: '',
+      verifyCode: '',
+    }
+
+    if (!userForgetPassword.email) {
+      newErrors.email = '信箱為必填'
+    }
+
+    if (!userForgetPassword.verifyCode) {
+      newErrors.verifyCode = '驗證碼為必填'
+    }
+
+    // 呈現錯誤訊息
+    setErrors(newErrors)
+
+    // 物件屬性值中有非空白字串時，代表有錯誤發生
+    const hasErrors = Object.values(newErrors).some((v) => v)
+
+    // 有錯誤，不送到伺服器，跳出submit函式
+    if (hasErrors) {
+      return
+    }
+    // 表單檢查 --- END
+
+    // 最後檢查完全沒問題才送到伺服器(ajax/fetch)
+    const res = await fetch('http://localhost:3005/api/members/raw-sql', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userForgetPassword),
+    })
+
+    const data = await res.json()
+
+    console.log(data)
+
+    // alert('送到伺服器')
+    toast.success('註冊成功!')
+
+    //註冊完後表單清空
+    setUserForgetPassword({
+      email: '',
+      verifyCode: '',
+    })
+    //讓面板回去登入
+    setIsActive(false)
   }
   if (!isVisible) return null
 
@@ -72,18 +155,24 @@ export default function ForgetPassword({ isVisible, onClose }) {
           </div>
           <div className="form-container sign-in">
             {/* onSubmit={handleNextStep} */}
-            <form>
+            <form onSubmit={handleForgetForm}>
               <h1 style={{ marginBottom: '20px' }}>忘記密碼</h1>
-              <div className="w-100">
+              {/* 忘記密碼頁-電子信箱 */}
+              <div className="w-100 mt-3">
                 <label htmlFor="email">電子信箱:</label>
                 <input
-                  type="email"
-                  placeholder="輸入註冊信箱"
+                  type="text"
+                  className="mb-0"
+                  placeholder="輸入信箱"
                   id="email"
                   name="email"
+                  value={userForgetPassword.email}
+                  onChange={handleForgetFieldChange}
                 />
               </div>
-              <div className="w-100">
+              <div className="col-12 error"> {errors.email}</div>
+              {/* 忘記密碼頁-驗證碼 */}
+              <div className="w-100 mt-3">
                 <label htmlFor="verifyCode">驗證碼:</label>
                 <div className="d-flex flex-row align-item-center mb-2">
                   <div className="w-75">
@@ -92,6 +181,9 @@ export default function ForgetPassword({ isVisible, onClose }) {
                       placeholder="驗證碼"
                       id="verifyCode"
                       className="m-0"
+                      name="verifyCode"
+                      value={userForgetPassword.verifyCode}
+                      onChange={handleForgetFieldChange}
                     />
                   </div>
                   <div>
@@ -103,9 +195,16 @@ export default function ForgetPassword({ isVisible, onClose }) {
                   </div>
                 </div>
               </div>
-              {/* <a href="#">忘記密碼?</a> */}
-              {/* <button className="mt-5">下一步</button> */}{' '}
-              <button className="mt-5" onClick={handleNextStep} id="register">
+              <div className="col-12 error"> {errors.verifyCode}</div>
+              {/* --------------------------------------------------- */}
+
+              <button
+                className="mt-5"
+                onClick={() => {
+                  handleNextStep()
+                }}
+                id="register"
+              >
                 下一步
               </button>
             </form>
@@ -136,6 +235,11 @@ export default function ForgetPassword({ isVisible, onClose }) {
       </div>
       <style jsx>
         {`
+          .error {
+            color: red;
+            font-size: 16px;
+            height: 16px;
+          }
           .modal-bgc {
             position: absolute;
             background-color: rgba(0, 0, 0, 0.5); /* 半透明黑色 */
@@ -167,9 +271,9 @@ export default function ForgetPassword({ isVisible, onClose }) {
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
             position: relative;
             overflow: hidden;
-            width: 800px;
+            width: 850px;
             max-width: 100%;
-            min-height: 480px;
+            min-height: 580px;
           }
 
           .custom-container p {

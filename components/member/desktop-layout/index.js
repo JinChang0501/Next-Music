@@ -39,9 +39,12 @@ export default function MemberDLayout({
             <div className="col-2 p-0">
               <LeftBar />
             </div>
-            <div className="col-10 p-0 main-content pb-5">
-              <div className="music-container overflow-auto">
-                <div className="mx-auto mt-3">{children}</div>
+            <div className="col-10 p-0 main-content d-flex flex-column">
+              <div className="music-container overflow-auto flex-grow-1">
+                <div className="mx-auto mt-3  mb-3">{children}</div>
+              </div>
+              <div className="w-100">
+                <Footer />
               </div>
             </div>
           </div>
@@ -62,9 +65,9 @@ export default function MemberDLayout({
           </div>
         </div>
       )}
-      <div className="fixed-bottom w-100">
+      {/* <div className="fixed-bottom w-100">
         <Footer />
-      </div>
+      </div> */}
 
       <style jsx>{`
         .overflow-auto {
@@ -82,7 +85,12 @@ export default function MemberDLayout({
           margin-top: 60px; /* Navbar的高度 */
           padding-left: 20px; /* 左側欄位的寬度 */
           overflow-y: auto;
-          height: calc(100vh - 117px); /* 計算剩餘高度，扣除navbar的高度 */
+          height: calc(100vh - 60px); /* 計算剩餘高度，扣除navbar的高度 */
+        }
+         {
+          /* .music-container {
+          flex: 1;
+        } */
         }
         /* 新增的 CSS */
         @media (max-width: 576px) {
