@@ -35,7 +35,7 @@ export default function ActivityCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/t
             />
           </div>
           {/* 卡片文字 */}
-          <div className="col-8 card-body d-flex flex-column justify-content-between">
+          <div className="col-8 card-body p-2 p-md-3 d-flex flex-column justify-content-between">
             <div className="d-flex">
               <div className="card-title chb-h4 text-purple3 p-0">一生到底</div>
               <div className="p-0 ms-auto">
@@ -53,17 +53,17 @@ export default function ActivityCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/t
             </div>
             <div className="col-12 d-flex align-items-end">
               <div className="col-8 text-white">
-                <div className="row my-2">
-                  <BsMusicNoteBeamed className="col-2 p-0" />
+                <div className="d-flex my-2">
+                  <BsMusicNoteBeamed className="p-0 me-2 me-md-3" />
                   <div className="card-text col-10 chb-p p-0">滅火器 Fire EX.</div>
                 </div>
-                <div className="row my-2 d-md-flex d-none">
-                  <BsGeoAlt className="col-2 p-0" />
+                <div className="d-md-flex d-none my-2">
+                  <BsGeoAlt className="p-0 me-2 me-md-3" />
                   <div className="card-text col-10 chb-p p-0">臺北流行音樂中心</div>
                 </div>
-                <div className="row my-2">
-                  <BsCalendar4 className="col-2 p-0" />
-                  <div className="card-text col-10 chb-p p-0">
+                <div className="d-flex my-2">
+                  <BsCalendar4 className="p-0 me-2 me-md-3" />
+                  <div className="card-text chb-p p-0">
                     2024/06/15
                   </div>
                 </div>
