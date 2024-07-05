@@ -1,6 +1,6 @@
 import React from 'react'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
-import styles from '@/styles/product/pc/product.module.scss'
+import styles from '@/styles/product/product.module.scss'
 import CartLayout from '@/components/layout/cart-layout'
 import ProgressBar from '@/components/product/progressBar'
 import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
@@ -9,7 +9,7 @@ import InputNumber from '@/components/product/input-number'
 export default function Cart() {
   const breadcrumbsURL = [
     { label: '周邊商城', href: '/' },
-    { label: '商品資訊', href: '/product[pid]' },
+    { label: '商品資訊', href: '/product/[pid]' },
     { label: '購物車', href: '/product/cart' },
   ]
   return (
@@ -21,10 +21,10 @@ export default function Cart() {
         <div className={`first ${styles['my-20']} ${styles['w-1060']}`}>
           <p className='chb-h5'>請確認購買商品 </p>
           {/* 表格 start*/}
-          <table className={`table table-bordered border-dark`}>
+          <table className={`table`}>
             <thead>
               <tr className={`${styles['h-54']}`}>
-                <th><p className={`chb-p ${styles['text-center']}`}>勾選</p></th>
+                {/* <th><p className={`chb-p ${styles['text-center']}`}>勾選</p></th> */}
                 <th><p className={`chb-p ${styles['text-center']}`}>商品圖片</p></th>
                 <th><p className={`chb-p ${styles['text-center']}`}>商品名稱</p></th>
                 <th><p className={`chb-p ${styles['text-center']}`}>價格</p></th>
@@ -35,15 +35,15 @@ export default function Cart() {
             </thead>
             <tbody>
               <tr className={`${styles['h-120']}`}>
-                <td>
+                {/* <td>
                   <div className={`chb-p ${styles['center-item']}`}>
                     <div className="form-check">
                       <input className={`form-check-input ${styles['input-border']}`} type="checkbox" value="" id="flexCheck" />
                     </div>
                   </div>
-                </td>
+                </td> */}
                 <td>
-                  <p className={`chb-p ${styles['center-item']}`}>
+                  <p className={`chb-p ${styles['text-center']}`}>
                     <img className={`${styles['wh-100']}`} src="/images/product/list/red_baseball-cap.jpg" />
                   </p>
                 </td>
@@ -54,7 +54,7 @@ export default function Cart() {
                 <td>
                   <p className={`chb-p ${styles['text-center']}`}>$700</p>
                 </td>
-                <td>
+                <td className={`styles['text-center']`}>
                   <InputNumber />
                 </td>
                 <td><p className={`chb-p ${styles['text-center']}`}>小計</p></td>
@@ -65,13 +65,13 @@ export default function Cart() {
                 </td>
               </tr>
               <tr className={`${styles['h-120']} `}>
-                <td>
+                {/* <td>
                   <div className={`chb-p ${styles['text-center']}`}>
                     <div className="form-check">
                       <input className={`form-check-input ${styles['input-border']}`} type="checkbox" value="" id="flexCheck" />
                     </div>
                   </div>
-                </td>
+                </td> */}
                 <td>
                   <p className={`chb-p ${styles['text-center']}`}>
                     <img className={`${styles['wh-100']}`} src="/images/product/list/red_baseball-cap.jpg" />
