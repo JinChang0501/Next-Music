@@ -1,35 +1,73 @@
-import Link from "next/link"
-import Image from "next/image"
+import Link from 'next/link'
+import Image from 'next/image'
 import styles from '@/styles/home.module.css'
-import DesktopBlackNoIconBtnBlack from "@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnBlack"
-import DesktopWhiteNoIconBtnBlack from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnBlack';
-import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple';
+import DesktopBlackNoIconBtnBlack from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnBlack'
+import DesktopWhiteNoIconBtnBlack from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnBlack'
+import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
+import { useState } from 'react'
+import Login from '@/components/login/login'
 
 export default function Index() {
+  const [wakeLogin, setWakeLogin] = useState(false) //喚醒登入面板
+  const [wakeForgetPassword, setWakeForgetPassword] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false) // 這裡要接Login元件傳回來的狀態
+
+  const handleWakeLogin = () => {
+    setWakeLogin(true)
+  }
+
+  const handleCloseLogin = () => {
+    setWakeLogin(false)
+  }
+
+  const handleWakeForgetPassword = () => {
+    setWakeForgetPassword(true)
+  }
+
+  const handleCloseForgetPassword = () => {
+    setWakeForgetPassword(false)
+  }
+
+  // 更新登入狀態
+  const updateLoginStatus = (loggedIn) => {
+    setIsLoggedIn(loggedIn)
+  }
   return (
     <>
       {/* banner一張（影片輪播） start */}
       <div className={`${styles['bannerSty']}`}>
-        <div className={`d-none d-md-flex flex-column align-items-center text-align mx-auto text-white text-center ${styles['p-relative']}`}>
+        <div
+          className={`d-none d-md-flex flex-column align-items-center text-align mx-auto text-white text-center ${styles['p-relative']}`}
+        >
           <div className="eng-h1 mb-2">Lose Yourself in Music</div>
+
           <div className="eng-h1 mb-4">Find Yourself in the Festivity</div>
           <div className="eng-p">
-            <DesktopBlackNoIconBtnBlack text="MY ACCOUNT" className="eng-h5" />
+            <DesktopBlackNoIconBtnBlack
+              text="MY ACCOUNT"
+              className="eng-h5"
+              onClick={handleWakeLogin}
+            />
           </div>
         </div>
       </div>
+
       {/* banner（影片輪播） end */}
       {/* <div className={` ${styles['bg-img-flow']}`}></div> */}
-      <div className={`music-container`} >
+      <div className={`music-container`}>
         <div className={`row mb-5 ${styles['mt-120']}`}>
           <div className="d-flex flex-column align-items-center text-align">
             <div className="eng-h1 text-white">Activities</div>
-            <div className="chb-h3 text-purple3">給你最盛大的視覺與聽覺饗宴</div>
+            <div className="chb-h3 text-purple3">
+              給你最盛大的視覺與聽覺饗宴
+            </div>
           </div>
         </div>
         {/* 第一個活動 start */}
         <div className={`row ${styles['mb-120']}`}>
-          <div className={`col-md-7 col-12 p-2 ${styles['ov-hide']} ${styles['img-borderA']}`}>
+          <div
+            className={`col-md-7 col-12 p-2 ${styles['ov-hide']} ${styles['img-borderA']}`}
+          >
             <div className={`${styles['custom-bg-01']}`} />
           </div>
           <div className="col-md-5 col-12">
@@ -54,7 +92,9 @@ export default function Index() {
         {/* 第一個活動 end */}
         {/* 第二個活動 start */}
         <div className="row">
-          <div className={`col-md-7 col-12 p-2 order-md-2 ${styles.cover} ${styles['img-borderA']}`}>
+          <div
+            className={`col-md-7 col-12 p-2 order-md-2 ${styles.cover} ${styles['img-borderA']}`}
+          >
             <div className={`${styles['custom-bg-02']}`} />
           </div>
           <div className="col-md-5 col-12 order-md-1">
@@ -79,9 +119,7 @@ export default function Index() {
         {/* 第二個活動 end */}
         {/* 音樂人 start */}
         {/* 背景畫面待修改 */}
-        <div
-          className={`row ${styles['mb-120']} ${styles['mt-120']}`}
-        >
+        <div className={`row ${styles['mb-120']} ${styles['mt-120']}`}>
           <div className="d-flex flex-column align-items-center">
             <div className="eng-h1 text-white">Discover More</div>
             <div className="chb-h3 text-purple3">挖掘你還未聽過的好聲音</div>
