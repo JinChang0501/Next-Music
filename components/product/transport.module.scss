@@ -9,13 +9,13 @@
 }
 
 .transportBlock {
-  display: flex;
-  justify-content: space-between;
+  // display: flex;
+  // justify-content: space-between;
 }
 
-.transportBlockLeft {
+.transportBlockHome, .transportBlockMarkt {
   display: flex;
-  align-items: center;
+  // align-items: center;
 }
 
 .transportCircle {
@@ -35,4 +35,11 @@
 }
 .w-500 {
   width: 500px;
+}
+
+.mt-40 {
+  margin-top: 40px;
+}
+.mt-28 {
+  margin-top: 28px;
 }
