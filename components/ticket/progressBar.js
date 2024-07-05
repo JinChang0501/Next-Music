@@ -123,7 +123,7 @@ export default function ProgressBar({ progressBarRef, isStarted = true }) {
       ref={progressBarRef}
       className={`${style.progressBarHeight} row d-flex`}
     >
-      <div className={`${style.progressBar} col-7`}>
+      <div className={`${style.progressBar} col-xxl-7 col-xl-6 col-lg-5`}>
         {steps.map((step, index) => (
           <React.Fragment key={step.id}>
             <div className={`${style.progressBarBlock}`}>
@@ -151,21 +151,21 @@ export default function ProgressBar({ progressBarRef, isStarted = true }) {
         ))}
       </div>
 
-      <div className={`${style.timeCounter} col-5`}>
+      <div className={`${style.timeCounter} col-xxl-5 col-xl-6 col-lg-7`}>
         <div className={`${style.timeCounterClock}`}>
-          <div className={`${style.timeCounterClockBlock} text-black chb-h4`}>
+          <div className={`${style.timeCounterClockBlock} text-black chb-h5`}>
             {minutes[0]}
           </div>
-          <div className={`${style.timeCounterClockBlock} text-black chb-h4`}>
+          <div className={`${style.timeCounterClockBlock} text-black chb-h5`}>
             {minutes[1]}
           </div>
           <div className={`${style.timeCounterClockColon} text-black30 chb-h3`}>
             :
           </div>
-          <div className={`${style.timeCounterClockBlock} text-black chb-h4`}>
+          <div className={`${style.timeCounterClockBlock} text-black chb-h5`}>
             {seconds[0]}
           </div>
-          <div className={`${style.timeCounterClockBlock} text-black chb-h4`}>
+          <div className={`${style.timeCounterClockBlock} text-black chb-h5`}>
             {seconds[1]}
           </div>
         </div>

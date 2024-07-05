@@ -6,7 +6,7 @@ import ticketSeatBlockData from '@/data/ticket/desktop-concert/second/ticketSeat
 export default function TicketSeatBlock() {
   return (
     <>
-      <div className={`${style.ticketSeat} chb-h5`}>
+      <div className={`${style.ticketSeat} chb-h7`}>
         {ticketSeatBlockData.map((v) => (
           <div
             key={v.id}

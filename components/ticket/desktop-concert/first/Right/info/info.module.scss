@@ -1,7 +1,7 @@
 // #region info
 
 .info {
-  padding-top: 15px;
+  padding: 10px 0 20px 0;
 }
 
 .infoTitle {
@@ -12,12 +12,12 @@
 }
 
 .infoTitleIcon {
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
 }
 
 .infoContent {
-  padding: 0 100px;
+  padding: 0 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;

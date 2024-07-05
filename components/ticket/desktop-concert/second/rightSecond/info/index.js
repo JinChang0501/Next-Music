@@ -9,16 +9,16 @@ export default function Info() {
         <div key={v.id} className={style.infoBlock}>
           <div>{v.icon}</div>
           <div>
-            <div className="chb-h6 text-black" style={{ marginBottom: '10px' }}>
+            <div className="chb-h7 text-black" style={{ marginBottom: '10px' }}>
               {v.title}
             </div>
             {typeof v.subtitle === 'string' ? (
-              <div className="chb-p text-black60">{v.subtitle}</div>
+              <div className="chb-p-14 text-black60">{v.subtitle}</div>
             ) : (
               v.subtitle.map((line, idx) => (
                 <div
                   key={idx}
-                  className="chb-p text-black60"
+                  className="chb-p-14 text-black60"
                   style={{ marginBottom: '10px' }}
                 >
                   {line}

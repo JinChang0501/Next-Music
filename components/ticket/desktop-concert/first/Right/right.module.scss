@@ -1,10 +1,16 @@
 // #region right
 
-.right {
-  width: 640px;
+.rightTop {
   padding: 0 20px;
   overflow-x: hidden;
   overflow-y: hidden;
+}
+
+.rightBottom {
+  height: calc(100% - 169px);
+  padding: 0 20px;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 // #endregion right
