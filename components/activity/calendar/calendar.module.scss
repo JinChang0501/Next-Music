@@ -1,0 +1,22 @@
+.bg-gray {
+  background-color: #1A1A1A;
+}
+
+.calendar-todo-list {
+  padding: 0;
+  text-align: left;
+  list-style: none;
+}
+
+.calendar-todo-list li {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.calendar-todo-item-badge {
+  vertical-align: top;
+  margin-top: 8px;
+  width: 6px;
+  height: 6px;
+}
