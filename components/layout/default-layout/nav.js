@@ -51,6 +51,7 @@ export default function Nav() {
     if (res.data.status === 'success') {
       toast.success('已成功登出')
       updateLoginStatus(false)
+      router.push('/')
 
       setAuth({
         isAuth: false,
