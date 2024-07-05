@@ -176,7 +176,7 @@ export default function Account() {
                           id="name"
                           aria-describedby="emailHelp"
                           name="name"
-                          disabled={isDisable}
+                          disabled
                           value={userProfile.name}
                           onChange={handleFieldChange}
                         />
@@ -193,7 +193,7 @@ export default function Account() {
                           className="form-control"
                           id="email"
                           name="email"
-                          disabled={isDisable}
+                          disabled
                           value={userProfile.email}
                           onChange={handleFieldChange}
                         />
