@@ -24,6 +24,9 @@
 .mb-40 {
   margin-bottom: 40px;
 }
+.mb-30 {
+  margin-bottom: 30px;
+}
 .my-100 {
   margin-top: 100px;
   margin-bottom: 100px;
@@ -68,15 +71,7 @@
   color: #dbd7ff,
   ;
 }
-.text-center {
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.text-center-x {
-  text-align: center; 
-}
+
 
 .w-1060 {
  width: 1060px; 
@@ -117,6 +112,10 @@
 }
 .h-120 {
   height: 120px;
+
+}
+.h-100 {
+  height: 100px;
 }
 .h-54 {
   height: 54px;
@@ -166,4 +165,56 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+.text-center {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.text-center-x {
+  text-align: center; 
+}
+
+
+// 手機
+@media screen and (max-width:390px){
+  // <CarouselIndex />
+  .h-725 {
+   height: 200px;
+  }
+  .indexImg {
+    height: 200x;
+    width: 390px;
+  }
+// index
+  .mx-160 {
+    margin-left: 28px;
+    margin-right: 28px;
+  }
+  .my-100 {
+    margin-top: 28px;
+    margin-bottom: 60px;
+  }
+  .mt-52 {
+    margin-top: 40px;
+  }
+
+  //[pid]
+  .w-456 {
+    width: 333px;
+  }
+  .ml-136 {
+    margin-left: 0px;;
+  }
+  .mt-80 {
+    margin-top: 40px;
+  }
+  .borderPurple3 {
+    padding-bottom: 24px;
+    border-bottom: 1px solid #dbd7ff;
+  }
+
+  // cart
+  
 }

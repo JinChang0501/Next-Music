@@ -21,7 +21,7 @@ export default function Transport() {
             ></button>
             <div className="chb-h6">宅配到府
               <p for="exampleInputEmail1" className="chb-p mt-3">收件地址</p>
-              <input type="text" className={`form-control ${styles['w-500']}`} />
+              <input type="text" className={`form-control ${styles['w-750']}`} />
             </div>
           </div>
         </div>
@@ -34,17 +34,16 @@ export default function Transport() {
               onClick={() => handleCircleClick('market')}
             ></button>
             <div className="chb-h6">7-11超商付款取貨
-              <DesktopWhiteNoIconBtnBlack text="選擇門市" className={`chb-h6 ${styles['h-40']}`}/>
+              <DesktopWhiteNoIconBtnBlack text="選擇門市" className={`chb-h6 mt-3 ${styles['h-40']}`}/>
               {/* 門市名稱: <input type="text" value={store711.storename} disabled /> */}
-              <p className={`${styles['mt-28']}`}>門市名稱</p> <input type="text" className={`form-control ${styles['w-180']}`}   disabled />
+              <p className={`${styles['mt-28']}`}>門市名稱</p> <input type="text" className={`form-control ${styles['w-750']}`}   disabled />
               {/* 門市地址: <input type="text" value={store711.storeaddress} disabled /> */}
-              <p className={`${styles['mt-28']}`}>門市地址</p><input type="text" className={`form-control ${styles['w-500']}`} disabled />
+              <p className={`${styles['mt-28']}`}>門市地址</p><input type="text" className={`form-control ${styles['w-750']}`} disabled />
             </div>
           </div>
         </div>
       </div>
 
-      
     </>
   )
 }

@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import styles from '@/styles/product/pc/product.module.scss'
+import styles from '@/styles/product/product.module.scss'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import CarouselIndex from '@/components/product/carousel-index'
 import CardProduct from '@/components/product/card-product'
