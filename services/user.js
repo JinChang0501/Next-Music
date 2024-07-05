@@ -87,7 +87,7 @@ export const register = async (user = {}) => {
  * 修改會員一般資料用(排除password, username, email)
  */
 export const updateProfile = async (id = 0, user = {}) => {
-  return await axiosInstance.put(`/users/${id}/profile`, user)
+  return await axiosInstance.put(`/users/${id}/account`, user)
 }
 /**
  * 修改會員頭像用，需要用FormData
