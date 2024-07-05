@@ -1,7 +1,11 @@
-// export const PORT = 3000
-// export const DEV = true
+export const PORT = 3000
+export const DEV = true
 
 // // express 的位置
+// export const API_SERVER = 'http://localhost:3005'
+
+// export const MB_ADD_POST = `${API_SERVER}`
+
 export const apiBaseUrl = 'http://localhost:3005/api'
 export const avatarBaseUrl = 'http://localhost:3005/avatar'
 

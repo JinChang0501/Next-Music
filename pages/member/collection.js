@@ -56,7 +56,7 @@ export default function Collection() {
         >
           {/* 活動dropdown */}
           <div className="row">
-            <div className="col-12 col-lg-3 py-3 d-flex flex-row">
+            <div className="col-12 col-lg-5 py-3 d-flex flex-row">
               <div className="col-6 text-center">
                 <label
                   htmlFor="activity"
