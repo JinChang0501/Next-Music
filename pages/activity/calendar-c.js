@@ -1,9 +1,14 @@
 import * as React from "react";
+import { Calendar } from "rsuite";
+import CalendarItem from "@/components/activity/calendar/calendar-item";
 
-export default function MyComponent() {
+export default function CalendarC() {
   return (
     <>
-      <div className="div">
+      <div className="music-container">
+        <CalendarItem />
+      </div>
+      <div className="music-container">
         <div className="div-2">
           <span className="color-rgba">AUG. </span>2024
         </div>

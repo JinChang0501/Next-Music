@@ -2,11 +2,14 @@ import { useEffect } from 'react'
 // 樣式
 import '@/styles/globals.scss'
 import DefaultLayout from '@/components/layout/default-layout'
-//Jin的自訂Provider -> 我的票夾
+// Jin的自訂Provider -> 我的票夾
 import { TabProvider } from '@/hooks/member/useTab'
-import { ActTabProvider } from '@/hooks/Activity/useTabs'
+import { ActTabProvider } from '@/hooks/activity/useTabs'
 import { AuthProvider } from '@/hooks/use-auth'
 import { TicketProvider } from '@/context/ticket/selectNumber'
+// Chloe 日曆樣式套件
+import 'rsuite/dist/rsuite-no-reset.min.css';
+import { CustomProvider } from 'rsuite';
 
 export default function MyApp({ Component, pageProps }) {
   // 導入bootstrap的JS函式庫
@@ -21,13 +24,15 @@ export default function MyApp({ Component, pageProps }) {
     Component.getLayout || ((page) => <DefaultLayout>{page}</DefaultLayout>)
 
   return (
-    <TicketProvider>
-      <AuthProvider>
-        <ActTabProvider>
-          <TabProvider>{getLayout(<Component {...pageProps} />)}</TabProvider>
-        </ActTabProvider>
-      </AuthProvider>
-    </TicketProvider>
+    <CustomProvider>
+      <TicketProvider>
+        <AuthProvider>
+          <ActTabProvider>
+            <TabProvider>{getLayout(<Component {...pageProps} />)}</TabProvider>
+          </ActTabProvider>
+        </AuthProvider>
+      </TicketProvider>
+    </CustomProvider>
   )
 }
 //Jin的自訂Provider -> 我的票夾
