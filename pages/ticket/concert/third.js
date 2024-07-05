@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import WhiteLayout from '@/components/layout/ticket-layout/desktopLayout/whiteLayout'
+import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import ProgressBar from '@/components/ticket/progressBar'
 import AccordionFirst from '@/components/ticket/desktop-concert/third/accordionFirst'
 import AccordionSecond from '@/components/ticket/desktop-concert/third/accordionSecond'
@@ -10,9 +11,23 @@ import PhoneAccordionThird from '@/components/ticket/phone-concert/phoneAccordio
 import style from '@/styles/ticket/concert/third.module.scss'
 import DesktopWhiteNoIconBtnPurple from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnPurple'
 import PhoneWhiteNoIconBtnPurple from '@/components/common/button/phoneWhiteButton/phoneWhiteNoIconBtnPurple'
+import { useRouter } from 'next/router'
 
 export default function Third() {
   const [isMobile, setIsMobile] = useState(false)
+
+  const router = useRouter()
+
+  const breadcrumbsURL = [
+    { label: '首頁', href: '/' },
+    { label: '演出活動', href: '/activity' },
+    { label: '一生到底', href: '/activity/[aid]' },
+    { label: '支付方式', href: '/ticket/concert/first' },
+  ]
+
+  const handleNext = () => {
+    router.push('/ticket/concert/fourth')
+  }
 
   useEffect(() => {
     const handleResize = () => {
@@ -26,7 +41,7 @@ export default function Third() {
   return (
     <>
       {/* breadcrumb */}
-      <div className={`${style.breadcrumb}`}></div>
+      <Breadcrumbs breadcrumbs={breadcrumbsURL} />
 
       {/* progressBar + timeCounter */}
       <ProgressBar />
@@ -63,11 +78,19 @@ export default function Third() {
         </div>
         {isMobile ? (
           <div style={{ margin: '20px 0' }}>
-            <PhoneWhiteNoIconBtnPurple text="付款" className="w-100 chb-h6" />
+            <PhoneWhiteNoIconBtnPurple
+              text="付款"
+              className="w-100 chb-h6"
+              onClick={handleNext}
+            />
           </div>
         ) : (
           <div style={{ margin: '30px 0' }}>
-            <DesktopWhiteNoIconBtnPurple text="付款" className="w-100 chb-h6" />
+            <DesktopWhiteNoIconBtnPurple
+              text="付款"
+              className="w-100 chb-h6"
+              onClick={handleNext}
+            />
           </div>
         )}
       </div>

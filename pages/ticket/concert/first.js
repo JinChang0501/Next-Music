@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react'
 import FixedContentLayout from '@/components/layout/ticket-layout/desktopLayout/fixedContentLayout'
+import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import Mask from '@/components/ticket/mask'
 import Start from '@/components/ticket/start'
 import ProgressBar from '@/components/ticket/progressBar'
@@ -7,7 +8,6 @@ import PhoneTitle from '@/components/ticket/phone-concert/phoneTitle'
 import Phone3D from '@/components/ticket/phone-concert/phone3D'
 import Left from '@/components/ticket/desktop-concert/first/Left'
 import Right from '@/components/ticket/desktop-concert/first/Right'
-import style from '@/styles/ticket/concert/first.module.scss'
 
 export default function First() {
   // #region 動態獲取 breadcrumb、progressBar 高度，返回給 content
@@ -63,6 +63,13 @@ export default function First() {
 
   // #endregion 動態獲取 breadcrumb、progressBar 高度，返回給 content
 
+  const breadcrumbsURL = [
+    { label: '首頁', href: '/' },
+    { label: '演出活動', href: '/activity' },
+    { label: '一生到底', href: '/activity/[aid]' },
+    { label: '選擇座位', href: '/ticket/concert/first' },
+  ]
+
   const handleStart = () => {
     setIsStarted(true)
   }
@@ -108,8 +115,8 @@ export default function First() {
       )}
 
       {/* breadcrumb */}
-      <div ref={breadcrumbRef} className={`${style.breadcrumb} row`}>
-        <div className="col-12 p-0 bg-warning"></div>
+      <div ref={breadcrumbRef}>
+        <Breadcrumbs breadcrumbs={breadcrumbsURL} />
       </div>
 
       {/* progressBar + timeCounter */}

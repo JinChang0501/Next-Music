@@ -9,6 +9,7 @@ import {
   BsQrCode,
   BsX,
 } from 'react-icons/bs'
+import { useRouter } from 'next/router'
 
 export default function PhoneSelectTicket() {
   const [showTicket, setShowTicket] = useState(false)
@@ -17,6 +18,11 @@ export default function PhoneSelectTicket() {
   const [ticketSeatBodyHeight, setTicketSeatBodyHeight] = useState(0)
   const ticketSeatBodyRef = useRef(null)
   const selectTicketBodyTitleRef = useRef(null)
+  const router = useRouter()
+
+  const handleNext = () => {
+    router.push('/ticket/concert/third')
+  }
 
   // 動態計算選擇多少張票高度
   useEffect(() => {
@@ -126,7 +132,11 @@ export default function PhoneSelectTicket() {
         </div>
 
         <div className="w-100">
-          <PhoneWhiteNoIconBtnPurple text="下一步" className="w-100 chb-h5" />
+          <PhoneWhiteNoIconBtnPurple
+            text="下一步"
+            className="w-100 chb-h5"
+            onClick={handleNext}
+          />
         </div>
       </div>
     </>

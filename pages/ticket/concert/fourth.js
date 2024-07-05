@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import WhiteLayout from '@/components/layout/ticket-layout/desktopLayout/whiteLayout'
+import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import ProgressBar from '@/components/ticket/progressBar'
 import Order from '@/components/ticket/desktop-concert/fourth/order'
 import ConcertTicket from '@/components/ticket/desktop-concert/fourth/concertTicket'
@@ -12,6 +13,13 @@ import style from '@/styles/ticket/concert/fourth.module.scss'
 export default function Fourth() {
   const [isMobile, setIsMobile] = useState(false)
 
+  const breadcrumbsURL = [
+    { label: '首頁', href: '/' },
+    { label: '演出活動', href: '/activity' },
+    { label: '一生到底', href: '/activity/[aid]' },
+    { label: '完成購票', href: '/ticket/concert/first' },
+  ]
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 390)
@@ -23,7 +31,7 @@ export default function Fourth() {
   }, [])
   return (
     <>
-      <div className={`${style.breadcrumb}`}></div>
+      <Breadcrumbs breadcrumbs={breadcrumbsURL} />
 
       <ProgressBar />
 

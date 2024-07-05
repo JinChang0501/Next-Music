@@ -5,8 +5,15 @@ import PriceTotal from './priceTotal'
 import Info from './info'
 import style from './rightSecond.module.scss'
 import DesktopWhiteNoIconBtnPurple from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnPurple'
+import { useRouter } from 'next/router'
 
 export default function RightSecond() {
+  const router = useRouter()
+
+  const handleNext = () => {
+    router.push('/ticket/concert/third')
+  }
+
   return (
     <>
       <div className={`${style.right}`}>
@@ -26,6 +33,7 @@ export default function RightSecond() {
         <DesktopWhiteNoIconBtnPurple
           text="下一步"
           className={`${style.nextButton} w-100 chb-h6`}
+          onClick={handleNext}
         />
       </div>
     </>

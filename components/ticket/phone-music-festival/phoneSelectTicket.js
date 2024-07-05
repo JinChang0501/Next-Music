@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import style from './phoneSelectTicket.module.scss'
 import { BsCaretDownFill } from 'react-icons/bs'
+import { TicketContext } from '@/context/ticket/selectNumber'
 
 export default function PhoneSelectTicket() {
   const [isOpen, setIsOpen] = useState(false)
 
-  const [selectedNumber, setSelectedNumber] = useState(1)
+  const { selectedNumber, setSelectedNumber } = useContext(TicketContext)
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen)
@@ -38,7 +39,7 @@ export default function PhoneSelectTicket() {
               className={`${style.selectTicketBoxFirst}`}
               onClick={toggleDropdown}
             >
-              <div className="text-black chb-h6">{selectedNumber}</div>
+              <div className="text-black chb-h5">{selectedNumber}</div>
               <BsCaretDownFill
                 className={`${style.selectTicketBoxIcon} ${
                   isOpen ? style.rotate : ''
@@ -53,7 +54,7 @@ export default function PhoneSelectTicket() {
               {[1, 2, 3, 4, 5, 6].map((num) => (
                 <button
                   key={num}
-                  className={`${style.selectTicketBoxOption}`}
+                  className={`${style.selectTicketBoxOption} chb-h5`}
                   onClick={() => selectOption(num)}
                 >
                   {num}
