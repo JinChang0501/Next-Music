@@ -1,110 +1,190 @@
 import React, { useState } from 'react'
-import { BsFillXCircleFill } from 'react-icons/bs'
-//登入會用到
+import { BsGoogle } from 'react-icons/bs'
+import { IoEyeSharp } from 'react-icons/io5'
+import { IoEyeOffSharp } from 'react-icons/io5'
+import toast, { Toaster } from 'react-hot-toast'
 import { initUserData, useAuth } from '@/hooks/use-auth'
-import { checkAuth, login, logout, getUserById } from '@/services/user'
-import RegisterForm from './register-form'
-import LoginForm from './login-form'
+import { checkAuth, login, getUserById } from '@/services/user' //checkAuth logout
 
-export default function Login({
-  isVisible,
-  onClose,
+// 解析accessToken用的函式
+const parseJwt = (token) => {
+  const base64Payload = token.split('.')[1]
+  const payload = Buffer.from(base64Payload, 'base64')
+  return JSON.parse(payload.toString())
+}
+
+export default function LoginForm({
   handleWakeForgetPassword,
+  onClose,
   updateLoginStatus,
   setWakeLogin,
 }) {
-  const [isActive, setIsActive] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
 
-  const handleRegisterClick = () => {
-    setIsActive(true)
-  }
-
-  const handleLoginClick = () => {
-    setIsActive(false)
+  const toggleShowPassword = (e) => {
+    setShowPassword(!showPassword)
+    e.preventDefault()
   }
 
   // 登入後設定全域的會員資料用
   const { setAuth } = useAuth()
+  // 登入功能
+  const [user, setUser] = useState({ email: '', password: '' })
+  // 錯誤訊息狀態
+  const [loginErrors, setLoginErrors] = useState({
+    email: '',
+    password: '',
+  })
 
-  //處理檢查登入狀態
-  // const handleCheckAuth = async () => {
-  //   const res = await checkAuth()
+  // 寄送Login Form
+  const handleLoginForm = async (e) => {
+    // 阻擋表單預設送出行為
+    e.preventDefault()
 
-  //   console.log(res.data)
+    // 表單檢查 --- START
+    // 建立一個新的錯誤物件
+    const newLoginErrors = {
+      email: '',
+      password: '',
+    }
 
-  //   if (res.data.status === 'success') {
-  //     toast.success('已登入會員')
-  //   } else {
-  //     toast.error(`非會員身份`)
-  //   }
+    if (!user.email) {
+      newLoginErrors.email = '信箱為必填'
+    }
+
+    if (!user.password) {
+      newLoginErrors.password = '密碼為必填'
+    }
+
+    // 呈現錯誤訊息
+    setLoginErrors(newLoginErrors)
+
+    // 物件屬性值中有非空白字串時，代表有錯誤發生
+    const hasErrors = Object.values(newLoginErrors).some((v) => v)
+
+    // 有錯誤，不送到伺服器，跳出submit函式
+    if (hasErrors) {
+      return
+    } else {
+      const res = await login(user)
+
+      console.log(res.data)
+
+      if (res.data.status === 'success') {
+        // 從JWT存取令牌中解析出會員資料
+        // 注意JWT存取令牌中只有id, email, google_uid, line_uid在登入時可以得到
+        const jwtUser = parseJwt(res.data.data.accessToken)
+        console.log(jwtUser)
+
+        const res1 = await getUserById(jwtUser.id)
+        console.log(res1.data)
+
+        if (res1.data.status === 'success') {
+          // 只需要initUserData中的定義屬性值，詳見use-auth勾子
+          const dbUser = res1.data.data.user
+          const userData = { ...initUserData }
+
+          for (const key in userData) {
+            if (Object.hasOwn(dbUser, key)) {
+              userData[key] = dbUser[key]
+            }
+          }
+
+          // 設定到全域狀態中
+          setAuth({
+            isAuth: true,
+            userData,
+          })
+
+          toast.success('已成功登入')
+          updateLoginStatus(true)
+          setWakeLogin(false)
+          setUser({ email: '', password: '' })
+        } else {
+          toast.error('登入後無法得到會員資料')
+          // 這裡可以讓會員登出，因為這也算登入失敗，有可能會造成資料不統一
+        }
+      } else {
+        toast.error(`登入失敗`)
+      }
+    }
+    // 表單檢查 --- END
+  }
+  // 輸入帳號 密碼用
+  const handleFieldChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value })
+  }
+
+  // 處理登入
+  // const handleLogin = async (e) => {
+  //   e.preventDefault()
   // }
-
-  // -----------------------------------------------------------------
-
-  //註冊功能
-  // 狀態為物件，屬性對應到表單的欄位名稱
-
-  if (!isVisible) return null
-
   return (
     <>
-      <div className="modal-bgc">
-        <div
-          className={`custom-container ${
-            isActive ? 'active' : ''
-          }  modal-overlay`}
-          id="container"
-        >
-          <button
-            className="close-btn"
-            onClick={() => {
-              onClose()
-              handleLoginClick()
+      <form onSubmit={handleLoginForm}>
+        <h1 style={{ marginBottom: '20px' }}>登入</h1>
+        <div className="w-100">
+          <label htmlFor="email">電子信箱123:</label>
+          <input
+            type="email"
+            placeholder="請輸入信箱"
+            id="email"
+            name="email"
+            value={user.email}
+            onChange={(e) => {
+              handleFieldChange(e)
             }}
-          >
-            <BsFillXCircleFill className="chr-h4" />
-          </button>
-          <div className="form-container sign-up">
-            <RegisterForm setIsActive={setIsActive} />
-          </div>
-          {/* 登入Form */}
-          <div className="form-container sign-in">
-            <LoginForm
-              handleWakeForgetPassword={handleWakeForgetPassword}
-              onClose={onClose}
-              updateLoginStatus={updateLoginStatus}
-              setWakeLogin={setWakeLogin}
-            />
-          </div>
-          <div className="toggle-container">
-            <div className="toggle">
-              <div className="toggle-panel toggle-left">
-                <h1>歡迎回來!</h1>
-                <p>輸入您的個人詳細資料以使用所有網站功能</p>
-                <button
-                  className="hidden"
-                  onClick={handleLoginClick}
-                  id="login"
-                >
-                  返回登入
-                </button>
-              </div>
-              <div className="toggle-panel toggle-right">
-                <h1>嗨，歡迎!</h1>
-                <p>使用您的個人詳細資料註冊以使用所有網站功能</p>
-                <button
-                  className="hidden"
-                  onClick={handleRegisterClick}
-                  id="register"
-                >
-                  點我註冊
-                </button>
-              </div>
+          />
+        </div>
+        <div className="col-12 error">{loginErrors.email}</div>
+        <div className="w-100 mt-3">
+          <label htmlFor="password">密碼:</label>
+          <div className="d-flex">
+            <div className="m-0 w-100">
+              <input
+                className="m-0"
+                type={showPassword ? 'text' : 'password'}
+                placeholder="密碼"
+                id="password"
+                name="password"
+                value={user.password}
+                onChange={handleFieldChange}
+              />
+            </div>
+            <div className="align-items-center m-0">
+              <button
+                className="btn m-0 border-0 h-100 px-4"
+                onClick={toggleShowPassword}
+              >
+                {showPassword ? (
+                  <IoEyeSharp className="chr-h6" />
+                ) : (
+                  <IoEyeOffSharp className="chr-h6" />
+                )}
+              </button>
             </div>
           </div>
         </div>
-      </div>
-
+        <div className="col-12 error">{loginErrors.password}</div>
+        <button
+          type="button"
+          className="forget-password-btn"
+          onClick={() => {
+            handleWakeForgetPassword()
+            onClose()
+          }}
+        >
+          忘記密碼?
+        </button>
+        <button className="w-50 chr-h5" onClick={handleLoginForm}>
+          登入
+        </button>
+        <button className="w-50">
+          <a href="#" className="icon">
+            <BsGoogle className="text-white" />
+          </a>
+        </button>
+      </form>
       <style jsx>
         {`
           .error {

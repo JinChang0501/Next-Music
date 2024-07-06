@@ -29,6 +29,12 @@ export default function LeftBar() {
         <div className="">
           <ul className="list-unstyled m-0">
             <Link
+              href="profile"
+              className="text-decoration-none text-center fw-bold chr-h5"
+            >
+              <li className="py-2 text-purple3 m-0">個人資料</li>
+            </Link>
+            <Link
               href=""
               className="text-decoration-none text-center fw-bold m-0 chr-h5"
             >
@@ -52,12 +58,19 @@ export default function LeftBar() {
             >
               <li className="py-2 text-purple3 m-0">商城購買紀錄</li>
             </Link>
-            <a
+            <Link
               href="account"
               className="text-decoration-none text-center fw-bold chr-h5"
             >
               <li className="py-2 text-purple3 m-0">帳號設定</li>
-            </a>
+            </Link>
+
+            <Link
+              href="reset-password"
+              className="text-decoration-none text-center fw-bold chr-h5"
+            >
+              <li className="py-2 text-purple3 m-0">更新密碼</li>
+            </Link>
           </ul>
         </div>
         {/* 信箱與登出 */}

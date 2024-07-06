@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { BsFillXCircleFill } from 'react-icons/bs'
 import toast, { Toaster } from 'react-hot-toast'
+import { requestOtpToken, resetPassword } from '@/services/user'
+import useInterval from '@/hooks/use-interval'
 
 export default function ForgetPassword({ isVisible, onClose }) {
   const [isActive, setIsActive] = useState(false)
@@ -108,6 +110,63 @@ export default function ForgetPassword({ isVisible, onClose }) {
     //讓面板回去登入
     setIsActive(false)
   }
+
+  const [email, setEmail] = useState('')
+  const [token, setToken] = useState('')
+  const [password, setPassword] = useState('')
+  const [disableBtn, setDisableBtn] = useState(false)
+
+  // 倒數計時 countdown use
+  const [count, setCount] = useState(60) // 60s
+  const [delay, setDelay] = useState(null) // delay=null可以停止, delay是數字時會開始倒數
+
+  // 倒數計時 countdown use
+  useInterval(() => {
+    setCount(count - 1)
+  }, delay)
+  // 倒數計時 countdown use
+  useEffect(() => {
+    if (count <= 0) {
+      setDelay(null)
+      setDisableBtn(false)
+    }
+  }, [count])
+
+  // 處理要求一次性驗証碼用
+  const handleRequestOtpToken = async () => {
+    if (delay !== null) {
+      toast.error('錯誤 - 60s內無法重新獲得驗証碼')
+      return
+    }
+
+    const res = await requestOtpToken(email)
+
+    // 除錯用
+    console.log(res.data)
+
+    if (res.data.status === 'success') {
+      toast.success('資訊 - 驗証碼已寄送到電子郵件中')
+      setCount(60) // 倒數 60秒
+      setDelay(1000) // 每 1000ms = 1s 減1
+      setDisableBtn(true)
+    } else {
+      toast.error(`錯誤 - ${res.data.message}`)
+    }
+  }
+
+  // 處理重設密碼用
+  const handleResetPassword = async () => {
+    const res = await resetPassword(email, password, token)
+    // 除錯用
+    console.log(res.data)
+
+    if (res.data.status === 'success') {
+      toast.success('資訊 - 密碼已成功修改')
+    } else {
+      toast.error(`錯誤 - ${res.data.message}`)
+    }
+  }
+
   if (!isVisible) return null
 
   return (
@@ -138,6 +197,8 @@ export default function ForgetPassword({ isVisible, onClose }) {
                   placeholder="輸入新密碼"
                   id="passwords1"
                   name="passwords"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
               <div className="w-100">
@@ -150,7 +211,9 @@ export default function ForgetPassword({ isVisible, onClose }) {
                 />
               </div>
               {/* <Link href="/login/forget-password">忘記密碼?</Link> */}
-              <button className="mt-5">更新</button>
+              <button className="mt-5" onClick={handleResetPassword}>
+                重設密碼
+              </button>
             </form>
           </div>
           <div className="form-container sign-in">
@@ -190,6 +253,14 @@ export default function ForgetPassword({ isVisible, onClose }) {
                     <div className="w-25">
                       <button className="btn m-0 text-nowrap px-2">
                         (60)重發驗證碼
+                      </button>
+                      <button
+                        onClick={handleRequestOtpToken}
+                        disabled={disableBtn}
+                      >
+                        {delay
+                          ? count + '秒後可以再次取得驗証碼'
+                          : '取得驗証碼'}
                       </button>
                     </div>
                   </div>
@@ -459,6 +530,7 @@ export default function ForgetPassword({ isVisible, onClose }) {
           }
         `}
       </style>
+      <Toaster />
     </>
   )
 }
