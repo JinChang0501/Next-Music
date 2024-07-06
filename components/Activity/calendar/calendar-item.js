@@ -2,8 +2,7 @@ import React from 'react'
 import { Calendar, Whisper, Popover, Badge } from 'rsuite';
 import getTodoList from './getTodoList';
 import { BsFillStarFill } from "react-icons/bs";
-// import style from './calendar.module.scss'
-import Link from 'next/link';
+import style from './calendar.module.scss'
 
 export default function CalendarItem() {
   function renderCell(date) {
@@ -28,15 +27,15 @@ export default function CalendarItem() {
               </Popover>
             }
           >
-            {/* <Link /> */}
-            <a>{moreCount} <BsFillStarFill /></a>
+            <a className="text-purple1">{moreCount} <BsFillStarFill /></a>
           </Whisper>
         </li>
       )
 
       return (
         <>
-          <ul className="calendar-todo-list">
+          {/* 定義 ToDoList */}
+          <ul className={`${style['calendar-todo-list']}`}>
             {displayList.map((item, index) => (
               <li key={index}>
                 <Badge color="red" className="mx-1" /> <b className="text-purple1">{item.title}</b>
@@ -44,7 +43,7 @@ export default function CalendarItem() {
             ))}
             {moreCount ? moreItem : null}
           </ul>
-          <style jsx>{`
+          {/* <style jsx>{`
             .calendar-todo-list {
               padding: 0;
               text-align: left;
@@ -63,7 +62,7 @@ export default function CalendarItem() {
               width: 6px;
               height: 6px;
             }  
-          `}</style>
+          `}</style> */}
         </>
       )
     }
@@ -75,9 +74,8 @@ export default function CalendarItem() {
     <>
       <Calendar
         bordered
-        renderCell={renderCell}
-        cellClassName={date => (date.getDay() % 2 ? 'bg-gray' : undefined)
-        }
+        renderCell={renderCell} //渲染 ToDoList
+      //cellClassName={date => (date.getDay() % 2 ? "bg-gray" : undefined)}
       />
       <style jsx>{`
         .bg-gray{
