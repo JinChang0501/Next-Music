@@ -41,58 +41,65 @@ export default function Third() {
   return (
     <>
       {/* breadcrumb */}
+
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
 
       {/* progressBar + timeCounter */}
+
       <ProgressBar />
 
       {/* Form */}
-      <div className={`${style.thirdContainer}`}>
+
+      <div className={`${style.outsideFlexCenter}`}>
         <div
-          className={`${style.accordionMarginTop} accordion`}
-          id="accordionPanelsStayOpenExample"
+          className={`${style.innerFlexCenter} col-xxl-9 col-xl-12 col-lg-12 col-md-12 col-sm-12`}
         >
+          <div
+            className={`${style.accordionMarginTop} accordion w-100`}
+            id="accordionPanelsStayOpenExample"
+          >
+            {isMobile ? (
+              <>
+                {/* PhoneAccordionFirst */}
+                <PhoneAccordionFirst />
+
+                {/* PhoneAccordionSecond */}
+                <PhoneAccordionSecond />
+
+                {/* PhoneAccordionThird */}
+                <PhoneAccordionThird />
+              </>
+            ) : (
+              <>
+                {/* AccordionFirst */}
+                <AccordionFirst />
+
+                {/* AccordionSecond */}
+                <AccordionSecond />
+
+                {/* AccordionThird */}
+                <AccordionThird />
+              </>
+            )}
+          </div>
           {isMobile ? (
-            <>
-              {/* PhoneAccordionFirst */}
-              <PhoneAccordionFirst />
-
-              {/* PhoneAccordionSecond */}
-              <PhoneAccordionSecond />
-
-              {/* PhoneAccordionThird */}
-              <PhoneAccordionThird />
-            </>
+            <div style={{ margin: '20px 0', width: '100%' }}>
+              <PhoneWhiteNoIconBtnPurple
+                text="付款"
+                className="w-100 chb-h6"
+                onClick={handleNext}
+              />
+            </div>
           ) : (
-            <>
-              {/* AccordionFirst */}
-              <AccordionFirst />
-
-              {/* AccordionSecond */}
-              <AccordionSecond />
-
-              {/* AccordionThird */}
-              <AccordionThird />
-            </>
+            <div style={{ margin: '30px 0', width: '100%' }}>
+              <DesktopWhiteNoIconBtnPurple
+                text="付款"
+                className="w-100 chb-h6"
+                onClick={handleNext}
+              />
+            </div>
           )}
         </div>
-        {isMobile ? (
-          <div style={{ margin: '20px 0' }}>
-            <PhoneWhiteNoIconBtnPurple
-              text="付款"
-              className="w-100 chb-h6"
-              onClick={handleNext}
-            />
-          </div>
-        ) : (
-          <div style={{ margin: '30px 0' }}>
-            <DesktopWhiteNoIconBtnPurple
-              text="付款"
-              className="w-100 chb-h6"
-              onClick={handleNext}
-            />
-          </div>
-        )}
       </div>
     </>
   )

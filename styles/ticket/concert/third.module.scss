@@ -1,20 +1,21 @@
-// #region thirdContainer
+// #region flexCenter
 
-.thirdContainer {
-  padding: 0 380px;
+.outsideFlexCenter,
+.innerFlexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@media (max-width: 390px) {
-  .thirdContainer {
-    padding: 0;
-  }
+.innerFlexCenter {
+  flex-direction: column;
 }
 
-// #endregion thirdContainer
+// #endregion flexCenter
 
 // #region accordion marginTop
 
-.accordionMarginTop{
+.accordionMarginTop {
   margin-top: 20px;
 }
 
@@ -25,4 +26,3 @@
 }
 
 // #endregion accordion marginTop
-

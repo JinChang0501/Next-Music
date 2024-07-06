@@ -131,7 +131,6 @@ export default function Custom404() {
     </>
   )
 }
-
 ```
 
 ### `DefaultLayout`頂天立地
@@ -248,7 +247,7 @@ export default function Footer() {
 
 ## `bootstrap`的`scss`如何覆寫或自定義類名
 
-### `@import '~bootstrap/scss/bootstrap';`這行上面覆寫scss，下面自定義類名
+### `@import '~bootstrap/scss/bootstrap';`這行上面覆寫 scss，下面自定義類名
 
 - 覆寫`scss`
 
@@ -282,7 +281,7 @@ $container-max-widths: (
   md: 720px,
   lg: 960px,
   xl: 1140px,
-  xxl: 1600px
+  xxl: 1600px,
 );
 ```
 
@@ -350,6 +349,7 @@ export default function Index() {
   return (
     <>
       <div className={styles.myClass}>Styled with CSS Module</div>
+      <div className={styles['my-table']}>Styled with CSS Module</div>
       <div className={`${styles.test} ${styles.spacing}`}>
         Styled with CSS Module
       </div>

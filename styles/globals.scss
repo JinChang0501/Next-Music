@@ -6,10 +6,42 @@
 
 // #region 使用 Bootstrap 的 mixin 定義 music-container
 
-$container-padding-x-large: 160px;
+$container-padding-xx-large: 160px;
+$container-padding-x-large: 128px;
+$container-padding-large: 96px;
+$container-padding-medium: 64px;
+$container-padding-small: 32px;
 $container-padding-x-small: 28px;
 
-@mixin large-container($padding-x: $container-padding-x-large) {
+@mixin xx-large-container($padding-x: $container-padding-xx-large) {
+  width: 100%;
+  padding-right: $padding-x;
+  padding-left: $padding-x;
+  margin-right: auto;
+  margin-left: auto;
+}
+@mixin x-large-container($padding-x: $container-padding-x-large) {
+  width: 100%;
+  padding-right: $padding-x;
+  padding-left: $padding-x;
+  margin-right: auto;
+  margin-left: auto;
+}
+@mixin large-container($padding-x: $container-padding-large) {
+  width: 100%;
+  padding-right: $padding-x;
+  padding-left: $padding-x;
+  margin-right: auto;
+  margin-left: auto;
+}
+@mixin medium-container($padding-x: $container-padding-medium) {
+  width: 100%;
+  padding-right: $padding-x;
+  padding-left: $padding-x;
+  margin-right: auto;
+  margin-left: auto;
+}
+@mixin small-container($padding-x: $container-padding-small) {
   width: 100%;
   padding-right: $padding-x;
   padding-left: $padding-x;
@@ -17,7 +49,7 @@ $container-padding-x-small: 28px;
   margin-left: auto;
 }
 
-@mixin small-container($padding-x: $container-padding-x-small) {
+@mixin x-small-container($padding-x: $container-padding-x-small) {
   width: 100%;
   padding-right: $padding-x;
   padding-left: $padding-x;
@@ -28,17 +60,41 @@ $container-padding-x-small: 28px;
 // 定義媒體查詢
 @media (min-width: 1921px) {
   .music-container {
-    @include large-container($container-padding-x-large);
+    @include large-container($container-padding-xx-large);
   }
 }
 
-@media (max-width: 1920px) and (min-width: 391px) {
+@media (max-width: 1920px) and (min-width: 1637px) {
+  .music-container {
+    @include large-container($container-padding-xx-large);
+  }
+}
+
+@media (max-width: 1636px) and (min-width: 1353px) {
   .music-container {
     @include large-container($container-padding-x-large);
   }
 }
 
-@media (max-width: 390px) {
+@media (max-width: 1352px) and (min-width: 1069px) {
+  .music-container {
+    @include large-container($container-padding-large);
+  }
+}
+
+@media (max-width: 1068px) and (min-width: 785px) {
+  .music-container {
+    @include large-container($container-padding-medium);
+  }
+}
+
+@media (max-width: 784px) and (min-width: 500px) {
+  .music-container {
+    @include large-container($container-padding-small);
+  }
+}
+
+@media (max-width: 499px) {
   .music-container {
     @include small-container($container-padding-x-small);
   }
@@ -145,7 +201,7 @@ $accordion-border-color: #a1a1a1;
 
 $accordion-button-color: black;
 $accordion-button-bg: #dbd7ff;
-$accordion-button-active-bg: #958CEA;
+$accordion-button-active-bg: #958cea;
 $accordion-button-active-color: white;
 $accordion-transition: $btn-transition, all 0.5s ease;
 
