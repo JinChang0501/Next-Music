@@ -61,6 +61,7 @@ export default function PreviewUploadImage({
         id="file-input"
         type="file"
         name="file"
+        accept="image/png, image/jpeg, image/jpg"
         onChange={handleFileChang}
       />
       <div className="text-center">
