@@ -14,7 +14,7 @@ const initUserPassword = {
   confirm: '', //確認新密碼
 }
 
-export default function Account() {
+export default function ProfilePassword() {
   // 需要會員登入時的id
   const { auth } = useAuth()
 
@@ -215,7 +215,7 @@ export default function Account() {
     </>
   )
 }
-Account.getLayout = function getLayout(page) {
+ProfilePassword.getLayout = function getLayout(page) {
   return (
     <MemberDLayout title="Music | 會員更新密碼" pageName="profile-password">
       {page}

@@ -23,7 +23,7 @@ const initUserProfile = {
   avatar: '',
 }
 
-export default function Account() {
+export default function Profile() {
   const [isDisable, setIsDisable] = useState(true)
 
   const handleEdit = (e) => {
@@ -303,9 +303,9 @@ export default function Account() {
     </>
   )
 }
-Account.getLayout = function getLayout(page) {
+Profile.getLayout = function getLayout(page) {
   return (
-    <MemberDLayout title="Music | 會員帳號設定" pageName="profile">
+    <MemberDLayout title="Music | 會員個人資料" pageName="profile">
       {page}
     </MemberDLayout>
   )
