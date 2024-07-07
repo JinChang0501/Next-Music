@@ -26,6 +26,9 @@ export default function Nav() {
 
   const handleCloseLogin = () => {
     setWakeLogin(false)
+    if (router.pathname === '/member/profile') {
+      router.back() // 如果路徑是 /product，才執行返回上一頁
+    }
   }
 
   const handleWakeForgetPassword = () => {
@@ -66,12 +69,13 @@ export default function Nav() {
   // }
 
   // 登入頁路由
-  const loginRoute = '/test/user'
+  // const loginRoute = '/test/login'
   // 隱私頁面路由，未登入時會，檢查後跳轉至登入頁
   const protectedRoutes = [
-    '/test/user/status',
-    '/test/user/profile',
-    '/test/user/profile-password',
+    '/member/profile',
+    // '/product',
+    // '/test/user/profile',
+    // '/test/user/profile-password',
   ]
 
   // 檢查會員認証用
@@ -97,7 +101,8 @@ export default function Nav() {
 
       // 在這裡實作隱私頁面路由的跳轉
       if (protectedRoutes.includes(router.pathname)) {
-        router.push(loginRoute)
+        // router.push(loginRoute)
+        handleWakeLogin()
       }
     }
   }
@@ -218,7 +223,7 @@ export default function Nav() {
                   {isLoggedIn ? (
                     <>
                       <li>
-                        <Link className="dropdown-item" href="/member/account">
+                        <Link className="dropdown-item" href="/member/profile">
                           會員中心
                         </Link>
                       </li>
@@ -255,40 +260,6 @@ export default function Nav() {
                       </li>
                     </>
                   )}
-                  {/* <div className={`${styles['mouse-cursor']}`}>
-                    <button className="dropdown-item" onClick={handleWakeLogin}>
-                      登入
-                    </button>
-                  </div>
-
-                  <li>
-                    <div className={`${styles['mouse-cursor']}`}>
-                      <button
-                        className="dropdown-item"
-                        onClick={handleWakeLogin}
-                      >
-                        註冊
-                      </button>
-                    </div> */}
-                  {/* <button
-                      className="btn btn-primary"
-                      onClick={handleRegisterClick}
-                      data-bs-toggle="modal"
-                      data-bs-target="#exampleModal"
-                    >
-                      會員中心
-                    </button>
-                    <LoginModal
-                      isActive={isActive}
-                      handleRegisterClick={handleRegisterClick}
-                      handleLoginClick={handleLoginClick}
-                    /> */}
-                  {/* </li> */}
-                  {/* <li> */}
-                  {/* <Link className="dropdown-item" href="#">
-                      登出
-                    </Link> */}
-                  {/* </li> */}
                 </ul>
               </li>
             </ul>
