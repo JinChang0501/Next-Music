@@ -66,7 +66,7 @@ export default function LeftBar() {
             </Link>
 
             <Link
-              href="reset-password"
+              href="profile-password"
               className="text-decoration-none text-center fw-bold chr-h5"
             >
               <li className="py-2 text-purple3 m-0">更新密碼</li>
