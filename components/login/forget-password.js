@@ -4,21 +4,19 @@ import { BsFillXCircleFill } from 'react-icons/bs'
 import toast, { Toaster } from 'react-hot-toast'
 import { requestOtpToken, resetPassword } from '@/services/user'
 import useInterval from '@/hooks/use-interval'
+import DesktopBlackNoIconBtnPurple from '../common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
+import DesktopBlackNoIconBtnBlack from '../common/button/desktopBlackButton/desktopBlackNoIconBtnBlack'
 
 export default function ForgetPassword({ isVisible, onClose }) {
   const [isActive, setIsActive] = useState(false)
   const router = useRouter()
-
-  const handleRegisterClick = () => {
-    setIsActive(true)
-  }
 
   const handleLeftClick = () => {
     setIsActive(false)
   }
 
   const backToLoginPage = () => {
-    router.push('/login')
+    onClose()
   }
 
   const [userForgetPassword, setUserForgetPassword] = useState({
@@ -30,6 +28,9 @@ export default function ForgetPassword({ isVisible, onClose }) {
   const [errors, setErrors] = useState({
     email: '',
     verifyCode: '',
+    password: '',
+    confirmPassword: '',
+    samePassword: '',
   })
 
   // 多欄位共用事件函式
@@ -66,6 +67,18 @@ export default function ForgetPassword({ isVisible, onClose }) {
       newErrors.verifyCode = '驗證碼為必填'
     }
 
+    if (!userForgetPassword.password) {
+      newErrors.password = '密碼為必填'
+    }
+
+    if (!userForgetPassword.confirmPassword) {
+      newErrors.confirmPassword = '再次輸入密碼為必填'
+    }
+
+    // if (!userForgetPassword.confirmPassword !== userForgetPassword.password) {
+    //   newErrors.samePassword = '新密碼需與再次輸入密碼相同'
+    // }
+
     // 呈現錯誤訊息
     setErrors(newErrors)
 
@@ -77,31 +90,6 @@ export default function ForgetPassword({ isVisible, onClose }) {
       return
     }
     // 表單檢查 --- END
-
-    // 最後檢查完全沒問題才送到伺服器(ajax/fetch)
-    const res = await fetch('http://localhost:3005/api/members/raw-sql', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(userForgetPassword),
-    })
-
-    const data = await res.json()
-
-    console.log(data)
-
-    // alert('送到伺服器')
-    toast.success('註冊成功!')
-
-    //註冊完後表單清空
-    setUserForgetPassword({
-      email: '',
-      verifyCode: '',
-    })
-    //讓面板回去登入
-    setIsActive(false)
   }
 
   const [email, setEmail] = useState('')
@@ -185,7 +173,7 @@ export default function ForgetPassword({ isVisible, onClose }) {
             {/* onSubmit={handleNextStep} */}
             <form onSubmit={handleForgetForm}>
               <div className="chb-h3">忘記密碼</div>
-              {/* 忘記密碼頁-電子信箱 */}
+              {/* 電子信箱 */}
               <div className="w-100 mt-3">
                 <label htmlFor="email">電子信箱:</label>
                 <input
@@ -194,8 +182,8 @@ export default function ForgetPassword({ isVisible, onClose }) {
                   placeholder="輸入信箱"
                   id="email"
                   name="email"
-                  value={userForgetPassword.email}
-                  onChange={handleForgetFieldChange}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div className="col-12 error"> {errors.email}</div>
@@ -203,7 +191,7 @@ export default function ForgetPassword({ isVisible, onClose }) {
               {/* 驗證碼 */}
               <div className="w-100 mt-3">
                 <label htmlFor="verifyCode">驗證碼:</label>
-                <div className="d-flex flex-row align-item-center mb-2">
+                <div className="d-flex flex-row align-item-center">
                   <div className="w-75">
                     <input
                       type="text"
@@ -233,7 +221,7 @@ export default function ForgetPassword({ isVisible, onClose }) {
                   </div>
                 </div>
               </div>
-              <div className="col-12 error"> {errors.email}</div>
+              <div className="col-12 error mb-3"> {errors.verifyCode}</div>
 
               {/* 新密碼*/}
               <div className="w-100 mt-1">
@@ -248,7 +236,8 @@ export default function ForgetPassword({ isVisible, onClose }) {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <div className="col-12 error mb-2">{errors.password}123</div>
+              <div className="col-12 error mb-2">{errors.password}</div>
+              <div className="col-12 error"> {errors.samePassword}</div>
 
               {/* 再次輸入新密碼 */}
               <div className="w-100 mt-1">
@@ -263,10 +252,12 @@ export default function ForgetPassword({ isVisible, onClose }) {
                   onChange={handleForgetFieldChange}
                 />
               </div>
-              <div className="col-12 error"> {errors.confirmPassword}123</div>
+              <div className="col-12 error">{errors.confirmPassword}</div>
+              <div className="col-12 error">{errors.samePassword}</div>
+
               {/* --------------------------------------------------- */}
 
-              <button className="mt-5" id="register">
+              <button className="mt-2" onClick={handleResetPassword}>
                 送出
               </button>
             </form>
@@ -277,6 +268,7 @@ export default function ForgetPassword({ isVisible, onClose }) {
                 <div className="chb-h3 mb-3">沒關係!</div>
                 <div className="chr-h6 mb-1">我們都有忘記的時候，</div>
                 <div className="chr-h6 mb-5">我們一起把它救回來吧!!</div>
+                <DesktopBlackNoIconBtnPurple onClick={backToLoginPage} />
               </div>
             </div>
           </div>
