@@ -21,13 +21,6 @@ export default function ForgetPassword({ isVisible, onClose }) {
     router.push('/login')
   }
 
-  const handleNextStep = (e) => {
-    setIsActive(true)
-    // router.push('/login/reset-password')
-
-    // 導航到重設密碼頁面
-  }
-
   const [userForgetPassword, setUserForgetPassword] = useState({
     email: '',
     verifyCode: '',
@@ -187,39 +180,11 @@ export default function ForgetPassword({ isVisible, onClose }) {
           >
             <BsFillXCircleFill className="chr-h4" />
           </button>
-          <div className="form-container sign-up">
-            <form>
-              <h1 style={{ marginBottom: '20px' }}>重設密碼</h1>
-              <div className="w-100">
-                <label htmlFor="passwords1">新密碼:</label>
-                <input
-                  type="password"
-                  placeholder="輸入新密碼"
-                  id="passwords1"
-                  name="passwords"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-              <div className="w-100">
-                <label htmlFor="passwordw2">再次輸入新密碼:</label>
-                <input
-                  type="password"
-                  placeholder="再次輸入新密碼"
-                  id="passwordw2"
-                  name="passwords"
-                />
-              </div>
-              {/* <Link href="/login/forget-password">忘記密碼?</Link> */}
-              <button className="mt-5" onClick={handleResetPassword}>
-                重設密碼
-              </button>
-            </form>
-          </div>
+
           <div className="form-container sign-in">
             {/* onSubmit={handleNextStep} */}
             <form onSubmit={handleForgetForm}>
-              <h1 style={{ marginBottom: '20px' }}>忘記密碼</h1>
+              <div className="chb-h3">忘記密碼</div>
               {/* 忘記密碼頁-電子信箱 */}
               <div className="w-100 mt-3">
                 <label htmlFor="email">電子信箱:</label>
@@ -234,7 +199,8 @@ export default function ForgetPassword({ isVisible, onClose }) {
                 />
               </div>
               <div className="col-12 error"> {errors.email}</div>
-              {/* 忘記密碼頁-驗證碼 */}
+
+              {/* 驗證碼 */}
               <div className="w-100 mt-3">
                 <label htmlFor="verifyCode">驗證碼:</label>
                 <div className="d-flex flex-row align-item-center mb-2">
@@ -251,10 +217,11 @@ export default function ForgetPassword({ isVisible, onClose }) {
                   </div>
                   <div>
                     <div className="w-25">
-                      <button className="btn m-0 text-nowrap px-2">
+                      {/* <button className="btn m-0 text-nowrap px-2">
                         (60)重發驗證碼
-                      </button>
+                      </button> */}
                       <button
+                        className="m-0 text-nowrap"
                         onClick={handleRequestOtpToken}
                         disabled={disableBtn}
                       >
@@ -266,39 +233,50 @@ export default function ForgetPassword({ isVisible, onClose }) {
                   </div>
                 </div>
               </div>
-              <div className="col-12 error"> {errors.verifyCode}</div>
+              <div className="col-12 error"> {errors.email}</div>
+
+              {/* 新密碼*/}
+              <div className="w-100 mt-1">
+                <label htmlFor="password">新密碼:</label>
+                <input
+                  type="password"
+                  placeholder="輸入新密碼"
+                  className="mb-0"
+                  id="password"
+                  name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <div className="col-12 error mb-2">{errors.password}123</div>
+
+              {/* 再次輸入新密碼 */}
+              <div className="w-100 mt-1">
+                <label htmlFor="confirmPassword">再次輸入新密碼:</label>
+                <input
+                  type="password"
+                  className="mb-0"
+                  placeholder="輸入信箱"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  value={userForgetPassword.confirmPassword}
+                  onChange={handleForgetFieldChange}
+                />
+              </div>
+              <div className="col-12 error"> {errors.confirmPassword}123</div>
               {/* --------------------------------------------------- */}
 
-              <button
-                className="mt-5"
-                onClick={() => {
-                  handleNextStep()
-                }}
-                id="register"
-              >
-                下一步
+              <button className="mt-5" id="register">
+                送出
               </button>
             </form>
           </div>
           <div className="toggle-container">
             <div className="toggle">
-              <div className="toggle-panel toggle-left">
-                <h1>開始重設密碼吧!</h1>
-                <p>更新完成後將跳轉回登入頁面，再請重新登入~~</p>
-                <button className="hidden" onClick={handleLeftClick} id="login">
-                  返回登入
-                </button>
-              </div>
               <div className="toggle-panel toggle-right">
-                <h1>沒關係!</h1>
-                <p>我們都有忘記的時候，我們一起把它救回來吧!!</p>
-                {/* <button
-                className="hidden"
-                onClick={handleRegisterClick}
-                id="register"
-              >
-                重設密碼
-              </button> */}
+                <div className="chb-h3 mb-3">沒關係!</div>
+                <div className="chr-h6 mb-1">我們都有忘記的時候，</div>
+                <div className="chr-h6 mb-5">我們一起把它救回來吧!!</div>
               </div>
             </div>
           </div>
