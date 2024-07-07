@@ -169,7 +169,7 @@ export default function Nav() {
               className={`navbar-nav d-flex flex-row ms-auto mb-2 mb-lg-0 ${styles['icon-lg-size']}`}
             >
               <li className={`me-3 me-md-1`}>
-                <Link href="#" className="nav-link">
+                <Link className="nav-link" href="/cart">
                   <BsCart />
                 </Link>
               </li>

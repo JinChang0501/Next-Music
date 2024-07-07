@@ -2,13 +2,14 @@ import React from 'react'
 import style from './progressBar.module.scss'
 import { FaChevronRight } from 'react-icons/fa'
 
-export default function ProgressBar() {
+
+export default function ProgressBarOne() {
   return (
-    <div className={`${style.progressBarHeight} row d-flex`}>
+    <div className={`${''} row d-flex`}>
       {/* progressBar */}
       <div className={`${style.progressBar}`}>
-        <div className={`${style.progressBarBlock}`}>
-          <div className={`${style.numBlock} bg-purple1 chb-h5`}>1</div>
+        <div className={`${style.progressBarBlock} `}>
+          <div className={`${style.numBlock} bg-purple1  chb-h5`}>1</div>
           <div className={`${style.progressBarBlockText} chb-h5 text-black`}>
             確認購買商品
           </div>

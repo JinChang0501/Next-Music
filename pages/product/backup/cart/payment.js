@@ -52,8 +52,8 @@ export default function Payment() {
           </tbody>
           </table>
           <div className={`${styles['mt-40']} ${styles['space-between']}`}>
-            <span className={`chb-h5 ${styles.text14}`}>共1項商品，數量2個</span>
-            <span className={`chb-h5 ${styles.text14}`}>總價:NT$1400元 </span>
+            <span className="chb-h5">共1項商品，數量2個</span>
+            <span className="chb-h5">總價:NT$1400元 </span>
           </div>
         </div>
         <div className={`second ${styles['mt-40']} ${styles['w-800']}`}>

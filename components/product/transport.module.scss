@@ -43,3 +43,9 @@
 .mt-28 {
   margin-top: 28px;
 }
+
+@media screen and (max-width:390px){
+  .w-750 {
+    width: 280px;
+  }
+}
