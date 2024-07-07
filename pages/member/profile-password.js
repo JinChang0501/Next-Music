@@ -59,6 +59,12 @@ export default function Account() {
       toast.error('新密碼與確認密碼不同')
       return // 跳出函式
     }
+
+    if (userPassword.origin === userPassword.new) {
+      toast.error('舊密碼與新密碼不能相同')
+      return // 跳出函式
+    }
+
     // 表單驗証 - END
 
     // 送到伺服器進行更新
@@ -75,7 +81,7 @@ export default function Account() {
   }
   return (
     <>
-      <p className="chb-h4 text-purple1">帳號設定</p>
+      <p className="chb-h4 text-purple1">更新密碼</p>
       <hr className="custom-hr" />
       {/* ------------------------------------------------------------------------------------------------------- */}
 
@@ -196,6 +202,9 @@ export default function Account() {
       </div>
 
       <style jsx>{`
+        .error-border {
+          border: 1px solid red;
+        }
         .custom-hr {
           border: 0;
           border-top: 4px solid #007bff; /* 設置粗細和顏色 */
@@ -208,27 +217,8 @@ export default function Account() {
 }
 Account.getLayout = function getLayout(page) {
   return (
-    <MemberDLayout title="Music | 會員帳號設定" pageName="account">
+    <MemberDLayout title="Music | 會員更新密碼" pageName="profile-password">
       {page}
     </MemberDLayout>
   )
 }
-
-// const Account = () => {
-//   const size = useWindowSize()
-//   const isDesktop = size.width >= 768 // 假設 768px 以上為桌面佈局
-
-//   return isDesktop ? (
-//     <MemberDLayout>
-//       <h1>這是桌面佈局</h1>
-//     </MemberDLayout>
-//   ) : (
-//     <MemberPLayout>
-//       <h1>這是移動佈局</h1>
-//     </MemberPLayout>
-//   )
-// }
-
-// Account.getLayout = (page) => page
-
-// export default Account
