@@ -9,7 +9,7 @@ export default function BannerA() {
       {/* banner carousel start */}
       <div
         id="myCarousel"
-        className="carousel slide mb-5"
+        className="carousel slide mb-3 mb-md-5"
         data-bs-ride="carousel"
       >
         {/* banner switch 群組 */}

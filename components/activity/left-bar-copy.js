@@ -7,23 +7,22 @@ export default function LeftBar() {
     <>
       {/* left bar start */}
       <div className="col-md-3 col-12 mb-3">
-        <div className="outline sticky-40">
+        <div className="outline">
           <form id="" action="" className="col-10 mx-auto">
-            <div className="d-flex flex-md-column">
-              <div className="mt-4 mb-2 mb-md-2 col-6 col-md-12">
-                <select
-                  className="form-select"
-                  aria-label="Default select example"
-                >
-                  <option selected="">選擇地區</option>
-                  <option value={1}>北部</option>
-                  <option value={2}>中部</option>
-                  <option value={3}>南部</option>
-                </select>
-              </div>
-              <div className="mt-4 mb-2 mb-md-2 col-6 col-md-12">
-                <input type="date" className="form-control" id="datetime" />
-              </div></div>
+            <div className="my-4 col-6 col-md-12">
+              <select
+                className="form-select"
+                aria-label="Default select example"
+              >
+                <option selected="">選擇地區</option>
+                <option value={1}>北部</option>
+                <option value={2}>中部</option>
+                <option value={3}>南部</option>
+              </select>
+            </div>
+            <div className="my-4 col-6 col-md-12">
+              <input type="date" className="form-control" id="datetime" />
+            </div>
             <div className="my-4 input-group col-12">
               <input
                 type="text"
@@ -45,10 +44,6 @@ export default function LeftBar() {
       <style jsx>{`
         .outline {
           border: 1px solid #685BEB;
-        }
-        .sticky-40{
-          position: sticky;
-          top: 40px;
         }
       `}</style>
     </>

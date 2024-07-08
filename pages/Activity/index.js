@@ -20,25 +20,24 @@ export default function Activity() {
         <div className="row">
           <LeftBar />
           <div className="col-md-9 col-12">
-            {/* <ActivityTabs /> */}
             <ul className="nav nav-tabs mb-3" id="activityTab" role="tablist">
               <Tab
                 tabName="所有活動"
                 tabTarget="tabTargetAll"
                 ariaSelected={true}
-                classNames="col-6 col-md-3"
+                classNames="col-4 col-md-3"
               />
               <Tab
                 tabName="演唱會"
                 tabTarget="tabTargetConcert"
                 ariaSelected={false}
-                classNames="col-6 col-md-3"
+                classNames="col-4 col-md-3"
               />
               <Tab
                 tabName="音樂祭"
                 tabTarget="tabTargetFestival"
                 ariaSelected={false}
-                classNames="col-6 col-md-3"
+                classNames="col-4 col-md-3"
               />
             </ul>
             <div className="tab-content" id="myTabContent">
