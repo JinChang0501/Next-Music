@@ -94,6 +94,9 @@
 .w-400 {
   width: 400px;
 }
+.w-390 {
+  width: 390px;
+}
 .w-335 {
   width: 350px;
 }
@@ -109,6 +112,9 @@
 
 .h-725 {
   height: 725px;
+}
+.h-166 {
+  height: 166px;
 }
 .h-120 {
   height: 120px;
@@ -134,6 +140,10 @@
 }
 .bg-white {
   background-color: #fff;
+}
+// ${styles['bg-purple2']}
+.bg-purple2 {
+  background-color: #958cea;
 }
 
 .input-border {
@@ -172,9 +182,23 @@
   justify-content: center;
   align-items: center;
 }
+.item 
 .text-center-x {
   text-align: center; 
 }
+.columnCenter{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.rowCenter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 
 
 // 手機
@@ -210,11 +234,40 @@
   .mt-80 {
     margin-top: 40px;
   }
+  
   .borderPurple3 {
     padding-bottom: 24px;
     border-bottom: 1px solid #dbd7ff;
   }
 
   // cart
+  .w-1060 {
+    width: 385px;
+  }
+  .mb-40{
+    margin-bottom: 0px;
+  }
+  .ml-40 {
+    margin-left: 40px;
+  }
   
+  .text14 {
+    font-size: 14px;
+    font-weight: 800;
+  }
+  .btn-760 {
+    width: 334px;
+  }
+
+  // payment
+  .w-800 {
+    width: 334px;
+   
+  }
+  .chb-h5 {
+    font-size: 14px;
+  } 
+  .chb-p {
+    font-size: 12px;
+  } 
 }

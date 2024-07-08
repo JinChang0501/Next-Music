@@ -15,11 +15,12 @@ export default function CardProduct() {
             alt="..."
           />
           <div className={`card-body ${styles['bg-bk']}`}>
-            <p className="card-text chb-h6 text-purple3">活動名名稱</p>
-            <p className="card-text chb-h6 text-white">商品名稱</p>
-            <p className="card-text chb-h6 text-white">價格</p>
-            
-            <DesktopBlackNoIconBtnPurple text="詳細資訊" className="chb-p" />
+            <p className={`card-text chb-h6 text-purple3 ${styles['text-center']}`}>商品名稱</p>
+            <p className={`card-text chb-h6 text-white ${styles['text-center']}`}>活動名名稱</p>
+            <p className={`card-text chb-h6 text-white ${styles['text-center']}`}>價格</p>
+            <div className={`${styles['text-center']}`}>
+            <DesktopBlackNoIconBtnPurple text="詳細資訊" className={`chb-p`} />
+            </div>
           </div>
         </div>
       </div>
