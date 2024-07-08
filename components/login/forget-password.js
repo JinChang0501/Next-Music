@@ -5,10 +5,18 @@ import toast, { Toaster } from 'react-hot-toast'
 import { requestOtpToken, resetPassword } from '@/services/user'
 import useInterval from '@/hooks/use-interval'
 import DesktopBlackNoIconBtnPurple from '../common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
-import DesktopBlackNoIconBtnBlack from '../common/button/desktopBlackButton/desktopBlackNoIconBtnBlack'
+import { IoEyeSharp } from 'react-icons/io5'
+import { IoEyeOffSharp } from 'react-icons/io5'
 
-export default function ForgetPassword({ isVisible, onClose }) {
+export default function ForgetPassword({
+  isVisible,
+  onClose,
+  handleWakeLogin,
+}) {
   const [isActive, setIsActive] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+
   const router = useRouter()
 
   const handleLeftClick = () => {
@@ -19,82 +27,28 @@ export default function ForgetPassword({ isVisible, onClose }) {
     onClose()
   }
 
-  const [userForgetPassword, setUserForgetPassword] = useState({
-    email: '',
-    verifyCode: '',
-  })
-
-  // 錯誤訊息狀態
-  const [errors, setErrors] = useState({
-    email: '',
-    verifyCode: '',
-    password: '',
-    confirmPassword: '',
-    samePassword: '',
-  })
-
-  // 多欄位共用事件函式
-  const handleForgetFieldChange = (e) => {
-    console.log(e.target.name, e.target.value, e.target.type)
-
-    setUserForgetPassword({
-      ...userForgetPassword,
-      [e.target.name]: e.target.value,
-    })
-
-    // ES6特性: 計算得來的屬性名稱(computed property names)
-    // [e.target.name]: e.target.value
-    // ^^^^^^^^^^^^^^^ 這樣可以動態的設定物件的屬性名稱
-    // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Object_initializer#%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E5%90%8D
+  const handleShowPassword = (e) => {
+    e.preventDefault()
+    setShowPassword(!showPassword)
   }
 
-  const handleForgetForm = async (e) => {
-    // 阻擋表單預設送出行為
+  const handleShowConfirmPassword = (e) => {
     e.preventDefault()
-
-    // 表單檢查 --- START
-    // 建立一個新的錯誤物件
-    const newErrors = {
-      email: '',
-      verifyCode: '',
-    }
-
-    if (!userForgetPassword.email) {
-      newErrors.email = '信箱為必填'
-    }
-
-    if (!userForgetPassword.verifyCode) {
-      newErrors.verifyCode = '驗證碼為必填'
-    }
-
-    if (!userForgetPassword.password) {
-      newErrors.password = '密碼為必填'
-    }
-
-    if (!userForgetPassword.confirmPassword) {
-      newErrors.confirmPassword = '再次輸入密碼為必填'
-    }
-
-    // if (!userForgetPassword.confirmPassword !== userForgetPassword.password) {
-    //   newErrors.samePassword = '新密碼需與再次輸入密碼相同'
-    // }
-
-    // 呈現錯誤訊息
-    setErrors(newErrors)
-
-    // 物件屬性值中有非空白字串時，代表有錯誤發生
-    const hasErrors = Object.values(newErrors).some((v) => v)
-
-    // 有錯誤，不送到伺服器，跳出submit函式
-    if (hasErrors) {
-      return
-    }
-    // 表單檢查 --- END
+    setShowConfirmPassword(!showConfirmPassword)
   }
 
   const [email, setEmail] = useState('')
   const [token, setToken] = useState('')
   const [password, setPassword] = useState('')
+  // const [confirmPassword, setConfirmPassword] = useState('')
+
+  // 清空表單
+  const clearForm = () => {
+    setEmail('')
+    setToken('')
+    setPassword('')
+  }
+
   const [disableBtn, setDisableBtn] = useState(false)
 
   // 倒數計時 countdown use
@@ -146,6 +100,9 @@ export default function ForgetPassword({ isVisible, onClose }) {
     } else {
       toast.error(`錯誤 - ${res.data.message}`)
     }
+    clearForm()
+    backToLoginPage()
+    handleWakeLogin()
   }
 
   if (!isVisible) return null
@@ -170,8 +127,7 @@ export default function ForgetPassword({ isVisible, onClose }) {
           </button>
 
           <div className="form-container sign-in">
-            {/* onSubmit={handleNextStep} */}
-            <form onSubmit={handleForgetForm}>
+            <form>
               <div className="chb-h3">忘記密碼</div>
               {/* 電子信箱 */}
               <div className="w-100 mt-3">
@@ -181,83 +137,114 @@ export default function ForgetPassword({ isVisible, onClose }) {
                   className="mb-0"
                   placeholder="輸入信箱"
                   id="email"
-                  name="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-              <div className="col-12 error"> {errors.email}</div>
 
               {/* 驗證碼 */}
               <div className="w-100 mt-3">
-                <label htmlFor="verifyCode">驗證碼:</label>
-                <div className="d-flex flex-row align-item-center">
-                  <div className="w-75">
+                <label htmlFor="token">驗證碼:</label>
+                <div className="d-flex align-item-center">
+                  <div className="w-100">
                     <input
                       type="text"
                       placeholder="驗證碼"
-                      id="verifyCode"
+                      id="token"
                       className="m-0"
-                      name="verifyCode"
-                      value={userForgetPassword.verifyCode}
-                      onChange={handleForgetFieldChange}
+                      value={token}
+                      onChange={(e) => setToken(e.target.value)}
                     />
                   </div>
+
                   <div>
-                    <div className="w-25">
-                      {/* <button className="btn m-0 text-nowrap px-2">
-                        (60)重發驗證碼
-                      </button> */}
-                      <button
-                        className="m-0 text-nowrap"
-                        onClick={handleRequestOtpToken}
-                        disabled={disableBtn}
-                      >
-                        {delay
-                          ? count + '秒後可以再次取得驗証碼'
-                          : '取得驗証碼'}
-                      </button>
-                    </div>
+                    <button
+                      type="button"
+                      className="text-nowrap m-0 h-100 px-3"
+                      onClick={handleRequestOtpToken}
+                      disabled={disableBtn}
+                    >
+                      {delay ? count + '秒後重試' : '取得驗証碼'}
+                    </button>
                   </div>
                 </div>
               </div>
-              <div className="col-12 error mb-3"> {errors.verifyCode}</div>
 
               {/* 新密碼*/}
-              <div className="w-100 mt-1">
+              {/* <div className="w-100 mt-3">
                 <label htmlFor="password">新密碼:</label>
                 <input
                   type="password"
                   placeholder="輸入新密碼"
                   className="mb-0"
                   id="password"
-                  name="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
+              </div> */}
+              {/* NEWWWWWWWWWW */}
+              <div className="w-100 mt-3">
+                <label htmlFor="password">密碼:</label>
+                <div className="d-flex">
+                  <div className="m-0 w-100">
+                    <input
+                      className="m-0"
+                      type={showPassword ? 'text' : 'password'}
+                      placeholder="新密碼"
+                      id="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </div>
+                  <div className="align-items-center m-0">
+                    <button
+                      className="m-0 border-0 h-100 px-4 bg-eee text-purple1"
+                      onClick={handleShowPassword}
+                    >
+                      {showPassword ? (
+                        <IoEyeSharp className="chr-h6" />
+                      ) : (
+                        <IoEyeOffSharp className="chr-h6" />
+                      )}
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div className="col-12 error mb-2">{errors.password}</div>
-              <div className="col-12 error"> {errors.samePassword}</div>
 
               {/* 再次輸入新密碼 */}
-              <div className="w-100 mt-1">
-                <label htmlFor="confirmPassword">再次輸入新密碼:</label>
-                <input
-                  type="password"
-                  className="mb-0"
-                  placeholder="輸入信箱"
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  value={userForgetPassword.confirmPassword}
-                  onChange={handleForgetFieldChange}
-                />
+              <div className="w-100 mt-3">
+                <label htmlFor="confirmPassword">密碼:</label>
+                <div className="d-flex">
+                  <div className="m-0 w-100">
+                    <input
+                      className="m-0"
+                      type={showConfirmPassword ? 'text' : 'password'}
+                      placeholder="新密碼"
+                      id="confirmPassword"
+                    />
+                  </div>
+                  <div className="align-items-center m-0">
+                    <button
+                      className="m-0 border-0 h-100 px-4 bg-eee text-purple1"
+                      onClick={handleShowConfirmPassword}
+                    >
+                      {showConfirmPassword ? (
+                        <IoEyeSharp className="chr-h6" />
+                      ) : (
+                        <IoEyeOffSharp className="chr-h6" />
+                      )}
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div className="col-12 error">{errors.confirmPassword}</div>
-              <div className="col-12 error">{errors.samePassword}</div>
 
               {/* --------------------------------------------------- */}
 
-              <button className="mt-2" onClick={handleResetPassword}>
+              <button
+                type="button"
+                className="mt-4"
+                onClick={handleResetPassword}
+              >
                 送出
               </button>
             </form>
@@ -276,11 +263,6 @@ export default function ForgetPassword({ isVisible, onClose }) {
       </div>
       <style jsx>
         {`
-          .error {
-            color: red;
-            font-size: 16px;
-            height: 16px;
-          }
           .modal-bgc {
             position: absolute;
             background-color: rgba(0, 0, 0, 0.5); /* 半透明黑色 */
