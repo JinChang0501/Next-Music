@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>artist</title>
+
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5em;
+      color: #fff;
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav li {
+      cursor: pointer;
+      color: #fff;
+    }
+
+    .profile {
+      display: flex;
+      padding: 20px;
+      border-bottom: 1px solid #444;
+    }
+
+    .profile-pic img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+    }
+
+    .profile-info {
+      margin-left: 20px;
+    }
+
+    .follow-btn {
+      background-color: #6200ea;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .latest-music {
+      padding: 20px;
+    }
+
+    .music-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .music-item {
+      display: flex;
+      align-items: center;
+      background-color: #222;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .music-item img {
+      width: 50px;
+      height: 50px;
+      margin-right: 10px;
+    }
+
+    .play-btn {
+      background-color: #6200ea;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Logo  </div>
+    <nav>
+      <ul>
+        <li>探索活動</li>
+        <li>最新消息</li>
+        <li>簡介</li>
+      </ul>
+    </nav>
+  </header>
+  <section class="profile">
+    <div class="profile-pic">
+      <img src="/public//images/artist/Collage.png" alt="Collage">
+    </div>
+    <div class="profile-info">
+      <h1>柯拉琪 Collage</h1>
+      <p>ID: 21514354</p>
+      <p>創建人: 20年11月2日</p>
+      <button class="follow-btn" onclick="handleFollowClick()">+ 收藏</button>
+      <p id="follow-info">20 收藏者 57,267 查看</p>
+    </div>
+  </section>
+  <section class="latest-music">
+    <h2>最新音樂（依照時間順序排序）</h2>
+    <div class="music-list">
+      <div class="music-item">
+        <img src="/public//images/artist/Collage.png" alt="Music Cover">
+        <div class="music-info">
+          <h3>這世界何其無奈</h3>
+          <p>時間: 2023-11-20 15:20</p>
+          <button class="play-btn" onclick="handlePlayClick()">播放</button>
+        </div>
+      </div>
+      <!-- 可以复制和粘贴 .music-item 以添加更多项目 -->
+    </div>
+  </section>
+
+  <script>
+    let isFollowed = false;
+
+    function handleFollowClick() {
+      isFollowed = !isFollowed;
+      const followBtn = document.querySelector('.follow-btn');
+      const followInfo = document.getElementById('follow-info');
+      followBtn.textContent = isFollowed ? '已收藏' : '+ 收藏';
+      followInfo.textContent = isFollowed ? '21 收藏者 57,268 查看' : '20 收藏者 57,267 查看';
+    }
+
+    function handlePlayClick() {
+      alert('播放音樂');
+    }
+  </script>
+</body>
+</html>
