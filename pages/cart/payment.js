@@ -23,37 +23,83 @@ export default function Payment() {
       <ProgressBarTwo />
       {/* <Link href="/product/cart">連至購物車</Link> */}
       <div className={`container ${styles['mb-40']} ${styles['center-item']}`}>
-        <div className={`first ${styles['my-20']}  ${styles['w-800']}`}>
-          <p className={`chb-h5 ${styles['ml-20']}`}>購買商品 </p>
-          {/* 表格 */}
-          {/* <table className={`table table-bordered border-dark`}> */}
-          <table className={`table`}>
-            <thead>
-              <tr className={`${styles['h-54']}`}>
-                <th><p className={`chb-p ${styles['text-center']}`}>商品圖片</p></th>
-                <th><p className={`chb-p ${styles['text-center']}`}>商品名稱</p></th>
-                <th><p className={`chb-p ${styles['text-center']}`}>價格</p></th>
-                <th><p className={`chb-p ${styles['text-center']}`}>數量</p></th>
-                <th><p className={`chb-p ${styles['text-center']}`}>小計</p></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className={`${styles['h-100']} `}>
-                <td className={`${styles['text-center']} `}>
-                  <p className={`chb-p ${styles['text-center']}`}>
-                    <img className={`${styles['wh-100']}`} src="/images/product/list/red_baseball-cap.jpg" />
+      <div className={`col-12 col-md-8 cart-area ${styles['my-20']} `}>
+          <p className={`chb-h5 ${styles['ml-20']}`}>購買的商品 </p>
+          <div className="card mb-3 border-0 cart-card">
+            <div className="row g-0">
+              <div className={`col-md-3 ${styles['columnCenter']}`}>
+                <img
+                  src="/images/product/list/red_baseball-cap.jpg"
+                  className={`img-fluid rounded-start ${styles['wh-200']} `}
+                  alt="..."
+                />
+              </div>
+              <div className="col-md-7">
+                <div className="card-body">
+                  <p className="card-title card-text d-flex justify-content-between align-items-center chb-h6">
+                    夢幻樂園演唱會 棒球帽-紅
                   </p>
-                </td>
-                <td className={styles['']}>
-                <p className={`chb-p  ${styles['text-center']}`}>夢幻樂園演唱會</p>
-                <p className={`chb-p  ${styles['text-center']}`}>棒球帽-紅</p>
-                </td>
-                <td><p className={`chb-p ${styles['text-center']}`}>$700</p></td>
-                <td><p className={`chb-p ${styles['text-center']}`}>2</p></td>
-                <td><p className={`chb-p ${styles['text-center']}`}>$1400</p></td>
-              </tr>
-          </tbody>
-          </table>
+                  <p className={`card-text chb-h6 ${styles['mt-40']}`}>單價: NT$ $700</p>
+
+                  <div className="row g-3 align-items-center">
+                    <div className="col-auto">
+                      <label
+                        htmlFor="inputPassword6"
+                        className="col-form-label chb-h6"
+                      >
+                        數量: 1
+                      </label>
+                    </div>
+                    
+                  </div>
+
+                  <div className={`cartTotal ${styles['mt-28']}`}>
+                    <p className="card-text chb-h6">小計: NT$ $700</p>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          <hr />
+          <div className="card mb-3 border-0 cart-card">
+            <div className="row g-0">
+              <div className={`col-md-3 ${styles['columnCenter']}`}>
+                <img
+                  src="/images/product/list/red_baseball-cap.jpg"
+                  className={`img-fluid rounded-start ${styles['wh-200']} `}
+                  alt="..."
+                />
+              </div>
+              <div className="col-md-7">
+                <div className="card-body">
+                  <p className="card-title card-text d-flex justify-content-between align-items-center chb-h6">
+                  夢幻樂園演唱會 棒球帽-紅
+                  {/* <span>$4,000.00</span> */}
+                  </p>
+                  <p className={`card-text chb-h6 ${styles['mt-40']}`}>單價: NT$ $700</p>
+
+                  <div className="row g-3 align-items-center">
+                    <div className="col-auto">
+                      <label
+                        htmlFor="inputPassword6"
+                        className="col-form-label chb-h6"
+                      >
+                        數量: 1
+                      </label>
+                    </div>
+                    
+                  </div>
+
+                  <div className={`cartTotal ${styles['mt-28']}`}>
+                   <p className="card-text chb-h6">小計: NT$ $700</p>
+                  </div>
+                </div>
+              </div>
+     
+            </div>
+          </div>
+          <hr />
           <div className={` ${styles['mt-40']} ${styles['w-1061']} ${styles['space-between']} ${styles['ml-40']}`}>
             <span className={`chb-h5 ${styles.text14}`}>共2項商品，數量2個</span>
             <span className={`chb-h5 ${styles.text14}`}>總價:NT$1400元 </span>
