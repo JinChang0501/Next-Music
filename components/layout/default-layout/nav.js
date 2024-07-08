@@ -133,7 +133,7 @@ export default function Nav() {
         <div className="container">
           {/* Logo */}
           <Link className="navbar-brand" href="/">
-            Logoo
+            <img src="https://i.postimg.cc/ZnMnqMpt/makin-Logo.png" />
           </Link>
           <button
             className="navbar-toggler"
