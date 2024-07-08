@@ -27,20 +27,41 @@ export default function PhoneBar({ pageName = '' }) {
             <div className="menu-container">
               <div className="menu-wrapper px-0 ">
                 <Link
-                  href="ticket-order"
+                  href="profile"
                   className={`me-3 chb-h5 ${
-                    pageName === 'test' ? 'text-purple1' : 'text-black60'
+                    pageName === 'profile' ? 'text-purple1' : 'text-black60'
                   }`}
                 >
-                  行事曆
+                  個人資料
                 </Link>
+
+                <Link
+                  href="profile-password"
+                  className={`me-3 chb-h5 ${
+                    pageName === 'profile-password'
+                      ? 'text-purple1'
+                      : 'text-black60'
+                  }`}
+                >
+                  更新密碼
+                </Link>
+
+                <Link
+                  href="calendar"
+                  className={`me-3 chb-h5 ${
+                    pageName === 'calendar' ? 'text-purple1' : 'text-black60'
+                  }`}
+                >
+                  活動日程
+                </Link>
+
                 <Link
                   href="collection"
                   className={`me-3 chb-h5 ${
                     pageName === 'collection' ? 'text-purple1' : 'text-black60'
                   }`}
                 >
-                  收藏庫
+                  個人收藏
                 </Link>
                 <Link
                   href="ticket-order"
@@ -50,7 +71,7 @@ export default function PhoneBar({ pageName = '' }) {
                       : 'text-black60'
                   }`}
                 >
-                  我的票券
+                  訂票紀錄
                 </Link>
                 <Link
                   href="store-order"
@@ -58,16 +79,16 @@ export default function PhoneBar({ pageName = '' }) {
                     pageName === 'store-order' ? 'text-purple1' : 'text-black60'
                   }`}
                 >
-                  商城購物紀錄
+                  購物紀錄
                 </Link>
-                <Link
+                {/* <Link
                   href="account"
                   className={`me-3 chb-h5 ${
                     pageName === 'account' ? 'text-purple1' : 'text-black60'
                   }`}
                 >
                   帳戶設定
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>
