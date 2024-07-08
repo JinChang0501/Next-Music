@@ -1,9 +1,9 @@
 import React from 'react'
 
 export default function BannerA() {
-  const bn1 = 'https://i.postimg.cc/D0Sk46h2/temp-Image5-Z7c-U7.avif'
-  const bn2 = 'https://i.postimg.cc/WbJc25S8/temp-Image-UYQiab.avif'
-  const bn3 = 'https://i.postimg.cc/xdVfrw2L/temp-Image-HNi5-DU.avif'
+  const bn1 = 'https://i.postimg.cc/tJRCk5qv/Banner01.jpg'
+  const bn2 = 'https://i.postimg.cc/Nfzf8mWb/Banner03.jpg'
+  const bn3 = 'https://i.postimg.cc/8ky1DLPD/Banner12.jpg'
   return (
     <>
       {/* banner carousel start */}
