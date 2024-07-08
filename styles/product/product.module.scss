@@ -110,6 +110,9 @@
 .w-160 {
   width: 160px;
 }
+.w-58 {
+  width: 58px;
+}
 .w-50 {
   width: 50px;
 }
@@ -133,7 +136,10 @@
 .h-40 {
   height: 40px;
 }
-
+.wh-200 {
+  width: 250px;
+  height: 250px;
+}
 .wh-100 {
   width: 100px;
   height: 100px;
@@ -171,6 +177,11 @@
   border: 1px solid #685beb;  
 }
 .center-item {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+.centerItem {
   display:flex;
   flex-direction: column;
   align-items: center;
