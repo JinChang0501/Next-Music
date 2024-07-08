@@ -16,7 +16,7 @@ export default function LeftBar({ pageName = '' }) {
           <p className="chb-h4 text-white">會員中心</p>
           <hr className="custom-hr" />
         </div>
-        <div>
+        {/* <div>
           <div className="py-4">
             <div className={`${styles.imgF} mx-auto`}>
               <img
@@ -33,7 +33,7 @@ export default function LeftBar({ pageName = '' }) {
               三個字
             </p>
           </div>
-        </div>
+        </div> */}
         {/* 功能列 */}
         <div className="">
           <ul className="list-unstyled m-0">
