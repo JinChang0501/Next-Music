@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './left-bar.module.scss'
 import Link from 'next/link'
 import { FaKey } from 'react-icons/fa6'
@@ -6,8 +6,56 @@ import { IoPersonSharp } from 'react-icons/io5'
 import { FaShoppingCart } from 'react-icons/fa'
 import { BsTicketPerforatedFill } from 'react-icons/bs'
 import { BiCollection } from 'react-icons/bi'
+import { useAuth } from '@/hooks/use-auth'
+
+import {
+  updateProfile,
+  getUserById,
+  updateProfileAvatar,
+} from '@/services/user'
+
+// 定義要在此頁呈現/編輯的會員資料初始物件
+const initUserProfile = {
+  email: '',
+}
 
 export default function LeftBar({ pageName = '' }) {
+  // 更新表單
+  const { auth } = useAuth()
+  const [userProfile, setUserProfile] = useState(initUserProfile)
+  const getUserData = async (id) => {
+    const res = await getUserById(id)
+
+    console.log(res.data)
+
+    if (res.data.status === 'success') {
+      // 以下為同步化目前後端資料庫資料，與這裡定義的初始化會員資料物件的資料
+      const dbUser = res.data.data.user
+      const dbUserProfile = { ...initUserProfile }
+
+      for (const key in dbUserProfile) {
+        if (Object.hasOwn(dbUser, key)) {
+          // 這裡要將null值的預設值改為空字串 ''
+          dbUserProfile[key] = dbUser[key] || ''
+        }
+      }
+
+      // 設定到狀態中
+      setUserProfile(dbUserProfile)
+
+      // toast.success('會員資料載入成功')
+    } else {
+      // toast.error(`會員資料載入失敗`)
+    }
+  }
+  // auth載入完成後向資料庫要會員資料
+  useEffect(() => {
+    if (auth.isAuth) {
+      getUserData(auth.userData.id)
+    }
+    // eslint-disable-next-line
+  }, [auth])
+
   return (
     <>
       <div className="left-bar bg-black80">
@@ -151,9 +199,9 @@ export default function LeftBar({ pageName = '' }) {
         </div>
         {/* 信箱與登出 */}
         <div className="bottom-content text-center bg-black80 py-3">
-          <span className="chr-h6 text-white">jin@gmail.com</span>
+          <span className="eng-h7 text-white">{userProfile.email}</span>
           <br />
-          <a href="" className="text-decoration-none">
+          <a href="" className="text-decoration-none text-purple3">
             登出
           </a>
         </div>
