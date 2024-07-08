@@ -69,12 +69,26 @@ export default function ActivityCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/t
                 </div>
               </div>
               <div className="col-4 d-flex justify-content-end gap-2 text-nowrap">
-                <DesktopWhiteNoIconBtnBlack text="活動資訊" className="chr-p d-md-block d-none" />
+                <DesktopWhiteNoIconBtnBlack
+                  text="活動資訊"
+                  className="chr-p d-md-block d-none"
+                // 之後設定路徑為變數
+                // onClick={ }
+                />
                 {/* 如果變成手機大小，要變成手機按鈕的判斷式 */}
                 {isDesktop ? (
-                  <DesktopBlackNoIconBtnPurple text="立即購票" className="chr-p" />
+                  <DesktopBlackNoIconBtnPurple
+                    text="立即購票"
+                    className="chr-p"
+                  // 之後設定路徑為變數
+                  // onClick={ }
+                  />
                 ) : (
-                  <PhoneBlackNoIconBtnPurple text="立即購票" className="chr-p" />
+                  <PhoneBlackNoIconBtnPurple
+                    text="立即購票" className="chr-p"
+                  // 之後設定路徑為變數
+                  // onClick={ }
+                  />
                 )}
 
               </div>
@@ -90,3 +104,4 @@ export default function ActivityCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/t
     </>
   )
 }
+
