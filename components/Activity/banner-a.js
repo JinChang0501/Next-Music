@@ -19,7 +19,7 @@ export default function BannerA() {
             type="button"
             data-bs-target="#myCarousel"
             data-bs-slide-to={0}
-            className=""
+            className="cube"
             aria-label="Slide 1"
           />
           <button
@@ -27,14 +27,14 @@ export default function BannerA() {
             data-bs-target="#myCarousel"
             data-bs-slide-to={1}
             aria-label="Slide 2"
-            className=""
+            className="cube"
           />
           <button
             type="button"
             data-bs-target="#myCarousel"
             data-bs-slide-to={2}
             aria-label="Slide 3"
-            className="active"
+            className="cube active"
             aria-current="true"
           />
         </div>
@@ -83,6 +83,12 @@ export default function BannerA() {
         </button>
       </div>
       {/* banner carousel end */}
+      <style jsx>{`
+        .cube {
+          width: 16px;
+          height: 16px;
+        }
+      `}</style>
     </>
   )
 }

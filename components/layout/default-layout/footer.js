@@ -7,7 +7,7 @@ export default function Footer() {
       <footer className="footer bg-purple2 py-3 text-center mt-auto">
         <span className="text-body-secondary fw-bolder">
           <FaMusic />
-          &nbsp;&nbsp;&nbsp; Love yourself in music&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp; Enjoy yourself in music&nbsp;&nbsp;&nbsp;
           <FaMusic />
         </span>
       </footer>
