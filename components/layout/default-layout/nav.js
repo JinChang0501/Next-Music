@@ -130,7 +130,7 @@ export default function Nav() {
         aria-label="Eighth navbar example"
         style={{ borderBottom: '1px solid var(--Primary-03, #DBD7FF)' }}
       >
-        <div className="container">
+        <div className="music-container d-flex justify-content-between">
           {/* Logo */}
           <Link className="navbar-brand" href="/">
             <img src="https://i.postimg.cc/ZnMnqMpt/makin-Logo.png" />
