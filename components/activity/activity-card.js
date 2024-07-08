@@ -1,4 +1,6 @@
 import React from 'react'
+import Link from 'next/link'
+//用link有bug，捲軸不會更新到最上
 import { BsMusicNoteBeamed, BsBookmark, BsGeoAlt, BsCalendar4 } from "react-icons/bs";
 import DesktopWhiteNoIconBtnBlack from '../common/button/desktopWhiteButton/desktopWhiteNoIconBtnBlack';
 import DesktopBlackNoIconBtnPurple from '../common/button/desktopBlackButton/desktopBlackNoIconBtnPurple';
@@ -69,12 +71,14 @@ export default function ActivityCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/t
                 </div>
               </div>
               <div className="col-4 d-flex justify-content-end gap-2 text-nowrap">
-                <DesktopWhiteNoIconBtnBlack
-                  text="活動資訊"
-                  className="chr-p d-md-block d-none"
-                // 之後設定路徑為變數
-                // onClick={ }
-                />
+                <Link href="/activity/jkh">
+                  <DesktopWhiteNoIconBtnBlack
+                    text="活動資訊"
+                    className="chr-p d-md-block d-none"
+                  // 之後設定路徑為變數
+                  // onClick={ }
+                  />
+                </Link>
                 {/* 如果變成手機大小，要變成手機按鈕的判斷式 */}
                 {isDesktop ? (
                   <DesktopBlackNoIconBtnPurple
