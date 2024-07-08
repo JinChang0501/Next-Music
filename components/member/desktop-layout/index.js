@@ -37,7 +37,7 @@ export default function MemberDLayout({
         <div className="container-fluid">
           <div className="row">
             <div className="col-2 p-0">
-              <LeftBar />
+              <LeftBar pageName={pageName} />
             </div>
             <div className="col-10 p-0 main-content d-flex flex-column">
               <div className="music-container overflow-auto flex-grow-1">

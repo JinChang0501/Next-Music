@@ -4,28 +4,19 @@ import { BsFillXCircleFill } from 'react-icons/bs'
 import toast, { Toaster } from 'react-hot-toast'
 import { requestOtpToken, resetPassword } from '@/services/user'
 import useInterval from '@/hooks/use-interval'
+import DesktopBlackNoIconBtnPurple from '../common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
+import DesktopBlackNoIconBtnBlack from '../common/button/desktopBlackButton/desktopBlackNoIconBtnBlack'
 
 export default function ForgetPassword({ isVisible, onClose }) {
   const [isActive, setIsActive] = useState(false)
   const router = useRouter()
-
-  const handleRegisterClick = () => {
-    setIsActive(true)
-  }
 
   const handleLeftClick = () => {
     setIsActive(false)
   }
 
   const backToLoginPage = () => {
-    router.push('/login')
-  }
-
-  const handleNextStep = (e) => {
-    setIsActive(true)
-    // router.push('/login/reset-password')
-
-    // 導航到重設密碼頁面
+    onClose()
   }
 
   const [userForgetPassword, setUserForgetPassword] = useState({
@@ -37,6 +28,9 @@ export default function ForgetPassword({ isVisible, onClose }) {
   const [errors, setErrors] = useState({
     email: '',
     verifyCode: '',
+    password: '',
+    confirmPassword: '',
+    samePassword: '',
   })
 
   // 多欄位共用事件函式
@@ -73,6 +67,18 @@ export default function ForgetPassword({ isVisible, onClose }) {
       newErrors.verifyCode = '驗證碼為必填'
     }
 
+    if (!userForgetPassword.password) {
+      newErrors.password = '密碼為必填'
+    }
+
+    if (!userForgetPassword.confirmPassword) {
+      newErrors.confirmPassword = '再次輸入密碼為必填'
+    }
+
+    // if (!userForgetPassword.confirmPassword !== userForgetPassword.password) {
+    //   newErrors.samePassword = '新密碼需與再次輸入密碼相同'
+    // }
+
     // 呈現錯誤訊息
     setErrors(newErrors)
 
@@ -84,31 +90,6 @@ export default function ForgetPassword({ isVisible, onClose }) {
       return
     }
     // 表單檢查 --- END
-
-    // 最後檢查完全沒問題才送到伺服器(ajax/fetch)
-    const res = await fetch('http://localhost:3005/api/members/raw-sql', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(userForgetPassword),
-    })
-
-    const data = await res.json()
-
-    console.log(data)
-
-    // alert('送到伺服器')
-    toast.success('註冊成功!')
-
-    //註冊完後表單清空
-    setUserForgetPassword({
-      email: '',
-      verifyCode: '',
-    })
-    //讓面板回去登入
-    setIsActive(false)
   }
 
   const [email, setEmail] = useState('')
@@ -187,40 +168,12 @@ export default function ForgetPassword({ isVisible, onClose }) {
           >
             <BsFillXCircleFill className="chr-h4" />
           </button>
-          <div className="form-container sign-up">
-            <form>
-              <h1 style={{ marginBottom: '20px' }}>重設密碼</h1>
-              <div className="w-100">
-                <label htmlFor="passwords1">新密碼:</label>
-                <input
-                  type="password"
-                  placeholder="輸入新密碼"
-                  id="passwords1"
-                  name="passwords"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-              <div className="w-100">
-                <label htmlFor="passwordw2">再次輸入新密碼:</label>
-                <input
-                  type="password"
-                  placeholder="再次輸入新密碼"
-                  id="passwordw2"
-                  name="passwords"
-                />
-              </div>
-              {/* <Link href="/login/forget-password">忘記密碼?</Link> */}
-              <button className="mt-5" onClick={handleResetPassword}>
-                重設密碼
-              </button>
-            </form>
-          </div>
+
           <div className="form-container sign-in">
             {/* onSubmit={handleNextStep} */}
             <form onSubmit={handleForgetForm}>
-              <h1 style={{ marginBottom: '20px' }}>忘記密碼</h1>
-              {/* 忘記密碼頁-電子信箱 */}
+              <div className="chb-h3">忘記密碼</div>
+              {/* 電子信箱 */}
               <div className="w-100 mt-3">
                 <label htmlFor="email">電子信箱:</label>
                 <input
@@ -229,15 +182,16 @@ export default function ForgetPassword({ isVisible, onClose }) {
                   placeholder="輸入信箱"
                   id="email"
                   name="email"
-                  value={userForgetPassword.email}
-                  onChange={handleForgetFieldChange}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div className="col-12 error"> {errors.email}</div>
-              {/* 忘記密碼頁-驗證碼 */}
+
+              {/* 驗證碼 */}
               <div className="w-100 mt-3">
                 <label htmlFor="verifyCode">驗證碼:</label>
-                <div className="d-flex flex-row align-item-center mb-2">
+                <div className="d-flex flex-row align-item-center">
                   <div className="w-75">
                     <input
                       type="text"
@@ -251,10 +205,11 @@ export default function ForgetPassword({ isVisible, onClose }) {
                   </div>
                   <div>
                     <div className="w-25">
-                      <button className="btn m-0 text-nowrap px-2">
+                      {/* <button className="btn m-0 text-nowrap px-2">
                         (60)重發驗證碼
-                      </button>
+                      </button> */}
                       <button
+                        className="m-0 text-nowrap"
                         onClick={handleRequestOtpToken}
                         disabled={disableBtn}
                       >
@@ -266,39 +221,54 @@ export default function ForgetPassword({ isVisible, onClose }) {
                   </div>
                 </div>
               </div>
-              <div className="col-12 error"> {errors.verifyCode}</div>
+              <div className="col-12 error mb-3"> {errors.verifyCode}</div>
+
+              {/* 新密碼*/}
+              <div className="w-100 mt-1">
+                <label htmlFor="password">新密碼:</label>
+                <input
+                  type="password"
+                  placeholder="輸入新密碼"
+                  className="mb-0"
+                  id="password"
+                  name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <div className="col-12 error mb-2">{errors.password}</div>
+              <div className="col-12 error"> {errors.samePassword}</div>
+
+              {/* 再次輸入新密碼 */}
+              <div className="w-100 mt-1">
+                <label htmlFor="confirmPassword">再次輸入新密碼:</label>
+                <input
+                  type="password"
+                  className="mb-0"
+                  placeholder="輸入信箱"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  value={userForgetPassword.confirmPassword}
+                  onChange={handleForgetFieldChange}
+                />
+              </div>
+              <div className="col-12 error">{errors.confirmPassword}</div>
+              <div className="col-12 error">{errors.samePassword}</div>
+
               {/* --------------------------------------------------- */}
 
-              <button
-                className="mt-5"
-                onClick={() => {
-                  handleNextStep()
-                }}
-                id="register"
-              >
-                下一步
+              <button className="mt-2" onClick={handleResetPassword}>
+                送出
               </button>
             </form>
           </div>
           <div className="toggle-container">
             <div className="toggle">
-              <div className="toggle-panel toggle-left">
-                <h1>開始重設密碼吧!</h1>
-                <p>更新完成後將跳轉回登入頁面，再請重新登入~~</p>
-                <button className="hidden" onClick={handleLeftClick} id="login">
-                  返回登入
-                </button>
-              </div>
               <div className="toggle-panel toggle-right">
-                <h1>沒關係!</h1>
-                <p>我們都有忘記的時候，我們一起把它救回來吧!!</p>
-                {/* <button
-                className="hidden"
-                onClick={handleRegisterClick}
-                id="register"
-              >
-                重設密碼
-              </button> */}
+                <div className="chb-h3 mb-3">沒關係!</div>
+                <div className="chr-h6 mb-1">我們都有忘記的時候，</div>
+                <div className="chr-h6 mb-5">我們一起把它救回來吧!!</div>
+                <DesktopBlackNoIconBtnPurple onClick={backToLoginPage} />
               </div>
             </div>
           </div>

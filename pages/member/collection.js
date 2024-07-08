@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import MemberDLayout from '@/components/member/desktop-layout'
 import CollectionCard from '@/components/member/desktop-layout/collection-card'
 import cardData from '@/data/member/cardData'
+import Tab from '@/components/common/tabs/tab'
 
 export default function Collection() {
   const [selectedActivity, setSelectedActivity] = useState('0')
@@ -12,51 +13,36 @@ export default function Collection() {
 
   return (
     <>
-      <p className="chb-h4 text-purple1">收藏庫</p>
+      <p className="chb-h4 text-purple1">個人收藏</p>
       <hr className="custom-hr" />
       {/*  */}
       <ul className="nav nav-tabs mb-3" id="myTab" role="tablist">
         {/* col-6 */}
-        <li className="nav-item col-6 col-md-3" role="presentation">
-          <button
-            className="nav-link active w-100"
-            id="activity-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#activity"
-            type="button"
-            role="tab"
-            aria-controls="activity"
-            aria-selected="true"
-          >
-            活動
-          </button>
-        </li>
-
-        <li className="nav-item col-6 col-md-3" role="presentation">
-          <button
-            className="nav-link px-5 w-100"
-            id="artist-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#artist"
-            type="button"
-            role="tab"
-            aria-controls="artist"
-            aria-selected="false"
-          >
-            藝人
-          </button>
-        </li>
+        {/* 活動 */}
+        <Tab
+          tabName="活動"
+          tabTarget="activity"
+          ariaSelected={true}
+          classNames="col-6 col-md-2"
+        />
+        <Tab
+          tabName="藝人"
+          tabTarget="artist"
+          ariaSelected={false}
+          classNames="col-6 col-md-2"
+        />
       </ul>
-      <div className="tab-content" id="myTabContent">
+      {/* 內容 */}
+      <div className="tab-content mb-2" id="myTabContent">
         <div
           className="tab-pane fade show active"
           id="activity"
           role="tabpanel"
-          aria-labelledby="home-tab"
+          aria-labelledby="activity-tab"
         >
           {/* 活動dropdown */}
           <div className="row">
-            <div className="col-12 col-lg-5 py-3 d-flex flex-row">
+            <div className="col-12 col-md-5 py-3 d-flex flex-row">
               <div className="col-6 text-center">
                 <label
                   htmlFor="activity"
@@ -88,20 +74,19 @@ export default function Collection() {
             </div>
           </div>
         </div>
-
-        {/* ---------------------------------------------------- */}
+        {/* 2 */}
         <div
           className="tab-pane fade"
           id="artist"
           role="tabpanel"
           aria-labelledby="artist-tab"
         >
-          {/* 活動dropdown */}
+          {/* 藝人dropdown */}
           <div className="row">
-            <div className="col-12 col-lg-3 py-3 d-flex flex-row">
+            <div className="col-12 col-md-5 py-3 d-flex flex-row">
               <div className="col-6 text-center">
                 <label
-                  htmlFor="activity"
+                  htmlFor="artist"
                   className="chb-h6 flex-fill text-center"
                 >
                   <span className="chb-h5">藝人：</span>
@@ -110,8 +95,8 @@ export default function Collection() {
               <div className="col-6">
                 <select
                   required
-                  id="activity"
-                  name="activity"
+                  id="artist"
+                  name="artist"
                   className="align-item-center h-100 w-100"
                   value={selectedActivity}
                   onChange={handleChange}
@@ -125,6 +110,21 @@ export default function Collection() {
             </div>
           </div>
         </div>
+
+        <div
+          className="tab-pane fade show active"
+          id="activity"
+          role="tabpanel"
+          aria-labelledby="activity-tab"
+        ></div>
+
+        {/* ---------------------------------------------------- */}
+        <div
+          className="tab-pane fade"
+          id="artist"
+          role="tabpanel"
+          aria-labelledby="artist-tab"
+        ></div>
       </div>
 
       <div className="row">

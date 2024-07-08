@@ -64,14 +64,17 @@ export const getUserById = async (id = 0) => {
 /**
  * 忘記密碼/OTP 要求一次性密碼
  */
+// return await axiosInstance.post('/reset-password/otp', { email })
+
 export const requestOtpToken = async (email = '') => {
-  return await axiosInstance.post('/reset-password/otp', { email })
+  return await axiosInstance.post('/otp', { email })
 }
 /**
  * 忘記密碼/OTP 重設密碼
  */
+// return await axiosInstance.post('/reset-password/reset'
 export const resetPassword = async (email = '', password = '', token = '') => {
-  return await axiosInstance.post('/reset-password/reset', {
+  return await axiosInstance.post('/reset', {
     email,
     token,
     password,

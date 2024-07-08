@@ -1,17 +1,11 @@
 // pages/index.js
 import MemberDLayout from '@/components/member/desktop-layout'
-
 import styles from '@/components/member/desktop-layout/left-bar.module.scss'
-import Link from 'next/link'
-import { IoEyeSharp } from 'react-icons/io5'
-import { IoEyeOffSharp } from 'react-icons/io5'
-import LoginModal from '@/components/login/login-modal'
 import { useState, useEffect } from 'react'
 import { useAuth } from '@/hooks/use-auth'
 import toast, { Toaster } from 'react-hot-toast'
 import PreviewUploadImage from '@/components/member/desktop-layout/preview-upload-image'
 import { avatarBaseUrl } from '@/configs'
-
 import {
   updateProfile,
   getUserById,
@@ -26,11 +20,10 @@ const initUserProfile = {
   birthday: '',
   gender: '',
   address: '',
-
   avatar: '',
 }
 
-export default function Account() {
+export default function Profile() {
   const [isDisable, setIsDisable] = useState(true)
 
   const handleEdit = (e) => {
@@ -158,7 +151,7 @@ export default function Account() {
               <div>
                 <img src="/blank.webp" alt="" width="200" height="200" />
                 <div>
-                  <button onClick={handleSubmit}> </button>
+                  <button onClick={handleSubmit}></button>
                 </div>
               </div>
             )}
@@ -310,9 +303,9 @@ export default function Account() {
     </>
   )
 }
-Account.getLayout = function getLayout(page) {
+Profile.getLayout = function getLayout(page) {
   return (
-    <MemberDLayout title="Music | 會員帳號設定" pageName="profile">
+    <MemberDLayout title="Music | 會員個人資料" pageName="profile">
       {page}
     </MemberDLayout>
   )

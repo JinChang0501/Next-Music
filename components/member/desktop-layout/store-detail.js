@@ -1,14 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react'
-import styles from './ticket-detail.module.scss'
+import React, { useEffect, useState } from 'react'
 import { BsArrowLeftCircle } from 'react-icons/bs'
-import { BsClockFill } from 'react-icons/bs'
-import { BsFillTicketPerforatedFill } from 'react-icons/bs'
-import { BsFillGeoAltFill } from 'react-icons/bs'
-import { BsMusicNoteBeamed } from 'react-icons/bs'
-import DesktopWhiteNoIconBtnPurple from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnPurple'
-import TicketDetailCard from './ticket-detail-card'
 import StoreDetailCard from './store-detail-card'
-
 export default function StoreDetail() {
   const [isMobile, setIsMobile] = useState(false)
 
@@ -24,19 +16,6 @@ export default function StoreDetail() {
     return () => window.removeEventListener('resize', handleResize) // 清除事件監聽器
   }, [])
 
-  const [isMarquee, setIsMarquee] = useState(false)
-  const textRef = useRef(null)
-
-  useEffect(() => {
-    if (textRef.current) {
-      const textWidth = textRef.current.scrollWidth
-      if (textWidth > 150) {
-        setIsMarquee(true)
-      } else {
-        setIsMarquee(false)
-      }
-    }
-  }, [])
   return (
     <>
       <div className="row">
