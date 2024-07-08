@@ -1,8 +1,20 @@
 import React from 'react'
+import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
+import styles from '@/styles/product/product.module.scss'
+import CartLayout from '@/components/layout/cart-layout'
+import ProgressBarOne from '@/components/product/progressBarOne'
+import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
+import InputNumber from '@/components/product/input-number'
+import { BiSolidTrash } from "react-icons/bi";
+import data from '@/data/product/Product.json'
+import Link from 'next/link'
+
 
 export default function CartIndex() {
   return (
     <>
+      <Breadcrumbs breadcrumbs={breadcrumbsURL} />
+      <ProgressBarOne />
       <div className="row mt-5 mx-5">
         <div className="col-sm-8 cart-area">
           <h4 className="mb-3">購物車</h4>

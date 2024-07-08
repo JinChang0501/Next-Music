@@ -8,6 +8,9 @@ import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlack
 import Transport from '@/components/product/transport'
 import EcPay from '@/components/product/ec-pay'
 
+import data from '@/data/product/Product.json'
+import Link from 'next/link'
+
 export default function Payment() {
   const breadcrumbsURL = [
     { label: '周邊商城', href: '/' },
@@ -21,7 +24,7 @@ export default function Payment() {
       {/* <Link href="/product/cart">連至購物車</Link> */}
       <div className={`container ${styles['mb-40']} ${styles['center-item']}`}>
         <div className={`first ${styles['my-20']}  ${styles['w-800']}`}>
-          <p className={`chb-h5 ${styles['ml-40']}`}>購買商品 </p>
+          <p className={`chb-h5 ${styles['ml-20']}`}>購買商品 </p>
           {/* 表格 */}
           {/* <table className={`table table-bordered border-dark`}> */}
           <table className={`table`}>
@@ -51,9 +54,9 @@ export default function Payment() {
               </tr>
           </tbody>
           </table>
-          <div className={`${styles['mt-40']} ${styles['space-between']}`}>
-            <span className="chb-h5">共1項商品，數量2個</span>
-            <span className="chb-h5">總價:NT$1400元 </span>
+          <div className={` ${styles['mt-40']} ${styles['w-1061']} ${styles['space-between']} ${styles['ml-40']}`}>
+            <span className={`chb-h5 ${styles.text14}`}>共2項商品，數量2個</span>
+            <span className={`chb-h5 ${styles.text14}`}>總價:NT$1400元 </span>
           </div>
         </div>
         <div className={`second ${styles['mt-40']} ${styles['w-800']}`}>
@@ -85,7 +88,7 @@ export default function Payment() {
           <EcPay />
         </div>
         <div className={`fifth ${styles['my-40']} ${styles['w-800']} ${styles['center-item']}`}>
-          <DesktopBlackNoIconBtnPurple text="下一步" className={`chb-h6 ${styles['btn-760']}`} />
+        <Link href={`/cart/complete`}><DesktopBlackNoIconBtnPurple text="下一步" className={`chb-h6 ${styles['btn-760']}`} /></Link>
         </div>
      </div>
     </>

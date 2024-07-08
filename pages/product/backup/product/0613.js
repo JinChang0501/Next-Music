@@ -1,5 +1,5 @@
 import React from 'react'
-import Carousel from '@/components/product/carousel'
+import Carousel0613 from '@/components/product/carousel0613'
 
 export default function Detail() {
   return (
@@ -9,7 +9,7 @@ export default function Detail() {
       {/* 左 */}
         <div className="col-sm-7">
           <div className="position-sticky" style={{ top: '2rem' }}>
-            <Carousel />
+            <Carousel0613 />
           </div>
         </div>
         {/* 右 */}
@@ -25,21 +25,21 @@ export default function Detail() {
             <p>尺寸</p>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked/>
-              {/* <label class="form-check-label" for="flexRadioDefault1">
+              <label class="form-check-label" for="flexRadioDefault1">
                 S
-              </label> */}
+              </label>
             </div>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"  />
-              {/* <label class="form-check-label" for="flexRadioDefault2">
+              <label class="form-check-label" for="flexRadioDefault2">
                 M
-              </label> */}
+              </label>
             </div>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"  />
-              {/* <label class="form-check-label" for="flexRadioDefault2">
+              <label class="form-check-label" for="flexRadioDefault2">
                 L
-              </label> */}
+              </label>
             </div>
           </div>
           {/* <ul>

@@ -4,6 +4,7 @@ import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import CarouselIndex from '@/components/product/carousel-index'
 import CardProduct from '@/components/product/card-product'
 import LeftBar from '@/components/product/left-bar'
+
 // import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 
 export default function List() {
@@ -55,6 +56,8 @@ export default function List() {
                 <CardProduct />
                 <CardProduct />
                 <CardProduct />
+
+               {/* <CardProduct />
                 <CardProduct />
                 <CardProduct />
                 <CardProduct />
@@ -62,8 +65,7 @@ export default function List() {
                 <CardProduct />
                 <CardProduct />
                 <CardProduct />
-                <CardProduct />
-                <CardProduct />
+                <CardProduct /> */}
               </div>
             </div>
           </div>

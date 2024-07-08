@@ -6,6 +6,9 @@ import ProgressBarOne from '@/components/product/progressBarOne'
 import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
 import InputNumber from '@/components/product/input-number'
 import { BiSolidTrash } from "react-icons/bi";
+import data from '@/data/product/Product.json'
+import Link from 'next/link'
+
 
 export default function Cart() {
   const breadcrumbsURL = [
@@ -20,7 +23,7 @@ export default function Cart() {
       {/* <Link href="/product/cart">連至購物車</Link> */}
       <div className={`container ${styles['mb-40']} ${styles['center-item']}`}>
         <div className={`first ${styles['my-20']} ${styles['w-1060']}`}>
-          <p className={`chb-h5 ${styles['ml-40']} ${styles.text14}`}>請確認購買商品 </p>
+          <p className={`chb-h5 ${styles['ml-20']} ${styles.text14}`}>請確認購買商品 </p>
           {/* 表格 start*/}
           <table className={`table`}>
             <thead>
@@ -59,7 +62,7 @@ export default function Cart() {
                   <div className={`${styles['h-100']} ${styles['columnCenter']}`}>
                   <p className={`chb-p ${styles['text-center']}`}>小計</p>
                   </div>
-                  </td>
+                </td>
                 <td>
                 <div className={`${styles['h-100']} ${styles['columnCenter']}`}>
                     <DesktopBlackNoIconBtnPurple text="刪除" className={`chb-h6 ${styles['h-54']}`} />
@@ -100,13 +103,13 @@ export default function Cart() {
             </tbody>
           </table>
           {/* 表格 end*/}
-          <div className={` ${styles['mt-40']} ${styles['w-1060']} ${styles['space-between']} ${styles['ml-40']}`}>
+          <div className={` ${styles['mt-40']} ${styles['w-1061']} ${styles['space-between']} ${styles['ml-20']} ${styles['text-center-x']}`}>
             <span className={`chb-h5 ${styles.text14}`}>共2項商品，數量2個</span>
             <span className={`chb-h5 ${styles.text14}`}>總價:NT$1400元 </span>
           </div>
         </div>
         <div className={`second ${styles['my-40']} `} disabled>
-          <DesktopBlackNoIconBtnPurple text="結帳" className={`chb-h6 ${styles['btn-760']}`} />
+        <Link href={`/cart/payment`}><DesktopBlackNoIconBtnPurple text="結帳" className={`chb-h6 ${styles['btn-760']}`} /></Link>
         </div>
       </div>
     </>
