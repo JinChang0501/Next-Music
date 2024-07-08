@@ -36,16 +36,10 @@ import PhoneBlackPureIconBtnPurple from '@/components/common/button/phoneBlackBu
 import { BsRepeat } from 'react-icons/bs'
 import { BsPhoneVibrateFill } from 'react-icons/bs'
 
-// product progressBar
-import ProgressBar from '@/components/product/progressBar'
-
 export default function BtnTest() {
   return (
     <>
       <div className="bg-white d-flex flex-column justify-content-center align-items-center">
-        <div>
-          <ProgressBar />
-        </div>
         <div>
           <h1>White Desktop Custom Button</h1>
         </div>
@@ -63,7 +57,7 @@ export default function BtnTest() {
           <DesktopWhiteIconBtnPurple />
         </div>
         <div>
-          <DesktopWhiteNoIconBtnBlack text="123" className="chb-h7" />
+          <DesktopWhiteNoIconBtnBlack text="789" className="chb-h7" />
         </div>
         <div>
           <DesktopWhiteNoIconBtnPurple />
