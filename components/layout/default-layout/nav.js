@@ -277,6 +277,7 @@ export default function Nav() {
       <ForgetPassword
         isVisible={wakeForgetPassword}
         onClose={handleCloseForgetPassword}
+        handleWakeLogin={handleWakeLogin}
       />
       <Toaster />
     </>
