@@ -7,6 +7,7 @@ import { TabProvider } from '@/hooks/member/useTab'
 import { ActTabProvider } from '@/hooks/activity/useTabs'
 import { AuthProvider } from '@/hooks/use-auth'
 import { TicketProvider } from '@/context/ticket/selectNumber'
+import LoginProvider from '@/hooks/use-login'
 // Chloe 日曆樣式套件
 import 'rsuite/dist/rsuite-no-reset.min.css'
 import { CustomProvider } from 'rsuite'
@@ -24,15 +25,19 @@ export default function MyApp({ Component, pageProps }) {
     Component.getLayout || ((page) => <DefaultLayout>{page}</DefaultLayout>)
 
   return (
-    <AuthProvider>
-      <CustomProvider>
-        <TicketProvider>
-          <ActTabProvider>
-            <TabProvider>{getLayout(<Component {...pageProps} />)}</TabProvider>
-          </ActTabProvider>
-        </TicketProvider>
-      </CustomProvider>
-    </AuthProvider>
+    <LoginProvider>
+      <AuthProvider>
+        <CustomProvider>
+          <TicketProvider>
+            <ActTabProvider>
+              <TabProvider>
+                {getLayout(<Component {...pageProps} />)}
+              </TabProvider>
+            </ActTabProvider>
+          </TicketProvider>
+        </CustomProvider>
+      </AuthProvider>
+    </LoginProvider>
   )
 }
 //Jin的自訂Provider -> 我的票夾
