@@ -1,3 +1,4 @@
+import useFirebase from '@/hooks/use-firebase'
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import styles from './default.module.css'
@@ -5,39 +6,31 @@ import { BsPersonCircle, BsBell, BsCart } from 'react-icons/bs'
 import { useRouter } from 'next/router'
 import Login from '@/components/login/login'
 import ForgetPassword from '@/components/login/forget-password'
-
+import { useLogin } from '@/hooks/use-login'
 //登入用
 import { initUserData, useAuth } from '@/hooks/use-auth'
 import { login, logout, getUserById, checkAuth } from '@/services/user' //checkAuth
+
 import toast, { Toaster } from 'react-hot-toast'
 
 export default function Nav() {
-  const [wakeLogin, setWakeLogin] = useState(false) //喚醒登入面板
-  const [wakeForgetPassword, setWakeForgetPassword] = useState(false)
+  //
+  const {
+    wakeLogin,
+    wakeForgetPassword,
+    setWakeLogin,
+    handleWakeLogin,
+    handleWakeForgetPassword,
+    handleCloseForgetPassword,
+    handleCloseLogin,
+  } = useLogin()
+  //
   const [isLoggedIn, setIsLoggedIn] = useState(false) // 這裡要接Login元件傳回來的狀態
+  const router = useRouter()
+  const { logoutFirebase, loginGoogleRedirect, initApp } = useFirebase()
 
   // 登入後設定全域的會員資料用
   const { auth, setAuth } = useAuth()
-  const router = useRouter()
-
-  const handleWakeLogin = () => {
-    setWakeLogin(true)
-  }
-
-  const handleCloseLogin = () => {
-    setWakeLogin(false)
-    if (router.pathname === '/member/profile') {
-      router.back() // 如果路徑是 /product，才執行返回上一頁
-    }
-  }
-
-  const handleWakeForgetPassword = () => {
-    setWakeForgetPassword(true)
-  }
-
-  const handleCloseForgetPassword = () => {
-    setWakeForgetPassword(false)
-  }
 
   // 更新登入狀態
   const updateLoginStatus = (loggedIn) => {
@@ -46,6 +39,8 @@ export default function Nav() {
 
   //處理登出
   const handleLogout = async () => {
+    logoutFirebase()
+
     const res = await logout()
 
     console.log(res.data)
@@ -64,59 +59,6 @@ export default function Nav() {
       toast.error(`登出失敗`)
     }
   }
-  // if (isLoggedIn) {
-  //   setWakeLogin(false)
-  // }
-
-  // 登入頁路由
-  // const loginRoute = '/test/login'
-  // 隱私頁面路由，未登入時會，檢查後跳轉至登入頁
-  const protectedRoutes = [
-    '/member/profile',
-    // '/product',
-    // '/test/user/profile',
-    // '/test/user/profile-password',
-  ]
-
-  // 檢查會員認証用
-  // 每次重新到網站中，或重新整理，都會執行這個函式，用於向伺服器查詢取回原本登入會員的資料
-  const handleCheckAuth = async () => {
-    const res = await checkAuth()
-
-    // 伺服器api成功的回應為 { status:'success', data:{ user } }
-    if (res.data.status === 'success') {
-      // 只需要initUserData的定義屬性值
-      const dbUser = res.data.data.user
-      const userData = { ...initUserData }
-
-      for (const key in userData) {
-        if (Object.hasOwn(dbUser, key)) {
-          userData[key] = dbUser[key] || ''
-        }
-      }
-      // 設到全域狀態中
-      setAuth({ isAuth: true, userData })
-    } else {
-      console.warn(res.data)
-
-      // 在這裡實作隱私頁面路由的跳轉
-      if (protectedRoutes.includes(router.pathname)) {
-        // router.push(loginRoute)
-        handleWakeLogin()
-      }
-    }
-  }
-
-  //didMount(初次渲染)後，向伺服器要求檢查會員是否登入中
-  useEffect(() => {
-    if (router.isReady && !auth.isAuth) {
-      handleCheckAuth()
-    }
-    // 下面加入router.pathname，是為了要在向伺服器檢查後，
-    // 如果有比對到是隱私路由，就執行跳轉到登入頁面工作
-    // 注意有可能會造成向伺服器要求多次，此為簡單的實作範例
-    // eslint-disable-next-line
-  }, [router.isReady, router.pathname])
 
   // 同步 isLoggedIn 狀態與 auth.isAuth
   useEffect(() => {
