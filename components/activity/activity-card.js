@@ -10,7 +10,7 @@ import DesktopBlackPureIconBtnBlack from '../common/button/desktopBlackButton/de
 import PhoneBlackPureIconBtnBlack from '../common/button/phoneBlackButton/phoneBlackPureIconBtnBlack';
 import PhoneBlackNoIconBtnPurple from '../common/button/phoneBlackButton/phoneBlackNoIconBtnPurple';
 
-export default function ActivityCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/temp-Image7-Gw6zu.avif", title, artist, location, dateTime, aid }) {
+export default function ActivityCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/temp-Image7-Gw6zu.avif", title, artist, location, actdate, acttime, aid }) {
 
   const [isDesktop, setIsDesktop] = useState(true)
 
@@ -66,7 +66,7 @@ export default function ActivityCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/t
                 </div>
                 <div className="d-flex my-2">
                   <BsCalendar4 className="p-0 me-2 me-md-3" />
-                  <div className="card-text chb-p p-0">{dateTime}</div>
+                  <div className="card-text chb-p p-0">{actdate}{acttime}</div>
                 </div>
               </div>
               <div className="col-4 d-flex justify-content-end gap-2 text-nowrap">

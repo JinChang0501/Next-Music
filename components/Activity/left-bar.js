@@ -15,7 +15,7 @@ export default function LeftBar() {
                   className="form-select input-p3"
                   aria-label="Default select example"
                 >
-                  <option selected="">選擇類型</option>
+                  <option defaultValue="0">選擇類型</option>
                   <option value={1}>所有活動</option>
                   <option value={2}>演唱會</option>
                   <option value={3}>音樂祭</option>
@@ -26,7 +26,7 @@ export default function LeftBar() {
                   className="form-select input-p3"
                   aria-label="Default select example"
                 >
-                  <option selected="">選擇地區</option>
+                  <option defaultValue="0">選擇地區</option>
                   <option value={1}>所有區域</option>
                   <option value={2}>北部</option>
                   <option value={3}>中部</option>

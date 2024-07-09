@@ -63,10 +63,18 @@ export default function Activity() {
             <div className="chb-h4 mb-3 text-purple1">活動列表</div>
             {data.rows.map((r, i) => {
               return (
-                <ActivityCard />
+                <ActivityCard
+                  key={r.actid}
+                  imgSrc={r.cover}
+                  title={r.name}
+                  artist={r.artist_id}
+                  location={r.location}
+                  actday={r.actday}
+                  acttime={r.acttime}
+                  aid={r.actid}
+                />
               )
             })}
-
           </div>
         </div>
       </div>
