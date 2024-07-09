@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-// import React from 'react'
 
 export default function List() {
   // Toggle the side navigation
@@ -30,7 +29,6 @@ export default function List() {
 
   return (
     <>
-      {/* 可能放商品推播 */}
       <div className="row mt-2 mb-3">
         <h5 className="card-text d-flex justify-content-between align-items-center">
           <span className="ps-3">Nike Air Force 1 (91)</span>
@@ -70,12 +68,10 @@ export default function List() {
           </div>
         </h5>
       </div>
-      {/* 內容正式開始 */}
       <div className="row">
         <div className="col-sm-12">
           <div className="d-flex" id="wrapper">
-          {/* 左邊的Search */}
-            <div className="bg-white me-3 col-xs-3" id="sidebar-wrapper">
+            <div className="bg-white me-3" id="sidebar-wrapper">
               <div className="scroll">
                 <div className="cats">
                   <div>
@@ -320,11 +316,9 @@ export default function List() {
               </div>
             </div>
 
-          {/* 商品列表 */}
-            <div id="page-content-wrapper" className="col-xs-9">
+            <div id="page-content-wrapper">
               <div className="container-fluid">
                 <div className="row row-cols-1 row-cols-md-3 g-4">
-                  {/* 單個card */}
                   <div className="col">
                     <div className="card w-350 no-border f-16">
                       <img
@@ -341,7 +335,6 @@ export default function List() {
                       </div>
                     </div>
                   </div>
-                   {/* 單個card */}
                   <div className="col">
                     <div className="card w-350 no-border f-16">
                       <img
@@ -358,7 +351,6 @@ export default function List() {
                       </div>
                     </div>
                   </div>
-                   {/* 單個card */}
                   <div className="col">
                     <div className="card w-350 no-border f-16">
                       <img
@@ -375,7 +367,6 @@ export default function List() {
                       </div>
                     </div>
                   </div>
-                   {/* 單個card */}
                   <div className="col">
                     <div className="card w-350 no-border f-16">
                       <img
@@ -395,7 +386,6 @@ export default function List() {
                 </div>
               </div>
             </div>
-          {/* 商品列表 end */}
           </div>
         </div>
       </div>
