@@ -2,7 +2,7 @@ import React, { useState, useContext, createContext, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import axiosInstance from '@/services/axios-instance'
 import { checkAuth } from '@/services/user' //getFavs
-
+import { useLogin } from './use-login'
 const AuthContext = createContext(null)
 
 // 註: 如果使用google登入會多幾個欄位(iat, exp是由jwt token來的)
@@ -39,6 +39,7 @@ export const initUserData = {
 }
 
 export const AuthProvider = ({ children }) => {
+  const { handleWakeLogin } = useLogin()
   const [auth, setAuth] = useState({
     isAuth: false,
     userData: initUserData,
@@ -69,10 +70,10 @@ export const AuthProvider = ({ children }) => {
   const router = useRouter()
 
   // 登入頁路由
-  const loginRoute = '/test/user'
+  // const loginRoute = '/test/user'
   // 隱私頁面路由，未登入時會，檢查後跳轉至登入頁
   const protectedRoutes = [
-    '/test/user/status',
+    '/product',
     '/test/user/profile',
     '/test/user/profile-password',
   ]
@@ -100,7 +101,8 @@ export const AuthProvider = ({ children }) => {
 
       // 在這裡實作隱私頁面路由的跳轉
       if (protectedRoutes.includes(router.pathname)) {
-        router.push(loginRoute)
+        // router.push(loginRoute)
+        handleWakeLogin()
       }
     }
   }
