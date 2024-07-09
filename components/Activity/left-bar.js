@@ -10,7 +10,18 @@ export default function LeftBar() {
         <div className="outline sticky-40">
           <form id="" action="" className="col-10 mx-auto">
             <div className="d-flex flex-md-column">
-              <div className="mt-4 mb-2 mb-md-2 col-6 col-md-12">
+              <div className="mt-4 mb-2 mb-md-0 col-6 col-md-12">
+                <select
+                  className="form-select input-p3"
+                  aria-label="Default select example"
+                >
+                  <option selected="">選擇類型</option>
+                  <option value={1}>所有活動</option>
+                  <option value={2}>演唱會</option>
+                  <option value={3}>音樂祭</option>
+                </select>
+              </div>
+              <div className="mt-4 mb-2 mb-md-0 col-6 col-md-12">
                 <select
                   className="form-select input-p3"
                   aria-label="Default select example"
@@ -22,10 +33,11 @@ export default function LeftBar() {
                   <option value={4}>南部</option>
                 </select>
               </div>
-              <div className="mt-4 mb-2 mb-md-2 col-6 col-md-12">
-                <input type="date" className="form-control input-p3 text-white" id="datetime" />
-              </div></div>
-            <div className="my-4 input-group col-12">
+            </div>
+            <div className="mt-3 mt-md-4 mb-2 mb-md-0 col-12">
+              <input type="date" className="form-control input-p3 text-white" id="datetime" />
+            </div>
+            <div className="mt-4 mb-4 mb-md-4 col-12 input-group">
               <input
                 type="text"
                 className="form-control input-p3"
@@ -37,6 +49,9 @@ export default function LeftBar() {
                 icon={BsSearch}
                 iconWidth={22}
                 iconHeight={22}
+              // 這裡加上搜尋/篩選，［送出表單］的函式
+              // 複合式的搜尋
+              // 也可以按 enter 送出表單
               />
             </div>
           </form>
