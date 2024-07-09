@@ -1,33 +1,54 @@
+import React, { useEffect, useRef, useState } from 'react'
 import TicketSeatSVG from './ticketSeatSVG'
-import { useSpring, animated } from '@react-spring/web'
-import { useGesture } from '@use-gesture/react'
+import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch'
 
 export default function Left() {
-  // 這行代碼創建了一個包含 x 和 y 值的彈性動畫狀態
-  // x 和 y 初始化為 0，api 是一個控制動畫的對象
-  const [{ x, y }, api] = useSpring(() => ({ x: 0, y: 0 }))
+  const wrapperRef = useRef(null)
+  const [wrapperSize, setWrapperSize] = useState({ width: 0, height: 0 })
+  const [isWrapperReady, setIsWrapperReady] = useState(false)
 
-  // 用於處理用戶手勢（如拖動、滾動、縮放等）
-  const bind = useGesture({
-    onDrag: ({ offset: [x, y] }) => api.start({ x, y }),
-  })
+  useEffect(() => {
+    const updateSize = () => {
+      if (wrapperRef.current) {
+        const { clientWidth, clientHeight } = wrapperRef.current
+        setWrapperSize({ width: clientWidth, height: clientHeight })
+        setIsWrapperReady(true) // 當 wrapper 尺寸設置完畢後設置為 true
+      }
+    }
+
+    // 當 wrapperRef.current 改變時重新運行
+    if (wrapperRef.current) {
+      updateSize() // 初始化時更新一次寬高
+    }
+
+    window.addEventListener('resize', updateSize)
+
+    return () => {
+      window.removeEventListener('resize', updateSize)
+    }
+  }, [wrapperRef.current])
 
   return (
     <div
-      className="col-xxl-9 col-xl-8 col-lg-7 col-md-6 pe-0"
-      style={{ overflow: 'hidden' }}
+      ref={wrapperRef}
+      className="col-xxl-9 col-xl-8 col-lg-7 col-md-6 p-0"
+      style={{ overflow: 'hidden', cursor: 'grab' }}
     >
-      <animated.div
-        {...bind()}
-        style={{
-          x,
-          y,
-          width: '100%',
-          height: '100%',
-        }}
-      >
-        <TicketSeatSVG />
-      </animated.div>
+      {isWrapperReady && ( // 確保 wrapper 尺寸設置完畢後才渲染 TicketSeatSVG
+        <TransformWrapper
+          initialScale={1}
+          minScale={0.5}
+          maxScale={3}
+          wheel={{ step: 0.1 }}
+        >
+          <TransformComponent>
+            <TicketSeatSVG
+              width={wrapperSize.width}
+              height={wrapperSize.height}
+            />
+          </TransformComponent>
+        </TransformWrapper>
+      )}
     </div>
   )
 }

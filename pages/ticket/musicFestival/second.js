@@ -41,7 +41,12 @@ export default function Second() {
   return (
     <>
       {/* breadcrumb */}
-      <Breadcrumbs breadcrumbs={breadcrumbsURL} />
+
+      {isMobile ? (
+        <Breadcrumbs breadcrumbs={breadcrumbsURL} className="" />
+      ) : (
+        <Breadcrumbs breadcrumbs={breadcrumbsURL} />
+      )}
 
       {/* progressBar + timeCounter */}
       <ProgressBar />

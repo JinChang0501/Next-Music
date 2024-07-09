@@ -4,6 +4,7 @@ export default function TicketSeatSVG({
   width = '100%',
   height = '100%',
   className,
+  style = { userSelect: 'none' },
 }) {
   const [hoveredArea, setHoveredArea] = useState(null)
 
@@ -13,6 +14,7 @@ export default function TicketSeatSVG({
       width={width}
       height={height}
       className={className}
+      style={style}
     >
       <g id="main-container" stroke="none">
         <g

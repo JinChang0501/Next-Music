@@ -42,7 +42,11 @@ export default function Third() {
     <>
       {/* breadcrumb */}
 
-      <Breadcrumbs breadcrumbs={breadcrumbsURL} />
+      {isMobile ? (
+        <Breadcrumbs breadcrumbs={breadcrumbsURL} className="" />
+      ) : (
+        <Breadcrumbs breadcrumbs={breadcrumbsURL} />
+      )}
 
       {/* progressBar + timeCounter */}
 
