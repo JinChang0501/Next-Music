@@ -26,7 +26,7 @@ export default function Left() {
     return () => {
       window.removeEventListener('resize', updateSize)
     }
-  }, [wrapperRef.current])
+  }, [isWrapperReady])
 
   return (
     <div
@@ -37,9 +37,9 @@ export default function Left() {
       {isWrapperReady && ( // 確保 wrapper 尺寸設置完畢後才渲染 TicketSeatSVG
         <TransformWrapper
           initialScale={1}
-          minScale={0.5}
-          maxScale={3}
-          wheel={{ step: 0.1 }}
+          minScale={1}
+          maxScale={5}
+          wheel={{ step: 0.5 }}
         >
           <TransformComponent>
             <TicketSeatSVG
