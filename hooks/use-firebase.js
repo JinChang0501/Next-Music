@@ -5,9 +5,6 @@ import {
   signInWithPopup,
   signOut,
   GoogleAuthProvider,
-  FacebookAuthProvider,
-  signInWithRedirect,
-  getRedirectResult,
   onAuthStateChanged,
 } from 'firebase/auth'
 import { useEffect } from 'react'
@@ -26,24 +23,6 @@ import { firebaseConfig } from './firebase-config'
 // onAuthStateChanged監聽auth物件變化 <---(用這個就足夠，它會在頁面一啟動偵測目前登入情況)
 const initApp = (callback) => {
   const auth = getAuth()
-
-  // Result from Redirect auth flow.
-  getRedirectResult(auth)
-    .then((result) => {
-      if (result) {
-        // This gives you a Google Access Token. You can use it to access Google APIs.
-        const credential = GoogleAuthProvider.credentialFromResult(result)
-        const token = credential.accessToken
-
-        // The signed-in user info.
-        const user = result.user
-        console.log(token)
-        console.log(user)
-      }
-    })
-    .catch((error) => {
-      console.error(error)
-    })
 
   // Listening for auth state changes.
   onAuthStateChanged(auth, (user) => {
@@ -71,6 +50,7 @@ const logoutFirebase = () => {
     })
 }
 
+// Google 登入 (使用彈出視窗)
 const loginGoogle = async (callback) => {
   const provider = new GoogleAuthProvider()
   const auth = getAuth()
@@ -93,16 +73,16 @@ const loginGoogleRedirect = async (callback) => {
   const auth = getAuth()
 
   // redirect to google auth
-  signInWithRedirect(auth, provider)
+  signInWithPopup(auth, provider)
 }
 
 // TODO: fb有許多前置設定需求，有需要使用請連絡Eddy
-const loginFBRedirect = () => {
-  const provider = new FacebookAuthProvider()
-  const auth = getAuth()
+// const loginFBRedirect = () => {
+//   const provider = new FacebookAuthProvider()
+//   const auth = getAuth()
 
-  signInWithRedirect(auth, provider)
-}
+//   signInWithRedirect(auth, provider)
+// }
 
 export default function useFirebase() {
   useEffect(() => {
@@ -111,7 +91,7 @@ export default function useFirebase() {
   }, [])
 
   return {
-    loginFBRedirect,
+    // loginFBRedirect,
     initApp,
     loginGoogleRedirect,
     loginGoogle,
