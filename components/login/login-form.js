@@ -1,17 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BsGoogle } from 'react-icons/bs'
 import { IoEyeSharp } from 'react-icons/io5'
 import { IoEyeOffSharp } from 'react-icons/io5'
 import toast, { Toaster } from 'react-hot-toast'
 import { initUserData, useAuth } from '@/hooks/use-auth'
-import { checkAuth, login, getUserById } from '@/services/user' //checkAuth logout
-
-// 解析accessToken用的函式
-const parseJwt = (token) => {
-  const base64Payload = token.split('.')[1]
-  const payload = Buffer.from(base64Payload, 'base64')
-  return JSON.parse(payload.toString())
-}
+import {
+  checkAuth,
+  login,
+  getUserById,
+  googleLogin,
+  parseJwt,
+} from '@/services/user' //checkAuth logout
+import useFirebase from '@/hooks/use-firebase'
 
 export default function LoginForm({
   handleWakeForgetPassword,
@@ -27,7 +27,7 @@ export default function LoginForm({
   }
 
   // 登入後設定全域的會員資料用
-  const { setAuth } = useAuth()
+  const { auth, setAuth } = useAuth()
   // 登入功能
   const [user, setUser] = useState({ email: '', password: '' })
   // 錯誤訊息狀態
@@ -119,6 +119,62 @@ export default function LoginForm({
   // const handleLogin = async (e) => {
   //   e.preventDefault()
   // }
+
+  //Google登入
+  // loginGoogleRedirect無callback，要改用initApp在頁面初次渲染後監聽google登入狀態
+  const { logoutFirebase, loginGoogleRedirect, initApp } = useFirebase()
+  // 這裡要設定initApp，讓這個頁面能監聽firebase的google登入狀態
+  useEffect(() => {
+    initApp(callbackGoogleLoginRedirect)
+  }, [])
+
+  // 處理google登入後，要向伺服器進行登入動作
+  const callbackGoogleLoginRedirect = async (providerData) => {
+    console.log(providerData)
+
+    // 如果目前react(next)已經登入中，不需要再作登入動作
+    if (auth.isAuth) return
+
+    // 向伺服器進行登入動作
+    const res = await googleLogin(providerData)
+
+    console.log(res.data)
+
+    if (res.data.status === 'success') {
+      // 從JWT存取令牌中解析出會員資料
+      // 注意JWT存取令牌中只有id, username, google_uid, line_uid在登入時可以得到
+      const jwtUser = parseJwt(res.data.data.accessToken)
+      // console.log(jwtUser)
+
+      const res1 = await getUserById(jwtUser.id)
+      //console.log(res1.data)
+
+      if (res1.data.status === 'success') {
+        // 只需要initUserData中的定義屬性值，詳見use-auth勾子
+        const dbUser = res1.data.data.user
+        const userData = { ...initUserData }
+
+        for (const key in userData) {
+          if (Object.hasOwn(dbUser, key)) {
+            userData[key] = dbUser[key] || ''
+          }
+        }
+
+        // 設定到全域狀態中
+        setAuth({
+          isAuth: true,
+          userData,
+        })
+
+        toast.success('已成功登入')
+      } else {
+        toast.error('登入後無法得到會員資料')
+        // 這裡可以讓會員登出，因為這也算登入失敗，有可能會造成資料不統一
+      }
+    } else {
+      toast.error(`登入失敗`)
+    }
+  }
   return (
     <>
       <form onSubmit={handleLoginForm}>
@@ -179,10 +235,8 @@ export default function LoginForm({
         <button className="w-50 chr-h5" onClick={handleLoginForm}>
           登入
         </button>
-        <button className="w-50">
-          <a href="#" className="icon">
-            <BsGoogle className="text-white" />
-          </a>
+        <button className="w-50" onClick={() => loginGoogleRedirect()}>
+          <BsGoogle className="text-white" />
         </button>
       </form>
       <style jsx>
