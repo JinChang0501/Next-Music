@@ -29,6 +29,7 @@ export default function Activity() {
     const controller = new AbortController()
     const signal = controller.signal
     // setLoading(true);
+    // new URLSearchParams(router.query) 這塊應該是放搜尋結果的query string
     fetch(`${ACT_LIST}?${new URLSearchParams(router.query)}`, { signal })
       .then((r) => r.json())
       .then((myData) => {
