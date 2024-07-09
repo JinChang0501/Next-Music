@@ -8,8 +8,8 @@ import { ActTabProvider } from '@/hooks/activity/useTabs'
 import { AuthProvider } from '@/hooks/use-auth'
 import { TicketProvider } from '@/context/ticket/selectNumber'
 // Chloe 日曆樣式套件
-import 'rsuite/dist/rsuite-no-reset.min.css';
-import { CustomProvider } from 'rsuite';
+import 'rsuite/dist/rsuite-no-reset.min.css'
+import { CustomProvider } from 'rsuite'
 
 export default function MyApp({ Component, pageProps }) {
   // 導入bootstrap的JS函式庫
@@ -24,15 +24,15 @@ export default function MyApp({ Component, pageProps }) {
     Component.getLayout || ((page) => <DefaultLayout>{page}</DefaultLayout>)
 
   return (
-    <CustomProvider>
-      <TicketProvider>
-        <AuthProvider>
+    <AuthProvider>
+      <CustomProvider>
+        <TicketProvider>
           <ActTabProvider>
             <TabProvider>{getLayout(<Component {...pageProps} />)}</TabProvider>
           </ActTabProvider>
-        </AuthProvider>
-      </TicketProvider>
-    </CustomProvider>
+        </TicketProvider>
+      </CustomProvider>
+    </AuthProvider>
   )
 }
 //Jin的自訂Provider -> 我的票夾
