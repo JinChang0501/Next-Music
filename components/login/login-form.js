@@ -4,6 +4,8 @@ import { IoEyeSharp } from 'react-icons/io5'
 import { IoEyeOffSharp } from 'react-icons/io5'
 import toast, { Toaster } from 'react-hot-toast'
 import { initUserData, useAuth } from '@/hooks/use-auth'
+import { FcGoogle } from 'react-icons/fc'
+
 import {
   checkAuth,
   login,
@@ -12,6 +14,8 @@ import {
   parseJwt,
 } from '@/services/user' //checkAuth logout
 import useFirebase from '@/hooks/use-firebase'
+import DesktopWhiteNoIconBtnPurple from '../common/button/desktopWhiteButton/desktopWhiteNoIconBtnPurple'
+import DesktopWhiteNoIconBtnBlack from '../common/button/desktopWhiteButton/desktopWhiteNoIconBtnBlack'
 
 export default function LoginForm({
   handleWakeForgetPassword,
@@ -232,12 +236,28 @@ export default function LoginForm({
         >
           忘記密碼?
         </button>
-        <button className="w-50 chr-h5" onClick={handleLoginForm}>
-          登入
-        </button>
-        <button className="w-50" onClick={() => loginGoogleRedirect()}>
-          <BsGoogle className="text-white" />
-        </button>
+        <div className="w-50 mb-3">
+          <DesktopWhiteNoIconBtnBlack
+            text="登入"
+            className="chb-h6 w-100 py-2"
+            onClick={handleLoginForm}
+          />
+        </div>
+
+        <div className="w-50">
+          <DesktopWhiteNoIconBtnBlack
+            text=<FcGoogle />
+            className="chb-h5 w-100 py-2"
+            onClick={() => loginGoogleRedirect()}
+          />
+        </div>
+
+        {/* <button
+          className="w-50 bg-purple1"
+          onClick={() => loginGoogleRedirect()}
+        >
+          <FcGoogle className="text-white chb-h6" />
+        </button> */}
       </form>
       <style jsx>
         {`
