@@ -8,30 +8,6 @@ import { useState } from 'react'
 import Login from '@/components/login/login'
 
 export default function Index() {
-  const [wakeLogin, setWakeLogin] = useState(false) //喚醒登入面板
-  const [wakeForgetPassword, setWakeForgetPassword] = useState(false)
-  const [isLoggedIn, setIsLoggedIn] = useState(false) // 這裡要接Login元件傳回來的狀態
-
-  const handleWakeLogin = () => {
-    setWakeLogin(true)
-  }
-
-  const handleCloseLogin = () => {
-    setWakeLogin(false)
-  }
-
-  const handleWakeForgetPassword = () => {
-    setWakeForgetPassword(true)
-  }
-
-  const handleCloseForgetPassword = () => {
-    setWakeForgetPassword(false)
-  }
-
-  // 更新登入狀態
-  const updateLoginStatus = (loggedIn) => {
-    setIsLoggedIn(loggedIn)
-  }
   return (
     <>
       {/* banner一張（影片輪播） start */}
@@ -43,11 +19,7 @@ export default function Index() {
 
           <div className="eng-h1 mb-4">Find Yourself in the Festivity</div>
           <div className="eng-p">
-            <DesktopBlackNoIconBtnBlack
-              text="MY ACCOUNT"
-              className="eng-h5"
-              onClick={handleWakeLogin}
-            />
+            <DesktopBlackNoIconBtnBlack text="MY ACCOUNT" className="eng-h5" />
           </div>
         </div>
       </div>

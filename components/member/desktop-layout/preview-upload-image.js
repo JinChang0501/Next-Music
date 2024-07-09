@@ -52,9 +52,9 @@ export default function PreviewUploadImage({
         <img
           src={showImg()}
           alt=""
-          width="240"
-          height="240"
-          className="rounded-circle border border-5 border-purple1"
+          // width="240"
+          // height="240"
+          className="rounded-circle border border-5 border-purple1 wh-240"
         />
       </label>
       <input
@@ -65,12 +65,23 @@ export default function PreviewUploadImage({
         onChange={handleFileChang}
       />
       <div className="text-center">
-        <p>點按頭像可以選擇新照片</p>
+        <div className="chb-p">點按頭像可以上傳頭貼</div>
       </div>
       <style jsx>
         {`
           .image-upload > input {
             display: none;
+          }
+          .wh-240 {
+            width: 240px;
+            height: 240px;
+          }
+          @media (max-width: 575.98px) {
+            /* CSS rules to apply */
+            .wh-240 {
+              width: 120px;
+              height: 120px;
+            }
           }
         `}
       </style>

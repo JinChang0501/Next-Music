@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Nav from './nav'
 import Footer from './footer'
 
-export default function DefaultLayout({ title = 'Music', children }) {
+export default function DefaultLayout({ title = 'Makin', children }) {
   return (
     <>
       <Head>

@@ -67,14 +67,14 @@ export const getUserById = async (id = 0) => {
 // return await axiosInstance.post('/reset-password/otp', { email })
 
 export const requestOtpToken = async (email = '') => {
-  return await axiosInstance.post('/otp', { email })
+  return await axiosInstance.post('/reset-password/otp', { email })
 }
 /**
  * 忘記密碼/OTP 重設密碼
  */
 // return await axiosInstance.post('/reset-password/reset'
 export const resetPassword = async (email = '', password = '', token = '') => {
-  return await axiosInstance.post('/reset', {
+  return await axiosInstance.post('/reset-password/reset', {
     email,
     token,
     password,

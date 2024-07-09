@@ -65,9 +65,9 @@ export default function MemberDLayout({
           </div>
         </div>
       )}
-      {/* <div className="fixed-bottom w-100">
+      <div className="fixed-bottom w-100">
         <Footer />
-      </div> */}
+      </div>
 
       <style jsx>{`
         .overflow-auto {
