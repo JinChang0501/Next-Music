@@ -5,7 +5,7 @@ import CalendarItem from '@/components/activity/calendar/calendar-item'
 export default function Calendar() {
   return (
     <>
-      <p className="chb-h4 text-purple1">行事曆</p>
+      <p className="chb-h4 text-purple1">活動日程</p>
       <hr className="custom-hr" />
       <CalendarItem />
       <style jsx>{`
@@ -21,7 +21,7 @@ export default function Calendar() {
 }
 Calendar.getLayout = function getLayout(page) {
   return (
-    <MemberDLayout title="Music | 行事曆" pageName="store-order">
+    <MemberDLayout title="Music | 活動日程" pageName="calendar">
       {page}
     </MemberDLayout>
   )

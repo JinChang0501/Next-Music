@@ -5,7 +5,7 @@ export default function Tab({ tabName, tabTarget, ariaSelected, classNames }) {
     <>
       <li className={`nav-item ${classNames}`} role="presentation">
         <button
-          className={`nav-link w-100 ${ariaSelected ? 'active' : ''}`}
+          className={`nav-link w-100 text-nowrap ${ariaSelected ? 'active' : ''}`}
           id={`${tabTarget}-tab`}
           data-bs-toggle="tab"
           data-bs-target={`#${tabTarget}`}
