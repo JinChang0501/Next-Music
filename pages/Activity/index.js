@@ -24,6 +24,32 @@ export default function Activity() {
     { label: '首頁', href: '/' },
     { label: '演出活動', href: '/activity' },
   ]
+
+  useEffect(() => {
+    const controller = new AbortController()
+    const signal = controller.signal
+    // setLoading(true);
+    fetch(`${ACT_LIST}?${new URLSearchParams(router.query)}`, { signal })
+      .then((r) => r.json())
+      .then((myData) => {
+        console.log(data)
+        setData(myData)
+        // setLoading(false);
+      })
+      .catch((ex) => {
+        // setLoadingError('載入資料時發生錯誤');
+        // setLoading(false);
+        console.log('fetch-ex', ex)
+      })
+    return () => {
+      controller.abort() // 取消上一次的 ajax
+    }
+  }, [router])
+
+  console.log(`act-list render--------`)
+
+  if (!router.isReady || !data.success) return null
+
   return (
     <>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
@@ -34,7 +60,12 @@ export default function Activity() {
           <div className="col-md-9 col-12">
             {/* 可放［活動列表：搜尋結果］在標題 */}
             <div className="chb-h4 mb-3 text-purple1">活動列表</div>
-            <ActivityCard />
+            {data.rows.map((r, i) => {
+              return (
+                <ActivityCard />
+              )
+            })}
+
           </div>
         </div>
       </div>
