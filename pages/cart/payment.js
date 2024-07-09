@@ -13,9 +13,9 @@ import Link from 'next/link'
 
 export default function Payment() {
   const breadcrumbsURL = [
-    { label: '周邊商城', href: '/' },
+    { label: '周邊商城', href: '/product' },
     { label: '商品資訊', href: '/product[pid]' },
-    { label: '購物車', href: '/product/cart' },
+    { label: '購物車', href: '/cart' },
   ]
   return (
     <>

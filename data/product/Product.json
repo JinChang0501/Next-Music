@@ -1,92 +1,92 @@
 [
   {
     "id": 1,
-    "picture": "pet_postcard.jpg",
-    "activity": "寵物嘉年華",
-    "name": "明信片組",
-    "price": "150",
-    "intro": "2024寵物嘉年華-明信片組，限量發售，全套4張，每一張都可愛度破表。",
-    "stock": "1000"
+    "picture": "t-1.jpg",
+    "activity": "Wonderland演唱會",
+    "name": "T恤",
+    "price": 1500,
+    "intro": "活動聯名T恤，限量發售，名牌設計總監親自設計，親膚材質，吸濕排汗，超高回頭率！",
+    "stock": 1000
   },
   {
     "id": 2,
-    "picture": "pet_keyring-dog.jpg",
-    "activity": "寵物嘉年華",
-    "name": "毛毛鑰匙圈-旺旺",
-    "price": "200",
-    "intro": "2024寵物嘉年華-毛毛鑰匙圈(旺旺)，限量發售，可愛度破表。",
-    "stock": "1000"
+    "picture": "ellesse_hoodie-1.jpg",
+    "activity": "Wonderland演唱會",
+    "name": "連帽長袖上衣",
+    "price": 3000,
+    "intro": "活動聯名連帽長袖上衣，限量發售，名牌設計總監親自設計，親膚材質，保暖透氣，超高回頭率！",
+    "stock": 1000
   },
   {
     "id": 3,
-    "picture": "pet_keyring-cat.jpg",
+    "picture": "pet_postcard-1.jpg",
     "activity": "寵物嘉年華",
-    "name": "毛毛鑰匙圈-喵喵",
-    "price": "200",
-    "intro": "2024寵物嘉年華-毛毛鑰匙圈(喵喵)，限量發售，可愛度破表。",
-    "stock": "1000"
+    "name": "明信片組",
+    "price": 150,
+    "intro": "2024寵物嘉年華-明信片組，限量發售，全套4張，每一張都可愛度破表。",
+    "stock": 1000
   },
   {
     "id": 4,
-    "picture": "pet_basket.jpg",
+    "picture": "pet_keyring-dog.jpg",
     "activity": "寵物嘉年華",
-    "name": "多功能野餐籃",
-    "price": "600",
-    "intro": "寵物嘉年華-多功能野餐籃，可愛度破表，提升野餐的質感，文青最愛。",
-    "stock": "1000"
+    "name": "毛毛鑰匙圈-旺旺",
+    "price": 200,
+    "intro": "2024寵物嘉年華-毛毛鑰匙圈(旺旺)，限量發售，可愛度破表。",
+    "stock": 1000
   },
   {
     "id": 5,
-    "picture": "pet_mat.jpg",
+    "picture": "pet_keyring-cat.jpg",
     "activity": "寵物嘉年華",
-    "name": "野餐墊",
-    "price": "200",
-    "intro": "寵物嘉年華-野餐墊，可愛度破表，文青最愛，讓您優雅輕鬆享受野餐的美好時光。",
-    "stock": "1000"
+    "name": "毛毛鑰匙圈-喵喵",
+    "price": 200,
+    "intro": "2024寵物嘉年華-毛毛鑰匙圈(喵喵)，限量發售，可愛度破表。",
+    "stock": 1000
   },
   {
     "id": 6,
-    "picture": "tmf_t-shirt.jpg",
-    "activity": "台灣音樂祭",
-    "name": "高質感T恤",
-    "price": "200",
-    "intro": "2024台灣音樂祭T恤，最新2024台灣音樂祭官方T恤，本網站限量1000件。",
-    "stock": "1000"
+    "picture": "pet_basket.jpg",
+    "activity": "寵物嘉年華",
+    "name": "多功能野餐籃",
+    "price": 600,
+    "intro": "寵物嘉年華-多功能野餐籃，可愛度破表，提升野餐的質感，文青最愛。",
+    "stock": 1000
   },
   {
     "id": 7,
-    "picture": "tmf_keyring.jpg",
-    "activity": "台灣音樂祭",
-    "name": "鑰匙圈",
-    "price": "350",
-    "intro": "2024台灣音樂祭T恤，最新2024台灣音樂祭官方鑰匙圈，本網站限量1000件。",
-    "stock": "1000"
+    "picture": "pet_mat.jpg",
+    "activity": "寵物嘉年華",
+    "name": "野餐墊",
+    "price": 200,
+    "intro": "寵物嘉年華-野餐墊，可愛度破表，文青最愛，讓您優雅輕鬆享受野餐的美好時光。",
+    "stock": 1000
   },
   {
     "id": 8,
     "picture": "tmf_towel.jpg",
     "activity": "台灣音樂祭",
     "name": "毛巾",
-    "price": "500",
+    "price": 500,
     "intro": "2024台灣音樂祭T恤，最新2024台灣音樂祭官方毛巾，本網站限量1000件。高質感，柔軟快乾",
-    "stock": "1000"
+    "stock": 1000
   },
   {
     "id": 9,
     "picture": "tmf_mat.jpg",
     "activity": "台灣音樂祭",
     "name": "地毯",
-    "price": "500",
+    "price": 500,
     "intro": "最新2024台灣音樂祭官方地毯，本網站限量1000件。高質感，居家裝飾好物",
-    "stock": "1000"
+    "stock": 1000
   },
   {
     "id": 10,
     "picture": "tmf_lightstick.jpg",
     "activity": "台灣音樂祭",
     "name": "應援手燈",
-    "price": "200",
-    "intro": "2024寵物嘉年華-毛毛鑰匙圈(喵喵)，限量發售，可愛度破表。",
-    "stock": "1000"
+    "price": 200,
+    "intro": "最新2024台灣音樂祭-官方應援手燈，在音樂祭中跟隨音樂搖動手中的手燈，舞動您的身體，盡情沉浸在超High氣氛中。",
+    "stock": 1000
   }
 ]
