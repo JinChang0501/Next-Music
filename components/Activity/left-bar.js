@@ -16,9 +16,10 @@ export default function LeftBar() {
                   aria-label="Default select example"
                 >
                   <option selected="">選擇地區</option>
-                  <option value={1}>北部</option>
-                  <option value={2}>中部</option>
-                  <option value={3}>南部</option>
+                  <option value={1}>所有區域</option>
+                  <option value={2}>北部</option>
+                  <option value={3}>中部</option>
+                  <option value={4}>南部</option>
                 </select>
               </div>
               <div className="mt-4 mb-2 mb-md-2 col-6 col-md-12">
