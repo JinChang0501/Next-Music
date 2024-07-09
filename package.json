@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-spring/web": "^9.7.3",
+    "@use-gesture/react": "^10.3.1",
     "axios": "^1.6.8",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
@@ -27,6 +29,7 @@
     "react-icons": "^5.2.1",
     "react-infinite-scroll-hook": "^4.1.1",
     "react-paginate": "^8.2.0",
+    "react-router-dom": "^6.24.1",
     "react-top-loading-bar": "^2.3.1",
     "rsuite": "^5.65.1",
     "sweetalert2": "^11.11.0",

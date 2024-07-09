@@ -1,15 +1,15 @@
 import React from 'react'
 
 export default function BannerA() {
-  const bn1 = 'https://i.postimg.cc/D0Sk46h2/temp-Image5-Z7c-U7.avif'
-  const bn2 = 'https://i.postimg.cc/WbJc25S8/temp-Image-UYQiab.avif'
-  const bn3 = 'https://i.postimg.cc/xdVfrw2L/temp-Image-HNi5-DU.avif'
+  const bn1 = 'https://i.postimg.cc/tJRCk5qv/Banner01.jpg'
+  const bn2 = 'https://i.postimg.cc/Nfzf8mWb/Banner03.jpg'
+  const bn3 = 'https://i.postimg.cc/8ky1DLPD/Banner12.jpg'
   return (
     <>
       {/* banner carousel start */}
       <div
         id="myCarousel"
-        className="carousel slide mb-5"
+        className="carousel slide mb-3 mb-md-5"
         data-bs-ride="carousel"
       >
         {/* banner switch 群組 */}
@@ -19,7 +19,7 @@ export default function BannerA() {
             type="button"
             data-bs-target="#myCarousel"
             data-bs-slide-to={0}
-            className=""
+            className="cube"
             aria-label="Slide 1"
           />
           <button
@@ -27,14 +27,14 @@ export default function BannerA() {
             data-bs-target="#myCarousel"
             data-bs-slide-to={1}
             aria-label="Slide 2"
-            className=""
+            className="cube"
           />
           <button
             type="button"
             data-bs-target="#myCarousel"
             data-bs-slide-to={2}
             aria-label="Slide 3"
-            className="active"
+            className="cube active"
             aria-current="true"
           />
         </div>
@@ -83,6 +83,12 @@ export default function BannerA() {
         </button>
       </div>
       {/* banner carousel end */}
+      <style jsx>{`
+        .cube {
+          width: 16px;
+          height: 16px;
+        }
+      `}</style>
     </>
   )
 }

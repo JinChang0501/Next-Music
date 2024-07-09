@@ -1,0 +1,149 @@
+$border-color: #444;
+$primary-color: #6200ea;
+$text-color: #fff;
+$card-diameter: 300px;
+$play-button-diameter: 50px;
+$play-button-color: rgba(0, 0, 0, 0.5);
+$play-icon-size: 15px;
+$play-icon-color: white;
+
+.profile {
+  display: flex;
+  padding: 20px;
+  border-bottom: 1px solid $border-color;
+
+  .profilePic {
+    img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+    }
+  }
+
+  .profileInfo {
+    margin-left: 20px;
+
+    .followBtn {
+      background-color: $primary-color;
+      color: $text-color;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+  }
+}
+
+.my-100 {
+    margin-top: 100px;
+    margin-bottom: 100px;
+  }
+  .my-40{
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+  .text-center {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+ 
+  .mx-160 {
+    margin-left: 160px;
+    margin-right: 160px;
+  }
+  $primary-color: #6200ea;
+  $text-color: #fff;
+  
+  .latestMusic {
+    padding: 20px;
+  
+    .musicList {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+  
+      .musicItem {
+        display: flex;
+        align-items: center;
+        background-color: #222;
+        padding: 10px;
+        border-radius: 5px;
+  
+        img {
+          width: 50px;
+          height: 50px;
+          margin-right: 10px;
+        }
+  
+        .musicInfo {
+          h3 {
+            margin: 0;
+          }
+  
+          p {
+            margin: 5px 0;
+          }
+        }
+  
+        .playBtn {
+          background-color: $primary-color;
+          color: $text-color;
+          border: none;
+          padding: 5px 10px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+
+.card {
+  position: relative;
+  flex-direction: column;
+  width: $card-diameter;
+  height: $card-diameter;
+  border-radius: 50%;   
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+
+  .img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .play-button {
+    position: absolute;
+    width: $play-button-diameter;
+    height: $play-button-diameter;
+    background-color: $play-button-color;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &:before {
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      border-left: $play-icon-size solid $play-icon-color;
+      border-top: ($play-icon-size / 1.5) solid transparent;
+      border-bottom: ($play-icon-size / 1.5) solid transparent;
+    }
+  }
+}

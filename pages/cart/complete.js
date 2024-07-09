@@ -4,6 +4,8 @@ import styles from '@/styles/product/product.module.scss'
 import CartLayout from '@/components/layout/cart-layout'
 import ProgressBarThree from '@/components/product/progressBarThree'
 import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
+import data from '@/data/product/Product.json'
+import Link from 'next/link'
 
 export default function Complete() {
   const breadcrumbsURL = [
@@ -55,11 +57,9 @@ export default function Complete() {
         {/* <div className={`chb-h6 ${styles['mt-40']} ${styles['']}`}>
             『訂單查詢』您可至會員中心的「周邊商品購買紀錄」，登入查詢您的訂單處理情形。
           </div> */}
-        <div className={`fourth ${styles['my-40']} ${styles['w-800']}`}>
-          <DesktopBlackNoIconBtnPurple text="訂單查詢" className={`chb-h6 ${styles['btn-760']} ${styles['mb-30']}`} 
-
-          />
-          <DesktopBlackNoIconBtnPurple text="回到周邊商城" className={`chb-h6 ${styles['btn-760']}`} />
+        <div className={`fourth ${styles['my-40']} ${styles['w-800']} ${styles['text-center-x']}`}>
+        <Link href={`/#`}><DesktopBlackNoIconBtnPurple text="訂單查詢" className={`chb-h6 ${styles['btn-761']} ${styles['mb-30']}`} /></Link>
+        <Link href={`/product`}><DesktopBlackNoIconBtnPurple text="回到周邊商城" className={`chb-h6 ${styles['btn-761']}`} /></Link>
         </div>
       </div>
     </>

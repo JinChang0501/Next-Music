@@ -30,8 +30,8 @@ export default function Index() {
         <div className={`row mb-5 ${styles['mt-120']}`}>
           <div className="d-flex flex-column align-items-center text-align">
             <div className="eng-h1 text-white">Activities</div>
-            <div className="chb-h3 text-purple3">
-              給你最盛大的視覺與聽覺饗宴
+            <div className="chb-h3 text-purple3 text-center">
+              給你最盛大的視聽饗宴
             </div>
           </div>
         </div>
@@ -50,11 +50,11 @@ export default function Index() {
               <div className="chb-h6 text-white">
                 演出活演出活動演出活動演出活動演出活動演出活動演出活動演出活動演出活動演出活動演出活動動
               </div>
-              <div className="row text-nowrap">
-                <div className="col-5">
+              <div className="d-flex text-nowrap">
+                <div className="me-3">
                   <DesktopWhiteNoIconBtnBlack text="活動資訊" />
                 </div>
-                <div className="col-7">
+                <div className="">
                   <DesktopBlackNoIconBtnPurple text="立即購票" />
                 </div>
               </div>
@@ -77,11 +77,11 @@ export default function Index() {
               <div className="chb-h6 text-white">
                 演出活演出活動演出活動演出活動演出活動演出活動演出活動演出活動演出活動演出活動演出活動動
               </div>
-              <div className="row text-nowrap">
-                <div className="col-5">
+              <div className="d-flex text-nowrap">
+                <div className="me-3">
                   <DesktopWhiteNoIconBtnBlack text="活動資訊" />
                 </div>
-                <div className="col-7">
+                <div className="">
                   <DesktopBlackNoIconBtnPurple text="立即購票" />
                 </div>
               </div>
@@ -94,7 +94,7 @@ export default function Index() {
         <div className={`row ${styles['mb-120']} ${styles['mt-120']}`}>
           <div className="d-flex flex-column align-items-center">
             <div className="eng-h1 text-white">Discover More</div>
-            <div className="chb-h3 text-purple3">挖掘你還未聽過的好聲音</div>
+            <div className="chb-h3 text-purple3 text-center">挖掘你還未聽過的好聲音</div>
           </div>
         </div>
         <div

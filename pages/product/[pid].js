@@ -2,12 +2,13 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import styles from '@/styles/product/product.module.scss'
-// import Carousel from '@/components/product/carousel'
 import CardProduct from '@/components/product/card-product'
 import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
 import DesktopBlackNoIconBtnBlack from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnBlack'
 import SwiperBottom from '@/components/product/swiper-bottom'
 import SwiperTop from '@/components/product/swiper-top'
+import data from '@/data/product/Product.json'
+import Link from 'next/link'
 
 export default function Detail() {
   const breadcrumbsURL = [
@@ -25,38 +26,9 @@ export default function Detail() {
     name: '',
     price: 0,
     intro: '',
+    stock: 0,
   })
 
-  // 與伺服器作fetch獲得資料(建議寫在useEffect上面與外面比較容易維護管理)
-  const getProduct = async (pid) => {
-    const url = 'https://localhost:3000/product/' + pid
-
-    // 使用try-catch陳述式，讓和伺服器連線程式作錯誤處理
-    try {
-      const res = await fetch(url)
-      const data = await res.json()
-
-      //console.log(data)
-
-      // 檢查是否為物件資料類型(基本保護)
-      if (
-        typeof data === 'object' &&
-        data !== null &&
-        !Array.isArray(data) &&
-        data.id
-      ) {
-        // 設定到狀態中 ===> 進入update階段，觸發重新渲染(re-render)
-        setProduct(data)
-
-        // // 關閉載入動畫，撥放1.5秒
-        // setTimeout(() => {
-        //   setIsLoading(false)
-        // }, 1500)
-      }
-    } catch (e) {
-      console.error(e)
-    }
-  }
   // 第二步: 用useEffect監聽router.isReady的變動
   // 樣式3: didMount+didUpdate
   useEffect(() => {
@@ -66,9 +38,12 @@ export default function Detail() {
       console.log(router.query)
       // 解構出pid屬性值
       const { pid } = router.query
-
-      // 呼叫getProduct
-      getProduct(pid)
+      // 這裡單純用json中的範例資料來呈現，查找範例資料中的對應id資料
+      const nextProduct = data.find((v) => v.id === Number(pid))
+      // 如果有找到設定到狀態中呈現
+      if (nextProduct) {
+        setProduct(nextProduct)
+      }
     }
     // 註解: 讓eslint略過一行檢查
     // eslint-disable-next-line
@@ -89,16 +64,16 @@ export default function Detail() {
         {/* 右 */}
         <div className={`col-sm-3 ${styles['ml-136']}`}>
           {/* 商品名稱products.name */}
-          <p className={`text-white chb-h4 ${styles['mt-80']}`}>商品名稱</p>
+          <p className={`text-white chb-h4 ${styles['mt-80']}`}>{product.name}</p>
           {/* 活動名稱 activity.name*/}
-          <p className={`text-white chb-h4 ${styles['mt-80']}`}>音樂祭名稱</p>
+          <p className={`text-white chb-h4 ${styles['mt-80']}`}>{product.activity}</p>
           {/* price */}
-          <p className={`text-purple2 chb-h5 ${styles['mt-80']}`}>價格</p>
+          <p className={`text-purple2 chb-h5 ${styles['mt-80']}`}>NT$ {product.price}</p>
           {/*尺寸 */}
           <p className={`text-purple2 chb-h5 ${styles['mt-40']} ${styles['mb-60']}`}>尺寸: F</p>
           <div className={`row row-cols-md-2 ${styles['space-between']} `}>
-            <DesktopBlackNoIconBtnBlack text="加入購物車" onClick={""}/>
-            <DesktopBlackNoIconBtnPurple text="立即購買" onClick={""}/>
+            <Link href={`/cart`}><DesktopBlackNoIconBtnBlack text="加入購物車" onClick={""}/></Link>
+            <Link href={`/cart/payment`}><DesktopBlackNoIconBtnPurple text="立即購買" onClick={""}/></Link>
           </div>
         </div>
       </div>
