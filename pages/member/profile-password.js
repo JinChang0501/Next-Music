@@ -217,7 +217,7 @@ export default function ProfilePassword() {
 }
 ProfilePassword.getLayout = function getLayout(page) {
   return (
-    <MemberDLayout title="Music | 會員更新密碼" pageName="profile-password">
+    <MemberDLayout title="Makin | 會員更新密碼" pageName="profile-password">
       {page}
     </MemberDLayout>
   )

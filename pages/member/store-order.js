@@ -75,7 +75,7 @@ export default function StoreOrder() {
 
 StoreOrder.getLayout = function getLayout(page) {
   return (
-    <MemberDLayout title="Music | 周邊購買紀錄" pageName="store-order">
+    <MemberDLayout title="Makin | 周邊購買紀錄" pageName="store-order">
       {page}
     </MemberDLayout>
   )

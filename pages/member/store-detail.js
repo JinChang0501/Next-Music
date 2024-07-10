@@ -22,7 +22,7 @@ export default function StoreDetailPage() {
 }
 StoreDetailPage.getLayout = function getLayout(page) {
   return (
-    <MemberDLayout title="Music | 商品訂單紀錄詳細頁面" pageName="store-order">
+    <MemberDLayout title="Makin | 商品訂單紀錄詳細頁面" pageName="store-order">
       {page}
     </MemberDLayout>
   )

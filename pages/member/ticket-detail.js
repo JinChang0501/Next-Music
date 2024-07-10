@@ -11,7 +11,7 @@ export default function TicketDetailPage() {
 }
 TicketDetailPage.getLayout = function getLayout(page) {
   return (
-    <MemberDLayout title="Music | 票夾訂單明細" pageName="ticket-order">
+    <MemberDLayout title="Makin | 票夾訂單明細" pageName="ticket-order">
       {page}
     </MemberDLayout>
   )

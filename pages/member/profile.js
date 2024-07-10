@@ -305,7 +305,7 @@ export default function Profile() {
 }
 Profile.getLayout = function getLayout(page) {
   return (
-    <MemberDLayout title="Music | 會員個人資料" pageName="profile">
+    <MemberDLayout title="Makin | 會員個人資料" pageName="profile">
       {page}
     </MemberDLayout>
   )

@@ -21,7 +21,7 @@ export default function Calendar() {
 }
 Calendar.getLayout = function getLayout(page) {
   return (
-    <MemberDLayout title="Music | 活動日程" pageName="calendar">
+    <MemberDLayout title="Makin | 活動日程" pageName="calendar">
       {page}
     </MemberDLayout>
   )
