@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 
 // 帶資料的api
 import { ACT_LIST } from '@/configs/api-path'
+// import { ACT_GET_ITEM } from '@/configs/api-path'
 // 路徑
 import { useRouter } from 'next/router'
 
@@ -47,7 +48,7 @@ export default function Activity() {
     }
   }, [router])
 
-  console.log(`act-list render--------`)
+  console.log(`activity render--------`)
 
   if (!router.isReady || !data.success) return null
 
