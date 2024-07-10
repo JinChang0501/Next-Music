@@ -1,6 +1,6 @@
 export const API_SERVER = 'http://localhost:3005'
 
-export const ACT_LIST = `${API_SERVER}/api/activity/check`
+export const ACT_LIST = `${API_SERVER}/api/activity/`
 // export const AB_ADD_POST = `${API_SERVER}/address-book/add`
 
 // `${API_SERVER}/address-book/api/${sid}`, method: GET 取得單筆資料
