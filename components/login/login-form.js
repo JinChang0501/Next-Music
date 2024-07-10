@@ -126,7 +126,8 @@ export default function LoginForm({
 
   //Google登入
   // loginGoogleRedirect無callback，要改用initApp在頁面初次渲染後監聽google登入狀態
-  const { logoutFirebase, loginGoogleRedirect, initApp } = useFirebase()
+  const { loginGoogle, logoutFirebase, loginGoogleRedirect, initApp } =
+    useFirebase()
   // 這裡要設定initApp，讓這個頁面能監聽firebase的google登入狀態
   useEffect(() => {
     initApp(callbackGoogleLoginRedirect)
@@ -248,7 +249,7 @@ export default function LoginForm({
           <DesktopWhiteNoIconBtnBlack
             text=<FcGoogle />
             className="chb-h5 w-100 py-2"
-            onClick={() => loginGoogleRedirect()}
+            onClick={() => loginGoogle()}
           />
         </div>
 
