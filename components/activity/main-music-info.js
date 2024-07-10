@@ -8,6 +8,7 @@ export default function MainMusicInfo({ title, actdate, acttime, location, artis
     <>
       {/* 活動主資訊 start */}
       <div className="row d-flex justify-content-center align-items-center">
+        {/* 圖片還沒挖洞！！！！ */}
         <div className="col-md-7 col-12 p-2 mb-5 mb-sm-0 of-hide img-border">
           <div className="custom-bg-01" />
         </div>
