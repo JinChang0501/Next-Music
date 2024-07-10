@@ -64,17 +64,22 @@ const loginGoogle = async (callback) => {
       callback(user.providerData[0])
     })
     .catch((error) => {
-      console.log(error)
+      if (error.code === 'auth/popup-closed-by-user') {
+        // 不顯示任何提示信息，只是安靜地處理
+        console.log('用戶關閉了彈出窗口。')
+      } else {
+        console.error(error)
+      }
     })
 }
 
-const loginGoogleRedirect = async (callback) => {
-  const provider = new GoogleAuthProvider()
-  const auth = getAuth()
+// const loginGoogleRedirect = async (callback) => {
+//   const provider = new GoogleAuthProvider()
+//   const auth = getAuth()
 
-  // redirect to google auth
-  signInWithPopup(auth, provider)
-}
+//   // redirect to google auth
+//   signInWithPopup(auth, provider)
+// }
 
 // TODO: fb有許多前置設定需求，有需要使用請連絡Eddy
 // const loginFBRedirect = () => {
@@ -93,7 +98,7 @@ export default function useFirebase() {
   return {
     // loginFBRedirect,
     initApp,
-    loginGoogleRedirect,
+    // loginGoogleRedirect,
     loginGoogle,
     logoutFirebase,
   }
