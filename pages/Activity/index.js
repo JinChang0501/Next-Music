@@ -60,7 +60,7 @@ export default function Activity() {
         <div className="row">
           <LeftBar />
           <div className="col-md-9 col-12">
-            {/* 可放［活動列表：搜尋結果］在標題 */}
+            {/* 可放［活動列表 >> 搜尋結果］在標題 */}
             <div className="chb-h4 mb-3 text-purple1">活動列表</div>
             {data.rows.map((r, i) => {
               return (
@@ -70,7 +70,7 @@ export default function Activity() {
                   title={r.name}
                   artist={r.artist_id}
                   location={r.location}
-                  actday={r.actday}
+                  actdate={r.actdate}
                   acttime={r.acttime}
                   aid={r.actid}
                 />
