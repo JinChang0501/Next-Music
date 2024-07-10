@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { BsGoogle } from 'react-icons/bs'
-import ForgetPasswordModal from './forget-password-modal'
+import ForgetPasswordModal from '../forget-password-modal'
 
 export default function LoginModal() {
   const [isActive, setIsActive] = useState(false)
