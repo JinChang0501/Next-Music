@@ -1,43 +1,47 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import styles from '@/styles/product/product.module.scss'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import CarouselIndex from '@/components/product/carousel-index'
 import CardProduct from '@/components/product/card-product'
 import LeftBar from '@/components/product/left-bar'
 
-// import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
-
+import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
+import data from '@/data/product/Product.json'
+import Link from 'next/link'
 export default function List() {
   // Toggle the side navigation
-  useEffect(() => {
-    // fix next issue
-    if (typeof window !== 'undefined') {
-      const sidebarToggle = document.body.querySelector('#sidebarToggle')
+  // useEffect(() => {
+  //   // fix next issue
+  //   if (typeof window !== 'undefined') {
+  //     const sidebarToggle = document.body.querySelector('#sidebarToggle')
 
-      if (sidebarToggle) {
-        // 在localStorage中儲存目前sidebar情況
-        if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
-          document.body.classList.toggle('sb-sidenav-toggled')
-        }
+  //     if (sidebarToggle) {
+  //       // 在localStorage中儲存目前sidebar情況
+  //       if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
+  //         document.body.classList.toggle('sb-sidenav-toggled')
+  //       }
 
-        sidebarToggle.addEventListener('click', (event) => {
-          event.preventDefault()
+  //       sidebarToggle.addEventListener('click', (event) => {
+  //         event.preventDefault()
 
-          document.body.classList.toggle('sb-sidenav-toggled')
+  //         document.body.classList.toggle('sb-sidenav-toggled')
 
-          localStorage.setItem(
-            'sb|sidebar-toggle',
-            document.body.classList.contains('sb-sidenav-toggled')
-          )
-        })
-      }
-    }
-  }, [])
+  //         localStorage.setItem(
+  //           'sb|sidebar-toggle',
+  //           document.body.classList.contains('sb-sidenav-toggled')
+  //         )
+  //       })
+  //     }
+  //   }
+  // }, [])
+  const [products, setProducts] = useState(data)
 
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
     { label: '周邊商城', href: '/product' },
   ]
+  
+
   return (
     <>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
@@ -51,23 +55,10 @@ export default function List() {
           {/* left-search end*/}
           <div className="col-md-9">
             <div className="chb-h3 text-white">所有商品</div>
-            <div className="container-fluid ">
-              <div className={`row row-cols-1 row-cols-md-3 ${styles['mt-52']}`}>
-                <CardProduct />
-                <CardProduct />
-                <CardProduct />
+           <div className={`row row-cols-md-3 `}>
+           <CardProduct />
+           </div>
 
-               {/* <CardProduct />
-                <CardProduct />
-                <CardProduct />
-                <CardProduct />
-                <CardProduct />
-                <CardProduct />
-                <CardProduct />
-                <CardProduct />
-                <CardProduct /> */}
-              </div>
-            </div>
           </div>
         </div>
       </div>

@@ -81,10 +81,7 @@ export default function Detail() {
       <div className={`row ${styles['mx-160']} ${styles['mt-80']}`}>
         <div className="col-sm-12">
           <p className={`text-purple1 chb-h4 ${styles['mt-80']} ${styles['borderPurple3']}`}>商品介紹</p>
-          <p className={`text-purple3 chb-h6 ${styles['mt-40']}`}>活動聯名限量HOODIE</p>
-          <p className={`text-purple3 chb-h6 `}>名牌設計總監親自設計</p>
-          <p className={`text-purple3 chb-h6 `}>親膚材質 保暖透氣</p>
-          <p className={`text-purple3 chb-h6 `}>超高回頭率！</p>
+          <p className={`text-purple3 chb-h6 ${styles['mt-40']}`}>{product.intro}</p>
         </div>
       </div>
       {/* 第三個區塊 */}
@@ -103,9 +100,6 @@ export default function Detail() {
         <div className="col-sm-12">
           <p className={`text-purple1 chb-h4 ${styles['mt-80']}`}>推薦商品</p>
           <div className={`row row-cols-1 row-cols-md-4 ${styles['mt-40']} ${styles['mb-100']}`}>
-            <CardProduct />
-            <CardProduct />
-            <CardProduct />
             <CardProduct />
           </div>
         </div>
