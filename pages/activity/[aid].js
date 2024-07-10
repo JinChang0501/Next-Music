@@ -1,3 +1,10 @@
+import { useState, useEffect } from 'react'
+// 帶資料的api
+import { ACT_LIST } from '@/configs/api-path'
+import { ACT_GET_ITEM } from '@/configs/api-path'
+// 路徑
+import { useRouter } from 'next/router'
+
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import MainMusicInfo from '@/components/activity/main-music-info'
 import ArtistFollowCard from '@/components/activity/artist-follow-card'
@@ -8,20 +15,60 @@ import TabContentAid from '@/components/activity/info-tab-content/tab-content-ai
 import TabContentIntro from '@/components/activity/info-tab-content/tab-content-intro'
 
 export default function Aid() {
+  const router = useRouter()
+
+  const [data, setData] = useState({
+    success: false,
+    rows: [],
+  })
+
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
     { label: '演出活動', href: '/activity' },
     { label: '一生到底', href: '/activity/[aid]' },
   ]
+
+  useEffect(() => {
+    const controller = new AbortController()
+    const signal = controller.signal
+    // new URLSearchParams(router.query) 這塊應該是放搜尋結果的query string
+    fetch(`${ACT_GET_ITEM}?${new URLSearchParams(router.query)}`, { signal })
+      .then((r) => r.json())
+      .then((myData) => {
+        console.log(data)
+        setData(myData)
+      })
+      .catch((ex) => {
+        console.log('fetch-ex', ex)
+      })
+    return () => {
+      controller.abort() // 取消上一次的 ajax
+    }
+  }, [router])
+
+  console.log(`activity{item} render--------`)
+
+  if (!router.isReady || !data.success) return null
+
   return (
     <>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
       <div className="music-container mt-80">
         {/* 活動主資訊 start */}
-        <MainMusicInfo />
+        {data.rows.map((r, i) => {
+          return (
+            <MainMusicInfo
+              key={r.actid}
+              title={r.name}
+              actdate={r.actdate}
+              acttime={r.acttime}
+              location={r.location}
+              artist={r.art_name}
+            />
+          )
+        })}
         {/* 活動主資訊 end */}
         {/* 簡介：頁籤 start */}
-        {/* <ActivityTabs className="my-80" /> */}
         <ul className="nav nav-tabs mt-80 mb-40" id="activityTab" role="tablist">
           <Tab
             tabName="節目介紹"

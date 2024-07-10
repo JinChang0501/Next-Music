@@ -3,7 +3,7 @@ import { BsMusicNoteBeamed, BsBookmark, BsGeoAlt, BsCalendar4 } from "react-icon
 import DesktopBlackNoIconBtnPurple from '../common/button/desktopBlackButton/desktopBlackNoIconBtnPurple';
 import DesktopBlackPureIconBtnBlack from '../common/button/desktopBlackButton/desktopBlackPureIconBtnBlack';
 
-export default function MainMusicInfo() {
+export default function MainMusicInfo({ title, actdate, acttime, location, artist }) {
   return (
     <>
       {/* 活動主資訊 start */}
@@ -14,19 +14,19 @@ export default function MainMusicInfo() {
         <div className="col-md-5 col-12 d-flex flex-column">
           {/* 等待修改：三行能否頂天立地 */}
           <div className="row d-flex flex-column justify-content-between ms-md-3 ms-0">
-            <div className="col-12 chb-h3 text-white mb-3">一生到底 One Life, One Shot</div>
+            <div className="col-12 chb-h3 text-white mb-3">{title}</div>
             <div className="col-12 my-4 my-md-5">
               <div className="d-flex my-2">
                 <BsCalendar4 className="chb-h5 text-white me-3 mt-1" />
-                <div className="chb-h5 text-purple2">2024/06/15&nbsp;&nbsp;19:30</div>
+                <div className="chb-h5 text-purple2">{actdate}&nbsp;{acttime}</div>
               </div>
               <div className="d-flex my-2">
                 <BsGeoAlt className="chb-h5 text-white me-3 mt-1" />
-                <div className="chb-h5 text-purple2">臺北流行音樂中心</div>
+                <div className="chb-h5 text-purple2">{location}</div>
               </div>
               <div className="d-flex my-2">
                 <BsMusicNoteBeamed className="chb-h5 text-white me-3 mt-1" />
-                <div className="chb-h5 text-purple2">滅火器 Fire EX.</div>
+                <div className="chb-h5 text-purple2">{artist}</div>
               </div>
             </div>
             <div className="col-12 text-nowrap mt-3">
