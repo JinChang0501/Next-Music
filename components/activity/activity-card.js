@@ -1,15 +1,16 @@
 import React from 'react'
 import Link from 'next/link'
+import { useState, useEffect } from 'react'
+
 //用link有bug，捲軸不會更新到最上
 import { BsMusicNoteBeamed, BsBookmark, BsGeoAlt, BsCalendar4 } from "react-icons/bs";
 import DesktopWhiteNoIconBtnBlack from '../common/button/desktopWhiteButton/desktopWhiteNoIconBtnBlack';
 import DesktopBlackNoIconBtnPurple from '../common/button/desktopBlackButton/desktopBlackNoIconBtnPurple';
 import DesktopBlackPureIconBtnBlack from '../common/button/desktopBlackButton/desktopBlackPureIconBtnBlack';
-import { useState, useEffect } from 'react'
 import PhoneBlackPureIconBtnBlack from '../common/button/phoneBlackButton/phoneBlackPureIconBtnBlack';
 import PhoneBlackNoIconBtnPurple from '../common/button/phoneBlackButton/phoneBlackNoIconBtnPurple';
 
-export default function ActivityCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/temp-Image7-Gw6zu.avif" }) {
+export default function ActivityCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/temp-Image7-Gw6zu.avif", title, artist, location, actdate, acttime, aid }) {
 
   const [isDesktop, setIsDesktop] = useState(true)
 
@@ -39,7 +40,7 @@ export default function ActivityCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/t
           {/* 卡片文字 */}
           <div className="col-8 card-body p-2 p-md-3 d-flex flex-column justify-content-between">
             <div className="d-flex">
-              <div className="card-title chb-h4 text-purple3 p-0">一生到底</div>
+              <div className="card-title chb-h4 text-purple3 p-0">{title}</div>
               <div className="p-0 ms-auto">
                 {isDesktop ?
                   (<DesktopBlackPureIconBtnBlack
@@ -57,21 +58,19 @@ export default function ActivityCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/t
               <div className="col-8 text-white">
                 <div className="d-flex my-2">
                   <BsMusicNoteBeamed className="p-0 me-2 me-md-3" />
-                  <div className="card-text col-10 chb-p p-0">滅火器 Fire EX.</div>
+                  <div className="card-text col-10 chb-p p-0">{artist}</div>
                 </div>
                 <div className="d-md-flex d-none my-2">
                   <BsGeoAlt className="p-0 me-2 me-md-3" />
-                  <div className="card-text col-10 chb-p p-0">臺北流行音樂中心</div>
+                  <div className="card-text col-10 chb-p p-0">{location}</div>
                 </div>
                 <div className="d-flex my-2">
                   <BsCalendar4 className="p-0 me-2 me-md-3" />
-                  <div className="card-text chb-p p-0">
-                    2024/06/15
-                  </div>
+                  <div className="card-text chb-p p-0">{actdate}&nbsp;{acttime}</div>
                 </div>
               </div>
               <div className="col-4 d-flex justify-content-end gap-2 text-nowrap">
-                <Link href="/activity/jkh">
+                <Link href={`/activity/${aid}`}>
                   <DesktopWhiteNoIconBtnBlack
                     text="活動資訊"
                     className="chr-p d-md-block d-none"
@@ -81,18 +80,23 @@ export default function ActivityCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/t
                 </Link>
                 {/* 如果變成手機大小，要變成手機按鈕的判斷式 */}
                 {isDesktop ? (
-                  <DesktopBlackNoIconBtnPurple
-                    text="立即購票"
-                    className="chr-p"
-                  // 之後設定路徑為變數
-                  // onClick={ }
-                  />
+                  <Link href={`/ticket/${(aid > 9) ? "musicFestival" : "concert"}/${aid}`}>
+                    <DesktopBlackNoIconBtnPurple
+                      text="立即購票"
+                      className="chr-p"
+                    // 之後設定路徑為變數
+                    // onClick={ }
+                    />
+                  </Link>
                 ) : (
-                  <PhoneBlackNoIconBtnPurple
-                    text="立即購票" className="chr-p"
-                  // 之後設定路徑為變數
-                  // onClick={ }
-                  />
+                  <Link href={`/ticket/${(aid > 9) ? "musicFestival" : "concert"}/${aid}`}>
+                    <PhoneBlackNoIconBtnPurple
+                      text="立即購票" className="chr-p"
+                    // 之後設定路徑為變數
+                    // onClick={ }
+                    />
+
+                  </Link>
                 )}
 
               </div>
