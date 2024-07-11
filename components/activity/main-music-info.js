@@ -1,10 +1,26 @@
 import React from 'react'
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import { BsMusicNoteBeamed, BsBookmark, BsGeoAlt, BsCalendar4 } from "react-icons/bs";
 import DesktopBlackNoIconBtnPurple from '../common/button/desktopBlackButton/desktopBlackNoIconBtnPurple';
 import DesktopBlackPureIconBtnBlack from '../common/button/desktopBlackButton/desktopBlackPureIconBtnBlack';
+import PhoneBlackPureIconBtnBlack from '../common/button/phoneBlackButton/phoneBlackPureIconBtnBlack';
+import PhoneBlackNoIconBtnPurple from '../common/button/phoneBlackButton/phoneBlackNoIconBtnPurple';
 
 export default function MainMusicInfo({ title, actdate, acttime, location, artist, banner }) {
+  const [isDesktop, setIsDesktop] = useState(true)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth > 576) // 螢幕寬度 > 576px 為電腦板
+    }
+    handleResize() // 初始設定一次
+
+    window.addEventListener('resize', handleResize) // 監聽視窗大小變化
+
+    return () => window.removeEventListener('resize', handleResize) // 清除事件監聽器
+  }, [])
+
   return (
     <>
       {/* 活動主資訊 start */}
@@ -21,7 +37,7 @@ export default function MainMusicInfo({ title, actdate, acttime, location, artis
         {/* 圖片 end */}
         <div className="col-md-5 col-12 d-flex flex-column">
           {/* 等待修改：三行能否頂天立地 */}
-          <div className="row d-flex flex-column justify-content-between ms-md-3 ms-0">
+          <div className="row d-flex flex-column justify-content-between ms-md-5 ms-0">
             <div className="col-12 chb-h3 text-white mb-3">{title}</div>
             <div className="col-12 my-4 my-md-5">
               <div className="d-flex my-2">
@@ -38,14 +54,30 @@ export default function MainMusicInfo({ title, actdate, acttime, location, artis
               </div>
             </div>
             <div className="col-12 text-nowrap mt-3">
-              <div className="row">
-                <div className="col-4 me-2">
-                  <DesktopBlackNoIconBtnPurple text='立即購票' className='chr-h5' />
-                </div>
-                <div className="col-4 d-none d-md-block">
-                  <DesktopBlackPureIconBtnBlack
-                    icon={BsBookmark}
-                  />
+              <div className="d-flex">
+
+                {isDesktop ?
+                  (<DesktopBlackNoIconBtnPurple
+                    text='立即購票'
+                    className='chr-h5'
+                  />) : (<div className="w-100">
+                    <PhoneBlackNoIconBtnPurple
+                      text='立即購票'
+                      className='chr-p-14 w-100'
+                    /></div>
+                  )}
+
+                <div className="ms-2 ms-md-4">
+                  {isDesktop ?
+                    (<DesktopBlackPureIconBtnBlack
+                      icon={BsBookmark}
+                    />) : (
+                      <PhoneBlackPureIconBtnBlack
+                        icon={BsBookmark}
+                        iconWidth={21}
+                        iconHeight={21}
+                      />
+                    )}
                 </div>
               </div>
             </div>
@@ -54,6 +86,10 @@ export default function MainMusicInfo({ title, actdate, acttime, location, artis
       </div>
       {/* 活動主資訊 end */}
       <style jsx>{`
+      *{
+        margin: 0;
+        padding: 0;
+      }
         .img-border {
           border: 1px solid var(--Primary-02, #958CEA);
           background: rgba(255, 255, 255, 0.10);
