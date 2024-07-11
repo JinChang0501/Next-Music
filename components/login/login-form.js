@@ -128,8 +128,7 @@ export default function LoginForm({
 
   //Google登入
   // loginGoogleRedirect無callback，要改用initApp在頁面初次渲染後監聽google登入狀態
-  const { loginGoogle, logoutFirebase, loginGoogleRedirect, initApp } =
-    useFirebase()
+  const { loginGoogle, initApp } = useFirebase()
   // 這裡要設定initApp，讓這個頁面能監聽firebase的google登入狀態
   useEffect(() => {
     initApp(callbackGoogleLoginRedirect)
@@ -177,7 +176,8 @@ export default function LoginForm({
           userData,
         })
 
-        toast.success('已成功登入')
+        // toast.success('已成功登入')
+        setWakeLogin(false)
       } else {
         toast.error('登入後無法得到會員資料')
         // 這裡可以讓會員登出，因為這也算登入失敗，有可能會造成資料不統一
@@ -186,15 +186,18 @@ export default function LoginForm({
       toast.error(`登入失敗`)
     }
   }
+  // useEffect(() => {
+  //   toast.success('已成功登入')
+  // }, [setAuth])
 
-  const quickyLogin = () => {
+  const quickLogin = () => {
     setUser({ email: 'jin@test.com', password: '123456' })
   }
   return (
     <>
       <form onSubmit={handleLoginForm}>
         <h1 style={{ marginBottom: '20px' }}>
-          <button className="bg-white text-black" onClick={quickyLogin}>
+          <button className="bg-white text-black" onClick={quickLogin}>
             <div className="chb-h3">登入</div>
           </button>
         </h1>

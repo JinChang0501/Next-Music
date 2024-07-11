@@ -1,6 +1,5 @@
 import axiosInstance, { fetcher } from './axios-instance'
 import useSWR from 'swr'
-
 /**
  * 檢查會員狀態使用
  */
