@@ -7,7 +7,7 @@ import MainMusicInfo from '@/components/activity/main-music-info'
 import ArtistFollowCard from '@/components/activity/artist-follow-card'
 import artistData from '@/data/activity/artist-data'
 import Tab from '@/components/common/tabs/tab'
-import RecommondCard from '@/components/activity/recommond-card'
+import RecommendCard from '@/components/activity/recommend-card'
 import TabContentAid from '@/components/activity/info-tab-content/tab-content-aid'
 import TabContentIntro from '@/components/activity/info-tab-content/tab-content-intro'
 
@@ -45,13 +45,49 @@ export default function Aid() {
     }
   }, [router])
 
+
   console.log(`activity{item} render--------`)
 
   if (!router.isReady || !data.success) return null
 
+  // 這段有空的話拆勾子
+  // 亂數取得陣列中的index
+  function getRandomIndexes(array, num) {
+    const indexes = [];
+
+    // 計算原始資料數
+    const arrayLength = array.length;
+
+    // 避免取得資料數量 num > 原始資料數量時造成的 Error
+    const count = num < array.length ? num : array.length;
+
+    while (indexes.length < count) {
+      const randomIndex = Math.floor(Math.random() * arrayLength);
+      if (!indexes.includes(randomIndex)) {
+        indexes.push(randomIndex);
+      }
+    }
+
+    return indexes;
+  }
+
+  // 對應陣列index取得資料
+  function getRandomElementsFromArray(array, count) {
+    const randomIndexes = getRandomIndexes(array, count);
+    const randomElements = randomIndexes.map(index => array[index]);
+    return randomElements;
+  }
+
   // 根據 aid 從 rows 中選擇對應的資料
   const mainInfoData = data.rows.find((r) => r.actid === actid)
   if (!mainInfoData) return <div>走錯路囉</div>
+
+  // 從所有活動的資料裡撈出六筆（隨機），且不包含本頁這筆：
+  const recommendData = data.rows.filter((r) => r.actid !== actid)
+  console.log(recommendData)
+  const random6Recommend = getRandomElementsFromArray(recommendData, 6);
+
+  console.log(random6Recommend);
 
   return (
     <>
@@ -100,9 +136,15 @@ export default function Aid() {
         {/*  推薦活動 start  */}
         <div className="row my-5">
           <div className="chb-h4 mb-40 text-purple1">推薦活動</div>
-          {artistData.map((v, i) => {
+          {random6Recommend.map((v, i) => {
             return (
-              <RecommondCard key={v.id} imgSrc={v.imageSrc} activity_name={v.activity_name} artist_name={v.artist_name} />
+              <RecommendCard
+                key={v.actid}
+                imgSrc={v.cover}
+                activity_name={v.name}
+                artist_name={v.art_name}
+                aid={v.actid}
+              />
             )
           })}
         </div>

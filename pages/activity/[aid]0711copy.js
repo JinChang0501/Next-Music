@@ -9,7 +9,7 @@ import MainMusicInfo from '@/components/activity/main-music-info'
 import ArtistFollowCard from '@/components/activity/artist-follow-card'
 import artistData from '@/data/activity/artist-data'
 import Tab from '@/components/common/tabs/tab'
-import RecommondCard from '@/components/activity/recommond-card'
+import RecommondCard from '@/components/activity/recommend-card'
 import TabContentAid from '@/components/activity/info-tab-content/tab-content-aid'
 import TabContentIntro from '@/components/activity/info-tab-content/tab-content-intro'
 
@@ -105,6 +105,7 @@ export default function Aid() {
         {/*  推薦活動 start  */}
         <div className="row my-5">
           <div className="chb-h4 mb-40 text-purple1">推薦活動</div>
+          {/* 假資料測試 */}
           {artistData.map((v, i) => {
             return (
               <RecommondCard key={v.id} imgSrc={v.imageSrc} activity_name={v.activity_name} artist_name={v.artist_name} />
