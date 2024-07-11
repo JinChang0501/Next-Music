@@ -50,15 +50,16 @@ export default function List() {
       {/* 內容正式開始 */}
       <div className={`${styles['mx-160']} ${styles['my-100']}`}>
         <div className="row">
-          {/* left-search start*/}
-          <LeftBar className={`styles['w-400']`} />
+          
+            {/* left-search start*/}
+            <LeftBar className={``} />
           {/* left-search end*/}
-          <div className="col-md-9">
-            <div className="chb-h3 text-white">所有商品</div>
-           <div className={`row row-cols-md-3 `}>
-           <CardProduct />
-           </div>
-
+          
+          <div className={`col-md-9 `}>
+            <div className={`chb-h3 text-white ${styles['ml-28']}`}>所有商品</div>
+            <div className={`row row-cols-md-3 ${styles['ml-28']}`}>
+              <CardProduct />
+            </div>
           </div>
         </div>
       </div>
