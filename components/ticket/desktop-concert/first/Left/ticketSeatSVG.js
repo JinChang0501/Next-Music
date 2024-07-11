@@ -7,14 +7,10 @@ import { BsCheck } from 'react-icons/bs'
 
 export default function TicketSeatSVG({ width = '100%', height = '100%' }) {
   const [hoveredCircle, setHoveredCircle] = useState(null)
-
   const [showSelectTicketBlock, setShowSelectTicketBlock] = useState(false)
-
   const [blockPosition, setBlockPosition] = useState({ top: 0, left: 0 })
-
-  const [timeoutId, setTimeoutId] = useState(null) // 用於存儲 setTimeout 的 id
-
-  const [selectedSeat, setSelectedSeat] = useState(null) // 新增選中的座位狀態
+  const [timeoutId, setTimeoutId] = useState(null)
+  const [selectedSeats, setSelectedSeats] = useState([])
 
   const handleMouseEnterCircle = (event, index) => {
     const circleRect = event.target.getBoundingClientRect()
@@ -22,43 +18,46 @@ export default function TicketSeatSVG({ width = '100%', height = '100%' }) {
     setShowSelectTicketBlock(true)
     setBlockPosition({
       top: circleRect.top - 160,
-      left: circleRect.left - circleRect.width / 2 - 70, // 將左邊的位置設置為圓圈的中心點
+      left: circleRect.left - circleRect.width / 2 - 70,
     })
   }
 
   const handleMouseLeaveCircle = () => {
     setHoveredCircle(null)
     setShowSelectTicketBlock(false)
-    clearTimeout(timeoutId) // 清除計時器
+    clearTimeout(timeoutId)
   }
 
-  const handleMouseEnterBlock = (isEnter) => {
-    setShowSelectTicketBlock(isEnter)
-    clearTimeout(timeoutId) // 當進入 SelectTicketBlock 時清除計時器
+  const handleMouseEnterBlock = () => {
+    setShowSelectTicketBlock(true)
+    clearTimeout(timeoutId)
   }
 
   const handleMouseLeaveBlock = () => {
     setShowSelectTicketBlock(false)
-    clearTimeout(timeoutId) // 當進入 SelectTicketBlock 時清除計時器
+    clearTimeout(timeoutId)
   }
 
   const handleMouseMove = () => {
-    clearTimeout(timeoutId) // 每次移動前先清除計時器
+    clearTimeout(timeoutId)
     setShowSelectTicketBlock(false)
-
     setTimeoutId(
       setTimeout(() => {
         setShowSelectTicketBlock(true)
       }, 300)
-    ) // 0.5 秒後顯示 SelectTicketBlock
+    )
   }
 
   const handleSeatClick = (event, index) => {
-    // 調用 handleMouseEnterCircle 並傳入適當的參數
     handleMouseEnterCircle(event, index)
 
-    // 如果需要，你也可以保留 setSelectedSeat 的部分
-    setSelectedSeat(selectedSeat === index ? null : index)
+    if (selectedSeats.includes(index)) {
+      setSelectedSeats(selectedSeats.filter((seat) => seat !== index))
+    } else {
+      if (selectedSeats.length < 6) {
+        setSelectedSeats([...selectedSeats, index])
+      }
+    }
   }
 
   const [translateX, setTranslateX] = useState(0)
@@ -72,8 +71,8 @@ export default function TicketSeatSVG({ width = '100%', height = '100%' }) {
     const startY = event.pageY - translateY
 
     const handleMouseMove = (event) => {
-      let newTranslateX = event.pageX - startX
-      let newTranslateY = event.pageY - startY
+      const newTranslateX = event.pageX - startX
+      const newTranslateY = event.pageY - startY
 
       setTranslateX(newTranslateX)
       setTranslateY(newTranslateY)
@@ -100,7 +99,7 @@ export default function TicketSeatSVG({ width = '100%', height = '100%' }) {
     if (newScale >= 1 && newScale <= 3) {
       setScale(newScale)
       if (newScale === 1) {
-        centerSVG() // 只有當 scale 變回 1 時才執行居中操作
+        centerSVG()
       }
     }
   }
@@ -161,9 +160,7 @@ export default function TicketSeatSVG({ width = '100%', height = '100%' }) {
           onWheel={handleWheel}
         >
           {/* Area */}
-
           <TicketArea scale={scale} />
-
           {/* Area */}
 
           {/* Seat */}
@@ -174,55 +171,41 @@ export default function TicketSeatSVG({ width = '100%', height = '100%' }) {
             }}
           >
             {ticketSeatData.map((v) => (
-              <g
-                key={v.id}
-                onClick={(event) => handleSeatClick(event, v.id)}
-                style={{ position: 'relative' }}
-              >
+              <g key={v.id}>
                 <circle
                   cx={v.cx}
                   cy={v.cy}
                   r={v.r}
                   transform={v.transform}
-                  style={{
-                    transition: 'opacity 0.5s, fill 0.5s',
-                  }}
+                  style={{ transition: 'opacity 0.5s, fill 0.5s' }}
                   fill={
-                    selectedSeat === v.id
+                    selectedSeats.includes(v.id)
                       ? '#03663c'
                       : hoveredCircle === v.id
                       ? '#1F3FA2'
                       : '#2A55D9'
                   }
-                  onMouseEnter={(event) => {
-                    handleMouseEnterCircle(event, v.id)
-                  }}
-                  onMouseLeave={() => {
-                    handleMouseLeaveCircle()
-                  }}
-                  onMouseMove={() => {
-                    handleMouseMove()
-                  }}
+                  onMouseEnter={(event) => handleMouseEnterCircle(event, v.id)}
+                  onMouseLeave={handleMouseLeaveCircle}
+                  onMouseMove={handleMouseMove}
+                  onClick={(event) => handleSeatClick(event, v.id)}
                 />
-                {selectedSeat === v.id && (
+                {selectedSeats.includes(v.id) && (
                   <foreignObject
                     x={v.cx - v.r - 4}
                     y={v.cy - v.r - 3}
                     width={2.5 * v.r}
                     height={2.5 * v.r}
-                    onMouseEnter={(event) => {
-                      handleMouseEnterCircle(event, v.id)
-                    }}
                   >
                     <BsCheck
                       style={{ width: '100%', height: '100%', color: 'white' }}
+                      onClick={(event) => handleSeatClick(event, v.id)} // 添加點擊事件處理函數
                     />
                   </foreignObject>
                 )}
               </g>
             ))}
           </g>
-
           {/* Seat */}
         </svg>
       </div>
@@ -234,7 +217,7 @@ export default function TicketSeatSVG({ width = '100%', height = '100%' }) {
           left: blockPosition.left,
           userSelect: 'none',
         }}
-        onMouseEnter={handleMouseEnterBlock}
+        onMouseEnter={() => handleMouseEnterBlock()}
         onMouseLeave={handleMouseLeaveBlock}
       />
     </>
