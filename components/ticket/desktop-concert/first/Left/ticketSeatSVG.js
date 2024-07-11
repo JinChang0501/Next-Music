@@ -189,7 +189,7 @@ export default function TicketSeatSVG({
                   height={2.5 * v.r}
                 >
                   <BsCheck
-                    style={{ width: '100%', height: '100%', color: '#FFFFFF' }}
+                    style={{ width: '100%', height: '100%', color: 'white' }}
                   />
                 </foreignObject>
               )}
