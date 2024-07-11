@@ -21,7 +21,7 @@ export default function EcPay() {
               }`}
               onClick={() => handleCircleClick('ecPay')}
             ></button>
-            <div className="chb-h6">綠界</div>
+            <div className="chb-h6">信用卡</div>
           </div>
           <div className={style.ecPayImage}>
             <Image src="/images/ticket/ecPay.jpg" alt="test" fill priority />

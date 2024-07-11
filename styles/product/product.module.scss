@@ -175,6 +175,9 @@
 
 .card {
   border: 1px solid #685beb;  
+  padding: 0px;
+  
+  
 }
 .center-item {
   display:flex;
@@ -214,7 +217,11 @@
   align-items: center;
 }
 
-
+.row2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
 
 // 手機
 @media screen and (max-width:390px){
