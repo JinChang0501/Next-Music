@@ -31,7 +31,13 @@ export default function Third() {
   }, [])
   return (
     <>
-      <Breadcrumbs breadcrumbs={breadcrumbsURL} />
+      {/* breadcrumb */}
+
+      {isMobile ? (
+        <Breadcrumbs breadcrumbs={breadcrumbsURL} className="" />
+      ) : (
+        <Breadcrumbs breadcrumbs={breadcrumbsURL} />
+      )}
 
       <ProgressBar />
 

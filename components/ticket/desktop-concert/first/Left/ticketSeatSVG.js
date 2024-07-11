@@ -1,215 +1,214 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
+import TicketArea from './ticketArea'
+import ticketSeatData from '@/data/ticket/desktop-concert/first/ticketSeat'
+import SelectTicketBlock from './selectTicketBlock'
+import { BsCheck } from 'react-icons/bs'
 
 export default function TicketSeatSVG({
   width = '100%',
   height = '100%',
-  className,
+  className = 'position-relative',
 }) {
-  const [hoveredArea, setHoveredArea] = useState(null)
+  const [hoveredCircle, setHoveredCircle] = useState(null)
+
+  const [showSelectTicketBlock, setShowSelectTicketBlock] = useState(false)
+
+  const [blockPosition, setBlockPosition] = useState({ top: 0, left: 0 })
+
+  const [timeoutId, setTimeoutId] = useState(null) // 用於存儲 setTimeout 的 id
+
+  const [selectedSeat, setSelectedSeat] = useState(null) // 新增選中的座位狀態
+
+  const handleMouseEnterCircle = (event, index) => {
+    const circleRect = event.target.getBoundingClientRect()
+    setHoveredCircle(index)
+    setShowSelectTicketBlock(true)
+    setBlockPosition({
+      top: circleRect.top - 160,
+      left: circleRect.left - circleRect.width / 2 - 55, // 將左邊的位置設置為圓圈的中心點
+    })
+  }
+
+  const handleMouseLeaveCircle = () => {
+    setHoveredCircle(null)
+    setShowSelectTicketBlock(false)
+    clearTimeout(timeoutId) // 清除計時器
+  }
+
+  const handleMouseEnterBlock = (isEnter) => {
+    setShowSelectTicketBlock(isEnter)
+    clearTimeout(timeoutId) // 當進入 SelectTicketBlock 時清除計時器
+  }
+
+  const handleMouseLeaveBlock = () => {
+    setShowSelectTicketBlock(false)
+    clearTimeout(timeoutId) // 當進入 SelectTicketBlock 時清除計時器
+  }
+
+  const handleMouseMove = () => {
+    clearTimeout(timeoutId) // 每次移動前先清除計時器
+    setShowSelectTicketBlock(false)
+
+    setTimeoutId(
+      setTimeout(() => {
+        setShowSelectTicketBlock(true)
+      }, 300)
+    ) // 0.5 秒後顯示 SelectTicketBlock
+  }
+
+  const handleSeatClick = (index) => {
+    setSelectedSeat(selectedSeat === index ? null : index)
+  }
+
+  const [translateX, setTranslateX] = useState(0)
+  const [translateY, setTranslateY] = useState(0)
+  const [scale, setScale] = useState(1)
+  const svgRef = useRef(null)
+
+  const handleMouseDown = (event) => {
+    event.preventDefault()
+    const startX = event.pageX - translateX
+    const startY = event.pageY - translateY
+
+    const handleMouseMove = (event) => {
+      let newTranslateX = event.pageX - startX
+      let newTranslateY = event.pageY - startY
+
+      setTranslateX(newTranslateX)
+      setTranslateY(newTranslateY)
+    }
+
+    const handleMouseUp = () => {
+      document.removeEventListener('mousemove', handleMouseMove)
+      document.removeEventListener('mouseup', handleMouseUp)
+    }
+
+    document.addEventListener('mousemove', handleMouseMove)
+    document.addEventListener('mouseup', handleMouseUp)
+  }
+
+  const handleWheel = (event) => {
+    event.preventDefault()
+    const delta = event.deltaY * -0.0003
+    let newScale = scale + delta
+
+    if (newScale < 1.0001) {
+      newScale = 1
+    }
+
+    if (newScale >= 1 && newScale <= 3) {
+      setScale(newScale)
+      if (newScale === 1) {
+        centerSVG() // 只有當 scale 變回 1 時才執行居中操作
+      }
+    }
+  }
+
+  const centerSVG = () => {
+    if (svgRef.current) {
+      const svgRect = svgRef.current.getBoundingClientRect()
+      const parentRect = svgRef.current.parentNode.getBoundingClientRect()
+      const newTranslateX = (parentRect.width - svgRect.width) / 2
+      const newTranslateY = (parentRect.height - svgRect.height) / 2
+      setTranslateX(newTranslateX)
+      setTranslateY(newTranslateY)
+    }
+  }
+
+  useEffect(() => {
+    centerSVG()
+  }, [width, height])
+
+  const constrainedTranslateX =
+    scale === 1 ? Math.min(50, Math.max(-50, translateX)) : translateX
+  const constrainedTranslateY =
+    scale === 1 ? Math.min(50, Math.max(-50, translateY)) : translateY
 
   return (
-    <svg
-      viewBox="0 0 10240 7680"
-      width={width}
-      height={height}
-      className={className}
-    >
-      <g id="main-container" stroke="none">
+    <>
+      <svg
+        ref={svgRef}
+        viewBox="-91.25 -80.625 912.5 801.25"
+        fill="none"
+        width={width}
+        height={height}
+        className={className}
+        style={{
+          transform: `translate(${constrainedTranslateX}px, ${constrainedTranslateY}px) scale(${scale})`,
+          userSelect: 'none',
+        }}
+        onMouseDown={handleMouseDown}
+        onWheel={handleWheel}
+      >
+        {/* Area */}
+
+        <TicketArea scale={scale} />
+
+        {/* Area */}
+
+        {/* Seat */}
         <g
-          fill-opacity="1"
-          font-family="Alata,'arial bold'"
-          font-weight="bold"
-          id="background-container"
-          stroke="none"
-          letter-spacing="50"
+          style={{
+            display: scale >= 1.2 ? 'block' : 'none',
+            cursor: 'pointer',
+          }}
         >
-          <path
-            d="M8951.97,4062.23L6856.85,5361.27L6857.14,7212.36L3383.08,7212.36L3383.28,5361.42C2332.2,4709.66,1281.13,4057.9,1281.13,4057.9C1281.13,3368.58,1281.13,2679.26,1281.13,1989.94C1597.37,1687.62,1939.72,1423.04,2298.72,1215.77C4028.26,217.225,6211.9,217.223,7941.44,1215.78C8297.78,1421.51,8637.68,1683.71,8951.97,1983.21L8951.97,1983.21C8951.97,2676.22,8951.97,3369.23,8951.97,4062.23Z"
-            fill="#f6f6f6"
-            fill-opacity="1.0"
-            id="CONCERT"
-            stroke="#d4d4d4"
-            stroke-opacity="1.0"
-            stroke-width="3.0"
-          />
-
-          <path
-            d="M6176.7,5964.76C5469.91,5964.76,4770.09,5964.76,4063.3,5964.76C4063.3,6315.28,4063.3,6661.53,4063.3,7012.05C4770.09,7012.05,5469.91,7012.05,6176.7,7012.05L6176.7,7012.05C6176.7,6661.53,6176.7,6315.28,6176.7,5964.76Z"
-            fill="#262626"
-            fill-opacity="1.0"
-            id="STAGE"
-          />
-
-          <path
-            d="M2416.53,4526.33C2275.86,4439.13,2135.18,4351.91,1994.5,4264.69C2307.9,3732.85,2756.58,3280.27,3306.77,2962.62C4422.1,2318.68,5818.0,2318.67,6933.34,2962.62C7483.54,3280.27,7932.22,3732.87,8245.62,4264.72C8105.0,4351.89,7964.39,4439.07,7823.78,4526.24C7553.24,4063.16,7164.01,3669.06,6685.28,3392.66C5721.29,2836.1,4519.08,2836.1,3555.09,3392.66L3555.09,3392.66C3076.32,3669.08,2687.08,4063.22,2416.53,4526.33Z"
-            fill="#dfdfdf"
-            fill-opacity="1.0"
-            id="SPACING"
-            stroke="#dfdfdf"
-            stroke-opacity="1.0"
-            stroke-width="12.25"
-          />
-
-          {/* AREA A ~ E */}
-
-          {/* AREA A */}
-
-          <g
-            onMouseEnter={() => setHoveredArea('A')}
-            onMouseLeave={() => setHoveredArea(null)}
-            cursor="pointer"
-          >
-            <path
-              d="M3583.4,5249.34C3583.4,5615.27,3583.4,5981.21,3583.4,6347.14C3722.84,6347.14,3862.27,6347.14,4001.71,6347.14C4001.71,6199.12,4001.71,6051.09,4001.71,5903.07C4747.25,5903.07,5492.79,5903.07,6238.33,5903.07C6238.33,6051.09,6238.33,6199.12,6238.33,6347.14C6377.84,6347.14,6517.34,6347.14,6656.85,6347.14C6656.85,5981.22,6656.85,5615.3,6656.85,5249.37C6504.72,4975.66,6279.72,4742.8,5999.2,4580.84C5455.32,4266.83,4784.92,4266.83,4241.03,4580.84L4241.03,4580.84C3960.53,4742.79,3735.53,4975.64,3583.4,5249.34Z"
-              fill={hoveredArea === 'A' ? '#ff9900' : '#958CEA'}
-              fillOpacity="1.0"
-              stroke="#dddddd"
-              strokeOpacity="1.0"
-              strokeWidth="12.25"
-            />
-
-            <text
-              fill="rgb(255,255,255)"
-              stroke="none"
-              fontSize="443.45"
-              x="4936"
-              y="5341"
-            >
-              A
-            </text>
-          </g>
-
-          {/* AREA B */}
-
-          <g
-            onMouseEnter={() => setHoveredArea('B')}
-            onMouseLeave={() => setHoveredArea(null)}
-            cursor="pointer"
-          >
-            <path
-              d="M4055.12,3160.48C4204.56,3592.65,4354,4024.82,4503.44,4456.98C4900.75,4308.15,5339.34,4308.13,5736.66,4456.92C5886.09,4024.78,6035.53,3592.63,6184.97,3160.47L6184.97,3160.47C5498.51,2913.36,4741.57,2913.36,4055.12,3160.48Z"
-              fill={hoveredArea === 'B' ? '#00a3ff' : '#958CEA'}
-              fillOpacity="1.0"
-              stroke="#dddddd"
-              strokeOpacity="1.0"
-              strokeWidth="12.25"
-            />
-
-            <text
-              fill="rgb(255,255,255)"
-              stroke="none"
-              fontSize="443.45"
-              x="4936"
-              y="3867"
-            >
-              B
-            </text>
-          </g>
-
-          {/* AREA C */}
-
-          <g
-            onMouseEnter={() => setHoveredArea('C')}
-            onMouseLeave={() => setHoveredArea(null)}
-            cursor="pointer"
-          >
-            <path
-              d="M-6656.9302 5249.5801 C-7045.8901 5008.4502 -7434.8501 4767.3101 -7823.8198 4526.1699 C-7553.2798 4063.1001 -7164.0498 3668.99 -6685.3198 3392.6001 C-6524.4302 3299.71 -6356.9102 3222.3201 -6184.96 3160.45 C-6035.5098 3592.6201 -5886.0698 4024.79 -5736.6299 4456.9502 C-5826.5801 4490.6299 -5914.4199 4531.9502 -5999.1899 4580.8901 L-5999.1899 4580.8901 C-6279.7598 4742.8701 -6504.7998 4975.7998 -6656.9302 5249.5801 Z"
-              fill={hoveredArea === 'C' ? '#f12222' : '#958CEA'}
-              fill-opacity="1.0"
-              id="C"
-              stroke="#dddddd"
-              stroke-opacity="1.0"
-              stroke-width="12.25"
-              transform="translate(10250, 0)"
-            />
-
-            <text
-              fill="rgb(255,255,255)"
-              stroke="none"
-              font-size="443.45"
-              x="3387"
-              y="4323"
-            >
-              C
-            </text>
-          </g>
-
-          {/* AREA D */}
-
-          <g
-            onMouseEnter={() => setHoveredArea('D')}
-            onMouseLeave={() => setHoveredArea(null)}
-            cursor="pointer"
-          >
-            <path
-              d="M6656.9302 5249.5801 C7045.8901 5008.4502 7434.8501 4767.3101 7823.8198 4526.1699 C7553.2798 4063.1001 7164.0498 3668.99 6685.3198 3392.6001 C6524.4302 3299.71 6356.9102 3222.3201 6184.96 3160.45 C6035.5098 3592.6201 5886.0698 4024.79 5736.6299 4456.9502 C5826.5801 4490.6299 5914.4199 4531.9502 5999.1899 4580.8901 L5999.1899 4580.8901 C6279.7598 4742.8701 6504.7998 4975.7998 6656.9302 5249.5801 Z"
-              fill={hoveredArea === 'D' ? '#9e00ff' : '#958CEA'}
-              fill-opacity="1.0"
-              id="D"
-              stroke="#dddddd"
-              stroke-opacity="1.0"
-              stroke-width="12.25"
-            />
-
-            <text
-              fill="rgb(255,255,255)"
-              stroke="none"
-              font-size="443.45"
-              x="6485"
-              y="4323"
-            >
-              D
-            </text>
-          </g>
-
-          {/* AREA E */}
-
-          <g
-            onMouseEnter={() => setHoveredArea('E')}
-            onMouseLeave={() => setHoveredArea(null)}
-            cursor="pointer"
-          >
-            <path
-              d="M1477.27 3944.04 C1649.73 4050.95 1822.1899 4157.8701 1994.65 4264.79 C2308.05 3732.9199 2756.75 3280.3101 3306.95 2962.6499 C4422.29 2318.71 5818.1899 2318.71 6933.5298 2962.6499 C7483.6899 3280.29 7932.3501 3732.8401 8245.75 4264.6499 C8417.3701 4158.2598 8588.9902 4051.8601 8760.6104 3945.47 C8760.79 3400.9199 8740.3301 2726.6599 8761.3604 2058.23 C8481.4297 1805.71 8173.71 1580.8199 7841.6899 1389.13 C6173.1602 425.799 4066.99 425.802 2398.48 1389.12 C2065.5601 1581.33 1757.09 1806.91 1476.5601 2060.26 L1476.5601 2060.26 C1470.5601 2772.96 1457.84 3429.3 1477.27 3944.04 Z"
-              fill={hoveredArea === 'E' ? '#3ead2c' : '#958CEA'}
-              fill-opacity="1.0"
-              id="E"
-              stroke="#dddddd"
-              stroke-opacity="1.0"
-              stroke-width="12.25"
-            />
-
-            <text
-              fill="rgb(255,255,255)"
-              stroke="none"
-              font-size="443.45"
-              x="4936"
-              y="1733"
-            >
-              E
-            </text>
-          </g>
-
-          {/* AREA A ~ E */}
-
-          {/* text */}
-
-          <text
-            fill="#ffffff"
-            fill-opacity="1.0"
-            font-size="443.45"
-            id="STAGE TEXT"
-            text-align="left"
-            x="4383.07"
-            y="6645.18"
-          >
-            STAGE
-          </text>
-
-          {/* text */}
+          {ticketSeatData.map((v) => (
+            <g key={v.id} onClick={() => handleSeatClick(v.id)}>
+              <circle
+                cx={v.cx}
+                cy={v.cy}
+                r={v.r}
+                transform={v.transform}
+                style={{
+                  transition: 'opacity 0.5s, fill 0.5s',
+                  position: 'relative',
+                }}
+                fill={
+                  selectedSeat === v.id
+                    ? '#03663c'
+                    : hoveredCircle === v.id
+                    ? '#1F3FA2'
+                    : '#2A55D9'
+                }
+                onMouseEnter={(event) => {
+                  handleMouseEnterCircle(event, v.id)
+                }}
+                onMouseLeave={() => {
+                  handleMouseLeaveCircle()
+                }}
+                onMouseMove={() => {
+                  handleMouseMove()
+                }}
+              />
+              {selectedSeat === v.id && (
+                <foreignObject
+                  x={v.cx - v.r - 4}
+                  y={v.cy - v.r - 3}
+                  width={2.5 * v.r}
+                  height={2.5 * v.r}
+                >
+                  <BsCheck
+                    style={{ width: '100%', height: '100%', color: '#FFFFFF' }}
+                  />
+                </foreignObject>
+              )}
+            </g>
+          ))}
         </g>
-      </g>
-    </svg>
+
+        {/* Seat */}
+      </svg>
+      <SelectTicketBlock
+        show={showSelectTicketBlock}
+        styles={{
+          top: blockPosition.top,
+          left: blockPosition.left,
+          userSelect: 'none',
+        }}
+        onMouseEnter={handleMouseEnterBlock}
+        onMouseLeave={handleMouseLeaveBlock}
+      />
+    </>
   )
 }

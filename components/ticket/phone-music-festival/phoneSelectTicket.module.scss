@@ -45,7 +45,7 @@
 .selectTicketBoxIcon {
   width: 23px;
   height: 23px;
-  transition: all 0.8s ease;
+  transition: all 0.5s ease;
   transform: rotate(0deg);
 }
 
@@ -61,7 +61,7 @@
   top: 35px;
   max-height: 0;
   overflow: hidden;
-  transition: all 0.8s ease;
+  transition: all 0.5s ease;
   opacity: 0;
 }
 

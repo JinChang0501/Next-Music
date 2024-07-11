@@ -1,17 +1,20 @@
 import Link from 'next/link'
 
-export default function Breadcrumbs({ breadcrumbs }) {
+export default function Breadcrumbs({
+  breadcrumbs,
+  className = 'music-container',
+}) {
   return (
     <>
-      <div className="music-container">
+      <div className={className}>
         <nav aria-label="breadcrumb">
-          <ol className="breadcrumb">
+          <ol className="breadcrumb m-0 p-0">
             {breadcrumbs.map((breadItem, index) => {
               if (index === breadcrumbs.length - 1) {
                 return (
                   <li
                     key={index}
-                    className="breadcrumb-item active"
+                    className="breadcrumb-item active p-1"
                     aria-current="page"
                   >
                     {breadItem.label}
@@ -19,7 +22,7 @@ export default function Breadcrumbs({ breadcrumbs }) {
                 )
               } else {
                 return (
-                  <li key={index} className="breadcrumb-item">
+                  <li key={index} className="breadcrumb-item p-1">
                     <Link style={{ color: '#958cea' }} href={breadItem.href}>
                       {breadItem.label}
                     </Link>

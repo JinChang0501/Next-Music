@@ -2,7 +2,7 @@
 
 # dependencies
 /.vscode
-# .gitignore
+.gitignore
 /node_modules
 /.pnp
 .pnp.js

@@ -31,7 +31,13 @@ export default function Fourth() {
   }, [])
   return (
     <>
-      <Breadcrumbs breadcrumbs={breadcrumbsURL} />
+      {/* breadcrumb */}
+
+      {isMobile ? (
+        <Breadcrumbs breadcrumbs={breadcrumbsURL} className="" />
+      ) : (
+        <Breadcrumbs breadcrumbs={breadcrumbsURL} />
+      )}
 
       <ProgressBar />
 

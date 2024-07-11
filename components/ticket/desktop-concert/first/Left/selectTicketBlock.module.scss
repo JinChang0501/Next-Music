@@ -1,0 +1,62 @@
+.selectTicketBlock {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 200px;
+  height: 132px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  background-color: white;
+}
+
+.selectTicketBlock::before {
+  content: '';
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  top: 128px;
+  left: 85px;
+  border: 13px solid #000;
+  border-style: solid dashed dashed;
+  border-color: white transparent transparent;
+}
+
+.selectTicketBlock.visible {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease, visibility 0s linear;
+}
+
+.colorBar {
+  width: 100%;
+  height: 6px;
+  background-color: #ff9900;
+}
+
+.content {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.contentTop,
+.contentBottom {
+  width: 100%;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: black;
+}
+
+.contentBottom {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #d1d1d1;
+}
