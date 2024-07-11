@@ -13,7 +13,8 @@ import TabContentIntro from '@/components/activity/info-tab-content/tab-content-
 
 export default function Aid() {
   const router = useRouter()
-  console.log(router.query.aid);
+  const { aid } = router.query  // 假設 URL 中包含 aid 參數 (參照)
+  const actid = parseInt(aid)   // 字串轉數字！！
 
   const [data, setData] = useState({
     success: false,
@@ -27,16 +28,20 @@ export default function Aid() {
   ]
 
   useEffect(() => {
-    if (router.query.aid) {
-      fetch(`${ACT_GET_ITEM}/${router.query.aid}`)
-        .then((r) => r.json())
-        .then((myData) => {
-          console.log(myData)
-          setData(myData)
-        })
-        .catch((ex) => {
-          console.log('fetch-ex', ex)
-        })
+    const controller = new AbortController()
+    const signal = controller.signal
+    // new URLSearchParams(router.query) 這塊應該是搜尋結果的query string
+    fetch(`${ACT_GET_ITEM}?${new URLSearchParams(router.query)}`, { signal })
+      .then((r) => r.json())
+      .then((myData) => {
+        console.log(data)
+        setData(myData)
+      })
+      .catch((ex) => {
+        console.log('fetch-ex', ex)
+      })
+    return () => {
+      controller.abort() // 取消上一次的 ajax
     }
   }, [router])
 
@@ -44,7 +49,9 @@ export default function Aid() {
 
   if (!router.isReady || !data.success) return null
 
-  const { actid, name, actdate, acttime, location, art_name, picture, descriptions } = data.data;
+  // 根據 aid 從 rows 中選擇對應的資料
+  const mainInfoData = data.rows.find((r) => r.actid === actid)
+  if (!mainInfoData) return <div>走錯路囉</div>
 
   return (
     <>
@@ -52,13 +59,13 @@ export default function Aid() {
       <div className="music-container mt-80">
         {/* 活動主資訊 start */}
         <MainMusicInfo
-          key={actid}
-          title={name}
-          actdate={actdate}
-          acttime={acttime}
-          location={location}
-          artist={art_name}
-          banner={picture}
+          key={mainInfoData.actid}
+          title={mainInfoData.name}
+          actdate={mainInfoData.actdate}
+          acttime={mainInfoData.acttime}
+          location={mainInfoData.location}
+          artist={mainInfoData.art_name}
+          banner={mainInfoData.picture}
         />
         {/* 活動主資訊 end */}
         {/* 簡介：頁籤 start */}
@@ -77,18 +84,17 @@ export default function Aid() {
           />
         </ul>
         <div className="tab-content" id="myTabContent">
-          <TabContentAid tabTargetAid="tabTargetAid" content={descriptions} />
+          <TabContentAid tabTargetAid="tabTargetAid" content={mainInfoData.descriptions} />
           <TabContentIntro tabTargetIntro="tabTargetIntro" />
         </div>
         {/* 簡介：頁籤 end */}
         {/* 音樂人 start */}
         <div className="row my-5">
           <div className="chb-h4 mb-40 text-purple1">音樂人</div>
-          {artistData.map((v, i) => {
-            return (
-              <ArtistFollowCard key={v.id} imgSrc={v.imageSrc} artist_name={v.artist_name} />
-            )
-          })}
+          <ArtistFollowCard
+            key={mainInfoData.id}
+            imgSrc={mainInfoData.imageSrc}
+            artist_name={mainInfoData.art_name} />
         </div>
         {/* 音樂人 end */}
         {/*  推薦活動 start  */}
