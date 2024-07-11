@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { ACT_GET_ITEM } from '@/configs/api-path'
 import { useRouter } from 'next/router'
 
@@ -13,6 +13,7 @@ import TabContentIntro from '@/components/activity/info-tab-content/tab-content-
 
 export default function Aid() {
   const router = useRouter()
+  const topRef = useRef(null)
   const { aid } = router.query  // 假設 URL 中包含 aid 參數 (參照)
   const actid = parseInt(aid)   // 字串轉數字！！
 
@@ -26,6 +27,16 @@ export default function Aid() {
     { label: '演出活動', href: '/activity' },
     { label: '活動細節', href: '/activity/[aid]' },
   ]
+
+  // const handleToTop = () => {
+  //   window.scrollTo({ top: 0, behavior: 'smooth' });
+  // }
+
+  const scrollToTop = () => {
+    if (topRef.current) {
+      topRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 
   useEffect(() => {
     const controller = new AbortController()
@@ -80,6 +91,7 @@ export default function Aid() {
 
   // 根據 aid 從 rows 中選擇對應的資料
   const mainInfoData = data.rows.find((r) => r.actid === actid)
+  console.log(mainInfoData);
   if (!mainInfoData) return <div>走錯路囉</div>
 
   // 從所有活動的資料裡撈出六筆（隨機），且不包含本頁這筆：
@@ -91,6 +103,7 @@ export default function Aid() {
 
   return (
     <>
+      <div ref={topRef}></div>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
       <div className="music-container mt-80">
         {/* 活動主資訊 start */}
@@ -144,6 +157,7 @@ export default function Aid() {
                 activity_name={v.name}
                 artist_name={v.art_name}
                 aid={v.actid}
+                scrollToTop={scrollToTop}
               />
             )
           })}

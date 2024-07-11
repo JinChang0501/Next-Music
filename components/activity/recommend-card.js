@@ -2,7 +2,8 @@ import React from 'react'
 import Link from 'next/link'
 import PhoneBlackNoIconBtnBlack from '../common/button/phoneBlackButton/phoneBlackNoIconBtnBlack'
 
-export default function RecommendCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/temp-Image7-Gw6zu.avif", activity_name = "活動名稱", artist_name = "藝人名稱", aid }) {
+export default function RecommendCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/temp-Image7-Gw6zu.avif", activity_name = "活動名稱", artist_name = "藝人名稱", aid, scrollToTop }) {
+
   return (
     <>
       <div className="col-6 col-sm-6 col-md-2">
@@ -17,7 +18,11 @@ export default function RecommendCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/
               <div className="card-text chr-p text-white">{artist_name}</div>
             </div>
             <Link href={`/activity/${aid}`}>
-              <PhoneBlackNoIconBtnBlack text="活動資訊" className='chr-p text-nowrap' /></Link>
+              <PhoneBlackNoIconBtnBlack
+                text="活動資訊"
+                className='chr-p text-nowrap'
+                onClick={scrollToTop}
+              /></Link>
           </div>
         </div>
       </div>
