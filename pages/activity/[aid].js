@@ -44,7 +44,7 @@ export default function Aid() {
 
   if (!router.isReady || !data.success) return null
 
-  const { actid, name, actdate, acttime, location, art_name } = data.data;
+  const { actid, name, actdate, acttime, location, art_name, picture } = data.data;
 
   return (
     <>
@@ -58,6 +58,7 @@ export default function Aid() {
           acttime={acttime}
           location={location}
           artist={art_name}
+          banner={picture}
         />
         {/* 活動主資訊 end */}
         {/* 簡介：頁籤 start */}

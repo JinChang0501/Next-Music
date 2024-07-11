@@ -1,17 +1,24 @@
 import React from 'react'
+import Image from 'next/image';
 import { BsMusicNoteBeamed, BsBookmark, BsGeoAlt, BsCalendar4 } from "react-icons/bs";
 import DesktopBlackNoIconBtnPurple from '../common/button/desktopBlackButton/desktopBlackNoIconBtnPurple';
 import DesktopBlackPureIconBtnBlack from '../common/button/desktopBlackButton/desktopBlackPureIconBtnBlack';
 
-export default function MainMusicInfo({ title, actdate, acttime, location, artist }) {
+export default function MainMusicInfo({ title, actdate, acttime, location, artist, banner }) {
   return (
     <>
       {/* 活動主資訊 start */}
       <div className="row d-flex justify-content-center align-items-center">
-        {/* 圖片還沒挖洞！！！！ */}
-        <div className="col-md-7 col-12 p-2 mb-5 mb-sm-0 of-hide img-border">
-          <div className="custom-bg-01" />
+        {/* 圖片 start */}
+        <div className="col-md-7 col-12 p-2 mb-5 mb-sm-0 of-hide custom-bg-01 img-border">
+          {/* 跑太慢了 */}
+          <div className="custom-bg-03">
+            {/* <div className="custom-bg-01" style={{ backgroundImage: `url('${banner}')` }} /> */}
+            <Image src={banner} alt="banner" className="custom-bg-02" fill priority />
+            {/* <img src={banner} className="custom-bg-02" /> */}
+          </div>
         </div>
+        {/* 圖片 end */}
         <div className="col-md-5 col-12 d-flex flex-column">
           {/* 等待修改：三行能否頂天立地 */}
           <div className="row d-flex flex-column justify-content-between ms-md-3 ms-0">
@@ -55,11 +62,31 @@ export default function MainMusicInfo({ title, actdate, acttime, location, artis
         .of-hide {
           overflow: hidden;
         }
+        
         .custom-bg-01 {
+          height: 25rem;
+        }
+        {/* .custom-bg-01 {
           background-image: url('https://i.postimg.cc/CLWYD3d9/temp-Imagea-Dk-U5o.avif');
           background-size: cover;
           background-position: center;
           height: 25rem;
+        } */}
+        .custom-bg-02 {
+          object-fit: cover;
+          object-position: center;
+          height: 25rem;
+        }
+        .custom-bg-03 {
+          width: 100%;
+          height: 100%;
+          position: relative;
+          img {
+            object-fit: cover;
+            object-position: center;
+            width: 100%;
+            height: 100%;
+          }
         }
         @media (max-width: 390px) {
           .custom-bg-01 {
