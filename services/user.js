@@ -46,15 +46,38 @@ export const lineLogout = async (line_uid) => {
 /**
  * 登入用，loginData = { username, passsword }
  */
+// export const login = async (loginData = {}) => {
+//   return await axiosInstance.post('/auth', loginData)
+// }
 export const login = async (loginData = {}) => {
-  return await axiosInstance.post('/auth', loginData)
+  try {
+    const res = await axiosInstance.post('/auth', loginData)
+    if (res.data.status === 'success') {
+      const { accessToken } = res.data.data
+      localStorage.setItem('accessToken', accessToken)
+    }
+    return res
+  } catch (error) {
+    throw new Error(error.response.data.message || error.message)
+  }
 }
+
 /**
  * 登出用
  */
 export const logout = async () => {
+  localStorage.removeItem('accessToken')
   return await axiosInstance.post('/auth/logout', {})
 }
+
+// export const logout = async () => {
+//   try {
+//     await axiosInstance.post('/auth/logout', {})
+//     localStorage.removeItem('accessToken')
+//   } catch (error) {
+//     throw new Error(error.response.data.message || error.message)
+//   }
+// }
 /**
  * 載入會員id的資料用，需要登入後才能使用。此API路由會檢查JWT中的id是否符合本會員，不符合會失敗。
  */

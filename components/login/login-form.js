@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { BsGoogle } from 'react-icons/bs'
 import { IoEyeSharp } from 'react-icons/io5'
 import { IoEyeOffSharp } from 'react-icons/io5'
 import toast, { Toaster } from 'react-hot-toast'
@@ -14,7 +13,6 @@ import {
   parseJwt,
 } from '@/services/user' //checkAuth logout
 import useFirebase from '@/hooks/use-firebase'
-import DesktopWhiteNoIconBtnPurple from '../common/button/desktopWhiteButton/desktopWhiteNoIconBtnPurple'
 import DesktopWhiteNoIconBtnBlack from '../common/button/desktopWhiteButton/desktopWhiteNoIconBtnBlack'
 
 export default function LoginForm({
@@ -32,7 +30,7 @@ export default function LoginForm({
 
   // 登入後設定全域的會員資料用
   const { auth, setAuth } = useAuth()
-  // 登入功能
+  // 登入表單
   const [user, setUser] = useState({ email: '', password: '' })
   // 錯誤訊息狀態
   const [loginErrors, setLoginErrors] = useState({
@@ -79,6 +77,10 @@ export default function LoginForm({
         // 注意JWT存取令牌中只有id, email, google_uid, line_uid在登入時可以得到
         const jwtUser = parseJwt(res.data.data.accessToken)
         console.log(jwtUser)
+
+        const accessToken = res.data.data.accessToken
+        // 存储令牌到 localStorage
+        localStorage.setItem('accessToken', accessToken)
 
         const res1 = await getUserById(jwtUser.id)
         console.log(res1.data)
@@ -147,9 +149,13 @@ export default function LoginForm({
 
     if (res.data.status === 'success') {
       // 從JWT存取令牌中解析出會員資料
-      // 注意JWT存取令牌中只有id, username, google_uid, line_uid在登入時可以得到
+      // 注意JWT存取令牌中只有id, name, google_uid, line_uid在登入時可以得到
       const jwtUser = parseJwt(res.data.data.accessToken)
       // console.log(jwtUser)
+
+      const accessToken = res.data.data.accessToken
+      // 存储令牌到 localStorage
+      localStorage.setItem('accessToken', accessToken)
 
       const res1 = await getUserById(jwtUser.id)
       //console.log(res1.data)
