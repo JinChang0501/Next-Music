@@ -2,13 +2,10 @@ import React, { useState, useRef, useEffect } from 'react'
 import TicketArea from './ticketArea'
 import ticketSeatData from '@/data/ticket/desktop-concert/first/ticketSeat'
 import SelectTicketBlock from './selectTicketBlock'
+import Zoom from './zoom'
 import { BsCheck } from 'react-icons/bs'
 
-export default function TicketSeatSVG({
-  width = '100%',
-  height = '100%',
-  className = 'position-relative',
-}) {
+export default function TicketSeatSVG({ width = '100%', height = '100%' }) {
   const [hoveredCircle, setHoveredCircle] = useState(null)
 
   const [showSelectTicketBlock, setShowSelectTicketBlock] = useState(false)
@@ -25,7 +22,7 @@ export default function TicketSeatSVG({
     setShowSelectTicketBlock(true)
     setBlockPosition({
       top: circleRect.top - 160,
-      left: circleRect.left - circleRect.width / 2 - 55, // 將左邊的位置設置為圓圈的中心點
+      left: circleRect.left - circleRect.width / 2 - 70, // 將左邊的位置設置為圓圈的中心點
     })
   }
 
@@ -56,7 +53,11 @@ export default function TicketSeatSVG({
     ) // 0.5 秒後顯示 SelectTicketBlock
   }
 
-  const handleSeatClick = (index) => {
+  const handleSeatClick = (event, index) => {
+    // 調用 handleMouseEnterCircle 並傳入適當的參數
+    handleMouseEnterCircle(event, index)
+
+    // 如果需要，你也可以保留 setSelectedSeat 的部分
     setSelectedSeat(selectedSeat === index ? null : index)
   }
 
@@ -124,81 +125,108 @@ export default function TicketSeatSVG({
   const constrainedTranslateY =
     scale === 1 ? Math.min(50, Math.max(-50, translateY)) : translateY
 
+  const handleReset = () => {
+    setScale(1)
+    centerSVG()
+  }
+
+  const handleZoomIn = () => {
+    setScale((prevScale) => Math.min(prevScale + 0.1, 3))
+  }
+
+  const handleZoomOut = () => {
+    setScale((prevScale) => Math.max(prevScale - 0.1, 1))
+  }
+
   return (
     <>
-      <svg
-        ref={svgRef}
-        viewBox="-91.25 -80.625 912.5 801.25"
-        fill="none"
-        width={width}
-        height={height}
-        className={className}
-        style={{
-          transform: `translate(${constrainedTranslateX}px, ${constrainedTranslateY}px) scale(${scale})`,
-          userSelect: 'none',
-        }}
-        onMouseDown={handleMouseDown}
-        onWheel={handleWheel}
-      >
-        {/* Area */}
-
-        <TicketArea scale={scale} />
-
-        {/* Area */}
-
-        {/* Seat */}
-        <g
+      <div style={{ position: 'relative', width, height }}>
+        <Zoom
+          onReset={handleReset}
+          onZoomIn={handleZoomIn}
+          onZoomOut={handleZoomOut}
+        />
+        <svg
+          ref={svgRef}
+          viewBox="-91.25 -80.625 912.5 801.25"
+          fill="none"
+          width={width}
+          height={height}
           style={{
-            display: scale >= 1.2 ? 'block' : 'none',
-            cursor: 'pointer',
+            transform: `translate(${constrainedTranslateX}px, ${constrainedTranslateY}px) scale(${scale})`,
+            userSelect: 'none',
+            position: 'relative',
           }}
+          onMouseDown={handleMouseDown}
+          onWheel={handleWheel}
         >
-          {ticketSeatData.map((v) => (
-            <g key={v.id} onClick={() => handleSeatClick(v.id)}>
-              <circle
-                cx={v.cx}
-                cy={v.cy}
-                r={v.r}
-                transform={v.transform}
-                style={{
-                  transition: 'opacity 0.5s, fill 0.5s',
-                  position: 'relative',
-                }}
-                fill={
-                  selectedSeat === v.id
-                    ? '#03663c'
-                    : hoveredCircle === v.id
-                    ? '#1F3FA2'
-                    : '#2A55D9'
-                }
-                onMouseEnter={(event) => {
-                  handleMouseEnterCircle(event, v.id)
-                }}
-                onMouseLeave={() => {
-                  handleMouseLeaveCircle()
-                }}
-                onMouseMove={() => {
-                  handleMouseMove()
-                }}
-              />
-              {selectedSeat === v.id && (
-                <foreignObject
-                  x={v.cx - v.r - 4}
-                  y={v.cy - v.r - 3}
-                  width={2.5 * v.r}
-                  height={2.5 * v.r}
-                >
-                  <BsCheck
-                    style={{ width: '100%', height: '100%', color: 'white' }}
-                  />
-                </foreignObject>
-              )}
-            </g>
-          ))}
-        </g>
+          {/* Area */}
 
-        {/* Seat */}
-      </svg>
+          <TicketArea scale={scale} />
+
+          {/* Area */}
+
+          {/* Seat */}
+          <g
+            style={{
+              display: scale >= 1.2 ? 'block' : 'none',
+              cursor: 'pointer',
+            }}
+          >
+            {ticketSeatData.map((v) => (
+              <g
+                key={v.id}
+                onClick={(event) => handleSeatClick(event, v.id)}
+                style={{ position: 'relative' }}
+              >
+                <circle
+                  cx={v.cx}
+                  cy={v.cy}
+                  r={v.r}
+                  transform={v.transform}
+                  style={{
+                    transition: 'opacity 0.5s, fill 0.5s',
+                  }}
+                  fill={
+                    selectedSeat === v.id
+                      ? '#03663c'
+                      : hoveredCircle === v.id
+                      ? '#1F3FA2'
+                      : '#2A55D9'
+                  }
+                  onMouseEnter={(event) => {
+                    handleMouseEnterCircle(event, v.id)
+                  }}
+                  onMouseLeave={() => {
+                    handleMouseLeaveCircle()
+                  }}
+                  onMouseMove={() => {
+                    handleMouseMove()
+                  }}
+                />
+                {selectedSeat === v.id && (
+                  <foreignObject
+                    x={v.cx - v.r - 4}
+                    y={v.cy - v.r - 3}
+                    width={2.5 * v.r}
+                    height={2.5 * v.r}
+                    onMouseEnter={(event) => {
+                      handleMouseEnterCircle(event, v.id)
+                    }}
+                  >
+                    <BsCheck
+                      style={{ width: '100%', height: '100%', color: 'white' }}
+                    />
+                  </foreignObject>
+                )}
+              </g>
+            ))}
+          </g>
+
+          {/* Seat */}
+        </svg>
+      </div>
+
       <SelectTicketBlock
         show={showSelectTicketBlock}
         styles={{
