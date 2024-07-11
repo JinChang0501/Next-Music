@@ -4,7 +4,7 @@ import PhoneBlackIconBtnBlack from '../common/button/phoneBlackButton/phoneBlack
 export default function ArtistFollowCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/temp-Image7-Gw6zu.avif", artist_name = "藝人名稱", }) {
   return (
     <>
-      <div className="mb-3 g-2 col-12 col-md-4">
+      <div className="mb-3 col-12 col-md-4">
         <div className="card text-white bg-dark p-3 outline">
           <div className="row d-flex align-items-center">
             {/* 圖 */}
