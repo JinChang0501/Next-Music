@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function TabContentAid({ tabTargetAid }) {
+export default function TabContentAid({ tabTargetAid, content }) {
   return (
     <>
       <div
@@ -10,7 +10,7 @@ export default function TabContentAid({ tabTargetAid }) {
         role="tabpanel"
         aria-labelledby={`${tabTargetAid}-tab`}
       >
-        <div className="chr-p text-purple3">先亂打一行字</div>
+        <div className="chr-p text-purple3">{content}</div>
       </div>
     </>
   )

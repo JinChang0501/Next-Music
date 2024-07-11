@@ -23,7 +23,7 @@ export default function Aid() {
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
     { label: '演出活動', href: '/activity' },
-    { label: '一生到底', href: '/activity/[aid]' },
+    { label: '活動細節', href: '/activity/[aid]' },
   ]
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function Aid() {
 
   if (!router.isReady || !data.success) return null
 
-  const { actid, name, actdate, acttime, location, art_name, picture } = data.data;
+  const { actid, name, actdate, acttime, location, art_name, picture, descriptions } = data.data;
 
   return (
     <>
@@ -64,7 +64,7 @@ export default function Aid() {
         {/* 簡介：頁籤 start */}
         <ul className="nav nav-tabs mt-80 mb-40" id="activityTab" role="tablist">
           <Tab
-            tabName="節目介紹"
+            tabName="活動簡介"
             tabTarget="tabTargetAid"
             ariaSelected={true}
             classNames="col-6 col-md-3"
@@ -77,7 +77,7 @@ export default function Aid() {
           />
         </ul>
         <div className="tab-content" id="myTabContent">
-          <TabContentAid tabTargetAid="tabTargetAid" />
+          <TabContentAid tabTargetAid="tabTargetAid" content={descriptions} />
           <TabContentIntro tabTargetIntro="tabTargetIntro" />
         </div>
         {/* 簡介：頁籤 end */}
