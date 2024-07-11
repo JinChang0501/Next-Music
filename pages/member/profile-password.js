@@ -75,6 +75,7 @@ export default function ProfilePassword() {
 
     if (res.data.status === 'success') {
       toast.success('會員密碼修改成功')
+      setUserPassword(initUserPassword)
     } else {
       toast.error('會員密碼修改失敗')
     }
@@ -91,11 +92,11 @@ export default function ProfilePassword() {
           <div className="accordion-item">
             <h2 className="accordion-header" id="headingTwo">
               <button
-                className="accordion-button collapsed"
+                className="accordion-button"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#collapseTwo"
-                aria-expanded="false"
+                aria-expanded="true"
                 aria-controls="collapseTwo"
               >
                 更新密碼
@@ -103,7 +104,7 @@ export default function ProfilePassword() {
             </h2>
             <div
               id="collapseTwo"
-              className="accordion-collapse collapse"
+              className="accordion-collapse collapse show"
               aria-labelledby="headingTwo"
               data-bs-parent="#accordionExample2"
             >
