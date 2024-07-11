@@ -10,7 +10,7 @@ export default function TabContentIntro({ tabTargetIntro }) {
         role="tabpanel"
         aria-labelledby={`${tabTargetIntro}-tab`}
       >
-        <div className="chr-p text-purple3">本場次購票方式為：「網站購票、信用卡付款、ibon取票」及「網站購票、ibon付款、ibon取票」及「ibon購票、付款、取票」三種，相關注意事項請詳閱【常見問題】的【iNDIEVOX 網站購票說明】及【ibon機台購票說明】。
+        <div className="chr-p text-purple3 line-h2">本場次購票方式為：「網站購票、信用卡付款、ibon取票」及「網站購票、ibon付款、ibon取票」及「ibon購票、付款、取票」三種，相關注意事項請詳閱【常見問題】的【iNDIEVOX 網站購票說明】及【ibon機台購票說明】。
           本場次單筆訂單限購4張。
           本活動為：全區搖滾站席。
           開演時間為 19：30，將於 19：00 開放入場。
@@ -22,6 +22,11 @@ export default function TabContentIntro({ tabTargetIntro }) {
           如需辦理退票請先閱讀【常見問題】的【退票辦法說明】並請留意受理退票的期限。
           活動開演前10日起（不含活動當日）即不再受理退票。本活動的退票辦理截止期限為2024/08/07（星期三），逾期恕不受理。</div>
       </div>
+      <style jsx>{`
+      .line-h2 {
+        line-height: 2;
+      }
+      `}</style>
     </>
   )
 }
