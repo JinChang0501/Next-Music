@@ -186,12 +186,21 @@ export default function LoginForm({
       toast.error(`登入失敗`)
     }
   }
+
+  const quickyLogin = () => {
+    setUser({ email: 'jin@test.com', password: '123456' })
+  }
   return (
     <>
       <form onSubmit={handleLoginForm}>
-        <h1 style={{ marginBottom: '20px' }}>登入</h1>
+        <h1 style={{ marginBottom: '20px' }}>
+          <button className="bg-white text-black" onClick={quickyLogin}>
+            <div className="chb-h3">登入</div>
+          </button>
+        </h1>
+
         <div className="w-100">
-          <label htmlFor="email">電子信箱123:</label>
+          <label htmlFor="email">電子信箱:</label>
           <input
             type="email"
             placeholder="請輸入信箱"
@@ -253,18 +262,12 @@ export default function LoginForm({
 
         <div className="w-50">
           <DesktopWhiteNoIconBtnBlack
+            type="button"
             text=<FcGoogle />
             className="chb-h5 w-100 py-2"
             onClick={() => loginGoogle()}
           />
         </div>
-
-        {/* <button
-          className="w-50 bg-purple1"
-          onClick={() => loginGoogleRedirect()}
-        >
-          <FcGoogle className="text-white chb-h6" />
-        </button> */}
       </form>
       <style jsx>
         {`
