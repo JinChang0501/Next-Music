@@ -15,6 +15,11 @@ import TabContentIntro from '@/components/activity/info-tab-content/tab-content-
 
 export default function Aid() {
   const router = useRouter()
+  const { aid } = router.query  // 假設 URL 中包含 aid 參數 (參照)
+  const actid = parseInt(aid)   // 字串轉數字！！
+  // console.log(aid);
+  // console.log(router.query);
+  // console.log(new URLSearchParams(router.query));
 
   const [data, setData] = useState({
     success: false,
@@ -24,7 +29,7 @@ export default function Aid() {
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
     { label: '演出活動', href: '/activity' },
-    { label: '一生到底', href: '/activity/[aid]' },
+    { label: '活動詳情', href: '/activity/[aid]' },
   ]
 
   useEffect(() => {
@@ -49,23 +54,23 @@ export default function Aid() {
 
   if (!router.isReady || !data.success) return null
 
+  // 根據 aid 從 rows 中選擇對應的資料
+  const mainInfoData = data.rows.find((r) => r.actid === actid)
+  if (!mainInfoData) return <div>走錯路囉</div>
+
   return (
     <>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
       <div className="music-container mt-80">
         {/* 活動主資訊 start */}
-        {data.rows.map((r, i) => {
-          return (
-            <MainMusicInfo
-              key={r.actid}
-              title={r.name}
-              actdate={r.actdate}
-              acttime={r.acttime}
-              location={r.location}
-              artist={r.art_name}
-            />
-          )
-        })}
+        <MainMusicInfo
+          key={mainInfoData.actid}
+          title={mainInfoData.name}
+          actdate={mainInfoData.actdate}
+          acttime={mainInfoData.acttime}
+          location={mainInfoData.location}
+          artist={mainInfoData.art_name}
+        />
         {/* 活動主資訊 end */}
         {/* 簡介：頁籤 start */}
         <ul className="nav nav-tabs mt-80 mb-40" id="activityTab" role="tablist">

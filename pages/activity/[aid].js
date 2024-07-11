@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react'
-// 帶資料的api
 import { ACT_GET_ITEM } from '@/configs/api-path'
-// 路徑
 import { useRouter } from 'next/router'
 
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
@@ -15,38 +13,30 @@ import TabContentIntro from '@/components/activity/info-tab-content/tab-content-
 
 export default function Aid() {
   const router = useRouter()
-  const { aid } = router.query  // 假設 URL 中包含 aid 參數 (參照)
-  const actid = parseInt(aid)   // 字串轉數字！！
-  // console.log(aid);
-  // console.log(router.query);
-  // console.log(new URLSearchParams(router.query));
+  console.log(router.query.aid);
 
   const [data, setData] = useState({
     success: false,
-    rows: [],
+    data: {},
   })
 
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
     { label: '演出活動', href: '/activity' },
-    { label: '活動詳情', href: '/activity/[aid]' },
+    { label: '一生到底', href: '/activity/[aid]' },
   ]
 
   useEffect(() => {
-    const controller = new AbortController()
-    const signal = controller.signal
-    // new URLSearchParams(router.query) 這塊應該是搜尋結果的query string
-    fetch(`${ACT_GET_ITEM}?${new URLSearchParams(router.query)}`, { signal })
-      .then((r) => r.json())
-      .then((myData) => {
-        console.log(data)
-        setData(myData)
-      })
-      .catch((ex) => {
-        console.log('fetch-ex', ex)
-      })
-    return () => {
-      controller.abort() // 取消上一次的 ajax
+    if (router.query.aid) {
+      fetch(`${ACT_GET_ITEM}/${router.query.aid}`)
+        .then((r) => r.json())
+        .then((myData) => {
+          console.log(myData)
+          setData(myData)
+        })
+        .catch((ex) => {
+          console.log('fetch-ex', ex)
+        })
     }
   }, [router])
 
@@ -54,9 +44,7 @@ export default function Aid() {
 
   if (!router.isReady || !data.success) return null
 
-  // 根據 aid 從 rows 中選擇對應的資料
-  const mainInfoData = data.rows.find((r) => r.actid === actid)
-  if (!mainInfoData) return <div>走錯路囉</div>
+  const { actid, name, actdate, acttime, location, art_name } = data.data;
 
   return (
     <>
@@ -64,12 +52,12 @@ export default function Aid() {
       <div className="music-container mt-80">
         {/* 活動主資訊 start */}
         <MainMusicInfo
-          key={mainInfoData.actid}
-          title={mainInfoData.name}
-          actdate={mainInfoData.actdate}
-          acttime={mainInfoData.acttime}
-          location={mainInfoData.location}
-          artist={mainInfoData.art_name}
+          key={actid}
+          title={name}
+          actdate={actdate}
+          acttime={acttime}
+          location={location}
+          artist={art_name}
         />
         {/* 活動主資訊 end */}
         {/* 簡介：頁籤 start */}
