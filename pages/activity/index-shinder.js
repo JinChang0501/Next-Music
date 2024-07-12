@@ -23,8 +23,8 @@ export default function Activity() {
 
 // 查詢條件用
 const [nameLike, setNameLike] = useState('')
-const [actClass, setActClass] = useState(0)
-const [area, setArea] = useState(0)
+const [actClass, setActClass] = useState('')
+const [area, setArea] = useState('')
 
   // 麵包屑 內容定義
   const breadcrumbsURL = [

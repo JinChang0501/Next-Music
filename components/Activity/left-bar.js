@@ -17,7 +17,7 @@ export default function LeftBar({ handleSearch , onClassChange , onAreaChange , 
                   onChange={onClassChange}
                 >
                   <option defaultValue="">-- 選擇類型 --</option>
-                  <option value="">所有活動</option>
+                  <option value="0">所有類型</option>
                   <option value="concert">演唱會</option>
                   <option value="festival">音樂祭</option>
                 </select>
@@ -29,7 +29,7 @@ export default function LeftBar({ handleSearch , onClassChange , onAreaChange , 
                   onChange={onAreaChange}
                 >
                   <option defaultValue="">-- 選擇地區 --</option>
-                  <option value="">所有區域</option>
+                  <option value="0">所有區域</option>
                   <option value="北部">北部</option>
                   <option value="中部">中部</option>
                   <option value="南部">南部</option>
