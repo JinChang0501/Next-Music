@@ -7,8 +7,9 @@ import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlack
 import DesktopBlackNoIconBtnBlack from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnBlack'
 import SwiperBottom from '@/components/product/swiper-bottom'
 import SwiperTop from '@/components/product/swiper-top'
-import data from '@/data/product/Product.json'
+import data from '@/data/product/ProductAd.json'
 import Link from 'next/link'
+import CardProduct2 from '@/components/product/card-product2'
 
 export default function Detail() {
   const breadcrumbsURL = [
@@ -100,7 +101,7 @@ export default function Detail() {
         <div className="col-sm-12">
           <p className={`text-purple1 chb-h4 ${styles['mt-80']}`}>推薦商品</p>
           <div className={`row row-cols-1 row-cols-md-4 ${styles['mt-40']} ${styles['mb-100']}`}>
-            <CardProduct />
+            <CardProduct2 />
           </div>
         </div>
       </div>

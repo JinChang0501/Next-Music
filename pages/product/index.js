@@ -6,7 +6,7 @@ import CardProduct from '@/components/product/card-product'
 import LeftBar from '@/components/product/left-bar'
 
 import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
-import data from '@/data/product/Product.json'
+import data from '@/data/product/product.json'
 import Link from 'next/link'
 export default function List() {
   // Toggle the side navigation

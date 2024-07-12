@@ -11,6 +11,7 @@ import LoginProvider from '@/hooks/use-login'
 // Chloe 日曆樣式套件
 import 'rsuite/dist/rsuite-no-reset.min.css'
 import { CustomProvider } from 'rsuite'
+import { CartProvider } from '@/hooks/product/use-cart'
 
 export default function MyApp({ Component, pageProps }) {
   // 導入bootstrap的JS函式庫
@@ -28,13 +29,15 @@ export default function MyApp({ Component, pageProps }) {
     <LoginProvider>
       <AuthProvider>
         <CustomProvider>
-          <TicketProvider>
-            <ActTabProvider>
-              <TabProvider>
-                {getLayout(<Component {...pageProps} />)}
-              </TabProvider>
-            </ActTabProvider>
-          </TicketProvider>
+          <CartProvider>
+            <TicketProvider>
+              <ActTabProvider>
+                <TabProvider>
+                  {getLayout(<Component {...pageProps} />)}
+                </TabProvider>
+              </ActTabProvider>
+            </TicketProvider>
+          </CartProvider>
         </CustomProvider>
       </AuthProvider>
     </LoginProvider>
