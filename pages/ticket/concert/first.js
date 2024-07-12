@@ -8,6 +8,7 @@ import PhoneTitle from '@/components/ticket/phone-concert/phoneTitle'
 import Phone3D from '@/components/ticket/phone-concert/phone3D'
 import Left from '@/components/ticket/desktop-concert/first/Left'
 import Right from '@/components/ticket/desktop-concert/first/Right'
+import RightSecond from '@/components/ticket/desktop-concert/second/rightSecond'
 
 export default function First() {
   // #region 動態獲取 breadcrumb、progressBar 高度，返回給 content
@@ -124,10 +125,8 @@ export default function First() {
 
       {/* content */}
       <div className="row d-flex flex-nowrap" style={{ height: contentHeight }}>
-        {/* Left */}
         <Left />
-
-        {/* Right */}
+        <RightSecond />
         <Right />
       </div>
     </>

@@ -1,0 +1,21 @@
+.zoom {
+  width: 50px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 999;
+  background-color: transparent;
+}
+
+.icon {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.zoom > .icon:not(:last-child) {
+  margin-bottom: 10px;
+}
