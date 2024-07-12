@@ -94,10 +94,10 @@ export default function Aid() {
   console.log(mainInfoData);
   if (!mainInfoData) return <div>走錯路囉</div>
 
-  // 從所有活動的資料裡撈出六筆（隨機），且不包含本頁這筆：
+  // 從所有活動的資料裡撈出 4 筆（隨機），且不包含本頁這筆：
   const recommendData = data.rows.filter((r) => r.actid !== actid)
   console.log(recommendData)
-  const random6Recommend = getRandomElementsFromArray(recommendData, 6);
+  const random6Recommend = getRandomElementsFromArray(recommendData, 4);
 
   console.log(random6Recommend);
 

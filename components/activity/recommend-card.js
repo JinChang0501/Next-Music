@@ -6,7 +6,7 @@ export default function RecommendCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/
 
   return (
     <>
-      <div className="col-6 col-sm-6 col-md-2">
+      <div className="col-6 col-sm-6 col-md-3">
         <div className="card bg-dark outline img-minW d-flex justify-content-center">
           <img
             src={imgSrc}
@@ -20,7 +20,7 @@ export default function RecommendCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/
             <Link href={`/activity/${aid}`}>
               <PhoneBlackNoIconBtnBlack
                 text="活動資訊"
-                className='chr-p text-nowrap'
+                className='chr-p text-nowrap w-100'
                 onClick={scrollToTop}
               /></Link>
           </div>
