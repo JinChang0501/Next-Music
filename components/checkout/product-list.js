@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-
+import data from '@/data/product/product.json'
 import styles from '@/styles/product/product.module.scss'
 import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
 import DesktopBlackNoIconBtnBlack from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnBlack'
 import SwiperBottom from '@/components/product/swiper-bottom'
 import SwiperTop from '@/components/product/swiper-top'
-import data from '@/data/product/product.json'
+import { useCart } from '@/hooks/product/use-cart'
+
 import Link from 'next/link'
 
-
-export default function ProductList() {
+export default function Product() {
+  const { addItem } = useCart()
   const router = useRouter()
 
   // 物件類型的狀態的初始值，建議是一個要描述出裡面有什麼屬性的物件
@@ -46,7 +47,6 @@ export default function ProductList() {
 
   return (
     <>
-      {/* 第一個區塊 */}
       <div className={`row ${styles['mx-160']}  ${styles['mt-80']}`}>
         {/* 左 */}
         <div className={`col-sm-6 `}>
@@ -66,7 +66,11 @@ export default function ProductList() {
           {/*尺寸 */}
           <p className={`text-purple2 chb-h5 ${styles['mt-40']} ${styles['mb-60']}`}>尺寸: F</p>
           <div className={`row row-cols-md-2 ${styles['space-between']} `}>
-            <Link href={`/cart`}><DesktopBlackNoIconBtnBlack text="加入購物車" onClick={""}/></Link>
+            <Link href={`/cart`}>購物車</Link>
+            <DesktopBlackNoIconBtnBlack text="加入購物車" onClick={() => {
+                addItem(product)
+              }}
+            />
             <Link href={`/cart/payment`}><DesktopBlackNoIconBtnPurple text="立即購買" onClick={""}/></Link>
           </div>
         </div>

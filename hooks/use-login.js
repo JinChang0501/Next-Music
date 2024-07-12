@@ -25,7 +25,7 @@ export default function LoginProvider({ children }) {
     setWakeLogin(false)
     if (
       router.pathname === '/member/profile' ||
-      router.pathname === '/cart'
+      router.pathname === '/cart/payment'
     ) {
       router.back() // 如果路徑是 /product，才執行返回上一頁
     }
