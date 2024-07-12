@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { IoEyeSharp } from 'react-icons/io5'
 import { IoEyeOffSharp } from 'react-icons/io5'
 import toast, { Toaster } from 'react-hot-toast'
@@ -22,7 +22,8 @@ export default function LoginForm({
   setWakeLogin,
 }) {
   const [showPassword, setShowPassword] = useState(false)
-
+  // const [hasShownToast, setHasShownToast] = useState(false)
+  const hasShownToast = useRef(false)
   const toggleShowPassword = (e) => {
     setShowPassword(!showPassword)
     e.preventDefault()
@@ -176,7 +177,11 @@ export default function LoginForm({
           userData,
         })
 
-        // toast.success('已成功登入')
+        if (!hasShownToast.current) {
+          toast.success('已成功登入')
+          hasShownToast.current = true
+        }
+
         setWakeLogin(false)
       } else {
         toast.error('登入後無法得到會員資料')
@@ -186,9 +191,6 @@ export default function LoginForm({
       toast.error(`登入失敗`)
     }
   }
-  // useEffect(() => {
-  //   toast.success('已成功登入')
-  // }, [setAuth])
 
   const quickLogin = () => {
     setUser({ email: 'jin@test.com', password: '123456' })
