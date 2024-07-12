@@ -8,7 +8,7 @@ import PhoneTitle from '@/components/ticket/phone-concert/phoneTitle'
 import Phone3D from '@/components/ticket/phone-concert/phone3D'
 import Left from '@/components/ticket/desktop-concert/first/Left'
 import Right from '@/components/ticket/desktop-concert/first/Right'
-import RightSecond from '@/components/ticket/desktop-concert/second/rightSecond'
+import RightSecond from '@/components/ticket/desktop-concert/first/rightSecond'
 
 export default function First() {
   // #region 動態獲取 breadcrumb、progressBar 高度，返回給 content
@@ -75,6 +75,14 @@ export default function First() {
     setIsStarted(true)
   }
 
+  const [circle, setCircle] = useState(0)
+
+  const handleSeatsChange = (selectedSeats) => {
+    setCircle(selectedSeats)
+  }
+
+  const [selectedSeats, setSelectedSeats] = useState([])
+
   // #region PhoneView
 
   if (isPhoneView) {
@@ -125,9 +133,14 @@ export default function First() {
 
       {/* content */}
       <div className="row d-flex flex-nowrap" style={{ height: contentHeight }}>
-        <Left />
-        <RightSecond />
-        <Right />
+        <Left
+          onSeatsChange={handleSeatsChange}
+          updateSelectedSeats={setSelectedSeats}
+        />
+        {circle.length === 0 && <Right />}
+        {circle.length > 0 && circle.length <= 6 && (
+          <RightSecond selectedSeats={selectedSeats} />
+        )}
       </div>
     </>
   )
