@@ -1,17 +1,50 @@
 import MemberDLayout from '@/components/member/desktop-layout'
 // import styles from '@/components/member/desktop-layout/left-bar.module.scss'
+import toast, { Toaster } from 'react-hot-toast'
+
 import PageTab from '@/components/member/desktop-layout/page-tab'
 import Tickets from '@/components/member/desktop-layout/tickets'
 import TicketMobile from '@/components/member/mobile-layout/ticket-mobile'
 import ticketData from '@/data/member/ticketData'
 import { useTab } from '@/hooks/member/useTab'
 import { useEffect, useState } from 'react'
+import {
+  updateProfile,
+  getUserById,
+  updateProfileAvatar,
+} from '@/services/user'
 
 // import { Dropdown } from 'react-bootstrap'
 
 export default function TicketOrder() {
   const { activeTab, ticketStatus, handleStatusChange, getFilteredTickets } =
     useTab()
+
+  const getUserData = async (id) => {
+    const res = await getUserById(id)
+
+    console.log(res.data)
+
+    if (res.data.status === 'success') {
+      // 以下為同步化目前後端資料庫資料，與這裡定義的初始化會員資料物件的資料
+      const dbUser = res.data.data.user
+      const dbUserProfile = { ...initUserProfile }
+
+      for (const key in dbUserProfile) {
+        if (Object.hasOwn(dbUser, key)) {
+          // 這裡要將null值的預設值改為空字串 ''
+          dbUserProfile[key] = dbUser[key] || ''
+        }
+      }
+
+      // 設定到狀態中
+      setUserProfile(dbUserProfile)
+
+      toast.success('會員資料載入成功')
+    } else {
+      toast.error(`會員資料載入失敗`)
+    }
+  }
 
   const [isDesktop, setIsDesktop] = useState(true)
 
