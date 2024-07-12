@@ -7,7 +7,7 @@ import style from './rightSecond.module.scss'
 import DesktopWhiteNoIconBtnPurple from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnPurple'
 import { useRouter } from 'next/router'
 
-export default function RightSecond({ selectedSeats }) {
+export default function RightSecond({ selectedSeats, onDeleteSeat }) {
   const router = useRouter()
 
   const handleNext = () => {
@@ -22,8 +22,12 @@ export default function RightSecond({ selectedSeats }) {
 
         {/* ticketSeatBlock */}
         {selectedSeats.length > 0 &&
-          selectedSeats.map((v) => (
-            <TicketSeatBlock key={v.id} index={v.length} />
+          selectedSeats.map((seat) => (
+            <TicketSeatBlock
+              key={seat.id}
+              seat={seat}
+              onDelete={onDeleteSeat}
+            />
           ))}
 
         {/* priceTotal */}

@@ -10,12 +10,12 @@ export default function Left({
   height = '100%',
   onSeatsChange,
   updateSelectedSeats,
+  selectedSeats,
 }) {
   const [hoveredCircle, setHoveredCircle] = useState(null)
   const [showSelectTicketBlock, setShowSelectTicketBlock] = useState(false)
   const [blockPosition, setBlockPosition] = useState({ top: 0, left: 0 })
   const [timeoutId, setTimeoutId] = useState(null)
-  const [selectedSeats, setSelectedSeats] = useState([])
 
   useEffect(() => {
     onSeatsChange(selectedSeats)
@@ -27,23 +27,13 @@ export default function Left({
     setHoveredCircle(index)
     setShowSelectTicketBlock(true)
     setBlockPosition({
-      top: circleRect.top - 160,
+      top: circleRect.top - 125,
       left: circleRect.left - circleRect.width / 2 - 70,
     })
   }
 
   const handleMouseLeaveCircle = () => {
     setHoveredCircle(null)
-    setShowSelectTicketBlock(false)
-    clearTimeout(timeoutId)
-  }
-
-  const handleMouseEnterBlock = () => {
-    setShowSelectTicketBlock(true)
-    clearTimeout(timeoutId)
-  }
-
-  const handleMouseLeaveBlock = () => {
     setShowSelectTicketBlock(false)
     clearTimeout(timeoutId)
   }
@@ -63,12 +53,12 @@ export default function Left({
       (selectedSeat) => selectedSeat.id === seat.id
     )
     if (isSelected) {
-      setSelectedSeats(
+      updateSelectedSeats(
         selectedSeats.filter((selectedSeat) => selectedSeat.id !== seat.id)
       )
     } else {
       if (selectedSeats.length < 6) {
-        setSelectedSeats([...selectedSeats, seat])
+        updateSelectedSeats([...selectedSeats, seat])
       }
     }
   }
@@ -119,12 +109,8 @@ export default function Left({
 
   const centerSVG = () => {
     if (svgRef.current) {
-      const svgRect = svgRef.current.getBoundingClientRect()
-      const parentRect = svgRef.current.parentNode.getBoundingClientRect()
-      const newTranslateX = (parentRect.width - svgRect.width) / 2
-      const newTranslateY = (parentRect.height - svgRect.height) / 2
-      setTranslateX(newTranslateX)
-      setTranslateY(newTranslateY)
+      setTranslateX(0)
+      setTranslateY(0)
     }
   }
 
@@ -150,8 +136,64 @@ export default function Left({
     setScale((prevScale) => Math.max(prevScale - 0.1, 1))
   }
 
+  const handleAreaClick = (area) => {
+    const startX = translateX
+    const startY = translateY
+    const startScale = scale
+    const endX =
+      area === 'A'
+        ? 0
+        : area === 'B'
+        ? 0
+        : area === 'C'
+        ? 350
+        : area === 'D'
+        ? -350
+        : 0
+    const endY =
+      area === 'A'
+        ? -280
+        : area === 'B'
+        ? 50
+        : area === 'C'
+        ? -20
+        : area === 'D'
+        ? -20
+        : 200
+    const endScale =
+      area === 'A' || area === 'B' || area === 'C' || area === 'D' ? 2 : 1.5
+
+    let startTime = null
+
+    const animate = (timestamp) => {
+      if (!startTime) startTime = timestamp
+      const progress = (timestamp - startTime) / 400
+      const newTranslateX = startX + (endX - startX) * progress
+      const newTranslateY = startY + (endY - startY) * progress
+      const newScale = startScale + (endScale - startScale) * progress
+
+      setTranslateX(newTranslateX)
+      setTranslateY(newTranslateY)
+      setScale(newScale)
+
+      if (progress < 1) {
+        requestAnimationFrame(animate)
+      }
+    }
+
+    requestAnimationFrame(animate)
+  }
+
   return (
     <>
+      <SelectTicketBlock
+        show={showSelectTicketBlock}
+        styles={{
+          top: blockPosition.top,
+          left: blockPosition.left,
+          userSelect: 'none',
+        }}
+      />
       <div
         className="col-xxl-9 col-xl-8 col-lg-7 col-md-6 p-0"
         style={{
@@ -180,7 +222,7 @@ export default function Left({
           onWheel={handleWheel}
         >
           {/* Area */}
-          <TicketArea scale={scale} />
+          <TicketArea scale={scale} onAreaClick={handleAreaClick} />
           {/* Area */}
 
           {/* Seat */}
@@ -205,12 +247,15 @@ export default function Left({
                       ? '#1F3FA2'
                       : '#2A55D9'
                   }
-                  onMouseEnter={(event) => handleMouseEnterCircle(event, v)}
+                  onMouseEnter={handleMouseEnterCircle}
                   onMouseLeave={handleMouseLeaveCircle}
                   onMouseMove={handleMouseMove}
                 />
                 {selectedSeats.some((seat) => seat.id === v.id) && (
                   <foreignObject
+                    onMouseEnter={handleMouseEnterCircle}
+                    onMouseLeave={handleMouseLeaveCircle}
+                    onMouseMove={handleMouseMove}
                     x={v.cx - v.r - 4}
                     y={v.cy - v.r - 3}
                     width={2.5 * v.r}
@@ -227,17 +272,6 @@ export default function Left({
           {/* Seat */}
         </svg>
       </div>
-
-      <SelectTicketBlock
-        show={showSelectTicketBlock}
-        styles={{
-          top: blockPosition.top,
-          left: blockPosition.left,
-          userSelect: 'none',
-        }}
-        onMouseEnter={() => handleMouseEnterBlock()}
-        onMouseLeave={handleMouseLeaveBlock}
-      />
     </>
   )
 }

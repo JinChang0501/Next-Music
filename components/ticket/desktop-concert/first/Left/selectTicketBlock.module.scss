@@ -5,12 +5,12 @@
   top: 0px;
   right: 0px;
   width: 200px;
-  height: 132px;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   opacity: 0;
   visibility: hidden;
   background-color: white;
+  z-index: 999;
 }
 
 .selectTicketBlock::before {
@@ -18,8 +18,8 @@
   width: 0px;
   height: 0px;
   position: absolute;
-  top: 128px;
-  left: 85px;
+  top: 107px;
+  left: 86px;
   border: 13px solid #000;
   border-style: solid dashed dashed;
   border-color: white transparent transparent;
@@ -39,7 +39,7 @@
 
 .content {
   width: 100%;
-  padding: 10px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -49,14 +49,12 @@
 .contentTop,
 .contentBottom {
   width: 100%;
-  padding-bottom: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: black;
 }
 
-.contentBottom {
-  margin-bottom: 10px;
-  border-bottom: 1px solid #d1d1d1;
+.contentTop {
+  margin-bottom: 15px;
 }

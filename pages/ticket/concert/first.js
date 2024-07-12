@@ -75,13 +75,17 @@ export default function First() {
     setIsStarted(true)
   }
 
-  const [circle, setCircle] = useState(0)
+  const [selectedSeats, setSelectedSeats] = useState([])
 
-  const handleSeatsChange = (selectedSeats) => {
-    setCircle(selectedSeats)
+  const handleSeatsChange = (newSelectedSeats) => {
+    setSelectedSeats(newSelectedSeats)
   }
 
-  const [selectedSeats, setSelectedSeats] = useState([])
+  const handleDeleteSeat = (seat) => {
+    setSelectedSeats((prevSeats) =>
+      prevSeats.filter((selectedSeat) => selectedSeat.id !== seat.id)
+    )
+  }
 
   // #region PhoneView
 
@@ -132,14 +136,18 @@ export default function First() {
       <ProgressBar progressBarRef={progressBarRef} isStarted={isStarted} />
 
       {/* content */}
-      <div className="row d-flex flex-nowrap" style={{ height: contentHeight }}>
+      <div className="d-flex flex-nowrap" style={{ height: contentHeight }}>
         <Left
           onSeatsChange={handleSeatsChange}
           updateSelectedSeats={setSelectedSeats}
+          selectedSeats={selectedSeats}
         />
-        {circle.length === 0 && <Right />}
-        {circle.length > 0 && circle.length <= 6 && (
-          <RightSecond selectedSeats={selectedSeats} />
+        {selectedSeats.length === 0 && <Right />}
+        {selectedSeats.length > 0 && selectedSeats.length <= 6 && (
+          <RightSecond
+            selectedSeats={selectedSeats}
+            onDeleteSeat={handleDeleteSeat}
+          />
         )}
       </div>
     </>
