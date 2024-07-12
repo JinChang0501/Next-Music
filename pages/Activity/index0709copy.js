@@ -11,9 +11,9 @@ import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import BannerA from '@/components/activity/banner-a'
 import LeftBar from '@/components/activity/left-bar'
 import Tab from '@/components/common/tabs/tab'
-import TabContentAll from '@/components/activity/act-tab-content/tab-content-all'
-import TabContentConcert from '@/components/activity/act-tab-content/tab-content-concert'
-import TabContentFestival from '@/components/activity/act-tab-content/tab-content-festival'
+import TabContentAll from '@/components/activity/act-tab-content-n/tab-content-all'
+import TabContentConcert from '@/components/activity/act-tab-content-n/tab-content-concert'
+import TabContentFestival from '@/components/activity/act-tab-content-n/tab-content-festival'
 
 export default function Activity() {
   const router = useRouter()

@@ -74,8 +74,6 @@ export default function ActivityCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/t
                   <DesktopWhiteNoIconBtnBlack
                     text="活動資訊"
                     className="chr-p d-md-block d-none"
-                  // 之後設定路徑為變數
-                  // onClick={ }
                   />
                 </Link>
                 {/* 如果變成手機大小，要變成手機按鈕的判斷式 */}
@@ -84,18 +82,13 @@ export default function ActivityCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/t
                     <DesktopBlackNoIconBtnPurple
                       text="立即購票"
                       className="chr-p"
-                    // 之後設定路徑為變數
-                    // onClick={ }
                     />
                   </Link>
                 ) : (
                   <Link href={`/ticket/${(aid > 9) ? "musicFestival" : "concert"}/${aid}`}>
                     <PhoneBlackNoIconBtnPurple
                       text="立即購票" className="chr-p"
-                    // 之後設定路徑為變數
-                    // onClick={ }
                     />
-
                   </Link>
                 )}
 

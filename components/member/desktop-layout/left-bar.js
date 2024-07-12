@@ -7,21 +7,23 @@ import { FaShoppingCart } from 'react-icons/fa'
 import { BsTicketPerforatedFill } from 'react-icons/bs'
 import { BiCollection } from 'react-icons/bi'
 import { useAuth } from '@/hooks/use-auth'
+import { login, logout, getUserById, checkAuth } from '@/services/user' //checkAuth
+import useFirebase from '@/hooks/use-firebase'
+import toast, { Toaster } from 'react-hot-toast'
 
-import {
-  updateProfile,
-  getUserById,
-  updateProfileAvatar,
-} from '@/services/user'
-
+import { updateProfile, updateProfileAvatar } from '@/services/user'
+import { useRouter } from 'next/router'
 // 定義要在此頁呈現/編輯的會員資料初始物件
 const initUserProfile = {
   email: '',
 }
 
 export default function LeftBar({ pageName = '' }) {
+  const router = useRouter()
+  const { logoutFirebase } = useFirebase()
   // 更新表單
-  const { auth } = useAuth()
+  const { auth, setAuth, initUserData } = useAuth()
+
   const [userProfile, setUserProfile] = useState(initUserProfile)
   const getUserData = async (id) => {
     const res = await getUserById(id)
@@ -49,6 +51,37 @@ export default function LeftBar({ pageName = '' }) {
     }
   }
   // auth載入完成後向資料庫要會員資料
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false) // 這裡要接Login元件傳回來的狀態
+
+  // 更新登入狀態
+  const updateLoginStatus = (loggedIn) => {
+    setIsLoggedIn(loggedIn)
+  }
+
+  //處理登出
+  const handleLogout = async () => {
+    logoutFirebase()
+
+    const res = await logout()
+
+    console.log(res.data)
+
+    // 成功登出個回復初始會員狀態
+    if (res.data.status === 'success') {
+      toast.success('已成功登出')
+      updateLoginStatus(false)
+      router.push('/')
+
+      setAuth({
+        isAuth: false,
+        userData: initUserData,
+      })
+    } else {
+      toast.error(`登出失敗`)
+    }
+  }
+
   useEffect(() => {
     if (auth.isAuth) {
       getUserData(auth.userData.id)
@@ -201,9 +234,12 @@ export default function LeftBar({ pageName = '' }) {
         <div className="bottom-content text-center bg-black80 py-3">
           <span className="eng-h7 text-white">{userProfile.email}</span>
           <br />
-          <a href="" className="text-decoration-none text-purple3">
+          <button
+            className="text-decoration-none text-purple3 bg-black80"
+            onClick={handleLogout}
+          >
             登出
-          </a>
+          </button>
         </div>
       </div>
 

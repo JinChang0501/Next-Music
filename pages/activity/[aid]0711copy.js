@@ -9,12 +9,17 @@ import MainMusicInfo from '@/components/activity/main-music-info'
 import ArtistFollowCard from '@/components/activity/artist-follow-card'
 import artistData from '@/data/activity/artist-data'
 import Tab from '@/components/common/tabs/tab'
-import RecommondCard from '@/components/activity/recommond-card'
+import RecommondCard from '@/components/activity/recommend-card'
 import TabContentAid from '@/components/activity/info-tab-content/tab-content-aid'
 import TabContentIntro from '@/components/activity/info-tab-content/tab-content-intro'
 
 export default function Aid() {
   const router = useRouter()
+  const { aid } = router.query  // 假設 URL 中包含 aid 參數 (參照)
+  const actid = parseInt(aid)   // 字串轉數字！！
+  // console.log(aid);
+  // console.log(router.query);
+  // console.log(new URLSearchParams(router.query));
 
   const [data, setData] = useState({
     success: false,
@@ -24,7 +29,7 @@ export default function Aid() {
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
     { label: '演出活動', href: '/activity' },
-    { label: '一生到底', href: '/activity/[aid]' },
+    { label: '活動詳情', href: '/activity/[aid]' },
   ]
 
   useEffect(() => {
@@ -49,23 +54,23 @@ export default function Aid() {
 
   if (!router.isReady || !data.success) return null
 
+  // 根據 aid 從 rows 中選擇對應的資料
+  const mainInfoData = data.rows.find((r) => r.actid === actid)
+  if (!mainInfoData) return <div>走錯路囉</div>
+
   return (
     <>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
       <div className="music-container mt-80">
         {/* 活動主資訊 start */}
-        {data.rows.map((r, i) => {
-          return (
-            <MainMusicInfo
-              key={r.actid}
-              title={r.name}
-              actdate={r.actdate}
-              acttime={r.acttime}
-              location={r.location}
-              artist={r.art_name}
-            />
-          )
-        })}
+        <MainMusicInfo
+          key={mainInfoData.actid}
+          title={mainInfoData.name}
+          actdate={mainInfoData.actdate}
+          acttime={mainInfoData.acttime}
+          location={mainInfoData.location}
+          artist={mainInfoData.art_name}
+        />
         {/* 活動主資訊 end */}
         {/* 簡介：頁籤 start */}
         <ul className="nav nav-tabs mt-80 mb-40" id="activityTab" role="tablist">
@@ -100,6 +105,7 @@ export default function Aid() {
         {/*  推薦活動 start  */}
         <div className="row my-5">
           <div className="chb-h4 mb-40 text-purple1">推薦活動</div>
+          {/* 假資料測試 */}
           {artistData.map((v, i) => {
             return (
               <RecommondCard key={v.id} imgSrc={v.imageSrc} activity_name={v.activity_name} artist_name={v.artist_name} />
