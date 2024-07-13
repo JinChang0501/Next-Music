@@ -6,7 +6,7 @@ export default function Breadcrumbs({
 }) {
   return (
     <>
-      <div className={className}>
+      <div className={className} style={{ userSelect: 'none' }}>
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb m-0 p-0">
             {breadcrumbs.map((breadItem, index) => {

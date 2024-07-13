@@ -136,7 +136,10 @@ export default function First() {
       <ProgressBar progressBarRef={progressBarRef} isStarted={isStarted} />
 
       {/* content */}
-      <div className="d-flex flex-nowrap" style={{ height: contentHeight }}>
+      <div
+        className="d-flex flex-nowrap"
+        style={{ height: contentHeight, userSelect: 'none' }}
+      >
         <Left
           onSeatsChange={handleSeatsChange}
           updateSelectedSeats={setSelectedSeats}

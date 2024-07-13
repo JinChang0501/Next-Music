@@ -65,7 +65,7 @@ export default function TicketArea({ scale, onAreaClick }) {
           </mask>
           <g
             style={{
-              display: scale >= 1.2 ? 'none' : 'block',
+              display: scale >= 1.3 ? 'none' : 'block',
               cursor: 'pointer',
             }}
             onClick={() => handleClickArea('A')}
@@ -111,7 +111,7 @@ export default function TicketArea({ scale, onAreaClick }) {
           />
           <g
             style={{
-              display: scale >= 1.2 ? 'none' : 'block',
+              display: scale >= 1.3 ? 'none' : 'block',
               cursor: 'pointer',
             }}
             onClick={() => handleClickArea('B')}
@@ -144,7 +144,7 @@ export default function TicketArea({ scale, onAreaClick }) {
           />
           <g
             style={{
-              display: scale >= 1.2 ? 'none' : 'block',
+              display: scale >= 1.3 ? 'none' : 'block',
               cursor: 'pointer',
             }}
             onClick={() => handleClickArea('C')}
@@ -177,7 +177,7 @@ export default function TicketArea({ scale, onAreaClick }) {
           />
           <g
             style={{
-              display: scale >= 1.2 ? 'none' : 'block',
+              display: scale >= 1.3 ? 'none' : 'block',
               cursor: 'pointer',
             }}
             onClick={() => handleClickArea('D')}
@@ -212,7 +212,7 @@ export default function TicketArea({ scale, onAreaClick }) {
           />
           <g
             style={{
-              display: scale >= 1.2 ? 'none' : 'block',
+              display: scale >= 1.3 ? 'none' : 'block',
               cursor: 'pointer',
             }}
             onClick={() => handleClickArea('E')}

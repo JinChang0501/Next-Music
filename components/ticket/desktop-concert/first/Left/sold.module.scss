@@ -1,0 +1,66 @@
+.sold {
+  width: 135px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  z-index: 999;
+  background-color: white;
+  border: 2px solid gray;
+  border-radius: 5px;
+  user-select: none;
+}
+
+.title {
+  width: 100%;
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: black;
+  border-radius: 5px;
+}
+
+.title.borderBottom {
+  border-bottom: 2px solid #d1d1d1;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.titleIcon {
+  width: 22px;
+  height: 22px;
+  color: black;
+  transition: all 0.3s ease;
+}
+
+.titleIcon.rotated {
+  transform: rotate(180deg);
+}
+
+.content {
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.content.contentShow {
+  padding: 12px;
+  max-height: 82px;
+}
+
+.contentText {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.soldIcon {
+  color: #d1d1d1;
+}
+
+.unsoldIcon {
+  color: #1f3fa2;
+}

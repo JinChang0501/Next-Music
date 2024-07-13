@@ -80,7 +80,7 @@ export default function ProgressBar({ progressBarRef, isStarted = true }) {
     }
 
     return (
-      <div className={`${style.progress}`}>
+      <div className={`${style.progress}`} style={{ userSelect: 'none' }}>
         <div className={`${style.progressLeft}`}>
           <div className={`${style.progressLeftSquare} chb-h6`}>
             {stepNumber}
@@ -122,6 +122,7 @@ export default function ProgressBar({ progressBarRef, isStarted = true }) {
     <div
       ref={progressBarRef}
       className={`${style.progressBarHeight} row d-flex`}
+      style={{ userSelect: 'none' }}
     >
       <div className={`${style.progressBar} col-xxl-7 col-xl-6 col-lg-5`}>
         {steps.map((step, index) => (

@@ -3,6 +3,8 @@ import TicketArea from './ticketArea'
 import ticketSeatData from '@/data/ticket/desktop-concert/first/ticketSeat'
 import SelectTicketBlock from './selectTicketBlock'
 import Zoom from './zoom'
+import Sold from './sold'
+import Minimap from './minimap'
 import { BsCheck } from 'react-icons/bs'
 
 export default function Left({
@@ -16,6 +18,9 @@ export default function Left({
   const [showSelectTicketBlock, setShowSelectTicketBlock] = useState(false)
   const [blockPosition, setBlockPosition] = useState({ top: 0, left: 0 })
   const [timeoutId, setTimeoutId] = useState(null)
+  const [withTransition, setWithTransition] = useState(false)
+  const [isFirstClick, setIsFirstClick] = useState(true)
+  const [colorBarBackground, setColorBarBackground] = useState('')
 
   useEffect(() => {
     onSeatsChange(selectedSeats)
@@ -25,11 +30,28 @@ export default function Left({
   const handleMouseEnterCircle = (event, index) => {
     const circleRect = event.target.getBoundingClientRect()
     setHoveredCircle(index)
-    setShowSelectTicketBlock(true)
     setBlockPosition({
       top: circleRect.top - 125,
       left: circleRect.left - circleRect.width / 2 - 70,
     })
+
+    const selectedId = index
+    const A = selectedId >= 1 && selectedId <= 15
+    const B = selectedId >= 16 && selectedId <= 39
+    const C = selectedId >= 40 && selectedId <= 63
+    const D = selectedId >= 64 && selectedId <= 87
+
+    if (A) {
+      setColorBarBackground('#FF9900')
+    } else if (B) {
+      setColorBarBackground('#00A3FF')
+    } else if (C) {
+      setColorBarBackground('#F12222')
+    } else if (D) {
+      setColorBarBackground('#9E00FF')
+    } else {
+      setColorBarBackground('#3EAD2C')
+    }
   }
 
   const handleMouseLeaveCircle = () => {
@@ -68,6 +90,20 @@ export default function Left({
   const [scale, setScale] = useState(1)
   const svgRef = useRef(null)
 
+  useEffect(() => {
+    const maxRangeX = 300 * scale
+    const maxRangeY = 300 * scale
+
+    let newTranslateX = translateX
+    let newTranslateY = translateY
+
+    newTranslateX = Math.min(maxRangeX, Math.max(-maxRangeX, newTranslateX))
+    newTranslateY = Math.min(maxRangeY, Math.max(-maxRangeY, newTranslateY))
+
+    setTranslateX(newTranslateX)
+    setTranslateY(newTranslateY)
+  }, [scale, translateX, translateY])
+
   const handleMouseDown = (event) => {
     event.preventDefault()
     const startX = event.pageX - translateX
@@ -92,18 +128,17 @@ export default function Left({
 
   const handleWheel = (event) => {
     event.preventDefault()
-    const delta = event.deltaY * -0.0003
+    const delta = event.deltaY * -0.002
     let newScale = scale + delta
 
     if (newScale < 1.0001) {
       newScale = 1
+      setWithTransition(true)
+      setTimeout(() => setWithTransition(false), 500)
     }
 
     if (newScale >= 1 && newScale <= 3) {
       setScale(newScale)
-      if (newScale === 1) {
-        centerSVG()
-      }
     }
   }
 
@@ -124,71 +159,86 @@ export default function Left({
     scale === 1 ? Math.min(50, Math.max(-50, translateY)) : translateY
 
   const handleReset = () => {
+    setWithTransition(true)
     setScale(1)
     centerSVG()
+    setTimeout(() => setWithTransition(false), 500)
+    setIsFirstClick(true)
   }
 
   const handleZoomIn = () => {
-    setScale((prevScale) => Math.min(prevScale + 0.1, 3))
+    setWithTransition(true)
+    setScale((prevScale) => Math.min(prevScale + 0.5, 3))
+
+    if (isFirstClick) {
+      setTranslateY(75)
+      setIsFirstClick(false)
+    }
+
+    setTimeout(() => setWithTransition(false), 500)
   }
 
+  useEffect(() => {
+    if (scale === 1) {
+      centerSVG()
+      setIsFirstClick(true)
+    }
+  }, [scale])
+
   const handleZoomOut = () => {
-    setScale((prevScale) => Math.max(prevScale - 0.1, 1))
+    setWithTransition(true)
+    setScale((prevScale) => {
+      if (prevScale < 1.0001) {
+        return 1
+      } else {
+        return Math.max(prevScale - 0.5, 1)
+      }
+    })
+    setTimeout(() => setWithTransition(false), 500)
   }
 
   const handleAreaClick = (area) => {
-    const startX = translateX
-    const startY = translateY
-    const startScale = scale
-    const endX =
-      area === 'A'
-        ? 0
-        : area === 'B'
-        ? 0
-        : area === 'C'
-        ? 350
-        : area === 'D'
-        ? -350
-        : 0
-    const endY =
-      area === 'A'
-        ? -280
-        : area === 'B'
-        ? 50
-        : area === 'C'
-        ? -20
-        : area === 'D'
-        ? -20
-        : 200
-    const endScale =
-      area === 'A' || area === 'B' || area === 'C' || area === 'D' ? 2 : 1.5
+    setWithTransition(true)
+    setTimeout(() => setWithTransition(false), 500)
 
-    let startTime = null
-
-    const animate = (timestamp) => {
-      if (!startTime) startTime = timestamp
-      const progress = (timestamp - startTime) / 400
-      const newTranslateX = startX + (endX - startX) * progress
-      const newTranslateY = startY + (endY - startY) * progress
-      const newScale = startScale + (endScale - startScale) * progress
-
-      setTranslateX(newTranslateX)
-      setTranslateY(newTranslateY)
-      setScale(newScale)
-
-      if (progress < 1) {
-        requestAnimationFrame(animate)
-      }
+    switch (area) {
+      case 'A':
+        setTranslateX(0)
+        setTranslateY(-280)
+        setScale(2)
+        break
+      case 'B':
+        setTranslateX(0)
+        setTranslateY(50)
+        setScale(2)
+        break
+      case 'C':
+        setTranslateX(350)
+        setTranslateY(-20)
+        setScale(2)
+        break
+      case 'D':
+        setTranslateX(-350)
+        setTranslateY(-20)
+        setScale(2)
+        break
+      case 'E':
+        setTranslateX(0)
+        setTranslateY(200)
+        setScale(1.5)
+        break
+      default:
+        break
     }
-
-    requestAnimationFrame(animate)
   }
 
   return (
     <>
       <SelectTicketBlock
+        selectedSeats={selectedSeats}
+        colorBarBackground={colorBarBackground}
         show={showSelectTicketBlock}
-        styles={{
+        style={{
           top: blockPosition.top,
           left: blockPosition.left,
           userSelect: 'none',
@@ -206,6 +256,15 @@ export default function Left({
           onReset={handleReset}
           onZoomIn={handleZoomIn}
           onZoomOut={handleZoomOut}
+          onTransition={() => setWithTransition(true)}
+          scale={scale}
+        />
+        <Sold />
+        <Minimap
+          translateX={constrainedTranslateX}
+          translateY={constrainedTranslateY}
+          scale={scale}
+          withTransition={withTransition}
         />
         <svg
           ref={svgRef}
@@ -217,6 +276,7 @@ export default function Left({
             transform: `translate(${constrainedTranslateX}px, ${constrainedTranslateY}px) scale(${scale})`,
             userSelect: 'none',
             position: 'relative',
+            transition: withTransition ? 'all 0.5s ease' : 'all 0.1s ease',
           }}
           onMouseDown={handleMouseDown}
           onWheel={handleWheel}
@@ -228,7 +288,7 @@ export default function Left({
           {/* Seat */}
           <g
             style={{
-              display: scale >= 1.2 ? 'block' : 'none',
+              display: scale >= 1.3 ? 'block' : 'none',
               cursor: 'pointer',
             }}
           >
@@ -241,19 +301,21 @@ export default function Left({
                   transform={v.transform}
                   style={{ transition: 'opacity 0.5s, fill 0.5s' }}
                   fill={
-                    selectedSeats.includes(v)
+                    selectedSeats.some((seat) => seat.id === v.id)
                       ? '#03663c'
-                      : hoveredCircle === v
+                      : hoveredCircle === v.id
                       ? '#1F3FA2'
                       : '#2A55D9'
                   }
-                  onMouseEnter={handleMouseEnterCircle}
+                  onMouseEnter={(event) => handleMouseEnterCircle(event, v.id)}
                   onMouseLeave={handleMouseLeaveCircle}
                   onMouseMove={handleMouseMove}
                 />
                 {selectedSeats.some((seat) => seat.id === v.id) && (
                   <foreignObject
-                    onMouseEnter={handleMouseEnterCircle}
+                    onMouseEnter={(event) =>
+                      handleMouseEnterCircle(event, v.id)
+                    }
                     onMouseLeave={handleMouseLeaveCircle}
                     onMouseMove={handleMouseMove}
                     x={v.cx - v.r - 4}
