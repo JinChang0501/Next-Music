@@ -23,6 +23,17 @@ export function TabProvider({ children }) {
     { status: '已使用', name: '音樂祭 2' },
     // 添加更多票券資料
   ]
+  const [useConTab, setUseConTab] = useState('concert')
+
+  const handleUseConcertTab = () => {
+    setUseConTab('concert')
+    console.log('useconcert')
+  }
+
+  const handleUseFestivalTab = () => {
+    setUseConTab('festival')
+    console.log('usefestival')
+  }
 
   const handleTabChange = (tab) => {
     setActiveTab(tab)
@@ -51,6 +62,9 @@ export function TabProvider({ children }) {
           getFilteredTickets,
           activeTab,
           ticketStatus,
+          useConTab,
+          handleUseConcertTab,
+          handleUseFestivalTab,
         }}
       >
         {children}
