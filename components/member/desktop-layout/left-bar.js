@@ -119,7 +119,7 @@ export default function LeftBar({ pageName = '' }) {
         <div className="">
           <ul className="list-unstyled m-0">
             <Link
-              href="profile"
+              href="/member/profile"
               className="text-decoration-none text-center fw-bold chr-h5"
             >
               <li
@@ -136,7 +136,7 @@ export default function LeftBar({ pageName = '' }) {
               </li>
             </Link>
             <Link
-              href="profile-password"
+              href="/member/profile-password"
               className="text-decoration-none text-center fw-bold chr-h5"
             >
               <li
@@ -155,7 +155,7 @@ export default function LeftBar({ pageName = '' }) {
               </li>
             </Link>
             <Link
-              href="calendar"
+              href="/member/calendar"
               className="text-decoration-none text-center fw-bold m-0 chr-h5"
             >
               <li
@@ -172,7 +172,7 @@ export default function LeftBar({ pageName = '' }) {
               </li>
             </Link>
             <Link
-              href="collection"
+              href="/member/collection"
               className="text-decoration-none text-center fw-bold chr-h5"
             >
               <li
@@ -189,7 +189,7 @@ export default function LeftBar({ pageName = '' }) {
               </li>
             </Link>
             <Link
-              href="ticket-order"
+              href="/member/ticket-order"
               className="text-decoration-none text-center fw-bold chr-h5"
             >
               <li
@@ -206,7 +206,7 @@ export default function LeftBar({ pageName = '' }) {
               </li>
             </Link>
             <Link
-              href="store-order"
+              href="/member/store-order"
               className="text-decoration-none text-center fw-bold chr-h5"
             >
               <li
