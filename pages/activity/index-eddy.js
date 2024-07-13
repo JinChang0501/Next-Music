@@ -39,7 +39,7 @@ export default function Activity() {
     try {
       const res = await fetch(url)
       const resData = await res.json()
-      console.log(resData);
+      console.log(resData)
       if (resData.status === 'success') {
         // 設定回應用的狀態
         setTotal(resData.data.total)
@@ -48,8 +48,8 @@ export default function Activity() {
         if (Array.isArray(resData.data.activity)) {
           // 設定到狀態中 ===> 進入update階段，觸發重新渲染(re-render)
           setActivity(resData.data.activity)
-          console.log(activity);
-          console.log(resData.data.activity);
+          // console.log(activity)
+          // console.log(resData.data.activity)
         }
       }
     } catch (e) {

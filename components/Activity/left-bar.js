@@ -8,7 +8,7 @@ export default function LeftBar({ handleSearch , onClassChange , onAreaChange , 
       {/* left bar start */}
       <div className="col-md-3 col-12 mb-3">
         <div className="outline sticky-40">
-          <form id="searchForm" action="" className="col-10 mx-auto">
+          <form onSubmit={handleSearch} className="col-10 mx-auto">
             <div className="d-flex flex-md-column">
               <div className="mt-4 mb-2 mb-md-0 col-6 col-md-12">
                 <select
@@ -18,8 +18,8 @@ export default function LeftBar({ handleSearch , onClassChange , onAreaChange , 
                 >
                   <option defaultValue="">-- 選擇類型 --</option>
                   <option value="0">所有類型</option>
-                  <option value="concert">演唱會</option>
-                  <option value="festival">音樂祭</option>
+                  <option value="1">演唱會</option>
+                  <option value="2">音樂祭</option>
                 </select>
               </div>
               <div className="mt-4 mb-2 mb-md-0 col-6 col-md-12">
@@ -30,9 +30,9 @@ export default function LeftBar({ handleSearch , onClassChange , onAreaChange , 
                 >
                   <option defaultValue="">-- 選擇地區 --</option>
                   <option value="0">所有區域</option>
-                  <option value="北部">北部</option>
-                  <option value="中部">中部</option>
-                  <option value="南部">南部</option>
+                  <option value="1">北部</option>
+                  <option value="2">中部</option>
+                  <option value="3">南部</option>
                 </select>
               </div>
             </div>
@@ -55,7 +55,6 @@ export default function LeftBar({ handleSearch , onClassChange , onAreaChange , 
                 icon={BsSearch}
                 iconWidth={22}
                 iconHeight={22}
-                // type="submit"
               // 這裡加上搜尋/篩選，［送出表單］的函式
                 onclick={handleSearch}
               // 也可以按 enter 送出表單(待修改)

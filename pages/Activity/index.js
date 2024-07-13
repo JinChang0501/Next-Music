@@ -24,7 +24,7 @@ export default function Activity() {
   // const [activity, setActivity] = useState([]) 
 
   // 查詢條件用(這裡用的初始值都與伺服器的預設值一致)
-  const [nameLike, setNameLike] = useState('')
+  const [keyword, setKeyword] = useState('')
   const [actClass, setActClass] = useState('')
   const [area, setArea] = useState('')
 
@@ -37,6 +37,8 @@ export default function Activity() {
   // 與伺服器作fetch獲得資料(建議寫在useEffect上面與外面比較容易維護管理)
   const getActivity = async (params = {}) => {
     // 轉換為查詢字串
+    // console.log(router.query) // 是空的
+    // console.log(params)       // keyword,actClass,area
     const searchParams = new URLSearchParams(params)
     const url = `${ACT_LIST}?${searchParams.toString()}`
 
@@ -44,12 +46,12 @@ export default function Activity() {
     try {
       const res = await fetch(url)
       const resData = await res.json()
-      console.log(resData);
-      if (resData.success === 'true') {
+      console.log(resData)
+      if (resData.success === true) {
         // 檢查是否為陣列資料類型(基本保護)
-        if (Array.isArray(resData.data)) {
+        if (Array.isArray(resData.rows)) {
           // 設定到狀態中 ===> 進入update階段，觸發重新渲染(re-render)
-          setData(resData.data)
+          setData(resData)
         }
       }
     } catch (e) {
@@ -58,13 +60,13 @@ export default function Activity() {
   }
 
   // 按下搜尋按鈕
-  const handleSearch = () => {
+  const handleSearch = (e) => {
 
     // 這一塊不太確定，搜尋子？
     const params = {
       // sort: orderby.sort,
       // order: orderby.order,
-      name_like: nameLike,
+      keyword: keyword,
       actClass: actClass,
       area: area,
     }
@@ -76,7 +78,7 @@ export default function Activity() {
     const params = {
       // sort: orderby.sort,
       // order: orderby.order,
-      name_like: nameLike,
+      keyword: keyword,
       actClass: actClass,
       area: area,
     }
@@ -93,22 +95,23 @@ export default function Activity() {
         <div className="row">
           <LeftBar 
             classValue={actClass}
-            areaValue={area}
-            nameValue={nameLike}
             onClassChange={(e) => {
               setActClass(e.target.value)
             }}
+            areaValue={area}
             onAreaChange={(e) => {
               setArea(e.target.value)
             }}
+            nameValue={keyword}
             onNameChange={(e) => {
-              setNameLike(e.target.value)
+              setKeyword(e.target.value)
             }}
             handleSearch={handleSearch} 
           />
           <div className="col-md-9 col-12">
-            {/* 可放［活動列表 >> 搜尋結果］在標題 */}
             <div className="chb-h4 mb-3 text-purple1">活動列表</div>
+            {/* 可放［活動列表 >> 搜尋結果］在標題，有結果再顯示 */}
+            {/* <div className="chb-h4 mb-3 text-purple1"></div> */}
             {data.rows.map((r, i) => {
               return (
                 <ActivityCard
