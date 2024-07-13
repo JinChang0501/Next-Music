@@ -66,7 +66,7 @@ export default function ActivityCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/t
                 </div>
                 <div className="d-flex my-2">
                   <BsCalendar4 className="p-0 me-2 me-md-3" />
-                  <div className="card-text chb-p p-0">{actdate}&nbsp;{acttime}</div>
+                  <div className="card-text chb-p p-0">{actdate}</div>
                 </div>
               </div>
               <div className="col-4 d-flex justify-content-end gap-2 text-nowrap">
@@ -100,6 +100,16 @@ export default function ActivityCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/t
       <style jsx>{`
         .outline {
           border: 1px solid #DBD7FF;
+        }
+        @media (max-width: 390px){
+          .chb-h4 {
+            font-size: 18px;
+            letter-spacing: 1.8px;
+          }
+          .chb-p {
+            font-size: 12px;
+            font-weight: 400;
+          }
         }
       `}</style>
     </>
