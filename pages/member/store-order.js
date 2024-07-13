@@ -1,15 +1,12 @@
 import MemberDLayout from '@/components/member/desktop-layout'
 import OrderCard from '@/components/member/desktop-layout/order-card'
 import OrderCardMobile from '@/components/member/mobile-layout/order-card-mobile'
-import { useTab } from '@/hooks/member/useTab'
+
 import { useEffect, useState } from 'react'
 
 // import { Dropdown } from 'react-bootstrap'
 
 export default function StoreOrder() {
-  const { activeTab, ticketStatus, handleStatusChange, getFilteredTickets } =
-    useTab()
-
   const [isDesktop, setIsDesktop] = useState(true)
 
   useEffect(() => {

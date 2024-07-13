@@ -2,7 +2,12 @@ import React from 'react'
 import { useTab } from '@/hooks/member/useTab'
 
 export default function PageTab() {
-  const { handleTabChange, activeTab } = useTab()
+  const {
+    handleTabChange,
+    activeTab,
+    handleUseConcertTab,
+    handleUseFestivalTab,
+  } = useTab()
   return (
     <>
       <ul className="nav nav-tabs mb-3" id="myTab" role="tablist">
@@ -17,7 +22,7 @@ export default function PageTab() {
             role="tab"
             aria-controls="concert"
             aria-selected={activeTab === 'concert'}
-            onClick={() => handleTabChange('concert')}
+            onClick={handleUseConcertTab}
           >
             演唱會
           </button>
@@ -33,7 +38,7 @@ export default function PageTab() {
             role="tab"
             aria-controls="festival"
             aria-selected={activeTab === 'festival'}
-            onClick={() => handleTabChange('festival')}
+            onClick={handleUseFestivalTab}
           >
             音樂祭
           </button>

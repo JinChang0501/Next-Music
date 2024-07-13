@@ -2,7 +2,12 @@ import React from 'react'
 import DesktopWhiteNoIconBtnPurple from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnPurple'
 import styles from './ticket-detail-card.module.scss'
 
-export default function TicketDetailCard() {
+export default function TicketDetailCard({
+  seat_area = '',
+  seat_row = '',
+  seat_number = '',
+  price = '',
+}) {
   return (
     <>
       <div className="row text-center my-3">
@@ -13,8 +18,8 @@ export default function TicketDetailCard() {
             alt=""
           />
         </div>
-        <div className="col my-auto p-0 chr-h5">A區第5排8號</div>
-        <div className="col my-auto p-0 chr-h5">$700</div>
+        <div className="col my-auto p-0 chr-h5">{`${seat_area}區${seat_row}排${seat_number}號`}</div>
+        <div className="col my-auto p-0 chr-h5">${price}</div>
         <div className="col my-auto p-0 mx-auto d-flex justify-content-center">
           <DesktopWhiteNoIconBtnPurple
             className="px-1 px-md-4 py-2"

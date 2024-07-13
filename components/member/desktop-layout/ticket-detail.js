@@ -5,12 +5,14 @@ import { BsClockFill } from 'react-icons/bs'
 import { BsFillTicketPerforatedFill } from 'react-icons/bs'
 import { BsFillGeoAltFill } from 'react-icons/bs'
 import { BsMusicNoteBeamed } from 'react-icons/bs'
-import DesktopWhiteNoIconBtnPurple from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnPurple'
 import TicketDetailCard from './ticket-detail-card'
+import Link from 'next/link'
+import moment from 'moment-timezone'
 
-export default function TicketDetail() {
+export default function TicketDetail({ ticketData }) {
   const [isMobile, setIsMobile] = useState(false)
-
+  console.log('ticket-detail------------------------ticket-data')
+  console.log(ticketData)
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 576) // 螢幕寬度 > 576px 為電腦板
@@ -22,6 +24,8 @@ export default function TicketDetail() {
 
     return () => window.removeEventListener('resize', handleResize) // 清除事件監聽器
   }, [])
+  // console.log('下面是ticketData')
+  // console.log(ticketData[0].created_at)
 
   const [isMarquee, setIsMarquee] = useState(false)
   const textRef = useRef(null)
@@ -35,15 +39,44 @@ export default function TicketDetail() {
         setIsMarquee(false)
       }
     }
-  }, [])
+  }, [ticketData])
+
+  if (!ticketData || ticketData.length === 0) {
+    return <div>Loading...</div>
+  }
+
+  //計算總價
+  const total = () => {
+    let sum = 0
+    for (let i = 0; i < ticketData.length; i++) {
+      sum += ticketData[i].price
+    }
+    return sum
+  }
+
+  //更改時間格式
+  const formateCreated_At = moment(ticketData[0].created_at)
+    .tz('Asia/Taipei')
+    .format('YYYY/MM/DD HH:mm')
+
+  const formateA_Datetime = moment(ticketData[0].a_datetime)
+    .tz('Asia/Taipei')
+    .format('YYYY/MM/DD HH:mm')
+
+  console.log('我是total-------------------')
+  console.log(total())
+
   return (
     <>
       <div className="row">
         <div className="col-12 bg-purple3 p-2 position-relative">
           <div className="p-0 m-0 chb-h5 text-center d-flex align-items-center justify-content-center">
-            <a href="#" className="text-black d-flex align-items-center">
+            <Link
+              href="/member/ticket-order"
+              className="text-black d-flex align-items-center"
+            >
               <BsArrowLeftCircle className="chr-h3 position-absolute start-3" />
-            </a>
+            </Link>
             <p className="text-center p-0 m-0 fs-2 mx-auto">訂單紀錄</p>
           </div>
         </div>
@@ -53,7 +86,7 @@ export default function TicketDetail() {
         <div className="col-12 bg-purple1 py-2">
           <div className="px-md-5 m-0 fs-3 d-flex justify-content-between">
             <p className="text-center p-0 m-0 chb-h5 text-white">
-              訂單編號:0000001
+              訂單編號:{ticketData[0].order_num}
             </p>
             <p className="text-center p-0 m-0 chb-h5 text-white">已完成</p>
           </div>
@@ -82,7 +115,7 @@ export default function TicketDetail() {
                   isMarquee ? styles.marqee : ''
                 }`}
               >
-                一生到底，One Life, One Shot
+                {ticketData[0].name}
               </span>
             </div>
           </div>
@@ -97,7 +130,9 @@ export default function TicketDetail() {
               </div>
             </div>
             <div>
-              <span className="text-center p-0 m-0 chr-h5">滅火氣 Fire Ex</span>
+              <span className="text-center p-0 m-0 chr-h5">
+                {ticketData[0].art_name}
+              </span>
             </div>
           </div>
           {/* 活動地點 */}
@@ -112,7 +147,7 @@ export default function TicketDetail() {
             </div>
             <div>
               <span className="text-center p-0 m-0 chr-h5">
-                台北流行音樂中心
+                {ticketData[0].location}
               </span>
             </div>
           </div>
@@ -128,7 +163,7 @@ export default function TicketDetail() {
             </div>
             <div>
               <span className="text-center p-0 m-0 chr-h5">
-                2024/06/31 19:30
+                {formateA_Datetime}
               </span>
             </div>
           </div>
@@ -142,13 +177,25 @@ export default function TicketDetail() {
         </div>
 
         <div className="col-12 py-2">
-          <TicketDetailCard />
+          {ticketData.map((v, i) => {
+            return (
+              <TicketDetailCard
+                key={i}
+                seat_area={v.seat_area}
+                seat_row={v.seat_row}
+                seat_number={v.seat_number}
+                price={v.price}
+              />
+            )
+          })}
         </div>
 
         <div className="col-12 py-2 border-top border-2 border-purple2">
           <div className="px-sm-5 m-0 d-flex justify-content-between">
-            <p className="text-center p-0 m-0 chb-h5">共3張票</p>
-            <p className="text-center p-0 m-0 chb-h5">總金額: $2100</p>
+            <p className="text-center p-0 m-0 chb-h5">
+              共{ticketData.length}張票
+            </p>
+            <p className="text-center p-0 m-0 chb-h5">總金額: {total()}</p>
           </div>
         </div>
 
@@ -161,11 +208,11 @@ export default function TicketDetail() {
         <div className="col-12 py-2">
           <div className="px-sm-5 m-0 d-flex justify-content-between mb-2">
             <p className="text-center p-0 m-0 chb-h5">訂單時間</p>
-            <p className="text-center p-0 m-0 chr-h5">2024/06/31 19:30</p>
+            <p className="text-center p-0 m-0 chr-h5">{formateCreated_At}</p>
           </div>
           <div className="px-sm-5 m-0 d-flex justify-content-between mb-2">
             <p className="text-center p-0 m-0 chb-h5">訂購人</p>
-            <p className="text-center p-0 m-0 chr-h5">黃大安</p>
+            <p className="text-center p-0 m-0 chr-h5">{ticketData[0].name}</p>
           </div>
           <div className="px-sm-5 m-0 d-flex justify-content-between mb-2">
             <p className="text-center p-0 m-0 chb-h5">付款方式</p>
