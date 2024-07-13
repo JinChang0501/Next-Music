@@ -112,7 +112,7 @@ export default function Activity() {
             }}
             handleSearch={handleSearch} 
           />
-          <div className="col-md-9 col-12">
+          <div className="col-md-9 col-12 mb-3">
             <div className="chb-h4 mb-3 text-purple1">活動列表</div>
             {/* 可放［活動列表 >> 搜尋結果］在標題，有結果再顯示 */}
             {/* <div className="chb-h4 mb-3 text-purple1"></div> */}
