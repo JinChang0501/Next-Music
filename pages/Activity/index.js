@@ -60,9 +60,9 @@ export default function Activity() {
   }
 
   // 按下搜尋按鈕
-  const handleSearch = (e) => {
-
-    // 這一塊不太確定，搜尋子？
+  const handleSearch =  (e) => {
+    e.preventDefault()
+    
     const params = {
       // sort: orderby.sort,
       // order: orderby.order,
@@ -70,8 +70,10 @@ export default function Activity() {
       actClass: actClass,
       area: area,
     }
+console.log("params1")
+console.log(params)
 
-    getActivity(params)
+     getActivity(params)
   }
 
   useEffect(() => {
@@ -84,6 +86,8 @@ export default function Activity() {
     }
 
     getActivity(params)
+    console.log("params2")
+    console.log(params)
     // eslint-disable-next-line
   }, [])
   

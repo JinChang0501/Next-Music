@@ -29,19 +29,18 @@ export default function Aid() {
   ]
 
   // const handleToTop = () => {
-  //   window.scrollTo({ top: 0, behavior: 'smooth' });
+  //   window.scrollTo({ top: 0, behavior: 'smooth' })
   // }
 
   const scrollToTop = () => {
     if (topRef.current) {
-      topRef.current.scrollIntoView({ behavior: 'smooth' });
+      topRef.current.scrollIntoView({ behavior: 'smooth' })
     }
   }
 
   useEffect(() => {
     const controller = new AbortController()
     const signal = controller.signal
-    // new URLSearchParams(router.query) 這塊應該是搜尋結果的query string
     fetch(`${ACT_GET_ITEM}?${new URLSearchParams(router.query)}`, { signal })
       .then((r) => r.json())
       .then((myData) => {
@@ -64,42 +63,42 @@ export default function Aid() {
   // 這段有空的話拆勾子
   // 亂數取得陣列中的index
   function getRandomIndexes(array, num) {
-    const indexes = [];
+    const indexes = []
 
     // 計算原始資料數
-    const arrayLength = array.length;
+    const arrayLength = array.length
 
     // 避免取得資料數量 num > 原始資料數量時造成的 Error
-    const count = num < array.length ? num : array.length;
+    const count = num < array.length ? num : array.length
 
     while (indexes.length < count) {
-      const randomIndex = Math.floor(Math.random() * arrayLength);
+      const randomIndex = Math.floor(Math.random() * arrayLength)
       if (!indexes.includes(randomIndex)) {
-        indexes.push(randomIndex);
+        indexes.push(randomIndex)
       }
     }
 
-    return indexes;
+    return indexes
   }
 
   // 對應陣列index取得資料
   function getRandomElementsFromArray(array, count) {
-    const randomIndexes = getRandomIndexes(array, count);
-    const randomElements = randomIndexes.map(index => array[index]);
-    return randomElements;
+    const randomIndexes = getRandomIndexes(array, count)
+    const randomElements = randomIndexes.map(index => array[index])
+    return randomElements
   }
 
   // 根據 aid 從 rows 中選擇對應的資料
   const mainInfoData = data.rows.find((r) => r.actid === actid)
-  console.log(mainInfoData);
+  console.log(mainInfoData)
   if (!mainInfoData) return <div>走錯路囉</div>
 
   // 從所有活動的資料裡撈出 4 筆（隨機），且不包含本頁這筆：
   const recommendData = data.rows.filter((r) => r.actid !== actid)
   console.log(recommendData)
-  const random6Recommend = getRandomElementsFromArray(recommendData, 4);
+  const random6Recommend = getRandomElementsFromArray(recommendData, 4)
 
-  console.log(random6Recommend);
+  console.log(random6Recommend)
 
   return (
     <>
