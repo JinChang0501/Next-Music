@@ -162,7 +162,7 @@ export default function PhoneBar({ pageName = '' }) {
             <div className="menu-container">
               <div className="menu-wrapper px-0 ">
                 <Link
-                  href="profile"
+                  href="/member/profile"
                   className={`me-3 chb-h5 ${
                     pageName === 'profile' ? 'text-purple1' : 'text-black60'
                   }`}
@@ -171,7 +171,7 @@ export default function PhoneBar({ pageName = '' }) {
                 </Link>
 
                 <Link
-                  href="profile-password"
+                  href="/member/profile-password"
                   className={`me-3 chb-h5 ${
                     pageName === 'profile-password'
                       ? 'text-purple1'
@@ -182,7 +182,7 @@ export default function PhoneBar({ pageName = '' }) {
                 </Link>
 
                 <Link
-                  href="calendar"
+                  href="/member/calendar"
                   className={`me-3 chb-h5 ${
                     pageName === 'calendar' ? 'text-purple1' : 'text-black60'
                   }`}
@@ -191,7 +191,7 @@ export default function PhoneBar({ pageName = '' }) {
                 </Link>
 
                 <Link
-                  href="collection"
+                  href="/member/collection"
                   className={`me-3 chb-h5 ${
                     pageName === 'collection' ? 'text-purple1' : 'text-black60'
                   }`}
@@ -199,7 +199,7 @@ export default function PhoneBar({ pageName = '' }) {
                   個人收藏
                 </Link>
                 <Link
-                  href="ticket-order"
+                  href="/member/ticket-order"
                   className={`me-3 chb-h5 ${
                     pageName === 'ticket-order'
                       ? 'text-purple1'
@@ -209,7 +209,7 @@ export default function PhoneBar({ pageName = '' }) {
                   訂票紀錄
                 </Link>
                 <Link
-                  href="store-order"
+                  href="/member/store-order"
                   className={`me-3 chb-h5 ${
                     pageName === 'store-order' ? 'text-purple1' : 'text-black60'
                   }`}
