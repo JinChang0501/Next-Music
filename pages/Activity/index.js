@@ -70,8 +70,8 @@ export default function Activity() {
       actClass: actClass,
       area: area,
     }
-console.log("params1")
-console.log(params)
+    console.log("params1")
+    console.log(params)
 
      getActivity(params)
   }
