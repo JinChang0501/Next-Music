@@ -107,7 +107,7 @@ export default function Aid() {
         {/* 活動主資訊 start */}
         <MainMusicInfo
           key={mainInfoData.actid}
-          title={mainInfoData.name}
+          title={mainInfoData.actname}
           actdate={mainInfoData.actdate}
           acttime={mainInfoData.acttime}
           location={mainInfoData.location}
@@ -139,7 +139,7 @@ export default function Aid() {
         <div className="row my-5">
           <div className="chb-h4 mb-40 text-purple1">音樂人</div>
           <ArtistFollowCard
-            key={mainInfoData.id}
+            key={mainInfoData.actid}
             imgSrc={mainInfoData.imageSrc}
             artist_name={mainInfoData.art_name} />
         </div>
@@ -152,7 +152,7 @@ export default function Aid() {
               <RecommendCard
                 key={v.actid}
                 imgSrc={v.cover}
-                activity_name={v.name}
+                activity_name={v.actname}
                 artist_name={v.art_name}
                 aid={v.actid}
                 scrollToTop={scrollToTop}
