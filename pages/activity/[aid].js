@@ -13,7 +13,7 @@ import TabContentIntro from '@/components/activity/info-tab-content/tab-content-
 
 export default function Aid() {
   const router = useRouter()
-  const topRef = useRef(null)
+  // const topRef = useRef(null)
   const { aid } = router.query  // 假設 URL 中包含 aid 參數 (參照)
   const actid = parseInt(aid)   // 字串轉數字！！
 
@@ -32,11 +32,11 @@ export default function Aid() {
   //   window.scrollTo({ top: 0, behavior: 'smooth' })
   // }
 
-  const scrollToTop = () => {
-    if (topRef.current) {
-      topRef.current.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
+  // const scrollToTop = () => {
+  //   if (topRef.current) {
+  //     topRef.current.scrollIntoView({ behavior: 'smooth' })
+  //   }
+  // }
 
   useEffect(() => {
     const controller = new AbortController()
@@ -101,7 +101,7 @@ export default function Aid() {
 
   return (
     <>
-      <div ref={topRef}></div>
+      {/* <div ref={topRef}></div> */}
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
       <div className="music-container mt-80">
         {/* 活動主資訊 start */}
