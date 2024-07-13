@@ -60,7 +60,6 @@ export default function Aid() {
 
   if (!router.isReady || !data.success) return null
 
-  // 這段有空的話拆勾子
   // 亂數取得陣列中的index
   function getRandomIndexes(array, num) {
     const indexes = []
