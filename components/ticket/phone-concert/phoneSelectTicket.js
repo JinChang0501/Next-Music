@@ -20,7 +20,7 @@ export default function PhoneSelectTicket({ selectedSeats, onDeleteSeat }) {
   const router = useRouter()
 
   const handleNext = () => {
-    router.push('/ticket/concert/third')
+    router.push('/ticket/concert/second')
   }
 
   // 動態計算選擇多少張票高度

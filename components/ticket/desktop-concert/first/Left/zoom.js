@@ -15,6 +15,7 @@ export default function Zoom({
   useEffect(() => {
     if (scale === 1) {
       setIsScaleOne(true)
+      setZoomInColor(false)
     } else if (scale === 3) {
       setZoomInColor(true)
     } else {

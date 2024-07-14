@@ -11,7 +11,7 @@ export default function RightSecond({ selectedSeats, onDeleteSeat }) {
   const router = useRouter()
 
   const handleNext = () => {
-    router.push('/ticket/concert/third')
+    router.push('/ticket/concert/second')
   }
 
   return (
