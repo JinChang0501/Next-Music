@@ -76,6 +76,13 @@ export default function Activity() {
      getActivity(params)
   }
 
+  const handleKeyDown =  (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      handleSearch(e)
+    }
+  }
+
   useEffect(() => {
     const params = {
       // sort: orderby.sort,
@@ -111,6 +118,7 @@ export default function Activity() {
               setKeyword(e.target.value)
             }}
             handleSearch={handleSearch} 
+            handleKeyDown={handleKeyDown}
           />
           <div className="col-md-9 col-12 mb-3">
             <div className="chb-h4 mb-3 text-purple1">活動列表</div>

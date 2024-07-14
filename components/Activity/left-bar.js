@@ -2,7 +2,7 @@ import React from 'react'
 import { BsSearch } from 'react-icons/bs'
 import DesktopBlackPureIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackPureIconBtnPurple'
 
-export default function LeftBar({ handleSearch , onClassChange , onAreaChange , onNameChange , classValue , areaValue , nameValue }) {
+export default function LeftBar({ handleSearch , onClassChange , onAreaChange , onNameChange , classValue , areaValue , nameValue, handleKeyDown }) {
   return (
     <>
       {/* left bar start */}
@@ -58,6 +58,7 @@ export default function LeftBar({ handleSearch , onClassChange , onAreaChange , 
               // 這裡加上搜尋/篩選，［送出表單］的函式
                 onclick={handleSearch}
               // 也可以按 enter 送出表單(待修改)
+                onKeyDown={handleKeyDown}
               />
             </div>
           </form>
