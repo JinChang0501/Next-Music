@@ -58,7 +58,7 @@ export default function ActivityCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/t
               <div className="col-8 text-white">
                 <div className="d-flex my-2">
                   <BsMusicNoteBeamed className="p-0 me-2 me-md-3" />
-                  <div className="card-text col-10 chb-p p-0">{artist}</div>
+                  <div className="card-text col-10 chb-p p-0 to-e">{artist}</div>
                 </div>
                 <div className="d-md-flex d-none my-2">
                   <BsGeoAlt className="p-0 me-2 me-md-3" />
@@ -100,6 +100,12 @@ export default function ActivityCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/t
       <style jsx>{`
         .outline {
           border: 1px solid #DBD7FF;
+        }
+        .to-e {
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          {/* -webkit-line-clamp: 2; */}
         }
         @media (max-width: 390px){
           .chb-h4 {

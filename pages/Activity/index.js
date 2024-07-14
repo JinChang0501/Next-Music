@@ -122,7 +122,7 @@ export default function Activity() {
                   key={r.actid}
                   imgSrc={r.cover}
                   title={r.actname}
-                  artist={r.art_name}
+                  artist={r.artists}
                   location={r.location}
                   actdate={r.actdate}
                   acttime={r.acttime}
