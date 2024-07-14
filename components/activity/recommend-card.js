@@ -14,8 +14,8 @@ export default function RecommendCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/
           />
           <div className="card-body d-flex flex-column justify-content-center p-3">
             <div className="d-flex flex-column justify-content-start mb-4">
-              <div className="card-title chb-h6 text-purple3">{activity_name}</div>
-              <div className="card-text chr-p text-white">{artist_name}</div>
+              <div className="card-title chb-h6 text-purple3 to-e">{activity_name}</div>
+              <div className="card-text chr-p text-white to-e">{artist_name}</div>
             </div>
             <Link href={`/activity/${aid}`}>
               <PhoneBlackNoIconBtnBlack
@@ -32,6 +32,12 @@ export default function RecommendCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/
         }
         .img-minW {
           min-width: 160px;
+        }
+        .to-e {
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          {/* -webkit-line-clamp: 2; */}
         }
       `}</style>
     </>
