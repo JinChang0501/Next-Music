@@ -12,18 +12,20 @@ export default function Tickets({
   tid = {},
   created_at = '',
   price = {},
-  activity_name = '',
+  actname = '',
   location = '',
-  a_datetime = '',
+  actdate = '',
+  acttime = '',
   amount = '',
 }) {
-  const formateCreated_At = moment(a_datetime)
+  const formateCreated_At = moment(created_at)
     .tz('Asia/Taipei')
     .format('YYYY/MM/DD HH:mm')
 
-  const formateA_Datetime = moment(a_datetime)
-    .tz('Asia/Taipei')
-    .format('YYYY/MM/DD HH:mm')
+  const formateActdate = moment(actdate).tz('Asia/Taipei').format('YYYY/MM/DD')
+
+  const formatteActtime = moment(acttime, 'HH:mm:ss').format('HH:mm')
+
   return (
     <>
       <tr>
@@ -35,7 +37,7 @@ export default function Tickets({
               <BsFillTicketPerforatedFill className="text-purple2" />
             </div>
             <div className={`${styles['same-width-text']}`}>
-              <span>{activity_name}</span>
+              <span>{actname}</span>
             </div>
           </div>
 
@@ -46,7 +48,7 @@ export default function Tickets({
               <BsClockFill className="text-purple2" />
             </div>
             <div className={`${styles['same-width-text']}`}>
-              <span>{formateA_Datetime}</span>
+              <span>{`${formateActdate} ${formatteActtime}`}</span>
             </div>
           </div>
 

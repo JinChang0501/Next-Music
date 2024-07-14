@@ -165,9 +165,10 @@ export default function TicketOrder() {
                           order_num={v.order_num}
                           created_at={v.created_at}
                           price={v.price}
-                          activity_name={v.name}
+                          actname={v.actname}
                           location={v.location}
-                          a_datetime={v.a_datetime}
+                          actdate={v.actdate}
+                          acttime={v.acttime}
                           amount={v.amount}
                         />
                       )
@@ -183,9 +184,10 @@ export default function TicketOrder() {
                         order_num={v.order_num}
                         created_at={v.created_at}
                         price={v.price}
-                        activity_name={v.name}
+                        actname={v.actname}
                         location={v.location}
-                        a_datetime={v.a_datetime}
+                        actdate={v.actdate}
+                        acttime={v.acttime}
                         amount={v.amount}
                       />
                     )
@@ -252,9 +254,10 @@ export default function TicketOrder() {
                         order_num={v.order_num}
                         created_at={v.created_at}
                         price={v.price}
-                        activity_name={v.name}
-                        activity_place={v.location}
-                        a_datetime={v.a_datetime}
+                        actname={v.actname}
+                        location={v.location}
+                        actdate={v.actdate}
+                        acttime={v.acttime}
                         amount={v.amount}
                       />
                     )
@@ -270,9 +273,10 @@ export default function TicketOrder() {
                       order_num={v.order_num}
                       created_at={v.created_at}
                       price={v.price}
-                      activity_name={v.name}
+                      actname={v.actname}
                       location={v.location}
-                      a_datetime={v.a_datetime}
+                      actdate={v.actdate}
+                      acttime={v.acttime}
                       amount={v.amount}
                     />
                   )

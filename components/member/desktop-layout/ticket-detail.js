@@ -8,6 +8,7 @@ import { BsMusicNoteBeamed } from 'react-icons/bs'
 import TicketDetailCard from './ticket-detail-card'
 import Link from 'next/link'
 import moment from 'moment-timezone'
+import ConcertTicketNew from '@/components/ticket/desktop-concert/fourth/concertTicket/concertTicket'
 
 export default function TicketDetail({ ticketData }) {
   const [isMobile, setIsMobile] = useState(false)
@@ -41,6 +42,16 @@ export default function TicketDetail({ ticketData }) {
     }
   }, [ticketData])
 
+  const [showTicket, setShowTicket] = useState(true)
+
+  const handleWakeTicket = () => {
+    setShowTicket(true)
+  }
+
+  const handleCloseTicket = () => {
+    setShowTicket(false)
+  }
+
   if (!ticketData || ticketData.length === 0) {
     return <div>Loading...</div>
   }
@@ -59,9 +70,13 @@ export default function TicketDetail({ ticketData }) {
     .tz('Asia/Taipei')
     .format('YYYY/MM/DD HH:mm')
 
-  const formateA_Datetime = moment(ticketData[0].a_datetime)
+  const formateActdate = moment(ticketData[0].actdate)
     .tz('Asia/Taipei')
-    .format('YYYY/MM/DD HH:mm')
+    .format('YYYY/MM/DD')
+
+  const formatteActtime = moment(ticketData[0].acttime, 'HH:mm:ss').format(
+    'HH:mm'
+  )
 
   console.log('我是total-------------------')
   console.log(total())
@@ -115,7 +130,7 @@ export default function TicketDetail({ ticketData }) {
                   isMarquee ? styles.marqee : ''
                 }`}
               >
-                {ticketData[0].name}
+                {ticketData[0].actname}
               </span>
             </div>
           </div>
@@ -163,7 +178,7 @@ export default function TicketDetail({ ticketData }) {
             </div>
             <div>
               <span className="text-center p-0 m-0 chr-h5">
-                {formateA_Datetime}
+                {`${formateActdate} ${formatteActtime}`}
               </span>
             </div>
           </div>
