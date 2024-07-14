@@ -32,7 +32,7 @@ export default function CarouselIndex() {
       >
         <SwiperSlide><img src="/images/product/list/mountain-top.jpg" className={styles.indexImg}/></SwiperSlide>
         <SwiperSlide><img src="/images/product/list/light.jpg" className={styles.indexImg}/></SwiperSlide>
-        <SwiperSlide><img src="/images/product/list/wonderland.jpg" className={styles.indexImg}/></SwiperSlide>
+        <SwiperSlide><img src="/images/product/list/wonderland2.jpg" className={styles.indexImg}/></SwiperSlide>
         
       </Swiper>
     </>
