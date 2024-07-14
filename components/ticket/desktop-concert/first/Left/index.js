@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
+import Mask from '@/components/ticket/mask'
+import TicketLimit from './ticketLimit'
 import TicketArea from './ticketArea'
 import ticketSeatData from '@/data/ticket/desktop-concert/first/ticketSeat'
 import SelectTicketBlock from './selectTicketBlock'
@@ -13,6 +15,7 @@ export default function Left({
   onSeatsChange,
   updateSelectedSeats,
   selectedSeats,
+  className,
 }) {
   const [hoveredCircle, setHoveredCircle] = useState(null)
   const [showSelectTicketBlock, setShowSelectTicketBlock] = useState(false)
@@ -20,7 +23,8 @@ export default function Left({
   const [timeoutId, setTimeoutId] = useState(null)
   const [withTransition, setWithTransition] = useState(false)
   const [isFirstClick, setIsFirstClick] = useState(true)
-  const [colorBarBackground, setColorBarBackground] = useState('')
+  const [colorBarBackground, setColorBarBackground] = useState('transparent')
+  const [showMaskAndLimit, setShowMaskAndLimit] = useState(false)
 
   useEffect(() => {
     onSeatsChange(selectedSeats)
@@ -81,8 +85,14 @@ export default function Left({
     } else {
       if (selectedSeats.length < 6) {
         updateSelectedSeats([...selectedSeats, seat])
+      } else {
+        setShowMaskAndLimit(true)
       }
     }
+  }
+
+  const handleCloseTicketLimit = () => {
+    setShowMaskAndLimit(false)
   }
 
   const [translateX, setTranslateX] = useState(0)
@@ -90,28 +100,65 @@ export default function Left({
   const [scale, setScale] = useState(1)
   const svgRef = useRef(null)
 
-  useEffect(() => {
-    const maxRangeX = 300 * scale
-    const maxRangeY = 300 * scale
+  const [maxRangeX, setMaxRangeX] = useState(300)
+  const [maxRangeY, setMaxRangeY] = useState(300)
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 390) {
+        setMaxRangeX(100)
+        setMaxRangeY(100)
+      } else {
+        setMaxRangeX(300)
+        setMaxRangeY(300)
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+    handleResize()
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
+  useEffect(() => {
     let newTranslateX = translateX
     let newTranslateY = translateY
 
-    newTranslateX = Math.min(maxRangeX, Math.max(-maxRangeX, newTranslateX))
-    newTranslateY = Math.min(maxRangeY, Math.max(-maxRangeY, newTranslateY))
+    newTranslateX = Math.min(
+      maxRangeX * scale,
+      Math.max(-maxRangeX * scale, newTranslateX)
+    )
+    newTranslateY = Math.min(
+      maxRangeY * scale,
+      Math.max(-maxRangeY * scale, newTranslateY)
+    )
 
     setTranslateX(newTranslateX)
     setTranslateY(newTranslateY)
-  }, [scale, translateX, translateY])
+  }, [scale, translateX, translateY, maxRangeX, maxRangeY])
 
   const handleMouseDown = (event) => {
     event.preventDefault()
-    const startX = event.pageX - translateX
-    const startY = event.pageY - translateY
+    const startX =
+      event.type === 'touchstart'
+        ? event.touches[0].pageX - translateX
+        : event.pageX - translateX
+    const startY =
+      event.type === 'touchstart'
+        ? event.touches[0].pageY - translateY
+        : event.pageY - translateY
 
-    const handleMouseMove = (event) => {
-      const newTranslateX = event.pageX - startX
-      const newTranslateY = event.pageY - startY
+    const handleMouseMove = (moveEvent) => {
+      const newTranslateX =
+        moveEvent.type === 'touchmove'
+          ? moveEvent.touches[0].pageX - startX
+          : moveEvent.pageX - startX
+      const newTranslateY =
+        moveEvent.type === 'touchmove'
+          ? moveEvent.touches[0].pageY - startY
+          : moveEvent.pageY - startY
 
       setTranslateX(newTranslateX)
       setTranslateY(newTranslateY)
@@ -120,10 +167,14 @@ export default function Left({
     const handleMouseUp = () => {
       document.removeEventListener('mousemove', handleMouseMove)
       document.removeEventListener('mouseup', handleMouseUp)
+      document.removeEventListener('touchmove', handleMouseMove)
+      document.removeEventListener('touchend', handleMouseUp)
     }
 
     document.addEventListener('mousemove', handleMouseMove)
     document.addEventListener('mouseup', handleMouseUp)
+    document.addEventListener('touchmove', handleMouseMove)
+    document.addEventListener('touchend', handleMouseUp)
   }
 
   const handleWheel = (event) => {
@@ -234,6 +285,12 @@ export default function Left({
 
   return (
     <>
+      {showMaskAndLimit && (
+        <>
+          <Mask />
+          <TicketLimit onDelete={handleCloseTicketLimit} />
+        </>
+      )}
       <SelectTicketBlock
         selectedSeats={selectedSeats}
         colorBarBackground={colorBarBackground}
@@ -245,12 +302,12 @@ export default function Left({
         }}
       />
       <div
-        className="col-xxl-9 col-xl-8 col-lg-7 col-md-6 p-0"
+        className={`${className} col-xxl-9 col-xl-8 col-lg-7 col-md-6 p-0`}
         style={{
           position: 'relative',
           overflow: 'hidden',
-          cursor: 'default',
         }}
+        onBlur={() => setShowSelectTicketBlock(false)}
       >
         <Zoom
           onReset={handleReset}
@@ -279,6 +336,7 @@ export default function Left({
             transition: withTransition ? 'all 0.5s ease' : 'all 0.1s ease',
           }}
           onMouseDown={handleMouseDown}
+          onTouchStart={handleMouseDown}
           onWheel={handleWheel}
         >
           {/* Area */}

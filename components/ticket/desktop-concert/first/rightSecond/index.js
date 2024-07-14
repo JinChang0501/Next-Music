@@ -16,33 +16,27 @@ export default function RightSecond({ selectedSeats, onDeleteSeat }) {
 
   return (
     <>
-      <div className={`${style.right}  col-xxl-3 col-xl-4 col-lg-5 col-md-6`}>
-        {/* rightTitle */}
-        <RightTitle />
+      {/* rightTitle */}
+      <RightTitle />
 
-        {/* ticketSeatBlock */}
-        {selectedSeats.length > 0 &&
-          selectedSeats.map((seat) => (
-            <TicketSeatBlock
-              key={seat.id}
-              seat={seat}
-              onDelete={onDeleteSeat}
-            />
-          ))}
+      {/* ticketSeatBlock */}
+      {selectedSeats.length > 0 &&
+        selectedSeats.map((seat) => (
+          <TicketSeatBlock key={seat.id} seat={seat} onDelete={onDeleteSeat} />
+        ))}
 
-        {/* priceTotal */}
-        <PriceTotal />
+      {/* priceTotal */}
+      <PriceTotal />
 
-        {/* info */}
-        <Info />
+      {/* info */}
+      <Info />
 
-        {/* nextButton */}
-        <DesktopWhiteNoIconBtnPurple
-          text="下一步"
-          className={`${style.nextButton} w-100 chb-h6`}
-          onClick={handleNext}
-        />
-      </div>
+      {/* nextButton */}
+      <DesktopWhiteNoIconBtnPurple
+        text="下一步"
+        className={`${style.nextButton} w-100 chb-h6`}
+        onClick={handleNext}
+      />
     </>
   )
 }

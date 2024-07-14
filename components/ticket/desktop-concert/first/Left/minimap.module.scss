@@ -10,15 +10,21 @@
   transform: perspective(0);
   pointer-events: none;
   z-index: 999;
+
+  @media (max-width: 390px) {
+    width: 200px;
+    height: 115px;
+  }
 }
 
 .minimapEyeglass {
-  width: 100%; /* 保證填滿父元素 */
-  height: 100%; /* 保證填滿父元素 */
+  width: 100%;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
   border: 0;
+  border-radius: 3px;
   z-index: 1;
 }

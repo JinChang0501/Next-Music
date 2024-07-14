@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
 import style from './phoneSelectTicket.module.scss'
-import ticketSeatBlockData from '@/data/ticket/phone-concert/ticketSeatBlockData'
 import PhoneWhiteNoIconBtnPurple from '@/components/common/button/phoneWhiteButton/phoneWhiteNoIconBtnPurple'
 import { FaChevronUp } from 'react-icons/fa'
 import {
@@ -11,7 +10,7 @@ import {
 } from 'react-icons/bs'
 import { useRouter } from 'next/router'
 
-export default function PhoneSelectTicket() {
+export default function PhoneSelectTicket({ selectedSeats, onDeleteSeat }) {
   const [showTicket, setShowTicket] = useState(false)
   const [selectTicketBodyTitleHeight, setSelectTicketBodyTitleHeight] =
     useState(0)
@@ -26,8 +25,8 @@ export default function PhoneSelectTicket() {
 
   // 動態計算選擇多少張票高度
   useEffect(() => {
-    if (ticketSeatBlockData.length > 0) {
-      const height = Math.min(115 * ticketSeatBlockData.length, 345)
+    if (selectedSeats.length > 0) {
+      const height = Math.min(115 * selectedSeats.length, 345)
       setTicketSeatBodyHeight(height)
     } else {
       setTicketSeatBodyHeight(0)
@@ -39,7 +38,7 @@ export default function PhoneSelectTicket() {
         selectTicketBodyTitleRef.current.scrollHeight
       )
     }
-  }, [])
+  }, [selectedSeats])
 
   return (
     <>
@@ -112,20 +111,26 @@ export default function PhoneSelectTicket() {
               height: showTicket ? `${ticketSeatBodyHeight}px` : '0',
             }}
           >
-            {ticketSeatBlockData.map((v) => (
-              <div key={v.id} className={`${style.ticketSeatBlock}`}>
-                <BsX className={`${style.ticketSeatBlockClose} text-black40`} />
-                <div className={`${style.ticketSeatBlockTop}`}>
-                  <div
-                    className={`${style.ticketSeatBlockTopSquare} ${v.squareColor}`}
-                  ></div>
-                  <div>{v.seat}</div>
+            {selectedSeats.length > 0 &&
+              selectedSeats.map((seat) => (
+                <div
+                  key={seat.id}
+                  seat={seat}
+                  className={`${style.ticketSeatBlock}`}
+                >
+                  <BsX
+                    className={`${style.ticketSeatBlockClose} text-black40`}
+                    onClick={() => onDeleteSeat(seat)}
+                  />
+                  <div className={`${style.ticketSeatBlockTop}`}>
+                    <div
+                      className={`${style.ticketSeatBlockTopSquare} bg-A`}
+                    ></div>
+                    <div>A 區 • B 排 • 09 號</div>
+                  </div>
+                  <div className={`${style.ticketSeatBlockBottom}`}>$ 8600</div>
                 </div>
-                <div className={`${style.ticketSeatBlockBottom}`}>
-                  {v.price}
-                </div>
-              </div>
-            ))}
+              ))}
           </div>
 
           {/* ticketSeatBody */}

@@ -54,7 +54,7 @@ export default function Second() {
       {/* Form */}
       <div className={`${style.outsideFlexCenter}`}>
         <div
-          className={`${style.innerFlexCenter} col-xxl-9 col-xl-12 col-lg-12 col-md-12 col-sm-12`}
+          className={`${style.innerFlexCenter} col-xxl-9 col-xl-12 col-lg-12 col-md-12 col-sm-12 w-100`}
         >
           <div
             className={`${style.accordionMarginTop} accordion w-100`}

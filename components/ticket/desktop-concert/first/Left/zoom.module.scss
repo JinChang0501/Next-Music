@@ -30,6 +30,11 @@
   width: 25px;
   height: 25px;
   transition: all 0.8s ease;
+
+  @media (max-width: 390px) {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 .icon.changeColor {

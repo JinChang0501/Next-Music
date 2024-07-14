@@ -10,6 +10,10 @@
   border: 2px solid gray;
   border-radius: 5px;
   user-select: none;
+
+  @media (max-width: 390px) {
+    width: 105px;
+  }
 }
 
 .title {
@@ -33,6 +37,11 @@
   height: 22px;
   color: black;
   transition: all 0.3s ease;
+
+  @media (max-width: 390px) {
+    width: 16px;
+    height: 16px;
+  }
 }
 
 .titleIcon.rotated {

@@ -11,6 +11,10 @@
   visibility: hidden;
   background-color: white;
   z-index: 1000;
+
+  @media (max-width: 390px) {
+    width: 155px;
+  }
 }
 
 .selectTicketBlock::before {
@@ -23,6 +27,11 @@
   border: 13px solid #000;
   border-style: solid dashed dashed;
   border-color: white transparent transparent;
+
+  @media (max-width: 390px) {
+    top: 92px;
+    left: 65px;
+  }
 }
 
 .selectTicketBlock.visible {

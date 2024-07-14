@@ -25,9 +25,6 @@ export default function MusicFestivalTicket() {
             <div className="chb-p">滅火器 Fire EX.</div>
             <div className="chb-p">#re159a753ct</div>
           </div>
-          <div className={`${style.ticketSeat} chb-h5 text-white`}>
-            {v.ticketSeat}
-          </div>
           <div className={`${style.ticketInfo} chb-p text-white`}>
             <div className="d-flex">
               <BsGeoAlt className={`${style.ticketInfoIcon}`} />

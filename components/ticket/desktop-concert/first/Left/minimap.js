@@ -8,24 +8,70 @@ export default function Minimap({
   withTransition,
 }) {
   const [showMinimap, setShowMinimap] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+  const [scaledDimensions, setScaledDimensions] = useState({
+    width: 350 / scale,
+    height: 185 / scale,
+  })
 
   const svgWidth = 912.5
   const svgHeight = 801.25
 
-  const scaledWidth = 350 / scale
-  const scaledHeight = 185 / scale
+  useEffect(() => {
+    const handleResize = () => {
+      const mobileView = window.innerWidth <= 390
+      setIsMobile(mobileView)
+      setScaledDimensions({
+        width: mobileView ? 200 / scale : 350 / scale,
+        height: mobileView ? 116 / scale : 185 / scale,
+      })
+    }
 
-  const minimapX = (-translateX / svgWidth) * scaledWidth
-  const minimapY = (-translateY / svgHeight) * scaledHeight
+    if (typeof window !== 'undefined') {
+      handleResize() // Initial check
+      window.addEventListener('resize', handleResize)
+    }
+
+    return () => {
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('resize', handleResize)
+      }
+    }
+  }, [scale])
+
+  const minimapX = (-translateX / svgWidth) * scaledDimensions.width
+  const minimapY = (-translateY / svgHeight) * scaledDimensions.height
 
   const constrainedTranslateX = Math.min(
-    175 - scaledWidth / 2,
-    Math.max(-175 + scaledWidth / 2, minimapX)
+    isMobile
+      ? 100 - scaledDimensions.width / 2
+      : 175 - scaledDimensions.width / 2,
+    Math.max(
+      isMobile
+        ? -100 + scaledDimensions.width / 2
+        : -175 + scaledDimensions.width / 2,
+      minimapX
+    )
   )
   const constrainedTranslateY = Math.min(
-    92.5 - scaledHeight / 2,
-    Math.max(-92.5 + scaledHeight / 2, minimapY)
+    isMobile
+      ? 58 - scaledDimensions.height / 2
+      : 92.5 - scaledDimensions.height / 2,
+    Math.max(
+      isMobile
+        ? -58 + scaledDimensions.height / 2
+        : -92.5 + scaledDimensions.height / 2,
+      minimapY
+    )
   )
+
+  useEffect(() => {
+    if (scale === 1) {
+      setShowMinimap(false)
+    } else {
+      setShowMinimap(true)
+    }
+  }, [scale])
 
   useEffect(() => {
     if (scale === 1) {
