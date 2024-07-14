@@ -13,9 +13,9 @@ import TabContentIntro from '@/components/activity/info-tab-content/tab-content-
 
 export default function Aid() {
   const router = useRouter()
-  const topRef = useRef(null)
-  const { aid } = router.query  // 假設 URL 中包含 aid 參數 (參照)
-  const actid = parseInt(aid)   // 字串轉數字！！
+  // const topRef = useRef(null)
+  const { aid } = router.query  // 設定路由參數給 aid (參照)
+  const actid = parseInt(aid)   // 型態轉換：字串轉數字！！
 
   const [data, setData] = useState({
     success: false,

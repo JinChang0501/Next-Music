@@ -13,11 +13,17 @@ import TabContentIntro from '@/components/activity/info-tab-content/tab-content-
 
 export default function Aid() {
   const router = useRouter()
+  console.log(router.query.aid)
   // const topRef = useRef(null)
-  const { aid } = router.query  // 假設 URL 中包含 aid 參數 (參照)
-  const actid = parseInt(aid)   // 字串轉數字！！
+  const { aid } = router.query  // 設定路由參數給 aid (參照)
+  const actid = parseInt(aid)   // 型態轉換：字串轉數字！！
 
   const [data, setData] = useState({
+    success: false,
+    data: {},
+  })
+
+  const [data2, setData2] = useState({
     success: false,
     data: {},
   })
@@ -39,22 +45,24 @@ export default function Aid() {
   // }
 
   useEffect(() => {
-    const controller = new AbortController()
-    const signal = controller.signal
-    fetch(`${ACT_GET_ITEM}?${new URLSearchParams(router.query)}`, { signal })
-      .then((r) => r.json())
-      .then((myData) => {
-        console.log(data)
-        setData(myData)
-      })
-      .catch((ex) => {
-        console.log('fetch-ex', ex)
-      })
-    return () => {
-      controller.abort() // 取消上一次的 ajax
-    }
-  }, [router])
+    Promise.all([
+      fetch(`${ACT_GET_ITEM}?${new URLSearchParams(router.query)}`).then((r) => r.json()),
+      fetch(`${ACT_GET_ITEM}${aid}`).then((r) => r.json())
+    ])
+    .then(([myData, myData2]) => {
+      console.log(data)
+      console.log(myData)
+      console.log(myData2)
+ 
+      setData(myData)
+      setData2(myData2)
 
+    })
+    .catch((ex) => {
+      console.log('fetch-ex', ex)
+    })
+  
+  }, [router])
 
   console.log(`activity{item} render--------`)
 
@@ -111,7 +119,7 @@ export default function Aid() {
           actdate={mainInfoData.actdate}
           acttime={mainInfoData.acttime}
           location={mainInfoData.location}
-          artist={mainInfoData.art_name}
+          artist={mainInfoData.artists}
           banner={mainInfoData.picture}
         />
         {/* 活動主資訊 end */}
@@ -138,10 +146,15 @@ export default function Aid() {
         {/* 音樂人 start */}
         <div className="row my-5">
           <div className="chb-h4 mb-40 text-purple1">音樂人</div>
-          <ArtistFollowCard
-            key={mainInfoData.actid}
-            imgSrc={mainInfoData.imageSrc}
-            artist_name={mainInfoData.art_name} />
+          {data2.rows2.map((v,i)=>{
+            return(
+              <ArtistFollowCard
+                key={v.eaid}
+                imgSrc={v.photo}
+                artist_name={v.art_name} />
+                )
+          })}
+          
         </div>
         {/* 音樂人 end */}
         {/*  推薦活動 start  */}
@@ -153,9 +166,8 @@ export default function Aid() {
                 key={v.actid}
                 imgSrc={v.cover}
                 activity_name={v.actname}
-                artist_name={v.art_name}
+                artist_name={v.artists}
                 aid={v.actid}
-                scrollToTop={scrollToTop}
               />
             )
           })}

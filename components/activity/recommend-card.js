@@ -6,7 +6,7 @@ export default function RecommendCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/
 
   return (
     <>
-      <div className="col-6 col-sm-6 col-md-3">
+      <div className="col-6 col-sm-6 col-md-3 my-2">
         <div className="card bg-dark outline img-minW d-flex justify-content-center">
           <img
             src={imgSrc}
