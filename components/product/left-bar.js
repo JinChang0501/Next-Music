@@ -69,7 +69,8 @@ export default function LeftBar() {
       <div className="col-md-3 col-12 mb-3">
         <div className="row outline">
           <form id="" action="" className="col-10 mx-auto">
-            <div className="my-4 col-12">
+            <div className="my-4 col-12 text-white chb-h6">請輸入[活動]或[商品]的關鍵字</div>
+            {/* <div className="my-4 col-12">
               <select
                 className="form-select"
                 aria-label="Default select example"
@@ -85,7 +86,7 @@ export default function LeftBar() {
                 <option value={8}>活動8</option>
                 <option value={9}>活動9</option>
               </select>
-            </div>
+            </div> */}
             <div className="my-4 input-group col-12">
               <input
                 type="text"

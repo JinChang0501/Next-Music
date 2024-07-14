@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import data from '@/data/product/product.json'
+import data from '@/data/product/Product.json'
 import styles from '@/styles/product/product.module.scss'
 import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
 import DesktopBlackNoIconBtnBlack from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnBlack'
@@ -11,6 +11,30 @@ import { useCart } from '@/hooks/product/use-cart'
 import Link from 'next/link'
 
 export default function Product() {
+  const [products, setProducts] = useState(data);
+  const addToCart = (pid) => {
+    const cartKey = "product-cart";
+
+    const item = products.find((p) => p.id === pid);
+    if(! item) return; //沒找到項目就結束
+    console.log({ pid, item });
+
+    const oriData = localStorage.getItem(cartKey);
+    let cartData = []; // 預設值
+    try {
+      cartData = JSON.parse(oriData);
+      if (!Array.isArray(cartData)) {
+        cartData = [];
+      }
+    } catch (ex) {''}
+    const cartItem = cartData.find((p) => p.id === pid); // 購物車裡有沒有這個商品
+    if(cartItem) return; //購物車裡已經有這個商品
+    const {id, picture, activity, name, price}= item;
+    cartData.push({ id, picture, activity, name, price, quantity: 1 });
+
+    localStorage.setItem(cartKey, JSON.stringify(cartData));
+  };
+
   const { addItem } = useCart()
   const router = useRouter()
 
@@ -66,12 +90,9 @@ export default function Product() {
           {/*尺寸 */}
           <p className={`text-purple2 chb-h5 ${styles['mt-40']} ${styles['mb-60']}`}>尺寸: F</p>
           <div className={`row row-cols-md-2 ${styles['space-between']} `}>
-            <Link href={`/cart`}>購物車</Link>
-            <DesktopBlackNoIconBtnBlack text="加入購物車" onClick={() => {
-                addItem(product)
-              }}
+            <DesktopBlackNoIconBtnBlack text="加入購物車" onClick={() => addToCart(product.id)}
             />
-            <Link href={`/cart/payment`}><DesktopBlackNoIconBtnPurple text="立即購買" onClick={""}/></Link>
+            {/* <Link href={`/cart/payment`}><DesktopBlackNoIconBtnPurple text="立即購買" onClick={""}/></Link> */}
           </div>
         </div>
       </div>

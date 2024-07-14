@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react'
-import data from '@/data/product/product.json'
+import data from '@/data/product/Product.json'
 
 // Import Swiper styles
 import 'swiper/css'

@@ -16,7 +16,6 @@ export default function CartIndex() {
     { label: '商品資訊', href: '/product/[pid]' },
     { label: '購物車', href: '/cart' },
   ]
-  const { totalPrice, totalQty } = useCart()
   return (
     <>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
@@ -28,9 +27,6 @@ export default function CartIndex() {
           <CartList />
           {/* 一項購物列表 end */}
           <hr />
-          <div>
-            總數量: {totalQty} / 總金額: {totalPrice}
-          </div>
         </div>
       </div>
       <div className={`row ${styles['mb-40']} ${styles.centerItem}`}>

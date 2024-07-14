@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
-import data from '@/data/product/product.json'
+import data from '@/data/product/Product.json'
 import Link from 'next/link'
 // import required modules
 import styles from '@/styles/product/product.module.scss'

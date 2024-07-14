@@ -35,6 +35,8 @@
   {
     "id": 4,
     "picture": "pet_keyring-dog.jpg",
+    "picture2": "pet_keyring-dog.jpg",
+    "picture3": "pet_keyring-dog.jpg",
     "activity": "寵物嘉年華",
     "name": "毛毛鑰匙圈-旺旺",
     "price": 200,
@@ -44,6 +46,8 @@
   {
     "id": 5,
     "picture": "pet_keyring-cat.jpg",
+    "picture2": "pet_keyring-cat.jpg",
+    "picture3": "pet_keyring-cat.jpg",
     "activity": "寵物嘉年華",
     "name": "毛毛鑰匙圈-喵喵",
     "price": 200,
@@ -53,6 +57,8 @@
   {
     "id": 6,
     "picture": "pet_basket.jpg",
+    "picture2": "pet_basket.jpg",
+    "picture3": "pet_basket.jpg",
     "activity": "寵物嘉年華",
     "name": "多功能野餐籃",
     "price": 600,
@@ -62,6 +68,8 @@
   {
     "id": 7,
     "picture": "pet_mat.jpg",
+    "picture2": "pet_mat.jpg",
+    "picture3": "pet_mat.jpg",
     "activity": "寵物嘉年華",
     "name": "野餐墊",
     "price": 200,
@@ -71,6 +79,8 @@
   {
     "id": 8,
     "picture": "tmf_towel.jpg",
+    "picture2": "tmf_towel.jpg",
+    "picture3": "tmf_towel.jpg",
     "activity": "台灣音樂祭",
     "name": "毛巾",
     "price": 500,
@@ -80,6 +90,8 @@
   {
     "id": 9,
     "picture": "tmf_mat.jpg",
+    "picture2": "tmf_mat.jpg",
+    "picture3": "tmf_mat.jpg",
     "activity": "台灣音樂祭",
     "name": "地毯",
     "price": 500,
@@ -89,6 +101,8 @@
   {
     "id": 10,
     "picture": "tmf_lightstick.jpg",
+    "picture2": "tmf_lightstick.jpg",
+    "picture3": "tmf_lightstick.jpg",
     "activity": "台灣音樂祭",
     "name": "應援手燈",
     "price": 200,
@@ -98,6 +112,8 @@
   {
     "id": 11,
     "picture": "tmf_curtain.jpg",
+    "picture2": "tmf_curtain.jpg",
+    "picture3": "tmf_curtain.jpg",
     "activity": "台灣音樂祭",
     "name": "門簾",
     "price": 500,
@@ -107,6 +123,8 @@
   {
     "id": 12,
     "picture": "tmf_bag-blue.jpg",
+    "picture2": "tmf_bag-blue.jpg",
+    "picture3": "tmf_bag-blue.jpg",
     "activity": "台灣音樂祭",
     "name": "托特袋-藍",
     "price": 350,
@@ -116,6 +134,8 @@
   {
     "id": 13,
     "picture": "tmf_bag-pink.jpg",
+    "picture2": "tmf_bag-pink.jpg",
+    "picture3": "tmf_bag-pink.jpg",
     "activity": "台灣音樂祭",
     "name": "托特袋-粉",
     "price": 350,
@@ -125,6 +145,8 @@
   {
     "id": 14,
     "picture": "tmf_bag-green.jpg",
+    "picture2": "tmf_bag-green.jpg",
+    "picture3": "tmf_bag-green.jpg",
     "activity": "台灣音樂祭",
     "name": "托特袋-綠",
     "price": 350,
@@ -134,6 +156,8 @@
   {
     "id": 15,
     "picture": "tmf_t-shirt.jpg",
+    "picture2": "tmf_t-shirt.jpg",
+    "picture3": "tmf_t-shirt.jpg",
     "activity": "台灣音樂祭",
     "name": "高質感T恤",
     "price": 590,
@@ -143,6 +167,8 @@
   {
     "id": 16,
     "picture": "tmf_keyring.jpg",
+    "picture2": "tmf_keyring.jpg",
+    "picture3": "tmf_keyring.jpg",
     "activity": "台灣音樂祭",
     "name": "鑰匙圈",
     "price": 350,
@@ -152,6 +178,8 @@
   {
     "id": 17,
     "picture": "sw_towel.jpg",
+    "picture2": "sw_towel.jpg",
+    "picture3": "sw_towel.jpg",
     "activity": "春浪",
     "name": "毛巾",
     "price": 300,
@@ -161,6 +189,8 @@
   {
     "id": 18,
     "picture": "sw_sticker.jpg",
+    "picture2": "sw_sticker.jpg",
+    "picture3": "sw_sticker.jpg",
     "activity": "春浪",
     "name": "貼紙",
     "price": 100,
@@ -170,6 +200,8 @@
   {
     "id": 19,
     "picture": "sw_bag.jpg",
+    "picture2": "sw_bag.jpg",
+    "picture3": "sw_bag.jpg",
     "activity": "春浪",
     "name": "購物袋",
     "price": 300,
@@ -179,6 +211,8 @@
   {
     "id": 20,
     "picture": "sw_t-shirt.jpg",
+    "picture2": "sw_t-shirt-1.jpg",
+    "picture3": "sw_t-shirt-2.jpg",
     "activity": "春浪",
     "name": "T恤",
     "price": 500,
@@ -188,6 +222,8 @@
   {
     "id": 21,
     "picture": "sw_mat.jpg",
+    "picture2": "sw_mat.jpg",
+    "picture3": "sw_mat.jpg",
     "activity": "春浪",
     "name": "野餐墊",
     "price": 500,
@@ -197,6 +233,8 @@
   {
     "id": 22,
     "picture": "bubble_t-shirt-white.jpg",
+    "picture2": "bubble_t-shirt-white2.jpg",
+    "picture3": "bubble_t-shirt-white3.jpg",
     "activity": "Bubble音樂會",
     "name": "T恤-白",
     "price": 2100,
@@ -206,6 +244,8 @@
   {
     "id": 23,
     "picture": "bubble_t-shirt-pink.jpg",
+    "picture2": "bubble_t-shirt-pink2.jpg",
+    "picture3": "bubble_t-shirt-pink3.jpg",
     "activity": "Bubble音樂會 ",
     "name": "T恤-粉",
     "price": 2100,
@@ -215,6 +255,8 @@
   {
     "id": 24,
     "picture": "foundation_t-shirt.jpg",
+    "picture2": "foundation_t-shirt.jpg",
+    "picture3": "foundation_t-shirt.jpg",
     "activity": "Foundation 音樂會",
     "name": "T恤",
     "price": 2100,
@@ -224,6 +266,8 @@
   {
     "id": 25,
     "picture": "foundation_hoodie.jpg",
+    "picture2": "foundation_hoodie.jpg",
+    "picture3": "foundation_hoodie.jpg",
     "activity": "Foundation 音樂會",
     "name": "連帽長袖上衣",
     "price": 3000,
@@ -233,6 +277,8 @@
   {
     "id": 26,
     "picture": "love_t-shirt.jpg",
+    "picture2": "love_t-shirt.jpg",
+    "picture3": "love_t-shirt.jpg",
     "activity": "Foundation 音樂會",
     "name": "Love T恤",
     "price": 2100,
@@ -242,6 +288,8 @@
   {
     "id": 27,
     "picture": "love_hoddie.jpg",
+    "picture2": "love_hoddie.jpg",
+    "picture3": "love_hoddie.jpg",
     "activity": "Foundation 音樂會",
     "name": "連帽長袖上衣",
     "price": 3000,
@@ -251,6 +299,8 @@
   {
     "id": 28,
     "picture": "red_baseball-cap.jpg",
+    "picture2": "red_baseball-cap.jpg",
+    "picture3": "red_baseball-cap.jpg",
     "activity": "Foundation 音樂會",
     "name": "棒球帽-紅",
     "price": 700,
@@ -260,6 +310,8 @@
   {
     "id": 29,
     "picture": "purple_baseball-cap.jpg",
+    "picture2": "purple_baseball-cap.jpg",
+    "picture3": "purple_baseball-cap.jpg",
     "activity": "Foundation 音樂會",
     "name": "棒球帽-紫",
     "price": 700,
@@ -269,6 +321,8 @@
   {
     "id": 30,
     "picture": "blue_baseball-cap.jpg",
+    "picture2": "blue_baseball-cap.jpg",
+    "picture3": "blue_baseball-cap.jpg",
     "activity": "Foundation 音樂會",
     "name": "棒球帽-藍",
     "price": 700,
