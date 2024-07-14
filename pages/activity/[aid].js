@@ -45,6 +45,8 @@ export default function Aid() {
   // }
 
   useEffect(() => {
+    if (!router.isReady) return
+
     Promise.all([
       fetch(`${ACT_GET_ITEM}?${new URLSearchParams(router.query)}`).then((r) => r.json()),
       fetch(`${ACT_GET_ITEM}${aid}`).then((r) => r.json())
@@ -62,7 +64,7 @@ export default function Aid() {
       console.log('fetch-ex', ex)
     })
   
-  }, [router])
+  }, [router.isReady, aid])
 
   console.log(`activity{item} render--------`)
 
