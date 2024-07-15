@@ -32,7 +32,7 @@
     no-repeat;
   background-size: cover;
   border-radius: 30px;
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -136,6 +136,25 @@
   position: absolute;
   left: 336px;
   top: 134px;
+}
+
+//Jin的
+.close-btn {
+  position: absolute;
+  top: -25px;
+  left: 500px;
+  color: #685beb;
+  background: none;
+  border: none;
+}
+
+.close-btn:hover {
+  position: absolute;
+  top: -25px;
+  left: 500px;
+  color: #ff2d2d;
+  background: none;
+  border: none;
 }
 
 // #endregion ticket

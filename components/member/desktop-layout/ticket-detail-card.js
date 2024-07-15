@@ -8,6 +8,7 @@ export default function TicketDetailCard({
   seat_number = '',
   price = '',
   picture = '',
+  handleWakeTicket = () => {},
 }) {
   return (
     <>
@@ -21,6 +22,7 @@ export default function TicketDetailCard({
           <DesktopWhiteNoIconBtnPurple
             className="px-1 px-md-4 py-2"
             text="查看票券"
+            onClick={handleWakeTicket}
           />
         </div>
       </div>
