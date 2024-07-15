@@ -16,7 +16,6 @@ export default function Index() {
           className={`d-none d-md-flex flex-column align-items-center text-align mx-auto text-white text-center ${styles['p-relative']}`}
         >
           <div className="eng-h1 mb-2">Lose Yourself in Music</div>
-
           <div className="eng-h1 mb-4">Find Yourself in the Festivity</div>
           <div className="eng-p">
             <DesktopBlackNoIconBtnBlack text="MY ACCOUNT" className="eng-h5" />
@@ -31,7 +30,7 @@ export default function Index() {
           <div className="d-flex flex-column align-items-center text-align">
             <div className="eng-h1 text-white">Activities</div>
             <div className="chb-h3 text-purple3 text-center">
-              給你最盛大的視聽饗宴
+              體驗最盛大的視聽饗宴
             </div>
           </div>
         </div>
@@ -43,16 +42,18 @@ export default function Index() {
             <div className={`${styles['custom-bg-01']}`} />
           </div>
           <div className="col-md-5 col-12">
-            <div className="d-flex flex-column gap-3 ms-md-5 ms-0 mt-5">
+            <div className="d-flex flex-column gap-3 ms-md-5 ms-0 mt-5 my-md-auto">
               <div className="eng-h4 text-purple1">#Concert</div>
-              <div className="eng-h3 text-purple3">07/24</div>
+              <div className="eng-h3 text-purple3">08/15</div>
               <div className="chb-h1 text-purple3">建宮蓋廟</div>
               <div className="chb-h6 text-white">
-                演出活演出活動演出活動演出活動演出活動演出活動演出活動演出活動演出活動演出活動演出活動動
+              宮廟不僅是多重領域大門，也是意識流的集合中心，血肉Boyz持續在宇宙中殺翻現場！
               </div>
               <div className="d-flex text-nowrap">
                 <div className="me-3">
+                <Link href={`/activity/9`}>
                   <DesktopWhiteNoIconBtnBlack text="活動資訊" />
+                </Link>
                 </div>
                 <div className="">
                   <DesktopBlackNoIconBtnPurple text="立即購票" />
@@ -70,16 +71,18 @@ export default function Index() {
             <div className={`${styles['custom-bg-02']}`} />
           </div>
           <div className="col-md-5 col-12 order-md-1">
-            <div className="d-flex flex-column gap-3 me-md-5 me-0 mt-5">
+            <div className="d-flex flex-column gap-3 me-md-5 me-0 mt-5 my-md-auto">
               <div className="eng-h4 text-purple1">#MusicFest</div>
-              <div className="eng-h3 text-purple3">05/22</div>
+              <div className="eng-h3 text-purple3">10/12</div>
               <div className="chb-h1 text-purple3">打狗祭</div>
               <div className="chb-h6 text-white">
-                演出活演出活動演出活動演出活動演出活動演出活動演出活動演出活動演出活動演出活動演出活動動
+              遨遊在大宇宙中的外星小怪獸，受到打狗港灣的強大召喚！為了這群有夢想的人，打狗星際入口再度開啟》》》》》》
               </div>
               <div className="d-flex text-nowrap">
                 <div className="me-3">
+                <Link href={`/activity/16`}>
                   <DesktopWhiteNoIconBtnBlack text="活動資訊" />
+                  </Link>
                 </div>
                 <div className="">
                   <DesktopBlackNoIconBtnPurple text="立即購票" />

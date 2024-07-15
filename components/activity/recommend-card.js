@@ -6,7 +6,7 @@ export default function RecommendCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/
 
   return (
     <>
-      <div className="col-6 col-sm-6 col-md-2">
+      <div className="col-6 col-sm-6 col-md-3 my-2">
         <div className="card bg-dark outline img-minW d-flex justify-content-center">
           <img
             src={imgSrc}
@@ -14,13 +14,13 @@ export default function RecommendCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/
           />
           <div className="card-body d-flex flex-column justify-content-center p-3">
             <div className="d-flex flex-column justify-content-start mb-4">
-              <div className="card-title chb-h6 text-purple3">{activity_name}</div>
-              <div className="card-text chr-p text-white">{artist_name}</div>
+              <div className="card-title chb-h6 text-purple3 to-e">{activity_name}</div>
+              <div className="card-text chr-p text-white to-e">{artist_name}</div>
             </div>
             <Link href={`/activity/${aid}`}>
               <PhoneBlackNoIconBtnBlack
                 text="活動資訊"
-                className='chr-p text-nowrap'
+                className='chr-p text-nowrap w-100'
                 onClick={scrollToTop}
               /></Link>
           </div>
@@ -32,6 +32,12 @@ export default function RecommendCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/
         }
         .img-minW {
           min-width: 160px;
+        }
+        .to-e {
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          {/* -webkit-line-clamp: 2; */}
         }
       `}</style>
     </>
