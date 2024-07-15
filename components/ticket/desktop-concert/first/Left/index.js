@@ -56,12 +56,15 @@ export default function Left({
     } else {
       setColorBarBackground('#3EAD2C')
     }
+
+    clearTimeout(timeoutId)
+    setShowSelectTicketBlock(true)
   }
 
   const handleMouseLeaveCircle = () => {
     setHoveredCircle(null)
-    setShowSelectTicketBlock(false)
     clearTimeout(timeoutId)
+    setTimeoutId(setTimeout(() => setShowSelectTicketBlock(false), 300))
   }
 
   const handleMouseMove = () => {
@@ -70,7 +73,7 @@ export default function Left({
     setTimeoutId(
       setTimeout(() => {
         setShowSelectTicketBlock(true)
-      }, 0)
+      }, 300)
     )
   }
 
