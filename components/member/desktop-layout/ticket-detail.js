@@ -8,7 +8,7 @@ import { BsMusicNoteBeamed } from 'react-icons/bs'
 import TicketDetailCard from './ticket-detail-card'
 import Link from 'next/link'
 import moment from 'moment-timezone'
-import ConcertTicketNew from '@/components/ticket/desktop-concert/fourth/concertTicket/concertTicket'
+import ConcertTicketNew from '@/components/member/desktop-layout/concertTicket/concertTicketNew'
 
 export default function TicketDetail({ ticketData }) {
   const [isMobile, setIsMobile] = useState(false)
