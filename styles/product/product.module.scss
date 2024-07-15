@@ -52,6 +52,16 @@
 .ml-136 {
   margin-left: 136px;
 }
+.ml-28 {
+  margin-left: 28px;
+}
+.mr-10 {
+  margin-right: 10px;
+}
+
+.pl-20 {
+  margin-left: 20px;
+}
 // padding
 .pt-80 {
   padding-top: 80px;
@@ -176,6 +186,8 @@
 .card {
   border: 1px solid #685beb;  
   padding: 0px;
+  // margin-right: 1px;
+  background-color: black;
   
   
 }

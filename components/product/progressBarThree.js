@@ -2,7 +2,6 @@ import React from 'react'
 import style from './progressBar.module.scss'
 import { FaChevronRight } from 'react-icons/fa'
 
-
 export default function ProgressBarOne() {
   return (
     <div className={`${''} row d-flex`}>

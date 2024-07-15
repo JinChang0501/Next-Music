@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "picture": "pink_baseball-cap.jpg",
+    "activity": "Foundation 音樂會",
+    "name": "棒球帽-粉",
+    "price": 700,
+    "intro": "活動聯名限量棒球帽，本網站限量1000件。名牌設計總監親自設計，超高回頭率！",
+    "stock": 1000
+  },
+  {
+    "id": 2,
+    "picture": "blossom_hoodie.jpg",
+    "activity": "Wonderland演唱會",
+    "name": "連帽長袖上衣",
+    "price": 3000,
+    "intro": "活動聯名連帽長袖上衣，限量發售，名牌設計總監親自設計，親膚材質，保暖透氣，超高回頭率！",
+    "stock": 1000
+  },
+  {
+    "id": 3,
+    "picture": "blossom_t-shirt.jpg",
+    "activity": "Wonderland演唱會",
+    "name": "T恤",
+    "price": 2100,
+    "intro": "活動聯名限量T恤，本網站限量1000件。名牌設計總監親自設計，超高回頭率！",
+    "stock": 1000
+  },
+  {
+    "id": 4,
+    "picture": "botanic_t-shirt.jpg",
+    "activity": "Wonderland演唱會",
+    "name": "T恤",
+    "price": 2100,
+    "intro": "活動聯名限量T恤，本網站限量1000件。名牌設計總監親自設計，超高回頭率！",
+    "stock": 1000
+  }
+]
