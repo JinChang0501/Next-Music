@@ -41,7 +41,7 @@ export default function MemberDLayout({
             </div>
             <div className="col-10 p-0 main-content d-flex flex-column">
               <div className="music-container overflow-auto flex-grow-1">
-                <div className="mx-auto mt-3  mb-3">{children}</div>
+                <div className="mx-auto my-3">{children}</div>
               </div>
               <div className="w-100">
                 <Footer />
