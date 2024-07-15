@@ -37,7 +37,8 @@ export default function LeftBar({ handleSearch , onClassChange , onAreaChange , 
               </div>
             </div>
             <div className="mt-3 mt-md-4 mb-2 mb-md-0 col-12">
-              <input type="date" 
+              <input 
+              type="date" 
               className="form-control input-p3 text-white" 
               id="datetime" 
 //日期的搜尋 待處理

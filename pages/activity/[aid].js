@@ -58,7 +58,6 @@ export default function Aid() {
  
       setData(myData)
       setData2(myData2)
-
     })
     .catch((ex) => {
       console.log('fetch-ex', ex)
