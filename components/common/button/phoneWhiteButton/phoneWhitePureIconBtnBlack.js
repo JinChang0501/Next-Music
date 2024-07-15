@@ -26,6 +26,7 @@ export default function PhoneWhitePureIconBtnBlack({
           display: flex;
           justify-content: center;
           align-items: center;
+          transition: all 0.5s ease;
         }
         .PhoneWhitePureIconBtnBlack:hover {
           border: 1px solid #685beb;

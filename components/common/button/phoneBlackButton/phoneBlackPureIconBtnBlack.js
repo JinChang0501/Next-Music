@@ -5,7 +5,7 @@ export default function PhoneBlackPureIconBtnBlack({
   iconWidth = 20,
   iconHeight = 20,
   icon: IconComponent = BsPlus,
-  onClick = () => { },
+  onClick = () => {},
 }) {
   return (
     <>
@@ -26,6 +26,7 @@ export default function PhoneBlackPureIconBtnBlack({
           display: flex;
           justify-content: center;
           align-items: center;
+          transition: all 0.5s ease;
         }
         .PhoneBlackPureIconBtnBlack:hover {
           background-color: white;

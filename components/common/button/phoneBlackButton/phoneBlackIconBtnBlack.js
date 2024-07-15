@@ -34,6 +34,7 @@ export default function PhoneBlackIconBtnBlack({
           display: flex;
           justify-content: center;
           align-items: center;
+          transition: all 0.5s ease;
         }
         .PhoneBlackIconBtnBlack:hover {
           background-color: white;

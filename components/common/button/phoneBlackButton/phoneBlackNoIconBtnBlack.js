@@ -22,6 +22,7 @@ export default function PhoneBlackNoIconBtnBlack({
           display: flex;
           justify-content: center;
           align-items: center;
+          transition: all 0.5s ease;
         }
         .PhoneBlackNoIconBtnBlack:hover {
           background-color: white;

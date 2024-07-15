@@ -25,6 +25,7 @@ export default function DesktopWhitePureIconBtnPurple({
           display: flex;
           justify-content: center;
           align-items: center;
+          transition: all 0.5s ease;
         }
         .DesktopWhitePureIconBtnPurple:hover {
           background-color: #dbd7ff;

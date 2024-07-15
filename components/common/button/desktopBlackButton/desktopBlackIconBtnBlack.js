@@ -34,6 +34,7 @@ export default function DesktopBlackIconBtnBlack({
           display: flex;
           justify-content: center;
           align-items: center;
+          transition: all 0.5s ease;
         }
         .DesktopBlackIconBtnBlack:hover {
           background-color: white;
