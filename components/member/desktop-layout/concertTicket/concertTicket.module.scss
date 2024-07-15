@@ -23,6 +23,7 @@
 }
 
 .orderTicket {
+  transform: rotate(0);
   width: 500px;
   height: 250px;
   display: flex;
@@ -157,3 +158,48 @@
 }
 
 // #endregion ticket
+
+/* 手機板樣式 */
+@media screen and (max-width: 575px) {
+  .orderTicket {
+    transform: rotate(90deg);
+
+    width: 500px;
+    height: 250px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    background: url('/images/ticket/ticketbackgroundimage.jpg') no-repeat;
+    background-size: cover;
+    border-radius: 30px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 30px;
+    }
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 370px;
+    left: 370px;
+    color: #685beb;
+    background: none;
+    border: none;
+  }
+
+  .close-btn:hover {
+    position: absolute;
+    top: 370px;
+    left: 370px;
+    color: #ff2d2d;
+    background: none;
+    border: none;
+  }
+}
