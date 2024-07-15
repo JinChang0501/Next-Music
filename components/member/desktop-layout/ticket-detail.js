@@ -8,7 +8,6 @@ import { BsMusicNoteBeamed } from 'react-icons/bs'
 import TicketDetailCard from './ticket-detail-card'
 import Link from 'next/link'
 import moment from 'moment-timezone'
-import ConcertTicketNew from '@/components/member/desktop-layout/concertTicket/concertTicketNew'
 
 export default function TicketDetail({ ticketData }) {
   const [isMobile, setIsMobile] = useState(false)
@@ -41,16 +40,6 @@ export default function TicketDetail({ ticketData }) {
       }
     }
   }, [ticketData])
-
-  const [showTicket, setShowTicket] = useState(false)
-
-  const handleWakeTicket = () => {
-    setShowTicket(true)
-  }
-
-  const handleCloseTicket = () => {
-    setShowTicket(false)
-  }
 
   if (!ticketData || ticketData.length === 0) {
     return <div>Loading...</div>
@@ -85,17 +74,6 @@ export default function TicketDetail({ ticketData }) {
     <>
       <div className="position-relative" style={{ height: '100vh' }}>
         <div className="py-3">
-          <div
-            className={`${
-              showTicket ? 'd-block' : 'd-none'
-            } position-fixed top-50 start-50`}
-            style={{ transform: 'translate(-15%, -50%)' }}
-          >
-            <ConcertTicketNew
-              handleCloseTicket={handleCloseTicket}
-              ticketData={ticketData}
-            />
-          </div>
           <div className="row">
             <div className="col-12 bg-purple3 p-2 position-relative">
               <div className="p-0 m-0 chb-h5 text-center d-flex align-items-center justify-content-center">
@@ -212,14 +190,12 @@ export default function TicketDetail({ ticketData }) {
                     seat_number={v.seat_number}
                     price={v.price}
                     picture={v.picture}
-                    handleWakeTicket={handleWakeTicket}
-                    handleCloseTicket={handleCloseTicket}
-                    // actname={v.actname}
-                    // art_name={v.art_name}
-                    // tid={v.tid}
-                    // location={v.location}
-                    // actdate={v.actdate}
-                    // acttime={v.acttime}
+                    actname={v.actname}
+                    art_name={v.art_name}
+                    tid={v.tid}
+                    location={v.location}
+                    actdate={v.actdate}
+                    acttime={v.acttime}
                   />
                 )
               })}
