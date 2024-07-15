@@ -2,7 +2,7 @@ import React from 'react'
 import { BsSearch } from 'react-icons/bs'
 import DesktopBlackPureIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackPureIconBtnPurple'
 
-export default function LeftBar({ handleSearch , onClassChange , onAreaChange , onNameChange , classValue , areaValue , nameValue, handleKeyDown }) {
+export default function LeftBar({ handleSearch , onClassChange , onAreaChange , onNameChange, onDateChange, classValue , areaValue , nameValue, handleKeyDown, dateValue }) {
   return (
     <>
       {/* left bar start */}
@@ -15,6 +15,7 @@ export default function LeftBar({ handleSearch , onClassChange , onAreaChange , 
                   className="form-select input-p3"
                   value={classValue}
                   onChange={onClassChange}
+                  onKeyDown={handleKeyDown}
                 >
                   <option defaultValue="">-- 選擇類型 --</option>
                   <option value="0">所有類型</option>
@@ -27,6 +28,7 @@ export default function LeftBar({ handleSearch , onClassChange , onAreaChange , 
                   className="form-select input-p3"
                   value={areaValue}
                   onChange={onAreaChange}
+                  onKeyDown={handleKeyDown}
                 >
                   <option defaultValue="">-- 選擇地區 --</option>
                   <option value="0">所有區域</option>
@@ -37,12 +39,23 @@ export default function LeftBar({ handleSearch , onClassChange , onAreaChange , 
               </div>
             </div>
             <div className="mt-3 mt-md-4 mb-2 mb-md-0 col-12">
-              <input 
+            <select 
+            className="form-select input-p3"
+             value={dateValue} 
+             onChange={onDateChange}
+             onKeyDown={handleKeyDown}
+             >
+                <option defaultValue="">-- 選擇日期 --</option>
+                <option value="two_weeks">兩週內</option>
+                <option value="this_month">這個月</option>
+                <option value="next_month">下個月</option>
+            </select>
+              {/* <input 
               type="date" 
               className="form-control input-p3 text-white" 
               id="datetime" 
 //日期的搜尋 待處理
-              />
+              /> */}
             </div>
             <div className="mt-4 mb-4 mb-md-4 col-12 input-group">
               <input
@@ -51,6 +64,7 @@ export default function LeftBar({ handleSearch , onClassChange , onAreaChange , 
                 placeholder="關鍵字"
                 value={nameValue}
                 onChange={onNameChange}
+                onKeyDown={handleKeyDown}
               />
               <DesktopBlackPureIconBtnPurple
                 icon={BsSearch}

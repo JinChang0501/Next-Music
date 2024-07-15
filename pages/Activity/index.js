@@ -27,6 +27,7 @@ export default function Activity() {
   const [keyword, setKeyword] = useState('')
   const [actClass, setActClass] = useState('')
   const [area, setArea] = useState('')
+  const [dateRange, setDateRange] = useState('')
 
   // 麵包屑 內容定義
   const breadcrumbsURL = [
@@ -69,6 +70,7 @@ export default function Activity() {
       keyword: keyword,
       actClass: actClass,
       area: area,
+      dateRange: dateRange,
     }
     console.log("params1")
     console.log(params)
@@ -76,12 +78,14 @@ export default function Activity() {
      getActivity(params)
   }
 
-  const handleKeyDown =  (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault()
-      handleSearch(e)
+    // 按下Enter按鈕
+    const handleKeyDown =  (e) => {
+      console.log(e.key)
+      if (e.key === 'Enter') {
+        e.preventDefault()
+        handleSearch(e)
+      }
     }
-  }
 
   useEffect(() => {
     const params = {
@@ -90,6 +94,7 @@ export default function Activity() {
       keyword: keyword,
       actClass: actClass,
       area: area,
+      dateRange: dateRange,
     }
 
     getActivity(params)
@@ -116,6 +121,10 @@ export default function Activity() {
             nameValue={keyword}
             onNameChange={(e) => {
               setKeyword(e.target.value)
+            }}
+            dateValue={dateRange}
+            onDateChange={(e) => { 
+              setDateRange(e.target.value)
             }}
             handleSearch={handleSearch} 
             handleKeyDown={handleKeyDown}
