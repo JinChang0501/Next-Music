@@ -88,6 +88,10 @@ export default function First() {
     )
   }
 
+  const handleDeleteAllSeat = () => {
+    setSelectedSeats([])
+  }
+
   const [isRightVisible, setIsRightVisible] = useState(true)
   const [isRightSecondVisible, setIsRightSecondVisible] = useState(false)
 
@@ -201,6 +205,7 @@ export default function First() {
           <RightSecond
             selectedSeats={selectedSeats}
             onDeleteSeat={handleDeleteSeat}
+            onDeleteAllSeat={handleDeleteAllSeat}
           />
         </div>
       </div>
