@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function Breadcrumbs({
   breadcrumbs,
-  className = 'music-container',
+  className = 'container',
 }) {
   return (
     <>
@@ -14,7 +14,7 @@ export default function Breadcrumbs({
                 return (
                   <li
                     key={index}
-                    className="breadcrumb-item active p-1"
+                    className="breadcrumb-item active p-2"
                     aria-current="page"
                   >
                     {breadItem.label}
@@ -22,7 +22,7 @@ export default function Breadcrumbs({
                 )
               } else {
                 return (
-                  <li key={index} className="breadcrumb-item p-1">
+                  <li key={index} className="breadcrumb-item ps-0 p-2">
                     <Link style={{ color: '#958cea' }} href={breadItem.href}>
                       {breadItem.label}
                     </Link>
