@@ -5,3 +5,20 @@
 }
 
 // #endregion nextButton
+
+
+// #region rightTitle
+
+.rightTitle {
+  padding: 20px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rightTitleIcon {
+  width: 25px;
+  height: 25px;
+}
+
+// #endregion rightTitle

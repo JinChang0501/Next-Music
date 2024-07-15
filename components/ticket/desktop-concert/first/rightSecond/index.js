@@ -1,13 +1,17 @@
 import React from 'react'
-import RightTitle from './rightTitle'
 import TicketSeatBlock from './ticketSeatBlock'
 import PriceTotal from './priceTotal'
 import Info from './info'
 import style from './rightSecond.module.scss'
 import DesktopWhiteNoIconBtnPurple from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnPurple'
 import { useRouter } from 'next/router'
+import { BsChevronLeft } from 'react-icons/bs'
 
-export default function RightSecond({ selectedSeats, onDeleteSeat }) {
+export default function RightSecond({
+  selectedSeats,
+  onDeleteSeat,
+  onDeleteAllSeat,
+}) {
   const router = useRouter()
 
   const handleNext = () => {
@@ -17,7 +21,12 @@ export default function RightSecond({ selectedSeats, onDeleteSeat }) {
   return (
     <>
       {/* rightTitle */}
-      <RightTitle />
+      <div className={`${style.rightTitle}`}>
+        <button className="bg-white" onClick={onDeleteAllSeat}>
+          <BsChevronLeft className={`${style.rightTitleIcon} text-black30`} />
+        </button>
+        <div className="chb-h6 text-black40">返回選擇區域</div>
+      </div>
 
       {/* ticketSeatBlock */}
       {selectedSeats.length > 0 &&

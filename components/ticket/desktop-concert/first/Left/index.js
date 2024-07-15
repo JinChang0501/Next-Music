@@ -70,7 +70,7 @@ export default function Left({
     setTimeoutId(
       setTimeout(() => {
         setShowSelectTicketBlock(true)
-      }, 300)
+      }, 0)
     )
   }
 
