@@ -14,7 +14,6 @@ export default function Detail() {
     { label: '商品資訊', href: '/product[pid]' },
   ]
   const router = useRouter()
-
   // 物件類型的狀態的初始值，建議是一個要描述出裡面有什麼屬性的物件
   const [product, setProduct] = useState({
     id: 0,

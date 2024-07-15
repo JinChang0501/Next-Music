@@ -23,9 +23,9 @@ export default function CartIndex() {
       <div className={`row ${styles['mb-40']} ${styles.centerItem}`}>
         <div className={`col-12 col-md-8 cart-area ${styles['my-20']} `}>
           <p className={`chb-h5 ${styles['ml-20']} ${styles.text14}`}>購物車</p>
-          {/* 一項購物列表 start */}
+          {/* 購物列表 start */}
           <CartList />
-          {/* 一項購物列表 end */}
+          {/* 購物列表 end */}
           <hr />
         </div>
       </div>

@@ -35,7 +35,7 @@ export default function Product() {
     localStorage.setItem(cartKey, JSON.stringify(cartData));
   };
 
-  const { addItem } = useCart()
+  // const { addItem } = useCart()
   const router = useRouter()
 
   // 物件類型的狀態的初始值，建議是一個要描述出裡面有什麼屬性的物件
