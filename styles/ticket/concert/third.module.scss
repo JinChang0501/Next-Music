@@ -1,28 +1,24 @@
-// #region flexCenter
+// #region ticket
 
-.outsideFlexCenter,
-.innerFlexCenter {
+.orderTicketAccordion {
+  margin-bottom: 60px;
+}
+
+.orderTicketBody {
+  padding: 30px 0;
   display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.innerFlexCenter {
-  flex-direction: column;
-}
-
-// #endregion flexCenter
-
-// #region accordion marginTop
-
-.accordionMarginTop {
-  margin-top: 20px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 @media (max-width: 390px) {
-  .accordionMarginTop {
-    margin-top: 0px;
+  .orderTicketAccordion {
+    margin-bottom: 30px;
+  }
+  .orderTicketBody {
+    padding: 20px 0;
   }
 }
 
-// #endregion accordion marginTop
+// #endregion ticket

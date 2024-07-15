@@ -5,10 +5,11 @@ import Mask from '@/components/ticket/mask'
 import Start from '@/components/ticket/start'
 import ProgressBar from '@/components/ticket/progressBar'
 import PhoneTitle from '@/components/ticket/phone-concert/phoneTitle'
-import Phone3D from '@/components/ticket/phone-concert/phone3D'
+import PhoneSelectTicket from '@/components/ticket/phone-concert/phoneSelectTicket'
 import Left from '@/components/ticket/desktop-concert/first/Left'
 import Right from '@/components/ticket/desktop-concert/first/Right'
-import RightSecond from '@/components/ticket/desktop-concert/second/rightSecond'
+import RightSecond from '@/components/ticket/desktop-concert/first/rightSecond'
+import style from '@/styles/ticket/concert/first.module.scss'
 
 export default function First() {
   // #region 動態獲取 breadcrumb、progressBar 高度，返回給 content
@@ -75,6 +76,40 @@ export default function First() {
     setIsStarted(true)
   }
 
+  const [selectedSeats, setSelectedSeats] = useState([])
+
+  const handleSeatsChange = (newSelectedSeats) => {
+    setSelectedSeats(newSelectedSeats)
+  }
+
+  const handleDeleteSeat = (seat) => {
+    setSelectedSeats((prevSeats) =>
+      prevSeats.filter((selectedSeat) => selectedSeat.id !== seat.id)
+    )
+  }
+
+  const [isRightVisible, setIsRightVisible] = useState(true)
+  const [isRightSecondVisible, setIsRightSecondVisible] = useState(false)
+
+  useEffect(() => {
+    let timeoutId
+
+    if (selectedSeats.length > 0 && selectedSeats.length <= 6) {
+      setIsRightVisible(false)
+      setIsRightSecondVisible(true)
+    } else if (selectedSeats.length === 0) {
+      setIsRightSecondVisible(false)
+      timeoutId = setTimeout(() => {
+        setIsRightVisible(true)
+      }, 400)
+    }
+
+    // 清理計時器
+    return () => {
+      clearTimeout(timeoutId)
+    }
+  }, [selectedSeats])
+
   // #region PhoneView
 
   if (isPhoneView) {
@@ -94,7 +129,19 @@ export default function First() {
 
         <ProgressBar progressBarRef={progressBarRef} isStarted={isStarted} />
 
-        <Phone3D />
+        <Left
+          onSeatsChange={handleSeatsChange}
+          updateSelectedSeats={setSelectedSeats}
+          selectedSeats={selectedSeats}
+          className={`${style.svgHeight}`}
+        />
+
+        <div className={style.zIndex} style={{ userSelect: 'none' }}>
+          <PhoneSelectTicket
+            selectedSeats={selectedSeats}
+            onDeleteSeat={handleDeleteSeat}
+          />
+        </div>
       </>
     )
   }
@@ -124,10 +171,38 @@ export default function First() {
       <ProgressBar progressBarRef={progressBarRef} isStarted={isStarted} />
 
       {/* content */}
-      <div className="row d-flex flex-nowrap" style={{ height: contentHeight }}>
-        <Left />
-        <RightSecond />
-        <Right />
+      <div
+        className="d-flex flex-nowrap overflow-hidden"
+        style={{ height: contentHeight, userSelect: 'none' }}
+      >
+        <Left
+          onSeatsChange={handleSeatsChange}
+          updateSelectedSeats={setSelectedSeats}
+          selectedSeats={selectedSeats}
+        />
+        <div
+          className="col-xxl-3 col-xl-4 col-lg-5 col-md-6 p-0"
+          style={{
+            display: isRightVisible ? 'block' : 'none',
+          }}
+        >
+          <Right />
+        </div>
+        <div
+          className="col-xxl-3 col-xl-4 col-lg-5 col-md-6 px-3 overflow-x-hidden overflow-y-scroll"
+          style={{
+            transform: isRightSecondVisible
+              ? 'translateX(0)'
+              : 'translateX(100%)',
+            opacity: isRightSecondVisible ? 1 : 0,
+            transition: 'all 0.4s',
+          }}
+        >
+          <RightSecond
+            selectedSeats={selectedSeats}
+            onDeleteSeat={handleDeleteSeat}
+          />
+        </div>
       </div>
     </>
   )

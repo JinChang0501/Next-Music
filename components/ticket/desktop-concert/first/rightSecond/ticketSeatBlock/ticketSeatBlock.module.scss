@@ -1,9 +1,5 @@
 // #region ticketSeatBlock
 
-.ticketSeat {
-  color: black;
-}
-
 .ticketSeatDeleteIcon {
   width: 35px;
   height: 35px;
@@ -11,14 +7,20 @@
 
 .ticketSeatBlock {
   padding: 10px 20px;
+  margin-bottom: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   border: 2px solid #685beb;
+  color: black;
 }
 
-.ticketSeat > .ticketSeatBlock:not(:last-child) {
+.ticketSeat.marginBottom {
+  margin-bottom: 15px;
+}
+
+.marginBottom {
   margin-bottom: 15px;
 }
 

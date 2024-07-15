@@ -1,13 +1,32 @@
-// #region zIndex
+// #region flexCenter
 
-.zIndex {
-  position: relative;
+.outsideFlexCenter,
+.innerFlexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.zIndex > :first-child {
-  position: absolute;
-  bottom: 0;
-  z-index: 999; // 确保层级高于 Phone3D
+.innerFlexCenter {
+  flex-direction: column;
 }
 
-// #endregion zIndex
+// #endregion flexCenter
+
+// #region accordion marginTop
+
+.accordionMarginTop {
+  margin-top: 20px;
+}
+
+@media (max-width: 390px) {
+  .accordionMarginTop {
+    margin-top: 0px;
+  }
+
+  .innerFlexCenter {
+    width: 100%;
+  }
+}
+
+// #endregion accordion marginTop

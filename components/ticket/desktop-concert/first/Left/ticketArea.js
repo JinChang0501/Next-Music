@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function TicketArea({ scale }) {
+export default function TicketArea({ scale, onAreaClick }) {
   const [hoveredArea, setHoveredArea] = useState(null)
 
   const handleMouseEnterArea = (area) => {
@@ -9,6 +9,10 @@ export default function TicketArea({ scale }) {
 
   const handleMouseLeaveArea = () => {
     setHoveredArea(null)
+  }
+
+  const handleClickArea = (area) => {
+    onAreaClick(area)
   }
 
   return (
@@ -59,7 +63,15 @@ export default function TicketArea({ scale }) {
               d="M211 466.401C211 502.994 211 539.588 211 576.181C224.944 576.181 238.887 576.181 252.831 576.181C252.831 561.379 252.831 546.576 252.831 531.774C327.385 531.774 401.939 531.774 476.493 531.774C476.493 546.576 476.493 561.379 476.493 576.181C490.444 576.181 504.394 576.181 518.345 576.181C518.345 539.589 518.345 502.997 518.345 466.404C503.132 439.033 480.632 415.747 452.58 399.551C398.192 368.15 331.152 368.15 276.763 399.551C248.713 415.746 226.213 439.031 211 466.401Z"
             />
           </mask>
-          <g style={{ display: scale >= 1.2 ? 'none' : 'block' }}>
+          <g
+            style={{
+              display: scale >= 1.3 ? 'none' : 'block',
+              cursor: 'pointer',
+            }}
+            onClick={() => handleClickArea('A')}
+            onMouseEnter={() => handleMouseEnterArea('A')}
+            onMouseLeave={() => handleMouseLeaveArea()}
+          >
             <path
               fillRule="evenodd"
               clipRule="evenodd"
@@ -70,8 +82,6 @@ export default function TicketArea({ scale }) {
               style={{
                 transition: 'opacity .5s, fill .5s',
               }}
-              onMouseEnter={() => handleMouseEnterArea('A')}
-              onMouseLeave={() => handleMouseLeaveArea()}
             />
             <path
               d="M364.88 446.56L379.04 476H373.88L371.36 470.24H357.88L355.36 476H350.36L364.44 446.56H364.88ZM362.88 459.08L359.68 466.2H369.6L366.44 459.12L364.72 455.08H364.64L362.88 459.08Z"
@@ -99,7 +109,15 @@ export default function TicketArea({ scale }) {
             stroke="#D1D1D1"
             strokeWidth="2"
           />
-          <g style={{ display: scale >= 1.2 ? 'none' : 'block' }}>
+          <g
+            style={{
+              display: scale >= 1.3 ? 'none' : 'block',
+              cursor: 'pointer',
+            }}
+            onClick={() => handleClickArea('B')}
+            onMouseEnter={() => handleMouseEnterArea('B')}
+            onMouseLeave={() => handleMouseLeaveArea()}
+          >
             <path
               d="M425.543 382.887C386.161 368.4 342.824 368.402 303.443 382.893C295.964 361.273 284.427 328.186 272.887 295.093L272.86 295.015C261.3 261.861 249.741 228.71 242.257 207.076C326.395 173.756 425.251 182.019 486.245 206.571C478.764 228.21 467.322 261.489 455.881 294.766L455.833 294.905C444.42 328.101 433.013 361.28 425.543 382.887Z"
               stroke="#D1D1D1"
@@ -108,8 +126,6 @@ export default function TicketArea({ scale }) {
               style={{
                 transition: 'opacity .5s, fill .5s',
               }}
-              onMouseEnter={() => handleMouseEnterArea('B')}
-              onMouseLeave={() => handleMouseLeaveArea()}
             />
             <path
               d="M354.12 271.6H361.6C365.813 271.6 368.613 272.307 370 273.72C371.387 275.133 372.08 276.84 372.08 278.84C372.08 280.173 371.787 281.44 371.2 282.64C370.613 283.813 369.68 284.693 368.4 285.28C370.293 285.76 371.68 286.6 372.56 287.8C373.467 289 373.92 290.413 373.92 292.04C373.92 293.747 373.653 295.24 373.12 296.52C372.587 297.8 371.48 298.867 369.8 299.72C368.12 300.573 365.693 301 362.52 301H354.12V271.6ZM362.32 284.08C364.213 284.08 365.56 283.627 366.36 282.72C367.16 281.787 367.56 280.613 367.56 279.2C367.56 276.667 365.747 275.4 362.12 275.4H358.52V284.08H362.32ZM363.12 297.24C365.547 297.24 367.173 296.76 368 295.8C368.853 294.813 369.28 293.573 369.28 292.08C369.28 290.667 368.8 289.573 367.84 288.8C366.88 288.027 365.427 287.64 363.48 287.64H358.52V297.24H363.12Z"
@@ -126,7 +142,15 @@ export default function TicketArea({ scale }) {
             stroke="#D1D1D1"
             strokeWidth="2"
           />
-          <g style={{ display: scale >= 1.2 ? 'none' : 'block' }}>
+          <g
+            style={{
+              display: scale >= 1.3 ? 'none' : 'block',
+              cursor: 'pointer',
+            }}
+            onClick={() => handleClickArea('C')}
+            onMouseEnter={() => handleMouseEnterArea('C')}
+            onMouseLeave={() => handleMouseLeaveArea()}
+          >
             <path
               d="M181 235.366C133.576 262.746 82.9523 314.704 55.8559 360.665C75.304 372.784 103.488 392.462 131.639 412.117L131.667 412.137C159.818 431.792 187.932 451.421 207.327 463.511C222.618 436.374 245.06 413.287 272.963 397.178C281.201 392.422 289.728 388.381 298.456 385.058C290.97 363.418 279.318 330.038 267.666 296.655L267.622 296.531C255.992 263.212 244.366 229.905 236.887 208.287C219.854 214.54 196.769 226.262 181 235.366Z"
               stroke="#D1D1D1"
@@ -135,8 +159,6 @@ export default function TicketArea({ scale }) {
               style={{
                 transition: 'opacity .5s, fill .5s',
               }}
-              onMouseEnter={() => handleMouseEnterArea('C')}
-              onMouseLeave={() => handleMouseLeaveArea()}
             />
             <path
               d="M193.48 353.28C190.44 353.28 187.8 352.6 185.56 351.24C183.347 349.88 181.653 348.067 180.48 345.8C179.307 343.507 178.72 340.987 178.72 338.24C178.72 335.333 179.347 332.733 180.6 330.44C181.88 328.147 183.667 326.36 185.96 325.08C188.253 323.773 190.853 323.12 193.76 323.12C195.067 323.12 196.28 323.267 197.4 323.56C198.547 323.827 199.493 324.147 200.24 324.52C200.987 324.867 201.48 325.16 201.72 325.4L199.76 329.4C198.133 327.96 196.013 327.24 193.4 327.24C191.56 327.24 189.893 327.693 188.4 328.6C186.907 329.507 185.733 330.8 184.88 332.48C184.027 334.16 183.6 336.107 183.6 338.32C183.6 340.347 183.973 342.187 184.72 343.84C185.493 345.493 186.613 346.8 188.08 347.76C189.547 348.72 191.293 349.2 193.32 349.2C195.667 349.2 197.933 348.533 200.12 347.2L201.44 351C200.853 351.533 199.773 352.053 198.2 352.56C196.653 353.04 195.08 353.28 193.48 353.28Z"
@@ -153,7 +175,15 @@ export default function TicketArea({ scale }) {
             stroke="#D1D1D1"
             strokeWidth="2"
           />
-          <g style={{ display: scale >= 1.2 ? 'none' : 'block' }}>
+          <g
+            style={{
+              display: scale >= 1.3 ? 'none' : 'block',
+              cursor: 'pointer',
+            }}
+            onClick={() => handleClickArea('D')}
+            onMouseEnter={() => handleMouseEnterArea('D')}
+            onMouseLeave={() => handleMouseLeaveArea()}
+          >
             <path
               d="M544.5 233.366C602.019 266.575 645.724 312.132 674.15 361.162C654.696 373.274 626.195 392.83 597.723 412.365L597.699 412.382C569.234 431.913 540.8 451.422 521.391 463.511C506.101 436.374 483.659 413.287 455.756 397.178C447.518 392.422 438.991 388.381 430.263 385.058C437.73 363.458 449.175 330.162 460.628 296.846L460.695 296.65C472.164 263.289 483.631 229.928 491.113 208.286C508.074 214.474 528.753 224.275 544.5 233.366Z"
               stroke="#D1D1D1"
@@ -180,7 +210,15 @@ export default function TicketArea({ scale }) {
             stroke="#D1D1D1"
             strokeWidth="2"
           />
-          <g style={{ display: scale >= 1.2 ? 'none' : 'block' }}>
+          <g
+            style={{
+              display: scale >= 1.3 ? 'none' : 'block',
+              cursor: 'pointer',
+            }}
+            onClick={() => handleClickArea('E')}
+            onMouseEnter={() => handleMouseEnterArea('E')}
+            onMouseLeave={() => handleMouseLeaveArea()}
+          >
             <path
               d="M678.226 358.414C646.825 305.468 602.028 260.412 547.163 228.736C435.32 164.163 295.349 164.163 183.505 228.736C128.636 260.414 83.8352 305.476 52.4341 358.428L50.4533 357.2C34.3077 347.19 18.1621 337.18 2.01654 327.171C0.472678 285.723 0.998205 235.14 1.57293 179.822C1.70894 166.731 1.8477 153.374 1.96245 139.811C29.8769 114.642 60.5569 92.2258 93.6582 73.1149C260.2 -23.0383 470.436 -23.0386 636.979 73.1159C669.984 92.1707 700.583 114.512 728.432 139.592C727.013 185.112 727.511 230.906 727.964 272.652C728.173 291.876 728.373 310.242 728.371 327.327C720.087 332.463 711.801 337.6 703.515 342.737C695.085 347.963 686.655 353.189 678.226 358.414Z"
               stroke="#D1D1D1"
@@ -189,8 +227,6 @@ export default function TicketArea({ scale }) {
               style={{
                 transition: 'opacity .5s, fill .5s',
               }}
-              onMouseEnter={() => handleMouseEnterArea('E')}
-              onMouseLeave={() => handleMouseLeaveArea()}
             />
             <path
               d="M358.08 79.6H370.96V83.52H362.52V91.64H369.32V95.64H362.52V105.04H372.28V109H358.08V79.6Z"
