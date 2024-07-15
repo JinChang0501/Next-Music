@@ -14,9 +14,9 @@ import TabContentIntro from '@/components/activity/info-tab-content/tab-content-
 export default function Aid() {
   const router = useRouter()
   console.log(router.query.aid)
-  const topRef = useRef(null)
   const { aid } = router.query  // 設定路由參數給 aid (參照)
   const actid = parseInt(aid)   // 型態轉換：字串轉數字！！
+  const topRef = useRef(null)
 
   const [data, setData] = useState({
     success: false,
@@ -35,8 +35,7 @@ export default function Aid() {
   ]
 
   const scrollToTop = (e) => {
-    // e.preventDefault()
-    console.log('scrollToTop called')
+    //console.log('scrollToTop called')
     if (topRef.current) {
       console.log('topRef.current:', topRef.current)
       topRef.current.scrollIntoView({ behavior: 'smooth' })

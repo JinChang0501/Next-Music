@@ -1,5 +1,5 @@
 import React from 'react'
-import { useEffect, useState } from 'react'
+import { useEffect, useState , useRef } from 'react'
 
 // 帶資料的api
 import { ACT_LIST } from '@/configs/api-path'
@@ -14,6 +14,8 @@ import ActivityCard from '@/components/activity/activity-card'
 
 export default function Activity() {
   const router = useRouter()
+  const topRef = useRef(null)
+
   // 活動資料陣列
   const [data, setData] = useState({
     success: false,
@@ -76,18 +78,29 @@ export default function Activity() {
     console.log(params)
 
      getActivity(params)
+     scrollToTop()
   }
 
-    // 按下Enter按鈕
-    const handleKeyDown =  (e) => {
-      console.log(e.key)
-      if (e.key === 'Enter') {
-        e.preventDefault()
-        handleSearch(e)
-      }
+  // 按下Enter按鈕
+  const handleKeyDown =  (e) => {
+    console.log(e.key)
+    if (e.key === 'Enter') {
+       e.preventDefault()
+      handleSearch(e)
     }
+   }
 
-  useEffect(() => {
+   const scrollToTop = (e) => {
+      //console.log('scrollToTop called')
+      if (topRef.current) {
+        console.log('topRef.current:', topRef.current)
+        topRef.current.scrollIntoView({ behavior: 'smooth' })  
+      } else {
+        console.log('topRef.current is null')
+      }
+   }
+
+    useEffect(() => {
     const params = {
       // sort: orderby.sort,
       // order: orderby.order,
@@ -102,12 +115,13 @@ export default function Activity() {
     console.log(params)
     // eslint-disable-next-line
   }, [])
-  
+
   return (
     <>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
       <BannerA />
-      <div className="music-container">
+      <div ref={topRef}></div>
+      <div className="music-container mt-3 mt-md-5">
         <div className="row">
           <LeftBar 
             classValue={actClass}
