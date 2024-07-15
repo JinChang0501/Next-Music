@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { BsArrowLeftCircle } from 'react-icons/bs'
 import StoreDetailCard from './store-detail-card'
+import Link from 'next/link'
 export default function StoreDetail() {
   const [isMobile, setIsMobile] = useState(false)
 
@@ -21,9 +22,12 @@ export default function StoreDetail() {
       <div className="row">
         <div className="col-12 bg-purple3 p-2 position-relative">
           <div className="p-0 m-0 chb-h5 text-center d-flex align-items-center justify-content-center">
-            <a href="#" className="text-black d-flex align-items-center">
+            <Link
+              href="/member/store-order"
+              className="text-black d-flex align-items-center"
+            >
               <BsArrowLeftCircle className="chr-h3 position-absolute start-3" />
-            </a>
+            </Link>
             <p className="text-center p-0 m-0 fs-2 mx-auto">訂單紀錄</p>
           </div>
         </div>
