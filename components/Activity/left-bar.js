@@ -6,7 +6,7 @@ export default function LeftBar({ handleSearch , onClassChange , onAreaChange , 
   return (
     <>
       {/* left bar start */}
-      <div className="col-md-3 col-12 mb-3">
+      <div className="col-md-3 col-12 mb-5">
         <div className="outline sticky-40">
           <form onSubmit={handleSearch} className="col-10 mx-auto">
             <div className="d-flex flex-md-column">
