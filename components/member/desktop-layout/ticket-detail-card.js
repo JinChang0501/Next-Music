@@ -12,7 +12,7 @@ export default function TicketDetailCard({
   seat_row = '',
   seat_number = '',
   price = '',
-  picture = '',
+  cover = '',
   actname = '',
   art_name = '',
   tid = '',
@@ -53,7 +53,7 @@ export default function TicketDetailCard({
     <>
       <div className="row text-center my-3">
         <div className="col d-flex justify-content-center">
-          <img src={picture} className={styles.img160} alt="" />
+          <img src={cover} className={styles.img160} alt="" />
         </div>
         <div className="col my-auto p-0 chr-h6 text-nowrap">{`${seat_area}區${seat_row}排${seat_number}號`}</div>
         <div className="col my-auto p-0 chr-h6">${price}</div>
