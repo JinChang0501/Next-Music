@@ -10,14 +10,14 @@ export default function RecommendCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/
         <div className="card bg-dark outline img-minW d-flex justify-content-center">
           <img
             src={imgSrc}
-            className="card-img-top "
+            className="card-img-top"
           />
           <div className="card-body d-flex flex-column justify-content-center p-3">
             <div className="d-flex flex-column justify-content-start mb-4">
               <div className="card-title chb-h6 text-purple3 to-e">{activity_name}</div>
               <div className="card-text chr-p text-white to-e">{artist_name}</div>
             </div>
-            <Link href={`/activity/${aid}`}>
+            <Link href={`/activity/${aid}`} onClick={scrollToTop}>
               <PhoneBlackNoIconBtnBlack
                 text="活動資訊"
                 className='chr-p text-nowrap w-100'

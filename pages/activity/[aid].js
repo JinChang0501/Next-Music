@@ -14,7 +14,7 @@ import TabContentIntro from '@/components/activity/info-tab-content/tab-content-
 export default function Aid() {
   const router = useRouter()
   console.log(router.query.aid)
-  // const topRef = useRef(null)
+  const topRef = useRef(null)
   const { aid } = router.query  // 設定路由參數給 aid (參照)
   const actid = parseInt(aid)   // 型態轉換：字串轉數字！！
 
@@ -34,15 +34,21 @@ export default function Aid() {
     { label: '活動詳情', href: '/activity/[aid]' },
   ]
 
-  // const handleToTop = () => {
-  //   window.scrollTo({ top: 0, behavior: 'smooth' })
-  // }
+  const scrollToTop = (e) => {
+    // e.preventDefault()
+    console.log('scrollToTop called')
+    if (topRef.current) {
+      console.log('topRef.current:', topRef.current)
+      topRef.current.scrollIntoView({ behavior: 'smooth' })
+      
+    } else {
+      console.log('topRef.current is null')
+    }
+  }
 
-  // const scrollToTop = () => {
-  //   if (topRef.current) {
-  //     topRef.current.scrollIntoView({ behavior: 'smooth' })
-  //   }
-  // }
+  useEffect((e)=>{
+    scrollToTop(e)
+  },[router])
 
   useEffect(() => {
     if (!router.isReady) return
@@ -104,13 +110,13 @@ export default function Aid() {
   // 從所有活動的資料裡撈出 4 筆（隨機），且不包含本頁這筆：
   const recommendData = data.rows.filter((r) => r.actid !== actid)
   console.log(recommendData)
-  const random6Recommend = getRandomElementsFromArray(recommendData, 4)
+  const random4Recommend = getRandomElementsFromArray(recommendData, 4)
 
-  console.log(random6Recommend)
+  console.log(random4Recommend)
 
   return (
     <>
-      {/* <div ref={topRef}></div> */}
+      <div ref={topRef}></div>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
       <div className="music-container mt-80">
         {/* 活動主資訊 start */}
@@ -153,7 +159,7 @@ export default function Aid() {
                 key={v.eaid}
                 imgSrc={v.photo}
                 artist_name={v.art_name} />
-                )
+              )
           })}
           
         </div>
@@ -161,7 +167,7 @@ export default function Aid() {
         {/*  推薦活動 start  */}
         <div className="row my-5">
           <div className="chb-h4 mb-40 text-purple1">推薦活動</div>
-          {random6Recommend.map((v, i) => {
+          {random4Recommend.map((v, i) => {
             return (
               <RecommendCard
                 key={v.actid}
@@ -169,6 +175,7 @@ export default function Aid() {
                 activity_name={v.actname}
                 artist_name={v.artists}
                 aid={v.actid}
+                scrollToTop={scrollToTop}
               />
             )
           })}
