@@ -3,6 +3,7 @@ import FixedContentLayout from '@/components/layout/ticket-layout/desktopLayout/
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import Mask from '@/components/ticket/mask'
 import Start from '@/components/ticket/start'
+import DeleteAllSeat from '@/components/ticket/desktop-concert/first/Left/deleteAllSeat'
 import ProgressBar from '@/components/ticket/progressBar'
 import PhoneTitle from '@/components/ticket/phone-concert/phoneTitle'
 import PhoneSelectTicket from '@/components/ticket/phone-concert/phoneSelectTicket'
@@ -90,6 +91,7 @@ export default function First() {
 
   const handleDeleteAllSeat = () => {
     setSelectedSeats([])
+    setDeleteAllSeat(false)
   }
 
   const [isRightVisible, setIsRightVisible] = useState(true)
@@ -113,6 +115,12 @@ export default function First() {
       clearTimeout(timeoutId)
     }
   }, [selectedSeats])
+
+  const [showDeleteAllSeat, setDeleteAllSeat] = useState(false)
+
+  const toggleShowDeleteAllSeat = () => {
+    setDeleteAllSeat(!showDeleteAllSeat)
+  }
 
   // #region PhoneView
 
@@ -166,6 +174,17 @@ export default function First() {
         </>
       )}
 
+      {showDeleteAllSeat && (
+        <>
+          <Mask />
+
+          <DeleteAllSeat
+            confirmDelete={handleDeleteAllSeat}
+            cancelDelete={toggleShowDeleteAllSeat}
+          />
+        </>
+      )}
+
       {/* breadcrumb */}
       <div ref={breadcrumbRef}>
         <Breadcrumbs breadcrumbs={breadcrumbsURL} />
@@ -205,7 +224,7 @@ export default function First() {
           <RightSecond
             selectedSeats={selectedSeats}
             onDeleteSeat={handleDeleteSeat}
-            onDeleteAllSeat={handleDeleteAllSeat}
+            showDeleteAllSeat={toggleShowDeleteAllSeat}
           />
         </div>
       </div>

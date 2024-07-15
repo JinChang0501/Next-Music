@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import Mask from '@/components/ticket/mask'
 import TicketLimit from './ticketLimit'
-import DeleteAllSeat from './deleteAllSeat'
 import TicketArea from './ticketArea'
 import ticketSeatData from '@/data/ticket/desktop-concert/first/ticketSeat'
 import SelectTicketBlock from './selectTicketBlock'
@@ -293,9 +292,6 @@ export default function Left({
           <TicketLimit onDelete={handleCloseTicketLimit} />
         </>
       )}
-
-      <Mask />
-      <DeleteAllSeat />
 
       <SelectTicketBlock
         selectedSeats={selectedSeats}

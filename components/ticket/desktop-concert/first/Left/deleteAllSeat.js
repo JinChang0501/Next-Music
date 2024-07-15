@@ -1,13 +1,13 @@
 import React from 'react'
 import style from './deleteAllSeat.module.scss'
-import { IoAlertCircle } from 'react-icons/io5'
+import { BsExclamationOctagon } from 'react-icons/bs'
 
 export default function DeleteAllSeat({ confirmDelete, cancelDelete }) {
   return (
     <>
       <div className={`${style.deleteAllSeat}`}>
         <div className={`${style.deleteAllSeatTitle} chb-h5 text-black`}>
-          <IoAlertCircle className={`${style.deleteAllSeatIcon}`} />
+          <BsExclamationOctagon className={`${style.deleteAllSeatIcon}`} />
         </div>
         <div className={`${style.deleteAllSeatText} chb-h7 text-black`}>
           返回選擇區域將會刪除所有選取的座位，確定嗎 ?

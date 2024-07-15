@@ -1,5 +1,5 @@
 .deleteAllSeat {
-  width: 50s0px;
+  width: 500px;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -10,30 +10,22 @@
   background-color: white;
   border-radius: 5px;
   z-index: 2000;
-
-  @media (max-width: 390px) {
-    width: 250px;
-  }
 }
 
 .deleteAllSeatTitle {
   width: 100%;
-  height: 60px;
+  height: 70px;
+  padding-top: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #e2e2e2;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-
-  @media (max-width: 390px) {
-    height: 50px;
-  }
 }
 
 .deleteAllSeatText {
   width: 100%;
-  padding: 30px;
+  padding:20px 30px 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,12 +34,6 @@
   border-bottom-right-radius: 5px;
   line-height: 40px;
   letter-spacing: 2px;
-
-  @media (max-width: 390px) {
-    padding: 20px;
-    line-height: 30px;
-    font-size: 15px;
-  }
 }
 
 .deleteAllSeatIcon {
@@ -72,7 +58,7 @@
   padding: 12px 20px;
   margin-right: 150px;
   color: white;
-  background-color: #685beb;
+  background-color: salmon;
   display: flex;
   justify-content: center;
   align-items: center;
