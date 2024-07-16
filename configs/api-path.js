@@ -17,3 +17,7 @@ export const MEM_GET_STORE = `${API_SERVER}/api/store-order/`
 
 // // 登入, 表單資料 {email, password}
 // export const JWT_LOGIN_POST = `${API_SERVER}/login-jwt`
+
+// ticket
+
+export const GET_TICKET = `${API_SERVER}/api/ticket`
