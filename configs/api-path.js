@@ -7,6 +7,8 @@ export const ACT_LIST = `${API_SERVER}/api/activity/`
 export const ACT_GET_ITEM = `${API_SERVER}/api/activity/`
 
 export const GET_TICKET_DETAIL = `${API_SERVER}/api/ticket-detail`
+export const GET_STORE_DETAIL = `${API_SERVER}/api/store-detail`
+
 export const MEM_GET_STORE = `${API_SERVER}/api/store-order/`
 
 // // `${API_SERVER}/address-book/api/${sid}, method: DELETE`
