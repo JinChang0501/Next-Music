@@ -89,7 +89,6 @@ export default function Left({
         setShowMaskAndLimit(true)
       }
     }
-    console.log(seat)
   }
 
   const handleCloseTicketLimit = () => {
