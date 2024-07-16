@@ -25,7 +25,6 @@ export default function Left({
   const [isFirstClick, setIsFirstClick] = useState(true)
   const [colorBarBackground, setColorBarBackground] = useState('transparent')
   const [showMaskAndLimit, setShowMaskAndLimit] = useState(false)
-  const [showDeleteAllSeat, setShowDeleteAllSeat] = useState(false)
 
   useEffect(() => {
     onSeatsChange(selectedSeats)
@@ -90,6 +89,7 @@ export default function Left({
         setShowMaskAndLimit(true)
       }
     }
+    console.log(seat)
   }
 
   const handleCloseTicketLimit = () => {
