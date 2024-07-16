@@ -6,6 +6,11 @@ export const ACT_LIST = `${API_SERVER}/api/activity/`
 // `${API_SERVER}/address-book/api/${sid}`, method: GET 取得單筆資料
 export const ACT_GET_ITEM = `${API_SERVER}/api/activity/`
 
+// 加入收藏，方法POST /${actid}
+export const ACT_GET_FAV = `${API_SERVER}/api/favorite/`
+// 取消收藏，方法DELETE /${actid}
+export const ACT_DEL_FAV = `${API_SERVER}/api/favorite/`
+
 export const GET_TICKET_DETAIL = `${API_SERVER}/api/ticket-detail`
 export const MEM_GET_STORE = `${API_SERVER}/api/store-order/`
 
