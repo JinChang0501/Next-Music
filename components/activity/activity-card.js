@@ -2,15 +2,15 @@ import React from 'react'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 
-//用link有bug，捲軸不會更新到最上
-import { BsMusicNoteBeamed, BsBookmark, BsGeoAlt, BsCalendar4 } from "react-icons/bs";
-import DesktopWhiteNoIconBtnBlack from '../common/button/desktopWhiteButton/desktopWhiteNoIconBtnBlack';
-import DesktopBlackNoIconBtnPurple from '../common/button/desktopBlackButton/desktopBlackNoIconBtnPurple';
-import DesktopBlackPureIconBtnBlack from '../common/button/desktopBlackButton/desktopBlackPureIconBtnBlack';
-import PhoneBlackPureIconBtnBlack from '../common/button/phoneBlackButton/phoneBlackPureIconBtnBlack';
-import PhoneBlackNoIconBtnPurple from '../common/button/phoneBlackButton/phoneBlackNoIconBtnPurple';
+import { BsMusicNoteBeamed, BsBookmark, BsGeoAlt, BsCalendar4 } from 'react-icons/bs'
+import FavIcon from './fav/fav-icon'
+import DesktopWhiteNoIconBtnBlack from '../common/button/desktopWhiteButton/desktopWhiteNoIconBtnBlack'
+import DesktopBlackNoIconBtnPurple from '../common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
+import DesktopBlackPureIconBtnBlack from '../common/button/desktopBlackButton/desktopBlackPureIconBtnBlack'
+import PhoneBlackPureIconBtnBlack from '../common/button/phoneBlackButton/phoneBlackPureIconBtnBlack'
+import PhoneBlackNoIconBtnPurple from '../common/button/phoneBlackButton/phoneBlackNoIconBtnPurple'
 
-export default function ActivityCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/temp-Image7-Gw6zu.avif", title, artist, location, actdate, acttime, aid }) {
+export default function ActivityCard({ imgSrc = 'https://i.postimg.cc/zB5Gh92q/temp-Image7-Gw6zu.avif', title, artist, location, actdate, aid, fav, handleToggleFav }) {
 
   const [isDesktop, setIsDesktop] = useState(true)
 
@@ -27,67 +27,74 @@ export default function ActivityCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/t
 
   return (
     <>
-      <div className="card mb-3 bg-dark outline">
-        <div className="row g-0">
+      <div className='card mb-3 bg-dark outline'>
+        <div className='row g-0'>
           {/* 圖 */}
-          <div className="col-4">
+          <div className='col-4'>
             <img
               src={imgSrc}
-              className="img-fluid"
-              alt="..."
+              className='img-fluid'
+              alt='...'
             />
           </div>
           {/* 卡片文字 */}
-          <div className="col-8 card-body p-2 p-md-3 d-flex flex-column justify-content-between">
-            <div className="d-flex">
-              <div className="card-title chb-h4 text-purple3 p-0">{title}</div>
-              <div className="p-0 ms-auto">
-                {isDesktop ?
-                  (<DesktopBlackPureIconBtnBlack
-                    icon={BsBookmark}
+          <div className='col-8 card-body p-2 p-md-3 d-flex flex-column justify-content-between'>
+            <div className='d-flex align-items-center'>
+              <div className='card-title chb-h4 text-purple3 m-0 p-0'>{title}</div>
+              <div className='p-0 ms-auto'>
+                {isDesktop ? (
+                  <FavIcon 
+                    actid={aid} 
+                    fav={fav} 
                     iconWidth={28}
                     iconHeight={28}
-                  />) : (
-                    <PhoneBlackPureIconBtnBlack
-                      icon={BsBookmark}
-                    />
-                  )}
+                    handleToggleFav={handleToggleFav} 
+                   />
+                    ) : (
+                    <FavIcon 
+                    actid={aid} 
+                    fav={fav} 
+                    iconWidth={16}
+                    iconHeight={16}
+                    handleToggleFav={handleToggleFav} 
+                   />
+                )}
               </div>
             </div>
-            <div className="col-12 d-flex align-items-end">
-              <div className="col-8 text-white">
-                <div className="d-flex my-2">
-                  <BsMusicNoteBeamed className="p-0 me-2 me-md-3" />
-                  <div className="card-text col-10 chb-p p-0 to-e">{artist}</div>
+            <div className='col-12 d-flex align-items-end'>
+              <div className='col-8 text-white'>
+                <div className='d-flex my-2'>
+                  <BsMusicNoteBeamed className='p-0 me-2 me-md-3' />
+                  <div className='card-text col-10 chb-p p-0 to-e'>{artist}</div>
                 </div>
-                <div className="d-md-flex d-none my-2">
-                  <BsGeoAlt className="p-0 me-2 me-md-3" />
-                  <div className="card-text col-10 chb-p p-0">{location}</div>
+                <div className='d-md-flex d-none my-2'>
+                  <BsGeoAlt className='p-0 me-2 me-md-3' />
+                  <div className='card-text col-10 chb-p p-0'>{location}</div>
                 </div>
-                <div className="d-flex my-2">
-                  <BsCalendar4 className="p-0 me-2 me-md-3" />
-                  <div className="card-text chb-p p-0">{actdate}</div>
+                <div className='d-flex my-2'>
+                  <BsCalendar4 className='p-0 me-2 me-md-3' />
+                  <div className='card-text chb-p p-0'>{actdate}</div>
                 </div>
               </div>
-              <div className="col-4 d-flex justify-content-end gap-2 text-nowrap">
+              <div className='col-4 d-flex justify-content-end gap-2 text-nowrap'>
                 <Link href={`/activity/${aid}`}>
                   <DesktopWhiteNoIconBtnBlack
-                    text="活動資訊"
-                    className="chr-p d-md-block d-none"
+                    text='活動資訊'
+                    className='chr-p d-md-block d-none'
                   />
                 </Link>
                 {/* 如果變成手機大小，要變成手機按鈕的判斷式 */}
                 {isDesktop ? (
-                  <Link href={`/ticket/${(aid > 9) ? "musicFestival" : "concert"}/${aid}`}>
+                  <Link href={`/ticket/${(aid > 9) ? 'musicFestival' : 'concert'}/${aid}`}>
                     <DesktopBlackNoIconBtnPurple
-                      text="立即購票"
-                      className="chr-p"
+                      text='立即購票'
+                      className='chr-p'
                     />
                   </Link>
                 ) : (
-                  <Link href={`/ticket/${(aid > 9) ? "musicFestival" : "concert"}/${aid}`}>
+                  <Link href={`/ticket/${(aid > 9) ? 'musicFestival' : 'concert'}/${aid}`}>
                     <PhoneBlackNoIconBtnPurple
-                      text="立即購票" className="chr-p"
+                      text='立即購票' className='chr-p'
                     />
                   </Link>
                 )}
@@ -105,7 +112,7 @@ export default function ActivityCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/t
           white-space: nowrap;
           text-overflow: ellipsis;
           overflow: hidden;
-          {/* -webkit-line-clamp: 2; */}
+          {/* -webkit-line-clamp: 2 */}
         }
         @media (max-width: 390px){
           .chb-h4 {
