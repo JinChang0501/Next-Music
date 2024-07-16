@@ -11,12 +11,19 @@ import RecommendCard from '@/components/activity/recommend-card'
 import TabContentAid from '@/components/activity/info-tab-content/tab-content-aid'
 import TabContentIntro from '@/components/activity/info-tab-content/tab-content-intro'
 
+// 判斷登入
+import { useAuth } from '@/hooks/use-auth'
+import { useLogin } from '@/hooks/use-login'
+
 export default function Aid() {
   const router = useRouter()
   console.log(router.query.aid)
   const { aid } = router.query  // 設定路由參數給 aid (參照)
   const actid = parseInt(aid)   // 型態轉換：字串轉數字！！
   const topRef = useRef(null)
+  // 會員相關
+  const { handleGotoMember, handleWakeLogin } = useLogin()
+  const { auth } = useAuth()
 
   const [data, setData] = useState({
     success: false,

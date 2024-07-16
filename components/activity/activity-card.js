@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
+import { useLogin } from '../../hooks/use-login'
 
 import { BsMusicNoteBeamed, BsBookmark, BsGeoAlt, BsCalendar4 } from 'react-icons/bs'
 import FavIcon from './fav/fav-icon'
@@ -10,9 +11,11 @@ import DesktopBlackPureIconBtnBlack from '../common/button/desktopBlackButton/de
 import PhoneBlackPureIconBtnBlack from '../common/button/phoneBlackButton/phoneBlackPureIconBtnBlack'
 import PhoneBlackNoIconBtnPurple from '../common/button/phoneBlackButton/phoneBlackNoIconBtnPurple'
 
-export default function ActivityCard({ imgSrc = 'https://i.postimg.cc/zB5Gh92q/temp-Image7-Gw6zu.avif', title, artist, location, actdate, aid, fav, handleToggleFav }) {
+export default function ActivityCard({ imgSrc = 'https://i.postimg.cc/zB5Gh92q/temp-Image7-Gw6zu.avif', title, artist, location, actdate, eventId, isFavorite, handleToggleFav, aid }) {
 
   const [isDesktop, setIsDesktop] = useState(true)
+
+  const { handleWakeLogin } = useLogin
 
   useEffect(() => {
     const handleResize = () => {
@@ -27,7 +30,7 @@ export default function ActivityCard({ imgSrc = 'https://i.postimg.cc/zB5Gh92q/t
 
   return (
     <>
-      <div className='card mb-3 bg-dark outline'>
+      <div key={eventId} className='card mb-3 bg-dark outline'>
         <div className='row g-0'>
           {/* 圖 */}
           <div className='col-4'>
@@ -44,19 +47,19 @@ export default function ActivityCard({ imgSrc = 'https://i.postimg.cc/zB5Gh92q/t
               <div className='p-0 ms-auto'>
                 {isDesktop ? (
                   <FavIcon 
-                    actid={aid} 
-                    fav={fav} 
+                    eventId={eventId} 
+                    // isFavorite={isFavorite} 
                     iconWidth={28}
                     iconHeight={28}
-                    handleToggleFav={handleToggleFav} 
+                    handleToggleFav={handleToggleFav}
                    />
                     ) : (
                     <FavIcon 
-                    actid={aid} 
-                    fav={fav} 
+                    eventId={eventId} 
+                    // isFavorite={isFavorite}
                     iconWidth={16}
                     iconHeight={16}
-                    handleToggleFav={handleToggleFav} 
+                    handleToggleFav={handleToggleFav}
                    />
                 )}
               </div>
