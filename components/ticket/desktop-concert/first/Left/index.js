@@ -8,7 +8,7 @@ import Zoom from './zoom'
 import Sold from './sold'
 import Minimap from './minimap'
 import { BsCheck } from 'react-icons/bs'
-import { GET_TICKET } from '@/configs/api-path'
+// import { GET_TICKET } from '@/configs/api-path'
 
 export default function Left({
   width = '100%',
@@ -26,25 +26,25 @@ export default function Left({
   const [isFirstClick, setIsFirstClick] = useState(true)
   const [colorBarBackground, setColorBarBackground] = useState('transparent')
   const [showMaskAndLimit, setShowMaskAndLimit] = useState(false)
-  const [ticketData, setTicketData] = useState([])
+  // const [ticketData, setTicketData] = useState([])
 
-  useEffect(() => {
-    const fetchTicketData = async () => {
-      try {
-        const response = await fetch(GET_TICKET)
-        const result = await response.json()
-        if (result.success) {
-          setTicketData(result.rows)
-        } else {
-          console.error('Failed to fetch ticket data:', result.error)
-        }
-      } catch (error) {
-        console.error('Error fetching ticket data:', error)
-      }
-    }
+  // useEffect(() => {
+  //   const fetchTicketData = async () => {
+  //     try {
+  //       const response = await fetch(GET_TICKET)
+  //       const result = await response.json()
+  //       if (result.success) {
+  //         setTicketData(result.rows)
+  //       } else {
+  //         console.error('Failed to fetch ticket data:', result.error)
+  //       }
+  //     } catch (error) {
+  //       console.error('Error fetching ticket data:', error)
+  //     }
+  //   }
 
-    fetchTicketData()
-  })
+  //   fetchTicketData()
+  // })
 
   useEffect(() => {
     onSeatsChange(selectedSeats)
@@ -371,7 +371,7 @@ export default function Left({
               cursor: 'pointer',
             }}
           >
-            {ticketData.map((v) => (
+            {ticketSeatData.map((v) => (
               <g key={v.id} onClick={(event) => handleSeatClick(event, v)}>
                 <circle
                   cx={v.cx}

@@ -13,7 +13,7 @@ import DesktopWhiteNoIconBtnPurple from '@/components/common/button/desktopWhite
 import PhoneWhiteNoIconBtnPurple from '@/components/common/button/phoneWhiteButton/phoneWhiteNoIconBtnPurple'
 import { useRouter } from 'next/router'
 
-export default function Third() {
+export default function SelectSeat() {
   const [isMobile, setIsMobile] = useState(false)
 
   const router = useRouter()
@@ -105,6 +105,6 @@ export default function Third() {
   )
 }
 
-Third.getLayout = function getLayout(page) {
+SelectSeat.getLayout = function getLayout(page) {
   return <WhiteLayout title="select-Seat">{page}</WhiteLayout>
 }

@@ -78,14 +78,14 @@ export default function ActivityCard({ imgSrc = "https://i.postimg.cc/zB5Gh92q/t
                 </Link>
                 {/* 如果變成手機大小，要變成手機按鈕的判斷式 */}
                 {isDesktop ? (
-                  <Link href={`/ticket/${(aid > 9) ? "musicFestival" : "concert"}/${aid}`}>
+                  <Link href={`/ticket/${(aid > 9) ? "musicFestival" : "concert"}/selectSeat/${aid}`}>
                     <DesktopBlackNoIconBtnPurple
                       text="立即購票"
                       className="chr-p"
                     />
                   </Link>
                 ) : (
-                  <Link href={`/ticket/${(aid > 9) ? "musicFestival" : "concert"}/${aid}`}>
+                  <Link href={`/ticket/${(aid > 9) ? "musicFestival" : "concert"}/selectSeat/${aid}`}>
                     <PhoneBlackNoIconBtnPurple
                       text="立即購票" className="chr-p"
                     />

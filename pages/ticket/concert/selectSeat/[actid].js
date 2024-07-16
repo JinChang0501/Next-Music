@@ -12,7 +12,7 @@ import Right from '@/components/ticket/desktop-concert/first/Right'
 import RightSecond from '@/components/ticket/desktop-concert/first/rightSecond'
 import style from '@/styles/ticket/concert/first.module.scss'
 
-export default function First() {
+export default function SelectSeat() {
   // #region 動態獲取 breadcrumb、progressBar 高度，返回給 content
 
   // breadcrumbRef 和 progressBarRef 是用來獲取 DOM 元素的引用
@@ -234,6 +234,6 @@ export default function First() {
   // #endregion DesktopView
 }
 
-First.getLayout = function getLayout(page) {
+SelectSeat.getLayout = function getLayout(page) {
   return <FixedContentLayout title="select-Seat">{page}</FixedContentLayout>
 }
