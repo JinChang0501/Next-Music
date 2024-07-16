@@ -14,6 +14,8 @@ import { useCart } from '@/hooks/product/use-cart'
 
 export default function CartIndex() {
   const[products, setProducts] = useState()
+  const { totalPrice, totalQty } = useCart()
+
   const breadcrumbsURL = [
     { label: '周邊商城', href: '/product' },
     { label: '商品資訊', href: '/product/[pid]' },
@@ -36,6 +38,7 @@ export default function CartIndex() {
           <CartList />
           {/* 購物列表 end */}
           <hr />
+          <div>總數量: {totalQty} / 總金額: {totalPrice}</div>
         </div>
       </div>
       <div className={`row ${styles['mb-40']} ${styles.centerItem}`}>

@@ -10,6 +10,8 @@ import LeftBar from '@/components/product/left-bar'
 import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
 // import data from '@/data/product/Product.json'
 import Link from 'next/link'
+import LeftBar2 from '@/components/product/left-bar2'
+
 export default function List() {
   const [products, setProducts] = useState([])
 
@@ -35,7 +37,7 @@ export default function List() {
       <div className={`${styles['mx-160']} ${styles['my-100']}`}>
         <div className="row">
           {/* left-search start*/}
-          <LeftBar className={``} />
+          <LeftBar2 className={``} />
           {/* left-search end*/}
           <div className={`col-md-9 `}>
             <div className={`chb-h3 text-white ${styles['ml-28']}`}>所有商品</div>

@@ -44,7 +44,7 @@ export default function LeftBar2({ handleSearch , onClassChange , onAreaChange ,
 //日期的搜尋 待處理
               />
             </div> */}
-            <div className="my-4 col-12 text-white chr-p">請輸入[活動]或[商品]的關鍵字</div>
+            <div className="my-4 col-12 text-white chr-p">輸入關鍵字搜尋商品名稱或活動名稱</div>
             <div className="mt-4 mb-4 mb-md-4 col-12 input-group">
               <input
                 type="text"
