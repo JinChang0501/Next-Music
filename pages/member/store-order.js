@@ -94,7 +94,7 @@ export default function StoreOrder() {
                 <OrderCard
                   key={i}
                   order_num={v.order_num}
-                  picture={v.picture}
+                  firstProductPicture={v.firstProductPicture}
                   firstProductName={v.firstProductName}
                   totalPrice={v.totalPrice}
                   totalCount={v.totalCount}
@@ -106,7 +106,7 @@ export default function StoreOrder() {
                 <OrderCardMobile
                   key={i}
                   order_num={v.order_num}
-                  picture={v.picture}
+                  firstProductPicture={v.firstProductPicture}
                   firstProductName={v.firstProductName}
                   totalPrice={v.totalPrice}
                   totalCount={v.totalCount}

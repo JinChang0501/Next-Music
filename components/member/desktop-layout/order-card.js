@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 export default function OrderCard({
   order_num = '',
-  picture = '',
+  firstProductPicture = '',
   firstProductName = '',
   totalPrice = '',
   totalCount = '',
@@ -35,7 +35,11 @@ export default function OrderCard({
           <div className="col-12 py-2">
             <div className="row text-center my-1">
               <div className="col d-flex justify-content-center">
-                <img src={picture} className={styles.img160} alt="" />
+                <img
+                  src={`/images/product/list/${firstProductPicture}`}
+                  className={styles.img160}
+                  alt=""
+                />
               </div>
               <div className="col my-auto p-0 chr-h6">{firstProductName}</div>
               <div className="col my-auto p-0 chr-h6">共{totalCount}件</div>
