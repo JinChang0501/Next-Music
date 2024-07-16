@@ -1,5 +1,4 @@
 import { createContext, useContext, useState } from 'react'
-import data from '@/data/product/Product.json'
 
 // 1. 建立與導出context
 const CartContext = createContext(null)
@@ -10,7 +9,6 @@ const CartContext = createContext(null)
 export function CartProvider({ children }) {
   // items代表購物車中的項目，初始值為空陣列
   const [items, setItems] = useState([])
-  const [cart, setCart] = useState(data)
 
   // 遞增項目
   const increaseItem = (id) => {
@@ -83,9 +81,12 @@ export function CartProvider({ children }) {
     return total
   }
 
+  // // 用陣列迭代方法reduce來計算總金額/總數量
+  // const totalQty = items.reduce((acc, v) => acc + v.qty, 0)
+  // const totalPrice = items.reduce((acc, v) => acc + v.qty * v.price, 0)
   // 用陣列迭代方法reduce來計算總金額/總數量
-  const totalQty = cart.reduce((acc, p) => acc + p.quantity, 0)
-  const totalPrice = items.reduce((acc, p) => acc + p.quantity * p.price, 0)
+  const totalQty = items.reduce((acc, v) => acc + v.qty, 0)
+  const totalPrice = items.reduce((acc, v) => acc + v.qty * v.price, 0)
 
   return (
     <CartContext.Provider
