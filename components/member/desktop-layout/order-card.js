@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import styles from './order-card.module.scss'
 import DesktopWhiteNoIconBtnPurple from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnPurple'
 import Link from 'next/link'
+import moment from 'moment-timezone'
 
 export default function OrderCard({
   order_num = '',
@@ -9,7 +10,11 @@ export default function OrderCard({
   firstProductName = '',
   totalPrice = '',
   totalCount = '',
+  created_at = '',
 }) {
+  const formateCreated_At = moment(created_at)
+    .tz('Asia/Taipei')
+    .format('YYYY/MM/DD HH:mm')
   return (
     <>
       <div className="mb-3">
@@ -19,15 +24,17 @@ export default function OrderCard({
               <p className="text-center p-0 m-0 chb-h6 text-white">
                 訂單編號:{order_num}
               </p>
-              <p className="text-center p-0 m-0 chb-h6 text-white">已完成</p>
+              <p className="text-center p-0 m-0 chb-h6 text-white">
+                {formateCreated_At}
+              </p>
             </div>
           </div>
 
           <div className="col-12 bg-purple3 py-2 border-top border-2 border-purple2">
             <div className="row text-center">
-              <div className="col chb-h6">商品圖片</div>
-              <div className="col chb-h6">商品名稱</div>
-              <div className="col chb-h6">件數</div>
+              <div className="col chb-h6 ps-4">商品圖片</div>
+              <div className="col chb-h6 ps-4">商品名稱</div>
+              <div className="col chb-h6 ps-3">件數</div>
               <div className="col chb-h6">訂單總價</div>
             </div>
           </div>

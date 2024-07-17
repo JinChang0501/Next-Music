@@ -60,10 +60,10 @@ export default function StoreOrder() {
       <hr className="custom-hr" />
       {/* 活動dropdown */}
       <div className="row">
-        <div className="col-12 col-lg-5 py-3 d-flex flex-row">
+        <div className="col-12 col-lg-6 py-3 d-flex flex-row">
           <div className="col-6 text-center">
             <label htmlFor="activity" className="chb-h6 flex-fill text-center">
-              <span className="chb-h5">訂單狀態：</span>
+              <span className="chb-h5">訂單排序：</span>
             </label>
           </div>
           <div className="col-6">
@@ -74,13 +74,10 @@ export default function StoreOrder() {
               className="align-item-center h-100 w-100"
             >
               <option value="0" className="text-center">
-                - - 全部 - -
+                時間由近到遠
               </option>
               <option value="1" className="text-center">
-                - - 未完成 - -
-              </option>
-              <option value="2" className="text-center">
-                - - 已完成 - -
+                時間由遠到近
               </option>
             </select>
           </div>
@@ -98,6 +95,7 @@ export default function StoreOrder() {
                   firstProductName={v.firstProductName}
                   totalPrice={v.totalPrice}
                   totalCount={v.totalCount}
+                  created_at={v.created_at}
                 />
               )
             })
@@ -110,6 +108,7 @@ export default function StoreOrder() {
                   firstProductName={v.firstProductName}
                   totalPrice={v.totalPrice}
                   totalCount={v.totalCount}
+                  created_at={v.created_at}
                 />
               )
             })}
