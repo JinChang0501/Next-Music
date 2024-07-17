@@ -11,6 +11,14 @@
   border: none;
 }
 
+.show {
+  opacity: 1;
+}
+
+.hide {
+  opacity: 0;
+}
+
 .close-btn .bi-x-circle-fill {
   font-size: 24px; /* 根据需要调整图标大小 */
   color: #ff0000; /* 根据需要调整颜色 */

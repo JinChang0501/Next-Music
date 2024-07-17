@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './collection-card.module.scss'
 import { BsFillXCircleFill } from 'react-icons/bs'
 import Link from 'next/link'
@@ -10,11 +10,20 @@ export default function CollectionCard({
   actClass = '',
   activity_id = '',
 }) {
+  const [ishover, setIsHover] = useState(false)
   return (
     <>
-      <div className={styles['collection-card']}>
+      <div
+        className={styles['collection-card']}
+        onMouseEnter={() => setIsHover(true)}
+        onMouseLeave={() => setIsHover(false)}
+      >
         <div className="card">
-          <button className={styles['close-btn']}>
+          <button
+            className={`${styles['close-btn']} ${
+              ishover ? styles['show'] : styles['hide']
+            }`}
+          >
             <BsFillXCircleFill className="chr-h5" />
           </button>
           <img
