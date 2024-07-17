@@ -153,10 +153,10 @@ export default function Profile() {
             )}
             <div
               className={`text-center chb-h7 mt-3 ${
-                isDisable ? 'text-black20' : 'text-purple1'
+                isDisable ? 'text-black40' : 'text-purple1'
               }`}
             >
-              點按頭像可以上傳頭貼
+              {isDisable ? '點擊編輯即可上傳頭像' : '現在可以上傳頭像囉!'}
             </div>
           </div>
           <div className="col-12 col-md-7 mx-auto">
