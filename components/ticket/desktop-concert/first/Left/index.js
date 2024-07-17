@@ -2,13 +2,11 @@ import React, { useState, useRef, useEffect } from 'react'
 import Mask from '@/components/ticket/mask'
 import TicketLimit from './ticketLimit'
 import TicketArea from './ticketArea'
-import ticketSeatData from '@/data/ticket/desktop-concert/first/ticketSeat'
 import SelectTicketBlock from './selectTicketBlock'
 import Zoom from './zoom'
 import Sold from './sold'
 import Minimap from './minimap'
 import { BsCheck } from 'react-icons/bs'
-// import { GET_TICKET } from '@/configs/api-path'
 
 export default function Left({
   width = '100%',
@@ -17,6 +15,8 @@ export default function Left({
   updateSelectedSeats,
   selectedSeats,
   className,
+  tickets,
+  onSeatClick,
 }) {
   const [hoveredCircle, setHoveredCircle] = useState(null)
   const [showSelectTicketBlock, setShowSelectTicketBlock] = useState(false)
@@ -26,40 +26,30 @@ export default function Left({
   const [isFirstClick, setIsFirstClick] = useState(true)
   const [colorBarBackground, setColorBarBackground] = useState('transparent')
   const [showMaskAndLimit, setShowMaskAndLimit] = useState(false)
-  // const [ticketData, setTicketData] = useState([])
-
-  // useEffect(() => {
-  //   const fetchTicketData = async () => {
-  //     try {
-  //       const response = await fetch(GET_TICKET)
-  //       const result = await response.json()
-  //       if (result.success) {
-  //         setTicketData(result.rows)
-  //       } else {
-  //         console.error('Failed to fetch ticket data:', result.error)
-  //       }
-  //     } catch (error) {
-  //       console.error('Error fetching ticket data:', error)
-  //     }
-  //   }
-
-  //   fetchTicketData()
-  // })
+  const [seatMap, setSeatMap] = useState([])
+  const [selectedSeatNumbers, setSelectedSeatNumbers] = useState([])
+  const [seatNumber, setSeatNumber] = useState('')
+  useEffect(() => {
+    if (tickets) {
+      setSeatMap(tickets)
+    }
+  }, [tickets])
 
   useEffect(() => {
     onSeatsChange(selectedSeats)
     updateSelectedSeats(selectedSeats)
   }, [selectedSeats, onSeatsChange, updateSelectedSeats])
 
-  const handleMouseEnterCircle = (event, index) => {
+  const handleMouseEnterCircle = (event, seatNumber) => {
     const circleRect = event.target.getBoundingClientRect()
-    setHoveredCircle(index)
+    setSeatNumber(seatNumber)
+    setHoveredCircle(seatNumber)
     setBlockPosition({
       top: circleRect.top - 125,
       left: circleRect.left - circleRect.width / 2 - 70,
     })
 
-    const selectedId = index
+    const selectedId = seatNumber
     const A = selectedId >= 1 && selectedId <= 15
     const B = selectedId >= 16 && selectedId <= 39
     const C = selectedId >= 40 && selectedId <= 63
@@ -94,20 +84,15 @@ export default function Left({
     )
   }
 
-  const handleSeatClick = (event, seat) => {
-    const isSelected = selectedSeats.some(
-      (selectedSeat) => selectedSeat.id === seat.id
-    )
-    if (isSelected) {
-      updateSelectedSeats(
-        selectedSeats.filter((selectedSeat) => selectedSeat.id !== seat.id)
+  const handleSeatClick = (event, seatNumber) => {
+    event.stopPropagation()
+    onSeatClick(seatNumber)
+    if (selectedSeatNumbers.includes(seatNumber)) {
+      setSelectedSeatNumbers(
+        selectedSeatNumbers.filter((num) => num !== seatNumber)
       )
     } else {
-      if (selectedSeats.length < 6) {
-        updateSelectedSeats([...selectedSeats, seat])
-      } else {
-        setShowMaskAndLimit(true)
-      }
+      setSelectedSeatNumbers([...selectedSeatNumbers, seatNumber])
     }
   }
 
@@ -311,9 +296,7 @@ export default function Left({
           <TicketLimit onDelete={handleCloseTicketLimit} />
         </>
       )}
-
       <SelectTicketBlock
-        selectedSeats={selectedSeats}
         colorBarBackground={colorBarBackground}
         show={showSelectTicketBlock}
         style={{
@@ -321,6 +304,8 @@ export default function Left({
           left: blockPosition.left,
           userSelect: 'none',
         }}
+        seatNumber={seatNumber}
+        tickets={tickets}
       />
       <div
         className={`${className} col-xxl-9 col-xl-8 col-lg-7 col-md-6 p-0`}
@@ -371,8 +356,11 @@ export default function Left({
               cursor: 'pointer',
             }}
           >
-            {ticketSeatData.map((v) => (
-              <g key={v.id} onClick={(event) => handleSeatClick(event, v)}>
+            {seatMap.map((v) => (
+              <g
+                key={v.tid}
+                onClick={(event) => handleSeatClick(event, seatNumber)}
+              >
                 <circle
                   cx={v.cx}
                   cy={v.cy}
@@ -380,20 +368,22 @@ export default function Left({
                   transform={v.transform}
                   style={{ transition: 'opacity 0.5s, fill 0.5s' }}
                   fill={
-                    selectedSeats.some((seat) => seat.id === v.id)
+                    selectedSeatNumbers.includes(v.seat_number)
                       ? '#03663c'
-                      : hoveredCircle === v.id
+                      : hoveredCircle === v.seat_number
                       ? '#1F3FA2'
                       : '#2A55D9'
                   }
-                  onMouseEnter={(event) => handleMouseEnterCircle(event, v.id)}
+                  onMouseEnter={(event) =>
+                    handleMouseEnterCircle(event, v.seat_number)
+                  }
                   onMouseLeave={handleMouseLeaveCircle}
                   onMouseMove={handleMouseMove}
                 />
-                {selectedSeats.some((seat) => seat.id === v.id) && (
+                {selectedSeatNumbers.includes(v.seat_number) && (
                   <foreignObject
                     onMouseEnter={(event) =>
-                      handleMouseEnterCircle(event, v.id)
+                      handleMouseEnterCircle(event, v.seat_number)
                     }
                     onMouseLeave={handleMouseLeaveCircle}
                     onMouseMove={handleMouseMove}

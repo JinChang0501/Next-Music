@@ -22,14 +22,14 @@
   width: 0px;
   height: 0px;
   position: absolute;
-  top: 107px;
+  top: 102px;
   left: 86px;
   border: 13px solid #000;
   border-style: solid dashed dashed;
   border-color: white transparent transparent;
 
   @media (max-width: 390px) {
-    top: 92px;
+    top: 88px;
     left: 65px;
   }
 }
@@ -49,20 +49,13 @@
   width: 100%;
   padding: 15px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.contentTop,
-.contentBottom {
-  width: 100%;
-  display: flex;
   justify-content: space-between;
   align-items: center;
-  color: black;
 }
 
-.contentTop {
-  margin-bottom: 15px;
+.flexEnd {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }

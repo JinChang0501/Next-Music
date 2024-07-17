@@ -11,6 +11,8 @@ import Left from '@/components/ticket/desktop-concert/first/Left'
 import Right from '@/components/ticket/desktop-concert/first/Right'
 import RightSecond from '@/components/ticket/desktop-concert/first/rightSecond'
 import style from '@/styles/ticket/concert/first.module.scss'
+import { GET_TICKET } from '@/configs/api-path'
+import { useRouter } from 'next/router'
 
 export default function SelectSeat() {
   // #region 動態獲取 breadcrumb、progressBar 高度，返回給 content
@@ -66,6 +68,40 @@ export default function SelectSeat() {
 
   // #endregion 動態獲取 breadcrumb、progressBar 高度，返回給 content
 
+  const router = useRouter()
+  const { actid } = router.query
+  const [tickets, setTickets] = useState()
+
+  useEffect(() => {
+    if (actid) fetchTickets(actid)
+  }, [actid])
+
+  const fetchTickets = async (actid) => {
+    const url = `${GET_TICKET}/activity/${actid}`
+    try {
+      const res = await fetch(url, {
+        credentials: 'include',
+      })
+      const resData = await res.json()
+      if (resData.success) {
+        setTickets(resData.rows)
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const handleSeatClick = (seatNumber) => {
+    setSelectedSeats((prevSelectedSeats) => {
+      const isSelected = prevSelectedSeats.includes(seatNumber)
+      if (isSelected) {
+        return prevSelectedSeats.filter((seat) => seat !== seatNumber)
+      } else {
+        return [...prevSelectedSeats, seatNumber]
+      }
+    })
+  }
+
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
     { label: '演出活動', href: '/activity' },
@@ -99,7 +135,6 @@ export default function SelectSeat() {
 
   useEffect(() => {
     let timeoutId
-
     if (selectedSeats.length > 0 && selectedSeats.length <= 6) {
       setIsRightVisible(false)
       setIsRightSecondVisible(true)
@@ -109,8 +144,6 @@ export default function SelectSeat() {
         setIsRightVisible(true)
       }, 400)
     }
-
-    // 清理計時器
     return () => {
       clearTimeout(timeoutId)
     }
@@ -202,6 +235,8 @@ export default function SelectSeat() {
           onSeatsChange={handleSeatsChange}
           updateSelectedSeats={setSelectedSeats}
           selectedSeats={selectedSeats}
+          tickets={tickets}
+          onSeatClick={handleSeatClick}
         />
         <div
           className="col-xxl-3 col-xl-4 col-lg-5 col-md-6 p-0"
@@ -225,6 +260,7 @@ export default function SelectSeat() {
             selectedSeats={selectedSeats}
             onDeleteSeat={handleDeleteSeat}
             showDeleteAllSeat={toggleShowDeleteAllSeat}
+            tickets={tickets}
           />
         </div>
       </div>

@@ -11,8 +11,17 @@ export default function RightSecond({
   selectedSeats,
   onDeleteSeat,
   showDeleteAllSeat,
+  tickets,
 }) {
   const router = useRouter()
+
+  if (!tickets || tickets.length === 0) {
+    return null
+  }
+
+  const selectedTicket = tickets.find(
+    (ticket) => ticket.seat_number === selectedSeats
+  )
 
   const handleNext = () => {
     router.push('/ticket/concert/second')
@@ -29,9 +38,14 @@ export default function RightSecond({
       </div>
 
       {/* ticketSeatBlock */}
-      {selectedSeats.length > 0 &&
-        selectedSeats.map((seat) => (
-          <TicketSeatBlock key={seat.id} seat={seat} onDelete={onDeleteSeat} />
+      {selectedTicket &&
+        selectedTicket.map((seat) => (
+          <TicketSeatBlock
+            key={seat.id}
+            seat={selectedSeats}
+            onDelete={onDeleteSeat}
+            tickets={tickets}
+          />
         ))}
 
       {/* priceTotal */}

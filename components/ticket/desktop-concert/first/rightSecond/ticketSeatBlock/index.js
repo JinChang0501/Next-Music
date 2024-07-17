@@ -2,7 +2,13 @@ import React from 'react'
 import style from './ticketSeatBlock.module.scss'
 import { BsX } from 'react-icons/bs'
 
-export default function TicketSeatBlock({ seat, onDelete }) {
+export default function TicketSeatBlock({ seat, onDelete, tickets }) {
+  if (!tickets || tickets.length === 0) {
+    return null
+  }
+
+  const selectedTicket = tickets.find((ticket) => ticket.seat_number === seat)
+
   return (
     <>
       <div className={`${style.ticketSeatBlock} chb-h7 position-relative`}>
@@ -13,7 +19,13 @@ export default function TicketSeatBlock({ seat, onDelete }) {
         </button>
         <div className={`${style.ticketSeatBlockLeft}`}>
           <div className={`${style.ticketSeatSquare} bg-A`}></div>
-          <div>A 區 • B 排 • 09 號</div>
+          {selectedTicket.map((v) => (
+            <div key={v.id}>
+              {selectedTicket ? selectedTicket.seat_area : '-'} 區 •
+              {selectedTicket ? selectedTicket.seat_row : '-'} 排 •
+              {selectedTicket ? selectedTicket.seat_number : '-'} 號
+            </div>
+          ))}
         </div>
         <div>$ 8600</div>
       </div>
