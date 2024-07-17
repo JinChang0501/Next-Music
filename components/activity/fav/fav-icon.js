@@ -9,9 +9,8 @@ import bookmarkIcon from '@/assets/activity/bookmark.svg'
 // import { useAuth } from '@/hooks/use-auth'
 // import { useLogin } from '@/hooks/use-login'
 
-export default function FavIcon({ iconWidth, iconHeight  , handleToggleFav, eventId }) {
+export default function FavIcon({ iconWidth, iconHeight, isFavorite , handleToggleFav, eventId }) {
   const [ over, setOver ] = useState(false)
-  const isFavorite = true
   return (
     <>
       <Image 
