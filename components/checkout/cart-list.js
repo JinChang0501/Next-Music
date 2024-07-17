@@ -13,6 +13,7 @@ import Product from './product-list'
 export default function CartList() {
   const cartKey = "product-cart"
   const [cart, setCart] = useState(data)
+  // const { calcTotalQty, calcTotalPrice } = useCart()
   //
   const getCartFromStorage = () => {
     const oriData = localStorage.getItem(cartKey)
@@ -48,9 +49,6 @@ export default function CartList() {
   useEffect(() => {
     setCart(getCartFromStorage)
   }, [])
-  // 用陣列迭代方法reduce來計算總金額/總數量
-  //  const totalQty = cart.reduce((acc, p) => acc + p.quantity, 0)
-  //  const totalPrice = cart.reduce((acc, p) => acc + p.quantity * p.price, 0)
   return (
     <>
       {/* 一項購物列表 start */}
@@ -116,7 +114,7 @@ export default function CartList() {
       </div>
       {/* 一項購物列表 end */}
       {/* <div>
-        總數量: {totalQty} / 總金額: {totalPrice}
+        總數量: {calcTotalQty} / 總金額: {calcTotalPrice}
       </div> */}
     </>
   )
