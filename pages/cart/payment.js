@@ -13,13 +13,15 @@ import Link from 'next/link'
 import { useCart } from '@/hooks/product/use-cart'
 
 export default function Payment() {
-  const[products, setProducts] = useState()
-  const { totalPrice, totalQty } = useCart()
+   const [cart, setCart] = useState([])
+   const { totalPrice, totalQty } = useCart()
+ 
   const breadcrumbsURL = [
     { label: '周邊商城', href: '/product' },
     { label: '商品資訊', href: '/product[pid]' },
     { label: '購物車', href: '/cart' },
   ]
+  
   return (
     <>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
@@ -29,12 +31,45 @@ export default function Payment() {
       <div className={`col-12 col-md-8 cart-area ${styles['my-20']} `}>
           <p className={`chb-h5 ${styles['ml-20']}`}>購買的商品 </p>
          {/* 購物列表 start */}
-         <CartList />
-          {/* 購物列表 end */}
-          <hr />
-          <div className={` ${styles['mt-40']} ${styles['w-1061']} ${styles['space-between']} ${styles['ml-40']}`}>
-          <div>總數量: {totalQty} / 總金額: {totalPrice}</div>
+         <div className="card mb-3 border-0 cart-card">
+            {cart.map((p) => (
+              <div key={p.id} className="row g-0">
+                <div className={`col-md-3 ${styles['columnCenter']}`}>
+                  <img
+                    src={`/images/product/list/${p.picture}`}
+                    className={`img-fluid rounded-start ${styles['wh-200']} `}
+                    alt="..."
+                  />
+                </div>
+                <div className="col-md-7">
+                  <div className="card-body">
+                    <p className="card-title card-text d-flex justify-content-between align-items-center chb-h6">
+                      {p.activity} {p.name}
+                    </p>
+                    <p className={`card-text chb-h6 ${styles['mt-40']}`}>
+                      單價: NT$ {p.price}
+                    </p>
+                    <div className="row g-3 align-items-center">
+                      <div className="col-auto">
+                        <p className="col-form-label chb-h6">數量: </p>
+                        
+                      </div>
+                    </div>
+                    <div className={`cartTotal ${styles['mt-28']}`}>
+                      <p className="card-text chb-h6">
+                        小計: NT$ {p.quantity * p.price}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+            ))}
           </div>
+          <hr />
+          <div>總金額: NT$ {totalPrice}</div>
+          {/* 購物列表 end */}
+         
         </div>
         <div className={`second ${styles['mt-40']} ${styles['w-800']}`}>
           <p className="chb-h5">請確認收貨人基本資訊</p>

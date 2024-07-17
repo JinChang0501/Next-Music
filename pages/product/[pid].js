@@ -10,35 +10,13 @@ import SwiperTop from '@/components/product/swiper-top';
 import CardProduct2 from '@/components/product/card-product2';
 
 export default function Detail() {
-  const [products, setProducts] = useState([]);
+  const [product, setProduct] = useState(null);
   const router = useRouter();
-
-  const addToCart = (pid) => {
-    const cartKey = "product-cart";
-    const item = products.find((p) => p.id === pid);
-    if (!item) return; 
-    
-    const oriData = localStorage.getItem(cartKey);
-    let cartData = [];
-    try {
-      cartData = JSON.parse(oriData);
-      if (!Array.isArray(cartData)) {
-        cartData = [];
-      }
-    } catch (ex) {
-      console.error('Error parsing cart data', ex);
-    }
-    const cartItem = cartData.find((p) => p.id === pid);
-    if (cartItem) return; 
-    const { id, picture, activity, name, price } = item;
-    cartData.push({ id, picture, activity, name, price, quantity: 1 });
-    localStorage.setItem(cartKey, JSON.stringify(cartData));
-  };
 
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
     { label: '周邊商城', href: '/product' },
-    { label: '商品資訊', href: `/product/${router.query.pid}` }, 
+    { label: '商品資訊', href: `/product/${router.query.pid}` },
   ];
 
   useEffect(() => {
@@ -51,29 +29,56 @@ export default function Detail() {
           return res.json();
         })
         .then((data) => {
-          console.log('server data', data);
           const { pid } = router.query;
-          if (pid) {
-            
-            const product = data.find((p) => p.id === Number(pid));
-            if (product) {
-              setProducts(product);
-            } else {
-              console.warn(`Product with id ${pid} not found`);
-             
-            }
+          const product = data.find((p) => p.id === Number(pid));
+          if (product) {
+            setProduct(product);
           } else {
-            
-            console.warn('pid parameter not found in router.query');
+            console.warn(`Product with id ${pid} not found`);
           }
         })
         .catch((error) => {
           console.error('Error fetching products', error);
-          
         });
     }
   }, [router.isReady, router.query.pid]);
-  
+
+  const addToCart = () => {
+    if (!product) return; // Ensure product data is available
+
+    const cartItem = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      quantity: 1, // You can adjust this based on user input or default
+    };
+
+    let cart = [];
+    const cartData = localStorage.getItem('cart');
+    if (cartData) {
+      cart = JSON.parse(cartData);
+    }
+
+    // Check if the item already exists in the cart
+    const existingItem = cart.find((item) => item.id === cartItem.id);
+    if (existingItem) {
+      // Update quantity if item already exists
+      existingItem.quantity += 1;
+    } else {
+      // Add new item to cart
+      cart.push(cartItem);
+    }
+
+    // Save updated cart back to localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    // Optionally, you can provide feedback to the user that the product has been added to cart
+    alert(`本商品已成功加入購物車`);
+  };
+
+  if (!product) {
+    return <p>Loading...</p>; // Placeholder for when product is loading
+  }
 
   return (
     <>
@@ -86,12 +91,12 @@ export default function Detail() {
           </div>
         </div>
         <div className="col-sm-3">
-          <p className={`text-white chb-h4 ${styles['mt-80']}`}>{products.name}</p>
-          <p className={`text-white chb-h4 ${styles['mt-80']}`}>{products.activity}</p>
-          <p className={`text-purple2 chb-h5 ${styles['mt-80']}`}>NT$ {products.price}</p>
+          <p className={`text-white chb-h4 ${styles['mt-80']}`}>{product.name}</p>
+          <p className={`text-white chb-h4 ${styles['mt-80']}`}>{product.activity}</p>
+          <p className={`text-purple2 chb-h5 ${styles['mt-80']}`}>NT$ {product.price}</p>
           <p className={`text-purple2 chb-h5 ${styles['mt-40']} ${styles['mb-60']}`}>尺寸: F</p>
           <div className={`row row-cols-md-2 ${styles['space-between']}`}>
-            <DesktopBlackNoIconBtnBlack text="加入購物車" onClick={() => addToCart(products.pid)} />
+            <DesktopBlackNoIconBtnBlack text="加入購物車" onClick={addToCart} />
             {/* <Link href={`/cart/payment`}><DesktopBlackNoIconBtnPurple text="立即購買" /></Link> */}
           </div>
         </div>
@@ -99,7 +104,7 @@ export default function Detail() {
       <div className={`row ${styles['mx-160']} ${styles['mt-80']}`}>
         <div className="col-sm-12">
           <p className={`text-purple1 chb-h4 ${styles['mt-80']} ${styles['borderPurple3']}`}>商品介紹</p>
-          <p className={`text-purple3 chb-h6 ${styles['mt-40']}`}>{products.intro}</p>
+          <p className={`text-purple3 chb-h6 ${styles['mt-40']}`}>{product.intro}</p>
         </div>
       </div>
       <div className={`row ${styles['mx-160']} ${styles['mt-80']}`}>
