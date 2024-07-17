@@ -7,9 +7,9 @@ import useSWR from 'swr'
 //   return await axiosInstance.get(`/ticket-order/${id}`)
 // }
 
-export const getStoreOrder = async () => {
+export const getStoreOrder = async (sortBy) => {
   try {
-    const res = await axiosInstance.get(`/store-order`)
+    const res = await axiosInstance.get(`/store-order/${sortBy}`)
     console.log('我是service的res.data')
     console.log(res.data)
     return res.data // 返回從後端獲取的data

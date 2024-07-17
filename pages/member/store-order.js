@@ -3,7 +3,7 @@ import OrderCard from '@/components/member/desktop-layout/order-card'
 import OrderCardMobile from '@/components/member/mobile-layout/order-card-mobile'
 import toast, { Toaster } from 'react-hot-toast'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { getStoreOrder } from '@/services/store-order'
 import { useAuth } from '@/hooks/use-auth'
 
@@ -13,29 +13,41 @@ export default function StoreOrder() {
   const [isDesktop, setIsDesktop] = useState(true)
   const { auth } = useAuth()
   const [orderData, setOrderData] = useState([])
+  const [sortBy, setSortBy] = useState('')
 
-  const getUserData = async () => {
-    const res = await getStoreOrder()
-    console.log('以下是response data')
-    console.log(res)
-    console.log('以下是res.data.class')
-    console.log(res.data)
-
-    if (res.status === 'success') {
-      console.log('res.data.result')
-
-      console.log(res.data.result)
-      //const tickets = res.data.result //這一包是物件陣列[{},{},{}]
-      // const ticketsCon = res.data.result
-
-      // const ticketsFes = festivalData
-      setOrderData(res.data.result) //這一包是物件陣列[{},{},{}]
-
-      toast.success('會員購物紀錄載入成功')
-    } else {
-      toast.error(`會員購物紀錄載入失敗`)
-    }
+  const getSort = (e) => {
+    setSortBy(e.target.value)
   }
+  useEffect(() => {
+    console.log(sortBy)
+  }, [sortBy])
+
+  const getUserData = useCallback(async () => {
+    try {
+      const res = await getStoreOrder(sortBy)
+      console.log('以下是response data')
+      console.log(res)
+      console.log('以下是res.data')
+      console.log(res.data)
+
+      if (res.status === 'success') {
+        console.log('以下是res.data.result')
+        console.log(res.data.result)
+        setOrderData(res.data.result) //這一包是物件陣列[{},{},{}]
+        toast.success('會員購物紀錄載入成功')
+      } else {
+        toast.error('會員購物紀錄載入失敗')
+      }
+    } catch (error) {
+      console.error('Error fetching order data:', error)
+      toast.error('會員購物紀錄載入失敗')
+    }
+  }, [sortBy, setOrderData])
+
+  useEffect(() => {
+    console.log(sortBy)
+    getUserData()
+  }, [sortBy, getUserData])
 
   useEffect(() => {
     const handleResize = () => {
@@ -51,7 +63,7 @@ export default function StoreOrder() {
   // auth載入完成後向資料庫要會員資料
   useEffect(() => {
     if (auth.isAuth) {
-      getUserData() // 将用户 ID 传递给 getUserById 函数
+      //getUserData() // 将用户 ID 传递给 getUserById 函数
     }
   }, [auth])
   return (
@@ -72,11 +84,12 @@ export default function StoreOrder() {
               id="activity"
               name="activity"
               className="align-item-center h-100 w-100"
+              onChange={getSort}
             >
-              <option value="0" className="text-center">
+              <option value="desc" className="text-center">
                 時間由近到遠
               </option>
-              <option value="1" className="text-center">
+              <option value="asc" className="text-center">
                 時間由遠到近
               </option>
             </select>
