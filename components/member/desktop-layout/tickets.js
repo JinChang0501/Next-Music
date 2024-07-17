@@ -5,6 +5,7 @@ import { BsFillTicketPerforatedFill } from 'react-icons/bs'
 import { BsFillGeoAltFill } from 'react-icons/bs'
 import Link from 'next/link'
 import moment from 'moment-timezone'
+import DesktopWhiteNoIconBtnPurple from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnPurple'
 
 export default function Tickets({
   order_num = '',
@@ -64,7 +65,11 @@ export default function Tickets({
         <td className="align-middle">{amount}</td>
         <td className="align-middle">
           <Link href={`/member/ticket-detail/${order_num}`}>
-            <button className="btn btn-primary">查看明細</button>
+            {/* <button className="btn btn-primary">查看明細</button> */}
+            <DesktopWhiteNoIconBtnPurple
+              className="px-1 px-md-4 py-2 mx-auto"
+              text="查看明細"
+            />
           </Link>
         </td>
       </tr>
