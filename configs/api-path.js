@@ -27,3 +27,7 @@ export const GET_PRODUCTS = `${API_SERVER}/api/products/`
 
 // // 登入, 表單資料 {email, password}
 // export const JWT_LOGIN_POST = `${API_SERVER}/login-jwt`
+
+// ticket
+
+export const GET_TICKET = `${API_SERVER}/api/ticket`

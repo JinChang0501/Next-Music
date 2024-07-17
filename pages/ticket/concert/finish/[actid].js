@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react'
 import WhiteLayout from '@/components/layout/ticket-layout/desktopLayout/whiteLayout'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import ProgressBar from '@/components/ticket/progressBar'
-import Order from '@/components/ticket/desktop-music-festival/order'
-import MusicFestivalTicket from '@/components/ticket/desktop-music-festival/musicFestivalTicket'
-import Button from '@/components/ticket/desktop-music-festival/button'
-import PhoneOrder from '@/components/ticket/phone-music-festival/phoneOrder'
-import PhoneMusicFestivalTicket from '@/components/ticket/phone-music-festival/phoneMusicFestivalTicket'
-import PhoneButton from '@/components/ticket/phone-music-festival/phoneButton'
-import style from '@/styles/ticket/musicFestival/third.module.scss'
+import Order from '@/components/ticket/desktop-concert/third/order'
+import ConcertTicket from '@/components/ticket/desktop-concert/third/concertTicket'
+import Button from '@/components/ticket/desktop-concert/third/button'
+import PhoneOrder from '@/components/ticket/phone-concert/phoneOrder'
+import PhoneConcertTicket from '@/components/ticket/phone-concert/phoneConcertTicket'
+import PhoneButton from '@/components/ticket/phone-concert/phoneButton'
+import style from '@/styles/ticket/concert/third.module.scss'
 
-export default function Third() {
+export default function Finish() {
   const [isMobile, setIsMobile] = useState(false)
 
   const breadcrumbsURL = [
@@ -64,12 +64,8 @@ export default function Third() {
             >
               <div className="accordion-body">
                 <div className={`${style.orderTicketBody}`}>
-                  {/* MusicFestivalTicket */}
-                  {isMobile ? (
-                    <PhoneMusicFestivalTicket />
-                  ) : (
-                    <MusicFestivalTicket />
-                  )}
+                  {/* ConcertTicket */}
+                  {isMobile ? <PhoneConcertTicket /> : <ConcertTicket />}
                 </div>
               </div>
             </div>
@@ -83,6 +79,6 @@ export default function Third() {
   )
 }
 
-Third.getLayout = function getLayout(page) {
+Finish.getLayout = function getLayout(page) {
   return <WhiteLayout title="finish">{page}</WhiteLayout>
 }

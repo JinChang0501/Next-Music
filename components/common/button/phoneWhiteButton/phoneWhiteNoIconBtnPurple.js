@@ -21,6 +21,7 @@ export default function PhoneWhiteNoIconBtnPurple({
           display: flex;
           justify-content: center;
           align-items: center;
+          transition: all 0.5s ease;
         }
         .PhoneWhiteNoIconBtnPurple:hover {
           background-color: #dbd7ff;

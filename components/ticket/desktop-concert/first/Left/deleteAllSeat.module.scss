@@ -1,0 +1,86 @@
+.deleteAllSeat {
+  width: 500px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  border-radius: 5px;
+  z-index: 2000;
+}
+
+.deleteAllSeatTitle {
+  width: 100%;
+  height: 70px;
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.deleteAllSeatText {
+  width: 100%;
+  padding:20px 30px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  line-height: 40px;
+  letter-spacing: 2px;
+}
+
+.deleteAllSeatIcon {
+  width: 45px;
+  height: 45px;
+  color: red;
+}
+
+.deleteButton {
+  width: 100%;
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.deleteButton > div:not(:last-child) {
+  margin-right: 120px;
+}
+
+.confirmButton {
+  padding: 12px 20px;
+  margin-right: 150px;
+  color: white;
+  background-color: salmon;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s ease;
+}
+
+.confirmButton:hover {
+  background-color: red;
+  color: white;
+}
+
+.cancelButton {
+  padding: 12px 20px;
+  color: white;
+  background-color: #685beb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s ease;
+}
+
+.cancelButton:hover {
+  background-color: #dbd7ff;
+  color: #685beb;
+}

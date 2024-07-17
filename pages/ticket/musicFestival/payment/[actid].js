@@ -13,7 +13,7 @@ import DesktopWhiteNoIconBtnPurple from '@/components/common/button/desktopWhite
 import PhoneWhiteNoIconBtnPurple from '@/components/common/button/phoneWhiteButton/phoneWhiteNoIconBtnPurple'
 import { useRouter } from 'next/router'
 
-export default function Second() {
+export default function Payment() {
   const [isMobile, setIsMobile] = useState(false)
 
   const router = useRouter()
@@ -107,6 +107,6 @@ export default function Second() {
   )
 }
 
-Second.getLayout = function getLayout(page) {
+Payment.getLayout = function getLayout(page) {
   return <WhiteLayout title="payment">{page}</WhiteLayout>
 }

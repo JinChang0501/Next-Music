@@ -22,6 +22,7 @@ export default function DesktopBlackNoIconBtnBlack({
           display: flex;
           justify-content: center;
           align-items: center;
+          transition: all 0.5s ease;
         }
         .DesktopBlackNoIconBtnBlack:hover {
           background-color: white;

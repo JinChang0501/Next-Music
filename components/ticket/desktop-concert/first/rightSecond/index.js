@@ -10,7 +10,7 @@ import { BsChevronLeft } from 'react-icons/bs'
 export default function RightSecond({
   selectedSeats,
   onDeleteSeat,
-  onDeleteAllSeat,
+  showDeleteAllSeat,
 }) {
   const router = useRouter()
 
@@ -22,7 +22,7 @@ export default function RightSecond({
     <>
       {/* rightTitle */}
       <div className={`${style.rightTitle}`}>
-        <button className="bg-white" onClick={onDeleteAllSeat}>
+        <button className="bg-white" onClick={showDeleteAllSeat}>
           <BsChevronLeft className={`${style.rightTitleIcon} text-black30`} />
         </button>
         <div className="chb-h6 text-black40">返回選擇區域</div>

@@ -33,6 +33,7 @@ export default function PhoneBlackIconBtnPurple({
           display: flex;
           justify-content: center;
           align-items: center;
+          transition: all 0.5s ease;
         }
         .PhoneBlackIconBtnPurple:hover {
           background-color: #dbd7ff;
