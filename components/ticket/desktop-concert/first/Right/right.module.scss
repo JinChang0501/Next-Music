@@ -14,3 +14,19 @@
 }
 
 // #endregion right
+
+// #region rightTitle
+
+.rightTitle {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.rightTitle > div:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+// #endregion rightTitle

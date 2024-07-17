@@ -27,7 +27,6 @@ export default function Left({
   const [colorBarBackground, setColorBarBackground] = useState('transparent')
   const [showMaskAndLimit, setShowMaskAndLimit] = useState(false)
   const [seatMap, setSeatMap] = useState([])
-  const [selectedSeatNumbers, setSelectedSeatNumbers] = useState([])
   const [seatNumber, setSeatNumber] = useState('')
   useEffect(() => {
     if (tickets) {
@@ -49,19 +48,15 @@ export default function Left({
       left: circleRect.left - circleRect.width / 2 - 70,
     })
 
-    const selectedId = seatNumber
-    const A = selectedId >= 1 && selectedId <= 15
-    const B = selectedId >= 16 && selectedId <= 39
-    const C = selectedId >= 40 && selectedId <= 63
-    const D = selectedId >= 64 && selectedId <= 87
+    const seat = seatMap.find((seat) => seat.seat_number === seatNumber)
 
-    if (A) {
+    if (seat.seat_area === 'A') {
       setColorBarBackground('#FF9900')
-    } else if (B) {
+    } else if (seat.seat_area === 'B') {
       setColorBarBackground('#00A3FF')
-    } else if (C) {
+    } else if (seat.seat_area === 'C') {
       setColorBarBackground('#F12222')
-    } else if (D) {
+    } else if (seat.seat_area === 'D') {
       setColorBarBackground('#9E00FF')
     } else {
       setColorBarBackground('#3EAD2C')
@@ -86,14 +81,18 @@ export default function Left({
 
   const handleSeatClick = (event, seatNumber) => {
     event.stopPropagation()
-    onSeatClick(seatNumber)
-    if (selectedSeatNumbers.includes(seatNumber)) {
-      setSelectedSeatNumbers(
-        selectedSeatNumbers.filter((num) => num !== seatNumber)
-      )
-    } else {
-      setSelectedSeatNumbers([...selectedSeatNumbers, seatNumber])
+    if (
+      selectedSeats.length >= 6 &&
+      !selectedSeats.some((seat) => seat.seat_number === seatNumber)
+    ) {
+      setShowMaskAndLimit(true)
+      return
     }
+    onSeatClick(seatNumber)
+  }
+
+  const isSeatSelected = (seatNumber) => {
+    return selectedSeats.some((seat) => seat.seat_number === seatNumber)
   }
 
   const handleCloseTicketLimit = () => {
@@ -359,7 +358,7 @@ export default function Left({
             {seatMap.map((v) => (
               <g
                 key={v.tid}
-                onClick={(event) => handleSeatClick(event, seatNumber)}
+                onClick={(event) => handleSeatClick(event, v.seat_number)}
               >
                 <circle
                   cx={v.cx}
@@ -368,7 +367,7 @@ export default function Left({
                   transform={v.transform}
                   style={{ transition: 'opacity 0.5s, fill 0.5s' }}
                   fill={
-                    selectedSeatNumbers.includes(v.seat_number)
+                    isSeatSelected(v.seat_number)
                       ? '#03663c'
                       : hoveredCircle === v.seat_number
                       ? '#1F3FA2'
@@ -380,7 +379,7 @@ export default function Left({
                   onMouseLeave={handleMouseLeaveCircle}
                   onMouseMove={handleMouseMove}
                 />
-                {selectedSeatNumbers.includes(v.seat_number) && (
+                {isSeatSelected(v.seat_number) && (
                   <foreignObject
                     onMouseEnter={(event) =>
                       handleMouseEnterCircle(event, v.seat_number)
