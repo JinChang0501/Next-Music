@@ -25,6 +25,7 @@ export default function ForgetPassword({
 
   const backToLoginPage = () => {
     onClose()
+    handleWakeLogin()
   }
 
   const handleShowPassword = (e) => {
@@ -213,13 +214,13 @@ export default function ForgetPassword({
 
               {/* 再次輸入新密碼 */}
               <div className="w-100 mt-3">
-                <label htmlFor="confirmPassword">密碼:</label>
+                <label htmlFor="confirmPassword">再次輸入密碼:</label>
                 <div className="d-flex">
                   <div className="m-0 w-100">
                     <input
                       className="m-0"
                       type={showConfirmPassword ? 'text' : 'password'}
-                      placeholder="新密碼"
+                      placeholder="再次輸入新密碼"
                       id="confirmPassword"
                     />
                   </div>
@@ -245,7 +246,7 @@ export default function ForgetPassword({
                 className="mt-4"
                 onClick={handleResetPassword}
               >
-                送出
+                <div className="chb-h7">送出</div>
               </button>
             </form>
           </div>
@@ -254,8 +255,18 @@ export default function ForgetPassword({
               <div className="toggle-panel toggle-right">
                 <div className="chb-h3 mb-3">沒關係!</div>
                 <div className="chr-h6 mb-1">我們都有忘記的時候，</div>
-                <div className="chr-h6 mb-5">我們一起把它救回來吧!!</div>
-                <DesktopBlackNoIconBtnPurple onClick={backToLoginPage} />
+                <div className="chr-h6 mb-4">我們一起把它救回來吧!!</div>
+                {/* <DesktopBlackNoIconBtnPurple
+                  onClick={backToLoginPage}
+                  text="返回登入"
+                /> */}
+                <button
+                  className="hidden"
+                  onClick={backToLoginPage}
+                  id="register"
+                >
+                  返回登入
+                </button>
               </div>
             </div>
           </div>
