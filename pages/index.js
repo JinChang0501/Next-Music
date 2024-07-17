@@ -51,7 +51,7 @@ export default function Index() {
               </div>
               <div className="d-flex text-nowrap">
                 <div className="me-3">
-                <Link href={`/activity/9`}>
+                <Link href={`/Activity/9`}>
                   <DesktopWhiteNoIconBtnBlack text="活動資訊" />
                 </Link>
                 </div>
@@ -80,7 +80,7 @@ export default function Index() {
               </div>
               <div className="d-flex text-nowrap">
                 <div className="me-3">
-                <Link href={`/activity/16`}>
+                <Link href={`/Activity/16`}>
                   <DesktopWhiteNoIconBtnBlack text="活動資訊" />
                   </Link>
                 </div>

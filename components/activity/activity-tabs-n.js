@@ -1,5 +1,5 @@
 import React from 'react'
-import { useTabs } from '@/hooks/activity/useTabs'
+import { useTabs } from '@/hooks/Activity/useTabs'
 //這個檔案現在未使用
 
 export default function ActivityTabs() {

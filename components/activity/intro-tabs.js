@@ -1,4 +1,4 @@
-import { useTabs } from '@/hooks/activity/useTabs'
+import { useTabs } from '@/hooks/Activity/useTabs'
 import React from 'react'
 
 // 待修改，研究頁籤 換頁要換內容

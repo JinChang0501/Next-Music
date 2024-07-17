@@ -12,9 +12,9 @@ import { useLogin } from '@/hooks/use-login'
 
 // 內容元件
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
-import BannerA from '@/components/activity/banner-a'
-import LeftBar from '@/components/activity/left-bar'
-import ActivityCard from '@/components/activity/activity-card'
+import BannerA from '@/components/Activity/banner-a'
+import LeftBar from '@/components/Activity/left-bar'
+import ActivityCard from '@/components/Activity/activity-card'
 
 export default function Activity() {
   const router = useRouter()
@@ -52,7 +52,7 @@ export default function Activity() {
   // 麵包屑 內容定義
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
-    { label: '演出活動', href: '/activity' },
+    { label: '演出活動', href: '/Activity' },
   ]
 
   // 與伺服器作fetch獲得資料(建議寫在useEffect上面與外面比較容易維護管理)

@@ -1,5 +1,5 @@
 import React from 'react'
-import ActivityCard from '@/components/activity/activity-card'
+import ActivityCard from '@/components/Activity/activity-card'
 
 export default function TabContentConcert({ tabTargetConcert }) {
   return (

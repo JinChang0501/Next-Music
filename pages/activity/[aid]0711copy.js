@@ -5,13 +5,13 @@ import { ACT_GET_ITEM } from '@/configs/api-path'
 import { useRouter } from 'next/router'
 
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
-import MainMusicInfo from '@/components/activity/main-music-info'
-import ArtistFollowCard from '@/components/activity/artist-follow-card'
-import artistData from '@/data/activity/artist-data'
+import MainMusicInfo from '@/components/Activity/main-music-info'
+import ArtistFollowCard from '@/components/Activity/artist-follow-card'
+import artistData from '@/data/Activity/artist-data'
 import Tab from '@/components/common/tabs/tab'
-import RecommondCard from '@/components/activity/recommend-card'
-import TabContentAid from '@/components/activity/info-tab-content/tab-content-aid'
-import TabContentIntro from '@/components/activity/info-tab-content/tab-content-intro'
+import RecommondCard from '@/components/Activity/recommend-card'
+import TabContentAid from '@/components/Activity/info-tab-content/tab-content-aid'
+import TabContentIntro from '@/components/Activity/info-tab-content/tab-content-intro'
 
 export default function Aid() {
   const router = useRouter()

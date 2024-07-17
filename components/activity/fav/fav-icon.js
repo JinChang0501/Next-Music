@@ -2,9 +2,9 @@ import { useState , useEffect } from 'react'
 // 因為使用import圖片的方式，所以需要引入Image元件
 import Image from 'next/image'
 // 實心圖
-import bookmarkFillIcon from '@/assets/activity/bookmark-fill.svg'
+import bookmarkFillIcon from '@/assets/Activity/bookmark-fill.svg'
 // 空心圖
-import bookmarkIcon from '@/assets/activity/bookmark.svg'
+import bookmarkIcon from '@/assets/Activity/bookmark.svg'
 // check Auth
 // import { useAuth } from '@/hooks/use-auth'
 // import { useLogin } from '@/hooks/use-login'

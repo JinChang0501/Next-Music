@@ -8,12 +8,12 @@ import { useRouter } from 'next/router'
 
 // 內容元件
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
-import BannerA from '@/components/activity/banner-a'
-import LeftBar from '@/components/activity/left-bar'
+import BannerA from '@/components/Activity/banner-a'
+import LeftBar from '@/components/Activity/left-bar'
 import Tab from '@/components/common/tabs/tab'
-import TabContentAll from '@/components/activity/act-tab-content-n/tab-content-all'
-import TabContentConcert from '@/components/activity/act-tab-content-n/tab-content-concert'
-import TabContentFestival from '@/components/activity/act-tab-content-n/tab-content-festival'
+import TabContentAll from '@/components/Activity/act-tab-content-n/tab-content-all'
+import TabContentConcert from '@/components/Activity/act-tab-content-n/tab-content-concert'
+import TabContentFestival from '@/components/Activity/act-tab-content-n/tab-content-festival'
 
 export default function Activity() {
   const router = useRouter()

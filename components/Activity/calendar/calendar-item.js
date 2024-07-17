@@ -1,7 +1,7 @@
 import React from 'react'
-import { Calendar, Whisper, Popover, Badge } from 'rsuite';
-import getTodoList from './getTodoList';
-import { BsFillStarFill } from "react-icons/bs";
+import { Calendar, Whisper, Popover, Badge } from 'rsuite'
+import getTodoList from './getTodoList'
+import { BsFillStarFill } from "react-icons/bs"
 import style from './calendar.module.scss'
 
 export default function CalendarItem() {

@@ -1,6 +1,6 @@
 import React from 'react'
 import MemberDLayout from '@/components/member/desktop-layout'
-import CalendarItem from '@/components/activity/calendar/calendar-item'
+import CalendarItem from '@/components/Activity/calendar/calendar-item'
 
 export default function Calendar() {
   return (

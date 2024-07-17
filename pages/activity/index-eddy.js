@@ -8,9 +8,9 @@ import { useRouter } from 'next/router'
 
 // 內容元件
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
-import BannerA from '@/components/activity/banner-a'
-import LeftBar from '@/components/activity/left-bar'
-import ActivityCard from '@/components/activity/activity-card'
+import BannerA from '@/components/Activity/banner-a'
+import LeftBar from '@/components/Activity/left-bar'
+import ActivityCard from '@/components/Activity/activity-card'
 
 export default function Activity() {
   // 注意1: 初始值至少要空白陣列。初次render是用初始值，需要對應伺服器回應的資料類型。

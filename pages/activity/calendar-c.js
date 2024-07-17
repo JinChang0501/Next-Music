@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Calendar } from "rsuite";
-import CalendarItem from "@/components/activity/calendar/calendar-item";
+import CalendarItem from "@/components/Activity/calendar/calendar-item";
 
 export default function CalendarC() {
   return (

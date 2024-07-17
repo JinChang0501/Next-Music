@@ -80,7 +80,7 @@ export default function ActivityCard({ imgSrc = 'https://i.postimg.cc/zB5Gh92q/t
                 </div>
               </div>
               <div className='col-4 d-flex justify-content-end gap-2 text-nowrap'>
-                <Link href={`/activity/${aid}`}>
+                <Link href={`/Activity/${aid}`}>
                   <DesktopWhiteNoIconBtnBlack
                     text='活動資訊'
                     className='chr-p d-md-block d-none'

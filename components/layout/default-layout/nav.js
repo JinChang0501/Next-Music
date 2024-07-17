@@ -95,7 +95,7 @@ export default function Nav() {
                 <Link
                   className="nav-link eng-p"
                   aria-current="page"
-                  href="/activity"
+                  href="/Activity"
                 >
                   演出活動
                 </Link>

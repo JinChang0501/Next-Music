@@ -9,9 +9,9 @@ import { useRouter } from 'next/router'
 
 // 內容元件
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
-import BannerA from '@/components/activity/banner-a'
-import LeftBar from '@/components/activity/left-bar'
-import ActivityCard from '@/components/activity/activity-card'
+import BannerA from '@/components/Activity/banner-a'
+import LeftBar from '@/components/Activity/left-bar'
+import ActivityCard from '@/components/Activity/activity-card'
 
 export default function Activity() {
   const router = useRouter()
