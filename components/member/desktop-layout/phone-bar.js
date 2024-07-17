@@ -59,8 +59,6 @@ export default function PhoneBar({ pageName = '' }) {
 
       // 設定到狀態中
       setUserProfile(dbUserProfile)
-
-      toast.success('會員資料載入成功')
     } else {
       toast.error(`會員資料載入失敗`)
     }
