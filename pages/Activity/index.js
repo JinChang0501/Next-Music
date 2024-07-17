@@ -37,13 +37,7 @@ export default function Activity() {
     },
   })
 
-  // 設定到初始狀態前，先擴增一個代表是否有加入收藏的屬性fav(布林，預設為false)
-  // const initState = data.rows.map((v, i) => {
-  //   return { ...v, isFavorite: false }
-  // })
-  // 布林值，是否被收藏
-  // const [favData, setFavData] = useState(initState)
-
+  
   // 初始值至少要空白陣列。初次render是用初始值，需要對應伺服器回應的資料類型。
   // 在應用程式執行過程中，一定要保持狀態的資料類型(一定要是陣列)
   // const [activity, setActivity] = useState([]) 
@@ -159,7 +153,8 @@ export default function Activity() {
 
       fetchFavorites()
     }
-  }, [auth, favorite])
+    //[auth, favorite]
+  }, [auth])
 
   const handleToggleFav = async (eventId) => {
     try {
@@ -246,8 +241,9 @@ export default function Activity() {
                   actdate={r.actdate}
                   acttime={r.acttime}
                   aid={r.actid}
-                  isFavorite={(favorite?.rows?.favorites?.find((f => f === r.actid)))}
+                  isFavorite={favorite.rows.favorites.includes(r.actid)}
                   // ? true : false
+                  // 有找到的話顯示數字，沒有的話 undefined
                   // 有登入的話切換toggle，沒有的話要先登入
                   handleToggleFav={auth.isAuth ? handleToggleFav : handleWakeLogin }
                 />

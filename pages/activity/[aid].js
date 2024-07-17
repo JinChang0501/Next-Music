@@ -134,6 +134,7 @@ export default function Aid() {
           location={mainInfoData.location}
           artist={mainInfoData.artists}
           banner={mainInfoData.picture}
+          aid={mainInfoData.actid}
         />
         {/* 活動主資訊 end */}
         {/* 簡介：頁籤 start */}
