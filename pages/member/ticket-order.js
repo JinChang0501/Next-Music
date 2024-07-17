@@ -105,42 +105,8 @@ export default function TicketOrder() {
           role="tabpanel"
           aria-labelledby="concert-tab"
         >
-          {/* 活動dropdown */}
-          <div className="row">
-            <div className="col-12 col-md-5 py-3 d-flex flex-row">
-              <div className="col-6 text-center">
-                <label
-                  htmlFor="activity"
-                  className="chb-h6 flex-fill text-center"
-                >
-                  <span className="chb-h5">活動種類：</span>
-                </label>
-              </div>
-              <div className="col-6">
-                <select
-                  required
-                  id="activity"
-                  name="activity"
-                  className="align-item-center h-100 w-100"
-                  // value={selectedActivity}
-                  // onChange={handleChange}
-                >
-                  <option value="0" className="text-center">
-                    - - 全部 - -
-                  </option>
-                  <option value="1" className="text-center">
-                    - - 演唱會 - -
-                  </option>
-                  <option value="2" className="text-center">
-                    - - 音樂祭 - -
-                  </option>
-                </select>
-              </div>
-            </div>
-          </div>
-
           <div
-            className="tab-pane fade show active"
+            className="tab-pane fade show active "
             id="concert"
             role="tabpanel"
             aria-labelledby="concert-tab"
@@ -204,34 +170,6 @@ export default function TicketOrder() {
           role="tabpanel"
           aria-labelledby="festival-tab"
         >
-          {/* 藝人dropdown */}
-          <div className="row">
-            <div className="col-12 col-md-5 py-3 d-flex flex-row">
-              <div className="col-6 text-center">
-                <label
-                  htmlFor="artist"
-                  className="chb-h6 flex-fill text-center"
-                >
-                  <span className="chb-h5">藝人：</span>
-                </label>
-              </div>
-              <div className="col-6">
-                <select
-                  required
-                  id="artist"
-                  name="artist"
-                  className="align-item-center h-100 w-100"
-                  // value={selectedActivity}
-                  // onChange={handleChange}
-                  disabled
-                >
-                  <option value="0" className="text-center">
-                    - - 全部 - -
-                  </option>
-                </select>
-              </div>
-            </div>
-          </div>
           {/* ---------------------------------------------------- */}
 
           <div className="container mt-4 px-0">
