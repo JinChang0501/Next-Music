@@ -13,7 +13,7 @@ export default function TicketMobile({
   tid = {},
   created_at = '',
   price = {},
-  activity_name = '',
+  actname = '',
   location = '',
   a_datetime = '',
   amount = '',
@@ -54,7 +54,7 @@ export default function TicketMobile({
                   <BsFillTicketPerforatedFill />
                 </div>
                 <div className={`${styles['same-width-text']}`}>
-                  <span className="chb-h7">{activity_name}</span>
+                  <span className="chb-h7">{actname}</span>
                 </div>
               </div>
 
