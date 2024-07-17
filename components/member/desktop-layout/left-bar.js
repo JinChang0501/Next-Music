@@ -10,7 +10,7 @@ import { useAuth } from '@/hooks/use-auth'
 import { login, logout, getUserById, checkAuth } from '@/services/user' //checkAuth
 import useFirebase from '@/hooks/use-firebase'
 import toast, { Toaster } from 'react-hot-toast'
-
+import { IoCalendarNumber } from 'react-icons/io5'
 import { updateProfile, updateProfileAvatar } from '@/services/user'
 import { useRouter } from 'next/router'
 // 定義要在此頁呈現/編輯的會員資料初始物件
@@ -165,7 +165,7 @@ export default function LeftBar({ pageName = '' }) {
               >
                 <div className="d-flex text-center justify-content-center">
                   <div className="me-2">
-                    <BsTicketPerforatedFill />
+                    <IoCalendarNumber />
                   </div>
                   <div>活動日程</div>
                 </div>
