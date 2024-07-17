@@ -30,7 +30,10 @@ export default function Activity() {
     rows: [],
   })
   // 列表
-  const [favorites, setFavorites] = useState([])
+  const [favorites, setFavorites] = useState({
+    success: false,
+    rows: [],
+  })
 
   // 設定到初始狀態前，先擴增一個代表是否有加入收藏的屬性fav(布林，預設為false)
   const initState = data.rows.map((v, i) => {
@@ -119,6 +122,7 @@ export default function Activity() {
      }
   }
 
+  // 首次渲染、取得列表、搜尋條件
   useEffect(() => {
     const params = {
       keyword: keyword,

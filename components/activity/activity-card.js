@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useLogin } from '../../hooks/use-login'
 
 import { BsMusicNoteBeamed, BsBookmark, BsGeoAlt, BsCalendar4 } from 'react-icons/bs'
-import FavIcon from './fav/fav-icon'
+import FavIcon from '@/components/Activity/fav/fav-icon'
 import DesktopWhiteNoIconBtnBlack from '../common/button/desktopWhiteButton/desktopWhiteNoIconBtnBlack'
 import DesktopBlackNoIconBtnPurple from '../common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
 import DesktopBlackPureIconBtnBlack from '../common/button/desktopBlackButton/desktopBlackPureIconBtnBlack'
@@ -14,8 +14,6 @@ import PhoneBlackNoIconBtnPurple from '../common/button/phoneBlackButton/phoneBl
 export default function ActivityCard({ imgSrc = 'https://i.postimg.cc/zB5Gh92q/temp-Image7-Gw6zu.avif', title, artist, location, actdate, eventId, isFavorite, handleToggleFav, aid }) {
 
   const [isDesktop, setIsDesktop] = useState(true)
-
-  const { handleWakeLogin } = useLogin
 
   useEffect(() => {
     const handleResize = () => {
