@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const API_SERVER = 'http://localhost:3005'
+export const API_SERVER = 'http://localhost:3005/api'
 
 // 已有
 // export const getAllEvents = async () => {
