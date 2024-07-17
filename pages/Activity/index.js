@@ -37,7 +37,6 @@ export default function Activity() {
     },
   })
 
-  
   // 初始值至少要空白陣列。初次render是用初始值，需要對應伺服器回應的資料類型。
   // 在應用程式執行過程中，一定要保持狀態的資料類型(一定要是陣列)
   // const [activity, setActivity] = useState([]) 
@@ -125,7 +124,7 @@ export default function Activity() {
       const res = await getFavorites()
       console.log(res.rows)
       console.log(res)
-      if(res.status === 'success') {
+      if(res.success === true) {
         setFavorite(res)
         console.log(favorite)
         // console.log(favorite)
