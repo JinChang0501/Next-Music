@@ -19,17 +19,17 @@ import ActivityCard from '@/components/Activity/activity-card'
 export default function Activity() {
   const router = useRouter()
   const topRef = useRef(null)
-  // 會員相關
+  // 會員相關，判斷是否登入 auth.isAuth
   const { handleWakeLogin } = useLogin()
   const { auth } = useAuth()
-  // 判斷是否登入 auth.isAuth
 
   // 活動資料陣列
   const [data, setData] = useState({
     success: false,
     rows: [],
   })
-  // 收藏列表
+
+  // 收藏列表，收藏初始值
   const [favorite, setFavorite] = useState({
     success: false,
     rows: { 
@@ -57,7 +57,7 @@ export default function Activity() {
   // 與伺服器作fetch獲得資料(建議寫在useEffect上面與外面比較容易維護管理)
   const getActivity = async (params = {}) => {
     // 轉換為查詢字串
-    console.log(router.query) // 是空的
+    // console.log(router.query) // 是空的
     console.log(params)       // keyword, actClass, area, dataRange
     const searchParams = new URLSearchParams(params)
     const url = `${ACT_LIST}?${searchParams.toString()}`
@@ -118,7 +118,26 @@ export default function Activity() {
      }
   }
 
-  // 首次渲染、取得列表、搜尋條件
+  // 取得收藏項目
+  const fetchFavorites = async () => {
+    // try {
+      // console.log(auth.userData.id)
+      const res = await getFavorites()
+      console.log(res.rows)
+      console.log(res)
+      if(res.status === 'success') {
+        setFavorite(res)
+        console.log(favorite)
+        // console.log(favorite)
+      }
+      // } catch (error) {
+      //   console.log('現在的favorite')
+      //   console.log(favorite)
+      //   console.error('無法獲取收藏', error)
+      // }
+  }
+
+  // 頁面重新渲染時：取得列表、搜尋條件
   useEffect(() => {
     const params = {
       keyword: keyword,
@@ -126,35 +145,13 @@ export default function Activity() {
       area: area,
       dateRange: dateRange,
     }
-
+    fetchFavorites()
+    console.log(favorite)
     getActivity(params)
       console.log("params2")
       console.log(params)
       // eslint-disable-next-line
   }, [])
-
-  useEffect(() => {
-    if (auth.isAuth) {
-      const fetchFavorites = async () => {
-        try {
-          console.log(auth.userData.id)
-          const res = await getFavorites()
-          console.log(res.rows)
-          console.log(res)
-          if(res.rows.status === 'success') {
-            setFavorite(res)
-          }
-        } catch (error) {
-          console.log('現在的favorite')
-          console.log(favorite)
-          console.error('無法獲取收藏', error)
-        }
-      }
-
-      fetchFavorites()
-    }
-    //[auth, favorite]
-  }, [auth])
 
   const handleToggleFav = async (eventId) => {
     try {
@@ -185,17 +182,13 @@ export default function Activity() {
     }
   }
 
-
-//  const handleToggleFav = async (eventId) => {
-//     const nextFavData = data.rows.map((v, i) => {
-//       // 如果符合(actid=傳入actid)，回傳修改其中屬性fav的值作邏輯反相
-//       if (v.actid === actid) return { ...v, fav: !v.fav }
-//       // 否則保持原本的物件值
-//       else return v
-//     })
-//     setFavData(nextFavData)
-//   }
-
+  useEffect(() => {
+    if (auth.isAuth) {
+      fetchFavorites()
+      console.log(favorite)
+    }
+    //[auth, favorite]
+  }, [auth])
 
   return (
     <>
@@ -241,9 +234,8 @@ export default function Activity() {
                   actdate={r.actdate}
                   acttime={r.acttime}
                   aid={r.actid}
-                  isFavorite={favorite.rows.favorites.includes(r.actid)}
                   // ? true : false
-                  // 有找到的話顯示數字，沒有的話 undefined
+                  isFavorite={favorite.rows.favorites.includes(r.actid)}
                   // 有登入的話切換toggle，沒有的話要先登入
                   handleToggleFav={auth.isAuth ? handleToggleFav : handleWakeLogin }
                 />
