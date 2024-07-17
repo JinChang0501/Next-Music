@@ -35,8 +35,8 @@
   {
     "id": 4,
     "picture": "pet_keyring-dog.jpg",
-    "picture2": "pet_keyring-dog.jpg",
-    "picture3": "pet_keyring-dog.jpg",
+    "picture2": "pet_keyring-dog2.jpg",
+    "picture3": "pet_keyring-dog3.jpg",
     "activity": "寵物嘉年華",
     "name": "毛毛鑰匙圈-旺旺",
     "price": 200,
@@ -46,8 +46,8 @@
   {
     "id": 5,
     "picture": "pet_keyring-cat.jpg",
-    "picture2": "pet_keyring-cat.jpg",
-    "picture3": "pet_keyring-cat.jpg",
+    "picture2": "pet_keyring-dog2.jpg",
+    "picture3": "pet_keyring-dog3.jpg",
     "activity": "寵物嘉年華",
     "name": "毛毛鑰匙圈-喵喵",
     "price": 200,
@@ -68,8 +68,8 @@
   {
     "id": 7,
     "picture": "pet_mat.jpg",
-    "picture2": "pet_mat.jpg",
-    "picture3": "pet_mat.jpg",
+    "picture2": "pet_mat2.jpg",
+    "picture3": "pet_mat3.jpg",
     "activity": "寵物嘉年華",
     "name": "野餐墊",
     "price": 200,
@@ -328,5 +328,70 @@
     "price": 700,
     "intro": "活動聯名限量棒球帽，本網站限量1000件。名牌設計總監親自設計，超高回頭率！",
     "stock": 1000
-  }
+  },
+  {
+    "id": 31,
+    "picture": "nemjean_mouse-pad-yellow.jpg",
+    "picture2": "nemjean_mouse-pad-yellow.jpg",
+    "picture3": "nemjean_mouse-pad-yellow.jpg",
+    "activity": "Nem Jeans女團",
+    "name": "團員卡通人物滑鼠墊_Daisy",
+    "price": 590,
+    "intro": "超人氣女團-Nem Jeans，與卡通聯名推出可愛團員Q版人物周邊商品，可愛度破表，無法抗拒!\r\n讓可愛滑鼠墊陪你度過煩躁的電腦製作專題作業時光，痛苦的時光，也都變成的愉悅無比。",
+    "stock": 500,
+    "created_at": "2024-07-17 15:41:42",
+    "updated_at": "2024-07-17 15:41:42"
+},
+{
+    "id": 32,
+    "picture": "nemjean_mouse-pad-purple.jpg",
+    "picture2": "nemjean_mouse-pad-purple.jpg",
+    "picture3": "nemjean_mouse-pad-purple.jpg",
+    "activity": "Nem Jeans女團",
+    "name": "團員卡通人物滑鼠墊_Sunny",
+    "price": 590,
+    "intro": "超人氣女團-Nem Jeans，與卡通聯名推出可愛團員Q版人物周邊商品，可愛度破表，無法抗拒!\r\n讓可愛滑鼠墊陪你度過煩躁的電腦製作專題作業時光，痛苦的時光，也都變成的愉悅無比。",
+    "stock": 500,
+    "created_at": "2024-07-17 15:51:28",
+    "updated_at": "2024-07-17 15:51:28"
+},
+{
+    "id": 33,
+    "picture": "nemjean_mouse-pad-pink.jpg",
+    "picture2": "nemjean_mouse-pad-pink.jpg",
+    "picture3": "nemjean_mouse-pad-pink.jpg",
+    "activity": "Nem Jeans女團",
+    "name": "團員卡通人物滑鼠墊_Rose",
+    "price": 590,
+    "intro": "超人氣女團-Nem Jeans，與卡通聯名推出可愛團員Q版人物周邊商品，可愛度破表，無法抗拒!\r\n讓可愛滑鼠墊陪你度過煩躁的電腦製作專題作業時光，枯燥的時光，也都變成的愉悅無比。",
+    "stock": 500,
+    "created_at": "2024-07-17 15:51:28",
+    "updated_at": "2024-07-17 15:51:28"
+},
+{
+    "id": 34,
+    "picture": "nemjean_mouse-pad-green.jpg",
+    "picture2": "nemjean_mouse-pad-green.jpg",
+    "picture3": "nemjean_mouse-pad-green.jpg",
+    "activity": "Nem Jeans女團",
+    "name": "團員卡通人物滑鼠墊_Ivy ",
+    "price": 590,
+    "intro": "超人氣女團-Nem Jeans，與卡通聯名推出可愛團員Q版人物周邊商品，可愛度破表，無法抗拒!\r\n讓可愛滑鼠墊陪你度過煩躁的電腦製作專題作業時光，枯燥的時光，也都變成的愉悅無比。",
+    "stock": 500,
+    "created_at": "2024-07-17 15:55:52",
+    "updated_at": "2024-07-17 15:55:52"
+},
+{
+    "id": 35,
+    "picture": "nemjean_mouse-pad-blue.jpg",
+    "picture2": "nemjean_mouse-pad-blue.jpg",
+    "picture3": "nemjean_mouse-pad-blue.jpg",
+    "activity": "Nem Jeans女團",
+    "name": "團員卡通人物滑鼠墊_Pearl",
+    "price": 590,
+    "intro": "超人氣女團-Nem Jeans，與卡通聯名推出可愛團員Q版人物周邊商品，可愛度破表，無法抗拒!\r\n讓可愛滑鼠墊陪你度過煩躁的電腦製作專題作業時光，枯燥的時光，也都變成的愉悅無比。",
+    "stock": 500,
+    "created_at": "2024-07-17 15:55:52",
+    "updated_at": "2024-07-17 15:55:52"
+}
 ]

@@ -104,7 +104,7 @@ export default function Detail() {
       <div className={`row ${styles['mx-160']} ${styles['mt-80']}`}>
         <div className="col-sm-12">
           <p className={`text-purple1 chb-h4 ${styles['mt-80']} ${styles['borderPurple3']}`}>商品介紹</p>
-          <p className={`text-purple3 chb-h6 ${styles['mt-40']}`}>{product.intro}</p>
+          <p className={`col-sm-6 text-purple3 chb-h6 ${styles['mt-40']}`}>{product.intro}</p>
         </div>
       </div>
       <div className={`row ${styles['mx-160']} ${styles['mt-80']}`}>
