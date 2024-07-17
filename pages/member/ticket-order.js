@@ -4,7 +4,7 @@ import toast, { Toaster } from 'react-hot-toast'
 import Tickets from '@/components/member/desktop-layout/tickets'
 import TicketMobile from '@/components/member/mobile-layout/ticket-mobile'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { getTicketOrder } from '@/services/ticket-order'
 import { useAuth } from '@/hooks/use-auth'
 import Tab from '@/components/common/tabs/tab'
@@ -12,53 +12,58 @@ import Tab from '@/components/common/tabs/tab'
 export default function TicketOrder() {
   const [userTicketsCon, setUserTicketCon] = useState([])
   const [userTicketsFes, setUserTicketFes] = useState([])
-
   const { auth } = useAuth()
 
-  const getUserData = async () => {
-    const res = await getTicketOrder()
-    console.log('以下是response data')
-    console.log(res)
-    console.log('以下是res.data.class')
-    console.log(res.data)
-    // const filteredData = res.data.map((item) => item.class === 'concert')
-    // console.log('以下是filteredData')
-    // console.log(filteredData)
+  const [sortBy, setSortBy] = useState('')
 
-    if (res.status === 'success') {
-      // 以下為同步化目前後端資料庫資料，與這裡定義的初始化會員資料物件的資料
-
-      // const dbUserProfile = { ...initUserTicket }
-
-      // 假设您只需要第一个票務數據，可以根據實際需求修改
-      // const firstTicket = dbUserTickets.length > 0 ? dbUserTickets[0] : {}
-
-      // 設定到狀態中
-      // setUserTicket(dbUserProfile)
-      console.log(res.data.result)
-
-      const concertData = res.data.result.filter((item) => {
-        return item.class === 'concert'
-      })
-
-      const festivalData = res.data.result.filter((item) => {
-        return item.class === 'festival'
-      })
-      console.log('以下是filteredData')
-      console.log(festivalData)
-      //const tickets = res.data.result //這一包是物件陣列[{},{},{}]
-      // const ticketsCon = res.data.result
-
-      // const ticketsFes = festivalData
-      setUserTicketCon(concertData)
-      setUserTicketFes(festivalData)
-
-      toast.success('會員訂單資料載入成功')
-    } else {
-      toast.error(`會員訂單資料載入失敗`)
-    }
+  const getSort = (e) => {
+    setSortBy(e.target.value)
   }
+  useEffect(() => {
+    console.log(sortBy)
+  }, [sortBy])
+
+  const getUserData = useCallback(async () => {
+    try {
+      const res = await getTicketOrder(sortBy)
+      console.log('以下是response data')
+      console.log(res)
+      console.log('以下是res.data')
+      console.log(res.data)
+
+      if (res.status === 'success') {
+        console.log('以下是res.data.result')
+        console.log(res.data.result)
+
+        const concertData = res.data.result.filter((item) => {
+          return item.class === 'concert'
+        })
+
+        const festivalData = res.data.result.filter((item) => {
+          return item.class === 'festival'
+        })
+        console.log('以下是filteredData')
+        console.log(festivalData)
+
+        setUserTicketCon(concertData)
+        setUserTicketFes(festivalData)
+
+        toast.success('會員訂單資料載入成功')
+      } else {
+        toast.error('會員訂單資料載入失敗')
+      }
+    } catch (error) {
+      console.error('Error fetching order data:', error)
+      toast.error('會員訂單資料載入失敗')
+    }
+  }, [sortBy, setUserTicketCon, setUserTicketFes])
+
   const [isDesktop, setIsDesktop] = useState(true)
+
+  useEffect(() => {
+    console.log(sortBy)
+    getUserData()
+  }, [sortBy, getUserData])
 
   useEffect(() => {
     const handleResize = () => {
@@ -71,10 +76,11 @@ export default function TicketOrder() {
 
     return () => window.removeEventListener('resize', handleResize) // 清除事件監聽器
   }, [])
+
   // auth載入完成後向資料庫要會員資料
   useEffect(() => {
     if (auth.isAuth) {
-      getUserData() // getUserData(auth.userData.id) 將用戶 ID 傳遞给 getTicketOrder 函数，但是抓會員資料是來自authenticate.js
+      //getUserData() // getUserData(auth.userData.id) 將用戶 ID 傳遞给 getTicketOrder 函数，但是抓會員資料是來自authenticate.js
     }
   }, [auth])
 
@@ -105,47 +111,51 @@ export default function TicketOrder() {
           role="tabpanel"
           aria-labelledby="concert-tab"
         >
-          <div
-            className="tab-pane fade show active "
-            id="concert"
-            role="tabpanel"
-            aria-labelledby="concert-tab"
-          >
-            <div className="container mt-4 px-0">
-              {isDesktop ? (
-                <table className="table table-bordered text-center">
-                  <thead>
-                    <tr>
-                      <th className="col-2">訂單編號</th>
-                      <th className="col-2">訂單時間</th>
-                      <th className="col-2">活動資訊</th>
-                      <th className="col-2">購買票數</th>
-                      <th className="col-2">明細</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {userTicketsCon.map((v, i) => {
-                      return (
-                        <Tickets
-                          key={i}
-                          order_num={v.order_num}
-                          created_at={v.created_at}
-                          price={v.price}
-                          actname={v.actname}
-                          location={v.location}
-                          actdate={v.actdate}
-                          acttime={v.acttime}
-                          amount={v.amount}
-                        />
-                      )
-                    })}
-                  </tbody>
-                </table>
-              ) : (
+          {/* 排序dropdown */}
+          <div className="row">
+            <div className="col-12 col-lg-6 py-3 d-flex flex-row">
+              <div className="col-6 text-center">
+                <label
+                  htmlFor="activity"
+                  className="chb-h6 flex-fill text-center"
+                >
+                  <span className="chb-h5">訂單排序：</span>
+                </label>
+              </div>
+              <div className="col-6">
+                <select
+                  required
+                  id="activity"
+                  name="activity"
+                  className="align-item-center h-100 w-100"
+                  onChange={getSort}
+                >
+                  <option value="desc" className="text-center">
+                    時間由近到遠
+                  </option>
+                  <option value="asc" className="text-center">
+                    時間由遠到近
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div className="container mt-4 px-0">
+            {isDesktop ? (
+              <table className="table table-bordered text-center">
+                <thead>
+                  <tr>
+                    <th className="col-2">訂單編號</th>
+                    <th className="col-2">訂單時間</th>
+                    <th className="col-2">活動資訊</th>
+                    <th className="col-2">購買票數</th>
+                    <th className="col-2">明細</th>
+                  </tr>
+                </thead>
                 <tbody>
                   {userTicketsCon.map((v, i) => {
                     return (
-                      <TicketMobile
+                      <Tickets
                         key={i}
                         order_num={v.order_num}
                         created_at={v.created_at}
@@ -159,8 +169,26 @@ export default function TicketOrder() {
                     )
                   })}
                 </tbody>
-              )}
-            </div>
+              </table>
+            ) : (
+              <tbody>
+                {userTicketsCon.map((v, i) => {
+                  return (
+                    <TicketMobile
+                      key={i}
+                      order_num={v.order_num}
+                      created_at={v.created_at}
+                      price={v.price}
+                      actname={v.actname}
+                      location={v.location}
+                      actdate={v.actdate}
+                      acttime={v.acttime}
+                      amount={v.amount}
+                    />
+                  )
+                })}
+              </tbody>
+            )}
           </div>
         </div>
         {/* 2 */}
@@ -171,7 +199,35 @@ export default function TicketOrder() {
           aria-labelledby="festival-tab"
         >
           {/* ---------------------------------------------------- */}
-
+          {/* 排序dropdown */}
+          <div className="row">
+            <div className="col-12 col-lg-6 py-3 d-flex flex-row">
+              <div className="col-6 text-center">
+                <label
+                  htmlFor="activity"
+                  className="chb-h6 flex-fill text-center"
+                >
+                  <span className="chb-h5">訂單排序：</span>
+                </label>
+              </div>
+              <div className="col-6">
+                <select
+                  required
+                  id="activity"
+                  name="activity"
+                  className="align-item-center h-100 w-100"
+                  onChange={getSort}
+                >
+                  <option value="desc" className="text-center">
+                    時間由近到遠
+                  </option>
+                  <option value="asc" className="text-center">
+                    時間由遠到近
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
           <div className="container mt-4 px-0">
             {isDesktop ? (
               <table className="table table-bordered text-center">
