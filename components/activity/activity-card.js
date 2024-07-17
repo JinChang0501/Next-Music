@@ -58,7 +58,7 @@ export default function ActivityCard({
                 {isDesktop ? (
                   <FavIcon
                     eventId={eventId}
-                    // isFavorite={isFavorite}
+                    isFavorite={isFavorite}
                     iconWidth={28}
                     iconHeight={28}
                     handleToggleFav={handleToggleFav}
@@ -66,7 +66,7 @@ export default function ActivityCard({
                 ) : (
                   <FavIcon
                     eventId={eventId}
-                    // isFavorite={isFavorite}
+                    isFavorite={isFavorite}
                     iconWidth={16}
                     iconHeight={16}
                     handleToggleFav={handleToggleFav}

@@ -29,18 +29,20 @@ export default function Activity() {
     success: false,
     rows: [],
   })
-  // 列表
-  const [favorites, setFavorites] = useState({
+  // 收藏列表
+  const [favorite, setFavorite] = useState({
     success: false,
-    rows: [],
+    rows: { 
+      favorites: [] // 有收藏的 activity_id
+    },
   })
 
   // 設定到初始狀態前，先擴增一個代表是否有加入收藏的屬性fav(布林，預設為false)
-  const initState = data.rows.map((v, i) => {
-    return { ...v, isFavorite: false }
-  })
+  // const initState = data.rows.map((v, i) => {
+  //   return { ...v, isFavorite: false }
+  // })
   // 布林值，是否被收藏
-  const [favData, setFavData] = useState(initState)
+  // const [favData, setFavData] = useState(initState)
 
   // 初始值至少要空白陣列。初次render是用初始值，需要對應伺服器回應的資料類型。
   // 在應用程式執行過程中，一定要保持狀態的資料類型(一定要是陣列)
@@ -142,31 +144,52 @@ export default function Activity() {
       const fetchFavorites = async () => {
         try {
           console.log(auth.userData.id)
-          const data = await getFavorites(auth.userData.id)
-          setFavorites(data)
+          const res = await getFavorites()
+          console.log(res.rows)
+          console.log(res)
+          if(res.rows.status === 'success') {
+            setFavorite(res)
+          }
         } catch (error) {
+          console.log('現在的favorite')
+          console.log(favorite)
           console.error('無法獲取收藏', error)
         }
-      };
+      }
 
       fetchFavorites()
     }
-  }, [auth])
-///////////////////////////寫到一半
+  }, [auth, favorite])
+
   const handleToggleFav = async (eventId) => {
     try {
+      // 確認是否已經收藏 => includes 回傳 true / false
+      const isFavorite = favorite.rows.favorites.includes(eventId)
+  
+      // 根據是否收藏來決定要加入還是移除
       if (isFavorite) {
-        console.log(auth.userData.id)
-        console.log(eventId)
-        await removeFavorite(auth.userData.id, eventId)
+        await removeFavorite(eventId)
       } else {
-        await addFavorite(auth.userData.id, eventId)
+        await addFavorite(eventId)
       }
-      setFavData(!isFavorite)
+  
+      // 更新收藏狀態
+      const nextFavorites = isFavorite
+        ? favorite.rows.favorites.filter((id) => id !== eventId)
+        : [...favorite.rows.favorites, eventId]
+  
+      setFavorite({
+        ...favorite,
+        rows: {
+          ...favorite.rows,
+          favorites: nextFavorites,
+        },
+      })
     } catch (error) {
       console.error('無法切換收藏狀態', error)
     }
   }
+
 
 //  const handleToggleFav = async (eventId) => {
 //     const nextFavData = data.rows.map((v, i) => {
@@ -214,6 +237,7 @@ export default function Activity() {
               // 將ActivityCard-Fav元件引入，並傳入list、handleToggleFav屬性
               return (
                 <ActivityCard
+                  key={r.actid}
                   eventId={r.actid}
                   imgSrc={r.cover}
                   title={r.actname}
@@ -222,6 +246,8 @@ export default function Activity() {
                   actdate={r.actdate}
                   acttime={r.acttime}
                   aid={r.actid}
+                  isFavorite={(favorite?.rows?.favorites?.find((f => f === r.actid)))}
+                  // ? true : false
                   // 有登入的話切換toggle，沒有的話要先登入
                   handleToggleFav={auth.isAuth ? handleToggleFav : handleWakeLogin }
                 />

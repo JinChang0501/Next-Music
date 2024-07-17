@@ -2,51 +2,72 @@ import axios from 'axios'
 
 export const API_SERVER = 'http://localhost:3005/api'
 
-// 已有
-// export const getAllEvents = async () => {
-//   try {
-//     const response = await axios.get(`${API_SERVER}/activity`)
-//     return response.data
-//   } catch (error) {
-//     console.error('無法獲取活動', error)
-//     throw error
-//   }
-// }
-
-export const addFavorite = async (userId, eventId) => {
+export const addFavorite = async (eventId) => {
   try {
-    const response = await axios.post(`${API_SERVER}/favorite`, { userId, eventId })
-    return response.data
+    const response = await fetch(`${API_SERVER}/favorite`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ eventId }),
+      credentials: 'include'
+    })
+    const data = await response.json()
+    console.log(data)
+    return data
   } catch (error) {
     console.error('無法加入收藏', error)
     throw error
   }
 }
 
-export const removeFavorite = async (userId, eventId) => {
+export const removeFavorite = async (eventId) => {
   try {
-    const response = await axios.delete(`${API_SERVER}/favorite`, { data: { userId, eventId } })
-    return response.data
+    const response = await fetch(`${API_SERVER}/favorite`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ eventId }),
+      credentials: 'include'
+    })
+    const data = await response.json()
+    console.log(data)
+    return data
   } catch (error) {
     console.error('無法取消收藏', error)
     throw error
   }
 }
 
-export const checkFavorite = async (userId, eventId) => {
+export const checkFavorite = async (eventId) => {
   try {
-    const response = await axios.get(`${API_SERVER}/favorite/check`, { params: { userId, eventId } })
-    return response.data.isFavorite
+    const response = await fetch(`${API_SERVER}/favorite/check`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include'
+    })
+    const data = await response.json()
+    return data.favorites
   } catch (error) {
     console.error('無法確認收藏狀態', error)
     throw error
   }
 }
 
-export const getFavorites = async (userId) => {
+export const getFavorites = async () => {
   try {
-    const response = await axios.get(`${API_SERVER}/favorite/${userId}`)
-    return response.data
+    const response = await fetch(`${API_SERVER}/favorite`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include'
+    })
+    const data = await response.json()
+    return data
   } catch (error) {
     console.error('無法獲取收藏', error)
     throw error
