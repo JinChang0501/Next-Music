@@ -6,6 +6,7 @@ export default function PreviewUploadImage({
   defaultImg = 'default.png',
   setSelectedFile,
   selectedFile,
+  isDisable,
 }) {
   // 預覽圖片
   const [preview, setPreview] = useState('')
@@ -51,10 +52,11 @@ export default function PreviewUploadImage({
       <label htmlFor="file-input">
         <img
           src={showImg()}
-          alt=""
-          // width="240"
-          // height="240"
-          className="rounded-circle border border-5 border-purple1 wh-240"
+          className={`${
+            isDisable
+              ? 'border-black80 rounded-circle border border-5 border-purple1 wh-240'
+              : 'border-purple1 rounded-circle border border-5 border-purple1 wh-240'
+          }`}
         />
       </label>
       <input
@@ -63,10 +65,11 @@ export default function PreviewUploadImage({
         name="file"
         accept="image/png, image/jpeg, image/jpg"
         onChange={handleFileChang}
+        disabled={isDisable ? true : false}
       />
-      <div className="text-center">
+      {/* <div className="text-center">
         <div className="chb-p">點按頭像可以上傳頭貼</div>
-      </div>
+      </div> */}
       <style jsx>
         {`
           .image-upload > input {

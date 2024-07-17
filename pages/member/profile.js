@@ -141,20 +141,23 @@ export default function Profile() {
             {hasProfile ? (
               <PreviewUploadImage
                 avatarImg={userProfile.avatar}
-                // uploadImg={updateProfileAvatar}
                 avatarBaseUrl={avatarBaseUrl}
-                // toast={toast}
                 setSelectedFile={setSelectedFile}
                 selectedFile={selectedFile}
+                isDisable={isDisable}
               />
             ) : (
               <div>
                 <img src="/blank.webp" alt="" width="200" height="200" />
-                <div>
-                  <button onClick={handleSubmit}></button>
-                </div>
               </div>
             )}
+            <div
+              className={`text-center chb-h7 mt-3 ${
+                isDisable ? 'text-black20' : 'text-purple1'
+              }`}
+            >
+              點按頭像可以上傳頭貼
+            </div>
           </div>
           <div className="col-12 col-md-7 mx-auto">
             {/* 1------------------------------------------------------------------------------------------------------- */}
