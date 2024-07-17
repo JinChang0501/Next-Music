@@ -6,7 +6,16 @@
   position: absolute;
   top: 8px;
   right: 8px;
-  color: red;
+  color: #685beb;
+  background: none;
+  border: none;
+}
+
+.close-btn:hover {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  color: #958cea;
   background: none;
   border: none;
 }
