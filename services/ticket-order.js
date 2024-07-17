@@ -7,7 +7,7 @@ import useSWR from 'swr'
 //   return await axiosInstance.get(`/ticket-order/${id}`)
 // }
 
-export const getUserById = async (id) => {
+export const getTicketOrder = async () => {
   try {
     const res = await axiosInstance.get(`/ticket-order`)
     return res.data // 返回從後端獲取的data

@@ -189,7 +189,7 @@ export default function TicketDetail({ ticketData }) {
                     seat_row={v.seat_row}
                     seat_number={v.seat_number}
                     price={v.price}
-                    picture={v.picture}
+                    cover={v.cover}
                     actname={v.actname}
                     art_name={v.art_name}
                     tid={v.tid}

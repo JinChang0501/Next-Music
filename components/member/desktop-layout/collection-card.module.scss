@@ -45,6 +45,9 @@
 .card-text {
   font-size: 16px;
 }
+.h180 {
+  height: 200px;
+}
 @media (max-width: 576px) {
   .card-title {
     font-size: 16px;
@@ -53,5 +56,8 @@
 
   .card-text {
     font-size: 12px;
+  }
+  .h180 {
+    height: 130px;
   }
 }

@@ -12,7 +12,7 @@ export default function TicketDetailCard({
   seat_row = '',
   seat_number = '',
   price = '',
-  picture = '',
+  cover = '',
   actname = '',
   art_name = '',
   tid = '',
@@ -53,9 +53,13 @@ export default function TicketDetailCard({
     <>
       <div className="row text-center my-3">
         <div className="col d-flex justify-content-center">
-          <img src={picture} className={styles.img160} alt="" />
+          <img src={cover} className={styles.img160} alt="" />
         </div>
-        <div className="col my-auto p-0 chr-h6 text-nowrap">{`${seat_area}區${seat_row}排${seat_number}號`}</div>
+        <div className="col my-auto p-0 chr-h6 text-nowrap">
+          {seat_area
+            ? `${seat_area}區${seat_row}排${seat_number}號`
+            : '自由入場'}
+        </div>
         <div className="col my-auto p-0 chr-h6">${price}</div>
         <div className="col my-auto p-0 mx-auto d-flex justify-content-center">
           <DesktopWhiteNoIconBtnPurple
@@ -98,11 +102,12 @@ export default function TicketDetailCard({
                 <div className={`${style.ticketTitle} text-white`}>
                   <div className="chb-h6">{actname}</div>
                   <div className="chb-p">{art_name}</div>
-                  <div className="chb-p">#{tid}</div>
+                  <div className="chb-p">#0000{tid}</div>
                 </div>
                 <div className={`${style.ticketSeat} chb-h5 text-white`}>
-                  {`${seat_area}區`}&ensp;{`${seat_row}排`}&ensp;
-                  {`${seat_number}號`}
+                  {seat_area
+                    ? `${seat_area}區${seat_row}排${seat_number}號`
+                    : '自由入場'}
                 </div>
                 <div className={`${style.ticketInfo} chb-p text-white`}>
                   <div className="d-flex">
@@ -155,11 +160,12 @@ export default function TicketDetailCard({
                 <div className={`${style.ticketTitle} text-white`}>
                   <div className="chb-h6">{actname}</div>
                   <div className="chb-p">{art_name}</div>
-                  <div className="chb-p">#{tid}</div>
+                  <div className="chb-p">#0000{tid}</div>
                 </div>
                 <div className={`${style.ticketSeat} chb-h5 text-white`}>
-                  {`${seat_area}區`}&ensp;{`${seat_row}排`}&ensp;
-                  {`${seat_number}號`}
+                  {seat_area
+                    ? `${seat_area}區${seat_row}排${seat_number}號`
+                    : '自由入場'}
                 </div>
                 <div className={`${style.ticketInfo} chb-p text-white`}>
                   <div className="d-flex">

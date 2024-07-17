@@ -1,36 +1,45 @@
 import React from 'react'
 import styles from './collection-card.module.scss'
 import { BsFillXCircleFill } from 'react-icons/bs'
+import Link from 'next/link'
 
-export default function CollectionCard() {
+export default function CollectionCard({
+  actname = '',
+  cover = '',
+  descriptions = '',
+  actClass = '',
+  activity_id = '',
+}) {
   return (
     <>
       <div className={styles['collection-card']}>
-        <div className="card" style={{ width: '18rem' }}>
+        <div className="card">
           <button className={styles['close-btn']}>
-            {/* <i className="bi bi-x-circle-fill"></i> */}
             <BsFillXCircleFill className="chr-h5" />
           </button>
           <img
-            src={`/images/member/img/composing-2391033__340.jpg`}
-            className="card-img-top"
+            src={cover}
+            className={`card-img-top ${styles.h180}`}
             alt="..."
           />
-          <div className="card-body">
+          <div className="card-body p-2 p-md-3">
             <div
               className={`${styles['text-truncate-ellipsis']} ${styles['card-title']}`}
             >
-              一生到底，One Life, One Shot
+              {actname}
             </div>
             <p
               className={`${styles['multiline-ellipsis']} ${styles['card-text']}`}
             >
-              中文字測試中文字測試中文字測試中文字測試中文字測試中文字測試中文字測試中文字測試中文字測試
+              {descriptions}
             </p>
             <div className="d-flex">
-              <a href="#" className="text-decoration-none ms-auto">
+              <Link
+                href={`/Activity/${activity_id}`}
+                className="text-decoration-none ms-auto"
+              >
                 查看更多...
-              </a>
+              </Link>
             </div>
           </div>
         </div>

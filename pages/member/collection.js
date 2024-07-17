@@ -1,16 +1,61 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import MemberDLayout from '@/components/member/desktop-layout'
 import CollectionCard from '@/components/member/desktop-layout/collection-card'
-import cardData from '@/data/member/cardData'
 import Tab from '@/components/common/tabs/tab'
+import toast, { Toaster } from 'react-hot-toast'
+import { useAuth } from '@/hooks/use-auth'
+import { getCollectionData } from '@/services/collection'
 
 export default function Collection() {
   const [selectedActivity, setSelectedActivity] = useState('0')
 
+  const [cardData, setCardData] = useState([])
+  const [cardDataCon, setCardDataCon] = useState([])
+  const [cardDataFes, setCardDataFes] = useState([])
+
   const handleChange = (event) => {
     setSelectedActivity(event.target.value)
   }
+  const { auth } = useAuth()
 
+  const getUserData = async () => {
+    const res = await getCollectionData()
+    console.log('以下是response data')
+    console.log(res)
+    console.log('以下是res.data.class')
+    console.log(res.data)
+
+    if (res.status === 'success') {
+      console.log(res.data.result)
+      setCardData(res.data.result)
+
+      //filter() 裡面要不一樣
+      const concertData = cardData.filter((v) => {
+        return v.actClass === 'concert'
+      })
+
+      const festivalData = cardData.filter((item) => {
+        return item.actClass === 'festival'
+      })
+      setCardDataCon(concertData)
+      console.log('--------我是concertData')
+      console.log(concertData)
+      setCardDataFes(festivalData)
+      console.log('--------festivalData')
+
+      console.log(festivalData)
+
+      toast.success('收藏資料載入成功')
+    } else {
+      toast.error(`收藏資料載入失敗`)
+    }
+  }
+  // auth載入完成後向資料庫要會員資料
+  useEffect(() => {
+    if (auth.isAuth) {
+      getUserData() // getUserData(auth.userData.id) 將用戶 ID 傳遞给 getTicketOrder 函数，但是抓會員資料是來自authenticate.js
+    }
+  }, [auth])
   return (
     <>
       <p className="chb-h4 text-purple1">個人收藏</p>
@@ -25,12 +70,12 @@ export default function Collection() {
           ariaSelected={true}
           classNames="col-6 col-md-2"
         />
-        <Tab
+        {/* <Tab
           tabName="藝人"
           tabTarget="artist"
           ariaSelected={false}
           classNames="col-6 col-md-2"
-        />
+        /> */}
       </ul>
       {/* 內容 */}
       <div className="tab-content mb-2" id="myTabContent">
@@ -74,69 +119,53 @@ export default function Collection() {
             </div>
           </div>
         </div>
-        {/* 2 */}
-        <div
-          className="tab-pane fade"
-          id="artist"
-          role="tabpanel"
-          aria-labelledby="artist-tab"
-        >
-          {/* 藝人dropdown */}
+
+        {/* 根據選擇的活動類型顯示不同的內容 */}
+        {selectedActivity === '0' && (
           <div className="row">
-            <div className="col-12 col-md-5 py-3 d-flex flex-row">
-              <div className="col-6 text-center">
-                <label
-                  htmlFor="artist"
-                  className="chb-h6 flex-fill text-center"
-                >
-                  <span className="chb-h5">藝人：</span>
-                </label>
+            {cardData.map((v, i) => (
+              <div key={i} className="col-6 col-md-4 col-lg-3">
+                <CollectionCard
+                  actname={v.actname}
+                  cover={v.cover}
+                  descriptions={v.descriptions}
+                  activity_id={v.activity_id}
+                  actClass={v.actClass}
+                />
               </div>
-              <div className="col-6">
-                <select
-                  required
-                  id="artist"
-                  name="artist"
-                  className="align-item-center h-100 w-100"
-                  value={selectedActivity}
-                  onChange={handleChange}
-                  disabled
-                >
-                  <option value="0" className="text-center">
-                    - - 全部 - -
-                  </option>
-                </select>
+            ))}
+          </div>
+        )}
+        {selectedActivity === '1' && (
+          <div className="row">
+            {cardDataCon.map((v, i) => (
+              <div key={i} className="col-6 col-md-4 col-lg-3">
+                <CollectionCard
+                  actname={v.actname}
+                  cover={v.cover}
+                  descriptions={v.descriptions}
+                  activity_id={v.activity_id}
+                  actClass={v.actClass}
+                />
               </div>
-            </div>
+            ))}
           </div>
-        </div>
-
-        <div
-          className="tab-pane fade show active"
-          id="activity"
-          role="tabpanel"
-          aria-labelledby="activity-tab"
-        ></div>
-
-        {/* ---------------------------------------------------- */}
-        <div
-          className="tab-pane fade"
-          id="artist"
-          role="tabpanel"
-          aria-labelledby="artist-tab"
-        ></div>
-      </div>
-
-      <div className="row">
-        {cardData.map((v, index) => (
-          <div key={index} className="col-6 col-md-3">
-            <CollectionCard
-              imageSrc={v.imageSrc}
-              title={v.title}
-              description={v.description}
-            />
+        )}
+        {selectedActivity === '2' && (
+          <div className="row">
+            {cardDataFes.map((v, i) => (
+              <div key={i} className="col-6 col-md-4 col-lg-3">
+                <CollectionCard
+                  actname={v.actname}
+                  cover={v.cover}
+                  descriptions={v.descriptions}
+                  activity_id={v.activity_id}
+                  actClass={v.actClass}
+                />
+              </div>
+            ))}
           </div>
-        ))}
+        )}
       </div>
 
       <style jsx>{`

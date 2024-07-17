@@ -13,6 +13,10 @@ export default function LoginProvider({ children }) {
     setWakeLogin(true)
   }
 
+  const handleGotoMember = () => {
+    router.push('/member/profile')
+  }
+
   const handleWakeForgetPassword = () => {
     setWakeForgetPassword(true)
   }
@@ -42,6 +46,7 @@ export default function LoginProvider({ children }) {
           handleWakeForgetPassword,
           handleCloseForgetPassword,
           handleCloseLogin,
+          handleGotoMember,
         }}
       >
         {children}
