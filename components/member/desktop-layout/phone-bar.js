@@ -6,6 +6,7 @@ import PreviewUploadImage from '@/components/member/desktop-layout/preview-uploa
 import { avatarBaseUrl } from '@/configs'
 import { useAuth } from '@/hooks/use-auth'
 import toast, { Toaster } from 'react-hot-toast'
+import { IoPersonSharp } from 'react-icons/io5'
 
 import {
   updateProfile,
@@ -129,19 +130,13 @@ export default function PhoneBar({ pageName = '' }) {
 
         <div className="row align-items-center p-3">
           <div className="col-6 d-flex justify-content-center">
-            {/* <img
-              src="/images/member/img/beautiful-2405131__340.jpg"
-              alt=""
-              className={`${styles['img-size']}`}
-            ></img> */}
             {hasProfile ? (
               <PreviewUploadImage
                 avatarImg={userProfile.avatar}
-                // uploadImg={updateProfileAvatar}
                 avatarBaseUrl={avatarBaseUrl}
-                // toast={toast}
                 setSelectedFile={setSelectedFile}
                 selectedFile={selectedFile}
+                isDisable={isDisable}
               />
             ) : (
               <div>
@@ -151,7 +146,12 @@ export default function PhoneBar({ pageName = '' }) {
           </div>
 
           <div className="text-center col-6">
-            <p className="chb-h4 m-0 text-black">{userProfile.name}</p>
+            <p className="chb-h4 m-0 text-black d-flex">
+              <div className="text-center chr-h3 me-3">
+                <IoPersonSharp />
+              </div>
+              <div className="chr-h3 h-100">{userProfile.name}</div>
+            </p>
           </div>
         </div>
 
