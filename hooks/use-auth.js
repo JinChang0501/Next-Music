@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }) => {
   })
 
   // 我的最愛清單使用
-  const [favorites, setFavorites] = useState([])
+  // const [favorites, setFavorites] = useState([])
 
   // 得到我的最愛
   // const handleGetFavorites = async () => {
@@ -123,8 +123,8 @@ export const AuthProvider = ({ children }) => {
       value={{
         auth,
         setAuth,
-        favorites,
-        setFavorites,
+        // favorites,
+        // setFavorites,
         handleCheckAuth,
       }}
     >

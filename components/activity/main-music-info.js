@@ -1,13 +1,14 @@
 import React from 'react'
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import { BsMusicNoteBeamed, BsBookmark, BsGeoAlt, BsCalendar4 } from "react-icons/bs";
-import DesktopBlackNoIconBtnPurple from '../common/button/desktopBlackButton/desktopBlackNoIconBtnPurple';
-import DesktopBlackPureIconBtnBlack from '../common/button/desktopBlackButton/desktopBlackPureIconBtnBlack';
-import PhoneBlackPureIconBtnBlack from '../common/button/phoneBlackButton/phoneBlackPureIconBtnBlack';
-import PhoneBlackNoIconBtnPurple from '../common/button/phoneBlackButton/phoneBlackNoIconBtnPurple';
+import Image from 'next/image'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { BsMusicNoteBeamed, BsBookmark, BsGeoAlt, BsCalendar4 } from "react-icons/bs"
+import DesktopBlackNoIconBtnPurple from '../common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
+import DesktopBlackPureIconBtnBlack from '../common/button/desktopBlackButton/desktopBlackPureIconBtnBlack'
+import PhoneBlackPureIconBtnBlack from '../common/button/phoneBlackButton/phoneBlackPureIconBtnBlack'
+import PhoneBlackNoIconBtnPurple from '../common/button/phoneBlackButton/phoneBlackNoIconBtnPurple'
 
-export default function MainMusicInfo({ title, actdate, acttime, location, artist, banner }) {
+export default function MainMusicInfo({ title, actdate, acttime, location, artist, banner, aid }) {
   const [isDesktop, setIsDesktop] = useState(true)
 
   useEffect(() => {
@@ -42,7 +43,7 @@ export default function MainMusicInfo({ title, actdate, acttime, location, artis
             <div className="col-12 my-4 my-md-5">
               <div className="d-flex my-2">
                 <BsCalendar4 className="chb-h5 text-white me-3 mt-1" />
-                <div className="chb-h5 text-purple2">{actdate}&nbsp;{acttime}</div>
+                <div className="chb-h5 text-purple2">{actdate}&nbsp{acttime}</div>
               </div>
               <div className="d-flex my-2">
                 <BsGeoAlt className="chb-h5 text-white me-3 mt-1" />
@@ -55,9 +56,14 @@ export default function MainMusicInfo({ title, actdate, acttime, location, artis
             </div>
             <div className="col-12 text-nowrap mt-3">
               <div className="d-flex">
-
+              <Link
+                    href={`/ticket/${
+                      aid > 9 ? 'musicFestival' : 'concert'
+                    }/selectSeat/${aid}`}
+                  >
                 {isDesktop ?
-                  (<DesktopBlackNoIconBtnPurple
+                  (
+                    <DesktopBlackNoIconBtnPurple
                     text='立即購票'
                     className='chr-h5'
                   />) : (<div className="w-100">
@@ -66,7 +72,7 @@ export default function MainMusicInfo({ title, actdate, acttime, location, artis
                       className='chr-p-14 w-100'
                     /></div>
                   )}
-
+              </Link>
                 <div className="ms-2 ms-md-4">
                   {isDesktop ?
                     (<DesktopBlackPureIconBtnBlack
@@ -102,12 +108,7 @@ export default function MainMusicInfo({ title, actdate, acttime, location, artis
         .custom-bg-01 {
           height: 25rem;
         }
-        {/* .custom-bg-01 {
-          background-image: url('https://i.postimg.cc/CLWYD3d9/temp-Imagea-Dk-U5o.avif');
-          background-size: cover;
-          background-position: center;
-          height: 25rem;
-        } */}
+
         .custom-bg-02 {
           object-fit: cover;
           object-position: center;
@@ -126,7 +127,7 @@ export default function MainMusicInfo({ title, actdate, acttime, location, artis
         }
         @media (max-width: 390px) {
           .custom-bg-01 {
-            height: 11.25rem
+            height: 11.25rem;
         }
       }
       `}</style>
