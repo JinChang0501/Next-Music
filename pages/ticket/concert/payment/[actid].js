@@ -12,11 +12,20 @@ import style from '@/styles/ticket/concert/second.module.scss'
 import DesktopWhiteNoIconBtnPurple from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnPurple'
 import PhoneWhiteNoIconBtnPurple from '@/components/common/button/phoneWhiteButton/phoneWhiteNoIconBtnPurple'
 import { useRouter } from 'next/router'
+import { useTicketContext } from '@/context/ticket/ticketContext'
 
 export default function Payment() {
   const [isMobile, setIsMobile] = useState(false)
 
   const router = useRouter()
+
+  const { selectedSeatDetails, actid } = useTicketContext()
+
+  useEffect(() => {
+    if (!actid || selectedSeatDetails.length === 0) {
+      router.push('/') // 如果沒有 actid 或選擇的座位，重定向到首頁或其他頁面
+    }
+  }, [actid, selectedSeatDetails, router])
 
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
@@ -26,7 +35,7 @@ export default function Payment() {
   ]
 
   const handleNext = () => {
-    router.push('/ticket/concert/third')
+    router.push(`/ticket/concert/finish/${actid}`)
   }
 
   useEffect(() => {
@@ -65,10 +74,14 @@ export default function Payment() {
             {isMobile ? (
               <>
                 {/* PhoneAccordionFirst */}
-                <PhoneAccordionFirst />
+                <PhoneAccordionFirst
+                  selectedSeatDetails={selectedSeatDetails}
+                />
 
                 {/* PhoneAccordionSecond */}
-                <PhoneAccordionSecond />
+                <PhoneAccordionSecond
+                  selectedSeatDetails={selectedSeatDetails}
+                />
 
                 {/* PhoneAccordionThird */}
                 <PhoneAccordionThird />
@@ -76,10 +89,10 @@ export default function Payment() {
             ) : (
               <>
                 {/* AccordionFirst */}
-                <AccordionFirst />
+                <AccordionFirst selectedSeatDetails={selectedSeatDetails} />
 
                 {/* AccordionSecond */}
-                <AccordionSecond />
+                <AccordionSecond selectedSeatDetails={selectedSeatDetails} />
 
                 {/* AccordionThird */}
                 <AccordionThird />

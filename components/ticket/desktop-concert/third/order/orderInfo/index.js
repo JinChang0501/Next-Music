@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
-import orderSelectBlockData from '@/data/ticket/desktop-concert/fourth/OrderInfo'
 import style from './orderInfo.module.scss'
 import { BsCaretDownFill } from 'react-icons/bs'
+import { useTicketContext } from '@/context/ticket/ticketContext'
 
 export default function OrderInfo() {
   const [selectBlockVisible, setSelectBlockVisible] = useState(false)
+
+  const { selectedSeatDetails } = useTicketContext()
 
   const selectBlockRef = useRef(null)
 
@@ -21,6 +23,10 @@ export default function OrderInfo() {
       selectBlock.style.maxHeight = '0'
     }
   }, [selectBlockVisible])
+
+  const formatSeatNumber = (seatNumber) => {
+    return seatNumber.toString().padStart(3, '0')
+  }
 
   return (
     <>
@@ -53,12 +59,13 @@ export default function OrderInfo() {
                   selectBlockVisible ? style.visible : style.hidden
                 }`}
               >
-                {orderSelectBlockData.map((v) => (
+                {selectedSeatDetails.map((v) => (
                   <div
-                    key={v.id}
+                    key={v.seat_number}
                     className={`${style.orderSelectBlockTicketArea} chb-p`}
                   >
-                    {v.text}
+                    {v.seat_area} 區 • {v.seat_row} 排 •{' '}
+                    {formatSeatNumber(v.seat_number)} 號
                   </div>
                 ))}
               </div>

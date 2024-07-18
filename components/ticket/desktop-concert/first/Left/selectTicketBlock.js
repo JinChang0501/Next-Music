@@ -16,6 +16,10 @@ export default function SelectTicketBlock({
     (ticket) => ticket.seat_number === seatNumber
   )
 
+  const formatSeatNumber = (seatNumber) => {
+    return seatNumber.toString().padStart(3, '0')
+  }
+
   return (
     <div
       className={`${styles.selectTicketBlock} ${show ? styles.visible : ''}`}
@@ -37,7 +41,9 @@ export default function SelectTicketBlock({
         <div>
           <div className="pb-3">座位</div>
           <div className={`${styles.flexEnd}`}>
-            {selectedTicket ? selectedTicket.seat_number : '-'}
+            {selectedTicket
+              ? `${formatSeatNumber(selectedTicket.seat_number)}`
+              : '-'}
           </div>
         </div>
       </div>

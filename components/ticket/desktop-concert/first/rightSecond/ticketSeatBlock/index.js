@@ -28,6 +28,10 @@ export default function TicketSeatBlock({ seat, onDelete }) {
       setColorBarBackground('transparent')
     }
   }, [seat])
+
+  const formatSeatNumber = (seatNumber) => {
+    return seatNumber.toString().padStart(3, '0')
+  }
   return (
     <>
       <div className={`${style.ticketSeatBlock} chb-h7 position-relative`}>
@@ -43,7 +47,7 @@ export default function TicketSeatBlock({ seat, onDelete }) {
           ></div>
           <div>
             {seat ? seat.seat_area : '-'} 區 • {seat ? seat.seat_row : '-'} 排 •{' '}
-            {seat ? seat.seat_number : '-'} 號
+            {seat ? `${formatSeatNumber(seat.seat_number)}` : '-'} 號
           </div>
         </div>
         <div>$ {seat ? seat.price : '-'}</div>

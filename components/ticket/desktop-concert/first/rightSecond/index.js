@@ -10,6 +10,7 @@ import {
   BsCalendar4,
 } from 'react-icons/bs'
 import moment from 'moment'
+import { useTicketContext } from '@/context/ticket/ticketContext'
 
 export default function RightSecond({
   selectedSeats,
@@ -18,13 +19,14 @@ export default function RightSecond({
   tickets,
 }) {
   const router = useRouter()
+  const { actid } = useTicketContext()
+
+  const handleNext = () => {
+    router.push(`/ticket/concert/payment/${actid}`)
+  }
 
   if (!tickets || tickets.length === 0) {
     return null
-  }
-
-  const handleNext = () => {
-    router.push('/ticket/concert/second')
   }
 
   const totalPrice = selectedSeats.reduce((acc, seat) => acc + seat.price, 0)

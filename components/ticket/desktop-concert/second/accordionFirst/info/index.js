@@ -1,17 +1,27 @@
 import React from 'react'
 import style from './info.module.scss'
 import { BsFillTicketPerforatedFill, BsQrCode } from 'react-icons/bs'
+import { useTicketContext } from '@/context/ticket/ticketContext'
+import moment from 'moment-timezone'
 
 export default function Info() {
+  const { selectedSeatDetails } = useTicketContext()
+
+  const { actname, actdate, acttime, location, art_name } =
+    selectedSeatDetails[0] || {}
+
+  const datetime = moment(
+    `${actdate} ${acttime}`,
+    `YYYY-MM-DD HH:mm:ss`
+  ).format('YYYY-MM-DD HH:mm:ss')
+
   return (
     <>
       <div className={`${style.info} text-black`}>
-        <div className={`${style.infoBlock} chb-h5`}>
-          一生到底 One Life, One Shot
-        </div>
-        <div className={`${style.infoBlock} chb-h5`}>滅火器 Fire EX.</div>
-        <div className={`${style.infoBlock} chb-h5`}>台北流行音樂中心</div>
-        <div className={`${style.infoBlock} chb-h5`}>2024/06/15 19:30</div>
+        <div className={`${style.infoBlock} chb-h5`}>{actname}</div>
+        <div className={`${style.infoBlock} chb-h5`}>{art_name}</div>
+        <div className={`${style.infoBlock} chb-h5`}>{location}</div>
+        <div className={`${style.infoBlock} chb-h5`}>{datetime}</div>
         <div className={`${style.infoBlock}`}>
           <div>
             <BsFillTicketPerforatedFill

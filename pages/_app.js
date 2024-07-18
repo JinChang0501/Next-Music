@@ -6,12 +6,13 @@ import DefaultLayout from '@/components/layout/default-layout'
 import { TabProvider } from '@/hooks/member/useTab'
 import { ActTabProvider } from '@/hooks/Activity/useTabs'
 import { AuthProvider } from '@/hooks/use-auth'
-import { TicketProvider } from '@/context/ticket/selectNumber'
+import { MusicFestivalProvider } from '@/context/ticket/selectNumber'
 import LoginProvider from '@/hooks/use-login'
 // Chloe 日曆樣式套件
 import 'rsuite/dist/rsuite-no-reset.min.css'
 import { CustomProvider } from 'rsuite'
 import { CartProvider } from '@/hooks/product/use-cart'
+import { TicketProvider } from '@/context/ticket/ticketContext'
 
 export default function MyApp({ Component, pageProps }) {
   // 導入bootstrap的JS函式庫
@@ -30,13 +31,15 @@ export default function MyApp({ Component, pageProps }) {
       <AuthProvider>
         <CustomProvider>
           <CartProvider>
-            <TicketProvider>
+            <MusicFestivalProvider>
               <ActTabProvider>
                 <TabProvider>
-                  {getLayout(<Component {...pageProps} />)}
+                  <TicketProvider>
+                    {getLayout(<Component {...pageProps} />)}
+                  </TicketProvider>
                 </TabProvider>
               </ActTabProvider>
-            </TicketProvider>
+            </MusicFestivalProvider>
           </CartProvider>
         </CustomProvider>
       </AuthProvider>

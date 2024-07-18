@@ -3,7 +3,7 @@ import React, { createContext, useState } from 'react'
 // 創建上下文
 const TicketContext = createContext()
 
-const TicketProvider = ({ children }) => {
+const MusicFestivalProvider = ({ children }) => {
   const [selectedNumber, setSelectedNumber] = useState(1)
 
   return (
@@ -13,4 +13,4 @@ const TicketProvider = ({ children }) => {
   )
 }
 
-export { TicketContext, TicketProvider }
+export { TicketContext, MusicFestivalProvider }

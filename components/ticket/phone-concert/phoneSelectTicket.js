@@ -9,19 +9,22 @@ import {
   BsX,
 } from 'react-icons/bs'
 import { useRouter } from 'next/router'
+import { useTicketContext } from '@/context/ticket/ticketContext'
 
-export default function PhoneSelectTicket({ selectedSeats, onDeleteSeat }) {
+export default function PhoneSelectTicket({
+  selectedSeats,
+  onDeleteSeat,
+  showDeleteAllSeat,
+  tickets,
+}) {
   const [showTicket, setShowTicket] = useState(false)
   const [selectTicketBodyTitleHeight, setSelectTicketBodyTitleHeight] =
     useState(0)
   const [ticketSeatBodyHeight, setTicketSeatBodyHeight] = useState(0)
+  const [colorBarBackground, setColorBarBackground] = useState('transparent')
   const ticketSeatBodyRef = useRef(null)
   const selectTicketBodyTitleRef = useRef(null)
   const router = useRouter()
-
-  const handleNext = () => {
-    router.push('/ticket/concert/second')
-  }
 
   // 動態計算選擇多少張票高度
   useEffect(() => {
@@ -40,6 +43,37 @@ export default function PhoneSelectTicket({ selectedSeats, onDeleteSeat }) {
     }
   }, [selectedSeats])
 
+  const getColorBarBackground = (seatArea) => {
+    switch (seatArea) {
+      case 'A':
+        return '#FF9900'
+      case 'B':
+        return '#00A3FF'
+      case 'C':
+        return '#F12222'
+      case 'D':
+        return '#9E00FF'
+      default:
+        return '#3EAD2C'
+    }
+  }
+
+  const handleNext = () => {
+    router.push(`/ticket/concert/payment/${actid}`)
+  }
+
+  const { actid } = useTicketContext()
+
+  if (!tickets || tickets.length === 0) {
+    return null
+  }
+
+  const totalPrice = selectedSeats.reduce((acc, seat) => acc + seat.price, 0)
+
+  const formatSeatNumber = (seatNumber) => {
+    return seatNumber.toString().padStart(3, '0')
+  }
+
   return (
     <>
       <div className={`${style.selectTicket}`}>
@@ -57,8 +91,8 @@ export default function PhoneSelectTicket({ selectedSeats, onDeleteSeat }) {
             </div>
             <div className={`${style.titleTotalBox}`}>
               <div className={`${style.titleTotal}`}>
-                <div>$ 3000</div>
-                <div>6 張票</div>
+                <div>$ {totalPrice.toLocaleString()}</div>
+                <div>{selectedSeats.length} 張票</div>
               </div>
               <div>
                 <FaChevronUp
@@ -112,23 +146,31 @@ export default function PhoneSelectTicket({ selectedSeats, onDeleteSeat }) {
             }}
           >
             {selectedSeats.length > 0 &&
-              selectedSeats.map((seat) => (
+              selectedSeats.map((v) => (
                 <div
-                  key={seat.id}
-                  seat={seat}
+                  key={v.seat_number}
+                  seat={v}
                   className={`${style.ticketSeatBlock}`}
                 >
                   <BsX
                     className={`${style.ticketSeatBlockClose} text-black40`}
-                    onClick={() => onDeleteSeat(seat)}
+                    onClick={() => onDeleteSeat(v)}
                   />
                   <div className={`${style.ticketSeatBlockTop}`}>
                     <div
-                      className={`${style.ticketSeatBlockTopSquare} bg-A`}
+                      className={`${style.ticketSeatBlockTopSquare}`}
+                      style={{
+                        backgroundColor: getColorBarBackground(v.seat_area),
+                      }}
                     ></div>
-                    <div>A 區 • B 排 • 09 號</div>
+                    <div>
+                      {v.seat_area} 區 • {v.seat_row} 排 •{' '}
+                      {v ? `${formatSeatNumber(v.seat_number)}` : '-'} 號
+                    </div>
                   </div>
-                  <div className={`${style.ticketSeatBlockBottom}`}>$ 8600</div>
+                  <div className={`${style.ticketSeatBlockBottom}`}>
+                    $ {v.price}
+                  </div>
                 </div>
               ))}
           </div>

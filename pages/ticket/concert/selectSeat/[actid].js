@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react'
+import { useTicketContext } from '@/context/ticket/ticketContext'
 import FixedContentLayout from '@/components/layout/ticket-layout/desktopLayout/fixedContentLayout'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import Mask from '@/components/ticket/mask'
@@ -79,11 +80,15 @@ export default function SelectSeat() {
   const { actid } = router.query
   const [tickets, setTickets] = useState()
   const [seatMap, setSeatMap] = useState([])
-  const [selectedSeatDetails, setSelectedSeatDetails] = useState([])
+  const { selectedSeatDetails, setSelectedSeatDetails, setActid } =
+    useTicketContext()
 
   useEffect(() => {
-    if (actid) fetchTickets(actid)
-  }, [actid])
+    if (actid) {
+      fetchTickets(actid)
+      setActid(actid)
+    }
+  }, [actid, setActid])
 
   const fetchTickets = async (actid) => {
     const url = `${GET_TICKET}/activity/${actid}`
@@ -185,21 +190,24 @@ export default function SelectSeat() {
           </>
         )}
 
-        <PhoneTitle />
+        <PhoneTitle tickets={tickets} selectedSeats={selectedSeatDetails} />
 
         <ProgressBar progressBarRef={progressBarRef} isStarted={isStarted} />
 
         <Left
           onSeatsChange={handleSeatsChange}
           updateSelectedSeats={setSelectedSeats}
-          selectedSeats={selectedSeats}
+          selectedSeats={selectedSeatDetails}
+          tickets={tickets}
+          onSeatClick={handleSeatClick}
           className={`${style.svgHeight}`}
         />
 
         <div className={style.zIndex} style={{ userSelect: 'none' }}>
           <PhoneSelectTicket
-            selectedSeats={selectedSeats}
+            selectedSeats={selectedSeatDetails}
             onDeleteSeat={handleDeleteSeat}
+            tickets={tickets}
           />
         </div>
       </>
