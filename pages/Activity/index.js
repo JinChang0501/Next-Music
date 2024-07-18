@@ -1,9 +1,9 @@
 import React from 'react'
-import { useEffect, useState , useRef } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 // 帶資料的api
 import { ACT_LIST } from '@/configs/api-path'
-import { getFavorites, addFavorite, removeFavorite, checkFavorite } from '@/configs/fav-api'
+import { getFavorites, addFavorite, removeFavorite } from '@/configs/fav-api'
 // 路徑
 import { useRouter } from 'next/router'
 // 判斷登入
@@ -32,14 +32,14 @@ export default function Activity() {
   // 收藏列表，收藏初始值
   const [favorite, setFavorite] = useState({
     success: false,
-    rows: { 
-      favorites: [] // 有收藏的 activity_id
+    rows: {
+      favorites: [], // 有收藏的 activity_id
     },
   })
 
   // 初始值至少要空白陣列。初次render是用初始值，需要對應伺服器回應的資料類型。
   // 在應用程式執行過程中，一定要保持狀態的資料類型(一定要是陣列)
-  // const [activity, setActivity] = useState([]) 
+  // const [activity, setActivity] = useState([])
 
   // 查詢條件用(這裡用的初始值都與伺服器的預設值一致)
   const [keyword, setKeyword] = useState('')
@@ -57,7 +57,7 @@ export default function Activity() {
   const getActivity = async (params = {}) => {
     // 轉換為查詢字串
     // console.log(router.query) // 是空的
-    console.log(params)       // keyword, actClass, area, dataRange
+    console.log(params) // keyword, actClass, area, dataRange
     const searchParams = new URLSearchParams(params)
     const url = `${ACT_LIST}?${searchParams.toString()}`
 
@@ -79,9 +79,9 @@ export default function Activity() {
   }
 
   // 按下搜尋按鈕
-  const handleSearch =  (e) => {
+  const handleSearch = (e) => {
     e.preventDefault()
-    
+
     const params = {
       // sort: orderby.sort,
       // order: orderby.order,
@@ -90,50 +90,48 @@ export default function Activity() {
       area: area,
       dateRange: dateRange,
     }
-    console.log("params1")
+    console.log('params1')
     console.log(params)
 
-     getActivity(params)
-     scrollToTop()
+    getActivity(params)
+    scrollToTop()
   }
 
   // 按下Enter按鈕
-  const handleKeyDown =  (e) => {
+  const handleKeyDown = (e) => {
     console.log(e.key)
     if (e.key === 'Enter') {
-       e.preventDefault()
+      e.preventDefault()
       handleSearch(e)
     }
-   }
+  }
 
   // 滾動到Top
   const scrollToTop = (e) => {
     //console.log('scrollToTop called')
     if (topRef.current) {
       console.log('topRef.current:', topRef.current)
-      topRef.current.scrollIntoView({ behavior: 'smooth' })  
-     } else {
-       console.log('topRef.current is null')
-     }
+      topRef.current.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      console.log('topRef.current is null')
+    }
   }
 
   // 取得收藏項目
   const fetchFavorites = async () => {
     // try {
-      // console.log(auth.userData.id)
-      const res = await getFavorites()
-      console.log(res.rows)
-      console.log(res)
-      if(res.success === true) {
-        setFavorite(res)
-        console.log(favorite)
-        // console.log(favorite)
-      }
-      // } catch (error) {
-      //   console.log('現在的favorite')
-      //   console.log(favorite)
-      //   console.error('無法獲取收藏', error)
-      // }
+    // console.log(auth.userData.id)
+    const res = await getFavorites()
+    console.log(res.rows)
+    console.log(res)
+    if (res.success === true) {
+      setFavorite(res)
+    }
+    // } catch (error) {
+    //   console.log('現在的favorite')
+    //   console.log(favorite)
+    //   console.error('無法獲取收藏', error)
+    // }
   }
 
   // 頁面重新渲染時：取得列表、搜尋條件
@@ -144,31 +142,30 @@ export default function Activity() {
       area: area,
       dateRange: dateRange,
     }
-    fetchFavorites()
-    console.log(favorite)
+
     getActivity(params)
-      console.log("params2")
-      console.log(params)
-      // eslint-disable-next-line
+    console.log('params2')
+    console.log(params)
+    // eslint-disable-next-line
   }, [])
 
   const handleToggleFav = async (eventId) => {
     try {
       // 確認是否已經收藏 => includes 回傳 true / false
       const isFavorite = favorite.rows.favorites.includes(eventId)
-  
+
       // 根據是否收藏來決定要加入還是移除
       if (isFavorite) {
         await removeFavorite(eventId)
       } else {
         await addFavorite(eventId)
       }
-  
+
       // 更新收藏狀態
       const nextFavorites = isFavorite
         ? favorite.rows.favorites.filter((id) => id !== eventId)
         : [...favorite.rows.favorites, eventId]
-  
+
       setFavorite({
         ...favorite,
         rows: {
@@ -186,7 +183,6 @@ export default function Activity() {
       fetchFavorites()
       console.log(favorite)
     }
-    //[auth, favorite]
   }, [auth])
 
   return (
@@ -196,7 +192,7 @@ export default function Activity() {
       <div ref={topRef}></div>
       <div className="music-container mt-3 mt-md-5">
         <div className="row">
-          <LeftBar 
+          <LeftBar
             classValue={actClass}
             onClassChange={(e) => {
               setActClass(e.target.value)
@@ -210,10 +206,10 @@ export default function Activity() {
               setKeyword(e.target.value)
             }}
             dateValue={dateRange}
-            onDateChange={(e) => { 
+            onDateChange={(e) => {
               setDateRange(e.target.value)
             }}
-            handleSearch={handleSearch} 
+            handleSearch={handleSearch}
             handleKeyDown={handleKeyDown}
           />
           <div className="col-md-9 col-12 mb-3">
@@ -236,7 +232,9 @@ export default function Activity() {
                   // ? true : false
                   isFavorite={favorite.rows.favorites.includes(r.actid)}
                   // 有登入的話切換toggle，沒有的話要先登入
-                  handleToggleFav={auth.isAuth ? handleToggleFav : handleWakeLogin }
+                  handleToggleFav={
+                    auth.isAuth ? handleToggleFav : handleWakeLogin
+                  }
                 />
               )
             })}
