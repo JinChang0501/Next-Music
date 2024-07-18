@@ -1,7 +1,20 @@
 .artist-img-s {
   width: 100%;
+  // animation: move 6s linear infinite;
 }
 
+.animate {
+  animation: move 7s linear infinite;
+}
 .artist-img-l {
   width: 80%;
+}
+
+@keyframes move {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
