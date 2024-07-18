@@ -12,7 +12,7 @@ import EcPay from '@/components/product/ec-pay'
 // import data from '@/data/product/Product.json'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import toast, { Toaster } from 'react-hot-toast'
+// import toast, { Toaster } from 'react-hot-toast'
 // 會員
 import { getUserById } from '@/services/user'
 import { useAuth } from '@/hooks/use-auth'
@@ -118,10 +118,8 @@ export default function Payment() {
       // 設定到狀態中
       setUserProfile(dbUserProfile)
 
-      toast.success('會員資料載入成功')
-    } else {
-      toast.error(`會員資料載入失敗`)
-    }
+      
+    } 
   }
   // auth載入完成後向資料庫要會員資料
   useEffect(() => {
@@ -161,7 +159,6 @@ export default function Payment() {
                     <div className="row g-3 align-items-center">
                       <div className="col-auto">
                         <p className="col-form-label chb-h6">數量: {p.quantity}</p>
-                        
                       </div>
                     </div>
                     <div className={`cartTotal ${styles['mt-28']}`}>
@@ -171,16 +168,15 @@ export default function Payment() {
                     </div>
                   </div>
                 </div>
-                
+                <hr />
               </div>
             ))}
           </div>
-          <hr />
-          <div className={`card-text chb-h6 ${styles['mt-40']}`}>
+          <div className={`card-text chb-h6 `}>
           總數量: {totalQty} 件/ 總金額: NT$ {totalPrice}
           </div>
           {/* 購物列表 end */}
-         
+          <hr />
         </div>
         <div className={`second ${styles['mt-40']} ${styles['w-800']}`}>
           <p className="chb-h5">請確認收貨人基本資訊</p>

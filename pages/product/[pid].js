@@ -22,7 +22,9 @@ export default function Detail() {
 
   useEffect(() => {
     if (router.isReady) {
-      fetch(`${GET_PRODUCTS}`)
+      fetch(`${GET_PRODUCTS}`, {
+        credentials: 'include',
+      })
         .then((res) => {
           if (!res.ok) {
             throw new Error('Failed to fetch')
@@ -47,7 +49,7 @@ export default function Detail() {
   let cart = []
 
   const checkCart = () => {
-    const cart = localStorage.getItem('cart')
+    const cart = localStorage.getItem('makin-cart')
     setCardData(cart)
   }
   const addToCart = () => {
@@ -60,7 +62,7 @@ export default function Detail() {
       quantity: 1,
     }
 
-    const cartData = localStorage.getItem('cart')
+    const cartData = localStorage.getItem('makin-cart')
 
     if (cartData) {
       cart = JSON.parse(cartData)
@@ -73,7 +75,7 @@ export default function Detail() {
       cart.push(cartItem)
     }
 
-    localStorage.setItem('cart', JSON.stringify(cart))
+    localStorage.setItem('makin-cart', JSON.stringify(cart))
 
     toast.success(`本商品已成功加入購物車`)
   }

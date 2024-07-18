@@ -11,7 +11,7 @@ import { useRouter } from 'next/router'
 
 export default function CartIndex() {
   const [products, setProducts] = useState([])
-  const cartKey = 'cart'
+  const cartKey = 'makin-cart'
   const [cart, setCart] = useState([])
   const [items, setItems] = useState([])
   const [totalQty, setTotalQty] = useState(0)
@@ -21,7 +21,7 @@ export default function CartIndex() {
 
   const breadcrumbsURL = [
     { label: '周邊商城', href: '/product' },
-    { label: '商品資訊', href: '/product/[pid]' },
+    { label: '商品資訊', href: '/product/[pid]}' },
     { label: '購物車', href: '/cart' },
   ]
   // const checkCart = () => {
@@ -35,7 +35,9 @@ export default function CartIndex() {
   // }, [cartDatas, router])
 
   useEffect(() => {
-    fetch(GET_PRODUCTS)
+    fetch(GET_PRODUCTS, {
+      credentials: 'include',
+    })
       .then((res) => {
         if (!res.ok) {
           throw new Error('Failed to fetch products')
@@ -43,6 +45,8 @@ export default function CartIndex() {
         return res.json()
       })
       .then((data) => {
+        const { pid } = router.query
+        const product = data.find((p) => p.id === Number(pid))
         setProducts(data)
       })
       .catch((error) => {
@@ -50,7 +54,7 @@ export default function CartIndex() {
       })
 
     setCart(getCartFromStorage())
-  }, [])
+  }, [router.query.pid])
 
   useEffect(() => {
     setItems(
@@ -153,7 +157,7 @@ export default function CartIndex() {
                     </div>
                   </div>
                 </div>
-                <div className={`col-md-2 ${styles['columnCenter']}`}>
+                <div className={`col-md-2 ${styles['columnCenter']} ${styles['mb-m-40']}`}>
                   <DesktopBlackNoIconBtnPurple
                     text="刪除"
                     className={`chb-h6`}
@@ -164,12 +168,12 @@ export default function CartIndex() {
                     }}
                   />
                 </div>
+                <hr />
               </div>
             ))}
           </div>
-          <hr />
-          <div>
-            總數量: {totalQty} / 總金額: NT$ {totalPrice}
+          <div className={`card-text chb-h6 `}>
+            總數量: {totalQty} 件/ 總金額: NT$ {totalPrice}
           </div>
         </div>
       </div>

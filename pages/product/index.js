@@ -21,7 +21,9 @@ export default function List() {
   ]
 
   useEffect(() => {
-    fetch(GET_PRODUCTS)
+    fetch(GET_PRODUCTS, {
+      credentials: 'include',
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log('server data', data)

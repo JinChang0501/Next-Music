@@ -20,9 +20,9 @@ export default function Transport() {
           <div className={styles.transportBlockHome}>
             <button
               className={`${styles.transportCircle} ${
-                selected === 'ecPay' ? 'bg-black' : 'bg-white'
+                selected === 'home' ? 'bg-black' : 'bg-white'
               }`}
-              onClick={() => handleCircleClick('ecPay')}
+              onClick={() => handleCircleClick('home')}
             ></button>
             <div className="chb-h6">宅配到府
               <p for="exampleInputEmail1" className="chb-p mt-3">收件地址</p>

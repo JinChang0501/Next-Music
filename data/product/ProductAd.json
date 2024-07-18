@@ -10,11 +10,11 @@
   },
   {
     "id": 2,
-    "picture": "blossom_hoodie.jpg",
-    "activity": "Wonderland演唱會",
-    "name": "連帽長袖上衣",
-    "price": 3000,
-    "intro": "活動聯名連帽長袖上衣，限量發售，名牌設計總監親自設計，親膚材質，保暖透氣，超高回頭率！",
+    "picture": "sw_t-shirt.jpg",
+    "activity": "春浪(演唱會)",
+    "name": "T恤上衣",
+    "price": 500,
+    "intro": "活動聯名限量T恤，限量發售，名牌設計總監親自設計，親膚材質，保暖透氣，超高回頭率！",
     "stock": 1000
   },
   {
