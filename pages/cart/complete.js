@@ -6,6 +6,7 @@ import ProgressBarThree from '@/components/product/progressBarThree'
 import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
 import data from '@/data/product/Product.json'
 import Link from 'next/link'
+import { useShip711StoreOpener } from '@/hooks/use-ship-711-store'
 
 export default function Complete() {
   const breadcrumbsURL = [
@@ -13,6 +14,9 @@ export default function Complete() {
     { label: '商品資訊', href: '/product[pid]' },
     { label: '購物車', href: '/cart' },
   ]
+  const { store711, openWindow, closeWindow } = useShip711StoreOpener(
+    'http://localhost:3005/api/shipment/711'
+  )
   return (
     <>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
@@ -35,7 +39,7 @@ export default function Complete() {
             <tbody>
               <tr className={``}>
                 <td className={`chb-h6 ${styles['w-160']} ${styles['text-center-x']}`}>收貨地點</td>
-                <td className={`chb-h6 ${styles['text-center-x']}`}>7-11 大安門市(台北市大安區信義路三段178號1樓)</td>
+                <td className={`chb-h6 ${styles['text-center-x']}`} >{store711.storename}({store711.storeaddress})</td>
               </tr>
               <tr className={`chb-h6 `}>
                 <td colspan="2" className={``}>
@@ -58,7 +62,7 @@ export default function Complete() {
             『訂單查詢』您可至會員中心的「周邊商品購買紀錄」，登入查詢您的訂單處理情形。
           </div> */}
         <div className={`fourth ${styles['my-40']} ${styles['w-800']} ${styles['text-center-x']}`}>
-        <Link href={`/#`}><DesktopBlackNoIconBtnPurple text="訂單查詢" className={`chb-h6 ${styles['btn-761']} ${styles['mb-30']}`} /></Link>
+        <Link href={`/member/store-order`}><DesktopBlackNoIconBtnPurple text="訂單查詢" className={`chb-h6 ${styles['btn-761']} ${styles['mb-30']}`} /></Link>
         <Link href={`/product`}><DesktopBlackNoIconBtnPurple text="回到周邊商城" className={`chb-h6 ${styles['btn-761']}`} /></Link>
         </div>
       </div>

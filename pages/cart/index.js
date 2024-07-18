@@ -1,31 +1,70 @@
-import React from 'react'
-import { useEffect, useState } from 'react'
-import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
-import styles from '@/styles/product/product.module.scss'
-import CartLayout from '@/components/layout/cart-layout'
-import ProgressBarOne from '@/components/product/progressBarOne'
-import CartList from '@/components/checkout/cart-list'
-import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
-import { GET_PRODUCTS } from '@/configs/api-path'
-
-// import data from '@/data/product/Product.json'
-import Link from 'next/link'
-import { useCart } from '@/hooks/product/use-cart'
+import { useState, useEffect } from 'react';
+import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs';
+import styles from '@/styles/product/product.module.scss';
+import CartLayout from '@/components/layout/cart-layout';
+import ProgressBarOne from '@/components/product/progressBarOne';
+import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple';
+import { GET_PRODUCTS } from '@/configs/api-path';
+import Link from 'next/link';
+import { useCart } from '@/hooks/product/use-cart';
 
 export default function CartIndex() {
-  const[products, setProducts] = useState()
-  const { totalPrice, totalQty } = useCart()
+  const [products, setProducts] = useState([]);
+  const cartKey = "product-cart";
+  const [cart, setCart] = useState([]);
+  const { items, totalPrice, totalQty } = useCart()
 
   const breadcrumbsURL = [
     { label: '周邊商城', href: '/product' },
     { label: '商品資訊', href: '/product/[pid]' },
     { label: '購物車', href: '/cart' },
-  ]
+  ];
+
   useEffect(() => {
     fetch(`${GET_PRODUCTS}`)
-    .then((res) =>  res.json())
-    .then((data) => { setProducts(data)})
-  }, [])
+      .then((res) => res.json())
+      .then((data) => {
+        setProducts(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching products', error);
+      });
+
+    setCart(getCartFromStorage()); // Initialize cart from localStorage
+  }, []);
+
+  const getCartFromStorage = () => {
+    const oriData = localStorage.getItem(cartKey);
+    let cartData = [];
+    try {
+      cartData = JSON.parse(oriData);
+      if (!Array.isArray(cartData)) {
+        cartData = [];
+      }
+    } catch (ex) {
+      console.error('Error parsing cart data', ex);
+    }
+    return cartData;
+  };
+
+  const cartRemoveItem = (pid) => {
+    const resultCart = cart.filter((p) => p.id !== pid);
+    localStorage.setItem(cartKey, JSON.stringify(resultCart));
+    setCart(resultCart);
+  };
+
+  const cartModifyQty = (pid, qty) => {
+    const resultCart = cart.map((p) => {
+      if (pid === p.id) {
+        return { ...p, quantity: qty };
+      } else {
+        return { ...p };
+      }
+    });
+    localStorage.setItem(cartKey, JSON.stringify(resultCart));
+    setCart(resultCart);
+  };
+
   return (
     <>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
@@ -33,26 +72,79 @@ export default function CartIndex() {
       <div className={`row ${styles['mb-40']} ${styles.centerItem}`}>
         <div className={`col-12 col-md-8 cart-area ${styles['my-20']} `}>
           <p className={`chb-h5 ${styles['ml-20']} ${styles.text14}`}>購物車</p>
-          {/* 購物列表 start */}
-          
-          <CartList />
-          {/* 購物列表 end */}
+          <div className="card mb-3 border-0 cart-card">
+            {items.map((p) => (
+              <div key={p.id} className="row g-0">
+                <div className={`col-md-3 ${styles['columnCenter']}`}>
+                  <img
+                    src={`/images/product/list/${p.picture}`}
+                    className={`img-fluid rounded-start ${styles['wh-200']} `}
+                    alt="..."
+                  />
+                </div>
+                <div className="col-md-7">
+                  <div className="card-body">
+                    <p className="card-title card-text d-flex justify-content-between align-items-center chb-h6">
+                      {p.activity} {p.name}
+                    </p>
+                    <p className={`card-text chb-h6 ${styles['mt-40']}`}>
+                      單價: NT$ {p.price}
+                    </p>
+                    <div className="row g-3 align-items-center">
+                      <div className="col-auto">
+                        <p className="col-form-label chb-h6">數量: </p>
+                        <select
+                          className="form-select"
+                          value={p.quantity}
+                          onChange={(e) => cartModifyQty(p.id, e.currentTarget.value)}
+                        >
+                          {[1, 2, 3, 4, 5].map((num) => (
+                            <option key={num} value={num}>
+                              {num}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                    <div className={`cartTotal ${styles['mt-28']}`}>
+                      <p className="card-text chb-h6">
+                        小計: NT$ {p.quantity * p.price}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className={`col-md-2 ${styles['columnCenter']}`}>
+                  <DesktopBlackNoIconBtnPurple
+                    text="刪除"
+                    className={`chb-h6`}
+                    onClick={() => {
+                      if (confirm('你確定要移除項目?')) {
+                        cartRemoveItem(p.id);
+                      }
+                    }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
           <hr />
-          <div>總數量: {totalQty} / 總金額: {totalPrice}</div>
+          <div>總數量: {totalQty} / 總金額: NT$ {totalPrice}</div>
         </div>
       </div>
       <div className={`row ${styles['mb-40']} ${styles.centerItem}`}>
-        <div
-          className={`col-12 col-md-8 cart-area ${styles['my-20']} ${styles['columnCenter']} `}
-        >
+        <div className={`col-12 col-md-8 cart-area ${styles['my-20']} ${styles['columnCenter']} `}>
           <Link href={`/cart/payment`}>
-            <DesktopBlackNoIconBtnPurple text="結帳" className={`chb-h6 ${styles['btn-760']}`} />
+            <DesktopBlackNoIconBtnPurple
+              text="結帳"
+              className={`chb-h6 ${styles['btn-760']}`}
+            />
           </Link>
         </div>
       </div>
     </>
-  )
+  );
 }
+
 CartIndex.getLayout = function getLayout(page) {
-  return <CartLayout title="cart">{page}</CartLayout>
-}
+  return <CartLayout title="cart">{page}</CartLayout>;
+};

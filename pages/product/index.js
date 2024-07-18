@@ -35,7 +35,7 @@ export default function List() {
 
   const handleSearchClick = () => {
     const filtered = products.filter((product) =>
-      product.name.includes(keyword) || product.activity.includes(keyword)
+      product.name.toLowerCase().includes(keyword) || product.activity.toLowerCase().includes(keyword)
     )
     setFilteredProducts(filtered)
   }

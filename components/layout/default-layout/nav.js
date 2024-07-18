@@ -12,6 +12,7 @@ import { initUserData, useAuth } from '@/hooks/use-auth'
 import { login, logout, getUserById, checkAuth } from '@/services/user' //checkAuth
 
 import toast, { Toaster } from 'react-hot-toast'
+import { useCart } from '@/hooks/product/use-cart'
 
 export default function Nav() {
   //
@@ -59,7 +60,8 @@ export default function Nav() {
       toast.error(`登出失敗`)
     }
   }
-
+  const { totalQty } = useCart()
+  
   // 同步 isLoggedIn 狀態與 auth.isAuth
   useEffect(() => {
     setIsLoggedIn(auth.isAuth)
@@ -118,6 +120,7 @@ export default function Nav() {
               <li className={`me-3 me-md-1`}>
                 <Link className="nav-link" href="/cart">
                   <BsCart />
+                  <span>{totalQty}</span>
                 </Link>
               </li>
               <li className={`me-3 me-md-1 dropdown`}>
