@@ -11,6 +11,7 @@ import LoginProvider from '@/hooks/use-login'
 // Chloe 日曆樣式套件
 import 'rsuite/dist/rsuite-no-reset.min.css'
 import { CustomProvider } from 'rsuite'
+import zhCN from 'rsuite/locales/zh_CN'
 import { CartProvider } from '@/hooks/product/use-cart'
 import FavProvider from '@/hooks/useFav'
 
@@ -30,7 +31,7 @@ export default function MyApp({ Component, pageProps }) {
     <LoginProvider>
       <AuthProvider>
         <FavProvider>
-          <CustomProvider>
+          <CustomProvider locale={zhCN}>
             <CartProvider>
               <TicketProvider>
                 <ActTabProvider>

@@ -46,59 +46,63 @@ export default function CalendarItem() {
 
     if (activitiesForDay.length) {
       // const moreCount = activitiesForDay.length - displayList.length
-      // const moreCount = activitiesForDay.length
-      // const moreItem = (
-      //   <li>
-      //     <Whisper // 彈出視窗觸發器
-      //       placement="top"
-      //       trigger="click"
-      //       speaker={
-      //         // 更改 Popover 彈出視窗的內容
-      //         // 這裡要串後端的內容
-      //         <Popover>
-      //           {activitiesForDay.map((item, index) => (
-      //             <p key={index}>
-      //               <b>{item.time}</b> - {item.title}
-      //             </p>
-      //           ))}
-      //         </Popover>
-      //       }
-      //     >
-      //       <a className="text-purple1">
-      //         {moreCount} <BsFillStarFill />
-      //       </a>
-      //     </Whisper>
-      //   </li>
-      // )
+      const moreCount = activitiesForDay.length
+      const moreItem = (
+        <li>
+          <Whisper // 彈出視窗觸發器
+            placement="top"
+            trigger="click"
+            speaker={
+              // 更改 Popover 彈出視窗的內容
+              // 這裡要串後端的內容
+              <Popover>
+                {activitiesForDay.map((item, index) => (
+                  <p key={index}>
+                    <b>{item.time}</b> - {item.title}
+                  </p>
+                ))}
+              </Popover>
+            }
+          >
+            <a className="text-purple1">
+              {moreCount} <BsFillStarFill />
+            </a>
+          </Whisper>
+        </li>
+      )
 
       return (
         <>
           {/* 日曆格顯示的內容 */}
           <ul className={`${style['calendar-todo-list']}`}>
             {displayList.map((item, index) => (
-              <Whisper
-                key={index}
-                followCursor
-                placement="bottom"
-                trigger={['hover', 'focus']}
-                speaker={
-                  <Popover title="已收藏：">
-                    <div className={`w-100 ${style['line-bk']}`}></div>
-                    <p className="text-purple1 chr-p">
-                      <b className="text-purple2 chr-p">{item.time}</b> -{' '}
-                      {item.title}
-                    </p>
-                  </Popover>
-                }
-              >
-                <li>
-                  <Badge color="violet" className="mx-1" />{' '}
-                  <b className="text-black60 chr-p">{item.title}</b>
-                </li>
-              </Whisper>
+              <li key={index}>
+                <Badge color="violet" className="mx-1" />{' '}
+                <b className="text-purple2">{item.title}</b>
+              </li>
             ))}
-            {/* {moreCount ? moreItem : null} */}
+            {moreCount ? moreItem : null}
           </ul>
+          {/* <style jsx>{`
+            .calendar-todo-list {
+              padding: 0;
+              text-align: left;
+              list-style: none;
+            }
+
+            .calendar-todo-list li {
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+            }
+
+            .calendar-todo-item-badge {
+              vertical-align: top;
+              margin-top: 8px;
+              width: 6px;
+              height: 6px;
+            }
+          `}</style> */}
         </>
       )
     }
