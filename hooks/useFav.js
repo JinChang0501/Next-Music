@@ -13,6 +13,7 @@ export default function FavProvider({ children }) {
     success: false,
     rows: {
       favorites: [], // 有收藏的 activity_id
+      activities: [],
     },
   })
 
