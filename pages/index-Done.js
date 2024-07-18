@@ -4,45 +4,14 @@ import styles from '@/styles/home.module.css'
 import DesktopBlackNoIconBtnBlack from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnBlack'
 import DesktopWhiteNoIconBtnBlack from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnBlack'
 import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Login from '@/components/login/login'
 import { useLogin } from '@/hooks/use-login'
 import { useAuth } from '@/hooks/use-auth'
-import { getArtist } from '@/services/artist'
-import toast, { Toaster } from 'react-hot-toast'
-import ArtCard from '@/components/artist/art-card'
 
 export default function Index() {
   const { handleGotoMember, handleWakeLogin } = useLogin()
   const { auth } = useAuth()
-
-  const [artistData, setArtData] = useState([])
-
-  const getUserData = async () => {
-    try {
-      const res = await getArtist()
-      console.log('以下是response data')
-      console.log(res)
-      console.log('以下是res.data')
-      console.log(res.data)
-
-      if (res.status === 'success') {
-        console.log('以下是res.data.result')
-        console.log(res.data.result)
-        setArtData(res.data.result) //這一包是物件陣列[{},{},{}]
-        toast.success('會員購物紀錄載入成功')
-      } else {
-        toast.error('會員購物紀錄載入失敗')
-      }
-    } catch (error) {
-      console.error('Error fetching order data:', error)
-      toast.error('會員購物紀錄載入失敗')
-    }
-  }
-
-  useEffect(() => {
-    getUserData()
-  }, [])
   return (
     <>
       {/* banner一張（影片輪播） start */}
@@ -142,27 +111,47 @@ export default function Index() {
           </div>
         </div>
         <div
-          className={`d-flex justify-content-md-center justify-content-around align-items-center ${styles['mt-80']} ${styles['mb-120']}`}
+          className={`row d-flex justify-content-md-center justify-content-around align-items-center ${styles['mt-80']} ${styles['mb-120']}`}
         >
           {/* 最大那顆，到時候要隨著滑鼠事件移動 */}
-          {/* <div className="col-md-4 col-8 d-flex flex-column align-items-center order-md-3 mb-5 mb-md-0">
+          <div className="col-md-4 col-8 d-flex flex-column align-items-center order-md-3 mb-5 mb-md-0">
             <img
               src="https://i.postimg.cc/dtx1T54J/m-S62j-SACo-Ptq-Bo-YSHPi-Rwp.jpg"
               className={`rounded-circle mb-4 ${styles['artist-img-l']}`}
             />
             <div className="chb-h4 text-white">音樂人</div>
-          </div> */}
+          </div>
           {/* 其他顆 */}
-          <div className={styles['marquee-container']}>
-            <div className={styles.marquee}>
-              {artistData.map((v, i) => {
-                return <ArtCard key={i} photo={v.photo} art_name={v.art_name} />
-              })}
-            </div>
+          <div className="col-md-2 col-5 d-flex flex-column align-items-center order-md-1 mb-5 mb-md-0">
+            <img
+              src="https://i.postimg.cc/BbjpZhmX/Wmwi-Dkfdq-VH87seo-RLnge-U.jpg"
+              className={`rounded-circle mb-4 ${styles['artist-img-s']}`}
+            />
+            <div className="chb-h4 text-white">音樂人</div>
+          </div>
+          <div className="col-md-2 col-5 d-flex flex-column align-items-center order-md-2 mb-5 mb-md-0">
+            <img
+              src="https://i.postimg.cc/BbjpZhmX/Wmwi-Dkfdq-VH87seo-RLnge-U.jpg"
+              className={`rounded-circle mb-4 ${styles['artist-img-s']}`}
+            />
+            <div className="chb-h4 text-white">音樂人</div>
+          </div>
+          <div className="col-md-2 col-5 d-flex flex-column align-items-center order-md-4">
+            <img
+              src="https://i.postimg.cc/BbjpZhmX/Wmwi-Dkfdq-VH87seo-RLnge-U.jpg"
+              className={`rounded-circle mb-4 ${styles['artist-img-s']}`}
+            />
+            <div className="chb-h4 text-white">音樂人</div>
+          </div>
+          <div className="col-md-2 col-5 d-flex flex-column align-items-center order-md-5">
+            <img
+              src="https://i.postimg.cc/BbjpZhmX/Wmwi-Dkfdq-VH87seo-RLnge-U.jpg"
+              className={`rounded-circle mb-4 ${styles['artist-img-s']}`}
+            />
+            <div className="chb-h4 text-white">音樂人</div>
           </div>
         </div>
       </div>
-
       {/* 音樂人 end */}
     </>
   )

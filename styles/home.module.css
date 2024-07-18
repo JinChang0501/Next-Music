@@ -120,6 +120,41 @@
   background-image: url("https://i.postimg.cc/Bb7JvBYJ/temp-Imagejx-Wr-Mn.avif");
 }
 
+
+.marquee-container {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+}
+
+.marquee {
+  display: flex;
+  animation: marquee 30s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+
+
+
+
+
 @media (max-width: 390px) {
   .bannerSty {
     height: 240px;
