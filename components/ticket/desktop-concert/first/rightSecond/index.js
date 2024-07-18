@@ -1,22 +1,40 @@
 import React from 'react'
 import TicketSeatBlock from './ticketSeatBlock'
-import PriceTotal from './priceTotal'
-import Info from './info'
 import style from './rightSecond.module.scss'
 import DesktopWhiteNoIconBtnPurple from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnPurple'
 import { useRouter } from 'next/router'
-import { BsChevronLeft } from 'react-icons/bs'
+import {
+  BsChevronLeft,
+  BsFillTicketPerforatedFill,
+  BsQrCode,
+  BsCalendar4,
+} from 'react-icons/bs'
+import moment from 'moment'
 
 export default function RightSecond({
   selectedSeats,
   onDeleteSeat,
   showDeleteAllSeat,
+  tickets,
 }) {
   const router = useRouter()
+
+  if (!tickets || tickets.length === 0) {
+    return null
+  }
 
   const handleNext = () => {
     router.push('/ticket/concert/second')
   }
+
+  const totalPrice = selectedSeats.reduce((acc, seat) => acc + seat.price, 0)
+
+  const { actname, actdate, acttime, location, art_name } = tickets[0] || {}
+
+  const datetime = moment(
+    `${actdate} ${acttime}`,
+    `YYYY-MM-DD HH:mm:ss`
+  ).format('YYYY-MM-DD HH:mm:ss')
 
   return (
     <>
@@ -29,16 +47,61 @@ export default function RightSecond({
       </div>
 
       {/* ticketSeatBlock */}
-      {selectedSeats.length > 0 &&
-        selectedSeats.map((seat) => (
-          <TicketSeatBlock key={seat.id} seat={seat} onDelete={onDeleteSeat} />
-        ))}
+      {selectedSeats.map((seat) => (
+        <TicketSeatBlock key={seat.tid} seat={seat} onDelete={onDeleteSeat} />
+      ))}
 
       {/* priceTotal */}
-      <PriceTotal />
+      <div className={`${style.priceTotal} chb-h6 text-black`}>
+        <div>張數 : {selectedSeats.length} 張</div>
+        <div>總價 : {totalPrice.toLocaleString()}</div>
+      </div>
 
       {/* info */}
-      <Info />
+      <div className={`${style.info}`}>
+        <div className={`${style.infoBlock}`}>
+          <div>
+            <BsFillTicketPerforatedFill className={`${style.infoTextIcon}`} />
+          </div>
+          <div className="chb-h6 text-black">訂票上限&nbsp;6&nbsp;張</div>
+        </div>
+        <div className={`${style.infoBlock}`}>
+          <div>
+            <BsQrCode className={`${style.infoTextIcon}`} />
+          </div>
+          <div>
+            <div className="chb-h6 text-black" style={{ marginBottom: '10px' }}>
+              電子票券
+            </div>
+            <div className="chb-p text-black60">
+              這是電子票券，將發送到您的電子郵件
+            </div>
+          </div>
+        </div>
+        <div className={`${style.infoBlock}`}>
+          <div>
+            <BsCalendar4 className={`${style.infoTextIcon}`} />
+          </div>
+          <div>
+            <div className="chb-h6 text-black" style={{ marginBottom: '10px' }}>
+              {actname}
+            </div>
+            <div
+              className="chb-p text-black60"
+              style={{ marginBottom: '10px' }}
+            >
+              {art_name}
+            </div>
+            <div
+              className="chb-p text-black60"
+              style={{ marginBottom: '10px' }}
+            >
+              {datetime}
+            </div>
+            <div className="chb-p text-black60">{location}</div>
+          </div>
+        </div>
+      </div>
 
       {/* nextButton */}
       <DesktopWhiteNoIconBtnPurple

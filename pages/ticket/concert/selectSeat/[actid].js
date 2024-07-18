@@ -11,6 +11,8 @@ import Left from '@/components/ticket/desktop-concert/first/Left'
 import Right from '@/components/ticket/desktop-concert/first/Right'
 import RightSecond from '@/components/ticket/desktop-concert/first/rightSecond'
 import style from '@/styles/ticket/concert/first.module.scss'
+import { GET_TICKET } from '@/configs/api-path'
+import { useRouter } from 'next/router'
 
 export default function SelectSeat() {
   // #region 動態獲取 breadcrumb、progressBar 高度，返回給 content
@@ -22,6 +24,13 @@ export default function SelectSeat() {
   const [contentHeight, setContentHeight] = useState('100%')
   const [isStarted, setIsStarted] = useState(false)
   const [isPhoneView, setIsPhoneView] = useState(false)
+
+  const breadcrumbsURL = [
+    { label: '首頁', href: '/' },
+    { label: '演出活動', href: '/activity' },
+    { label: '一生到底', href: '/activity/[aid]' },
+    { label: '選擇座位', href: '/ticket/concert/first' },
+  ]
 
   // useEffect 用於在組件渲染後執行副作用，比如事件監聽器的添加和清理
   useEffect(() => {
@@ -66,12 +75,52 @@ export default function SelectSeat() {
 
   // #endregion 動態獲取 breadcrumb、progressBar 高度，返回給 content
 
-  const breadcrumbsURL = [
-    { label: '首頁', href: '/' },
-    { label: '演出活動', href: '/activity' },
-    { label: '一生到底', href: '/activity/[aid]' },
-    { label: '選擇座位', href: '/ticket/concert/first' },
-  ]
+  const router = useRouter()
+  const { actid } = router.query
+  const [tickets, setTickets] = useState()
+  const [seatMap, setSeatMap] = useState([])
+  const [selectedSeatDetails, setSelectedSeatDetails] = useState([])
+
+  useEffect(() => {
+    if (actid) fetchTickets(actid)
+  }, [actid])
+
+  const fetchTickets = async (actid) => {
+    const url = `${GET_TICKET}/activity/${actid}`
+    try {
+      const res = await fetch(url, {
+        credentials: 'include',
+      })
+      const resData = await res.json()
+      if (resData.success) {
+        setTickets(resData.rows)
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  useEffect(() => {
+    if (tickets) {
+      setSeatMap(tickets)
+    }
+  }, [tickets])
+
+  const handleSeatClick = (seatNumber) => {
+    setSelectedSeatDetails((prevDetails) => {
+      const isSelected = prevDetails.some(
+        (seat) => seat.seat_number === seatNumber
+      )
+      if (isSelected) {
+        return prevDetails.filter((seat) => seat.seat_number !== seatNumber)
+      } else {
+        const seatDetails = seatMap.find(
+          (seat) => seat.seat_number === seatNumber
+        )
+        return [...prevDetails, seatDetails]
+      }
+    })
+  }
 
   const handleStart = () => {
     setIsStarted(true)
@@ -84,13 +133,15 @@ export default function SelectSeat() {
   }
 
   const handleDeleteSeat = (seat) => {
-    setSelectedSeats((prevSeats) =>
-      prevSeats.filter((selectedSeat) => selectedSeat.id !== seat.id)
+    setSelectedSeatDetails((prevDetails) =>
+      prevDetails.filter(
+        (selectedSeat) => selectedSeat.seat_number !== seat.seat_number
+      )
     )
   }
 
   const handleDeleteAllSeat = () => {
-    setSelectedSeats([])
+    setSelectedSeatDetails([])
     setDeleteAllSeat(false)
   }
 
@@ -99,22 +150,19 @@ export default function SelectSeat() {
 
   useEffect(() => {
     let timeoutId
-
-    if (selectedSeats.length > 0 && selectedSeats.length <= 6) {
+    if (selectedSeatDetails.length > 0 && selectedSeatDetails.length <= 6) {
       setIsRightVisible(false)
       setIsRightSecondVisible(true)
-    } else if (selectedSeats.length === 0) {
+    } else if (selectedSeatDetails.length === 0) {
       setIsRightSecondVisible(false)
       timeoutId = setTimeout(() => {
         setIsRightVisible(true)
       }, 400)
     }
-
-    // 清理計時器
     return () => {
       clearTimeout(timeoutId)
     }
-  }, [selectedSeats])
+  }, [selectedSeatDetails])
 
   const [showDeleteAllSeat, setDeleteAllSeat] = useState(false)
 
@@ -201,7 +249,9 @@ export default function SelectSeat() {
         <Left
           onSeatsChange={handleSeatsChange}
           updateSelectedSeats={setSelectedSeats}
-          selectedSeats={selectedSeats}
+          selectedSeats={selectedSeatDetails}
+          tickets={tickets}
+          onSeatClick={handleSeatClick}
         />
         <div
           className="col-xxl-3 col-xl-4 col-lg-5 col-md-6 p-0"
@@ -209,7 +259,7 @@ export default function SelectSeat() {
             display: isRightVisible ? 'block' : 'none',
           }}
         >
-          <Right />
+          <Right tickets={tickets} />
         </div>
         <div
           className="col-xxl-3 col-xl-4 col-lg-5 col-md-6 px-3 overflow-x-hidden overflow-y-scroll"
@@ -222,9 +272,10 @@ export default function SelectSeat() {
           }}
         >
           <RightSecond
-            selectedSeats={selectedSeats}
+            selectedSeats={selectedSeatDetails}
             onDeleteSeat={handleDeleteSeat}
             showDeleteAllSeat={toggleShowDeleteAllSeat}
+            tickets={tickets}
           />
         </div>
       </div>
