@@ -72,17 +72,17 @@
   flex-direction: column;
   position: absolute;
   left: 50px;
-  top: 160px;
+  top: 150px;
 }
 
 .ticketInfoIcon {
-  width: 18px;
-  height: 18px;
+  width: 17px;
+  height: 17px;
   margin-right: 8px;
 }
 
 .ticketInfo > div:not(:last-child) {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .ticketQRcode {

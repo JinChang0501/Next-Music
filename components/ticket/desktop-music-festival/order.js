@@ -1,8 +1,20 @@
 import React from 'react'
 import style from './order.module.scss'
 import Image from 'next/image'
+import { useTicketContext } from '@/context/ticket/ticketContext'
+import moment from 'moment-timezone'
 
 export default function Order() {
+  const { tickets, selectedTickets, selectedCount } = useTicketContext()
+
+  const { picture, actname, actdate, acttime, location, art_name } =
+    selectedTickets[0] || tickets[0]
+
+  const datetime = moment(
+    `${actdate} ${acttime}`,
+    `YYYY-MM-DD HH:mm:ss`
+  ).format('YYYY-MM-DD HH:mm:ss')
+
   return (
     <>
       <div className={`${style.order}`}>
@@ -12,18 +24,13 @@ export default function Order() {
           <div className={`${style.activityTitle} chb-h5`}>演唱會資訊</div>
           <div className={`${style.activityBody}`}>
             <div className={`${style.activityImage}`}>
-              <Image
-                src="/images/ticket/fireextp.jpeg"
-                fill
-                alt="test"
-                priority
-              />
+              <Image src={picture} fill alt="test" priority />
             </div>
             <div className={`${style.activityText} chb-h5`}>
-              <div>一生到底 One Life, One Shot</div>
-              <div>滅火器 Fire EX.</div>
-              <div>台北流行音樂中心</div>
-              <div>2024/06/15 19:30</div>
+              <div>{actname}</div>
+              <div>{art_name}</div>
+              <div>{location}</div>
+              <div>{datetime}</div>
             </div>
           </div>
         </div>
@@ -39,7 +46,7 @@ export default function Order() {
             </div>
             <div className={`${style.orderBodyRight}`}>
               <div className="chb-h5">#re159a753ct</div>
-              <div className="chb-h5">6</div>
+              <div className="chb-h5">{selectedCount}</div>
             </div>
           </div>
         </div>
@@ -50,7 +57,7 @@ export default function Order() {
           <div className={`${style.paymentTitle} chb-h5`}>支付方式</div>
           <div className={`${style.paymentBody} chb-h5`}>
             <div>已付款</div>
-            <div>(LINE PAY)</div>
+            <div>( 信用卡 )</div>
           </div>
         </div>
       </div>

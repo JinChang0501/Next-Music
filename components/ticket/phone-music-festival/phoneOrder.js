@@ -1,27 +1,19 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React from 'react'
 import style from './phoneOrder.module.scss'
 import Image from 'next/image'
-import orderSelectBlockData from '@/data/ticket/desktop-concert/fourth/OrderInfo'
-import { BsCaretDownFill } from 'react-icons/bs'
+import { useTicketContext } from '@/context/ticket/ticketContext'
+import moment from 'moment-timezone'
 
 export default function PhoneOrder() {
-  const [selectBlockVisible, setSelectBlockVisible] = useState(false)
+  const { tickets, selectedTickets, selectedCount } = useTicketContext()
 
-  const selectBlockRef = useRef(null)
+  const { picture, actname, actdate, acttime, location, art_name } =
+    selectedTickets[0] || tickets[0]
 
-  const toggleSelectBlock = () => {
-    setSelectBlockVisible(!selectBlockVisible)
-  }
-
-  useEffect(() => {
-    const selectBlock = selectBlockRef.current
-    if (selectBlockVisible) {
-      const selectBlockHeight = selectBlock.scrollHeight
-      selectBlock.style.maxHeight = `${selectBlockHeight}px`
-    } else {
-      selectBlock.style.maxHeight = '0'
-    }
-  }, [selectBlockVisible])
+  const datetime = moment(
+    `${actdate} ${acttime}`,
+    `YYYY-MM-DD HH:mm:ss`
+  ).format('YYYY-MM-DD HH:mm:ss')
   return (
     <>
       <div className={`${style.order}`}>
@@ -30,18 +22,13 @@ export default function PhoneOrder() {
           <div className={`${style.activityTitle} chb-h3`}>演唱會資訊</div>
           <div className={`${style.activityBody}`}>
             <div className={`${style.activityImage}`}>
-              <Image
-                src="/images/ticket/fireextp.jpeg"
-                fill
-                alt="test"
-                priority
-              />
+              <Image src={picture} fill alt="test" priority />
             </div>
             <div className={`${style.activityText} chb-h4`}>
-              <div>一生到底 One Life, One Shot</div>
-              <div>滅火器 Fire EX.</div>
-              <div>台北流行音樂中心</div>
-              <div>2024/06/15 19:30</div>
+              <div>{actname}</div>
+              <div>{art_name}</div>
+              <div>{location}</div>
+              <div>{datetime}</div>
             </div>
           </div>
         </div>
@@ -53,39 +40,10 @@ export default function PhoneOrder() {
             <div className={`${style.orderBodyLeft}`}>
               <div className="chb-h4">訂單編號</div>
               <div className="chb-h4">票數</div>
-              <div className="chb-h4">座位</div>
             </div>
             <div className={`${style.orderBodyRight}`}>
               <div className="chb-h4">#re159a753ct</div>
-              <div className="chb-h4">6</div>
-              <div className={`${style.orderSelect}`}>
-                <button
-                  className={`${style.orderSelectButton}`}
-                  onClick={toggleSelectBlock}
-                >
-                  <div className="chb-h4">查看座位</div>
-                  <BsCaretDownFill
-                    className={`${style.orderSelectIcon} ${
-                      selectBlockVisible ? style.rotate180 : style.rotate0
-                    }`}
-                  />
-                </button>
-                <div
-                  ref={selectBlockRef}
-                  className={`${style.orderSelectBlock} ${
-                    selectBlockVisible ? style.visible : style.hidden
-                  }`}
-                >
-                  {orderSelectBlockData.map((v) => (
-                    <div
-                      key={v.id}
-                      className={`${style.orderSelectBlockTicketArea} chb-h7`}
-                    >
-                      {v.text}
-                    </div>
-                  ))}
-                </div>
-              </div>
+              <div className="chb-h4">{selectedCount}</div>
             </div>
           </div>
         </div>
@@ -95,7 +53,7 @@ export default function PhoneOrder() {
           <div className={`${style.paymentTitle} chb-h3`}>支付方式</div>
           <div className={`${style.paymentBody} chb-h4`}>
             <div>已付款</div>
-            <div>(LINE PAY)</div>
+            <div>( 信用卡 )</div>
           </div>
         </div>
       </div>

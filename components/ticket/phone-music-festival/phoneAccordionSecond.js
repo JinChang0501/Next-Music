@@ -1,8 +1,39 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import style from './phoneAccordionSecond.module.scss'
-import formData from '@/data/ticket/desktop-concert/third/form'
+import { useTicketContext } from '@/context/ticket/ticketContext'
+import { getUserDatas } from '@/services/ticket'
+import { useAuth } from '@/hooks/use-auth'
+import moment from 'moment-timezone'
 
 export default function PhoneAccordionSecond() {
+  const { selectedSeatDetails } = useTicketContext()
+  const [userData, setUserData] = useState([])
+  const { auth } = useAuth()
+
+  const getUserData = async () => {
+    try {
+      const res = await getUserDatas()
+      if (res.status === 'success') {
+        setUserData(res.data.result)
+      }
+    } catch (error) {
+      console.error('Error fetching order data:', error)
+    }
+  }
+
+  useEffect(() => {
+    if (auth.isAuth) {
+      getUserData()
+    }
+  }, [auth])
+
+  const { actname, actdate, acttime, location, art_name } =
+    selectedSeatDetails[0] || {}
+
+  const datetime = moment(
+    `${actdate} ${acttime}`,
+    `YYYY-MM-DD HH:mm:ss`
+  ).format('YYYY-MM-DD HH:mm:ss')
   return (
     <>
       <div className="accordion-item">
@@ -22,14 +53,42 @@ export default function PhoneAccordionSecond() {
         >
           <div className="accordion-body">
             <div className={`${style.form}`}>
-              {formData.map((v) => (
-                <div key={v.id} className={`${style.formBlock}`}>
-                  <div className="chb-h6">{v.title}</div>
-                  <div className={`${style.formInput} text-black40 chb-h7`}>
-                    {v.info}
-                  </div>
+              <div className={`${style.formBlock}`}>
+                <div className="chb-h6">姓名</div>
+                <div className={`${style.formInput} text-black40 chb-h7`}>
+                  {userData.length > 0 ? userData[0].name : '加载中...'}
                 </div>
-              ))}
+              </div>
+              <div className={`${style.formBlock}`}>
+                <div className="chb-h6">電子郵件</div>
+                <div className={`${style.formInput} text-black40 chb-h7`}>
+                  {userData.length > 0 ? userData[0].email : '加载中...'}
+                </div>
+              </div>
+              <div className={`${style.formBlock}`}>
+                <div className="chb-h6">演唱會名稱</div>
+                <div className={`${style.formInput} text-black40 chb-h7`}>
+                  {actname}
+                </div>
+              </div>
+              <div className={`${style.formBlock}`}>
+                <div className="chb-h6">歌手</div>
+                <div className={`${style.formInput} text-black40 chb-h7`}>
+                  {art_name}
+                </div>
+              </div>
+              <div className={`${style.formBlock}`}>
+                <div className="chb-h6">演唱會地點</div>
+                <div className={`${style.formInput} text-black40 chb-h7`}>
+                  {location}
+                </div>
+              </div>
+              <div className={`${style.formBlock}`}>
+                <div className="chb-h6">演唱會時間</div>
+                <div className={`${style.formInput} text-black40 chb-h7`}>
+                  {datetime}
+                </div>
+              </div>
             </div>
           </div>
         </div>

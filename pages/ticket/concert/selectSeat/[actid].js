@@ -150,6 +150,12 @@ export default function SelectSeat() {
     setDeleteAllSeat(false)
   }
 
+  const handleDeleteAllSeatAndChangeRouter = () => {
+    setSelectedSeatDetails([])
+    setDeleteAllSeat(false)
+    router.push(`/Activity`)
+  }
+
   const [isRightVisible, setIsRightVisible] = useState(true)
   const [isRightSecondVisible, setIsRightSecondVisible] = useState(false)
 
@@ -172,7 +178,9 @@ export default function SelectSeat() {
   const [showDeleteAllSeat, setDeleteAllSeat] = useState(false)
 
   const toggleShowDeleteAllSeat = () => {
-    setDeleteAllSeat(!showDeleteAllSeat)
+    selectedSeatDetails.length > 0
+      ? setDeleteAllSeat(!showDeleteAllSeat)
+      : setDeleteAllSeat(false)
   }
 
   // #region PhoneView
@@ -190,7 +198,23 @@ export default function SelectSeat() {
           </>
         )}
 
-        <PhoneTitle tickets={tickets} selectedSeats={selectedSeatDetails} />
+        {showDeleteAllSeat && (
+          <>
+            <Mask />
+
+            <DeleteAllSeat
+              confirmDelete={handleDeleteAllSeat}
+              cancelDelete={toggleShowDeleteAllSeat}
+              confirmDeleteAndChangeRouter={handleDeleteAllSeatAndChangeRouter}
+            />
+          </>
+        )}
+
+        <PhoneTitle
+          tickets={tickets}
+          selectedSeats={selectedSeatDetails}
+          showDeleteAllSeat={toggleShowDeleteAllSeat}
+        />
 
         <ProgressBar progressBarRef={progressBarRef} isStarted={isStarted} />
 

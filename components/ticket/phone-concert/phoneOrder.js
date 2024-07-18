@@ -1,11 +1,22 @@
 import React, { useEffect, useRef, useState } from 'react'
 import style from './phoneOrder.module.scss'
 import Image from 'next/image'
-import orderSelectBlockData from '@/data/ticket/desktop-concert/fourth/OrderInfo'
 import { BsCaretDownFill } from 'react-icons/bs'
+import { useTicketContext } from '@/context/ticket/ticketContext'
+import moment from 'moment-timezone'
 
 export default function PhoneOrder() {
   const [selectBlockVisible, setSelectBlockVisible] = useState(false)
+
+  const { selectedSeatDetails } = useTicketContext()
+
+  const { picture, actname, actdate, acttime, location, art_name } =
+    selectedSeatDetails[0] || {}
+
+  const datetime = moment(
+    `${actdate} ${acttime}`,
+    `YYYY-MM-DD HH:mm:ss`
+  ).format('YYYY-MM-DD HH:mm:ss')
 
   const selectBlockRef = useRef(null)
 
@@ -22,6 +33,10 @@ export default function PhoneOrder() {
       selectBlock.style.maxHeight = '0'
     }
   }, [selectBlockVisible])
+
+  const formatSeatNumber = (seatNumber) => {
+    return seatNumber.toString().padStart(3, '0')
+  }
   return (
     <>
       <div className={`${style.order}`}>
@@ -30,18 +45,13 @@ export default function PhoneOrder() {
           <div className={`${style.activityTitle} chb-h3`}>演唱會資訊</div>
           <div className={`${style.activityBody}`}>
             <div className={`${style.activityImage}`}>
-              <Image
-                src="/images/ticket/fireextp.jpeg"
-                fill
-                alt="test"
-                priority
-              />
+              <Image src={picture} fill alt="test" priority />
             </div>
             <div className={`${style.activityText} chb-h4`}>
-              <div>一生到底 One Life, One Shot</div>
-              <div>滅火器 Fire EX.</div>
-              <div>台北流行音樂中心</div>
-              <div>2024/06/15 19:30</div>
+              <div>{actname}</div>
+              <div>{art_name}</div>
+              <div>{location}</div>
+              <div>{datetime}</div>
             </div>
           </div>
         </div>
@@ -57,7 +67,7 @@ export default function PhoneOrder() {
             </div>
             <div className={`${style.orderBodyRight}`}>
               <div className="chb-h4">#re159a753ct</div>
-              <div className="chb-h4">6</div>
+              <div className="chb-h4">{selectedSeatDetails.length}</div>
               <div className={`${style.orderSelect}`}>
                 <button
                   className={`${style.orderSelectButton}`}
@@ -76,12 +86,13 @@ export default function PhoneOrder() {
                     selectBlockVisible ? style.visible : style.hidden
                   }`}
                 >
-                  {orderSelectBlockData.map((v) => (
+                  {selectedSeatDetails.map((v) => (
                     <div
-                      key={v.id}
+                      key={v.seat_number}
                       className={`${style.orderSelectBlockTicketArea} chb-h7`}
                     >
-                      {v.text}
+                      {v.seat_area} 區 • {v.seat_row} 排 •{' '}
+                      {formatSeatNumber(v.seat_number)} 號
                     </div>
                   ))}
                 </div>
@@ -95,7 +106,7 @@ export default function PhoneOrder() {
           <div className={`${style.paymentTitle} chb-h3`}>支付方式</div>
           <div className={`${style.paymentBody} chb-h4`}>
             <div>已付款</div>
-            <div>(LINE PAY)</div>
+            <div>( 信用卡 )</div>
           </div>
         </div>
       </div>

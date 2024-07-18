@@ -1,12 +1,20 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import style from './phoneAccordionFirst.module.scss'
 import { BsFillTicketPerforatedFill, BsQrCode } from 'react-icons/bs'
 import Image from 'next/image'
-import { TicketContext } from '@/context/ticket/selectNumber'
+import { useTicketContext } from '@/context/ticket/ticketContext'
+import moment from 'moment-timezone'
 
 export default function PhoneAccordionFirst() {
-  const { selectedNumber } = useContext(TicketContext)
+  const { tickets, selectedCount } = useTicketContext()
 
+  const { picture, actname, actdate, acttime, location, art_name } =
+    tickets[0] || {}
+
+  const datetime = moment(
+    `${actdate} ${acttime}`,
+    `YYYY-MM-DD HH:mm:ss`
+  ).format('YYYY-MM-DD HH:mm:ss')
   return (
     <>
       <div className="accordion-item">
@@ -28,27 +36,16 @@ export default function PhoneAccordionFirst() {
             {/* activityImage */}
 
             <div className={`${style.activityImage}`}>
-              <Image
-                src="/images/ticket/fireball.jpg"
-                alt="test"
-                fill
-                priority
-              />
+              <Image src={picture} alt="test" fill priority />
             </div>
 
             {/* info */}
 
             <div className={`${style.info} text-black`}>
-              <div className={`${style.infoBlock} chb-h6`}>
-                一生到底 One Life, One Shot
-              </div>
-              <div className={`${style.infoBlock} chb-h6`}>滅火器 Fire EX.</div>
-              <div className={`${style.infoBlock} chb-h6`}>
-                台北流行音樂中心
-              </div>
-              <div className={`${style.infoBlock} chb-h6`}>
-                2024/06/15 19:30
-              </div>
+              <div className={`${style.infoBlock} chb-h6`}>{actname}</div>
+              <div className={`${style.infoBlock} chb-h6`}>{art_name}</div>
+              <div className={`${style.infoBlock} chb-h6`}>{location}</div>
+              <div className={`${style.infoBlock} chb-h6`}>{datetime}</div>
               <div className={`${style.infoBlock}`}>
                 <div>
                   <BsFillTicketPerforatedFill
@@ -79,8 +76,8 @@ export default function PhoneAccordionFirst() {
             {/* totalPrice */}
 
             <div className={`${style.totalPrice} chb-h5 text-black`}>
-              <div>張數 : {selectedNumber} 張</div>
-              <div>總價 : 25,700</div>
+              <div>張數 : {selectedCount} 張</div>
+              <div>總價 : {2500 * selectedCount}</div>
             </div>
           </div>
         </div>

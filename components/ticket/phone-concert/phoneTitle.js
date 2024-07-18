@@ -3,7 +3,7 @@ import style from './phoneTitle.module.scss'
 import { FaChevronLeft } from 'react-icons/fa'
 import moment from 'moment'
 
-export default function PhoneTitle({ tickets }) {
+export default function PhoneTitle({ tickets, showDeleteAllSeat }) {
   if (!tickets || tickets.length === 0) {
     return null
   }
@@ -18,7 +18,7 @@ export default function PhoneTitle({ tickets }) {
   return (
     <>
       <div className={`${style.title}`}>
-        <button className="bg-white">
+        <button className="bg-white" onClick={showDeleteAllSeat}>
           <FaChevronLeft className={`${style.titleIcon}`} />
         </button>
         <div className={`${style.titleText}`}>

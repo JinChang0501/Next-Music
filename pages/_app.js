@@ -6,7 +6,6 @@ import DefaultLayout from '@/components/layout/default-layout'
 import { TabProvider } from '@/hooks/member/useTab'
 import { ActTabProvider } from '@/hooks/Activity/useTabs'
 import { AuthProvider } from '@/hooks/use-auth'
-import { MusicFestivalProvider } from '@/context/ticket/selectNumber'
 import LoginProvider from '@/hooks/use-login'
 // Chloe 日曆樣式套件
 import 'rsuite/dist/rsuite-no-reset.min.css'
@@ -31,15 +30,13 @@ export default function MyApp({ Component, pageProps }) {
       <AuthProvider>
         <CustomProvider>
           <CartProvider>
-            <MusicFestivalProvider>
-              <ActTabProvider>
-                <TabProvider>
-                  <TicketProvider>
-                    {getLayout(<Component {...pageProps} />)}
-                  </TicketProvider>
-                </TabProvider>
-              </ActTabProvider>
-            </MusicFestivalProvider>
+            <ActTabProvider>
+              <TabProvider>
+                <TicketProvider>
+                  {getLayout(<Component {...pageProps} />)}
+                </TicketProvider>
+              </TabProvider>
+            </ActTabProvider>
           </CartProvider>
         </CustomProvider>
       </AuthProvider>

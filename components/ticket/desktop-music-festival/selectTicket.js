@@ -1,25 +1,29 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import style from './selectTicket.module.scss'
 import { BsCaretDownFill } from 'react-icons/bs'
-import { TicketContext } from '@/context/ticket/selectNumber'
+import { useTicketContext } from '@/context/ticket/ticketContext'
 
 export default function SelectTicket() {
-  const [isOpen, setIsOpen] = useState(false)
+  const { tickets, selectedCount, setSelectedCount, setSelectedTickets } =
+    useTicketContext()
 
-  const { selectedNumber, setSelectedNumber } = useContext(TicketContext)
+  const [isOpen, setIsOpen] = useState(false)
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen)
   }
 
-  const selectOption = (number) => {
-    setSelectedNumber(number)
-    setIsOpen(false)
-  }
-
   const handleBlur = () => {
     setIsOpen(false)
   }
+
+  const handleSelect = (num) => {
+    setSelectedCount(num)
+    const selectedTickets = tickets.slice(0, num)
+    setSelectedTickets(selectedTickets)
+    setIsOpen(false)
+  }
+
   return (
     <>
       <div className={`${style.selectTicket}`}>
@@ -39,7 +43,7 @@ export default function SelectTicket() {
               className={`${style.selectTicketBoxFirst}`}
               onClick={toggleDropdown}
             >
-              <div className="text-black chb-h5">{selectedNumber}</div>
+              <div className="text-black chb-h5">{selectedCount}</div>
               <BsCaretDownFill
                 className={`${style.selectTicketBoxIcon} ${
                   isOpen ? style.rotate : ''
@@ -55,7 +59,7 @@ export default function SelectTicket() {
                 <button
                   key={num}
                   className={`${style.selectTicketBoxOption} chb-h5`}
-                  onClick={() => selectOption(num)}
+                  onClick={() => handleSelect(num)}
                 >
                   {num}
                 </button>
@@ -65,7 +69,7 @@ export default function SelectTicket() {
 
           {/* totalPrice */}
           <div className={`${style.totalPrice} chb-h5 text-black60`}>
-            總價 : $ 18000
+            總價 : $ {2500 * selectedCount}
           </div>
         </div>
       </div>

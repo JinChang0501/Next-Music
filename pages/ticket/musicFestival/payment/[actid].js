@@ -12,6 +12,7 @@ import style from '@/styles/ticket/musicFestival/second.module.scss'
 import DesktopWhiteNoIconBtnPurple from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnPurple'
 import PhoneWhiteNoIconBtnPurple from '@/components/common/button/phoneWhiteButton/phoneWhiteNoIconBtnPurple'
 import { useRouter } from 'next/router'
+import { useTicketContext } from '@/context/ticket/ticketContext'
 
 export default function Payment() {
   const [isMobile, setIsMobile] = useState(false)
@@ -25,8 +26,14 @@ export default function Payment() {
     { label: '支付方式', href: '/ticket/concert/first' },
   ]
 
+  const { selectedCount, tickets, setSelectedSeatDetails } = useTicketContext()
+
+  const { actid } = router.query
+
   const handleNext = () => {
-    router.push('/ticket/musicFestival/third')
+    const selectedTickets = tickets.slice(0, selectedCount)
+    setSelectedSeatDetails(selectedTickets)
+    router.push(`/ticket/musicFestival/finish/${actid}`)
   }
 
   useEffect(() => {

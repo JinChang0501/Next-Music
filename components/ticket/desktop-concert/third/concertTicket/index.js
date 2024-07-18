@@ -34,15 +34,15 @@ export default function ConcertTicket() {
               </div>
             </div>
             <div className={`${style.ticketTitle} text-white`}>
-              <div className="chb-h6">{v.actname}</div>
-              <div className="chb-p">{v.art_name}</div>
-              <div className="chb-p">#re159a753ct</div>
+              <div className="chb-h5">{v.actname}</div>
+              <div className="chb-h7">{v.art_name}</div>
+              <div className="chb-h7">#re159a753ct</div>
             </div>
             <div className={`${style.ticketSeat} chb-h5 text-white`}>
               {v.seat_area} 區 • {v.seat_row} 排 •{' '}
               {formatSeatNumber(v.seat_number)} 號
             </div>
-            <div className={`${style.ticketInfo} chb-p text-white`}>
+            <div className={`${style.ticketInfo} chb-h7 text-white`}>
               <div className="d-flex">
                 <BsGeoAlt className={`${style.ticketInfoIcon}`} />
                 <div>{v.location}</div>

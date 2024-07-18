@@ -40,7 +40,7 @@ export default function OrderInfo() {
           </div>
           <div className={`${style.orderBodyRight}`}>
             <div className="chb-h5">#re159a753ct</div>
-            <div className="chb-h5">6</div>
+            <div className="chb-h5">{selectedSeatDetails.length}</div>
             <div className={`${style.orderSelect}`}>
               <button
                 className={`${style.orderSelectButton}`}

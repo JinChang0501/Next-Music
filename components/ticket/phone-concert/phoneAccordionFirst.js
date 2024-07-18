@@ -1,11 +1,61 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import style from './phoneAccordionFirst.module.scss'
-import ticketSeatData from '@/data/ticket/desktop-concert/third/ticketSeat'
 import ticketAreaData from '@/data/ticket/desktop-concert/third/ticketArea'
 import { BsFillTicketPerforatedFill, BsQrCode } from 'react-icons/bs'
 import Image from 'next/image'
+import { useTicketContext } from '@/context/ticket/ticketContext'
+import moment from 'moment-timezone'
 
 export default function PhoneAccordionFirst() {
+  const { selectedSeatDetails } = useTicketContext()
+
+  const { picture, actname, actdate, acttime, location, art_name } =
+    selectedSeatDetails[0] || {}
+
+  const [backgroundColor, setBackgroundColor] = useState('transparent')
+
+  useEffect(() => {
+    if (selectedSeatDetails && selectedSeatDetails.length > 0) {
+      const colors = {}
+      selectedSeatDetails.forEach((seat) => {
+        switch (seat.seat_area) {
+          case 'A':
+            colors[seat.seat_number] = '#FF9900'
+            break
+          case 'B':
+            colors[seat.seat_number] = '#00A3FF'
+            break
+          case 'C':
+            colors[seat.seat_number] = '#F12222'
+            break
+          case 'D':
+            colors[seat.seat_number] = '#9E00FF'
+            break
+          default:
+            colors[seat.seat_number] = '#3EAD2C'
+            break
+        }
+      })
+      setBackgroundColor(colors)
+    } else {
+      setBackgroundColor({})
+    }
+  }, [selectedSeatDetails])
+
+  const totalPrice = selectedSeatDetails.reduce(
+    (acc, seat) => acc + seat.price,
+    0
+  )
+
+  const datetime = moment(
+    `${actdate} ${acttime}`,
+    `YYYY-MM-DD HH:mm:ss`
+  ).format('YYYY-MM-DD HH:mm:ss')
+
+  const formatSeatNumber = (seatNumber) => {
+    return seatNumber.toString().padStart(3, '0')
+  }
+
   return (
     <>
       <div className="accordion-item">
@@ -27,27 +77,16 @@ export default function PhoneAccordionFirst() {
             {/* activityImage */}
 
             <div className={`${style.activityImage}`}>
-              <Image
-                src="/images/ticket/fireball.jpg"
-                alt="test"
-                fill
-                priority
-              />
+              <Image src={picture} alt="test" fill priority />
             </div>
 
             {/* info */}
 
             <div className={`${style.info} text-black`}>
-              <div className={`${style.infoBlock} chb-h6`}>
-                一生到底 One Life, One Shot
-              </div>
-              <div className={`${style.infoBlock} chb-h6`}>滅火器 Fire EX.</div>
-              <div className={`${style.infoBlock} chb-h6`}>
-                台北流行音樂中心
-              </div>
-              <div className={`${style.infoBlock} chb-h6`}>
-                2024/06/15 19:30
-              </div>
+              <div className={`${style.infoBlock} chb-h6`}>{actname}</div>
+              <div className={`${style.infoBlock} chb-h6`}>{art_name}</div>
+              <div className={`${style.infoBlock} chb-h6`}>{location}</div>
+              <div className={`${style.infoBlock} chb-h6`}>{datetime}</div>
               <div className={`${style.infoBlock}`}>
                 <div>
                   <BsFillTicketPerforatedFill
@@ -92,13 +131,20 @@ export default function PhoneAccordionFirst() {
             {/* ticketSeat */}
 
             <div className={`${style.ticketSeat} chb-h7 text-black30`}>
-              {ticketSeatData.map((v) => (
-                <div key={v.id} className={`${style.ticketSeatBlock}`}>
+              {selectedSeatDetails.map((v) => (
+                <div key={v.seat_number} className={`${style.ticketSeatBlock}`}>
                   <div className={`${style.ticketTextLeft}`}>
                     <div
-                      className={`${style.ticketSeatSquare} ${v.squareColor}`}
+                      className={`${style.ticketSeatSquare}`}
+                      style={{
+                        backgroundColor:
+                          backgroundColor[v.seat_number] || 'transparent',
+                      }}
                     ></div>
-                    <div>{v.text}</div>
+                    <div>
+                      {v.seat_area} 區 • {v.seat_row} 排 •{' '}
+                      {formatSeatNumber(v.seat_number)} 號
+                    </div>
                   </div>
                   <div>{v.price}</div>
                 </div>
@@ -108,8 +154,8 @@ export default function PhoneAccordionFirst() {
             {/* totalPrice */}
 
             <div className={`${style.totalPrice} chb-h5 text-black`}>
-              <div>張數 : 6 張</div>
-              <div>總價 : 25,700</div>
+              <div>張數 : {selectedSeatDetails.length} 張</div>
+              <div>總價 : {totalPrice.toLocaleString()}</div>
             </div>
           </div>
         </div>

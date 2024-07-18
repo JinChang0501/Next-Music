@@ -14,14 +14,12 @@ import { useTicketContext } from '@/context/ticket/ticketContext'
 export default function PhoneSelectTicket({
   selectedSeats,
   onDeleteSeat,
-  showDeleteAllSeat,
   tickets,
 }) {
   const [showTicket, setShowTicket] = useState(false)
   const [selectTicketBodyTitleHeight, setSelectTicketBodyTitleHeight] =
     useState(0)
   const [ticketSeatBodyHeight, setTicketSeatBodyHeight] = useState(0)
-  const [colorBarBackground, setColorBarBackground] = useState('transparent')
   const ticketSeatBodyRef = useRef(null)
   const selectTicketBodyTitleRef = useRef(null)
   const router = useRouter()
@@ -71,7 +69,10 @@ export default function PhoneSelectTicket({
   const totalPrice = selectedSeats.reduce((acc, seat) => acc + seat.price, 0)
 
   const formatSeatNumber = (seatNumber) => {
-    return seatNumber.toString().padStart(3, '0')
+    if (seatNumber !== null && seatNumber !== undefined) {
+      return seatNumber.toString().padStart(3, '0')
+    }
+    return ''
   }
 
   return (

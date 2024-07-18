@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import WhiteLayout from '@/components/layout/ticket-layout/desktopLayout/whiteLayout'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import ProgressBar from '@/components/ticket/progressBar'
@@ -12,12 +12,10 @@ import style from '@/styles/ticket/musicFestival/first.module.scss'
 import DesktopWhiteNoIconBtnPurple from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnPurple'
 import PhoneWhiteNoIconBtnPurple from '@/components/common/button/phoneWhiteButton/phoneWhiteNoIconBtnPurple'
 import { useRouter } from 'next/router'
+import { useTicketContext } from '@/context/ticket/ticketContext'
+import { GET_TICKET } from '@/configs/api-path'
 
 export default function SelectSeat() {
-  const [isMobile, setIsMobile] = useState(false)
-
-  const router = useRouter()
-
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
     { label: '演出活動', href: '/activity' },
@@ -25,8 +23,51 @@ export default function SelectSeat() {
     { label: '選擇座位', href: '/ticket/concert/first' },
   ]
 
+  const [isMobile, setIsMobile] = useState(false)
+
+  const router = useRouter()
+  const { actid } = router.query
+  const {
+    setActid,
+    setTickets,
+    selectedCount,
+    tickets,
+    setSelectedSeatDetails,
+  } = useTicketContext()
+
+  const fetchTickets = useCallback(
+    async (actid) => {
+      const url = `${GET_TICKET}/activity/${actid}`
+      try {
+        const res = await fetch(url, {
+          credentials: 'include',
+        })
+        const resData = await res.json()
+        if (resData.success) {
+          setTickets(resData.rows)
+        }
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    [setTickets]
+  )
+
+  useEffect(() => {
+    setActid(actid)
+  }, [actid, setActid])
+
+  useEffect(() => {
+    if (actid) {
+      fetchTickets(actid)
+      setActid(actid)
+    }
+  }, [actid, setActid, fetchTickets])
+
   const handleNext = () => {
-    router.push('/ticket/musicFestival/second')
+    const selectedTickets = tickets.slice(0, selectedCount)
+    setSelectedSeatDetails(selectedTickets)
+    router.push(`/ticket/musicFestival/payment/${actid}`)
   }
 
   useEffect(() => {
