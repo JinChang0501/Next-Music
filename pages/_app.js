@@ -12,6 +12,7 @@ import LoginProvider from '@/hooks/use-login'
 import 'rsuite/dist/rsuite-no-reset.min.css'
 import { CustomProvider } from 'rsuite'
 import { CartProvider } from '@/hooks/product/use-cart'
+import FavProvider from '@/hooks/useFav'
 
 export default function MyApp({ Component, pageProps }) {
   // 導入bootstrap的JS函式庫
@@ -28,17 +29,19 @@ export default function MyApp({ Component, pageProps }) {
   return (
     <LoginProvider>
       <AuthProvider>
-        <CustomProvider>
-          <CartProvider>
-            <TicketProvider>
-              <ActTabProvider>
-                <TabProvider>
-                  {getLayout(<Component {...pageProps} />)}
-                </TabProvider>
-              </ActTabProvider>
-            </TicketProvider>
-          </CartProvider>
-        </CustomProvider>
+        <FavProvider>
+          <CustomProvider>
+            <CartProvider>
+              <TicketProvider>
+                <ActTabProvider>
+                  <TabProvider>
+                    {getLayout(<Component {...pageProps} />)}
+                  </TabProvider>
+                </ActTabProvider>
+              </TicketProvider>
+            </CartProvider>
+          </CustomProvider>
+        </FavProvider>
       </AuthProvider>
     </LoginProvider>
   )
