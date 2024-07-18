@@ -1,27 +1,85 @@
-import { React, useState } from 'react'
+import { useState, useEffect } from 'react'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import styles from '@/styles/product/product.module.scss'
 import CartLayout from '@/components/layout/cart-layout'
 import ProgressBarTwo from '@/components/product/progressBarTwo'
-import CartList from '@/components/checkout/cart-list'
+// import CartList from '@/components/checkout/cart-list'
 import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
+import { GET_PRODUCTS } from '@/configs/api-path'
 import Transport from '@/components/product/transport'
 import EcPay from '@/components/product/ec-pay'
 
 // import data from '@/data/product/Product.json'
 import Link from 'next/link'
-import { useCart } from '@/hooks/product/use-cart'
+import { useRouter } from 'next/router'
+import toast, { Toaster } from 'react-hot-toast'
 
 export default function Payment() {
-   const [cart, setCart] = useState([])
-   const { totalPrice, totalQty } = useCart()
- 
+  const [products, setProducts] = useState([])
+  const cartKey = 'cart'
+  const [cart, setCart] = useState([])
+  const [items, setItems] = useState([])
+  const [totalQty, setTotalQty] = useState(0)
+  const [totalPrice, setTotalPrice] = useState(0)
+  // const [cartDatas, setCardDatas] = useState([])
+  const router = useRouter()
+
   const breadcrumbsURL = [
     { label: '周邊商城', href: '/product' },
     { label: '商品資訊', href: '/product[pid]' },
     { label: '購物車', href: '/cart' },
   ]
   
+  useEffect(() => {
+    fetch(GET_PRODUCTS)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('Failed to fetch products')
+        }
+        return res.json()
+      })
+      .then((data) => {
+        setProducts(data)
+      })
+      .catch((error) => {
+        console.error('Error fetching products', error)
+      })
+
+    setCart(getCartFromStorage())
+  }, [])
+
+  useEffect(() => {
+    setItems(
+      cart.map((item) => ({
+        ...item,
+        ...products.find((product) => product.id === item.id),
+      }))
+    )
+
+    let qty = 0
+    let price = 0
+    cart.forEach((item) => {
+      qty += +item.quantity
+      price += item.quantity * item.price
+    })
+    setTotalQty(qty)
+    setTotalPrice(price)
+  }, [cart, products])
+
+  const getCartFromStorage = () => {
+    let cartData = []
+    const oriData = localStorage.getItem(cartKey)
+    console.log(oriData)
+    try {
+      cartData = JSON.parse(oriData)
+      if (!Array.isArray(cartData)) {
+        cartData = []
+      }
+    } catch (ex) {
+      console.error('Error parsing cart data', ex)
+    }
+    return cartData
+  }
   return (
     <>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
@@ -32,7 +90,7 @@ export default function Payment() {
           <p className={`chb-h5 ${styles['ml-20']}`}>購買的商品 </p>
          {/* 購物列表 start */}
          <div className="card mb-3 border-0 cart-card">
-            {cart.map((p) => (
+            {items.map((p) => (
               <div key={p.id} className="row g-0">
                 <div className={`col-md-3 ${styles['columnCenter']}`}>
                   <img
@@ -51,7 +109,7 @@ export default function Payment() {
                     </p>
                     <div className="row g-3 align-items-center">
                       <div className="col-auto">
-                        <p className="col-form-label chb-h6">數量: </p>
+                        <p className="col-form-label chb-h6">數量: {p.quantity}</p>
                         
                       </div>
                     </div>
@@ -67,7 +125,9 @@ export default function Payment() {
             ))}
           </div>
           <hr />
-          <div>總金額: NT$ {totalPrice}</div>
+          <div>
+          總數量: {totalQty} / 總金額: NT$ {totalPrice}
+          </div>
           {/* 購物列表 end */}
          
         </div>

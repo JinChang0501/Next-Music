@@ -1,69 +1,107 @@
-import { useState, useEffect } from 'react';
-import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs';
-import styles from '@/styles/product/product.module.scss';
-import CartLayout from '@/components/layout/cart-layout';
-import ProgressBarOne from '@/components/product/progressBarOne';
-import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple';
-import { GET_PRODUCTS } from '@/configs/api-path';
-import Link from 'next/link';
-import { useCart } from '@/hooks/product/use-cart';
+import { useState, useEffect } from 'react'
+import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
+import styles from '@/styles/product/product.module.scss'
+import CartLayout from '@/components/layout/cart-layout'
+import ProgressBarOne from '@/components/product/progressBarOne'
+import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
+import { GET_PRODUCTS } from '@/configs/api-path'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+// import toast, { Toaster } from 'react-hot-toast'
 
 export default function CartIndex() {
-  const [products, setProducts] = useState([]);
-  const cartKey = "product-cart";
-  const [cart, setCart] = useState([]);
-  const { items, totalPrice, totalQty } = useCart()
+  const [products, setProducts] = useState([])
+  const cartKey = 'cart'
+  const [cart, setCart] = useState([])
+  const [items, setItems] = useState([])
+  const [totalQty, setTotalQty] = useState(0)
+  const [totalPrice, setTotalPrice] = useState(0)
+  // const [cartDatas, setCardDatas] = useState([])
+  const router = useRouter()
 
   const breadcrumbsURL = [
     { label: '周邊商城', href: '/product' },
     { label: '商品資訊', href: '/product/[pid]' },
     { label: '購物車', href: '/cart' },
-  ];
+  ]
+  // const checkCart = () => {
+  //   const cart = localStorage.getItem('cart')
+  //   setCardDatas(cart)
+  // }
+
+  // useEffect(() => {
+  //   checkCart()
+  //   console.log(cartDatas)
+  // }, [cartDatas, router])
 
   useEffect(() => {
-    fetch(`${GET_PRODUCTS}`)
-      .then((res) => res.json())
+    fetch(GET_PRODUCTS)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('Failed to fetch products')
+        }
+        return res.json()
+      })
       .then((data) => {
-        setProducts(data);
+        setProducts(data)
       })
       .catch((error) => {
-        console.error('Error fetching products', error);
-      });
+        console.error('Error fetching products', error)
+      })
 
-    setCart(getCartFromStorage()); // Initialize cart from localStorage
-  }, []);
+    setCart(getCartFromStorage())
+  }, [])
+
+  useEffect(() => {
+    setItems(
+      cart.map((item) => ({
+        ...item,
+        ...products.find((product) => product.id === item.id),
+      }))
+    )
+
+    let qty = 0
+    let price = 0
+    cart.forEach((item) => {
+      qty += +item.quantity
+      price += item.quantity * item.price
+    })
+    setTotalQty(qty)
+    setTotalPrice(price)
+  }, [cart, products])
 
   const getCartFromStorage = () => {
-    const oriData = localStorage.getItem(cartKey);
-    let cartData = [];
+    let cartData = []
+    const oriData = localStorage.getItem(cartKey)
+    console.log(oriData)
     try {
-      cartData = JSON.parse(oriData);
+      cartData = JSON.parse(oriData)
       if (!Array.isArray(cartData)) {
-        cartData = [];
+        cartData = []
       }
     } catch (ex) {
-      console.error('Error parsing cart data', ex);
+      console.error('Error parsing cart data', ex)
     }
-    return cartData;
-  };
+    return cartData
+  }
 
   const cartRemoveItem = (pid) => {
-    const resultCart = cart.filter((p) => p.id !== pid);
-    localStorage.setItem(cartKey, JSON.stringify(resultCart));
-    setCart(resultCart);
-  };
+    const resultCart = cart.filter((p) => p.id !== pid)
+    localStorage.setItem(cartKey, JSON.stringify(resultCart))
+    setCart(resultCart)
+  }
 
   const cartModifyQty = (pid, qty) => {
     const resultCart = cart.map((p) => {
       if (pid === p.id) {
-        return { ...p, quantity: qty };
+        return { ...p, quantity: qty }
       } else {
-        return { ...p };
+        return { ...p }
       }
-    });
-    localStorage.setItem(cartKey, JSON.stringify(resultCart));
-    setCart(resultCart);
-  };
+    })
+    localStorage.setItem(cartKey, JSON.stringify(resultCart))
+    setCart(resultCart)
+  }
 
   return (
     <>
@@ -96,7 +134,9 @@ export default function CartIndex() {
                         <select
                           className="form-select"
                           value={p.quantity}
-                          onChange={(e) => cartModifyQty(p.id, e.currentTarget.value)}
+                          onChange={(e) =>
+                            cartModifyQty(p.id, e.currentTarget.value)
+                          }
                         >
                           {[1, 2, 3, 4, 5].map((num) => (
                             <option key={num} value={num}>
@@ -118,8 +158,8 @@ export default function CartIndex() {
                     text="刪除"
                     className={`chb-h6`}
                     onClick={() => {
-                      if (confirm('你確定要移除項目?')) {
-                        cartRemoveItem(p.id);
+                      if (confirm('你確定要移除這項商品?')) {
+                        cartRemoveItem(p.id)
                       }
                     }}
                   />
@@ -128,11 +168,15 @@ export default function CartIndex() {
             ))}
           </div>
           <hr />
-          <div>總數量: {totalQty} / 總金額: NT$ {totalPrice}</div>
+          <div>
+            總數量: {totalQty} / 總金額: NT$ {totalPrice}
+          </div>
         </div>
       </div>
       <div className={`row ${styles['mb-40']} ${styles.centerItem}`}>
-        <div className={`col-12 col-md-8 cart-area ${styles['my-20']} ${styles['columnCenter']} `}>
+        <div
+          className={`col-12 col-md-8 cart-area ${styles['my-20']} ${styles['columnCenter']} `}
+        >
           <Link href={`/cart/payment`}>
             <DesktopBlackNoIconBtnPurple
               text="結帳"
@@ -142,9 +186,9 @@ export default function CartIndex() {
         </div>
       </div>
     </>
-  );
+  )
 }
 
 CartIndex.getLayout = function getLayout(page) {
-  return <CartLayout title="cart">{page}</CartLayout>;
-};
+  return <CartLayout title="cart">{page}</CartLayout>
+}
