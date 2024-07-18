@@ -6,12 +6,16 @@ import toast, { Toaster } from 'react-hot-toast'
 import { useAuth } from '@/hooks/use-auth'
 import { getCollectionData } from '@/services/collection'
 import { useRouter } from 'next/router'
+export const API_SERVER = 'http://localhost:3005'
+
+import axios from 'axios'
 
 export default function Collection() {
   const [cardData, setCardData] = useState([])
   const [filter, setFilter] = useState('')
   const { auth } = useAuth()
-
+  // const [actids, setActids] = useState('')
+  const [updateTrigger, setUpdateTrigger] = useState('')
   const getFilter = (e) => {
     setFilter(e.target.value)
   }
@@ -37,10 +41,35 @@ export default function Collection() {
     }
   }, [filter, setCardData])
 
+  const handleDelete = async (activity_id) => {
+    console.log(activity_id)
+
+    try {
+      const response = await fetch(
+        `${API_SERVER}/api/collection/${activity_id}`,
+        {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          // body: JSON.stringify({ activity_id }),
+          credentials: 'include',
+        }
+      )
+      setUpdateTrigger(activity_id)
+      const data = await response.json()
+      console.log(data)
+      return data
+    } catch (error) {
+      console.error('無法加入收藏', error)
+      throw error
+    }
+  }
+
   useEffect(() => {
     console.log(filter)
     getUserData()
-  }, [filter, getUserData])
+  }, [filter, getUserData, updateTrigger])
 
   // auth載入完成後向資料庫要會員資料
   useEffect(() => {
@@ -115,6 +144,7 @@ export default function Collection() {
                 descriptions={v.descriptions}
                 activity_id={v.activity_id}
                 actClass={v.actClass}
+                handleDelete={handleDelete}
               />
             </div>
           ))}

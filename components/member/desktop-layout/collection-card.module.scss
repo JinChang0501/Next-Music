@@ -1,7 +1,13 @@
 .card {
   position: relative;
 }
+.collection-card .close-btn {
+  display: none;
+}
 
+.collection-card:hover .close-btn {
+  display: block;
+}
 .close-btn {
   position: absolute;
   top: 8px;
