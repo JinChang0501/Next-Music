@@ -15,7 +15,7 @@ export default function PhoneWhiteNoIconBtnPurple({
       </button>
       <style jsx>{`
         .PhoneWhiteNoIconBtnPurple {
-          padding: 8px 16px;
+          padding: 8px 12px;
           color: white;
           background-color: #685beb;
           display: flex;
