@@ -1,7 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
-import { useLogin } from '../../hooks/use-login'
 
 import {
   BsMusicNoteBeamed,
@@ -46,7 +45,9 @@ export default function ActivityCard({
         <div className="row g-0">
           {/* 圖 */}
           <div className="col-4">
-            <img src={imgSrc} className="img-fluid" alt="..." />
+            <Link href={`/Activity/${aid}`}>
+              <img src={imgSrc} className="img-fluid" alt={title} />
+            </Link>
           </div>
           {/* 卡片文字 */}
           <div className="col-8 card-body p-2 p-md-3 d-flex flex-column justify-content-between">
