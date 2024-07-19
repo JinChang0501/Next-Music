@@ -14,6 +14,7 @@ import RightSecond from '@/components/ticket/desktop-concert/first/rightSecond'
 import style from '@/styles/ticket/concert/first.module.scss'
 import { GET_TICKET } from '@/configs/api-path'
 import { useRouter } from 'next/router'
+import { useCountdown } from '@/context/ticket/countdownContext'
 
 export default function SelectSeat() {
   // #region 動態獲取 breadcrumb、progressBar 高度，返回給 content
@@ -23,7 +24,7 @@ export default function SelectSeat() {
   const breadcrumbRef = useRef(null)
   const progressBarRef = useRef(null)
   const [contentHeight, setContentHeight] = useState('100%')
-  const [isStarted, setIsStarted] = useState(false)
+  const { isStarted, setIsStarted } = useCountdown()
   const [isPhoneView, setIsPhoneView] = useState(false)
 
   const breadcrumbsURL = [

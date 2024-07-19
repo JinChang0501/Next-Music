@@ -3,8 +3,13 @@ import style from './start.module.scss'
 import { BsFillLockFill } from 'react-icons/bs'
 import DesktopWhiteNoIconBtnPurple from '../common/button/desktopWhiteButton/desktopWhiteNoIconBtnPurple'
 import PhoneWhiteNoIconBtnPurple from '../common/button/phoneWhiteButton/phoneWhiteNoIconBtnPurple'
+import { useCountdown } from '@/context/ticket/countdownContext'
 
-export default function Start({ onStart }) {
+export default function Start() {
+  const { setIsStarted } = useCountdown()
+  const handleStart = () => {
+    setIsStarted(true)
+  }
   const [isPhoneView, setIsPhoneView] = useState(false)
 
   useEffect(() => {
@@ -33,7 +38,7 @@ export default function Start({ onStart }) {
           <PhoneWhiteNoIconBtnPurple
             text="開始"
             className="chb-h5 w-100"
-            onClick={onStart}
+            onClick={handleStart}
           />
         </div>
       </div>
@@ -57,7 +62,7 @@ export default function Start({ onStart }) {
           <DesktopWhiteNoIconBtnPurple
             text="開始"
             className="chb-h6"
-            onClick={onStart}
+            onClick={handleStart}
           />
         </div>
       </div>

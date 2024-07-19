@@ -16,6 +16,7 @@ import PhoneWhiteNoIconBtnPurple from '@/components/common/button/phoneWhiteButt
 import { useRouter } from 'next/router'
 import { useTicketContext } from '@/context/ticket/ticketContext'
 import { GET_TICKET } from '@/configs/api-path'
+import { useCountdown } from '@/context/ticket/countdownContext'
 
 export default function SelectSeat() {
   const breadcrumbsURL = [
@@ -24,7 +25,7 @@ export default function SelectSeat() {
     { label: '一生到底', href: '/activity/[aid]' },
     { label: '選擇座位', href: '/ticket/concert/first' },
   ]
-  const [isStarted, setIsStarted] = useState(false)
+  const { isStarted, setIsStarted } = useCountdown()
 
   const [isMobile, setIsMobile] = useState(false)
 

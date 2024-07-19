@@ -11,10 +11,11 @@ import PhoneButton from '@/components/ticket/phone-music-festival/phoneButton'
 import style from '@/styles/ticket/musicFestival/third.module.scss'
 import { useRouter } from 'next/router'
 import { useTicketContext } from '@/context/ticket/ticketContext'
+import { useCountdown } from '@/context/ticket/countdownContext'
 
 export default function Finish() {
   const [isMobile, setIsMobile] = useState(false)
-
+  const { isStarted } = useCountdown()
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
     { label: '演出活動', href: '/activity' },
@@ -88,7 +89,7 @@ export default function Finish() {
         <Breadcrumbs breadcrumbs={breadcrumbsURL} />
       )}
 
-      <ProgressBar />
+      <ProgressBar isStarted={isStarted} />
 
       {/* order */}
       {isMobile ? <PhoneOrder /> : <Order />}

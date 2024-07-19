@@ -11,8 +11,10 @@ import PhoneButton from '@/components/ticket/phone-concert/phoneButton'
 import style from '@/styles/ticket/concert/third.module.scss'
 import { useTicketContext } from '@/context/ticket/ticketContext'
 import { useRouter } from 'next/router'
+import { useCountdown } from '@/context/ticket/countdownContext'
 
 export default function Finish() {
+  const { isStarted } = useCountdown()
   const [isMobile, setIsMobile] = useState(false)
   const router = useRouter()
   const {
@@ -87,7 +89,7 @@ export default function Finish() {
         <Breadcrumbs breadcrumbs={breadcrumbsURL} />
       )}
 
-      <ProgressBar />
+      <ProgressBar isStarted={isStarted} />
 
       {/* order */}
       {isMobile ? <PhoneOrder /> : <Order />}

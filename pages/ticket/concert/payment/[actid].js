@@ -13,10 +13,11 @@ import DesktopWhiteNoIconBtnPurple from '@/components/common/button/desktopWhite
 import PhoneWhiteNoIconBtnPurple from '@/components/common/button/phoneWhiteButton/phoneWhiteNoIconBtnPurple'
 import { useRouter } from 'next/router'
 import { useTicketContext } from '@/context/ticket/ticketContext'
+import { useCountdown } from '@/context/ticket/countdownContext'
 
 export default function Payment() {
   const [isMobile, setIsMobile] = useState(false)
-
+  const { isStarted } = useCountdown()
   const router = useRouter()
 
   const {
@@ -99,7 +100,7 @@ export default function Payment() {
 
       {/* progressBar + timeCounter */}
 
-      <ProgressBar />
+      <ProgressBar isStarted={isStarted} />
 
       {/* Form */}
 

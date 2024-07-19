@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react'
 import style from './progressBar.module.scss'
 import { FaChevronRight } from 'react-icons/fa'
 import { useTitle } from '@/context/ticket/useTitle'
+import { useCountdown } from '@/context/ticket/countdownContext'
 
-export default function ProgressBar({ progressBarRef, isStarted = true }) {
-  const [time, setTime] = useState(10 * 60) // 初始設置為 10 分鐘 (600 秒)
+export default function ProgressBar({ progressBarRef }) {
+  const { time } = useCountdown()
   const title = useTitle() // 獲取 Context 中的 title
   const [isPhoneView, setIsPhoneView] = useState(false)
 
@@ -19,15 +20,6 @@ export default function ProgressBar({ progressBarRef, isStarted = true }) {
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
-
-  useEffect(() => {
-    if (isStarted && time > 0) {
-      const timerId = setInterval(() => {
-        setTime((prevTime) => (prevTime > 0 ? prevTime - 1 : 0))
-      }, 1000)
-      return () => clearInterval(timerId) // 清除計時器
-    }
-  }, [isStarted, time])
 
   const formatTime = (seconds) => {
     const minutes = Math.floor(seconds / 60) // 計算剩餘的分鐘數
