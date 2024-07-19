@@ -9,6 +9,7 @@ import SwiperBottom from '@/components/product/swiper-bottom'
 import SwiperTop from '@/components/product/swiper-top'
 import CardProduct2 from '@/components/product/card-product2'
 import toast, { Toaster } from 'react-hot-toast'
+import { useTotal } from '@/hooks/product/use-Total'
 
 export default function Detail() {
   const [product, setProduct] = useState(null)
@@ -79,6 +80,7 @@ export default function Detail() {
 
     toast.success(`本商品已成功加入購物車`)
   }
+
   useEffect(() => {
     checkCart()
     console.log(cartData)

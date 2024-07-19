@@ -15,6 +15,7 @@ import { CartProvider } from '@/hooks/product/use-cart'
 import { TicketProvider } from '@/context/ticket/ticketContext'
 import { FavProvider } from '@/hooks/useFav'
 
+import { TotalProvider } from '@/hooks/product/use-Total'
 export default function MyApp({ Component, pageProps }) {
   // 導入bootstrap的JS函式庫
   // 要document物件出現後才能導入 bootstrap的js函式庫
@@ -32,15 +33,17 @@ export default function MyApp({ Component, pageProps }) {
       <AuthProvider>
         <FavProvider>
           <CustomProvider locale={zhCN}>
-            <CartProvider>
-              <TicketProvider>
-                <ActTabProvider>
-                  <TabProvider>
-                    {getLayout(<Component {...pageProps} />)}
-                  </TabProvider>
-                </ActTabProvider>
-              </TicketProvider>
-            </CartProvider>
+            <TotalProvider>
+              <CartProvider>
+                <TicketProvider>
+                  <ActTabProvider>
+                    <TabProvider>
+                      {getLayout(<Component {...pageProps} />)}
+                    </TabProvider>
+                  </ActTabProvider>
+                </TicketProvider>
+              </CartProvider>
+            </TotalProvider>
           </CustomProvider>
         </FavProvider>
       </AuthProvider>

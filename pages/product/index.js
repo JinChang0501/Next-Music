@@ -46,7 +46,7 @@ export default function List() {
     <>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
       <CarouselIndex />
-      <div className={`${styles['mx-160']} ${styles['my-100']}`}>
+      <div className={`${styles['mx-161']} ${styles['my-100']}`}>
         <div className="row">
 
           <div className={`col-md-3 col-12 mb-3`}>
@@ -74,9 +74,8 @@ export default function List() {
           </div>   
           </div>
 
-          <div className={`col-md-9 `}>
+          <div className={`col-md-9`}>
             <div className={`chb-h3 text-white ${styles['ml-28']}`}>所有商品</div>
-            
             <div className={`row row-cols-md-3 ${styles['ml-28']}`}>
               {filteredProducts.map((product) => (
                 <div key={product.id} className={`card ${styles['card']} ${styles['mt-28']}`}>
