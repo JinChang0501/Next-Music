@@ -34,13 +34,13 @@ export default function StoreOrder() {
         console.log('以下是res.data.result')
         console.log(res.data.result)
         setOrderData(res.data.result) //這一包是物件陣列[{},{},{}]
-        toast.success('會員購物紀錄載入成功')
+        console.log('會員購物紀錄載入成功')
       } else {
-        toast.error('會員購物紀錄載入失敗')
+        console.log('會員購物紀錄載入失敗')
       }
     } catch (error) {
       console.error('Error fetching order data:', error)
-      toast.error('會員購物紀錄載入失敗')
+      console.log('會員購物紀錄載入失敗')
     }
   }, [sortBy, setOrderData])
 

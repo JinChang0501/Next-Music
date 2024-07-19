@@ -31,13 +31,13 @@ export default function Collection() {
       if (res.status === 'success') {
         console.log(res.data.result)
         setCardData(res.data.result)
-        toast.success('收藏資料載入成功')
+        console.log('收藏資料載入成功')
       } else {
-        toast.error(`收藏資料載入失敗`)
+        console.log(`收藏資料載入失敗`)
       }
     } catch (error) {
       console.error('Error fetching collection data:', error)
-      toast.error('收藏資料載入失敗')
+      console.log('收藏資料載入失敗')
     }
   }, [filter, setCardData])
 

@@ -48,13 +48,13 @@ export default function TicketOrder() {
         setUserTicketCon(concertData)
         setUserTicketFes(festivalData)
 
-        toast.success('會員訂單資料載入成功')
+        console.log('會員訂單資料載入成功')
       } else {
-        toast.error('會員訂單資料載入失敗')
+        console.log('會員訂單資料載入失敗')
       }
     } catch (error) {
       console.error('Error fetching order data:', error)
-      toast.error('會員訂單資料載入失敗')
+      console.log('會員訂單資料載入失敗')
     }
   }, [sortBy, setUserTicketCon, setUserTicketFes])
 
