@@ -277,13 +277,6 @@ export default function Profile() {
 
             {isDisable ? (
               <div className="py-2 d-flex justify-content-end">
-                {/* <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={handleEdit}
-                >
-                  編輯
-                </button> */}
                 <DesktopWhiteNoIconBtnPurple
                   text="編輯"
                   className="chb-h7 px-3 py-2"
@@ -292,22 +285,11 @@ export default function Profile() {
               </div>
             ) : (
               <div className="py-2 d-flex justify-content-end">
-                {/* <button className="btn btn-primary mx-2" onClick={handleCancel}>
-                  取消
-                </button> */}
-                {/* <button className="btn btn-primary" onClick={handleSubmit}>
-                  更新
-                </button> */}
                 <DesktopWhiteNoIconBtnGray
                   text="取消"
                   className="chb-h7 px-3 py-2 me-2"
                   onClick={handleCancel}
                 />
-                {/* <DesktopWhiteNoIconBtnPurple
-                  text="取消"
-                  className="chb-h7 px-3 py-2 bg-black40 me-2"
-                  onClick={handleCancel}
-                /> */}
                 <DesktopWhiteNoIconBtnPurple
                   text="更新"
                   className="chb-h7 px-3 py-2"
