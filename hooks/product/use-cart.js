@@ -81,9 +81,6 @@ export function CartProvider({ children }) {
     return total
   }
 
-  // // 用陣列迭代方法reduce來計算總金額/總數量
-  // const totalQty = items.reduce((acc, v) => acc + v.qty, 0)
-  // const totalPrice = items.reduce((acc, v) => acc + v.qty * v.price, 0)
   // 用陣列迭代方法reduce來計算總金額/總數量
   const totalQty = items.reduce((acc, v) => acc + v.qty, 0)
   const totalPrice = items.reduce((acc, v) => acc + v.qty * v.price, 0)

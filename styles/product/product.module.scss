@@ -44,7 +44,10 @@
   margin-left: 400px;
   margin-right: 400px;
 }
-
+.mx-161 {
+  margin-left: 160px;
+  margin-right: 160px;
+}
 .mx-160 {
   margin-left: 160px;
   margin-right: 160px;
@@ -250,7 +253,7 @@
     width: 390px;
   }
 // index
-  .mx-160 {
+  .mx-161 {
     margin-left: 28px;
     margin-right: 28px;
   }
@@ -261,13 +264,21 @@
   .mt-52 {
     margin-top: 40px;
   }
-
+  .ml-28 {
+    margin-left: auto;
+   margin-right: auto;
+    
+  }
   //[pid]
+  .mx-160 {
+    margin-left: 28px;
+    margin-right: 28px;
+  }
   .w-456 {
-    width: 333px;
+    width: auto;
   }
   .ml-136 {
-    margin-left: 0px;;
+    margin-left: 0px;
   }
   .mt-80 {
     margin-top: 40px;

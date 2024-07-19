@@ -12,7 +12,10 @@ import { initUserData, useAuth } from '@/hooks/use-auth'
 import { login, logout, getUserById, checkAuth } from '@/services/user' //checkAuth
 
 import toast, { Toaster } from 'react-hot-toast'
-import { useCart } from '@/hooks/product/use-cart'
+// 購物車
+import { Badge } from 'rsuite'
+
+import { useTotal } from '@/hooks/product/use-Total'
 
 export default function Nav() {
   //
@@ -26,6 +29,9 @@ export default function Nav() {
     handleCloseLogin,
   } = useLogin()
   //
+  //yun
+  const { totalQty } = useTotal()
+
   const [isLoggedIn, setIsLoggedIn] = useState(false) // 這裡要接Login元件傳回來的狀態
   const router = useRouter()
   const { logoutFirebase, loginGoogleRedirect, initApp } = useFirebase()
@@ -37,10 +43,11 @@ export default function Nav() {
   const updateLoginStatus = (loggedIn) => {
     setIsLoggedIn(loggedIn)
   }
-
+  // useEffect(() => {}, [totalTrigger])
   //處理登出
   const handleLogout = async () => {
     logoutFirebase()
+    localStorage.removeItem('makin-cart')
 
     const res = await logout()
 
@@ -60,8 +67,7 @@ export default function Nav() {
       toast.error(`登出失敗`)
     }
   }
-  const { totalQty } = useCart()
-  
+
   // 同步 isLoggedIn 狀態與 auth.isAuth
   useEffect(() => {
     setIsLoggedIn(auth.isAuth)
@@ -119,8 +125,10 @@ export default function Nav() {
             >
               <li className={`me-3 me-md-1`}>
                 <Link className="nav-link" href="/cart">
-                  <BsCart />
-                  <span>{totalQty}</span>
+                  <Badge color="violet" content={totalQty}>
+                    <BsCart />
+                  </Badge>
+                  {/* <span>{totalQty}</span> */}
                 </Link>
               </li>
               <li className={`me-3 me-md-1 dropdown`}>
