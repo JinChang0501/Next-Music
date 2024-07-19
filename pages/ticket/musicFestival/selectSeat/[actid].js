@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import WhiteLayout from '@/components/layout/ticket-layout/desktopLayout/whiteLayout'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
+import Mask from '@/components/ticket/mask'
+import Start from '@/components/ticket/start'
 import ProgressBar from '@/components/ticket/progressBar'
 import ActivityImage from '@/components/ticket/desktop-music-festival/activityImage'
 import Info from '@/components/ticket/desktop-music-festival/info'
@@ -22,8 +24,13 @@ export default function SelectSeat() {
     { label: '一生到底', href: '/activity/[aid]' },
     { label: '選擇座位', href: '/ticket/concert/first' },
   ]
+  const [isStarted, setIsStarted] = useState(false)
 
   const [isMobile, setIsMobile] = useState(false)
+
+  const handleStart = () => {
+    setIsStarted(true)
+  }
 
   const router = useRouter()
   const { actid } = router.query
@@ -84,6 +91,16 @@ export default function SelectSeat() {
     <>
       {/* breadcrumb */}
 
+      {!isStarted && (
+        <>
+          {/* Mask */}
+          <Mask />
+
+          {/* Start */}
+          <Start onStart={handleStart} />
+        </>
+      )}
+
       {isMobile ? (
         <Breadcrumbs breadcrumbs={breadcrumbsURL} className="" />
       ) : (
@@ -91,56 +108,62 @@ export default function SelectSeat() {
       )}
 
       {/* progressBar + timeCounter */}
-      <ProgressBar />
+      <ProgressBar isStarted={isStarted} />
 
       {/* Form */}
-      <div className={`${style.thirdContainer}`}>
-        {isMobile ? (
-          <>
-            {/* PhoneActivityImage */}
+      <div className={`${style.outsideFlexCenter}`}>
+        <div
+          className={`${style.innerFlexCenter} col-xxl-8 col-xl-12 col-lg-12 col-md-12 col-sm-12`}
+        >
+          <div className="w-100">
+            {isMobile ? (
+              <>
+                {/* PhoneActivityImage */}
 
-            <PhoneActivityImage />
+                <PhoneActivityImage />
 
-            {/* PhoneInfo */}
+                {/* PhoneInfo */}
 
-            <PhoneInfo />
+                <PhoneInfo />
 
-            {/* PhoneSelectTicket */}
+                {/* PhoneSelectTicket */}
 
-            <PhoneSelectTicket />
-          </>
-        ) : (
-          <>
-            {/* activityImage */}
+                <PhoneSelectTicket />
+              </>
+            ) : (
+              <>
+                {/* activityImage */}
 
-            <ActivityImage />
+                <ActivityImage />
 
-            {/* info */}
+                {/* info */}
 
-            <Info />
+                <Info />
 
-            {/* selectTicket */}
+                {/* selectTicket */}
 
-            <SelectTicket />
-          </>
-        )}
-        {isMobile ? (
-          <div style={{ margin: '20px 0' }}>
-            <PhoneWhiteNoIconBtnPurple
-              text="下一步"
-              className="w-100 chb-h6"
-              onClick={handleNext}
-            />
+                <SelectTicket />
+              </>
+            )}
+            {isMobile ? (
+              <div style={{ margin: '20px 0' }}>
+                <PhoneWhiteNoIconBtnPurple
+                  text="下一步"
+                  className="w-100 chb-h6"
+                  onClick={handleNext}
+                />
+              </div>
+            ) : (
+              <div style={{ margin: '60px 0' }}>
+                <DesktopWhiteNoIconBtnPurple
+                  text="下一步"
+                  className="w-100 chb-h6"
+                  onClick={handleNext}
+                />
+              </div>
+            )}
           </div>
-        ) : (
-          <div style={{ margin: '60px 0' }}>
-            <DesktopWhiteNoIconBtnPurple
-              text="下一步"
-              className="w-100 chb-h6"
-              onClick={handleNext}
-            />
-          </div>
-        )}
+        </div>
       </div>
     </>
   )
