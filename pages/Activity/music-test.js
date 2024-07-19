@@ -1,36 +1,44 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { getArtists } from '@/services/spotify'
+import ArtistFollowCard from '@/components/Activity/artist-follow-card'
 
 export default function MusicTest() {
-  // Authorization token that must have been created previously. See : https://developer.spotify.com/documentation/web-api/concepts/authorization
-  const token = 'BQAKcQr0sbXP4L_fTc2VmcDCK9Omh0h6R-BnNv5SaHa_ufiZZG3CWpCK6U0UB79t7wqTsJyAneDR5STrBVEPzgq4X-4S5WKDXDC-NLIIlBDhz-cYI08'
-  async function fetchWebApi(endpoint, method, body) {
-    const res = await fetch(`https://api.spotify.com/${endpoint}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      method,
-      body:JSON.stringify(body)
-    })
-    return await res.json()
+  const [artists, setArtists] = useState([])
+
+  const fetchTopTracks = async () => {
+    const resData = await getArtists(
+      '5NpkBOIMi2iJocLhi5MTde',
+      '1YtYHaWLV0IU7SwhvG6Luk',
+      '6zn0ihyAApAYV51zpXxdEp',
+      '78ltY2tUrZpkWJ9CWYGZfl',
+      '2rspptKP0lPBdlJJAJHqht'
+    )
+    if (Array.isArray(resData.artists)) {
+      setArtists(resData.artists)
+      console.log(artists)
+    }
   }
 
-  async function getTopTracks(){
-    // Endpoint reference : https://developer.spotify.com/documentation/web-api/reference/get-users-top-artists-and-tracks
-    return (await fetchWebApi(
-      'v1/me/top/tracks?time_range=long_term&limit=5', 'GET'
-    )).items
-  }
+  useEffect(() => {
+    fetchTopTracks()
+  }, [])
 
-const topTracks = await getTopTracks()
-console.log(
-  topTracks?.map(
-    ({name, artists}) =>
-      `${name} by ${artists.map(artist => artist.name).join(', ')}`
-  )
-)
   return (
     <>
-      
+      <div>
+        <h1>TEST</h1>
+        {artists.length > 0 ? (
+          artists.map((artist) => (
+            <ArtistFollowCard
+              key={artist.id}
+              imgSrc={artist.images[2]?.url} // 使用可選鏈運算符
+              artist_name={artist.name}
+            />
+          ))
+        ) : (
+          <p>Loading artists...</p>
+        )}
+      </div>
     </>
   )
 }

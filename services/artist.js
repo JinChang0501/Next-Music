@@ -7,13 +7,13 @@ import useSWR from 'swr'
 //   return await axiosInstance.get(`/ticket-order/${id}`)
 // }
 
-export const getArtist = async () => {
-  try {
-    const res = await axiosInstance.get(`/artist`)
+// export const getArtist = async () => {
+//   try {
+//     const res = await axiosInstance.get(`/artist`)
 
-    return res.data // 返回從後端獲取的data
-  } catch (error) {
-    console.error('Error fetching user tickets:', error)
-    throw error // 抛出错误以便上层处理
-  }
-}
+//     return res.data // 返回從後端獲取的data
+//   } catch (error) {
+//     console.error('Error fetching user tickets:', error)
+//     throw error // 抛出错误以便上层处理
+//   }
+// }
