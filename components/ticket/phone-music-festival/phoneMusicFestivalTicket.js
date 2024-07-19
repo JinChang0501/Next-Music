@@ -8,7 +8,11 @@ export default function PhoneMusicFestivalTicket() {
   const { tickets, selectedTickets } = useTicketContext()
 
   const renderTickets =
-    selectedTickets.length > 0 ? selectedTickets : [tickets[0]]
+    selectedTickets.length > 0
+      ? selectedTickets
+      : tickets.length > 0
+      ? [tickets[0]]
+      : []
 
   return (
     <>

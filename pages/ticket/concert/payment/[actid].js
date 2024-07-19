@@ -13,19 +13,60 @@ import DesktopWhiteNoIconBtnPurple from '@/components/common/button/desktopWhite
 import PhoneWhiteNoIconBtnPurple from '@/components/common/button/phoneWhiteButton/phoneWhiteNoIconBtnPurple'
 import { useRouter } from 'next/router'
 import { useTicketContext } from '@/context/ticket/ticketContext'
+import { useCountdown } from '@/context/ticket/countdownContext'
 
 export default function Payment() {
   const [isMobile, setIsMobile] = useState(false)
-
+  const { isStarted } = useCountdown()
   const router = useRouter()
 
-  const { selectedSeatDetails, actid } = useTicketContext()
+  const {
+    setTickets,
+    selectedSeatDetails,
+    setSelectedSeatDetails,
+    setActid,
+    actid,
+    setSelectedCount,
+    setSelectedTickets,
+  } = useTicketContext()
 
   useEffect(() => {
-    if (!actid || selectedSeatDetails.length === 0) {
-      router.push('/') // 如果沒有 actid 或選擇的座位，重定向到首頁或其他頁面
+    const handleRouteChange = (url) => {
+      if (
+        !url.includes('/ticket/concert/selectSeat') &&
+        !url.includes('/ticket/concert/payment') &&
+        !url.includes('/ticket/concert/finish') &&
+        !url.includes('/ticket/musicFestival/selectSeat') &&
+        !url.includes('/ticket/musicFestival/payment') &&
+        !url.includes('/ticket/musicFestival/finish')
+      ) {
+        setActid(null)
+        setTickets([])
+        setSelectedSeatDetails([])
+        setSelectedCount(1)
+        setSelectedTickets([])
+
+        localStorage.removeItem('actid')
+        localStorage.removeItem('tickets')
+        localStorage.removeItem('selectedSeatDetails')
+        localStorage.removeItem('selectedCount')
+        localStorage.removeItem('selectedTickets')
+      }
     }
-  }, [actid, selectedSeatDetails, router])
+
+    router.events.on('routeChangeStart', handleRouteChange)
+
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange)
+    }
+  }, [
+    router.events,
+    setActid,
+    setTickets,
+    setSelectedSeatDetails,
+    setSelectedCount,
+    setSelectedTickets,
+  ])
 
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
@@ -59,7 +100,7 @@ export default function Payment() {
 
       {/* progressBar + timeCounter */}
 
-      <ProgressBar />
+      <ProgressBar isStarted={isStarted} />
 
       {/* Form */}
 

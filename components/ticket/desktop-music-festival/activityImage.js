@@ -10,7 +10,7 @@ export default function ActivityImage() {
   const fallbackImage = '../../../public/images/ticket/chilloutfest.jpg'
   return (
     <>
-      <div className={`${style.activityImage}`}>
+      <div className={`${style.activityImage} mb-5`}>
         {picture ? (
           <Image src={picture} alt="Activity" fill priority />
         ) : (

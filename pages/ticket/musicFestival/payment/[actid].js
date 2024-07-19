@@ -13,10 +13,11 @@ import DesktopWhiteNoIconBtnPurple from '@/components/common/button/desktopWhite
 import PhoneWhiteNoIconBtnPurple from '@/components/common/button/phoneWhiteButton/phoneWhiteNoIconBtnPurple'
 import { useRouter } from 'next/router'
 import { useTicketContext } from '@/context/ticket/ticketContext'
+import { useCountdown } from '@/context/ticket/countdownContext'
 
 export default function Payment() {
   const [isMobile, setIsMobile] = useState(false)
-
+  const { isStarted } = useCountdown()
   const router = useRouter()
 
   const breadcrumbsURL = [
@@ -26,7 +27,53 @@ export default function Payment() {
     { label: '支付方式', href: '/ticket/concert/first' },
   ]
 
-  const { selectedCount, tickets, setSelectedSeatDetails } = useTicketContext()
+  const {
+    selectedCount,
+    tickets,
+    setTickets,
+    setSelectedSeatDetails,
+    setActid,
+    setSelectedCount,
+    setSelectedTickets,
+  } = useTicketContext()
+
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      if (
+        !url.includes('/ticket/concert/selectSeat') &&
+        !url.includes('/ticket/concert/payment') &&
+        !url.includes('/ticket/concert/finish') &&
+        !url.includes('/ticket/musicFestival/selectSeat') &&
+        !url.includes('/ticket/musicFestival/payment') &&
+        !url.includes('/ticket/musicFestival/finish')
+      ) {
+        setActid(null)
+        setTickets([])
+        setSelectedSeatDetails([])
+        setSelectedCount(1)
+        setSelectedTickets([])
+
+        localStorage.removeItem('actid')
+        localStorage.removeItem('tickets')
+        localStorage.removeItem('selectedSeatDetails')
+        localStorage.removeItem('selectedCount')
+        localStorage.removeItem('selectedTickets')
+      }
+    }
+
+    router.events.on('routeChangeStart', handleRouteChange)
+
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange)
+    }
+  }, [
+    router.events,
+    setActid,
+    setTickets,
+    setSelectedSeatDetails,
+    setSelectedCount,
+    setSelectedTickets,
+  ])
 
   const { actid } = router.query
 
@@ -56,7 +103,7 @@ export default function Payment() {
       )}
 
       {/* progressBar + timeCounter */}
-      <ProgressBar />
+      <ProgressBar isStarted={isStarted} />
 
       {/* Form */}
       <div className={`${style.outsideFlexCenter}`}>

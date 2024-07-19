@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import WhiteLayout from '@/components/layout/ticket-layout/desktopLayout/whiteLayout'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
+import Mask from '@/components/ticket/mask'
+import Start from '@/components/ticket/start'
 import ProgressBar from '@/components/ticket/progressBar'
 import ActivityImage from '@/components/ticket/desktop-music-festival/activityImage'
 import Info from '@/components/ticket/desktop-music-festival/info'
@@ -14,6 +16,7 @@ import PhoneWhiteNoIconBtnPurple from '@/components/common/button/phoneWhiteButt
 import { useRouter } from 'next/router'
 import { useTicketContext } from '@/context/ticket/ticketContext'
 import { GET_TICKET } from '@/configs/api-path'
+import { useCountdown } from '@/context/ticket/countdownContext'
 
 export default function SelectSeat() {
   const breadcrumbsURL = [
@@ -22,18 +25,63 @@ export default function SelectSeat() {
     { label: '一生到底', href: '/activity/[aid]' },
     { label: '選擇座位', href: '/ticket/concert/first' },
   ]
+  const { isStarted, setIsStarted } = useCountdown()
 
   const [isMobile, setIsMobile] = useState(false)
+
+  const handleStart = () => {
+    setIsStarted(true)
+  }
 
   const router = useRouter()
   const { actid } = router.query
   const {
-    setActid,
-    setTickets,
     selectedCount,
     tickets,
+    setTickets,
     setSelectedSeatDetails,
+    setActid,
+    setSelectedCount,
+    setSelectedTickets,
   } = useTicketContext()
+
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      if (
+        !url.includes('/ticket/concert/selectSeat') &&
+        !url.includes('/ticket/concert/payment') &&
+        !url.includes('/ticket/concert/finish') &&
+        !url.includes('/ticket/musicFestival/selectSeat') &&
+        !url.includes('/ticket/musicFestival/payment') &&
+        !url.includes('/ticket/musicFestival/finish')
+      ) {
+        setActid(null)
+        setTickets([])
+        setSelectedSeatDetails([])
+        setSelectedCount(1)
+        setSelectedTickets([])
+
+        localStorage.removeItem('actid')
+        localStorage.removeItem('tickets')
+        localStorage.removeItem('selectedSeatDetails')
+        localStorage.removeItem('selectedCount')
+        localStorage.removeItem('selectedTickets')
+      }
+    }
+
+    router.events.on('routeChangeStart', handleRouteChange)
+
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange)
+    }
+  }, [
+    router.events,
+    setActid,
+    setTickets,
+    setSelectedSeatDetails,
+    setSelectedCount,
+    setSelectedTickets,
+  ])
 
   const fetchTickets = useCallback(
     async (actid) => {
@@ -84,6 +132,16 @@ export default function SelectSeat() {
     <>
       {/* breadcrumb */}
 
+      {!isStarted && (
+        <>
+          {/* Mask */}
+          <Mask />
+
+          {/* Start */}
+          <Start onStart={handleStart} />
+        </>
+      )}
+
       {isMobile ? (
         <Breadcrumbs breadcrumbs={breadcrumbsURL} className="" />
       ) : (
@@ -91,56 +149,62 @@ export default function SelectSeat() {
       )}
 
       {/* progressBar + timeCounter */}
-      <ProgressBar />
+      <ProgressBar isStarted={isStarted} />
 
       {/* Form */}
-      <div className={`${style.thirdContainer}`}>
-        {isMobile ? (
-          <>
-            {/* PhoneActivityImage */}
+      <div className={`${style.outsideFlexCenter}`}>
+        <div
+          className={`${style.innerFlexCenter} col-xxl-8 col-xl-12 col-lg-12 col-md-12 col-sm-12`}
+        >
+          <div className="w-100">
+            {isMobile ? (
+              <>
+                {/* PhoneActivityImage */}
 
-            <PhoneActivityImage />
+                <PhoneActivityImage />
 
-            {/* PhoneInfo */}
+                {/* PhoneInfo */}
 
-            <PhoneInfo />
+                <PhoneInfo />
 
-            {/* PhoneSelectTicket */}
+                {/* PhoneSelectTicket */}
 
-            <PhoneSelectTicket />
-          </>
-        ) : (
-          <>
-            {/* activityImage */}
+                <PhoneSelectTicket />
+              </>
+            ) : (
+              <>
+                {/* activityImage */}
 
-            <ActivityImage />
+                <ActivityImage />
 
-            {/* info */}
+                {/* info */}
 
-            <Info />
+                <Info />
 
-            {/* selectTicket */}
+                {/* selectTicket */}
 
-            <SelectTicket />
-          </>
-        )}
-        {isMobile ? (
-          <div style={{ margin: '20px 0' }}>
-            <PhoneWhiteNoIconBtnPurple
-              text="下一步"
-              className="w-100 chb-h6"
-              onClick={handleNext}
-            />
+                <SelectTicket />
+              </>
+            )}
+            {isMobile ? (
+              <div style={{ margin: '20px 0' }}>
+                <PhoneWhiteNoIconBtnPurple
+                  text="下一步"
+                  className="w-100 chb-h6"
+                  onClick={handleNext}
+                />
+              </div>
+            ) : (
+              <div style={{ margin: '60px 0' }}>
+                <DesktopWhiteNoIconBtnPurple
+                  text="下一步"
+                  className="w-100 chb-h6"
+                  onClick={handleNext}
+                />
+              </div>
+            )}
           </div>
-        ) : (
-          <div style={{ margin: '60px 0' }}>
-            <DesktopWhiteNoIconBtnPurple
-              text="下一步"
-              className="w-100 chb-h6"
-              onClick={handleNext}
-            />
-          </div>
-        )}
+        </div>
       </div>
     </>
   )

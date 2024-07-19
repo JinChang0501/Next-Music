@@ -14,6 +14,7 @@ import RightSecond from '@/components/ticket/desktop-concert/first/rightSecond'
 import style from '@/styles/ticket/concert/first.module.scss'
 import { GET_TICKET } from '@/configs/api-path'
 import { useRouter } from 'next/router'
+import { useCountdown } from '@/context/ticket/countdownContext'
 
 export default function SelectSeat() {
   // #region 動態獲取 breadcrumb、progressBar 高度，返回給 content
@@ -23,7 +24,7 @@ export default function SelectSeat() {
   const breadcrumbRef = useRef(null)
   const progressBarRef = useRef(null)
   const [contentHeight, setContentHeight] = useState('100%')
-  const [isStarted, setIsStarted] = useState(false)
+  const { isStarted, setIsStarted } = useCountdown()
   const [isPhoneView, setIsPhoneView] = useState(false)
 
   const breadcrumbsURL = [
@@ -80,8 +81,51 @@ export default function SelectSeat() {
   const { actid } = router.query
   const [tickets, setTickets] = useState()
   const [seatMap, setSeatMap] = useState([])
-  const { selectedSeatDetails, setSelectedSeatDetails, setActid } =
-    useTicketContext()
+  const {
+    selectedSeatDetails,
+    setSelectedSeatDetails,
+    setActid,
+    setSelectedCount,
+    setSelectedTickets,
+  } = useTicketContext()
+
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      if (
+        !url.includes('/ticket/concert/selectSeat') &&
+        !url.includes('/ticket/concert/payment') &&
+        !url.includes('/ticket/concert/finish') &&
+        !url.includes('/ticket/musicFestival/selectSeat') &&
+        !url.includes('/ticket/musicFestival/payment') &&
+        !url.includes('/ticket/musicFestival/finish')
+      ) {
+        setActid(null)
+        setTickets([])
+        setSelectedSeatDetails([])
+        setSelectedCount(1)
+        setSelectedTickets([])
+
+        localStorage.removeItem('actid')
+        localStorage.removeItem('tickets')
+        localStorage.removeItem('selectedSeatDetails')
+        localStorage.removeItem('selectedCount')
+        localStorage.removeItem('selectedTickets')
+      }
+    }
+
+    router.events.on('routeChangeStart', handleRouteChange)
+
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange)
+    }
+  }, [
+    router.events,
+    setActid,
+    setTickets,
+    setSelectedSeatDetails,
+    setSelectedCount,
+    setSelectedTickets,
+  ])
 
   useEffect(() => {
     if (actid) {

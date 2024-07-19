@@ -14,6 +14,7 @@ import zhCN from 'rsuite/locales/zh_CN'
 import { CartProvider } from '@/hooks/product/use-cart'
 import { TicketProvider } from '@/context/ticket/ticketContext'
 import { FavProvider } from '@/hooks/useFav'
+import { CountdownProvider } from '@/context/ticket/countdownContext'
 
 import { TotalProvider } from '@/hooks/product/use-Total'
 export default function MyApp({ Component, pageProps }) {
@@ -37,9 +38,11 @@ export default function MyApp({ Component, pageProps }) {
               <CartProvider>
                 <TicketProvider>
                   <ActTabProvider>
-                    <TabProvider>
-                      {getLayout(<Component {...pageProps} />)}
-                    </TabProvider>
+                    <CountdownProvider>
+                      <TabProvider>
+                        {getLayout(<Component {...pageProps} />)}
+                      </TabProvider>
+                    </CountdownProvider>
                   </ActTabProvider>
                 </TicketProvider>
               </CartProvider>

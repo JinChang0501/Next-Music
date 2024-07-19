@@ -1,8 +1,19 @@
-// #region thirdContainer
+// #region flexCenter
 
-.thirdContainer {
-  padding: 0 390px;
+.outsideFlexCenter,
+.innerFlexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.innerFlexCenter {
+  flex-direction: column;
+}
+
+// #endregion flexCenter
+
+// #region thirdContainer
 
 @media (max-width: 390px) {
   .thirdContainer {

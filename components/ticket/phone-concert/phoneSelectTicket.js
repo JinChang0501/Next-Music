@@ -57,7 +57,9 @@ export default function PhoneSelectTicket({
   }
 
   const handleNext = () => {
-    router.push(`/ticket/concert/payment/${actid}`)
+    if (selectedSeats.length > 0 && selectedSeats) {
+      router.push(`/ticket/concert/payment/${actid}`)
+    }
   }
 
   const { actid } = useTicketContext()
