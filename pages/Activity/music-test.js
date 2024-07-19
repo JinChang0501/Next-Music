@@ -4,6 +4,7 @@ import ArtistFollowCard from '@/components/Activity/artist-follow-card'
 
 export default function MusicTest() {
   const [artists, setArtists] = useState([])
+  const playlistId = '4gJifzM6kxq52z6qf1Khy2'
 
   const fetchTopTracks = async () => {
     const resData = await getArtists(
@@ -38,6 +39,17 @@ export default function MusicTest() {
         ) : (
           <p>Loading artists...</p>
         )}
+
+        <iframe
+          title="Spotify Embed: Recommendation Playlist "
+          src={`https://open.spotify.com/embed/playlist/4gJifzM6kxq52z6qf1Khy2?utm_source=generator&theme=0`}
+          width="100%"
+          height="100%"
+          style={{ minHeight: '360px' }}
+          frameBorder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+        />
       </div>
     </>
   )
