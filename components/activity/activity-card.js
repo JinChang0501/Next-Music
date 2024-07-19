@@ -119,7 +119,7 @@ export default function ActivityCard({
                   >
                     <PhoneBlackNoIconBtnPurple
                       text="立即購票"
-                      className="chr-p"
+                      className="chr-p-10"
                     />
                   </Link>
                 )}
