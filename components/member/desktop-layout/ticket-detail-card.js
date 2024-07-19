@@ -19,6 +19,7 @@ export default function TicketDetailCard({
   location = '',
   actdate = '',
   acttime = '',
+  picinfrontend = '',
 }) {
   //偵測螢幕寬度
   const [isDesktop, setIsDesktop] = useState(true)
@@ -53,14 +54,18 @@ export default function TicketDetailCard({
     <>
       <div className="row text-center my-3">
         <div className="col d-flex justify-content-center">
-          <img src={cover} className={styles.img160} alt="" />
+          <img
+            src={`/images/Activity/${picinfrontend}`}
+            className={styles.img160}
+            alt=""
+          />
         </div>
-        <div className="col my-auto p-0 chr-h6 text-nowrap">
+        <div className="col my-auto p-0 chr-h7 text-nowrap">
           {seat_area
             ? `${seat_area}區${seat_row}排${seat_number}號`
             : '自由入場'}
         </div>
-        <div className="col my-auto p-0 chr-h6">${price}</div>
+        <div className="col my-auto p-0 chr-h7">${price}</div>
         <div className="col my-auto p-0 mx-auto d-flex justify-content-center">
           <DesktopWhiteNoIconBtnPurple
             className="px-1 px-md-4 py-2"

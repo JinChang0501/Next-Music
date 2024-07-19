@@ -196,6 +196,7 @@ export default function TicketDetail({ ticketData }) {
                     location={v.location}
                     actdate={v.actdate}
                     acttime={v.acttime}
+                    picinfrontend={v.picinfrontend}
                   />
                 )
               })}
@@ -231,7 +232,9 @@ export default function TicketDetail({ ticketData }) {
               </div>
               <div className="px-sm-5 m-0 d-flex justify-content-between mb-2">
                 <p className="text-center p-0 m-0 chb-h5">付款方式</p>
-                <p className="text-center p-0 m-0 chr-h5">LINE PAY</p>
+                <p className="text-center p-0 m-0 chr-h5">
+                  {/* {ticketData[0].payment} */}信用卡
+                </p>
               </div>
             </div>
           </div>
