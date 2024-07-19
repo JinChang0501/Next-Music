@@ -6,11 +6,14 @@ import { useAuth } from '@/hooks/use-auth'
 import toast, { Toaster } from 'react-hot-toast'
 import PreviewUploadImage from '@/components/member/desktop-layout/preview-upload-image'
 import { avatarBaseUrl } from '@/configs'
+import DesktopWhiteNoIconBtnPurple from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnPurple'
+
 import {
   updateProfile,
   getUserById,
   updateProfileAvatar,
 } from '@/services/user'
+import DesktopWhiteNoIconBtnGray from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnGray'
 
 // 定義要在此頁呈現/編輯的會員資料初始物件
 const initUserProfile = {
@@ -274,22 +277,42 @@ export default function Profile() {
 
             {isDisable ? (
               <div className="py-2 d-flex justify-content-end">
-                <button
+                {/* <button
                   type="button"
                   className="btn btn-primary"
                   onClick={handleEdit}
                 >
                   編輯
-                </button>
+                </button> */}
+                <DesktopWhiteNoIconBtnPurple
+                  text="編輯"
+                  className="chb-h7 px-3 py-2"
+                  onClick={handleEdit}
+                />
               </div>
             ) : (
               <div className="py-2 d-flex justify-content-end">
-                <button className="btn btn-primary mx-2" onClick={handleCancel}>
+                {/* <button className="btn btn-primary mx-2" onClick={handleCancel}>
                   取消
-                </button>
-                <button className="btn btn-primary" onClick={handleSubmit}>
+                </button> */}
+                {/* <button className="btn btn-primary" onClick={handleSubmit}>
                   更新
-                </button>
+                </button> */}
+                <DesktopWhiteNoIconBtnGray
+                  text="取消"
+                  className="chb-h7 px-3 py-2 me-2"
+                  onClick={handleCancel}
+                />
+                {/* <DesktopWhiteNoIconBtnPurple
+                  text="取消"
+                  className="chb-h7 px-3 py-2 bg-black40 me-2"
+                  onClick={handleCancel}
+                /> */}
+                <DesktopWhiteNoIconBtnPurple
+                  text="更新"
+                  className="chb-h7 px-3 py-2"
+                  onClick={handleSubmit}
+                />
               </div>
             )}
           </div>

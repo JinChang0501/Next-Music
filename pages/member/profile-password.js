@@ -193,7 +193,10 @@ export default function ProfilePassword() {
                   </div>
                   {/* 3 end */}
                   <div className="py-2 d-flex justify-content-end">
-                    <DesktopWhiteNoIconBtnPurple text="更新" />
+                    <DesktopWhiteNoIconBtnPurple
+                      text="更新"
+                      className="chb-h7 px-3 py-2"
+                    />
                   </div>
                 </form>
               </div>
