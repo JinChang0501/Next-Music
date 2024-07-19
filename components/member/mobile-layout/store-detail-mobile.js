@@ -47,7 +47,7 @@ export default function StoreDetailMobile({ storeData }) {
             <p className="text-center p-0 m-0 chb-h5 text-white">
               訂單編號:{storeData[0].order_num}
             </p>
-            <p className="text-center p-0 m-0 chb-h5 text-white">已完成</p>
+            <p className="text-center p-0 m-0 chb-h5 text-white"></p>
           </div>
         </div>
 

@@ -19,7 +19,7 @@ export default function OrderCardMobile({
               <p className="text-center p-0 m-0 chb-h6 text-white">
                 訂單編號:{order_num}
               </p>
-              <p className="text-center p-0 m-0 chb-h6 text-white">已完成</p>
+              <p className="text-center p-0 m-0 chb-h6 text-white"></p>
             </div>
           </div>
 
