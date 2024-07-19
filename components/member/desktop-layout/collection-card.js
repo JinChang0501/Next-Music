@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './collection-card.module.scss'
 import { BsFillXCircleFill } from 'react-icons/bs'
 import Link from 'next/link'
+
+// import axiosInstance, { fetcher } from '@/services/axios-instance'
 
 export default function CollectionCard({
   actname = '',
@@ -9,20 +11,22 @@ export default function CollectionCard({
   descriptions = '',
   actClass = '',
   activity_id = '',
+  setActids,
+  handleDelete = () => {},
 }) {
-  const [ishover, setIsHover] = useState(false)
+  // const getFavID = (activity_id) => {
+  //   setActids(activity_id)
+  //   console.log(activity_id)
+  // }
   return (
     <>
-      <div
-        className={styles['collection-card']}
-        onMouseEnter={() => setIsHover(true)}
-        onMouseLeave={() => setIsHover(false)}
-      >
+      <div className={styles['collection-card']}>
         <div className="card">
           <button
-            className={`${styles['close-btn']} ${
-              ishover ? styles['show'] : styles['hide']
-            }`}
+            className={`${styles['close-btn']}`}
+            onClick={() => {
+              handleDelete(activity_id)
+            }}
           >
             <BsFillXCircleFill className="chr-h5" />
           </button>

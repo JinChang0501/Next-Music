@@ -9,9 +9,7 @@ import useSWR from 'swr'
 
 export const getArtist = async () => {
   try {
-    const res = await axiosInstance.get(`/artist-index`, {
-      withCredentials: false, // 確保不發送認證信息
-    })
+    const res = await axiosInstance.get(`/artist`)
 
     return res.data // 返回從後端獲取的data
   } catch (error) {
