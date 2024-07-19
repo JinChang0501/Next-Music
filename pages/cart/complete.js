@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import styles from '@/styles/product/product.module.scss'
 import CartLayout from '@/components/layout/cart-layout'
@@ -7,6 +7,19 @@ import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlack
 import data from '@/data/product/Product.json'
 import Link from 'next/link'
 import { useShip711StoreOpener } from '@/hooks/use-ship-711-store'
+// 會員
+import { getUserById } from '@/services/user'
+import { useAuth } from '@/hooks/use-auth'
+const initUserProfile = {
+  name: '',
+  email: '',
+  mobile: '',
+  birthday: '',
+  gender: '',
+  address: '',
+  avatar: '',
+}
+
 
 export default function Complete() {
   const breadcrumbsURL = [
@@ -17,6 +30,39 @@ export default function Complete() {
   const { store711, openWindow, closeWindow } = useShip711StoreOpener(
     'http://localhost:3005/api/shipment/711'
   )
+  const [userProfile, setUserProfile] = useState([])
+  // 會員
+  const { auth } = useAuth()
+  const getUserData = async (id) => {
+    const res = await getUserById(id)
+
+    console.log(res.data)
+
+    if (res.data.status === 'success') {
+      // 以下為同步化目前後端資料庫資料，與這裡定義的初始化會員資料物件的資料
+      const dbUser = res.data.data.user
+      const dbUserProfile = { ...initUserProfile }
+
+      for (const key in dbUserProfile) {
+        if (Object.hasOwn(dbUser, key)) {
+          // 這裡要將null值的預設值改為空字串 ''
+          dbUserProfile[key] = dbUser[key] || ''
+        }
+      }
+
+      // 設定到狀態中
+      setUserProfile(dbUserProfile)
+      
+    } 
+  }
+  // auth載入完成後向資料庫要會員資料
+  useEffect(() => {
+    if (auth.isAuth) {
+      getUserData(auth.userData.id)
+    }
+    // eslint-disable-next-line
+  }, [auth])
+
   return (
     <>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
@@ -33,7 +79,7 @@ export default function Complete() {
             <thead>
               <tr className={``}>
                 <th className={`chb-h6 ${styles['w-160']} ${styles['text-center-x']}`}>收貨人</th>
-                <th className={`chb-h6 ${styles['text-center-x']}`}>黃大安</th>
+                <th className={`chb-h6 ${styles['text-center-x']}`}>{userProfile.name}</th>
               </tr>
             </thead>
             <tbody>
