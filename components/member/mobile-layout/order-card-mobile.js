@@ -48,7 +48,7 @@ export default function OrderCardMobile({
           </div>
           <div className="col-12 bg-purple3 py-2 border-top border-2 border-purple2">
             <div className="row text-center">
-              <Link href="/member/store-detail">
+              <Link href={`/member/store-detail/${order_num}`}>
                 <div className="col chb-p">檢視其他商品</div>
               </Link>
             </div>
