@@ -3,7 +3,7 @@ import { Calendar, Whisper, Popover, Badge } from 'rsuite'
 import { useFav } from '@/hooks/useFav'
 import style from './calendar.module.scss'
 
-export default function CalendarItem({ compact }) {
+export default function CalendarItemMob() {
   const { favorite } = useFav()
 
   const activities = favorite.rows.activities
@@ -41,38 +41,44 @@ export default function CalendarItem({ compact }) {
     const month = date.getMonth() + 1
     const day = date.getDate()
     const activitiesForDay = groupedActivities[month]?.[day] || []
-    const displayList = activitiesForDay.filter((item, index) => index < 3)
+    // const displayList = activitiesForDay.filter((item, index) => index < 1)
 
     if (activitiesForDay.length) {
       return (
         <>
           {/* 日曆格顯示的內容 */}
           <ul className={`${style['calendar-todo-list']}`}>
-            {displayList.map((item, index) => (
-              <Whisper // 彈出視窗觸發器
-                key={index}
-                followCursor
-                placement="bottom"
-                trigger={['hover', 'focus']}
-                speaker={
-                  // 彈出視窗的內容
-                  <Popover title="已收藏：">
-                    <div className={`w-100 ${style['line-bk']}`}></div>
-                    <p className="text-purple1 chr-p">
+            <Whisper // 彈出視窗觸發器
+              followCursor
+              placement="bottom"
+              trigger={['focus', 'click']}
+              speaker={
+                // 彈出視窗的內容
+                <Popover title="已收藏：">
+                  <div className={`w-100 ${style['line-bk']}`}></div>
+                  {activitiesForDay.map((item, index) => (
+                    <p className="text-purple1 chr-p" key={index}>
                       <b className="text-purple2 chr-p">{item.time}</b> -{' '}
                       {item.title}
                     </p>
-                  </Popover>
-                }
-              >
-                <li>
-                  <Badge color="blue" className="mx-1" />{' '}
-                  <b className="text-black60 chr-p">{item.title}</b>
-                </li>
-              </Whisper>
-            ))}
-            {/* {moreCount ? moreItem : null} */}
+                  ))}
+                </Popover>
+              }
+            >
+              <div className="badge-container">
+                <Badge color="blue" />
+              </div>
+            </Whisper>
           </ul>
+          <style jsx>{`
+            .badge-container {
+              display: flex;
+              margin-top: 3px;
+              justify-content: center;
+              align-items: center;
+              height: 100%;
+            }
+          `}</style>
         </>
       )
     }
@@ -84,13 +90,16 @@ export default function CalendarItem({ compact }) {
     <>
       <Calendar
         bordered
-        compact={compact} // 緊湊型（for 手機）
+        compact // 緊湊型（for 手機）
         renderCell={renderingCell} //渲染每格，把 ToDoList 資料帶入
         cellClassName={(date) => (date.getDay() % 2 ? 'bg-gray' : undefined)}
       />
       <style jsx>{`
         .bg-gray {
           background-color: #1a1a1a;
+        }
+        .margin-a {
+          margin: 5px;
         }
       `}</style>
     </>

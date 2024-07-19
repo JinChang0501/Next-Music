@@ -1,13 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import MemberDLayout from '@/components/member/desktop-layout'
 import CalendarItem from '@/components/Activity/calendar/calendar-item'
+import CalendarItemMob from '@/components/Activity/calendar/calendar-item-mob'
 
 export default function Calendar() {
+  const [isDesktop, setIsDesktop] = useState(true)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth > 576) // 螢幕寬度 > 576px 為電腦板
+    }
+    handleResize() // 初始設定一次
+
+    window.addEventListener('resize', handleResize) // 監聽視窗大小變化
+
+    return () => window.removeEventListener('resize', handleResize) // 清除事件監聽器
+  }, [])
+
   return (
     <>
       <p className="chb-h4 text-purple1">活動日程</p>
       <hr className="custom-hr" />
-      <CalendarItem />
+      {isDesktop ? <CalendarItem /> : <CalendarItemMob />}
       <style jsx>{`
         .custom-hr {
           border: 0;
