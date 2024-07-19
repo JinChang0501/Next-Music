@@ -40,23 +40,6 @@ export const removeFavorite = async (eventId) => {
   }
 }
 
-export const checkFavorite = async (eventId) => {
-  try {
-    const response = await fetch(`${API_SERVER}/favorite/check`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      credentials: 'include'
-    })
-    const data = await response.json()
-    return data.favorites
-  } catch (error) {
-    console.error('無法確認收藏狀態', error)
-    throw error
-  }
-}
-
 export const getFavorites = async () => {
   try {
     const response = await fetch(`${API_SERVER}/favorite`, {
