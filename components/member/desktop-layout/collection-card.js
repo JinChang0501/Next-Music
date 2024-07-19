@@ -30,11 +30,7 @@ export default function CollectionCard({
           >
             <BsFillXCircleFill className="chr-h5" />
           </button>
-          <img
-            src={cover}
-            className={`card-img-top ${styles.h180}`}
-            alt="..."
-          />
+          <img src={cover} className={`card-img-top`} alt="..." />
           <div className="card-body p-2 p-md-3">
             <div
               className={`${styles['text-truncate-ellipsis']} ${styles['card-title']}`}
