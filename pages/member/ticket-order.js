@@ -165,6 +165,7 @@ export default function TicketOrder() {
                         actdate={v.actdate}
                         acttime={v.acttime}
                         amount={v.amount}
+                        picinfrontend={v.picinfrontend}
                       />
                     )
                   })}
@@ -184,6 +185,7 @@ export default function TicketOrder() {
                       actdate={v.actdate}
                       acttime={v.acttime}
                       amount={v.amount}
+                      picinfrontend={v.picinfrontend}
                     />
                   )
                 })}
@@ -253,6 +255,7 @@ export default function TicketOrder() {
                         actdate={v.actdate}
                         acttime={v.acttime}
                         amount={v.amount}
+                        picinfrontend={v.picinfrontend}
                       />
                     )
                   })}
@@ -272,6 +275,7 @@ export default function TicketOrder() {
                       actdate={v.actdate}
                       acttime={v.acttime}
                       amount={v.amount}
+                      picinfrontend={v.picinfrontend}
                     />
                   )
                 })}
