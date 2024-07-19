@@ -2,13 +2,26 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { BsMusicNoteBeamed, BsBookmark, BsGeoAlt, BsCalendar4 } from "react-icons/bs"
+import {
+  BsMusicNoteBeamed,
+  BsBookmark,
+  BsGeoAlt,
+  BsCalendar4,
+} from 'react-icons/bs'
 import DesktopBlackNoIconBtnPurple from '../common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
 import DesktopBlackPureIconBtnBlack from '../common/button/desktopBlackButton/desktopBlackPureIconBtnBlack'
 import PhoneBlackPureIconBtnBlack from '../common/button/phoneBlackButton/phoneBlackPureIconBtnBlack'
 import PhoneBlackNoIconBtnPurple from '../common/button/phoneBlackButton/phoneBlackNoIconBtnPurple'
 
-export default function MainMusicInfo({ title, actdate, acttime, location, artist, banner, aid }) {
+export default function MainMusicInfo({
+  title,
+  actdate,
+  acttime,
+  location,
+  artist,
+  banner,
+  aid,
+}) {
   const [isDesktop, setIsDesktop] = useState(true)
 
   useEffect(() => {
@@ -31,7 +44,13 @@ export default function MainMusicInfo({ title, actdate, acttime, location, artis
           {/* 跑太慢了 */}
           <div className="custom-bg-03">
             {/* <div className="custom-bg-01" style={{ backgroundImage: `url('${banner}')` }} /> */}
-            <Image src={banner} alt="banner" className="custom-bg-02" fill priority />
+            <Image
+              src={banner}
+              alt="banner"
+              className="custom-bg-02"
+              fill
+              priority
+            />
             {/* <img src={banner} className="custom-bg-02" /> */}
           </div>
         </div>
@@ -43,7 +62,9 @@ export default function MainMusicInfo({ title, actdate, acttime, location, artis
             <div className="col-12 my-4 my-md-5">
               <div className="d-flex my-2">
                 <BsCalendar4 className="chb-h5 text-white me-3 mt-1" />
-                <div className="chb-h5 text-purple2">{actdate}&nbsp{acttime}</div>
+                <div className="chb-h5 text-purple2">
+                  {actdate}&nbsp;{acttime}
+                </div>
               </div>
               <div className="d-flex my-2">
                 <BsGeoAlt className="chb-h5 text-white me-3 mt-1" />
@@ -56,34 +77,34 @@ export default function MainMusicInfo({ title, actdate, acttime, location, artis
             </div>
             <div className="col-12 text-nowrap mt-3">
               <div className="d-flex">
-              <Link
-                    href={`/ticket/${
-                      aid > 9 ? 'musicFestival' : 'concert'
-                    }/selectSeat/${aid}`}
-                  >
-                {isDesktop ?
-                  (
+                <Link
+                  href={`/ticket/${
+                    aid > 9 ? 'musicFestival' : 'concert'
+                  }/selectSeat/${aid}`}
+                  className={`d-inline-block ${!isDesktop ? 'w-100' : ''}`}
+                >
+                  {isDesktop ? (
                     <DesktopBlackNoIconBtnPurple
-                    text='立即購票'
-                    className='chr-h5'
-                  />) : (<div className="w-100">
+                      text="立即購票"
+                      className="chr-h5"
+                    />
+                  ) : (
                     <PhoneBlackNoIconBtnPurple
-                      text='立即購票'
-                      className='chr-p-14 w-100'
-                    /></div>
+                      text="立即購票"
+                      className="chr-p-14 w-100"
+                    />
                   )}
-              </Link>
+                </Link>
                 <div className="ms-2 ms-md-4">
-                  {isDesktop ?
-                    (<DesktopBlackPureIconBtnBlack
+                  {isDesktop ? (
+                    <DesktopBlackPureIconBtnBlack icon={BsBookmark} />
+                  ) : (
+                    <PhoneBlackPureIconBtnBlack
                       icon={BsBookmark}
-                    />) : (
-                      <PhoneBlackPureIconBtnBlack
-                        icon={BsBookmark}
-                        iconWidth={21}
-                        iconHeight={21}
-                      />
-                    )}
+                      iconWidth={25}
+                      iconHeight={25}
+                    />
+                  )}
                 </div>
               </div>
             </div>
@@ -92,19 +113,19 @@ export default function MainMusicInfo({ title, actdate, acttime, location, artis
       </div>
       {/* 活動主資訊 end */}
       <style jsx>{`
-      *{
-        margin: 0;
-        padding: 0;
-      }
+        * {
+          margin: 0;
+          padding: 0;
+        }
         .img-border {
-          border: 1px solid var(--Primary-02, #958CEA);
-          background: rgba(255, 255, 255, 0.10);
+          border: 1px solid var(--Primary-02, #958cea);
+          background: rgba(255, 255, 255, 0.1);
           backdrop-filter: blur(5px);
         }
         .of-hide {
           overflow: hidden;
         }
-        
+
         .custom-bg-01 {
           height: 25rem;
         }
@@ -128,8 +149,8 @@ export default function MainMusicInfo({ title, actdate, acttime, location, artis
         @media (max-width: 390px) {
           .custom-bg-01 {
             height: 11.25rem;
+          }
         }
-      }
       `}</style>
     </>
   )

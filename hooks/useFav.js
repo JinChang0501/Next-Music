@@ -3,6 +3,7 @@ import { createContext } from 'react'
 import { getFavorites, addFavorite, removeFavorite } from '@/configs/fav-api'
 
 import { useAuth } from '@/hooks/use-auth'
+import toast, { Toaster } from 'react-hot-toast'
 
 const FavContext = createContext(null)
 export function FavProvider({ children }) {
@@ -42,8 +43,10 @@ export function FavProvider({ children }) {
       // 根據是否收藏來決定要加入還是移除
       if (isFavorite) {
         await removeFavorite(eventId)
+        toast.success('已取消收藏')
       } else {
         await addFavorite(eventId)
+        toast.success('加入收藏成功')
       }
 
       // 更新收藏狀態
