@@ -17,10 +17,14 @@ export default function TicketMobile({
   location = '',
   a_datetime = '',
   amount = '',
+  picinfrontend = '',
+  actdate = '',
+  acttime = '',
 }) {
-  const formattedDate = moment(a_datetime)
-    .tz('Asia/Taipei')
-    .format('YYYY/MM/DD HH:mm:ss')
+  //更改時間格式
+  const formateActdate = moment(actdate).tz('Asia/Taipei').format('YYYY/MM/DD')
+
+  const formatteActtime = moment(acttime, 'HH:mm:ss').format('HH:mm')
 
   return (
     <>
@@ -39,7 +43,7 @@ export default function TicketMobile({
         <div className="d-flex w-100 h-100">
           <div style={{ width: '88px', height: '88px' }} className="m-auto">
             <img
-              src={`/images/member/img/composing-2391033__340.jpg`}
+              src={`/images/Activity/${picinfrontend}`}
               alt=""
               className="w-100 h-100"
             />
@@ -66,7 +70,10 @@ export default function TicketMobile({
                   <BsClockFill />
                 </div>
                 <div className={`${styles['same-width-text']} `}>
-                  <span>{formattedDate}</span>
+                  <span>
+                    {formateActdate}&nbsp;
+                    {formatteActtime}
+                  </span>
                 </div>
               </div>
 
