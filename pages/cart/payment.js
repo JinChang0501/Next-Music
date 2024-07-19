@@ -11,7 +11,6 @@ import EcPay from '@/components/product/ec-pay'
 // import data from '@/data/product/Product.json'
 import Link from 'next/link'
 // import toast, { Toaster } from 'react-hot-toast'
-// 會員
 import { useTotal } from '@/hooks/product/use-Total'
 
 export default function Payment() {
