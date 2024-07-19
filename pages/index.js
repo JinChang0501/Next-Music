@@ -11,7 +11,7 @@ import { useAuth } from '@/hooks/use-auth'
 import { getArtist } from '@/services/artist'
 import toast, { Toaster } from 'react-hot-toast'
 import ArtCard from '@/components/artist/art-card'
-
+import Marquee from 'react-fast-marquee'
 export default function Index() {
   const { handleGotoMember, handleWakeLogin } = useLogin()
   const { auth } = useAuth()
@@ -154,13 +154,13 @@ export default function Index() {
             <div className="chb-h4 text-white">音樂人</div>
           </div> */}
           {/* 其他顆 */}
-          <div className={styles['marquee-container']}>
-            <div className={styles.marquee}>
+          <Marquee pauseOnHover gradient gradientColor="black">
+            <div className="d-flex">
               {artistData.map((v, i) => {
                 return <ArtCard key={i} photo={v.photo} art_name={v.art_name} />
               })}
             </div>
-          </div>
+          </Marquee>
         </div>
       </div>
 

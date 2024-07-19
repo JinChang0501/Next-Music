@@ -38,6 +38,7 @@ export const initUserData = {
   email: '',
 }
 
+//預設值的isAuth => 登入狀態 預設是 false
 export const AuthProvider = ({ children }) => {
   const { handleWakeLogin } = useLogin()
   const [auth, setAuth] = useState({

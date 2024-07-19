@@ -12,15 +12,17 @@ export default function ArtCard({ photo = '', art_name = '' }) {
   }
   return (
     <>
-      <div className="col-md-2 col-5 d-flex flex-column align-items-center order-md-5 mx-4">
-        <img
-          src={`${photo}`}
-          className={`rounded-circle mb-4 ${styles['artist-img-s']} ${
-            play ? styles['animate'] : ''
-          }`}
-          onClick={handleClick}
-        />
-        <div className="chb-h4 text-white">{art_name}</div>
+      <div className="bg-secondary mx-4">
+        <div className="w-100 col-md-2 col-5 d-flex flex-column align-items-center order-md-5">
+          <img
+            src={`${photo}`}
+            className={`rounded-circle mb-4 ${styles['artist-img-s']} ${
+              play ? styles['animate'] : ''
+            }`}
+            onClick={handleClick}
+          />
+          <div className="chb-h4 text-white">{art_name}</div>
+        </div>
       </div>
     </>
   )
