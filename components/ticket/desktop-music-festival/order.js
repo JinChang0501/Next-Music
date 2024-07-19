@@ -7,8 +7,9 @@ import moment from 'moment-timezone'
 export default function Order() {
   const { tickets, selectedTickets, selectedCount } = useTicketContext()
 
-  const { picture, actname, actdate, acttime, location, art_name } =
-    selectedTickets[0] || tickets[0]
+  const ticketData = selectedTickets[0] || tickets[0] || {}
+
+  const { picture, actname, actdate, acttime, location, art_name } = ticketData
 
   const datetime = moment(
     `${actdate} ${acttime}`,

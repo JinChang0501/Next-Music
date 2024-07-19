@@ -9,9 +9,57 @@ import PhoneOrder from '@/components/ticket/phone-concert/phoneOrder'
 import PhoneConcertTicket from '@/components/ticket/phone-concert/phoneConcertTicket'
 import PhoneButton from '@/components/ticket/phone-concert/phoneButton'
 import style from '@/styles/ticket/concert/third.module.scss'
+import { useTicketContext } from '@/context/ticket/ticketContext'
+import { useRouter } from 'next/router'
 
 export default function Finish() {
   const [isMobile, setIsMobile] = useState(false)
+  const router = useRouter()
+  const {
+    setTickets,
+    setSelectedSeatDetails,
+    setActid,
+    setSelectedCount,
+    setSelectedTickets,
+  } = useTicketContext()
+
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      if (
+        !url.includes('/ticket/concert/selectSeat') &&
+        !url.includes('/ticket/concert/payment') &&
+        !url.includes('/ticket/concert/finish') &&
+        !url.includes('/ticket/musicFestival/selectSeat') &&
+        !url.includes('/ticket/musicFestival/payment') &&
+        !url.includes('/ticket/musicFestival/finish')
+      ) {
+        setActid(null)
+        setTickets([])
+        setSelectedSeatDetails([])
+        setSelectedCount(1)
+        setSelectedTickets([])
+
+        localStorage.removeItem('actid')
+        localStorage.removeItem('tickets')
+        localStorage.removeItem('selectedSeatDetails')
+        localStorage.removeItem('selectedCount')
+        localStorage.removeItem('selectedTickets')
+      }
+    }
+
+    router.events.on('routeChangeStart', handleRouteChange)
+
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange)
+    }
+  }, [
+    router.events,
+    setActid,
+    setTickets,
+    setSelectedSeatDetails,
+    setSelectedCount,
+    setSelectedTickets,
+  ])
 
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
