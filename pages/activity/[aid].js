@@ -10,6 +10,7 @@ import Tab from '@/components/common/tabs/tab'
 import RecommendCard from '@/components/Activity/recommend-card'
 import TabContentAid from '@/components/Activity/info-tab-content/tab-content-aid'
 import TabContentIntro from '@/components/Activity/info-tab-content/tab-content-intro'
+import toast, { Toaster } from 'react-hot-toast'
 
 // 判斷登入
 import { useAuth } from '@/hooks/use-auth'
@@ -18,8 +19,8 @@ import { useLogin } from '@/hooks/use-login'
 export default function Aid() {
   const router = useRouter()
   console.log(router.query.aid)
-  const { aid } = router.query  // 設定路由參數給 aid (參照)
-  const actid = parseInt(aid)   // 型態轉換：字串轉數字！！
+  const { aid } = router.query // 設定路由參數給 aid (參照)
+  const actid = parseInt(aid) // 型態轉換：字串轉數字！！
   const topRef = useRef(null)
   // 會員相關
   const { handleGotoMember, handleWakeLogin } = useLogin()
@@ -46,35 +47,38 @@ export default function Aid() {
     if (topRef.current) {
       console.log('topRef.current:', topRef.current)
       topRef.current.scrollIntoView({ behavior: 'smooth' })
-      
     } else {
       console.log('topRef.current is null')
     }
   }
 
-  useEffect((e)=>{
-    scrollToTop(e)
-  },[router])
+  useEffect(
+    (e) => {
+      scrollToTop(e)
+    },
+    [router]
+  )
 
   useEffect(() => {
     if (!router.isReady) return
 
     Promise.all([
-      fetch(`${ACT_GET_ITEM}?${new URLSearchParams(router.query)}`).then((r) => r.json()),
-      fetch(`${ACT_GET_ITEM}${aid}`).then((r) => r.json())
+      fetch(`${ACT_GET_ITEM}?${new URLSearchParams(router.query)}`).then((r) =>
+        r.json()
+      ),
+      fetch(`${ACT_GET_ITEM}${aid}`).then((r) => r.json()),
     ])
-    .then(([myData, myData2]) => {
-      console.log(data)
-      console.log(myData)
-      console.log(myData2)
- 
-      setData(myData)
-      setData2(myData2)
-    })
-    .catch((ex) => {
-      console.log('fetch-ex', ex)
-    })
-  
+      .then(([myData, myData2]) => {
+        console.log(data)
+        console.log(myData)
+        console.log(myData2)
+
+        setData(myData)
+        setData2(myData2)
+      })
+      .catch((ex) => {
+        console.log('fetch-ex', ex)
+      })
   }, [router.isReady, aid])
 
   console.log(`activity{item} render--------`)
@@ -104,7 +108,7 @@ export default function Aid() {
   // 對應陣列index取得資料
   function getRandomElementsFromArray(array, count) {
     const randomIndexes = getRandomIndexes(array, count)
-    const randomElements = randomIndexes.map(index => array[index])
+    const randomElements = randomIndexes.map((index) => array[index])
     return randomElements
   }
 
@@ -138,7 +142,11 @@ export default function Aid() {
         />
         {/* 活動主資訊 end */}
         {/* 簡介：頁籤 start */}
-        <ul className="nav nav-tabs mt-80 mb-40" id="activityTab" role="tablist">
+        <ul
+          className="nav nav-tabs mt-80 mb-40"
+          id="activityTab"
+          role="tablist"
+        >
           <Tab
             tabName="活動簡介"
             tabTarget="tabTargetAid"
@@ -153,22 +161,25 @@ export default function Aid() {
           />
         </ul>
         <div className="tab-content" id="myTabContent">
-          <TabContentAid tabTargetAid="tabTargetAid" content={mainInfoData.descriptions} />
+          <TabContentAid
+            tabTargetAid="tabTargetAid"
+            content={mainInfoData.descriptions}
+          />
           <TabContentIntro tabTargetIntro="tabTargetIntro" />
         </div>
         {/* 簡介：頁籤 end */}
         {/* 音樂人 start */}
         <div className="row my-5">
           <div className="chb-h4 mb-40 text-purple1">音樂人</div>
-          {data2.rows2.map((v,i)=>{
-            return(
+          {data2.rows2.map((v, i) => {
+            return (
               <ArtistFollowCard
                 key={v.eaid}
                 imgSrc={v.photo}
-                artist_name={v.art_name} />
-              )
+                artist_name={v.art_name}
+              />
+            )
           })}
-          
         </div>
         {/* 音樂人 end */}
         {/*  推薦活動 start  */}
@@ -209,7 +220,7 @@ export default function Aid() {
           .my-80 {
             margin-top: 20px;
             margin-bottom: 20px;
-          } 
+          }
         }
       `}</style>
     </>
