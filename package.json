@@ -23,6 +23,7 @@
     "react-bootstrap": "^2.10.3",
     "react-bootstrap-sidebar-menu": "^2.0.3",
     "react-dom": "^18.3.1",
+    "react-fast-marquee": "^1.6.5",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^5.2.1",
     "react-infinite-scroll-hook": "^4.1.1",
