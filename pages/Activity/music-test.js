@@ -90,7 +90,7 @@ export default function MusicTest() {
           <p>Loading artists...</p>
         )}
 
-        <iframe
+        {/* <iframe
           title="Spotify Embed: Recommendation Playlist "
           src={`https://open.spotify.com/embed/playlist/4gJifzM6kxq52z6qf1Khy2?utm_source=generator&theme=0`}
           width="100%"
@@ -99,7 +99,7 @@ export default function MusicTest() {
           frameBorder="0"
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
           loading="lazy"
-        />
+        /> */}
       </div>
     </>
   )
