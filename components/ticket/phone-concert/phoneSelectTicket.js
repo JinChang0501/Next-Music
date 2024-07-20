@@ -18,7 +18,7 @@ export default function PhoneSelectTicket({
 }) {
   const [showTicket, setShowTicket] = useState(false)
   const [selectTicketBodyTitleHeight, setSelectTicketBodyTitleHeight] =
-    useState(0)
+    useState(82)
   const [ticketSeatBodyHeight, setTicketSeatBodyHeight] = useState(0)
   const ticketSeatBodyRef = useRef(null)
   const selectTicketBodyTitleRef = useRef(null)
@@ -35,9 +35,7 @@ export default function PhoneSelectTicket({
 
     // 獲取 selectTicketBodyTitleRef 高度
     if (selectTicketBodyTitleRef.current) {
-      setSelectTicketBodyTitleHeight(
-        selectTicketBodyTitleRef.current.scrollHeight
-      )
+      setSelectTicketBodyTitleHeight(82)
     }
   }, [selectedSeats])
 
@@ -134,7 +132,6 @@ export default function PhoneSelectTicket({
                 票券將發送到您的電子郵件
               </div>
             </div>
-            <div></div>
           </div>
 
           {/* selectTicketBodyTitle */}
