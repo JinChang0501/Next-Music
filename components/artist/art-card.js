@@ -12,7 +12,7 @@ export default function ArtCard({ photo = '', art_name = '' }) {
   }
   return (
     <>
-      <div className="bg-secondary mx-4">
+      <div className="bg-secondary mx-4" style={{ width: '300px' }}>
         <div className="w-100 col-md-2 col-5 d-flex flex-column align-items-center order-md-5">
           <img
             src={`${photo}`}
