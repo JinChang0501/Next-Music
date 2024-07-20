@@ -72,7 +72,7 @@ export default function TicketDetail({ ticketData }) {
 
   return (
     <>
-      <div className="position-relative" style={{ height: '100vh' }}>
+      <div className="position-relative">
         <div className="py-3">
           <div className="row">
             <div className="col-12 bg-purple3 p-2 position-relative">
