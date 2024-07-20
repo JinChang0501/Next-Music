@@ -1,28 +1,78 @@
 import React, { useState, useEffect } from 'react'
-import { getArtists } from '@/services/spotify'
+import { useSpotifyApi } from '@/hooks/use-SpotifyApi'
 import ArtistFollowCard from '@/components/Activity/artist-follow-card'
 
 export default function MusicTest() {
+  const { getTopTracks, getArtists, getArtist } = useSpotifyApi()
   const [artists, setArtists] = useState([])
-  const playlistId = '4gJifzM6kxq52z6qf1Khy2'
+  const [topTracks, setTopTracks] = useState([])
+  // const playlistId = '4gJifzM6kxq52z6qf1Khy2'
 
-  const fetchTopTracks = async () => {
-    const resData = await getArtists(
-      '5NpkBOIMi2iJocLhi5MTde',
-      '1YtYHaWLV0IU7SwhvG6Luk',
-      '6zn0ihyAApAYV51zpXxdEp',
-      '78ltY2tUrZpkWJ9CWYGZfl',
-      '2rspptKP0lPBdlJJAJHqht'
-    )
-    if (Array.isArray(resData.artists)) {
-      setArtists(resData.artists)
+  // const fetchTopTracks = async () => {
+  //   const resData = await getArtists(
+  //     '5NpkBOIMi2iJocLhi5MTde',
+  //     '1YtYHaWLV0IU7SwhvG6Luk',
+  //     '6zn0ihyAApAYV51zpXxdEp',
+  //     '78ltY2tUrZpkWJ9CWYGZfl',
+  //     '2rspptKP0lPBdlJJAJHqht'
+  //   )
+  //   if (Array.isArray(resData.artists)) {
+  //     setArtists(resData.artists)
+  //     console.log(artists)
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   fetchTopTracks()
+  // }, [])
+
+  const fetchData = async () => {
+    try {
+      // topTracks
+      const topTracks = await getTopTracks('78ltY2tUrZpkWJ9CWYGZfl')
+      console.log(topTracks)
+
+      // artists
+      const artists = await getArtists(
+        '5NpkBOIMi2iJocLhi5MTde',
+        '1YtYHaWLV0IU7SwhvG6Luk',
+        '6zn0ihyAApAYV51zpXxdEp',
+        '78ltY2tUrZpkWJ9CWYGZfl',
+        '2rspptKP0lPBdlJJAJHqht'
+      )
       console.log(artists)
+      if (Array.isArray(artists.artists)) {
+        setArtists(artists.artists)
+      }
+
+      // artist
+      const artist = await getArtist('78ltY2tUrZpkWJ9CWYGZfl')
+      console.log(artist)
+    } catch (error) {
+      console.error('Error fetching data:', error)
     }
   }
-
   useEffect(() => {
-    fetchTopTracks()
+    fetchData()
   }, [])
+  // React.useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const topTracks = await getTopTracks('someArtistId')
+  //       console.log(topTracks)
+
+  //       const artists = await getArtists('id1', 'id2', 'id3', 'id4', 'id5')
+  //       console.log(artists)
+
+  //       const artist = await getArtist('someArtistId')
+  //       console.log(artist)
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error)
+  //     }
+  //   }
+
+  //   fetchData()
+  // }, [])
 
   return (
     <>
