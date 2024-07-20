@@ -50,27 +50,25 @@ export default function MemberDLayout({
           </div>
         </div>
       ) : (
-        <div className="container-fluid px-0">
-          <div className="music-container">
+        <div className="container-fluid px-0 d-flex flex-column min-vh-100">
+          <div className="music-container flex-grow-1">
             <div className="row">
               <div className="col-12">
                 <PhoneBar {...{ pageName }} />
               </div>
             </div>
             <div className="row">
-              <div className=" pb-5 px-3 my-3">
-                <div className="py-3">
+              <div className="mt-3 px-3">
+                <div className="">
                   <div className="mx-auto mb-3">{children}</div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="w-100">
-            <Footer />
-          </div>
+          <Footer />
         </div>
       )}
-      {/* <div className="footerfix">
+      {/* <div className="fixed-bottom">
         <Footer />
       </div> */}
 
