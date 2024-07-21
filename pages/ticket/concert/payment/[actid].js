@@ -75,8 +75,53 @@ export default function Payment() {
     { label: '支付方式', href: '/ticket/concert/first' },
   ]
 
-  const handleNext = () => {
-    router.push(`/ticket/concert/finish/${actid}`)
+  const handleNext = async () => {
+    try {
+      const response = await fetch('http://localhost:3005/api/ecpay', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          selectedSeatDetails,
+          actid,
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok')
+      }
+
+      const data = await response.json()
+
+      if (data.success) {
+        const confirmed = window.confirm('訂單已創建，是否前往付款？')
+        if (confirmed) {
+          // 創建一個臨時的 form 元素來提交 ECPay 的表單
+          const form = document.createElement('form')
+          form.method = 'POST'
+          form.action =
+            'https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V5' // 測試環境URL
+
+          for (const key in data.ecpayForm) {
+            const input = document.createElement('input')
+            input.type = 'hidden'
+            input.name = key
+            input.value = data.ecpayForm[key]
+            form.appendChild(input)
+          }
+
+          document.body.appendChild(form)
+          form.submit()
+        }
+      } else {
+        console.error('訂單創建失敗:', data.error)
+        alert(`訂單創建失敗：${data.message}`)
+      }
+    } catch (error) {
+      console.error('請求錯誤:', error)
+      alert('發生網絡錯誤，請稍後再試。')
+    }
   }
 
   useEffect(() => {

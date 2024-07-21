@@ -9,20 +9,8 @@ import WhiteLayout from '@/components/layout/ticket-layout/desktopLayout/whiteLa
 export default function ECPayIndex() {
   const router = useRouter()
   const { auth } = useAuth()
-  // confirm回來用的，在記錄確認之後，line-pay回傳訊息與代碼，例如
-  // {returnCode: '1172', returnMessage: 'Existing same id.'}
-  // const [result, setResult] = useState({
-  //   returnCode: '',
-  //   returnMessage: '',
-  // })
-
-  // 建立訂單用，格式參考主控台由伺服器回傳
   const [order, setOrder] = useState({})
-  // 載入狀態(控制是否顯示載入中的訊息，和伺服器回傳時間點未完成不同步的呈現問題)
   const [isLoading, setIsLoading] = useState(true)
-
-  // confirm回來用的，在記錄確認之後，line-pay回傳訊息與代碼，例如
-  // {returnCode: '1172', returnMessage: 'Existing same id.'}
   const [result, setResult] = useState({
     returnCode: '',
     returnMessage: '',
@@ -97,14 +85,9 @@ export default function ECPayIndex() {
   // confirm回來用的
   useEffect(() => {
     if (router.isReady) {
-      // 這裡確保能得到router.query值
       console.log(router.query)
-      // http://localhost:3000/order?transactionId=2022112800733496610&id=da3b7389-1525-40e0-a139-52ff02a350a8
-      // 這裡要得到交易id，處理伺服器通知line pay已確認付款，為必要流程
       // TODO: 除非為不需登入的交易，為提高安全性應檢查是否為會員登入狀態
       const { transactionId, id } = router.query
-
-      // 如果沒有帶transactionId或id時，導向至首頁(或其它頁)
       if (!transactionId || !id) {
         // 關閉載入狀態
         setIsLoading(false)
