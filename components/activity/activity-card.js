@@ -44,7 +44,7 @@ export default function ActivityCard({
     <>
       <div
         key={eventId}
-        className={`card mb-3 outline ${over ? 'bg-black90' : 'bg-dark'}`}
+        className={`card mb-3 outline ${over ? 'bg-black90 hover' : 'bg-dark'}`}
         onMouseOver={() => setOver(true)}
         onMouseOut={() => setOver(false)}
       >
@@ -145,6 +145,10 @@ export default function ActivityCard({
            {
             /* -webkit-line-clamp: 2 */
           }
+        }
+        .hover {
+          transform: scale(1.015, 1.015);
+          transition: all 0.3s ease-out;
         }
         @media (max-width: 390px) {
           .chb-h4 {

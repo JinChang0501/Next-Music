@@ -16,7 +16,7 @@ export default function RecommendCard({
       <div className="col-6 col-sm-6 col-md-3 my-2">
         <div
           className={`card outline img-minW d-flex justify-content-center ${
-            over ? 'bg-black90' : 'bg-dark'
+            over ? 'bg-black90 hover' : 'bg-dark'
           }`}
           onMouseOver={() => setOver(true)}
           onMouseOut={() => setOver(false)}
@@ -57,6 +57,10 @@ export default function RecommendCard({
            {
             /* -webkit-line-clamp: 2; */
           }
+        }
+        .hover {
+          transform: scale(1.04, 1.04);
+          transition: all 0.3s ease-out;
         }
       `}</style>
     </>
