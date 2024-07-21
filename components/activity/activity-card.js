@@ -27,6 +27,7 @@ export default function ActivityCard({
   aid,
 }) {
   const [isDesktop, setIsDesktop] = useState(true)
+  const [over, setOver] = useState(false)
 
   useEffect(() => {
     const handleResize = () => {
@@ -41,7 +42,12 @@ export default function ActivityCard({
 
   return (
     <>
-      <div key={eventId} className="card mb-3 bg-dark outline">
+      <div
+        key={eventId}
+        className={`card mb-3 outline ${over ? 'bg-black90' : 'bg-dark'}`}
+        onMouseOver={() => setOver(true)}
+        onMouseOut={() => setOver(false)}
+      >
         <div className="row g-0">
           {/* 圖 */}
           <div className="col-4">
