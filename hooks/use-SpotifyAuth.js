@@ -9,15 +9,16 @@ import React, {
 const SpotifyAuthContext = createContext()
 
 export const SpotifyAuthProvider = ({ children }) => {
-  // 初始化 token
+  // 初始化 token （目前用postman手動更新）
   const [spotifyToken, setSpotifyToken] = useState(
-    'BQAjWkkvdQbHFKI-Vtrr-gpCLtBw6jFSsxIDIxDCMRgBRa4_UJQ_ovpOXuBKD26OHdFs2Z8l247BBRshnRezOUuRWMqGIMeo8aiDDSBiYlOQz_sqemKQRY4zeLiL-1LE4sP9ydfnWKm7vsP6tOoWl_OlggqH18SE2Grej_ntBFIuiX_cQ3WqC6q_-apFrNNGU3blxLdliZ0ER2Ct3AqVI5sJc6_2FKKpI0bSipmEOQegJXunatqWG3F6qR7Mqjylh3yLuGVliZ39Mng_irjyIrIGfLDA0oknesJu8fFhkLD5cOtbeuZoB3IuWv9_NryJcPZjYFCWbM_FnuV7RG8u6MuT'
+    'BQAIXLWhaoB1dLtBs36-55znmYBbbVCqiZNCMedPUZf0ukL2z5OzlFZEnphrpqG88Iq4MUKAR3uw2lvVlTnL29n4FC-IYk_ijkgjBOvjZcBnR-B47oc'
   )
+  // 這個還沒完全搞懂ＱＱ，有一點像是 authenticate ，一個安全憑證
   const [refreshToken, setRefreshToken] = useState(
-    'AQA23eOUMh-bzncDeYlJEnNvcbbAB6qNTqaceRGM3stPw5ovELJifz0fer8y2Hmdyn9-2OacDUtxwYGJ1MngyP7MBZwHT9cKO8jxdS0I1YdA5A3JYxDDcusal0_er1zPxCI'
+    'AQAqOfFYnmjpjeeHZ7UIw8Aa_O-zBQhv-_iGEek_JbULbpzaJiEEOKbncmwWyAYuWrcAr184eB9QCVvxIxEX-iLX4ZAkssXjmNI2-w3aSzCLCwM-voK7DGnHn9vDPrhqAEw'
   )
 
-  //
+  // 存進 localStorage
   const storedSpotifyToken = () => {
     try {
       const Key1 = 'spotify_token'
