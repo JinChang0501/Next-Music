@@ -112,7 +112,7 @@ export default function LoginForm({
           // 這裡可以讓會員登出，因為這也算登入失敗，有可能會造成資料不統一
         }
       } else {
-        toast.error(`登入失敗`)
+        toast.error(`帳號或密碼錯誤`)
       }
     }
     // 表單檢查 --- END
