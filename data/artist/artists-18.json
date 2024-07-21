@@ -1,0 +1,637 @@
+{
+  "artists": [
+      {
+          "external_urls": {
+              "spotify": "https://open.spotify.com/artist/78ltY2tUrZpkWJ9CWYGZfl"
+          },
+          "followers": {
+              "href": null,
+              "total": 50402
+          },
+          "genres": [
+              "chinese metalcore",
+              "taiwan metal",
+              "taiwan pop"
+          ],
+          "href": "https://api.spotify.com/v1/artists/78ltY2tUrZpkWJ9CWYGZfl",
+          "id": "78ltY2tUrZpkWJ9CWYGZfl",
+          "images": [
+              {
+                  "height": 640,
+                  "url": "https://i.scdn.co/image/ab6761610000e5eb1fb0010a6c58022cbf339cf4",
+                  "width": 640
+              },
+              {
+                  "height": 320,
+                  "url": "https://i.scdn.co/image/ab676161000051741fb0010a6c58022cbf339cf4",
+                  "width": 320
+              },
+              {
+                  "height": 160,
+                  "url": "https://i.scdn.co/image/ab6761610000f1781fb0010a6c58022cbf339cf4",
+                  "width": 160
+              }
+          ],
+          "name": "Flesh Juicer",
+          "popularity": 39,
+          "type": "artist",
+          "uri": "spotify:artist:78ltY2tUrZpkWJ9CWYGZfl"
+      },
+      {
+          "external_urls": {
+              "spotify": "https://open.spotify.com/artist/2rspptKP0lPBdlJJAJHqht"
+          },
+          "followers": {
+              "href": null,
+              "total": 250149
+          },
+          "genres": [
+              "british jazz",
+              "indie soul"
+          ],
+          "href": "https://api.spotify.com/v1/artists/2rspptKP0lPBdlJJAJHqht",
+          "id": "2rspptKP0lPBdlJJAJHqht",
+          "images": [
+              {
+                  "height": 640,
+                  "url": "https://i.scdn.co/image/ab6761610000e5eb30c9e2fb48c800af589de019",
+                  "width": 640
+              },
+              {
+                  "height": 320,
+                  "url": "https://i.scdn.co/image/ab6761610000517430c9e2fb48c800af589de019",
+                  "width": 320
+              },
+              {
+                  "height": 160,
+                  "url": "https://i.scdn.co/image/ab6761610000f17830c9e2fb48c800af589de019",
+                  "width": 160
+              }
+          ],
+          "name": "Yussef Dayes",
+          "popularity": 56,
+          "type": "artist",
+          "uri": "spotify:artist:2rspptKP0lPBdlJJAJHqht"
+      },
+      {
+          "external_urls": {
+              "spotify": "https://open.spotify.com/artist/6zn0ihyAApAYV51zpXxdEp"
+          },
+          "followers": {
+              "href": null,
+              "total": 759175
+          },
+          "genres": [],
+          "href": "https://api.spotify.com/v1/artists/6zn0ihyAApAYV51zpXxdEp",
+          "id": "6zn0ihyAApAYV51zpXxdEp",
+          "images": [
+              {
+                  "height": 640,
+                  "url": "https://i.scdn.co/image/ab6761610000e5ebb3478e777df7e45f1ef1e8d7",
+                  "width": 640
+              },
+              {
+                  "height": 320,
+                  "url": "https://i.scdn.co/image/ab67616100005174b3478e777df7e45f1ef1e8d7",
+                  "width": 320
+              },
+              {
+                  "height": 160,
+                  "url": "https://i.scdn.co/image/ab6761610000f178b3478e777df7e45f1ef1e8d7",
+                  "width": 160
+              }
+          ],
+          "name": "10CM",
+          "popularity": 66,
+          "type": "artist",
+          "uri": "spotify:artist:6zn0ihyAApAYV51zpXxdEp"
+      },
+      {
+          "external_urls": {
+              "spotify": "https://open.spotify.com/artist/1YtYHaWLV0IU7SwhvG6Luk"
+          },
+          "followers": {
+              "href": null,
+              "total": 63006
+          },
+          "genres": [
+              "taiwan indie"
+          ],
+          "href": "https://api.spotify.com/v1/artists/1YtYHaWLV0IU7SwhvG6Luk",
+          "id": "1YtYHaWLV0IU7SwhvG6Luk",
+          "images": [
+              {
+                  "height": 640,
+                  "url": "https://i.scdn.co/image/ab6761610000e5ebb95a8bacb229fa6c6beca1e4",
+                  "width": 640
+              },
+              {
+                  "height": 320,
+                  "url": "https://i.scdn.co/image/ab67616100005174b95a8bacb229fa6c6beca1e4",
+                  "width": 320
+              },
+              {
+                  "height": 160,
+                  "url": "https://i.scdn.co/image/ab6761610000f178b95a8bacb229fa6c6beca1e4",
+                  "width": 160
+              }
+          ],
+          "name": "珂拉琪 Collage",
+          "popularity": 39,
+          "type": "artist",
+          "uri": "spotify:artist:1YtYHaWLV0IU7SwhvG6Luk"
+      },
+      {
+          "external_urls": {
+              "spotify": "https://open.spotify.com/artist/5NpkBOIMi2iJocLhi5MTde"
+          },
+          "followers": {
+              "href": null,
+              "total": 7735
+          },
+          "genres": [
+              "taiwan rock"
+          ],
+          "href": "https://api.spotify.com/v1/artists/5NpkBOIMi2iJocLhi5MTde",
+          "id": "5NpkBOIMi2iJocLhi5MTde",
+          "images": [
+              {
+                  "height": 640,
+                  "url": "https://i.scdn.co/image/ab6761610000e5eb46b434ce0fd422a8bcc7e434",
+                  "width": 640
+              },
+              {
+                  "height": 320,
+                  "url": "https://i.scdn.co/image/ab6761610000517446b434ce0fd422a8bcc7e434",
+                  "width": 320
+              },
+              {
+                  "height": 160,
+                  "url": "https://i.scdn.co/image/ab6761610000f17846b434ce0fd422a8bcc7e434",
+                  "width": 160
+              }
+          ],
+          "name": "魚條",
+          "popularity": 20,
+          "type": "artist",
+          "uri": "spotify:artist:5NpkBOIMi2iJocLhi5MTde"
+      },
+      {
+          "external_urls": {
+              "spotify": "https://open.spotify.com/artist/1NMbvELmk3EkG7zDq5OO6K"
+          },
+          "followers": {
+              "href": null,
+              "total": 27
+          },
+          "genres": [],
+          "href": "https://api.spotify.com/v1/artists/1NMbvELmk3EkG7zDq5OO6K",
+          "id": "1NMbvELmk3EkG7zDq5OO6K",
+          "images": [
+              {
+                  "height": 640,
+                  "url": "https://i.scdn.co/image/ab67616d0000b273123711769be86f12ac9ad796",
+                  "width": 640
+              },
+              {
+                  "height": 300,
+                  "url": "https://i.scdn.co/image/ab67616d00001e02123711769be86f12ac9ad796",
+                  "width": 300
+              },
+              {
+                  "height": 64,
+                  "url": "https://i.scdn.co/image/ab67616d00004851123711769be86f12ac9ad796",
+                  "width": 64
+              }
+          ],
+          "name": "海口人",
+          "popularity": 0,
+          "type": "artist",
+          "uri": "spotify:artist:1NMbvELmk3EkG7zDq5OO6K"
+      },
+      {
+          "external_urls": {
+              "spotify": "https://open.spotify.com/artist/6opBMmpW2ODmI9iPF2btzD"
+          },
+          "followers": {
+              "href": null,
+              "total": 55120
+          },
+          "genres": [
+              "chinese indie",
+              "taiwan pop"
+          ],
+          "href": "https://api.spotify.com/v1/artists/6opBMmpW2ODmI9iPF2btzD",
+          "id": "6opBMmpW2ODmI9iPF2btzD",
+          "images": [
+              {
+                  "height": 640,
+                  "url": "https://i.scdn.co/image/ab6761610000e5eb338ae3a237c80de3f9dbb7c2",
+                  "width": 640
+              },
+              {
+                  "height": 320,
+                  "url": "https://i.scdn.co/image/ab67616100005174338ae3a237c80de3f9dbb7c2",
+                  "width": 320
+              },
+              {
+                  "height": 160,
+                  "url": "https://i.scdn.co/image/ab6761610000f178338ae3a237c80de3f9dbb7c2",
+                  "width": 160
+              }
+          ],
+          "name": "LÜCY",
+          "popularity": 42,
+          "type": "artist",
+          "uri": "spotify:artist:6opBMmpW2ODmI9iPF2btzD"
+      },
+      {
+          "external_urls": {
+              "spotify": "https://open.spotify.com/artist/778rPzhc5oSLtFOeA3SfyF"
+          },
+          "followers": {
+              "href": null,
+              "total": 839
+          },
+          "genres": [
+              "taiwan metal"
+          ],
+          "href": "https://api.spotify.com/v1/artists/778rPzhc5oSLtFOeA3SfyF",
+          "id": "778rPzhc5oSLtFOeA3SfyF",
+          "images": [
+              {
+                  "height": 640,
+                  "url": "https://i.scdn.co/image/ab6761610000e5eb939b247a5c15e1c8455c0c38",
+                  "width": 640
+              },
+              {
+                  "height": 320,
+                  "url": "https://i.scdn.co/image/ab67616100005174939b247a5c15e1c8455c0c38",
+                  "width": 320
+              },
+              {
+                  "height": 160,
+                  "url": "https://i.scdn.co/image/ab6761610000f178939b247a5c15e1c8455c0c38",
+                  "width": 160
+              }
+          ],
+          "name": "EVENFALL",
+          "popularity": 6,
+          "type": "artist",
+          "uri": "spotify:artist:778rPzhc5oSLtFOeA3SfyF"
+      },
+      {
+          "external_urls": {
+              "spotify": "https://open.spotify.com/artist/7Ec6c9lhFbsTfuwmIkhZa9"
+          },
+          "followers": {
+              "href": null,
+              "total": 41612
+          },
+          "genres": [
+              "taiwan indie",
+              "taiwan pop"
+          ],
+          "href": "https://api.spotify.com/v1/artists/7Ec6c9lhFbsTfuwmIkhZa9",
+          "id": "7Ec6c9lhFbsTfuwmIkhZa9",
+          "images": [
+              {
+                  "height": 640,
+                  "url": "https://i.scdn.co/image/ab6761610000e5eb73cea036780bcf5d4662a01b",
+                  "width": 640
+              },
+              {
+                  "height": 320,
+                  "url": "https://i.scdn.co/image/ab6761610000517473cea036780bcf5d4662a01b",
+                  "width": 320
+              },
+              {
+                  "height": 160,
+                  "url": "https://i.scdn.co/image/ab6761610000f17873cea036780bcf5d4662a01b",
+                  "width": 160
+              }
+          ],
+          "name": "守夜人",
+          "popularity": 41,
+          "type": "artist",
+          "uri": "spotify:artist:7Ec6c9lhFbsTfuwmIkhZa9"
+      },
+      {
+          "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0AiFba38vwZy2L1SJGX4mW"
+          },
+          "followers": {
+              "href": null,
+              "total": 15511
+          },
+          "genres": [
+              "taiwan indie"
+          ],
+          "href": "https://api.spotify.com/v1/artists/0AiFba38vwZy2L1SJGX4mW",
+          "id": "0AiFba38vwZy2L1SJGX4mW",
+          "images": [
+              {
+                  "height": 640,
+                  "url": "https://i.scdn.co/image/ab6761610000e5eba1d6cf695f72079d72161c33",
+                  "width": 640
+              },
+              {
+                  "height": 320,
+                  "url": "https://i.scdn.co/image/ab67616100005174a1d6cf695f72079d72161c33",
+                  "width": 320
+              },
+              {
+                  "height": 160,
+                  "url": "https://i.scdn.co/image/ab6761610000f178a1d6cf695f72079d72161c33",
+                  "width": 160
+              }
+          ],
+          "name": "Who Cares 胡凱兒",
+          "popularity": 38,
+          "type": "artist",
+          "uri": "spotify:artist:0AiFba38vwZy2L1SJGX4mW"
+      },
+      {
+          "external_urls": {
+              "spotify": "https://open.spotify.com/artist/1iXlwof3416Q7LT3mt1T6M"
+          },
+          "followers": {
+              "href": null,
+              "total": 284
+          },
+          "genres": [
+              "chinese post-punk"
+          ],
+          "href": "https://api.spotify.com/v1/artists/1iXlwof3416Q7LT3mt1T6M",
+          "id": "1iXlwof3416Q7LT3mt1T6M",
+          "images": [
+              {
+                  "height": 640,
+                  "url": "https://i.scdn.co/image/ab6761610000e5eb3947a84455d8729a1e5116e2",
+                  "width": 640
+              },
+              {
+                  "height": 320,
+                  "url": "https://i.scdn.co/image/ab676161000051743947a84455d8729a1e5116e2",
+                  "width": 320
+              },
+              {
+                  "height": 160,
+                  "url": "https://i.scdn.co/image/ab6761610000f1783947a84455d8729a1e5116e2",
+                  "width": 160
+              }
+          ],
+          "name": "雨國 Kingdomofrain",
+          "popularity": 1,
+          "type": "artist",
+          "uri": "spotify:artist:1iXlwof3416Q7LT3mt1T6M"
+      },
+      {
+          "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4MRQK5pLyNbcOW493n55iT"
+          },
+          "followers": {
+              "href": null,
+              "total": 168491
+          },
+          "genres": [
+              "mandopop",
+              "taiwan indie",
+              "taiwan pop"
+          ],
+          "href": "https://api.spotify.com/v1/artists/4MRQK5pLyNbcOW493n55iT",
+          "id": "4MRQK5pLyNbcOW493n55iT",
+          "images": [
+              {
+                  "height": 640,
+                  "url": "https://i.scdn.co/image/ab6761610000e5eb19f1a4ea0cdd56d2ee7b453c",
+                  "width": 640
+              },
+              {
+                  "height": 320,
+                  "url": "https://i.scdn.co/image/ab6761610000517419f1a4ea0cdd56d2ee7b453c",
+                  "width": 320
+              },
+              {
+                  "height": 160,
+                  "url": "https://i.scdn.co/image/ab6761610000f17819f1a4ea0cdd56d2ee7b453c",
+                  "width": 160
+              }
+          ],
+          "name": "老王樂隊",
+          "popularity": 41,
+          "type": "artist",
+          "uri": "spotify:artist:4MRQK5pLyNbcOW493n55iT"
+      },
+      {
+          "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0cx8Y0CHBbSVWtAufwKdhk"
+          },
+          "followers": {
+              "href": null,
+              "total": 2240
+          },
+          "genres": [],
+          "href": "https://api.spotify.com/v1/artists/0cx8Y0CHBbSVWtAufwKdhk",
+          "id": "0cx8Y0CHBbSVWtAufwKdhk",
+          "images": [
+              {
+                  "height": 640,
+                  "url": "https://i.scdn.co/image/ab6761610000e5eb1053952a39dcfa8a4ddf75ad",
+                  "width": 640
+              },
+              {
+                  "height": 320,
+                  "url": "https://i.scdn.co/image/ab676161000051741053952a39dcfa8a4ddf75ad",
+                  "width": 320
+              },
+              {
+                  "height": 160,
+                  "url": "https://i.scdn.co/image/ab6761610000f1781053952a39dcfa8a4ddf75ad",
+                  "width": 160
+              }
+          ],
+          "name": "DEW",
+          "popularity": 26,
+          "type": "artist",
+          "uri": "spotify:artist:0cx8Y0CHBbSVWtAufwKdhk"
+      },
+      {
+          "external_urls": {
+              "spotify": "https://open.spotify.com/artist/2hcsKca6hCfFMwwdbFvenJ"
+          },
+          "followers": {
+              "href": null,
+              "total": 1478383
+          },
+          "genres": [
+              "k-pop",
+              "k-pop boy group"
+          ],
+          "href": "https://api.spotify.com/v1/artists/2hcsKca6hCfFMwwdbFvenJ",
+          "id": "2hcsKca6hCfFMwwdbFvenJ",
+          "images": [
+              {
+                  "height": 640,
+                  "url": "https://i.scdn.co/image/ab6761610000e5eb09336dcd62a6e91e49e0a0f4",
+                  "width": 640
+              },
+              {
+                  "height": 320,
+                  "url": "https://i.scdn.co/image/ab6761610000517409336dcd62a6e91e49e0a0f4",
+                  "width": 320
+              },
+              {
+                  "height": 160,
+                  "url": "https://i.scdn.co/image/ab6761610000f17809336dcd62a6e91e49e0a0f4",
+                  "width": 160
+              }
+          ],
+          "name": "BTOB",
+          "popularity": 54,
+          "type": "artist",
+          "uri": "spotify:artist:2hcsKca6hCfFMwwdbFvenJ"
+      },
+      {
+          "external_urls": {
+              "spotify": "https://open.spotify.com/artist/6GUGvmk5XZesTWRQdkp69u"
+          },
+          "followers": {
+              "href": null,
+              "total": 13489
+          },
+          "genres": [
+              "mandopop"
+          ],
+          "href": "https://api.spotify.com/v1/artists/6GUGvmk5XZesTWRQdkp69u",
+          "id": "6GUGvmk5XZesTWRQdkp69u",
+          "images": [
+              {
+                  "height": 640,
+                  "url": "https://i.scdn.co/image/ab6761610000e5eb0b0a05ddc78511d51d451632",
+                  "width": 640
+              },
+              {
+                  "height": 320,
+                  "url": "https://i.scdn.co/image/ab676161000051740b0a05ddc78511d51d451632",
+                  "width": 320
+              },
+              {
+                  "height": 160,
+                  "url": "https://i.scdn.co/image/ab6761610000f1780b0a05ddc78511d51d451632",
+                  "width": 160
+              }
+          ],
+          "name": "Energy",
+          "popularity": 49,
+          "type": "artist",
+          "uri": "spotify:artist:6GUGvmk5XZesTWRQdkp69u"
+      },
+      {
+          "external_urls": {
+              "spotify": "https://open.spotify.com/artist/28IJpwoVi5R92MtHxkj2Lk"
+          },
+          "followers": {
+              "href": null,
+              "total": 79079
+          },
+          "genres": [],
+          "href": "https://api.spotify.com/v1/artists/28IJpwoVi5R92MtHxkj2Lk",
+          "id": "28IJpwoVi5R92MtHxkj2Lk",
+          "images": [
+              {
+                  "height": 640,
+                  "url": "https://i.scdn.co/image/ab6761610000e5eb4f6e128ad3749cf738bcee45",
+                  "width": 640
+              },
+              {
+                  "height": 320,
+                  "url": "https://i.scdn.co/image/ab676161000051744f6e128ad3749cf738bcee45",
+                  "width": 320
+              },
+              {
+                  "height": 160,
+                  "url": "https://i.scdn.co/image/ab6761610000f1784f6e128ad3749cf738bcee45",
+                  "width": 160
+              }
+          ],
+          "name": "Travis Japan",
+          "popularity": 56,
+          "type": "artist",
+          "uri": "spotify:artist:28IJpwoVi5R92MtHxkj2Lk"
+      },
+      {
+          "external_urls": {
+              "spotify": "https://open.spotify.com/artist/7qBIgabdHdcr6NLujDxWAU"
+          },
+          "followers": {
+              "href": null,
+              "total": 109934
+          },
+          "genres": [
+              "mandopop",
+              "taiwan indie",
+              "taiwan pop",
+              "taiwan punk"
+          ],
+          "href": "https://api.spotify.com/v1/artists/7qBIgabdHdcr6NLujDxWAU",
+          "id": "7qBIgabdHdcr6NLujDxWAU",
+          "images": [
+              {
+                  "height": 640,
+                  "url": "https://i.scdn.co/image/ab6761610000e5eb6a16f94ff039f485c4da3d45",
+                  "width": 640
+              },
+              {
+                  "height": 320,
+                  "url": "https://i.scdn.co/image/ab676161000051746a16f94ff039f485c4da3d45",
+                  "width": 320
+              },
+              {
+                  "height": 160,
+                  "url": "https://i.scdn.co/image/ab6761610000f1786a16f94ff039f485c4da3d45",
+                  "width": 160
+              }
+          ],
+          "name": "Fire EX.",
+          "popularity": 47,
+          "type": "artist",
+          "uri": "spotify:artist:7qBIgabdHdcr6NLujDxWAU"
+      },
+      {
+          "external_urls": {
+              "spotify": "https://open.spotify.com/artist/6YVMFz59CuY7ngCxTxjpxE"
+          },
+          "followers": {
+              "href": null,
+              "total": 5893502
+          },
+          "genres": [
+              "k-pop girl group"
+          ],
+          "href": "https://api.spotify.com/v1/artists/6YVMFz59CuY7ngCxTxjpxE",
+          "id": "6YVMFz59CuY7ngCxTxjpxE",
+          "images": [
+              {
+                  "height": 640,
+                  "url": "https://i.scdn.co/image/ab6761610000e5eb573935eb61a1897aeb43c531",
+                  "width": 640
+              },
+              {
+                  "height": 320,
+                  "url": "https://i.scdn.co/image/ab67616100005174573935eb61a1897aeb43c531",
+                  "width": 320
+              },
+              {
+                  "height": 160,
+                  "url": "https://i.scdn.co/image/ab6761610000f178573935eb61a1897aeb43c531",
+                  "width": 160
+              }
+          ],
+          "name": "aespa",
+          "popularity": 80,
+          "type": "artist",
+          "uri": "spotify:artist:6YVMFz59CuY7ngCxTxjpxE"
+      }
+  ]
+}
