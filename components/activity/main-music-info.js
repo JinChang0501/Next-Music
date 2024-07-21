@@ -59,7 +59,7 @@ export default function MainMusicInfo({
           {/* 等待修改：三行能否頂天立地 */}
           <div className="row d-flex flex-column justify-content-between ms-md-5 ms-0">
             <div className="col-12 chb-h3 text-white mb-3">{title}</div>
-            <div className="col-12 my-4 my-md-5">
+            <div className="col-12 my-2 my-md-5">
               <div className="d-flex my-2">
                 <BsCalendar4 className="chb-h5 text-white me-3 mt-1" />
                 <div className="chb-h5 text-purple2">
@@ -76,7 +76,7 @@ export default function MainMusicInfo({
               </div>
             </div>
             <div className="col-12 text-nowrap mt-3">
-              <div className="d-flex">
+              <div className="d-flex mb-5 mb-sm-0">
                 <Link
                   href={`/ticket/${
                     aid > 9 ? 'musicFestival' : 'concert'
@@ -91,11 +91,11 @@ export default function MainMusicInfo({
                   ) : (
                     <PhoneBlackNoIconBtnPurple
                       text="立即購票"
-                      className="chr-p-14 w-100"
+                      className="chr-h4 w-100"
                     />
                   )}
                 </Link>
-                <div className="ms-2 ms-md-4">
+                {/* <div className="ms-2 ms-md-4">
                   {isDesktop ? (
                     <DesktopBlackPureIconBtnBlack icon={BsBookmark} />
                   ) : (
@@ -105,7 +105,7 @@ export default function MainMusicInfo({
                       iconHeight={25}
                     />
                   )}
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
