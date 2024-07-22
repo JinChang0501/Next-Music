@@ -77,6 +77,17 @@ export const logout = async () => {
 //     throw new Error(error.response.data.message || error.message)
 //   }
 // }
+
+export const getUserPic = async () => {
+  try {
+    const res = await axiosInstance.get(`/memberPic`)
+    return res.data // 返回從後端獲取的data
+  } catch (error) {
+    console.error('Error fetching user tickets:', error)
+    throw error // 抛出错误以便上层处理
+  }
+}
+
 /**
  * 載入會員id的資料用，需要登入後才能使用。此API路由會檢查JWT中的id是否符合本會員，不符合會失敗。
  */

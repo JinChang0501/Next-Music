@@ -9,13 +9,20 @@ import ForgetPassword from '@/components/login/forget-password'
 import { useLogin } from '@/hooks/use-login'
 //登入用
 import { initUserData, useAuth } from '@/hooks/use-auth'
-import { login, logout, getUserById, checkAuth } from '@/services/user' //checkAuth
+import {
+  login,
+  logout,
+  getUserById,
+  checkAuth,
+  getUserPic,
+} from '@/services/user' //checkAuth
 
 import toast, { Toaster } from 'react-hot-toast'
 // 購物車
 import { Badge } from 'rsuite'
 
 import { useTotal } from '@/hooks/product/use-Total'
+import { API_SERVER } from '@/configs/api-path'
 
 export default function Nav() {
   //
@@ -32,11 +39,10 @@ export default function Nav() {
   //
   //yun
   const { totalQty } = useTotal()
-
   const [isLoggedIn, setIsLoggedIn] = useState(false) // 這裡要接Login元件傳回來的狀態
   const router = useRouter()
   const { logoutFirebase, loginGoogleRedirect, initApp } = useFirebase()
-
+  const [memberPicData, setMemberPicData] = useState('')
   // 登入後設定全域的會員資料用
   const { auth, setAuth } = useAuth()
 
@@ -69,11 +75,36 @@ export default function Nav() {
     }
   }
 
+  const getUserData = async () => {
+    const res = await getUserPic()
+    console.log('----------------------')
+    console.log(res)
+    console.log(res.data)
+
+    if (res.status === 'success') {
+      // 以下為同步化目前後端資料庫資料，與這裡定義的初始化會員資料物件的資料
+      console.log(res.data.result)
+      //頭像
+      // console.log(res.data.result[0].avatar)
+      const memberPic = res.data.result[0].avatar
+      console.log(memberPic)
+      setMemberPicData(memberPic)
+      // 設定到狀態中
+
+      console.log('會員頭像載入成功')
+    } else {
+      console.log(`會員頭像載入失敗`)
+    }
+  }
+
   // 同步 isLoggedIn 狀態與 auth.isAuth
   useEffect(() => {
     setIsLoggedIn(auth.isAuth)
   }, [auth.isAuth])
 
+  useEffect(() => {
+    getUserData()
+  }, [auth.isAuth, router])
   return (
     <>
       <nav
@@ -168,7 +199,17 @@ export default function Nav() {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <BsPersonCircle />
+                  {memberPicData ? (
+                    <div className="bg-primary rounded-circle my-auto">
+                      <img
+                        src={`${API_SERVER}/avatar/${memberPicData}`}
+                        style={{ width: '30px', height: '30px' }}
+                        className="rounded-circle"
+                      />
+                    </div>
+                  ) : (
+                    <BsPersonCircle />
+                  )}
                 </Link>
                 <ul
                   className="dropdown-menu dropdown-menu-dark dropdown-menu-end"
