@@ -3,8 +3,8 @@ import Link from 'next/link'
 
 export default function ParticipatingActivity({
   imgSrc = 'https://i.postimg.cc/QMG23JB6/Cover03.jpg',
-  act_name = '活動名稱',
-  artists = '音樂人',
+  act_name = '打狗祭',
+  act_date = '2024/08/02',
   aid = 1,
 }) {
   const [over, setOver] = useState(false)
@@ -30,7 +30,7 @@ export default function ParticipatingActivity({
                 <div className="card-title chb-h6 text-white mb-1">
                   {act_name}
                 </div>
-                <div className="card-text chr-p text-purple3">{artists}</div>
+                <div className="card-text chr-p text-purple3">{act_date}</div>
               </div>
             </div>
           </div>

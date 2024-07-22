@@ -2,7 +2,7 @@ import React from 'react'
 import { BsSearch } from 'react-icons/bs'
 import DesktopBlackPureIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackPureIconBtnPurple'
 
-export default function LeftBar({
+export default function LeftBarArt({
   handleSearch,
   onClassChange,
   onAreaChange,
@@ -20,59 +20,25 @@ export default function LeftBar({
       <div className="col-md-3 col-12 mt-2 mb-5">
         <div className="outline sticky-40">
           <form onSubmit={handleSearch} className="col-10 mx-auto">
-            <div className="d-flex flex-md-column">
-              <div className="mt-4 mb-2 mb-md-0 col-6 col-md-12">
-                <select
-                  className="form-select input-p3"
-                  value={classValue}
-                  onChange={onClassChange}
-                  onKeyDown={handleKeyDown}
-                >
-                  <option defaultValue="">-- 選擇類型 --</option>
-                  <option value="0">所有類型</option>
-                  <option value="1">演唱會</option>
-                  <option value="2">音樂祭</option>
-                </select>
-              </div>
-              <div className="mt-4 mb-2 mb-md-0 col-6 col-md-12">
-                <select
-                  className="form-select input-p3"
-                  value={areaValue}
-                  onChange={onAreaChange}
-                  onKeyDown={handleKeyDown}
-                >
-                  <option defaultValue="">-- 選擇地區 --</option>
-                  <option value="0">所有區域</option>
-                  <option value="1">北部</option>
-                  <option value="2">中部</option>
-                  <option value="3">南部</option>
-                </select>
-              </div>
-            </div>
-            <div className="mt-3 mt-md-4 mb-2 mb-md-0 col-12">
+            <div className="mt-4 mb-2 mb-md-0 col-12 col-md-12">
               <select
                 className="form-select input-p3"
-                value={dateValue}
-                onChange={onDateChange}
+                value={classValue}
+                onChange={onClassChange}
                 onKeyDown={handleKeyDown}
               >
-                <option defaultValue="">-- 選擇日期 --</option>
-                <option value="two_weeks">兩週內</option>
-                <option value="this_month">這個月</option>
-                <option value="next_month">下個月</option>
+                <option defaultValue="">-- 選擇風格 --</option>
+                <option value="0">搖滾</option>
+                <option value="1">獨立</option>
+                <option value="2">龐克</option>
+                <option value="3">韓國流行</option>
               </select>
-              {/* <input 
-              type="date" 
-              className="form-control input-p3 text-white" 
-              id="datetime" 
-//日期的搜尋 待處理
-              /> */}
             </div>
             <div className="mt-4 mb-4 mb-md-4 col-12 input-group">
               <input
                 type="text"
                 className="form-control input-p3"
-                placeholder="活動名稱、地點、介紹"
+                placeholder="音樂人"
                 value={nameValue}
                 onChange={onNameChange}
                 onKeyDown={handleKeyDown}

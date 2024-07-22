@@ -11,7 +11,7 @@ const SpotifyAuthContext = createContext()
 export const SpotifyAuthProvider = ({ children }) => {
   // 初始化 token （目前用postman手動更新）
   const [spotifyToken, setSpotifyToken] = useState(
-    'BQAIXLWhaoB1dLtBs36-55znmYBbbVCqiZNCMedPUZf0ukL2z5OzlFZEnphrpqG88Iq4MUKAR3uw2lvVlTnL29n4FC-IYk_ijkgjBOvjZcBnR-B47oc'
+    'BQDQkKNWKQB91FFionqr40-9XLKMl2PJxTgXfeE0aA63QRgJUAwX7746SZREDQCKH2nSiyYiP20D78mUD7ZeIOttC2PO9OYcRwJkO4FvZkyGxMCsv4I'
   )
   // 這個還沒完全搞懂ＱＱ，有一點像是 authenticate ，一個安全憑證
   const [refreshToken, setRefreshToken] = useState(
@@ -74,14 +74,14 @@ export const SpotifyAuthProvider = ({ children }) => {
     storedRefreshToken()
   }
 
-  useEffect(() => {
-    getRefreshToken()
-    const interval = setInterval(() => {
-      getRefreshToken()
-    }, 55 * 60 * 1000) // 55 minutes
+  // useEffect(() => {
+  //   getRefreshToken()
+  //   const interval = setInterval(() => {
+  //     getRefreshToken()
+  //   }, 55 * 60 * 1000) // 55 minutes
 
-    return () => clearInterval(interval)
-  }, [])
+  //   return () => clearInterval(interval)
+  // }, [])
 
   const value = {
     spotifyToken,
