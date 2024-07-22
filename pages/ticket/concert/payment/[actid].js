@@ -14,11 +14,15 @@ import PhoneWhiteNoIconBtnPurple from '@/components/common/button/phoneWhiteButt
 import { useRouter } from 'next/router'
 import { useTicketContext } from '@/context/ticket/ticketContext'
 import { useCountdown } from '@/context/ticket/countdownContext'
+import axiosInstance from '@/services/axios-instance'
+import toast, { Toaster } from 'react-hot-toast'
 
 export default function Payment() {
   const [isMobile, setIsMobile] = useState(false)
   const { isStarted } = useCountdown()
   const router = useRouter()
+  const [order, setOrder] = useState({})
+  const [isLoading, setIsLoading] = useState(true)
 
   const {
     setTickets,
@@ -77,42 +81,41 @@ export default function Payment() {
 
   const handleNext = async () => {
     try {
-      const response = await fetch('http://localhost:3005/api/ecpay', {
+      // 計算 amount 和 products
+      const amount = selectedSeatDetails.reduce(
+        (total, seat) => total + seat.price,
+        0
+      )
+      const products = selectedSeatDetails.map((seat) => ({
+        id: seat.tid,
+        name: seat.seat_area + seat.seat_row + seat.seat_number,
+        price: seat.price,
+      }))
+
+      // 發送請求
+      const res = await axiosInstance.post('/ecpay/create-order', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          selectedSeatDetails,
+        data: {
+          amount,
+          products,
           actid,
-        }),
+        },
       })
 
-      if (!response.ok) {
+      if (res.status !== 200) {
         throw new Error('Network response was not ok')
       }
 
-      const data = await response.json()
+      const data = res.data
 
-      if (data.success) {
-        const confirmed = window.confirm('訂單已創建，是否前往付款？')
-        if (confirmed) {
-          // 創建一個臨時的 form 元素來提交 ECPay 的表單
-          const form = document.createElement('form')
-          form.method = 'POST'
-          form.action =
-            'https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V5' // 測試環境URL
-
-          for (const key in data.ecpayForm) {
-            const input = document.createElement('input')
-            input.type = 'hidden'
-            input.name = key
-            input.value = data.ecpayForm[key]
-            form.appendChild(input)
-          }
-
-          document.body.appendChild(form)
-          form.submit()
+      if (data.status === 'success') {
+        setOrder(data.data.order)
+        if (window.confirm('訂單已創建，是否前往 ecpay 付款?')) {
+          // 先連到node伺服器後，導向至ECPay付款頁面
+          window.location.href = `http://localhost:3005/api/ecpay/payment?id=${data.data.order.id}`
         }
       } else {
         console.error('訂單創建失敗:', data.error)
@@ -124,6 +127,47 @@ export default function Payment() {
     }
   }
 
+  const handleConfirm = async (transactionId) => {
+    const res = await axiosInstance.get(
+      `/ecpay/confirm?transactionId=${transactionId}`
+    )
+
+    console.log(res.data)
+
+    if (res.data.status === 'success') {
+      toast.success('付款成功')
+    } else {
+      toast.error('付款失敗')
+    }
+
+    // 處理完畢，關閉載入狀態
+    setIsLoading(false)
+  }
+
+  useEffect(() => {
+    if (router.isReady) {
+      // 這裡確保能得到router.query值
+      console.log(router.query)
+      // http://localhost:3000/order?transactionId=2022112800733496610&id=da3b7389-1525-40e0-a139-52ff02a350a8
+      // 這裡要得到交易id，處理伺服器通知line pay已確認付款，為必要流程
+      // TODO: 除非為不需登入的交易，為提高安全性應檢查是否為會員登入狀態
+      const { transactionId, id } = router.query
+
+      // 如果沒有帶transactionId或id時，導向至首頁(或其它頁)
+      if (!transactionId || !id) {
+        // 關閉載入狀態
+        setIsLoading(false)
+        // 不繼續處理
+        return
+      }
+
+      // 向server發送確認交易api
+      handleConfirm(transactionId)
+    }
+
+    // eslint-disable-next-line
+  }, [router.isReady])
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 390)
@@ -133,6 +177,15 @@ export default function Payment() {
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
+
+  if (isLoading) {
+    return (
+      <>
+        <p>與伺服器連線同步中...</p>
+      </>
+    )
+  }
+
   return (
     <>
       {/* breadcrumb */}
