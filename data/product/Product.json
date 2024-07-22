@@ -338,9 +338,7 @@
     "name": "團員卡通人物滑鼠墊_Daisy",
     "price": 590,
     "intro": "超人氣女團-Nem Jeans，與卡通聯名推出可愛團員Q版人物周邊商品，可愛度破表，無法抗拒!\r\n讓可愛滑鼠墊陪你度過煩躁的電腦製作專題作業時光，痛苦的時光，也都變成的愉悅無比。",
-    "stock": 500,
-    "created_at": "2024-07-17 15:41:42",
-    "updated_at": "2024-07-17 15:41:42"
+    "stock": 500
 },
 {
     "id": 32,
@@ -351,9 +349,7 @@
     "name": "團員卡通人物滑鼠墊_Sunny",
     "price": 590,
     "intro": "超人氣女團-Nem Jeans，與卡通聯名推出可愛團員Q版人物周邊商品，可愛度破表，無法抗拒!\r\n讓可愛滑鼠墊陪你度過煩躁的電腦製作專題作業時光，痛苦的時光，也都變成的愉悅無比。",
-    "stock": 500,
-    "created_at": "2024-07-17 15:51:28",
-    "updated_at": "2024-07-17 15:51:28"
+    "stock": 500
 },
 {
     "id": 33,
@@ -364,9 +360,7 @@
     "name": "團員卡通人物滑鼠墊_Rose",
     "price": 590,
     "intro": "超人氣女團-Nem Jeans，與卡通聯名推出可愛團員Q版人物周邊商品，可愛度破表，無法抗拒!\r\n讓可愛滑鼠墊陪你度過煩躁的電腦製作專題作業時光，枯燥的時光，也都變成的愉悅無比。",
-    "stock": 500,
-    "created_at": "2024-07-17 15:51:28",
-    "updated_at": "2024-07-17 15:51:28"
+    "stock": 500
 },
 {
     "id": 34,
@@ -377,9 +371,7 @@
     "name": "團員卡通人物滑鼠墊_Ivy ",
     "price": 590,
     "intro": "超人氣女團-Nem Jeans，與卡通聯名推出可愛團員Q版人物周邊商品，可愛度破表，無法抗拒!\r\n讓可愛滑鼠墊陪你度過煩躁的電腦製作專題作業時光，枯燥的時光，也都變成的愉悅無比。",
-    "stock": 500,
-    "created_at": "2024-07-17 15:55:52",
-    "updated_at": "2024-07-17 15:55:52"
+    "stock": 500
 },
 {
     "id": 35,
@@ -390,8 +382,50 @@
     "name": "團員卡通人物滑鼠墊_Pearl",
     "price": 590,
     "intro": "超人氣女團-Nem Jeans，與卡通聯名推出可愛團員Q版人物周邊商品，可愛度破表，無法抗拒!\r\n讓可愛滑鼠墊陪你度過煩躁的電腦製作專題作業時光，枯燥的時光，也都變成的愉悅無比。",
-    "stock": 500,
-    "created_at": "2024-07-17 15:55:52",
-    "updated_at": "2024-07-17 15:55:52"
+    "stock": 500
+},
+{
+  "id": 36,
+  "picture": "ts-1.jpg",
+  "picture2": "ts-1.jpg",
+  "picture3": "ts-1.jpg",
+  "activity": "Wonderland演唱會",
+  "name": "T恤上衣",
+  "price": 600,
+  "intro": "這款活動T恤與 ellesse 聯名合作，名牌設計總監親自設計，是滑雪場內外的必備單品。充滿活力的節日能量和經典滑雪服美學的融合，專為那些尋求滑雪樂趣和音樂、文化和社區活力的人們而設計。\r\n\r\n**材質資訊：100% 棉\r\nTomorrowland x ellesse 系列的一部分\r\n胸前飾有 Tomorrowland x ellesse 徽章\r\n**",
+  "stock": 500
+},
+{
+  "id": 37,
+  "picture": "blossom_t-shirt.jpg",
+  "picture2": "blossom_t-shirt.jpg",
+  "picture3": "blossom_t-shirt.jpg",
+  "activity": "Wonderland演唱會",
+  "name": "T恤上衣",
+  "price": 1200,
+  "intro": "活動聯名限量T恤，名牌設計總監親自設計，超高回頭率！\r\n圖案的靈感來自於讓自己沉浸在音樂和發自內心的舞蹈中。無論您是獨自跳舞還是迷失在人群中，唯一重要的是明日之人與音樂之間的聯繫。",
+  "stock": 500
+},
+{
+  "id": 38,
+  "picture": "blossom_hoodie.jpg",
+  "picture2": "blossom_hoodie.jpg",
+  "picture3": "blossom_hoodie.jpg",
+  "activity": "Wonderland演唱會",
+  "name": "連帽長袖上衣",
+  "price": 3000,
+  "intro": "這款連帽上衣與 ellesse 合作設計，是滑雪場內外的必備單品。充滿活力的節日能量和經典滑雪服美學的融合，「Wonderland」字樣以氣泡字體漂浮在其中。每個字母都以自己的節奏舞動，象徵著節日充滿活力的精神。T恤的靈感來自於讓自己沉浸在音樂和發自內心的舞蹈中。無論您是獨自跳舞還是迷失在人群中，唯一重要的是明日之人與音樂之間的聯繫。\r\n**材質資訊：100% 棉\r\n胸前飾有 Wonderland x ellesse 徽章\r\n",
+  "stock": 500
+},
+{
+  "id": 39,
+  "picture": "botanic_t-shirt.jpg",
+  "picture2": "botanic_t-shirt.jpg",
+  "picture3": "botanic_t-shirt.jpg",
+  "activity": "Wonderland演唱會",
+  "name": "T恤上衣",
+  "price": 1200,
+  "intro": "活動聯名限量T恤，名牌設計總監親自設計，超高回頭率！\r\n圖案的靈感來自於讓自己沉浸在音樂和發自內心的舞蹈中。無論您是獨自跳舞還是迷失在人群中，唯一重要的是明日之人與音樂之間的聯繫。",
+  "stock": 500
 }
 ]

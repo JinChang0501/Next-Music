@@ -241,6 +241,11 @@
   flex-direction: row;
   justify-content: space-around;
 }
+.btn-disabled {
+  padding: 12px 20px;
+  color: #685beb;
+  border: 1px solid #685beb;
+}
 
 // 手機
 @media screen and (max-width:390px){

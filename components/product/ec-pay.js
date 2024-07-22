@@ -12,6 +12,7 @@ export default function EcPay() {
 
   return (
     <>
+    <p className={`chb-h6 ${style['mt-28']}`}>請選擇付款方式</p>
       <div className={style.payment}>
         <div className={style.paymentBlock}>
           <div className={style.paymentBlockLeft}>

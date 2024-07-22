@@ -188,7 +188,7 @@ export default function CartIndex() {
               <div 
                 className={`col-12 col-md-8 cart-area ${styles['my-20']} ${styles['columnCenter']} `} >
                 {/* 測試 */}
-                <Link href={`/cart/payment-test`}>
+                <Link href={`/cart/payment`}>
                 {/* 測試 */}
                   <DesktopBlackNoIconBtnPurple
                     text="結帳"
