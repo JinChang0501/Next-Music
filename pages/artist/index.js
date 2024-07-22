@@ -16,7 +16,7 @@ import { artists } from '@/data/artist/artists-18'
 // 內容元件
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import BannerA from '@/components/Activity/banner-a'
-import LeftBar from '@/components/Activity/left-bar'
+import LeftBarArt from '@/components/Activity/left-bar-art'
 import ArtistItem from '@/components/artist/artist-item'
 import { useFav } from '@/hooks/use-Fav'
 
@@ -136,7 +136,7 @@ export default function Artist() {
       <div ref={topRef}></div>
       <div className="music-container mt-3 mt-md-5">
         <div className="row">
-          <LeftBar
+          <LeftBarArt
             classValue={actClass}
             onClassChange={(e) => {
               setActClass(e.target.value)

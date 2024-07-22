@@ -3,40 +3,22 @@ import { ACT_GET_ITEM } from '@/configs/api-path'
 import { useRouter } from 'next/router'
 
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
-import MainMusicInfo from '@/components/Activity/main-music-info'
 import MainArtistInfo from '@/components/artist/main-artist-info'
-import ArtistFollowCard from '@/components/Activity/artist-follow-card'
-import TopTrackList from '@/components/artist/top-track-list'
-import Tab from '@/components/common/tabs/tab'
-import RecommendCard from '@/components/Activity/recommend-card'
+import TopTrackItem from '@/components/artist/top-track-item'
+import { useSpotifyApi } from '@/hooks/use-SpotifyApi'
 import ParticipatingActivity from '@/components/artist/participating-activity'
-import TabContentAid from '@/components/Activity/info-tab-content/tab-content-aid'
-import TabContentIntro from '@/components/Activity/info-tab-content/tab-content-intro'
 import toast, { Toaster } from 'react-hot-toast'
-
-// 判斷登入
-import { useAuth } from '@/hooks/use-auth'
-import { useLogin } from '@/hooks/use-login'
 
 export default function Artid() {
   const router = useRouter()
   console.log(router.query.artid)
   const { artid } = router.query // 設定路由參數給 artid (參照)
-  const actid = parseInt(artid) // 型態轉換：字串轉數字！！
+  // const artist_id = parseInt(artid) // 型態轉換：字串轉數字 // 註解掉因為這裡的id是「字串」
   const topRef = useRef(null)
-  // 會員相關
-  const { handleGotoMember, handleWakeLogin } = useLogin()
-  const { auth } = useAuth()
+  const [tracks, setTracks] = useState([])
+  const [artist, setArtist] = useState([])
 
-  const [data, setData] = useState({
-    success: false,
-    data: {},
-  })
-
-  const [data2, setData2] = useState({
-    success: false,
-    data: {},
-  })
+  const { getTopTracks, getArtist } = useSpotifyApi()
 
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
@@ -54,77 +36,41 @@ export default function Artid() {
     }
   }
 
-  useEffect(
-    (e) => {
-      scrollToTop(e)
-    },
-    [router]
-  )
+  const fetchData = async () => {
+    try {
+      const topTracks = await getTopTracks(artid)
+      const thisArtist = await getArtist(artid)
+      console.log(topTracks)
+      console.log(thisArtist)
 
+      if (Array.isArray(topTracks.tracks)) {
+        setTracks(topTracks.tracks)
+        console.log(tracks)
+      }
+
+      if (Array.isArray(thisArtist)) {
+        setArtist(thisArtist)
+        console.log(artist)
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error)
+    }
+  }
   useEffect(() => {
     if (!router.isReady) return
+    fetchData()
+  }, [])
 
-    Promise.all([
-      fetch(`${ACT_GET_ITEM}?${new URLSearchParams(router.query)}`).then((r) =>
-        r.json()
-      ),
-      fetch(`${ACT_GET_ITEM}${artid}`).then((r) => r.json()),
-    ])
-      .then(([myData, myData2]) => {
-        console.log(data)
-        console.log(myData)
-        console.log(myData2)
-
-        setData(myData)
-        setData2(myData2)
-      })
-      .catch((ex) => {
-        console.log('fetch-ex', ex)
-      })
-  }, [router.isReady, artid])
+  // useEffect(
+  //   (e) => {
+  //     scrollToTop(e)
+  //   },
+  //   [router]
+  // )
 
   console.log(`activity{item} render--------`)
 
-  if (!router.isReady || !data.success) return null
-
-  // 亂數取得陣列中的index
-  function getRandomIndexes(array, num) {
-    const indexes = []
-
-    // 計算原始資料數
-    const arrayLength = array.length
-
-    // 避免取得資料數量 num > 原始資料數量時造成的 Error
-    const count = num < array.length ? num : array.length
-
-    while (indexes.length < count) {
-      const randomIndex = Math.floor(Math.random() * arrayLength)
-      if (!indexes.includes(randomIndex)) {
-        indexes.push(randomIndex)
-      }
-    }
-
-    return indexes
-  }
-
-  // 對應陣列index取得資料
-  function getRandomElementsFromArray(array, count) {
-    const randomIndexes = getRandomIndexes(array, count)
-    const randomElements = randomIndexes.map((index) => array[index])
-    return randomElements
-  }
-
-  // 根據 artid 從 rows 中選擇對應的資料
-  const mainInfoData = data.rows.find((r) => r.actid === actid)
-  console.log(mainInfoData)
-  if (!mainInfoData) return <div>走錯路囉</div>
-
-  // 從所有活動的資料裡撈出 4 筆（隨機），且不包含本頁這筆：
-  const recommendData = data.rows.filter((r) => r.actid !== actid)
-  console.log(recommendData)
-  const random4Recommend = getRandomElementsFromArray(recommendData, 4)
-
-  console.log(random4Recommend)
+  if (!router.isReady) return null
 
   return (
     <>
@@ -138,16 +84,24 @@ export default function Artid() {
         <div className="row my-5">
           <div className="chb-h4 mb-40 text-purple1">熱門歌曲</div>
           <div className="width-50">
-            <TopTrackList />
+            {/* <TopTrackList artist_id={artid} /> */}
+            {tracks.map((v, i) => {
+              return (
+                <TopTrackItem
+                  key={v.id}
+                  number={i + 1}
+                  cover={v.album.images[2].url}
+                  song_name={v.name}
+                />
+              )
+            })}
           </div>
         </div>
         {/* 熱門歌曲 end */}
         {/*  出演活動 start  */}
         <div className="row my-5">
           <div className="chb-h4 mb-40 text-purple1">出演活動</div>
-          <ParticipatingActivity />
-          <ParticipatingActivity />
-          <ParticipatingActivity />
+          {/* <ParticipatingActivity imgSrc act_name act_date aid /> */}
           <ParticipatingActivity />
         </div>
         {/*  出演活動 end  */}
