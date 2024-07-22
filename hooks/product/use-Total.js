@@ -29,11 +29,11 @@ export function TotalProvider({ children }) {
   const router = useRouter()
   const [userProfile, setUserProfile] = useState([])
 
-  const breadcrumbsURL = [
-    { label: '周邊商城', href: '/product' },
-    { label: '商品資訊', href: '/product[pid]' },
-    { label: '購物車', href: '/cart' },
-  ]
+  // const breadcrumbsURL = [
+  //   { label: '周邊商城', href: '/product' },
+  //   { label: '商品資訊', href: '/product[pid]' },
+  //   { label: '購物車', href: '/cart' },
+  // ]
   // 後端商品
   useEffect(() => {
     fetch(GET_PRODUCTS, {
@@ -54,6 +54,21 @@ export function TotalProvider({ children }) {
 
     setCart(getCartFromStorage())
   }, [])
+  const getCartFromStorage = () => {
+    let cartData = []
+    const oriData = localStorage.getItem(cartKey)
+    console.log(oriData)
+    try {
+      cartData = JSON.parse(oriData)
+      if (!Array.isArray(cartData)) {
+        cartData = []
+      }
+    } catch (ex) {
+      console.error('Error parsing cart data', ex)
+    }
+    return cartData
+  }
+  
   // 購物車內容
   useEffect(() => {
     setItems(
@@ -73,19 +88,9 @@ export function TotalProvider({ children }) {
     setTotalPrice(price)
   }, [cart, products])
 
-  const getCartFromStorage = () => {
-    let cartData = []
-    const oriData = localStorage.getItem(cartKey)
-    console.log(oriData)
-    try {
-      cartData = JSON.parse(oriData)
-      if (!Array.isArray(cartData)) {
-        cartData = []
-      }
-    } catch (ex) {
-      console.error('Error parsing cart data', ex)
-    }
-    return cartData
+  // 清除LocalStorage的資料
+  const clearLocalStorageCart = () => {
+    localStorage.removeItem(cartKey)
   }
   // 會員
   const { auth } = useAuth()
@@ -109,10 +114,6 @@ export function TotalProvider({ children }) {
       // 設定到狀態中
       setUserProfile(dbUserProfile)
     }
-  }
-
-  const clearLocalStorageCart = () => {
-    localStorage.removeItem(cartKey)
   }
 
   // auth載入完成後向資料庫要會員資料

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import styles from '@/components/product/transport.module.scss'
 import DesktopWhiteNoIconBtnBlack from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnBlack'
 import { useShip711StoreOpener } from '@/hooks/use-ship-711-store'
+import { useTotal } from '@/hooks/product/use-Total'
 
 export default function Transport() {
   const [selected, setSelected] = useState(null) // 使用 null 初始狀態
@@ -13,6 +14,8 @@ export default function Transport() {
     'http://localhost:3005/api/shipment/711',
     { autoCloseMins: 3 } // x分鐘沒完成選擇會自動關閉，預設5分鐘。
   )
+   // 會員資料
+   const { userProfile } = useTotal()
   useEffect(() => {
     // Update store name and address when store711 changes
     if (store711) {
@@ -24,9 +27,10 @@ export default function Transport() {
   const handleCircleClick = (paymentMethod) => {
     if (selected === 'home' && paymentMethod !== 'home') {
       setHomeDeliveryAddress('');
-    }
+      }
     setSelected((prev) => (prev === paymentMethod ? null : paymentMethod))
   }
+ 
   return (
     <>
       <div className={styles.transport}>
@@ -43,7 +47,7 @@ export default function Transport() {
               <input
                 type="text" 
                 className={`form-control ${styles['w-750']}`}
-                value={homeDeliveryAddress}
+                value={selected === 'home' ? `${userProfile.address}` : ''}
                 onChange={(e) => setHomeDeliveryAddress(e.target.value)}
                 disabled={selected === 'market'} />
             </div>
