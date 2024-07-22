@@ -8,13 +8,28 @@ export default function LoginProvider({ children }) {
   const router = useRouter()
   const [wakeLogin, setWakeLogin] = useState(false) //喚醒登入面板
   const [wakeForgetPassword, setWakeForgetPassword] = useState(false)
+  // 登入面板左右顯示 Start
+  const [isActive, setIsActive] = useState(false)
 
+  const handleRegisterClick = () => {
+    setIsActive(true)
+  }
+
+  const handleLoginClick = () => {
+    setIsActive(false)
+  }
+  //登入面板左右顯示 End
   const handleWakeLogin = () => {
     setWakeLogin(true)
   }
 
   const handleGotoMember = () => {
     router.push('/member/profile')
+  }
+
+  const handleWakeRegister = () => {
+    setWakeLogin(true)
+    setIsActive(true)
   }
 
   const handleWakeForgetPassword = () => {
@@ -39,6 +54,7 @@ export default function LoginProvider({ children }) {
     <>
       <LoginContext.Provider
         value={{
+          isActive,
           wakeLogin,
           wakeForgetPassword,
           setWakeLogin,
@@ -47,6 +63,10 @@ export default function LoginProvider({ children }) {
           handleCloseForgetPassword,
           handleCloseLogin,
           handleGotoMember,
+          setIsActive,
+          handleWakeRegister,
+          handleLoginClick,
+          handleRegisterClick,
         }}
       >
         {children}
