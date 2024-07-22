@@ -16,13 +16,12 @@ import {
   checkAuth,
   getUserPic,
 } from '@/services/user' //checkAuth
-
 import toast, { Toaster } from 'react-hot-toast'
 // 購物車
 import { Badge } from 'rsuite'
-
 import { useTotal } from '@/hooks/product/use-Total'
 import { API_SERVER } from '@/configs/api-path'
+import { useRefresh } from '@/hooks/useRefresh'
 
 export default function Nav() {
   //
@@ -45,7 +44,7 @@ export default function Nav() {
   const [memberPicData, setMemberPicData] = useState('')
   // 登入後設定全域的會員資料用
   const { auth, setAuth } = useAuth()
-
+  const { trigger, setTrigger } = useRefresh()
   // 更新登入狀態
   const updateLoginStatus = (loggedIn) => {
     setIsLoggedIn(loggedIn)
@@ -105,7 +104,7 @@ export default function Nav() {
   useEffect(() => {
     getUserData()
     console.log('router')
-  }, [auth.isAuth, router])
+  }, [auth.isAuth, router, trigger])
   return (
     <>
       <nav
