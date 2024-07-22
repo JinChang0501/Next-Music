@@ -6,8 +6,10 @@ import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import MainMusicInfo from '@/components/Activity/main-music-info'
 import MainArtistInfo from '@/components/artist/main-artist-info'
 import ArtistFollowCard from '@/components/Activity/artist-follow-card'
+import TopTrackList from '@/components/artist/top-track-list'
 import Tab from '@/components/common/tabs/tab'
 import RecommendCard from '@/components/Activity/recommend-card'
+import ParticipatingActivity from '@/components/artist/participating-activity'
 import TabContentAid from '@/components/Activity/info-tab-content/tab-content-aid'
 import TabContentIntro from '@/components/Activity/info-tab-content/tab-content-intro'
 import toast, { Toaster } from 'react-hot-toast'
@@ -128,68 +130,27 @@ export default function Artid() {
     <>
       <div ref={topRef}></div>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
+      {/* 音樂人主資訊 start */}
       <MainArtistInfo />
+      {/* 音樂人主資訊 end */}
       <div className="music-container mt-80">
-        {/* 活動主資訊 start */}
-
-        {/* 活動主資訊 end */}
-        {/* 簡介：頁籤 start */}
-        <ul
-          className="nav nav-tabs mt-80 mb-40"
-          id="activityTab"
-          role="tablist"
-        >
-          <Tab
-            tabName="活動簡介"
-            tabTarget="tabTargetAid"
-            ariaSelected={true}
-            classNames="col-6 col-md-3"
-          />
-          <Tab
-            tabName="注意事項"
-            tabTarget="tabTargetIntro"
-            ariaSelected={false}
-            classNames="col-6 col-md-3"
-          />
-        </ul>
-        <div className="tab-content" id="myTabContent">
-          <TabContentAid
-            tabTargetAid="tabTargetAid"
-            content={mainInfoData.descriptions}
-          />
-          <TabContentIntro tabTargetIntro="tabTargetIntro" />
-        </div>
-        {/* 簡介：頁籤 end */}
-        {/* 音樂人 start */}
+        {/* 熱門歌曲 start */}
         <div className="row my-5">
-          <div className="chb-h4 mb-40 text-purple1">音樂人</div>
-          {data2.rows2.map((v, i) => {
-            return (
-              <ArtistFollowCard
-                key={v.eaid}
-                imgSrc={v.photo}
-                artist_name={v.art_name}
-              />
-            )
-          })}
+          <div className="chb-h4 mb-40 text-purple1">熱門歌曲</div>
+          <div className="width-50">
+            <TopTrackList />
+          </div>
         </div>
-        {/* 音樂人 end */}
-        {/*  推薦活動 start  */}
+        {/* 熱門歌曲 end */}
+        {/*  出演活動 start  */}
         <div className="row my-5">
-          <div className="chb-h4 mb-40 text-purple1">推薦活動</div>
-          {random4Recommend.map((v, i) => {
-            return (
-              <RecommendCard
-                key={v.actid}
-                imgSrc={v.cover}
-                activity_name={v.actname}
-                artist_name={v.artists}
-                artid={v.actid}
-                scrollToTop={scrollToTop}
-              />
-            )
-          })}
+          <div className="chb-h4 mb-40 text-purple1">出演活動</div>
+          <ParticipatingActivity />
+          <ParticipatingActivity />
+          <ParticipatingActivity />
+          <ParticipatingActivity />
         </div>
+        {/*  出演活動 end  */}
       </div>
       <style jsx>{`
         .mb-40 {
@@ -202,6 +163,9 @@ export default function Artid() {
           margin-top: 80px;
           margin-bottom: 80px;
         }
+        .width-50 {
+          width: 50%;
+        }
         @media (max-width: 390px) {
           .mt-80 {
             margin-top: 20px;
@@ -212,6 +176,9 @@ export default function Artid() {
           .my-80 {
             margin-top: 20px;
             margin-bottom: 20px;
+          }
+          .width-50 {
+            width: 100%;
           }
         }
       `}</style>
