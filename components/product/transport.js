@@ -3,6 +3,7 @@ import styles from '@/components/product/transport.module.scss'
 import DesktopWhiteNoIconBtnBlack from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnBlack'
 import { useShip711StoreOpener } from '@/hooks/use-ship-711-store'
 import { useTotal } from '@/hooks/product/use-Total'
+import EcPay from '@/components/product/ec-pay'
 
 export default function Transport() {
   const [selected, setSelected] = useState(null) // 使用 null 初始狀態
@@ -37,7 +38,7 @@ export default function Transport() {
         <div className={styles.transportBlock}>
           <div className={styles.transportBlockHome}>
             <button
-              className={`${styles.transportCircle} ${
+              className={`home ${styles.transportCircle} ${
                 selected === 'home' ? 'bg-black' : 'bg-white'
               }`}
               onClick={() => handleCircleClick('home')}
@@ -49,31 +50,34 @@ export default function Transport() {
                 className={`form-control ${styles['w-750']}`}
                 value={selected === 'home' ? `${userProfile.address}` : ''}
                 onChange={(e) => setHomeDeliveryAddress(e.target.value)}
-                disabled={selected === 'market'} />
+                disabled={selected !== 'home'} 
+              /> 
+              {selected === 'home' && <EcPay />} 
             </div>
           </div>
         </div>
         <div className={`${styles['transportBlock']} ${styles['mt-40']}`}>
           <div className={styles.transportBlockMarkt}>
             <button
-              className={`${styles.transportCircle} ${
+              className={`market ${styles.transportCircle} ${
                 selected === 'market' ? 'bg-black' : 'bg-white'
               }`}
               onClick={() => handleCircleClick('market')}
             ></button>
-            <div className="chb-h6">7-11超商付款取貨
+            <div className="chb-h6">7-11超商付款取貨(現金)
+            {selected === 'market' &&
               <DesktopWhiteNoIconBtnBlack 
                 text="選擇門市"
                 className={`chb-h6 mt-3 ${styles['h-40']}`}
                 disabled={selected === 'home'}
                 onClick={() => { openWindow() }} 
-              />
+              /> }
               {/* 門市名稱: <input type="text" value={store711.storename} disabled /> */}
               <p className={`${styles['mt-28']}`}>門市名稱</p>
               <input
                 type="text"
                 className={`form-control ${styles['w-750']}`}
-                value={storeName}
+                value={selected === 'market' ? storeName : ''}
                 disabled
               />
               {/* 門市地址: <input type="text" value={store711.storeaddress} disabled /> */}
@@ -81,9 +85,10 @@ export default function Transport() {
               <input
                 type="text"
                 className={`form-control ${styles['w-750']}`}
-                value={storeAddress}
+                value={selected === 'market' ? storeAddress : ''}
                 disabled
               />
+            
             </div>
           </div>
         </div>
