@@ -44,7 +44,6 @@ export default function Profile() {
   const [userProfile, setUserProfile] = useState(initUserProfile)
   const [hasProfile, setHasProfile] = useState(false)
   const [selectedFile, setSelectedFile] = useState(null)
-  const [trigger, setTrigger] = useState(0)
   // !! 注意phone, birth_date...等資料並沒有在auth.userData中，需自行向伺服器獲取
   // 這裡的設計重點，是auth.userData或JWT存取令牌中，並不記錄"會改變"的會員資料(密碼當然更不行，會有安全性問題)
   // 因此更新會員資料與auth.userData或JWT存取令牌無關
@@ -80,7 +79,7 @@ export default function Profile() {
       getUserData(auth.userData.id)
     }
     // eslint-disable-next-line
-  }, [auth, trigger])
+  }, [auth])
 
   // 提示其它相關個人資料元件可以載入資料
   useEffect(() => {
@@ -101,7 +100,6 @@ export default function Profile() {
     // 阻擋表單預設送出行為
     e.preventDefault()
     setIsDisable(true) // 儲存後設定為不可編輯狀態
-    setTrigger(1)
 
     // 送到伺服器進行更新
     // 更新會員資料用，排除avatar
@@ -123,7 +121,6 @@ export default function Profile() {
       // console.log(res2.data)
       if (res2.data.status === 'success') {
         toast.success('會員頭像修改成功')
-        await getUserData(auth.userData.id) // 重新取得會員資料
       }
     }
 
@@ -145,7 +142,12 @@ export default function Profile() {
             {hasProfile ? (
               <PreviewUploadImage
                 // avatarImg={userProfile.avatar}
-                avatarImg={`${userProfile.avatar}?t=${new Date().getTime()}`} // 添加時間戳
+                avatarImg={
+                  userProfile.avatar
+                    ? `${userProfile.avatar}?t=${new Date().getTime()}`
+                    : 'default.png'
+                } // 根据条件添加时间戳或使用默认头像
+                //avatarImg={`${userProfile.avatar}?t=${new Date().getTime()}`} // 添加時間戳
                 avatarBaseUrl={avatarBaseUrl}
                 setSelectedFile={setSelectedFile}
                 selectedFile={selectedFile}
