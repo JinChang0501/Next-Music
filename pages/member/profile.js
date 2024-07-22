@@ -14,7 +14,8 @@ import {
   updateProfileAvatar,
 } from '@/services/user'
 import DesktopWhiteNoIconBtnGray from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnGray'
-
+import { useContext } from 'react'
+import { useRefresh } from '@/hooks/useRefresh'
 // 定義要在此頁呈現/編輯的會員資料初始物件
 const initUserProfile = {
   name: '',
@@ -28,7 +29,7 @@ const initUserProfile = {
 
 export default function Profile() {
   const [isDisable, setIsDisable] = useState(true)
-
+  const { trigger, setTrigger } = useRefresh()
   const handleEdit = (e) => {
     e.preventDefault()
 
@@ -121,6 +122,7 @@ export default function Profile() {
       // console.log(res2.data)
       if (res2.data.status === 'success') {
         toast.success('會員頭像修改成功')
+        setTrigger(trigger + 1)
       }
     }
 
