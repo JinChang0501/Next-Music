@@ -27,6 +27,7 @@ export default function Nav() {
     handleWakeForgetPassword,
     handleCloseForgetPassword,
     handleCloseLogin,
+    handleWakeRegister,
   } = useLogin()
   //
   //yun
