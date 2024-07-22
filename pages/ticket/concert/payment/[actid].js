@@ -88,8 +88,15 @@ export default function Payment() {
       )
       const products = selectedSeatDetails.map((seat) => ({
         id: seat.tid,
-        name: seat.seat_area + seat.seat_row + seat.seat_number,
-        price: seat.price,
+        member_id: seat.member_id,
+        name:
+          seat.seat_area +
+          ' 區 ' +
+          seat.seat_row +
+          ' 排 ' +
+          seat.seat_number +
+          ' 號',
+        price: seat.price + ' TWD',
       }))
 
       // 發送請求
@@ -100,21 +107,17 @@ export default function Payment() {
         actid,
       })
 
-      if (res.status !== 200) {
-        throw new Error('網絡回應不正常')
-      }
+      if (res.data.status === 'success') {
+        const order = res.data.data.order
+        setOrder(order) // 更新 order 狀態
 
-      const data = res.data
-
-      if (data.status === 'success') {
-        setOrder(data.data.order)
         if (window.confirm('訂單已創建，是否前往 ECPay 付款?')) {
-          // 先連到伺服器後，導向至 ECPay 付款頁面
-          window.location.href = `http://localhost:3005/api/ecpay/payment?id=${data.data.order.id}`
+          // 使用回應中的 order.id，而不是狀態中的 order.id
+          window.location.href = `http://localhost:3005/api/ecpay/payment?id=${order.id}`
         }
       } else {
-        console.error('訂單創建失敗:', data.error)
-        alert(`訂單創建失敗：${data.message}`)
+        console.error('訂單創建失敗:', res.data.error)
+        alert(`訂單創建失敗：${res.data.message}`)
       }
     } catch (error) {
       console.error('請求錯誤:', error)
