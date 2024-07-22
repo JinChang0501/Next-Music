@@ -50,6 +50,7 @@ export default function PreviewUploadImage({
   return (
     <div className="image-upload text-center">
       <label htmlFor="file-input">
+        {isDisable ? '' : ''}
         <img
           src={showImg()}
           className={`${
@@ -63,7 +64,7 @@ export default function PreviewUploadImage({
         id="file-input"
         type="file"
         name="file"
-        accept="image/png, image/jpeg, image/jpg"
+        accept="image/png, image/jpeg, image/jpg, image/webp"
         onChange={handleFileChang}
         disabled={isDisable ? true : false}
       />
