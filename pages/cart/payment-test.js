@@ -5,6 +5,7 @@ import CartLayout from '@/components/layout/cart-layout'
 import ProgressBarTwo from '@/components/product/progressBarTwo'
 // import CartList from '@/components/checkout/cart-list'
 import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
+import { GET_PRODUCTS } from '@/configs/api-path'
 import Transport from '@/components/product/transport'
 import EcPay from '@/components/product/ec-pay'
 
@@ -14,15 +15,72 @@ import Link from 'next/link'
 import { useTotal } from '@/hooks/product/use-Total'
 
 export default function Payment() {
-  const { items, totalQty, totalPrice, clearLocalStorageCart, userProfile } =
+  const { clearLocalStorageCart, userProfile } =
     useTotal()
-
+    const [products, setProducts] = useState([])
+    const cartKey = 'makin-cart'
+    const [cart, setCart] = useState([])
+    const [items, setItems] = useState([])
+    const [totalQty, setTotalQty] = useState(0)
+    const [totalPrice, setTotalPrice] = useState(0)
   const breadcrumbsURL = [
     { label: '周邊商城', href: '/product' },
     { label: '商品資訊', href: '/product[pid]' },
     { label: '購物車', href: '/cart' },
   ]
+// 後端商品
+useEffect(() => {
+  fetch(GET_PRODUCTS, {
+    credentials: 'include',
+  })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error('Failed to fetch products')
+      }
+      return res.json()
+    })
+    .then((data) => {
+      setProducts(data)
+    })
+    .catch((error) => {
+      console.error('Error fetching products', error)
+    })
 
+  setCart(getCartFromStorage())
+}, [])
+// 購物車內容
+useEffect(() => {
+  setItems(
+    cart.map((item) => ({
+      ...item,
+      ...products.find((product) => product.id === item.id),
+    }))
+  )
+
+  let qty = 0
+  let price = 0
+  cart.forEach((item) => {
+    qty += +item.quantity
+    price += item.quantity * item.price
+  })
+  setTotalQty(qty)
+  setTotalPrice(price)
+}, [cart, products])
+// localStorage.getItem
+const getCartFromStorage = () => {
+  let cartData = []
+  const oriData = localStorage.getItem(cartKey)
+  console.log(oriData)
+  try {
+    cartData = JSON.parse(oriData)
+    if (!Array.isArray(cartData)) {
+      cartData = []
+    }
+  } catch (ex) {
+    console.error('Error parsing cart data', ex)
+  }
+  return cartData
+}
   return (
     <>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />

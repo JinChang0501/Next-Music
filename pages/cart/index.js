@@ -34,6 +34,7 @@ export default function CartIndex() {
   //   console.log(cartDatas)
   // }, [cartDatas, router])
 
+  // 後端商品
   useEffect(() => {
     fetch(GET_PRODUCTS, {
       credentials: 'include',
@@ -55,7 +56,7 @@ export default function CartIndex() {
 
     setCart(getCartFromStorage())
   }, [router.query.pid])
-
+  // 購物車內容
   useEffect(() => {
     setItems(
       cart.map((item) => ({
@@ -142,7 +143,7 @@ export default function CartIndex() {
                             cartModifyQty(p.id, e.currentTarget.value)
                           }
                         >
-                          {[1, 2, 3, 4, 5].map((num) => (
+                          {[1, 2, 3, 4, 5, 6].map((num) => (
                             <option key={num} value={num}>
                               {num}
                             </option>
@@ -157,7 +158,8 @@ export default function CartIndex() {
                     </div>
                   </div>
                 </div>
-                <div className={`col-md-2 ${styles['columnCenter']} ${styles['mb-m-40']}`}>
+                <div
+                  className={`col-md-2 ${styles['columnCenter']} ${styles['mb-m-40']}`}>
                   <DesktopBlackNoIconBtnPurple
                     text="刪除"
                     className={`chb-h6`}
@@ -182,33 +184,34 @@ export default function CartIndex() {
           className={`col-12 col-md-8 cart-area ${styles['my-20']} ${styles['columnCenter']} `}
         >
           {totalQty > 0 && (
-  <div className={`row ${styles['mb-40']} ${styles.centerItem}`}>
-    <div
-      className={`col-12 col-md-8 cart-area ${styles['my-20']} ${styles['columnCenter']} `}
-    >
-      <Link href={`/cart/payment`}>
-        <DesktopBlackNoIconBtnPurple
-            text="結帳"
-            className={`chb-h6 ${styles['btn-760']}`}
-          />
-      </Link>
-    </div>
-  </div>
-)}
-{totalQty === 0 && (
-  <div className={`row ${styles['mb-40']} ${styles.centerItem}`}>
-    <div
-      className={`col-12 col-md-8 cart-area ${styles['my-20']} ${styles['columnCenter']} `}
-    >
-      <button
-        className={`chb-h6 ${styles['btn-760']} ${styles['btn-disabled']}`}
-        disabled
-      >
-        結帳
-      </button>
-    </div>
-  </div>
-)}
+            <div className={`row ${styles['mb-40']} ${styles.centerItem}`}>
+              <div 
+                className={`col-12 col-md-8 cart-area ${styles['my-20']} ${styles['columnCenter']} `} >
+                {/* 測試 */}
+                <Link href={`/cart/payment-test`}>
+                {/* 測試 */}
+                  <DesktopBlackNoIconBtnPurple
+                    text="結帳"
+                    className={`chb-h6 ${styles['btn-760']}`}
+                  />
+                </Link>
+              </div>
+            </div>
+          )}
+          {totalQty === 0 && (
+            <div className={`row ${styles['mb-40']} ${styles.centerItem}`}>
+              <div
+                className={`col-12 col-md-8 cart-area ${styles['my-20']} ${styles['columnCenter']} `}
+              >
+                <button
+                  className={`chb-h6 ${styles['btn-760']} ${styles['btn-disabled']}`}
+                  disabled
+                >
+                  購物車是空的
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </>
