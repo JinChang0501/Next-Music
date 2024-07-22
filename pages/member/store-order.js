@@ -6,6 +6,7 @@ import toast, { Toaster } from 'react-hot-toast'
 import { useCallback, useEffect, useState } from 'react'
 import { getStoreOrder } from '@/services/store-order'
 import { useAuth } from '@/hooks/use-auth'
+import Link from 'next/link'
 
 // import { Dropdown } from 'react-bootstrap'
 
@@ -66,6 +67,57 @@ export default function StoreOrder() {
       //getUserData() // 将用户 ID 传递给 getUserById 函数
     }
   }, [auth])
+
+  if (orderData.length === 0) {
+    return (
+      <>
+        <p className="chb-h4 text-purple1">周邊購買紀錄</p>
+        <hr className="custom-hr" />
+        {/* 活動dropdown */}
+        <div className="row">
+          <div className="col-12 col-lg-6 py-3 d-flex flex-row">
+            <div className="col-6 text-center">
+              <label
+                htmlFor="activity"
+                className="chb-h6 flex-fill text-center"
+              >
+                <span className="chb-h5">訂單排序：</span>
+              </label>
+            </div>
+            <div className="col-6">
+              <select
+                required
+                id="activity"
+                name="activity"
+                className="align-item-center h-100 w-100"
+                onChange={getSort}
+                disabled
+              >
+                <option value="desc" className="text-center">
+                  時間由近到遠
+                </option>
+                <option value="asc" className="text-center">
+                  時間由遠到近
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        {/* map寫在下面 */}
+        <div className="row mx-0">
+          <div className="container mt-5 px-0">
+            <div className="table table-bordered text-center">
+              <p className="chr-h6">您還尚未有任何購物紀錄</p>
+              <Link href="/product" className="chr-h6">
+                快來看看我們的熱賣商品吧，點我開始購物
+              </Link>
+            </div>
+          </div>
+        </div>
+      </>
+    )
+  }
+
   return (
     <>
       <p className="chb-h4 text-purple1">周邊購買紀錄</p>

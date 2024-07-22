@@ -5,10 +5,8 @@ import Tab from '@/components/common/tabs/tab'
 import toast, { Toaster } from 'react-hot-toast'
 import { useAuth } from '@/hooks/use-auth'
 import { getCollectionData } from '@/services/collection'
-import { useRouter } from 'next/router'
+import Link from 'next/link'
 export const API_SERVER = 'http://localhost:3005'
-
-import axios from 'axios'
 
 export default function Collection() {
   const [cardData, setCardData] = useState([])
@@ -77,6 +75,80 @@ export default function Collection() {
       // getUserData() // getUserData(auth.userData.id) 將用戶 ID 傳遞给 getTicketOrder 函数，但是抓會員資料是來自authenticate.js
     }
   }, [auth])
+  if (cardData.length === 0) {
+    return (
+      <>
+        <p className="chb-h4 text-purple1">個人收藏</p>
+        <hr className="custom-hr" />
+        {/*  */}
+        <ul className="nav nav-tabs mb-3" id="myTab" role="tablist">
+          {/* col-6 */}
+          {/* 活動 */}
+          <Tab
+            tabName="活動"
+            tabTarget="activity"
+            ariaSelected={true}
+            classNames="col-6 col-md-2"
+          />
+        </ul>
+        {/* 內容 */}
+        <div className="tab-content mb-2" id="myTabContent">
+          <div
+            className="tab-pane fade show active"
+            id="activity"
+            role="tabpanel"
+            aria-labelledby="activity-tab"
+          >
+            {/* 活動dropdown */}
+            <div className="row">
+              <div className="col-12 col-md-5 py-3 d-flex flex-row">
+                <div className="col-6 text-center">
+                  <label
+                    htmlFor="activity"
+                    className="chb-h6 flex-fill text-center"
+                  >
+                    <span className="chb-h5">活動種類：</span>
+                  </label>
+                </div>
+                <div className="col-6">
+                  <select
+                    required
+                    id="activity"
+                    name="activity"
+                    className="align-item-center h-100 w-100"
+                    onChange={getFilter}
+                    disabled
+                  >
+                    <option value="all" className="text-center">
+                      - - 全部 - -
+                    </option>
+                    <option value="concert" className="text-center">
+                      - - 演唱會 - -
+                    </option>
+                    <option value="festival" className="text-center">
+                      - - 音樂祭 - -
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 根據選擇的活動類型顯示不同的內容 */}
+          <div className="row">
+            <div className="container mt-5 px-0">
+              <div className="table table-bordered text-center">
+                <p className="chr-h6">還沒有任何收藏嗎？</p>
+                <Link href="/Activity" className="chr-h6">
+                  立即探索精彩活動，加入你的收藏吧！點我開始
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    )
+  }
   return (
     <>
       <p className="chb-h4 text-purple1">個人收藏</p>

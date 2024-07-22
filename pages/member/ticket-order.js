@@ -8,6 +8,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { getTicketOrder } from '@/services/ticket-order'
 import { useAuth } from '@/hooks/use-auth'
 import Tab from '@/components/common/tabs/tab'
+import Link from 'next/link'
 
 export default function TicketOrder() {
   const [userTicketsCon, setUserTicketCon] = useState([])
@@ -84,6 +85,125 @@ export default function TicketOrder() {
     }
   }, [auth])
 
+  if (userTicketsCon.length === 0) {
+    return (
+      <>
+        <p className="chb-h4 text-purple1">我的票券</p>
+        <hr className="custom-hr" />
+        <ul className="nav nav-tabs mb-3" id="myTab" role="tablist">
+          <Tab
+            tabName="演唱會"
+            tabTarget="concert"
+            ariaSelected={true}
+            classNames="col-6 col-md-3"
+          />
+          <Tab
+            tabName="音樂祭"
+            tabTarget="festival"
+            ariaSelected={false}
+            classNames="col-6 col-md-3"
+          />
+        </ul>
+        {/* ---------------------------------- */}
+        {/* 內容 */}
+        <div className="tab-content mb-2" id="myTabContent">
+          <div
+            className="tab-pane fade show active"
+            id="concert"
+            role="tabpanel"
+            aria-labelledby="concert-tab"
+          >
+            {/* 排序dropdown */}
+            <div className="row">
+              <div className="col-12 col-lg-6 py-3 d-flex flex-row">
+                <div className="col-6 text-center">
+                  <label
+                    htmlFor="activity"
+                    className="chb-h6 flex-fill text-center"
+                  >
+                    <span className="chb-h5">訂單排序：</span>
+                  </label>
+                </div>
+                <div className="col-6">
+                  <select
+                    required
+                    id="activity"
+                    name="activity"
+                    className="align-item-center h-100 w-100"
+                    onChange={getSort}
+                    disabled
+                  >
+                    <option value="desc" className="text-center">
+                      時間由近到遠
+                    </option>
+                    <option value="asc" className="text-center">
+                      時間由遠到近
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div className="container mt-5 px-0">
+              <div className="table table-bordered text-center">
+                <p className="chr-h6">您的票券還是空的呢！</p>
+                <Link href="/Activity" className="chr-h6">
+                  探索精彩活動，開始您的音樂之旅
+                </Link>
+              </div>
+            </div>
+          </div>
+          {/* 2 */}
+          <div
+            className="tab-pane fade"
+            id="festival"
+            role="tabpanel"
+            aria-labelledby="festival-tab"
+          >
+            {/* ---------------------------------------------------- */}
+            {/* 排序dropdown */}
+            <div className="row">
+              <div className="col-12 col-lg-6 py-3 d-flex flex-row">
+                <div className="col-6 text-center">
+                  <label
+                    htmlFor="activity"
+                    className="chb-h6 flex-fill text-center"
+                  >
+                    <span className="chb-h5">訂單排序：</span>
+                  </label>
+                </div>
+                <div className="col-6">
+                  <select
+                    required
+                    id="activity"
+                    name="activity"
+                    className="align-item-center h-100 w-100"
+                    onChange={getSort}
+                    disabled
+                  >
+                    <option value="desc" className="text-center">
+                      時間由近到遠
+                    </option>
+                    <option value="asc" className="text-center">
+                      時間由遠到近
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div className="container mt-5 px-0">
+              <div className="table table-bordered text-center">
+                <p className="chr-h6">您的票券還是空的呢！</p>
+                <Link href="/Activity" className="chr-h6">
+                  探索精彩活動，開始您的音樂之旅
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    )
+  }
+  // -------------------
   return (
     <>
       <p className="chb-h4 text-purple1">我的票券</p>
