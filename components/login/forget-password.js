@@ -172,20 +172,8 @@ export default function ForgetPassword({
               </div>
 
               {/* 新密碼*/}
-              {/* <div className="w-100 mt-3">
-                <label htmlFor="password">新密碼:</label>
-                <input
-                  type="password"
-                  placeholder="輸入新密碼"
-                  className="mb-0"
-                  id="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div> */}
-              {/* NEWWWWWWWWWW */}
               <div className="w-100 mt-3">
-                <label htmlFor="password">密碼:</label>
+                <label htmlFor="password">新密碼:</label>
                 <div className="d-flex">
                   <div className="m-0 w-100">
                     <input
