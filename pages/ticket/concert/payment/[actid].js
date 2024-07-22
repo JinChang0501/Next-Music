@@ -20,7 +20,6 @@ export default function Payment() {
   const [isMobile, setIsMobile] = useState(false)
   const { isStarted } = useCountdown()
   const router = useRouter()
-  const [order, setOrder] = useState({})
 
   const {
     setTickets,
