@@ -20,7 +20,9 @@ export default function TopTrackItem({
         onMouseOver={() => setOver(true)}
         onMouseOut={() => setOver(false)}
       >
-        <div className="eng-h6 text-black60 mx-4">{number}</div>
+        <div className="eng-h6 width-box text-black60 ms-2 ms-md-4">
+          {number}
+        </div>
         <img className="img-size me-4 my-2" src={cover} />
         <div className="chr-h6 text-white me-auto">{song_name}</div>
         {/* <div className="text-white eng-h4 me-4"> */}
@@ -41,11 +43,17 @@ export default function TopTrackItem({
           width: 50px;
           height: 50px;
         }
-         {
-          /* .hover {
-          transform: scale(1.04, 1.04);
-          transition: all 0.3s ease-out;
-        } */
+        .width-box {
+          width: 45px;
+        }
+        @media (max-width: 390px) {
+          .img-size {
+            width: 40px;
+            height: 40px;
+          }
+          .width-box {
+            width: 35px;
+          }
         }
       `}</style>
     </>

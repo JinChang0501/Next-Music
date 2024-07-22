@@ -61,13 +61,6 @@ export default function Artid() {
     fetchData()
   }, [])
 
-  // useEffect(
-  //   (e) => {
-  //     scrollToTop(e)
-  //   },
-  //   [router]
-  // )
-
   console.log(`activity{item} render--------`)
 
   if (!router.isReady) return null
