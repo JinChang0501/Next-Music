@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Calendar, Whisper, Popover, Badge } from 'rsuite'
-import { useFav } from '@/hooks/useFav'
+import { useFav } from '@/hooks/use-Fav'
 import { BsFillStarFill } from 'react-icons/bs'
 import style from './calendar.module.scss'
 

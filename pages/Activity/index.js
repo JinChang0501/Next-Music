@@ -15,7 +15,7 @@ import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import BannerA from '@/components/Activity/banner-a'
 import LeftBar from '@/components/Activity/left-bar'
 import ActivityCard from '@/components/Activity/activity-card'
-import { useFav } from '@/hooks/useFav'
+import { useFav } from '@/hooks/use-Fav'
 
 export default function Activity() {
   const { favorite, handleToggleFav } = useFav()

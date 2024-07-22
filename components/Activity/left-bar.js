@@ -2,7 +2,18 @@ import React from 'react'
 import { BsSearch } from 'react-icons/bs'
 import DesktopBlackPureIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackPureIconBtnPurple'
 
-export default function LeftBar({ handleSearch , onClassChange , onAreaChange , onNameChange, onDateChange, classValue , areaValue , nameValue, handleKeyDown, dateValue }) {
+export default function LeftBar({
+  handleSearch,
+  onClassChange,
+  onAreaChange,
+  onNameChange,
+  onDateChange,
+  classValue,
+  areaValue,
+  nameValue,
+  handleKeyDown,
+  dateValue,
+}) {
   return (
     <>
       {/* left bar start */}
@@ -39,17 +50,17 @@ export default function LeftBar({ handleSearch , onClassChange , onAreaChange , 
               </div>
             </div>
             <div className="mt-3 mt-md-4 mb-2 mb-md-0 col-12">
-            <select 
-            className="form-select input-p3"
-             value={dateValue} 
-             onChange={onDateChange}
-             onKeyDown={handleKeyDown}
-             >
+              <select
+                className="form-select input-p3"
+                value={dateValue}
+                onChange={onDateChange}
+                onKeyDown={handleKeyDown}
+              >
                 <option defaultValue="">-- 選擇日期 --</option>
                 <option value="two_weeks">兩週內</option>
                 <option value="this_month">這個月</option>
                 <option value="next_month">下個月</option>
-            </select>
+              </select>
               {/* <input 
               type="date" 
               className="form-control input-p3 text-white" 
@@ -61,7 +72,7 @@ export default function LeftBar({ handleSearch , onClassChange , onAreaChange , 
               <input
                 type="text"
                 className="form-control input-p3"
-                placeholder="關鍵字"
+                placeholder="活動名稱、地點、介紹"
                 value={nameValue}
                 onChange={onNameChange}
                 onKeyDown={handleKeyDown}
@@ -70,9 +81,9 @@ export default function LeftBar({ handleSearch , onClassChange , onAreaChange , 
                 icon={BsSearch}
                 iconWidth={22}
                 iconHeight={22}
-              // 這裡加上搜尋/篩選，［送出表單］的函式
+                // 這裡加上搜尋/篩選，［送出表單］的函式
                 onclick={handleSearch}
-              // 也可以按 enter 送出表單(待修改)
+                // 也可以按 enter 送出表單(待修改)
                 onKeyDown={handleKeyDown}
               />
             </div>
@@ -82,7 +93,7 @@ export default function LeftBar({ handleSearch , onClassChange , onAreaChange , 
       {/* left bar end */}
       <style jsx>{`
         .outline {
-          border: 1px solid #685BEB;
+          border: 1px solid #685beb;
         }
         .input-p3 {
           border: 1px solid #dbd7ff;
@@ -90,13 +101,17 @@ export default function LeftBar({ handleSearch , onClassChange , onAreaChange , 
           color: white;
         }
         ::placeholder {
-        color: white;
-        opacity: .5;
-        }     
-        input[type="date"]::-webkit-calendar-picker-indicator {
+          color: white;
+          opacity: 0.5;
+        }
+        input[type='date']::-webkit-calendar-picker-indicator {
           cursor: pointer;
-          {/* border-radius: 4px; */}
-          {/* margin-right: 2px; */}
+           {
+            /* border-radius: 4px; */
+          }
+           {
+            /* margin-right: 2px; */
+          }
           opacity: 1;
           filter: invert(1);
         }

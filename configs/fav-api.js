@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 export const API_SERVER = 'http://localhost:3005/api'
 
 export const addFavorite = async (eventId) => {
@@ -7,10 +5,10 @@ export const addFavorite = async (eventId) => {
     const response = await fetch(`${API_SERVER}/favorite`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ eventId }),
-      credentials: 'include'
+      credentials: 'include',
     })
     const data = await response.json()
     console.log(data)
@@ -26,10 +24,10 @@ export const removeFavorite = async (eventId) => {
     const response = await fetch(`${API_SERVER}/favorite`, {
       method: 'DELETE',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ eventId }),
-      credentials: 'include'
+      credentials: 'include',
     })
     const data = await response.json()
     console.log(data)
@@ -45,9 +43,9 @@ export const getFavorites = async () => {
     const response = await fetch(`${API_SERVER}/favorite`, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      credentials: 'include'
+      credentials: 'include',
     })
     const data = await response.json()
     return data

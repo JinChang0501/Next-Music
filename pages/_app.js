@@ -13,8 +13,9 @@ import { CustomProvider } from 'rsuite'
 import zhCN from 'rsuite/locales/zh_CN'
 import { CartProvider } from '@/hooks/product/use-cart'
 import { TicketProvider } from '@/context/ticket/ticketContext'
-import { FavProvider } from '@/hooks/useFav'
+import { FavProvider } from '@/hooks/use-Fav'
 import { CountdownProvider } from '@/context/ticket/countdownContext'
+import { SpotifyAuthProvider } from '@/hooks/use-SpotifyAuth'
 
 import { TotalProvider } from '@/hooks/product/use-Total'
 export default function MyApp({ Component, pageProps }) {
@@ -32,23 +33,25 @@ export default function MyApp({ Component, pageProps }) {
   return (
     <LoginProvider>
       <AuthProvider>
-        <FavProvider>
-          <CustomProvider locale={zhCN}>
-            <TotalProvider>
-              <CartProvider>
-                <TicketProvider>
-                  <ActTabProvider>
-                    <CountdownProvider>
-                      <TabProvider>
-                        {getLayout(<Component {...pageProps} />)}
-                      </TabProvider>
-                    </CountdownProvider>
-                  </ActTabProvider>
-                </TicketProvider>
-              </CartProvider>
-            </TotalProvider>
-          </CustomProvider>
-        </FavProvider>
+        <SpotifyAuthProvider>
+          <FavProvider>
+            <CustomProvider locale={zhCN}>
+              <TotalProvider>
+                <CartProvider>
+                  <TicketProvider>
+                    <ActTabProvider>
+                      <CountdownProvider>
+                        <TabProvider>
+                          {getLayout(<Component {...pageProps} />)}
+                        </TabProvider>
+                      </CountdownProvider>
+                    </ActTabProvider>
+                  </TicketProvider>
+                </CartProvider>
+              </TotalProvider>
+            </CustomProvider>
+          </FavProvider>
+        </SpotifyAuthProvider>
       </AuthProvider>
     </LoginProvider>
   )
