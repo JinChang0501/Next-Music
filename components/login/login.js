@@ -5,6 +5,7 @@ import { initUserData, useAuth } from '@/hooks/use-auth'
 import { checkAuth, login, logout, getUserById } from '@/services/user'
 import RegisterForm from './register-form'
 import LoginForm from './login-form'
+import { useLogin } from '@/hooks/use-login'
 
 export default function Login({
   isVisible,
@@ -13,31 +14,8 @@ export default function Login({
   updateLoginStatus,
   setWakeLogin,
 }) {
-  const [isActive, setIsActive] = useState(false)
-
-  const handleRegisterClick = () => {
-    setIsActive(true)
-  }
-
-  const handleLoginClick = () => {
-    setIsActive(false)
-  }
-
-  // 登入後設定全域的會員資料用
-  const { setAuth } = useAuth()
-
-  //處理檢查登入狀態
-  // const handleCheckAuth = async () => {
-  //   const res = await checkAuth()
-
-  //   console.log(res.data)
-
-  //   if (res.data.status === 'success') {
-  //     toast.success('已登入會員')
-  //   } else {
-  //     toast.error(`非會員身份`)
-  //   }
-  // }
+  const { handleRegisterClick, handleLoginClick, isActive, setIsActive } =
+    useLogin()
 
   // -----------------------------------------------------------------
 
