@@ -94,27 +94,22 @@ export default function Payment() {
 
       // 發送請求
       const res = await axiosInstance.post('/ecpay/create-order', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        data: {
-          amount,
-          products,
-          actid,
-        },
+        amount,
+        products,
+        selectedSeatDetails, // 包含 selectedSeatDetails
+        actid,
       })
 
       if (res.status !== 200) {
-        throw new Error('Network response was not ok')
+        throw new Error('網絡回應不正常')
       }
 
       const data = res.data
 
       if (data.status === 'success') {
         setOrder(data.data.order)
-        if (window.confirm('訂單已創建，是否前往 ecpay 付款?')) {
-          // 先連到node伺服器後，導向至ECPay付款頁面
+        if (window.confirm('訂單已創建，是否前往 ECPay 付款?')) {
+          // 先連到伺服器後，導向至 ECPay 付款頁面
           window.location.href = `http://localhost:3005/api/ecpay/payment?id=${data.data.order.id}`
         }
       } else {

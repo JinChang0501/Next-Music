@@ -30,8 +30,13 @@ export default function TicketSeatBlock({ seat, onDelete }) {
   }, [seat])
 
   const formatSeatNumber = (seatNumber) => {
+    // 檢查 seatNumber 是否為 null 或 undefined
+    if (seatNumber === null || seatNumber === undefined) {
+      return '' // 或其他適當的預設值
+    }
     return seatNumber.toString().padStart(3, '0')
   }
+
   return (
     <>
       <div className={`${style.ticketSeatBlock} chb-h7 position-relative`}>
