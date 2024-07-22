@@ -104,6 +104,7 @@ export default function Nav() {
 
   useEffect(() => {
     getUserData()
+    console.log('router')
   }, [auth.isAuth, router])
   return (
     <>
@@ -199,7 +200,7 @@ export default function Nav() {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  {memberPicData ? (
+                  {auth.isAuth ? (
                     <div className="bg-primary rounded-circle my-auto">
                       <img
                         src={`${API_SERVER}/avatar/${memberPicData}`}
