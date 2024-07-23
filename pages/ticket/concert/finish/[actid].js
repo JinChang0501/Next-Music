@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import WhiteLayout from '@/components/layout/ticket-layout/desktopLayout/whiteLayout'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
-import ProgressBar from '@/components/ticket/progressBar'
+import ProgressBarNoCountdown from '@/components/ticket/progressBarNoCountdown'
 import Order from '@/components/ticket/desktop-concert/third/order'
 import ConcertTicket from '@/components/ticket/desktop-concert/third/concertTicket'
 import Button from '@/components/ticket/desktop-concert/third/button'
@@ -11,12 +11,10 @@ import PhoneButton from '@/components/ticket/phone-concert/phoneButton'
 import style from '@/styles/ticket/concert/third.module.scss'
 import { useTicketContext } from '@/context/ticket/ticketContext'
 import { useRouter } from 'next/router'
-import { useCountdown } from '@/context/ticket/countdownContext'
 import axiosInstance from '@/services/axios-instance'
 
 export default function Finish() {
   const router = useRouter()
-  const { isStarted } = useCountdown()
   const [isMobile, setIsMobile] = useState(false)
   const [orderData, setOrderData] = useState(null)
   const { order_num } = router.query
@@ -109,7 +107,7 @@ export default function Finish() {
         <Breadcrumbs breadcrumbs={breadcrumbsURL} />
       )}
 
-      <ProgressBar isStarted={isStarted} />
+      <ProgressBarNoCountdown />
 
       {/* order */}
       {isMobile ? (

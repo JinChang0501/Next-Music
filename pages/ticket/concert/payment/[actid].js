@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import Mask from '@/components/ticket/mask'
+import Start from '@/components/ticket/start'
 import WhiteLayout from '@/components/layout/ticket-layout/desktopLayout/whiteLayout'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import ProgressBar from '@/components/ticket/progressBar'
@@ -13,13 +15,17 @@ import DesktopWhiteNoIconBtnPurple from '@/components/common/button/desktopWhite
 import PhoneWhiteNoIconBtnPurple from '@/components/common/button/phoneWhiteButton/phoneWhiteNoIconBtnPurple'
 import { useRouter } from 'next/router'
 import { useTicketContext } from '@/context/ticket/ticketContext'
-import { useCountdown } from '@/context/ticket/countdownContext'
 import axiosInstance from '@/services/axios-instance'
+import { useCountdown } from '@/context/ticket/countdownContext'
 
 export default function Payment() {
   const [isMobile, setIsMobile] = useState(false)
-  const { isStarted } = useCountdown()
+  const { isStarted, setIsStarted } = useCountdown()
   const router = useRouter()
+
+  const handleStart = () => {
+    setIsStarted(true)
+  }
 
   const {
     setTickets,
@@ -128,6 +134,16 @@ export default function Payment() {
 
   return (
     <>
+      {!isStarted && (
+        <>
+          {/* Mask */}
+          <Mask />
+
+          {/* Start */}
+          <Start onStart={handleStart} />
+        </>
+      )}
+
       {/* breadcrumb */}
 
       {isMobile ? (
@@ -138,7 +154,7 @@ export default function Payment() {
 
       {/* progressBar + timeCounter */}
 
-      <ProgressBar isStarted={isStarted} />
+      <ProgressBar />
 
       {/* Form */}
 

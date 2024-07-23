@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import Mask from '@/components/ticket/mask'
+import Start from '@/components/ticket/start'
 import WhiteLayout from '@/components/layout/ticket-layout/desktopLayout/whiteLayout'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import ProgressBar from '@/components/ticket/progressBar'
@@ -17,8 +19,12 @@ import { useCountdown } from '@/context/ticket/countdownContext'
 
 export default function Payment() {
   const [isMobile, setIsMobile] = useState(false)
-  const { isStarted } = useCountdown()
+  const { isStarted, setIsStarted } = useCountdown()
   const router = useRouter()
+
+  const handleStart = () => {
+    setIsStarted(true)
+  }
 
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
@@ -94,6 +100,16 @@ export default function Payment() {
   }, [])
   return (
     <>
+      {!isStarted && (
+        <>
+          {/* Mask */}
+          <Mask />
+
+          {/* Start */}
+          <Start onStart={handleStart} />
+        </>
+      )}
+
       {/* breadcrumb */}
 
       {isMobile ? (

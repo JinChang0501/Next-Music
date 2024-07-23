@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import WhiteLayout from '@/components/layout/ticket-layout/desktopLayout/whiteLayout'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
-import ProgressBar from '@/components/ticket/progressBar'
+import ProgressBarNoCountdown from '@/components/ticket/progressBarNoCountdown'
 import Order from '@/components/ticket/desktop-music-festival/order'
 import MusicFestivalTicket from '@/components/ticket/desktop-music-festival/musicFestivalTicket'
 import Button from '@/components/ticket/desktop-music-festival/button'
@@ -11,11 +11,9 @@ import PhoneButton from '@/components/ticket/phone-music-festival/phoneButton'
 import style from '@/styles/ticket/musicFestival/third.module.scss'
 import { useRouter } from 'next/router'
 import { useTicketContext } from '@/context/ticket/ticketContext'
-import { useCountdown } from '@/context/ticket/countdownContext'
 
 export default function Finish() {
   const [isMobile, setIsMobile] = useState(false)
-  const { isStarted } = useCountdown()
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
     { label: '演出活動', href: '/activity' },
@@ -89,7 +87,7 @@ export default function Finish() {
         <Breadcrumbs breadcrumbs={breadcrumbsURL} />
       )}
 
-      <ProgressBar isStarted={isStarted} />
+      <ProgressBarNoCountdown />
 
       {/* order */}
       {isMobile ? <PhoneOrder /> : <Order />}
