@@ -14,7 +14,6 @@ import {
   updateProfileAvatar,
 } from '@/services/user'
 import DesktopWhiteNoIconBtnGray from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnGray'
-import { useContext } from 'react'
 import { useRefresh } from '@/hooks/useRefresh'
 // 定義要在此頁呈現/編輯的會員資料初始物件
 const initUserProfile = {
@@ -29,7 +28,8 @@ const initUserProfile = {
 
 export default function Profile() {
   const [isDisable, setIsDisable] = useState(true)
-  const { trigger, setTrigger } = useRefresh()
+  const { newURL, setNewURl, newFileName, setNewFileName, setUpdate } =
+    useRefresh()
   const handleEdit = (e) => {
     e.preventDefault()
 
@@ -116,23 +116,29 @@ export default function Profile() {
       const formData = new FormData()
       // 對照server上的檔案名稱 req.files.avatar
       formData.append('avatar', selectedFile)
-
+      console.log(selectedFile)
       const res2 = await updateProfileAvatar(formData)
+      //res2是後後端回過來的
+      console.log(res2.data)
 
-      // console.log(res2.data)
-      if (res2.data.status === 'success') {
+      //這個拿到傳過去後端且res回來的檔案名稱
+      console.log(res2.data.data.avatar)
+      const newFile = res2.data.data.avatar
+      setNewFileName(newFile)
+      setUpdate(true)
+      // if (res2.data.status === 'success')
+      if (res2.data.status === 'error') {
         toast.success('會員頭像修改成功')
-        setTrigger(trigger + 1)
       }
     }
-
+    console.log(`我是newFileName: ${newFileName}`)
     if (res.data.status === 'success') {
       toast.success('會員資料修改成功')
     } else {
       toast.error('會員資料修改失敗')
     }
   }
-
+  console.log(userProfile.avatar)
   return (
     <>
       <p className="chb-h4 text-purple1">個人資料</p>
@@ -160,6 +166,7 @@ export default function Profile() {
                 <img src="/blank.webp" alt="" width="200" height="200" />
               </div>
             )}
+
             <div
               className={`text-center chb-h7 mt-3 ${
                 isDisable ? 'text-black40' : 'text-purple1'

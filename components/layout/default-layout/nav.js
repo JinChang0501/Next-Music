@@ -22,6 +22,7 @@ import { Badge } from 'rsuite'
 import { useTotal } from '@/hooks/product/use-Total'
 import { API_SERVER } from '@/configs/api-path'
 import { useRefresh } from '@/hooks/useRefresh'
+import PreviewUploadImage from '@/components/member/desktop-layout/preview-upload-image'
 
 export default function Nav() {
   //
@@ -45,17 +46,19 @@ export default function Nav() {
   // 登入後設定全域的會員資料用
   const { auth, setAuth } = useAuth()
 
-  const { trigger, setTrigger } = useRefresh()
+  const { newFileName, setNewFileName, update, setUpdate } = useRefresh()
+
   // 更新登入狀態
   const updateLoginStatus = (loggedIn) => {
     setIsLoggedIn(loggedIn)
   }
-  // useEffect(() => {}, [totalTrigger])
+
   //處理登出
   const handleLogout = async () => {
     logoutFirebase()
     localStorage.removeItem('makin-cart')
-
+    setNewFileName('')
+    setUpdate(false)
     const res = await logout()
 
     console.log(res.data)
@@ -99,6 +102,7 @@ export default function Nav() {
         }
       }
       getUserData()
+      console.log('這是執行getUserData()')
     } else return
   }, [auth.isAuth])
 
@@ -109,7 +113,7 @@ export default function Nav() {
 
   useEffect(() => {
     console.log('router')
-  }, [auth.isAuth, router, trigger])
+  }, [auth.isAuth, router])
   return (
     <>
       <nav
@@ -168,7 +172,7 @@ export default function Nav() {
                   {/* <span>{totalQty}</span> */}
                 </Link>
               </li>
-              <li className={`me-3 me-md-1 dropdown`}>
+              {/* <li className={`me-3 me-md-1 dropdown`}>
                 <Link
                   className="nav-link"
                   href="#"
@@ -194,7 +198,7 @@ export default function Nav() {
                     </Link>
                   </li>
                 </ul>
-              </li>
+              </li> */}
               <li className={`me-3 me-md-1 dropdown`}>
                 <Link
                   className="nav-link"
@@ -205,8 +209,18 @@ export default function Nav() {
                   aria-expanded="false"
                 >
                   {auth.isAuth ? (
-                    memberPicData ? (
-                      <div className="bg-primary rounded-circle my-auto">
+                    update ? (
+                      <div className="rounded-circle my-auto">
+                        {/* newFileName */}
+                        <img
+                          src={`${API_SERVER}/avatar/${newFileName}`}
+                          style={{ width: '30px', height: '30px' }}
+                          className="rounded-circle"
+                        />
+                      </div>
+                    ) : memberPicData ? (
+                      <div className="rounded-circle my-auto">
+                        {/* newFileName */}
                         <img
                           src={`${API_SERVER}/avatar/${memberPicData}`}
                           style={{ width: '30px', height: '30px' }}

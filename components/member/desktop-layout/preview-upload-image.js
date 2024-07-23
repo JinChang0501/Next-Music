@@ -1,3 +1,4 @@
+import { useRefresh } from '@/hooks/useRefresh'
 import React, { useState, useEffect } from 'react'
 
 export default function PreviewUploadImage({
@@ -10,6 +11,8 @@ export default function PreviewUploadImage({
 }) {
   // 預覽圖片
   const [preview, setPreview] = useState('')
+
+  const { newURL, setNewURL, update, setUpdate } = useRefresh()
 
   // 當選擇檔案更動時建立預覽圖
   useEffect(() => {
@@ -34,6 +37,7 @@ export default function PreviewUploadImage({
       setSelectedFile(null)
     }
   }
+  console.log(newURL)
 
   const showImg = () => {
     if (selectedFile) {
