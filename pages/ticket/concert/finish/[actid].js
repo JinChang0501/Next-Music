@@ -12,11 +12,14 @@ import style from '@/styles/ticket/concert/third.module.scss'
 import { useTicketContext } from '@/context/ticket/ticketContext'
 import { useRouter } from 'next/router'
 import { useCountdown } from '@/context/ticket/countdownContext'
+import axiosInstance from '@/services/axios-instance'
 
 export default function Finish() {
+  const router = useRouter()
   const { isStarted } = useCountdown()
   const [isMobile, setIsMobile] = useState(false)
-  const router = useRouter()
+  const [orderData, setOrderData] = useState(null)
+  const { order_num } = router.query
 
   const {
     setTickets,
@@ -25,6 +28,21 @@ export default function Finish() {
     setSelectedCount,
     setSelectedTickets,
   } = useTicketContext()
+
+  useEffect(() => {
+    if (order_num) {
+      const fetchOrderData = async () => {
+        try {
+          const response = await axiosInstance.get(`/ecpay/order/${order_num}`)
+          setOrderData(response.data)
+        } catch (error) {
+          console.error('獲取訂單資料時出錯:', error)
+        }
+      }
+
+      fetchOrderData()
+    }
+  }, [order_num])
 
   useEffect(() => {
     const handleRouteChange = (url) => {
@@ -94,7 +112,11 @@ export default function Finish() {
       <ProgressBar isStarted={isStarted} />
 
       {/* order */}
-      {isMobile ? <PhoneOrder /> : <Order />}
+      {isMobile ? (
+        <PhoneOrder orderData={orderData} />
+      ) : (
+        <Order orderData={orderData} />
+      )}
 
       {/* ticket */}
       <div className={`${style.orderTicketAccordion}`}>
@@ -117,7 +139,11 @@ export default function Finish() {
               <div className="accordion-body">
                 <div className={`${style.orderTicketBody}`}>
                   {/* ConcertTicket */}
-                  {isMobile ? <PhoneConcertTicket /> : <ConcertTicket />}
+                  {isMobile ? (
+                    <PhoneConcertTicket orderData={orderData} />
+                  ) : (
+                    <ConcertTicket orderData={orderData} />
+                  )}
                 </div>
               </div>
             </div>
