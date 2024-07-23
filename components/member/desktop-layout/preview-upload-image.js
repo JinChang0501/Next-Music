@@ -12,8 +12,6 @@ export default function PreviewUploadImage({
   // 預覽圖片
   const [preview, setPreview] = useState('')
 
-  const { newURL, setNewURL, update, setUpdate } = useRefresh()
-
   // 當選擇檔案更動時建立預覽圖
   useEffect(() => {
     if (!selectedFile) {
@@ -37,7 +35,6 @@ export default function PreviewUploadImage({
       setSelectedFile(null)
     }
   }
-  console.log(newURL)
 
   const showImg = () => {
     if (selectedFile) {
