@@ -18,6 +18,8 @@ export const MEM_GET_STORE = `${API_SERVER}/api/store-order/`
 
 export const GET_PRODUCTS = `${API_SERVER}/api/products/`
 
+export const INSERT_ORDER_DETAIL = `${API_SERVER}/api/order-detail`
+
 // // `${API_SERVER}/address-book/api/${sid}, method: DELETE`
 // export const AB_ITEM_DELETE = `${API_SERVER}/address-book/api`
 
