@@ -136,7 +136,13 @@ export default function CartIndex() {
                     <div className="row g-3 align-items-center">
                       <div className="col-auto">
                         <p className="col-form-label chb-h6">數量: </p>
-                        <select
+                        <input type="number" value={p.quantity} className={`${styles['bg-grey']}`} onChange={(e) => {
+                            let newValue = parseInt(e.currentTarget.value);
+                            if (newValue < 1) {
+                              newValue = 1;
+                            }
+                            cartModifyQty(p.id, newValue)}}/>
+                        {/* <select
                           className="form-select"
                           value={p.quantity}
                           onChange={(e) =>
@@ -148,7 +154,7 @@ export default function CartIndex() {
                               {num}
                             </option>
                           ))}
-                        </select>
+                        </select> */}
                       </div>
                     </div>
                     <div className={`cartTotal ${styles['mt-28']}`}>

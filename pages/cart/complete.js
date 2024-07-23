@@ -77,7 +77,7 @@ export default function Complete() {
           已收到訂單，感謝您的購買
         </div>
         <div className={`second ${styles['my-20']} ${styles['w-800']}`}>
-          <p className="chb-p">訂單編號: 00001111</p>
+          <p className="chb-p">訂單編號: Aa10032</p>
           {/* 表格 */}
           <table className={`table table-bordered border-dark`}>
             <thead>

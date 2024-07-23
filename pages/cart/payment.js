@@ -101,6 +101,30 @@ export default function Payment() {
   console.log(exist)
   console.log(localData)
 
+  // 傳送到後端
+  const handleSubmit = async () => {
+    try {
+      // 使用 fetch 或 axios 等方法發送 POST 請求
+      const res = await fetch(GET_PRODUCTS, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ items }), // 將資料轉換為 JSON 格式
+      })
+
+      if (!res.ok) {
+        throw new Error('Network response was not ok')
+      }
+
+      // 處理後端回應，例如顯示成功訊息
+      const resData = await res.json()
+      console.log('Server response:', resData)
+    } catch (error) {
+      console.error('Error submitting cart:', error)
+      // 處理錯誤，例如顯示錯誤訊息給使用者
+    }
+  }
   return (
     <>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
@@ -155,7 +179,7 @@ export default function Payment() {
           <p className="chb-h5">請確認收貨人基本資訊</p>
           {/* 表單 */}
 
-          <form>
+          <form method="post">
             <div className="mb-3">
               <p for="exampleInputEmail1" className="chb-p">
                 姓名
@@ -196,8 +220,7 @@ export default function Payment() {
               <input
                 type="mobile"
                 className={`form-control ${styles['w-800']}`}
-                value={userProfile.mobile}
-                disabled
+                // value={userProfile.mobile}
               />
               <div id="emailHelp" className="form-text chb-p text-black40">
                 到貨時通知將發送至此手機號碼
@@ -230,7 +253,7 @@ export default function Payment() {
             <DesktopBlackNoIconBtnPurple
               text="確定訂購"
               className={`chb-h6 ${styles['btn-760']}`}
-              onClick={clearLocalStorageCart}
+              onClick={{ handleSubmit, clearLocalStorageCart }}
             />
           </Link>
         </div>
