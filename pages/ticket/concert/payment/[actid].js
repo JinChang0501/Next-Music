@@ -15,14 +15,11 @@ import { useRouter } from 'next/router'
 import { useTicketContext } from '@/context/ticket/ticketContext'
 import { useCountdown } from '@/context/ticket/countdownContext'
 import axiosInstance from '@/services/axios-instance'
-import toast, { Toaster } from 'react-hot-toast'
 
 export default function Payment() {
   const [isMobile, setIsMobile] = useState(false)
   const { isStarted } = useCountdown()
   const router = useRouter()
-  const [order, setOrder] = useState({})
-  const [isLoading, setIsLoading] = useState(true)
 
   const {
     setTickets,
@@ -81,7 +78,6 @@ export default function Payment() {
 
   const handleNext = async () => {
     try {
-      // 計算 amount 和 products
       const amount = selectedSeatDetails.reduce(
         (total, seat) => total + seat.price,
         0
@@ -89,82 +85,36 @@ export default function Payment() {
       const products = selectedSeatDetails.map((seat) => ({
         id: seat.tid,
         member_id: seat.member_id,
-        name:
-          seat.seat_area +
-          ' 區 ' +
-          seat.seat_row +
-          ' 排 ' +
-          seat.seat_number +
-          ' 號',
-        price: seat.price + ' TWD',
+        name: `${seat.seat_area} 區 ${seat.seat_row} 排 ${seat.seat_number} 號`,
+        price: `${seat.price} TWD`,
       }))
 
-      // 發送請求
-      const res = await axiosInstance.post('/ecpay/create-order', {
+      // 發送 POST 請求
+      const res = await axiosInstance.post('/ecpay', {
         amount,
         products,
-        selectedSeatDetails, // 包含 selectedSeatDetails
+        selectedSeatDetails,
         actid,
       })
 
-      if (res.data.status === 'success') {
-        const order = res.data.data.order
-        setOrder(order) // 更新 order 狀態
-
-        if (window.confirm('訂單已創建，是否前往 ECPay 付款?')) {
-          // 使用回應中的 order.id，而不是狀態中的 order.id
-          window.location.href = `http://localhost:3005/api/ecpay/payment?id=${order.id}`
+      // 如果後端返回 htmlContent，則自動提交表單
+      if (res.data.htmlContent) {
+        const tempDiv = document.createElement('div')
+        tempDiv.innerHTML = res.data.htmlContent
+        const form = tempDiv.querySelector('form')
+        if (form) {
+          document.body.appendChild(form)
+          form.submit()
+        } else {
+          console.error('找不到支付表單')
         }
       } else {
-        console.error('訂單創建失敗:', res.data.error)
-        alert(`訂單創建失敗：${res.data.message}`)
+        console.error('無效的回應格式')
       }
     } catch (error) {
-      console.error('請求錯誤:', error)
-      alert('發生網絡錯誤，請稍後再試。')
+      console.error('處理付款過程中出錯:', error)
     }
   }
-
-  const handleConfirm = async (transactionId) => {
-    const res = await axiosInstance.get(
-      `/ecpay/confirm?transactionId=${transactionId}`
-    )
-
-    console.log(res.data)
-
-    if (res.data.status === 'success') {
-      toast.success('付款成功')
-    } else {
-      toast.error('付款失敗')
-    }
-
-    // 處理完畢，關閉載入狀態
-    setIsLoading(false)
-  }
-
-  useEffect(() => {
-    if (router.isReady) {
-      // 這裡確保能得到router.query值
-      console.log(router.query)
-      // http://localhost:3000/order?transactionId=2022112800733496610&id=da3b7389-1525-40e0-a139-52ff02a350a8
-      // 這裡要得到交易id，處理伺服器通知line pay已確認付款，為必要流程
-      // TODO: 除非為不需登入的交易，為提高安全性應檢查是否為會員登入狀態
-      const { transactionId, id } = router.query
-
-      // 如果沒有帶transactionId或id時，導向至首頁(或其它頁)
-      if (!transactionId || !id) {
-        // 關閉載入狀態
-        setIsLoading(false)
-        // 不繼續處理
-        return
-      }
-
-      // 向server發送確認交易api
-      handleConfirm(transactionId)
-    }
-
-    // eslint-disable-next-line
-  }, [router.isReady])
 
   useEffect(() => {
     const handleResize = () => {
@@ -175,14 +125,6 @@ export default function Payment() {
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
-
-  if (isLoading) {
-    return (
-      <>
-        <p>與伺服器連線同步中...</p>
-      </>
-    )
-  }
 
   return (
     <>
