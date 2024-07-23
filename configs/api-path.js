@@ -2,6 +2,7 @@ export const API_SERVER = 'http://localhost:3005'
 
 export const ACT_LIST = `${API_SERVER}/api/activity/`
 // export const AB_ADD_POST = `${API_SERVER}/address-book/add`
+export const ART_LIST = `${API_SERVER}/api/artist/`
 
 // `${API_SERVER}/address-book/api/${sid}`, method: GET 取得單筆資料
 export const ACT_GET_ITEM = `${API_SERVER}/api/activity/`
