@@ -15,72 +15,92 @@ import Link from 'next/link'
 import { useTotal } from '@/hooks/product/use-Total'
 
 export default function Payment() {
-  const { clearLocalStorageCart, userProfile } =
-    useTotal()
-    const [products, setProducts] = useState([])
-    const cartKey = 'makin-cart'
-    const [cart, setCart] = useState([])
-    const [items, setItems] = useState([])
-    const [totalQty, setTotalQty] = useState(0)
-    const [totalPrice, setTotalPrice] = useState(0)
+  const { clearLocalStorageCart, userProfile } = useTotal()
+  const [products, setProducts] = useState([])
+  const cartKey = 'makin-cart'
+  const storeKey = 'store711'
+
+  const [cart, setCart] = useState([])
+  const [items, setItems] = useState([])
+  const [totalQty, setTotalQty] = useState(0)
+  const [totalPrice, setTotalPrice] = useState(0)
   const breadcrumbsURL = [
     { label: '周邊商城', href: '/product' },
     { label: '商品資訊', href: '/product[pid]' },
     { label: '購物車', href: '/cart' },
   ]
-// 後端商品
-useEffect(() => {
-  fetch(GET_PRODUCTS, {
-    credentials: 'include',
-  })
-    .then((res) => {
-      if (!res.ok) {
-        throw new Error('Failed to fetch products')
+  // 後端商品
+  useEffect(() => {
+    fetch(GET_PRODUCTS, {
+      credentials: 'include',
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('Failed to fetch products')
+        }
+        return res.json()
+      })
+      .then((data) => {
+        setProducts(data)
+      })
+      .catch((error) => {
+        console.error('Error fetching products', error)
+      })
+
+    setCart(getCartFromStorage())
+  }, [])
+  // 購物車內容
+  useEffect(() => {
+    setItems(
+      cart.map((item) => ({
+        ...item,
+        ...products.find((product) => product.id === item.id),
+      }))
+    )
+
+    let qty = 0
+    let price = 0
+    cart.forEach((item) => {
+      qty += +item.quantity
+      price += item.quantity * item.price
+    })
+    setTotalQty(qty)
+    setTotalPrice(price)
+  }, [cart, products])
+  // localStorage.getItem
+  const getCartFromStorage = () => {
+    let cartData = []
+    const oriData = localStorage.getItem(cartKey)
+    console.log(oriData)
+    try {
+      cartData = JSON.parse(oriData)
+      if (!Array.isArray(cartData)) {
+        cartData = []
       }
-      return res.json()
-    })
-    .then((data) => {
-      setProducts(data)
-    })
-    .catch((error) => {
-      console.error('Error fetching products', error)
-    })
-
-  setCart(getCartFromStorage())
-}, [])
-// 購物車內容
-useEffect(() => {
-  setItems(
-    cart.map((item) => ({
-      ...item,
-      ...products.find((product) => product.id === item.id),
-    }))
-  )
-
-  let qty = 0
-  let price = 0
-  cart.forEach((item) => {
-    qty += +item.quantity
-    price += item.quantity * item.price
-  })
-  setTotalQty(qty)
-  setTotalPrice(price)
-}, [cart, products])
-// localStorage.getItem
-const getCartFromStorage = () => {
-  let cartData = []
-  const oriData = localStorage.getItem(cartKey)
-  console.log(oriData)
-  try {
-    cartData = JSON.parse(oriData)
-    if (!Array.isArray(cartData)) {
-      cartData = []
+    } catch (ex) {
+      console.error('Error parsing cart data', ex)
     }
-  } catch (ex) {
-    console.error('Error parsing cart data', ex)
+    return cartData
   }
-  return cartData
-}
+
+  const [exist, setExist] = useState(false)
+  const [localData, setLocalData] = useState('')
+
+  useEffect(() => {
+    const checkLocalstorageKey = (key) => {
+      if (localStorage.getItem(key)) {
+        setExist(true)
+      }
+    }
+
+    checkLocalstorageKey(storeKey)
+    const checkData = JSON.parse(localStorage.getItem(storeKey))
+    setLocalData(checkData)
+  }, [])
+
+  console.log(exist)
+  console.log(localData)
+
   return (
     <>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
@@ -192,9 +212,7 @@ const getCartFromStorage = () => {
         <div
           className={`fourth ${styles['mt-40']} ${styles['w-800']}`}
           disabled
-        >
-          
-        </div>
+        ></div>
         <div
           className={`fifth ${styles['mt-40']} ${styles['w-800']} ${styles['center-item']}`}
         >
