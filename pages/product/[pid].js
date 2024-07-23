@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { GET_PRODUCTS } from '@/configs/api-path'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
@@ -7,7 +7,7 @@ import DesktopBlackNoIconBtnBlack from '@/components/common/button/desktopBlackB
 import Link from 'next/link'
 import SwiperBottom from '@/components/product/swiper-bottom'
 import SwiperTop from '@/components/product/swiper-top'
-import CardProduct2 from '@/components/product/card-product2'
+import CardProduct from '@/components/product/card-product'
 import toast, { Toaster } from 'react-hot-toast'
 import { useTotal } from '@/hooks/product/use-Total'
 
@@ -15,11 +15,29 @@ export default function Detail() {
   const [product, setProduct] = useState(null)
   const router = useRouter()
   const [cartData, setCardData] = useState([])
+  const topRef = useRef(null)
+ 
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
     { label: '周邊商城', href: '/product' },
     { label: '商品資訊', href: `/product/${router.query.pid}` },
   ]
+  // ToTop 
+  const scrollToTop = (e) => {
+    //console.log('scrollToTop called')
+    if (topRef.current) {
+      console.log('topRef.current:', topRef.current)
+      topRef.current.scrollIntoView({ behavior: 'smooth' })
+      
+    } else {
+      console.log('topRef.current is null')
+    }
+  }
+
+  useEffect((e)=>{
+    scrollToTop(e)
+  },[router])
+  // ToTop end
 
   useEffect(() => {
     if (router.isReady) {
@@ -89,6 +107,46 @@ export default function Detail() {
   if (!product) {
     return <p>Loading...</p>
   }
+
+  // 為了推薦商品
+    // 亂數取得陣列中的index
+    function getRandomIndexes(array, num) {
+      const indexes = []
+  
+      // 計算原始資料數
+      const arrayLength = array.length
+  
+      // 避免取得資料數量 num > 原始資料數量時造成的 Error
+      const count = num < array.length ? num : array.length
+  
+      while (indexes.length < count) {
+        const randomIndex = Math.floor(Math.random() * arrayLength)
+        if (!indexes.includes(randomIndex)) {
+          indexes.push(randomIndex)
+        }
+      }
+  
+      return indexes
+    }
+  
+    // 對應陣列index取得資料
+    function getRandomElementsFromArray(array, count) {
+      const randomIndexes = getRandomIndexes(array, count)
+      const randomElements = randomIndexes.map(index => array[index])
+      return randomElements
+    }
+  
+    // 根據 aid 從 rows 中選擇對應的資料
+    const mainInfoData = product.rows.find((r) => r.actid === actid)
+    console.log(mainInfoData)
+    if (!mainInfoData) return <div>走錯路囉</div>
+  
+    // 從所有活動的資料裡撈出 4 筆（隨機），且不包含本頁這筆：
+    const recommendData = product.rows.filter((r) => r.actid !== actid)
+    console.log(recommendData)
+    const random4Recommend = getRandomElementsFromArray(recommendData, 4)
+  
+    console.log(random4Recommend)
 
   return (
     <>
@@ -163,7 +221,19 @@ export default function Detail() {
           <div
             className={`row row-cols-1 row-cols-md-4 ${styles['mt-40']} ${styles['mb-100']}`}
           >
-            <CardProduct2 />
+          {random4Recommend.map((v, i) => {
+            return (
+              <CardProduct
+                key={v.actid}
+                imgSrc={v.cover}
+                activity_name={v.actname}
+                artist_name={v.artists}
+                aid={v.actid}
+                scrollToTop={scrollToTop}
+              />
+            )
+          })}
+            {/* <CardProduct2 /> */}
           </div>
         </div>
       </div>

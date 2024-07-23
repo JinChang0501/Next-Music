@@ -15,72 +15,95 @@ import Link from 'next/link'
 import { useTotal } from '@/hooks/product/use-Total'
 
 export default function Payment() {
-  const { clearLocalStorageCart, userProfile } =
-    useTotal()
-    const [products, setProducts] = useState([])
-    const cartKey = 'makin-cart'
-    const [cart, setCart] = useState([])
-    const [items, setItems] = useState([])
-    const [totalQty, setTotalQty] = useState(0)
-    const [totalPrice, setTotalPrice] = useState(0)
+  const { clearLocalStorageCart, userProfile } = useTotal()
+  const [products, setProducts] = useState([])
+  const cartKey = 'makin-cart'
+  const [cart, setCart] = useState([])
+  const [items, setItems] = useState([])
+  const [totalQty, setTotalQty] = useState(0)
+  const [totalPrice, setTotalPrice] = useState(0)
   const breadcrumbsURL = [
     { label: '周邊商城', href: '/product' },
     { label: '商品資訊', href: '/product[pid]' },
     { label: '購物車', href: '/cart' },
   ]
-// 後端商品
-useEffect(() => {
-  fetch(GET_PRODUCTS, {
-    credentials: 'include',
-  })
-    .then((res) => {
-      if (!res.ok) {
-        throw new Error('Failed to fetch products')
+  // 後端商品
+  useEffect(() => {
+    fetch(GET_PRODUCTS, {
+      credentials: 'include',
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('Failed to fetch products')
+        }
+        return res.json()
+      })
+      .then((data) => {
+        setProducts(data)
+      })
+      .catch((error) => {
+        console.error('Error fetching products', error)
+      })
+
+    setCart(getCartFromStorage())
+  }, [])
+  // 購物車內容
+  useEffect(() => {
+    setItems(
+      cart.map((item) => ({
+        ...item,
+        ...products.find((product) => product.id === item.id),
+      }))
+    )
+
+    let qty = 0
+    let price = 0
+    cart.forEach((item) => {
+      qty += +item.quantity
+      price += item.quantity * item.price
+    })
+    setTotalQty(qty)
+    setTotalPrice(price)
+  }, [cart, products])
+  // localStorage.getItem
+  const getCartFromStorage = () => {
+    let cartData = []
+    const oriData = localStorage.getItem(cartKey)
+    console.log(oriData)
+    try {
+      cartData = JSON.parse(oriData)
+      if (!Array.isArray(cartData)) {
+        cartData = []
       }
-      return res.json()
-    })
-    .then((data) => {
-      setProducts(data)
-    })
-    .catch((error) => {
-      console.error('Error fetching products', error)
-    })
-
-  setCart(getCartFromStorage())
-}, [])
-// 購物車內容
-useEffect(() => {
-  setItems(
-    cart.map((item) => ({
-      ...item,
-      ...products.find((product) => product.id === item.id),
-    }))
-  )
-
-  let qty = 0
-  let price = 0
-  cart.forEach((item) => {
-    qty += +item.quantity
-    price += item.quantity * item.price
-  })
-  setTotalQty(qty)
-  setTotalPrice(price)
-}, [cart, products])
-// localStorage.getItem
-const getCartFromStorage = () => {
-  let cartData = []
-  const oriData = localStorage.getItem(cartKey)
-  console.log(oriData)
-  try {
-    cartData = JSON.parse(oriData)
-    if (!Array.isArray(cartData)) {
-      cartData = []
+    } catch (ex) {
+      console.error('Error parsing cart data', ex)
     }
-  } catch (ex) {
-    console.error('Error parsing cart data', ex)
+    return cartData
   }
-  return cartData
-}
+  // 傳送到後端
+  const handleSubmit = async () => {
+    try {
+      // 使用 fetch 或 axios 等方法發送 POST 請求
+      const res = await fetch(GET_PRODUCTS, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ items }), // 將資料轉換為 JSON 格式
+      })
+
+      if (!res.ok) {
+        throw new Error('Network response was not ok')
+      }
+
+      // 處理後端回應，例如顯示成功訊息
+      const resData = await res.json()
+      console.log('Server response:', resData)
+    } catch (error) {
+      console.error('Error submitting cart:', error)
+      // 處理錯誤，例如顯示錯誤訊息給使用者
+    }
+  }
   return (
     <>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
@@ -135,7 +158,7 @@ const getCartFromStorage = () => {
           <p className="chb-h5">請確認收貨人基本資訊</p>
           {/* 表單 */}
 
-          <form>
+          <form method="post">
             <div className="mb-3">
               <p for="exampleInputEmail1" className="chb-p">
                 姓名
@@ -176,8 +199,7 @@ const getCartFromStorage = () => {
               <input
                 type="mobile"
                 className={`form-control ${styles['w-800']}`}
-                value={userProfile.mobile}
-                disabled
+                // value={userProfile.mobile}
               />
               <div id="emailHelp" className="form-text chb-p text-black40">
                 到貨時通知將發送至此手機號碼
@@ -192,9 +214,7 @@ const getCartFromStorage = () => {
         <div
           className={`fourth ${styles['mt-40']} ${styles['w-800']}`}
           disabled
-        >
-          
-        </div>
+        ></div>
         <div
           className={`fifth ${styles['mt-40']} ${styles['w-800']} ${styles['center-item']}`}
         >
@@ -212,7 +232,7 @@ const getCartFromStorage = () => {
             <DesktopBlackNoIconBtnPurple
               text="確定訂購"
               className={`chb-h6 ${styles['btn-760']}`}
-              onClick={clearLocalStorageCart}
+              onClick={{ handleSubmit, clearLocalStorageCart }}
             />
           </Link>
         </div>
