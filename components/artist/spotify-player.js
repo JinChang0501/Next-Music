@@ -5,7 +5,7 @@ const SpotifyPlayer = ({ accessToken }) => {
 
   useEffect(() => {
     if (!accessToken) return
-    // const device_id = '2b061594cb6f248fb5da2f2fb7a6da5af02b0c41'
+    // device_id => SDK會自動生成
     const script = document.createElement('script')
     script.src = 'https://sdk.scdn.co/spotify-player.js'
     script.async = true
@@ -46,6 +46,33 @@ const SpotifyPlayer = ({ accessToken }) => {
     }
   }, [accessToken])
 
+  ///////////////////
+  // 假設您已經有了曲目的 Spotify URI
+  // const play = ({
+  //   spotify_uri,
+  //   playerInstance: {
+  //     _options: { getOAuthToken, id },
+  //   },
+  // }) => {
+  //   getOAuthToken((access_token) => {
+  //     fetch(`https://api.spotify.com/v1/me/player/play?device_id=${id}`, {
+  //       method: 'PUT',
+  //       body: JSON.stringify({ uris: [spotify_uri] }),
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         Authorization: `Bearer ${access_token}`,
+  //       },
+  //     })
+  //   })
+  // }
+
+  // // 使用方法
+  // play({
+  //   playerInstance: player,
+  //   spotify_uri: 'spotify:track:7xGfFoTpQ2E7fRF5lN10tr',
+  // })
+
+  /////////////////
   const handlePlay = () => {
     player.resume().then(() => {
       console.log('Resumed!')
