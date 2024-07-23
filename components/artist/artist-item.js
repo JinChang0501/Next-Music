@@ -14,7 +14,7 @@ export default function ArtistItem({
     <>
       <div className="col-6 col-sm-6 col-md-4 my-2">
         <div
-          className={`card img-minW d-flex justify-content-center ${
+          className={`img-minW d-flex flex-column align-items-center ${
             over ? 'bg-black95 hover outline' : 'bg-dark'
           }`}
           onMouseOver={() => setOver(true)}
@@ -22,21 +22,19 @@ export default function ArtistItem({
         >
           <Link href={`/artist/${artid}`}>
             <div className="p-3">
-              <img
+              <Image
                 src={imgSrc}
-                // width={300}
-                // height={300}
+                width={180}
+                height={180}
                 alt=""
-                className="card-img-top ob-cover rounded-circle"
-                // layout="fill"
+                className="ob-cover rounded-circle"
+                layout="responsive"
                 // objectFit="cover"
               />
             </div>
           </Link>
-          <div className="card-body d-flex flex-column justify-content-center p-3">
-            <div className="card-title chb-h6 text-purple3 to-e m-0">
-              {artist_name}
-            </div>
+          <div className="d-flex flex-column justify-content-center p-3">
+            <div className="chb-h6 text-purple3 to-e m-0">{artist_name}</div>
           </div>
         </div>
       </div>

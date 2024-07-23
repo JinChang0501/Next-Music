@@ -17,6 +17,8 @@ import { FavProvider } from '@/hooks/use-Fav'
 import { CountdownProvider } from '@/context/ticket/countdownContext'
 import { SpotifyAuthProvider } from '@/hooks/use-SpotifyAuth'
 import { RefreshProvider } from '@/hooks/useRefresh'
+import Script from 'next/script'
+
 import { TotalProvider } from '@/hooks/product/use-Total'
 export default function MyApp({ Component, pageProps }) {
   // 導入bootstrap的JS函式庫
@@ -31,31 +33,38 @@ export default function MyApp({ Component, pageProps }) {
     Component.getLayout || ((page) => <DefaultLayout>{page}</DefaultLayout>)
 
   return (
-    <LoginProvider>
-      <RefreshProvider>
-        <AuthProvider>
-          <SpotifyAuthProvider>
-            <FavProvider>
-              <CustomProvider locale={zhCN}>
-                <TotalProvider>
-                  <CartProvider>
-                    <TicketProvider>
-                      <ActTabProvider>
-                        <CountdownProvider>
-                          <TabProvider>
-                            {getLayout(<Component {...pageProps} />)}
-                          </TabProvider>
-                        </CountdownProvider>
-                      </ActTabProvider>
-                    </TicketProvider>
-                  </CartProvider>
-                </TotalProvider>
-              </CustomProvider>
-            </FavProvider>
-          </SpotifyAuthProvider>
-        </AuthProvider>
-      </RefreshProvider>
-    </LoginProvider>
+    <>
+      {/* spotify所需元件 */}
+      <Script
+        src="https://sdk.scdn.co/spotify-player.js"
+        strategy="afterInteractive"
+      />
+      <LoginProvider>
+        <RefreshProvider>
+          <AuthProvider>
+            <SpotifyAuthProvider>
+              <FavProvider>
+                <CustomProvider locale={zhCN}>
+                  <TotalProvider>
+                    <CartProvider>
+                      <TicketProvider>
+                        <ActTabProvider>
+                          <CountdownProvider>
+                            <TabProvider>
+                              {getLayout(<Component {...pageProps} />)}
+                            </TabProvider>
+                          </CountdownProvider>
+                        </ActTabProvider>
+                      </TicketProvider>
+                    </CartProvider>
+                  </TotalProvider>
+                </CustomProvider>
+              </FavProvider>
+            </SpotifyAuthProvider>
+          </AuthProvider>
+        </RefreshProvider>
+      </LoginProvider>
+    </>
   )
 }
 //Jin的自訂Provider -> 我的票夾
