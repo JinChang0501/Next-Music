@@ -28,6 +28,9 @@ export default function OrderInfo({ orderData }) {
     return seatNumber.toString().padStart(3, '0')
   }
 
+  if (!orderData) {
+    return <div>正在加載訂單資料...</div>
+  }
   return (
     <>
       <div className={`${style.orderInfo}`}>
