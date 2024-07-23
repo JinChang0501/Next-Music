@@ -17,6 +17,7 @@ export default function Finish() {
   const { isStarted } = useCountdown()
   const [isMobile, setIsMobile] = useState(false)
   const router = useRouter()
+
   const {
     setTickets,
     setSelectedSeatDetails,
@@ -79,6 +80,7 @@ export default function Finish() {
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
+
   return (
     <>
       {/* breadcrumb */}
