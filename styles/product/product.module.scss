@@ -173,7 +173,8 @@
   background-color: #958cea;
 }
 .bg-grey {
-  background-color: #dbd7ff;
+  background-color: #f0f0f0;
+  width: 80px;
 }
 
 .input-border {
@@ -248,6 +249,15 @@
   padding: 12px 20px;
   color: #685beb;
   border: 1px solid #685beb;
+}
+.pic {
+  width: 500px;
+  object-fit: fill;
+  
+}
+.pic2 {
+  width: 166px;
+  object-fit: fill;
 }
 
 // 手機

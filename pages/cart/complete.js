@@ -7,6 +7,7 @@ import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlack
 import data from '@/data/product/Product.json'
 import Link from 'next/link'
 import { useShip711StoreOpener } from '@/hooks/use-ship-711-store'
+import { useTotal } from '@/hooks/product/use-Total'
 // 會員
 import { getUserById } from '@/services/user'
 import { useAuth } from '@/hooks/use-auth'
@@ -23,15 +24,14 @@ const initUserProfile = {
 export default function Complete() {
   const breadcrumbsURL = [
     { label: '周邊商城', href: '/product' },
-    { label: '商品資訊', href: '/product[pid]' },
     { label: '購物車', href: '/cart' },
   ]
   const { store711, openWindow, closeWindow } = useShip711StoreOpener(
     'http://localhost:3005/api/shipment/711'
   )
   const storeKey = 'store711'
-
-  const [userProfile, setUserProfile] = useState([])
+  const { userProfile } = useTotal()
+  // const [userProfile, setUserProfile] = useState([])
   // 會員
   const { auth } = useAuth()
   const getUserData = async (id) => {
@@ -52,7 +52,7 @@ export default function Complete() {
       }
 
       // 設定到狀態中
-      setUserProfile(dbUserProfile)
+      // setUserProfile(dbUserProfile)
     }
   }
 
