@@ -1,12 +1,22 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { createContext } from 'react'
+import { useAuth } from './use-auth'
 
 const RefreshContext = createContext(null)
 export function RefreshProvider({ children }) {
-  const [trigger, setTrigger] = useState(0)
+  const [newFileName, setNewFileName] = useState('')
+  const [update, setUpdate] = useState(false)
+
   return (
     <>
-      <RefreshContext.Provider value={{ trigger, setTrigger }}>
+      <RefreshContext.Provider
+        value={{
+          newFileName,
+          setNewFileName,
+          update,
+          setUpdate,
+        }}
+      >
         {children}
       </RefreshContext.Provider>
     </>
