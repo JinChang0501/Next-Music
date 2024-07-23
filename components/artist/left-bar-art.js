@@ -5,14 +5,10 @@ import DesktopBlackPureIconBtnPurple from '@/components/common/button/desktopBla
 export default function LeftBarArt({
   handleSearch,
   onClassChange,
-  onAreaChange,
   onNameChange,
-  onDateChange,
   classValue,
-  areaValue,
   nameValue,
   handleKeyDown,
-  dateValue,
 }) {
   return (
     <>
@@ -31,7 +27,10 @@ export default function LeftBarArt({
                 <option value="0">搖滾</option>
                 <option value="1">獨立</option>
                 <option value="2">龐克</option>
-                <option value="3">韓國流行</option>
+                <option value="3">流行</option>
+                <option value="4">金屬</option>
+                <option value="5">民謠</option>
+                <option value="6">爵士藍調</option>
               </select>
             </div>
             <div className="mt-4 mb-4 mb-md-4 col-12 input-group">
@@ -69,17 +68,6 @@ export default function LeftBarArt({
         ::placeholder {
           color: white;
           opacity: 0.5;
-        }
-        input[type='date']::-webkit-calendar-picker-indicator {
-          cursor: pointer;
-           {
-            /* border-radius: 4px; */
-          }
-           {
-            /* margin-right: 2px; */
-          }
-          opacity: 1;
-          filter: invert(1);
         }
         .sticky-40 {
           position: sticky;

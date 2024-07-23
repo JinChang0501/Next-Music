@@ -2,13 +2,13 @@ import React from 'react'
 import { useEffect, useState, useRef } from 'react'
 
 // 帶資料的api
-import { ACT_LIST } from '@/configs/api-path'
+import { ART_LIST } from '@/configs/api-path'
 // import { getFavorites, addFavorite, removeFavorite } from '@/configs/fav-api'
 // 路徑
 import { useRouter } from 'next/router'
 // 判斷登入
-import { useAuth } from '@/hooks/use-auth'
-import { useLogin } from '@/hooks/use-login'
+// import { useAuth } from '@/hooks/use-auth'
+// import { useLogin } from '@/hooks/use-login'
 
 // 先帶前端資料
 import { artists } from '@/data/artist/artists-18'
@@ -16,17 +16,17 @@ import { artists } from '@/data/artist/artists-18'
 // 內容元件
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import BannerA from '@/components/Activity/banner-a'
-import LeftBarArt from '@/components/Activity/left-bar-art'
+import LeftBarArt from '@/components/artist/left-bar-art'
 import ArtistItem from '@/components/artist/artist-item'
-import { useFav } from '@/hooks/use-Fav'
+// import { useFav } from '@/hooks/use-Fav'
 
 export default function Artist() {
-  const { favorite, handleToggleFav } = useFav()
+  // const { favorite, handleToggleFav } = useFav()
   const router = useRouter()
   const topRef = useRef(null)
   // 會員相關，判斷是否登入 auth.isAuth
-  const { handleWakeLogin } = useLogin()
-  const { auth } = useAuth()
+  // const { handleWakeLogin } = useLogin()
+  // const { auth } = useAuth()
 
   // 活動資料陣列
   const [data, setData] = useState({
@@ -34,15 +34,9 @@ export default function Artist() {
     rows: [],
   })
 
-  // 初始值至少要空白陣列。初次render是用初始值，需要對應伺服器回應的資料類型。
-  // 在應用程式執行過程中，一定要保持狀態的資料類型(一定要是陣列)
-  // const [activity, setActivity] = useState([])
-
   // 查詢條件用(這裡用的初始值都與伺服器的預設值一致)
   const [keyword, setKeyword] = useState('')
-  const [actClass, setActClass] = useState('')
-  const [area, setArea] = useState('')
-  const [dateRange, setDateRange] = useState('')
+  const [genres, setGenres] = useState('')
 
   // 麵包屑 內容定義
   const breadcrumbsURL = [
@@ -51,12 +45,12 @@ export default function Artist() {
   ]
 
   // 與伺服器作fetch獲得資料(建議寫在useEffect上面與外面比較容易維護管理)
-  const getActivity = async (params = {}) => {
+  const getArtist = async (params = {}) => {
     // 轉換為查詢字串
     // console.log(router.query) // 是空的
     console.log(params) // keyword, actClass, area, dataRange
     const searchParams = new URLSearchParams(params)
-    const url = `${ACT_LIST}?${searchParams.toString()}`
+    const url = `${ART_LIST}?${searchParams.toString()}`
 
     // 使用try-catch陳述式，讓和伺服器連線程式作錯誤處理
     try {
@@ -83,14 +77,12 @@ export default function Artist() {
       // sort: orderby.sort,
       // order: orderby.order,
       keyword: keyword,
-      actClass: actClass,
-      area: area,
-      dateRange: dateRange,
+      genres: genres,
     }
     console.log('params1')
     console.log(params)
 
-    getActivity(params)
+    getArtist(params)
     scrollToTop()
   }
 
@@ -118,12 +110,10 @@ export default function Artist() {
   useEffect(() => {
     const params = {
       keyword: keyword,
-      actClass: actClass,
-      area: area,
-      dateRange: dateRange,
+      genres: genres,
     }
 
-    getActivity(params)
+    getArtist(params)
     console.log('params2')
     console.log(params)
     // eslint-disable-next-line
@@ -137,21 +127,13 @@ export default function Artist() {
       <div className="music-container mt-3 mt-md-5">
         <div className="row">
           <LeftBarArt
-            classValue={actClass}
+            classValue={genres}
             onClassChange={(e) => {
-              setActClass(e.target.value)
-            }}
-            areaValue={area}
-            onAreaChange={(e) => {
-              setArea(e.target.value)
+              setGenres(e.target.value)
             }}
             nameValue={keyword}
             onNameChange={(e) => {
               setKeyword(e.target.value)
-            }}
-            dateValue={dateRange}
-            onDateChange={(e) => {
-              setDateRange(e.target.value)
             }}
             handleSearch={handleSearch}
             handleKeyDown={handleKeyDown}
@@ -159,13 +141,13 @@ export default function Artist() {
           <div className="col-md-9 col-12 mb-5">
             <div className="chb-h4 mb-3 text-purple1">音樂人列表</div>
             <div className="row d-flex">
-              {artists.map((r, i) => {
+              {data.rows.map((r, i) => {
                 return (
                   <ArtistItem
                     key={r.id}
-                    imgSrc={r.images[1].url}
-                    artist_name={r.name}
-                    artid={r.id}
+                    imgSrc={r.photo}
+                    artist_name={r.art_name}
+                    artid={r.spotify_id}
                   />
                 )
               })}
