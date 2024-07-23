@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2024-07-22 19:17:03
+-- 產生時間： 2024-07-23 05:36:21
 -- 伺服器版本： 8.0.36
 -- PHP 版本： 8.1.25
 
@@ -432,7 +432,8 @@ INSERT INTO `member` (`id`, `name`, `email`, `password`, `gender`, `mobile`, `bi
 (44, '張殷睿', 'jinchang0501@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, '106286310148328124364', 'https://lh3.googleusercontent.com/a/ACg8ocKqLf7dYEU6tOkkm5pqM8rGCum1jGhi6iYelsIIZA6xoVcoAA=s96-c', '2024-07-15 13:41:13', '2024-07-15 13:41:13'),
 (45, '0716測試', 'test0716@@grr.la', '$2b$10$t/jkYlnvd/WgFbFMm7fs1OvY2zQhNZW34aC9nXLBykWrDKAEH2Zxu', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-07-17 15:39:16', '2024-07-17 15:39:16'),
 (46, '測試TEST', 'test0716@grr.la', '$2b$10$SkGAGK50J2KqOzo8ZR9IvONIWTct153hg8FlJR879XYaQp22EslNa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-07-17 15:40:54', '2024-07-17 15:42:22'),
-(47, '張殷睿', 'iamjin910501@gmail.com', '$2b$10$YEXZfyz4YnCiCcrQgmVW4ejthezbRpe82E2afbuPYj0kUQgGt8a/.', 'male', '0912345678', '2024-01-17', '106台北市大安區復興南路一段390號2樓', '47.jpg', NULL, NULL, '2024-07-17 16:40:14', '2024-07-19 16:35:05');
+(47, '張殷睿', 'iamjin910501@gmail.com', '$2b$10$YEXZfyz4YnCiCcrQgmVW4ejthezbRpe82E2afbuPYj0kUQgGt8a/.', 'male', '0912345678', '2024-01-17', '106台北市大安區復興南路一段390號2樓', '47.jpg', NULL, NULL, '2024-07-17 16:40:14', '2024-07-19 16:35:05'),
+(49, '張殷睿', 'iamjin910501@gmail.com', NULL, '', '', NULL, '', '49.jpg', '106479056515652230705', 'https://lh3.googleusercontent.com/a/ACg8ocIYlffyN8E1YB9PsadaUm894vQ6ArDo9BboGc59XfTwLjzB=s96-c', '2024-07-23 11:33:28', '2024-07-23 11:35:44');
 
 -- --------------------------------------------------------
 
@@ -544,13 +545,7 @@ INSERT INTO `order_detail` (`id`, `order_num`, `member_id`, `product_id`, `quant
 (27, 'Aa10027', 24, 15, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
 (28, 'Aa10028', 5, 16, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
 (29, 'Aa10029', 16, 7, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(30, 'Aa10030', 1, 8, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(31, 'Aa10031', 41, 1, 1, '現金', '711取貨付款', '2024-07-15 15:17:56', '', 0, 1111111, 863698, '豫銘門市', '台北市大安區大安路二段102號'),
-(32, 'Aa10031', 41, 4, 2, '現金', '711取貨付款', '2024-07-15 15:17:56', '', 0, 1111111, 863698, '豫銘門市', '台北市大安區大安路二段102號'),
-(33, 'Aa10031', 41, 23, 1, '現金', '711取貨付款', '2024-07-15 15:17:56', '', 0, 1111111, 863698, '豫銘門市', '台北市大安區大安路二段102號'),
-(34, 'Aa10032', 42, 1, 1, '現金', '711取貨付款', '2024-07-15 15:17:56', '', 0, 1111111, 863698, '豫銘門市', '台北市大安區大安路二段102號'),
-(35, 'Aa10032', 42, 4, 2, '現金', '711取貨付款', '2024-07-15 15:17:56', '', 0, 1111111, 863698, '豫銘門市', '台北市大安區大安路二段102號'),
-(36, 'Aa10032', 42, 23, 1, '現金', '711取貨付款', '2024-07-15 15:17:56', '', 0, 1111111, 863698, '豫銘門市', '台北市大安區大安路二段102號');
+(30, 'Aa10030', 1, 8, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -3747,7 +3742,7 @@ ALTER TABLE `markets`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `member`
 --
 ALTER TABLE `member`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `nclass`
@@ -3765,7 +3760,7 @@ ALTER TABLE `notification`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `order_detail`
 --
 ALTER TABLE `order_detail`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `otp`
