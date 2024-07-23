@@ -44,6 +44,7 @@ export default function Nav() {
   const [memberPicData, setMemberPicData] = useState('')
   // 登入後設定全域的會員資料用
   const { auth, setAuth } = useAuth()
+
   const { trigger, setTrigger } = useRefresh()
   // 更新登入狀態
   const updateLoginStatus = (loggedIn) => {
@@ -74,27 +75,32 @@ export default function Nav() {
     }
   }
 
-  const getUserData = async () => {
-    const res = await getUserPic()
-    console.log('----------------------')
-    console.log(res)
-    console.log(res.data)
+  useEffect(() => {
+    if (auth.isAuth) {
+      const getUserData = async () => {
+        const res = await getUserPic()
+        console.log('----------------------')
+        console.log(res)
+        console.log(res.data)
 
-    if (res.status === 'success') {
-      // 以下為同步化目前後端資料庫資料，與這裡定義的初始化會員資料物件的資料
-      console.log(res.data.result)
-      //頭像
-      // console.log(res.data.result[0].avatar)
-      const memberPic = res.data.result[0].avatar
-      console.log(memberPic)
-      setMemberPicData(memberPic)
-      // 設定到狀態中
+        if (res.status === 'success') {
+          // 以下為同步化目前後端資料庫資料，與這裡定義的初始化會員資料物件的資料
+          console.log(res.data.result)
+          //頭像
+          // console.log(res.data.result[0].avatar)
+          const memberPic = res.data.result[0].avatar
+          console.log(memberPic)
+          setMemberPicData(memberPic)
+          // 設定到狀態中
 
-      console.log('會員頭像載入成功')
-    } else {
-      console.log(`會員頭像載入失敗`)
-    }
-  }
+          console.log('會員頭像載入成功')
+        } else {
+          console.log(`會員頭像載入失敗`)
+        }
+      }
+      getUserData()
+    } else return
+  }, [auth.isAuth])
 
   // 同步 isLoggedIn 狀態與 auth.isAuth
   useEffect(() => {
@@ -102,7 +108,6 @@ export default function Nav() {
   }, [auth.isAuth])
 
   useEffect(() => {
-    getUserData()
     console.log('router')
   }, [auth.isAuth, router, trigger])
   return (
