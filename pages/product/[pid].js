@@ -4,17 +4,23 @@ import { GET_PRODUCTS } from '@/configs/api-path'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import styles from '@/styles/product/product.module.scss'
 import DesktopBlackNoIconBtnBlack from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnBlack'
+import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
 import Link from 'next/link'
 import SwiperBottom from '@/components/product/swiper-bottom'
-import SwiperTop from '@/components/product/swiper-top'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules'
 import CardProduct from '@/components/product/card-product'
 import toast, { Toaster } from 'react-hot-toast'
 import { useTotal } from '@/hooks/product/use-Total'
 
 export default function Detail() {
   const [product, setProduct] = useState(null)
+  const [products, setProducts] = useState([])
+  const [thumbsSwiper, setThumbsSwiper] = useState(null)
   const router = useRouter()
   const [cartData, setCardData] = useState([])
+  const { id } = router.query  // 設定路由參數給 pid (參照)
+  const pid = parseInt(id)   // 型態轉換：字串轉數字！！
   const topRef = useRef(null)
  
   const breadcrumbsURL = [
@@ -33,10 +39,10 @@ export default function Detail() {
       console.log('topRef.current is null')
     }
   }
-
   useEffect((e)=>{
     scrollToTop(e)
   },[router])
+ 
   // ToTop end
 
   useEffect(() => {
@@ -58,6 +64,8 @@ export default function Detail() {
           } else {
             console.warn(`Product with id ${pid} not found`)
           }
+          // 设置所有产品数据到 state 中，以便后续使用
+        setProducts(data);
         })
         .catch((error) => {
           console.error('Error fetching products', error)
@@ -108,7 +116,7 @@ export default function Detail() {
     return <p>Loading...</p>
   }
 
-  // 為了推薦商品
+  // 推薦商品
     // 亂數取得陣列中的index
     function getRandomIndexes(array, num) {
       const indexes = []
@@ -135,15 +143,8 @@ export default function Detail() {
       const randomElements = randomIndexes.map(index => array[index])
       return randomElements
     }
-  
-    // 根據 aid 從 rows 中選擇對應的資料
-    const mainInfoData = product.rows.find((r) => r.actid === actid)
-    console.log(mainInfoData)
-    if (!mainInfoData) return <div>走錯路囉</div>
-  
     // 從所有活動的資料裡撈出 4 筆（隨機），且不包含本頁這筆：
-    const recommendData = product.rows.filter((r) => r.actid !== actid)
-    console.log(recommendData)
+    const recommendData = products.filter((r) => r.pid !== pid)
     const random4Recommend = getRandomElementsFromArray(recommendData, 4)
   
     console.log(random4Recommend)
@@ -156,8 +157,52 @@ export default function Detail() {
           <div
             className={`position-sticky ${styles['w-456']} ${styles['ml-136']}`}
           >
-            <SwiperTop />
-            <SwiperBottom />
+            {/* <SwiperTop/> */}
+            <Swiper
+        style={{
+          '--swiper-navigation-color': '#685beb',
+          '--swiper-pagination-color': '#685beb',
+        }}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        spaceBetween={10}
+        navigation={true}
+        thumbs={{ swiper: thumbsSwiper }}
+        modules={[Autoplay, FreeMode, Navigation, Thumbs]}
+        className={`mySwiper2`}
+      >
+        <SwiperSlide>
+          <img src={`/images/product/list/${product.picture}`} className={`${styles['pic']}`}/>
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={`/images/product/list/${product.picture2}`} className={`${styles['pic']}`}/>
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={`/images/product/list/${product.picture3}`} className={`${styles['pic']}`}/>
+        </SwiperSlide>
+      </Swiper>
+            {/* <SwiperBottom /> */}
+            <Swiper
+        onSwiper={setThumbsSwiper}
+        spaceBetween={10}
+        slidesPerView={3}
+        freeMode={true}
+        watchSlidesProgress={true}
+        modules={[FreeMode, Navigation, Thumbs]}
+        className={`mySwiper`}
+      >
+        <SwiperSlide>
+          <img src={`/images/product/list/${product.picture}`} className={`${styles['pic2']}`}/>
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={`/images/product/list/${product.picture2}`} className={`${styles['pic2']}`}/>
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={`/images/product/list/${product.picture3}`} className={`${styles['pic2']}`}/>
+        </SwiperSlide>
+      </Swiper>
           </div>
         </div>
         <div className="col-sm-3">
@@ -221,19 +266,44 @@ export default function Detail() {
           <div
             className={`row row-cols-1 row-cols-md-4 ${styles['mt-40']} ${styles['mb-100']}`}
           >
-          {random4Recommend.map((v, i) => {
-            return (
-              <CardProduct
-                key={v.actid}
-                imgSrc={v.cover}
-                activity_name={v.actname}
-                artist_name={v.artists}
-                aid={v.actid}
-                scrollToTop={scrollToTop}
-              />
-            )
+            {random4Recommend.map((v) => {
+              return (
+                <div
+                  key={v.ppid}
+                  className={`card ${styles['card']} ${styles['mt-28']}`}
+                >
+                  <img
+                    src={`/images/product/list/${v.picture}`}
+                    className="card-img-top"
+                    alt="..."
+                  />
+                  <div className={`card-body ${styles['bg-bk']}`}>
+                    <p
+                      className={`card-text chb-h6 text-purple3 ${styles['text-center']}`}
+                    >
+                      {v.name}
+                    </p>
+                    <p className={`card-text chb-h6 text-white ${styles['text-center']}`}>{v.activity}</p>
+                    <p
+                      className={`card-text chb-h6 text-white ${styles['text-center']}`}
+                    >
+                      NT$ {v.price}
+                    </p>
+                    <div className={`${styles['text-center']}`}>
+                      <Link href={`/product/${v.id}`} >
+                        <DesktopBlackNoIconBtnPurple
+                          text="詳細資訊"
+                          className={`chb-p`}
+                          onClick={{ scrollToTop }}
+                        />
+                      </Link>
+                      
+                    </div>
+                  </div>
+                </div>
+              );
+              
           })}
-            {/* <CardProduct2 /> */}
           </div>
         </div>
       </div>

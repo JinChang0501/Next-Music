@@ -21,7 +21,6 @@ export default function CartIndex() {
 
   const breadcrumbsURL = [
     { label: '周邊商城', href: '/product' },
-    { label: '商品資訊', href: '/product/[pid]}' },
     { label: '購物車', href: '/cart' },
   ]
   // const checkCart = () => {
