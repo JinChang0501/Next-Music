@@ -113,10 +113,30 @@ export default function Profile() {
 
     // 上傳頭像用，有選擇檔案時再上傳
     if (selectedFile) {
+      if (
+        selectedFile.type !== 'image/jpeg' &&
+        selectedFile.type !== 'image/png' &&
+        selectedFile.type !== 'image/jpg'
+      ) {
+        toast.error('請勿上傳非jpeg、png、jpg的檔案格式')
+        setIsDisable(false)
+        setSelectedFile(null)
+        return
+      }
+      if (selectedFile.size > 1048576) {
+        toast.error('請勿上傳超過1MB檔案大小的圖片')
+        setIsDisable(false)
+        setSelectedFile(null)
+        return
+      }
       const formData = new FormData()
       // 對照server上的檔案名稱 req.files.avatar
       formData.append('avatar', selectedFile)
+      console.log('----------------')
       console.log(selectedFile)
+      console.log(selectedFile.name)
+
+      console.log(`我是selectedFile${{ selectedFile }}`)
       const res2 = await updateProfileAvatar(formData)
       //res2是後後端回過來的
       console.log(res2.data)
@@ -173,6 +193,15 @@ export default function Profile() {
               }`}
             >
               {isDisable ? '點擊編輯即可上傳頭像' : '現在可以上傳頭像囉!'}
+            </div>
+            <div
+              className={`text-center chb-h7 mt-3 ${
+                isDisable ? 'text-black40' : 'text-purple1'
+              }`}
+            >
+              {isDisable ? '檔案大小最大2MB!' : '檔案大小最大2MB!'}
+              <br />
+              {isDisable ? '檔案限制JPG、JPEG、PNG' : '檔案限制JPG、JPEG、PNG'}
             </div>
           </div>
           <div className="col-12 col-md-7 mx-auto">
