@@ -74,9 +74,9 @@ export default function Artid() {
   }, [router.isReady, artid])
 
   useEffect(() => {
-    if (!isTokenLoaded) return
+    if (!isTokenLoaded || !router.isReady) return
     fetchData()
-  }, [isTokenLoaded])
+  }, [isTokenLoaded, router.isReady])
 
   if (!router.isReady) return null
 
@@ -100,7 +100,7 @@ export default function Artid() {
             {tracks.map((v, i) => {
               return (
                 <TopTrackItem
-                  key={v.id}
+                  key={v.uri}
                   number={i + 1}
                   cover={v.album.images[2].url}
                   song_name={v.name}
