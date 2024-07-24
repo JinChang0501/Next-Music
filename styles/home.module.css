@@ -1,4 +1,11 @@
 /* //#region chloe 測試 */
+.swiper-slide {
+  margin-right: 0 !important;
+}
+
+.swiper-width{
+  width: 350px !important;
+}
 
 .artist-img-s {
   width: 100%;
@@ -120,6 +127,10 @@
   background-position: center;
   background-image: url("https://i.postimg.cc/Bb7JvBYJ/temp-Imagejx-Wr-Mn.avif");
 }
+
+
+
+
 
 
 @media (max-width: 390px) {
