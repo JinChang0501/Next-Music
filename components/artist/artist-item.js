@@ -28,8 +28,6 @@ export default function ArtistItem({
                 height={180}
                 alt=""
                 className="ob-cover rounded-circle"
-                layout="responsive"
-                // objectFit="cover"
               />
             </div>
           </Link>
