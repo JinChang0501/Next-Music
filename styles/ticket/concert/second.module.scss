@@ -30,3 +30,22 @@
 }
 
 // #endregion accordion marginTop
+
+// #region sweetalert2
+
+@media (max-width: 390px) {
+  .maskCustomSwal {
+    width: 300px;
+    font-size: 12px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 390px) {
+  .customSwal {
+    width: 250px;
+    font-size: 12px;
+  }
+}
+
+// #endregion sweetalert2

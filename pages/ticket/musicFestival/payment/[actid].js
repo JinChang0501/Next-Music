@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import Mask from '@/components/ticket/mask'
-import Start from '@/components/ticket/start'
 import WhiteLayout from '@/components/layout/ticket-layout/desktopLayout/whiteLayout'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import ProgressBar from '@/components/ticket/progressBar'
@@ -17,15 +15,13 @@ import { useRouter } from 'next/router'
 import { useTicketContext } from '@/context/ticket/ticketContext'
 import { useCountdown } from '@/context/ticket/countdownContext'
 import axiosInstance from '@/services/axios-instance'
+import Swal from 'sweetalert2'
+// import toast, { Toaster } from 'react-hot-toast'
 
 export default function Payment() {
   const router = useRouter()
   const [isMobile, setIsMobile] = useState(false)
   const { isStarted, setIsStarted } = useCountdown()
-
-  const handleStart = () => {
-    setIsStarted(true)
-  }
 
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
@@ -43,6 +39,37 @@ export default function Payment() {
     setSelectedTickets,
     paymentMethod,
   } = useTicketContext()
+
+  useEffect(() => {
+    const backdropImage = isMobile
+      ? '/images/ticket/giphy2.gif'
+      : '/images/ticket/giphy.gif'
+
+    Swal.fire({
+      title: '請於10分鐘內完成購買',
+      icon: 'warning',
+      color: 'black',
+      backdrop: `
+        rgba(0,0,0,0.4)
+        url("${backdropImage}")
+        left top
+        no-repeat
+      `,
+      confirmButtonText: '開始',
+      allowOutsideClick: false,
+      customClass: {
+        popup: style.maskCustomSwal,
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setIsStarted(true)
+      }
+    })
+
+    return () => {
+      Swal.close()
+    }
+  }, [isMobile, setIsStarted, router])
 
   useEffect(() => {
     const handleRouteChange = (url) => {
@@ -86,7 +113,15 @@ export default function Payment() {
 
   const handleNext = async () => {
     if (!paymentMethod) {
-      alert('請選擇付款方式')
+      Swal.fire({
+        title: '請選擇付款方式',
+        icon: 'warning',
+        allowOutsideClick: false,
+        customClass: {
+          popup: style.customSwal,
+        },
+      })
+      // toast.error('請選擇付款方式')
       return
     }
 
@@ -162,16 +197,6 @@ export default function Payment() {
 
   return (
     <>
-      {!isStarted && (
-        <>
-          {/* Mask */}
-          <Mask />
-
-          {/* Start */}
-          <Start onStart={handleStart} />
-        </>
-      )}
-
       {/* breadcrumb */}
 
       {isMobile ? (

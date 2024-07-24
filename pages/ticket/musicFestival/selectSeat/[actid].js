@@ -14,6 +14,8 @@ import PhoneWhiteNoIconBtnPurple from '@/components/common/button/phoneWhiteButt
 import { useRouter } from 'next/router'
 import { useTicketContext } from '@/context/ticket/ticketContext'
 import { GET_TICKET } from '@/configs/api-path'
+import Swal from 'sweetalert2'
+// import toast, { Toaster } from 'react-hot-toast'
 
 export default function SelectSeat() {
   const breadcrumbsURL = [
@@ -107,7 +109,15 @@ export default function SelectSeat() {
 
   const handleNext = () => {
     if (!isTicketSelected()) {
-      alert('尚未選擇票數')
+      Swal.fire({
+        title: '尚未選擇票數',
+        icon: 'warning',
+        allowOutsideClick: false,
+        customClass: {
+          popup: style.customSwal,
+        },
+      })
+      // toast.error('請選擇付款方式')
       return
     }
 
