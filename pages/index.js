@@ -23,6 +23,17 @@ import 'swiper/css/pagination'
 import { FreeMode, Pagination } from 'swiper/modules'
 
 export default function Index() {
+  const [isDesktop, setIsDesktop] = useState(true)
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth > 576) // 螢幕寬度 > 576px 為電腦板
+    }
+    handleResize() // 初始設定一次
+
+    window.addEventListener('resize', handleResize) // 監聽視窗大小變化
+
+    return () => window.removeEventListener('resize', handleResize) // 清除事件監聽器
+  }, [])
   const { handleGotoMember, handleWakeLogin } = useLogin()
   const { auth } = useAuth()
 
@@ -156,28 +167,29 @@ export default function Index() {
 
       {/* 音樂人 end */}
       {/* swiper套件 */}
-      <div className="music-container mb-5">
-        <Swiper
-          slidesPerView={3.85}
-          spaceBetween={0}
-          freeMode={true}
-          // pagination={{
-          //   clickable: true,
-          // }}
-          modules={[FreeMode, Pagination]}
-          className="bg-purple1"
-        >
-          {artistData.map((v, i) => {
-            return (
-              <SwiperSlide
-                key={i}
-                className={`mx-0 ${styles['swiper-slide']} ${styles['swiper-width']}`}
-              >
-                <ArtCard key={i} photo={v.photo} art_name={v.art_name} />
-              </SwiperSlide>
-            )
-          })}
-          {/* {artistData.map((v, i) => (
+      {isDesktop ? (
+        <div className="music-container mb-5">
+          <Swiper
+            slidesPerView={5}
+            spaceBetween={0}
+            freeMode={true}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[FreeMode, Pagination]}
+            className="bg-purple1"
+          >
+            {artistData.map((v, i) => {
+              return (
+                <SwiperSlide
+                  key={i}
+                  className={`mx-0 ${styles['swiper-slide']} ${styles['swiper-width']}`}
+                >
+                  <ArtCard key={i} photo={v.photo} art_name={v.art_name} />
+                </SwiperSlide>
+              )
+            })}
+            {/* {artistData.map((v, i) => (
             <SwiperSlide
               key={i}
               className={`mx-0 ${styles['swiper-slide']} ${styles['swiper-width']}`}
@@ -185,8 +197,15 @@ export default function Index() {
               <ArtCard photo={v.photo} art_name={v.art_name} />
             </SwiperSlide>
           ))} */}
-        </Swiper>
-      </div>
+          </Swiper>
+        </div>
+      ) : (
+        <div className="music-container mb-5 d-flex">
+          {artistData.map((v, i) => {
+            return <ArtCard key={i} photo={v.photo} art_name={v.art_name} />
+          })}
+        </div>
+      )}
     </>
   )
 }
