@@ -1,5 +1,5 @@
 import { API_SPOTIFY } from '@/configs/spotify-api'
-import { useSpotifyAuth } from '@/hooks/use-SpotifyAuth'
+import { useSpotifyAuth } from '@/hooks/use-SpotifyAuth0724'
 import { useCallback } from 'react'
 
 // 單個藝人的熱門歌曲

@@ -1,15 +1,28 @@
 import { API_SPOTIFY } from '@/configs/spotify-api'
-import { useSpotifyAuth } from '@/hooks/use-SpotifyAuth'
-import { useCallback } from 'react'
+import { useSpotifyAuth } from '@/hooks/use-SpotifyAuth0724'
+import React, { useState, useEffect, useCallback } from 'react'
 
 export const useSpotifyApi = () => {
-  const { spotifyToken, getRefreshToken } = useSpotifyAuth()
+  const [token, setToken] = useState(null)
+  const [isTokenLoaded, setIsTokenLoaded] = useState(false)
+
+  // 在 localStorage 讀取 access_token
+  useEffect(() => {
+    const storedToken = localStorage.getItem('spotify_access_token')
+    setToken(storedToken)
+    setIsTokenLoaded(true)
+  }, [])
 
   const fetchWithToken = useCallback(
     async (url, options = {}) => {
-      if (!spotifyToken) {
+      if (!isTokenLoaded) {
+        console.log('Token is still loading')
+        return
+      }
+
+      if (!token) {
         console.error('No access token available')
-        await refreshAccessToken()
+        // await refreshAccessToken()
         return
       }
 
@@ -18,7 +31,7 @@ export const useSpotifyApi = () => {
           ...options,
           headers: {
             ...options.headers,
-            Authorization: `Bearer ${spotifyToken}`,
+            Authorization: `Bearer ${token}`,
           },
         })
 
@@ -30,16 +43,17 @@ export const useSpotifyApi = () => {
       } catch (error) {
         console.error('API call failed:', error)
         if (error.message.includes('401')) {
-          await getRefreshToken()
+          // await getSpotifyToken()
         }
         throw error
       }
     },
-    [spotifyToken, getRefreshToken]
+    [token, isTokenLoaded]
   )
 
   const getTopTracks = useCallback(
     async (id) => {
+      if (!isTokenLoaded) return
       try {
         return await fetchWithToken(
           `${API_SPOTIFY}/v1/artists/${id}/top-tracks?market=TW`
@@ -49,11 +63,12 @@ export const useSpotifyApi = () => {
         throw error
       }
     },
-    [fetchWithToken]
+    [fetchWithToken, isTokenLoaded]
   )
 
   const getArtists = useCallback(
     async (...ids) => {
+      if (!isTokenLoaded) return
       try {
         return await fetchWithToken(
           `${API_SPOTIFY}/v1/artists?ids=${ids.join(',')}`
@@ -63,11 +78,12 @@ export const useSpotifyApi = () => {
         throw error
       }
     },
-    [fetchWithToken]
+    [fetchWithToken, isTokenLoaded]
   )
 
   const getArtist = useCallback(
     async (id) => {
+      if (!isTokenLoaded) return
       try {
         return await fetchWithToken(`${API_SPOTIFY}/v1/artists/${id}`)
       } catch (error) {
@@ -75,12 +91,13 @@ export const useSpotifyApi = () => {
         throw error
       }
     },
-    [fetchWithToken]
+    [fetchWithToken, isTokenLoaded]
   )
 
   return {
     getTopTracks,
     getArtists,
     getArtist,
+    isTokenLoaded,
   }
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { ACT_GET_ITEM } from '@/configs/api-path'
+import { ART_LIST } from '@/configs/api-path'
 import { useRouter } from 'next/router'
 
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
@@ -13,12 +13,18 @@ export default function Artid() {
   const router = useRouter()
   console.log(router.query.artid)
   const { artid } = router.query // 設定路由參數給 artid (參照)
-  // const artist_id = parseInt(artid) // 型態轉換：字串轉數字 // 註解掉因為這裡的id是「字串」
+  // ^^^^這裡的id是spotify_id，型態為「字串」，不用轉數字
   const topRef = useRef(null)
   const [tracks, setTracks] = useState([])
-  const [artist, setArtist] = useState([])
+  // const [artist, setArtist] = useState([]) // 圖片問題，改用資料庫的
 
-  const { getTopTracks, getArtist } = useSpotifyApi()
+  // 藝人參加了哪些活動
+  const [activity, setActivity] = useState({
+    success: false,
+    rows2: [],
+  })
+
+  const { getTopTracks, isTokenLoaded } = useSpotifyApi()
 
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
@@ -36,32 +42,41 @@ export default function Artid() {
     }
   }
 
+  // 熱門歌曲的fetch，使用spotify的API
   const fetchData = async () => {
     try {
       const topTracks = await getTopTracks(artid)
-      const thisArtist = await getArtist(artid)
+      // const thisArtist = await getArtist(artid)
       console.log(topTracks)
-      console.log(thisArtist)
+      // console.log(thisArtist)
 
       if (Array.isArray(topTracks.tracks)) {
         setTracks(topTracks.tracks)
         console.log(tracks)
       }
-
-      if (Array.isArray(thisArtist)) {
-        setArtist(thisArtist)
-        console.log(artist)
-      }
     } catch (error) {
       console.error('Error fetching data:', error)
     }
   }
+
   useEffect(() => {
     if (!router.isReady) return
-    fetchData()
-  }, [])
 
-  console.log(`activity{item} render--------`)
+    fetch(`${ART_LIST}${artid}`)
+      .then((r) => r.json())
+      .then((myData) => {
+        console.log(myData)
+        setActivity(myData)
+      })
+      .catch((ex) => {
+        console.log('fetch-ex', ex)
+      })
+  }, [router.isReady, artid])
+
+  useEffect(() => {
+    if (!isTokenLoaded || !router.isReady) return
+    fetchData()
+  }, [isTokenLoaded, router.isReady])
 
   if (!router.isReady) return null
 
@@ -70,7 +85,11 @@ export default function Artid() {
       <div ref={topRef}></div>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
       {/* 音樂人主資訊 start */}
-      <MainArtistInfo />
+
+      <MainArtistInfo
+        imgSrc={`/images/artist/${activity.rows2[0]?.photoname}`}
+        artist_name={activity.rows2[0]?.art_name}
+      />
       {/* 音樂人主資訊 end */}
       <div className="music-container mt-80">
         {/* 熱門歌曲 start */}
@@ -81,7 +100,7 @@ export default function Artid() {
             {tracks.map((v, i) => {
               return (
                 <TopTrackItem
-                  key={v.id}
+                  key={v.uri}
                   number={i + 1}
                   cover={v.album.images[2].url}
                   song_name={v.name}
@@ -95,7 +114,17 @@ export default function Artid() {
         <div className="row my-5">
           <div className="chb-h4 mb-40 text-purple1">出演活動</div>
           {/* <ParticipatingActivity imgSrc act_name act_date aid /> */}
-          <ParticipatingActivity />
+          {activity.rows2.map((v, i) => {
+            return (
+              <ParticipatingActivity
+                key={v.actid}
+                imgSrc={`/images/Activity/${v.picinfrontend}`}
+                act_name={v.actname}
+                act_date={v.actdate}
+                aid={v.actid}
+              />
+            )
+          })}
         </div>
         {/*  出演活動 end  */}
       </div>
