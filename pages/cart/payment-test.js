@@ -80,8 +80,8 @@ export default function Payment() {
   }
 
   const handleSubmit = async () => {
-    if (!name || !email) {
-      alert('請填寫姓名和電子郵件')
+    if (!mobile) {
+      alert('請填寫手機號碼')
       return
     }
 
@@ -108,10 +108,8 @@ export default function Payment() {
       const resData = await res.json()
       console.log('Server response:', resData)
       clearLocalStorageCart()
-      // Redirect or show success message
     } catch (error) {
       console.error('Error submitting cart:', error)
-      // Handle error, show error message to user
     }
   }
 

@@ -22,6 +22,9 @@ export default function Payment() {
   const [items, setItems] = useState([])
   const [totalQty, setTotalQty] = useState(0)
   const [totalPrice, setTotalPrice] = useState(0)
+  // 手機
+  const [mobileNumber, setMobileNumber] = useState('')
+  const [isValid, setIsValid] = useState(true)
   const breadcrumbsURL = [
     { label: '周邊商城', href: '/product' },
     { label: '購物車', href: '/cart' },
@@ -83,7 +86,7 @@ export default function Payment() {
   const handleSubmit = async () => {
     try {
       // 使用 fetch 或 axios 等方法發送 POST 請求
-      const res = await fetch(GET_PRODUCTS, {
+      const res = await fetch('http://localhost:3005/api/order_detail/raw-sql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -103,6 +106,16 @@ export default function Payment() {
       // 處理錯誤，例如顯示錯誤訊息給使用者
     }
   }
+  // 手機
+  const handleChange = (e) => {
+    const formattedMobile = e.target.value.replace(/\D/g, ''); // 移除非数字字符
+
+    if (formattedMobile.length <= 10) { // 确保不超过10个字符
+      setMobileNumber(formattedMobile);
+      setIsValid(/^09\d{8}$/.test(formattedMobile)); // 使用正则表达式验证格式
+    }
+  }
+
   return (
     <>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
@@ -196,10 +209,16 @@ export default function Payment() {
                 手機號碼
               </p>
               <input
-                type="mobile"
-                className={`form-control ${styles['w-800']}`}
-                // value={userProfile.mobile}
+               type="text"
+               className={`form-control ${styles['w-800']} ${isValid ? '' : 'is-invalid'}`}
+               value={mobileNumber}
+               onChange={handleChange}
               />
+              {!isValid && (
+        <div className="invalid-feedback">
+          手機號碼格式不正確，請輸入正確格式 (09XXXXXXXX)
+        </div>
+      )}
               <div id="emailHelp" className="form-text chb-p text-black40">
                 到貨時通知將發送至此手機號碼
               </div>
