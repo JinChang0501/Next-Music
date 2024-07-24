@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import Mask from '@/components/ticket/mask'
+import Start from '@/components/ticket/start'
 import WhiteLayout from '@/components/layout/ticket-layout/desktopLayout/whiteLayout'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import ProgressBar from '@/components/ticket/progressBar'
@@ -13,13 +15,17 @@ import DesktopWhiteNoIconBtnPurple from '@/components/common/button/desktopWhite
 import PhoneWhiteNoIconBtnPurple from '@/components/common/button/phoneWhiteButton/phoneWhiteNoIconBtnPurple'
 import { useRouter } from 'next/router'
 import { useTicketContext } from '@/context/ticket/ticketContext'
-import { useCountdown } from '@/context/ticket/countdownContext'
 import axiosInstance from '@/services/axios-instance'
+import { useCountdown } from '@/context/ticket/countdownContext'
 
 export default function Payment() {
   const [isMobile, setIsMobile] = useState(false)
-  const { isStarted } = useCountdown()
+  const { isStarted, setIsStarted } = useCountdown()
   const router = useRouter()
+
+  const handleStart = () => {
+    setIsStarted(true)
+  }
 
   const {
     setTickets,
@@ -29,6 +35,7 @@ export default function Payment() {
     actid,
     setSelectedCount,
     setSelectedTickets,
+    paymentMethod,
   } = useTicketContext()
 
   useEffect(() => {
@@ -77,6 +84,26 @@ export default function Payment() {
   ]
 
   const handleNext = async () => {
+    if (!paymentMethod) {
+      alert('請選擇付款方式')
+      return
+    }
+
+    if (paymentMethod === 'linePay') {
+      return
+    }
+
+    // 檢查是否所有 selectedTickets 的 order_num 都不為 null
+    const allSoldOut = selectedSeatDetails.every(
+      (ticket) => ticket.order_num !== null
+    )
+
+    if (allSoldOut) {
+      // 如果所有票據的 order_num 都不為 null，顯示警告
+      alert(`${selectedSeatDetails[0].actname} 已全部售出`)
+      return // 退出函數，不進行後續的付款處理
+    }
+
     try {
       const amount = selectedSeatDetails.reduce(
         (total, seat) => total + seat.price,
@@ -89,7 +116,7 @@ export default function Payment() {
         price: `${seat.price} TWD`,
       }))
 
-      // 發送 POST 請求
+      // 發送 POST 請求到後端以獲取 ECPay 參數
       const res = await axiosInstance.post('/ecpay', {
         amount,
         products,
@@ -97,17 +124,23 @@ export default function Payment() {
         actid,
       })
 
-      // 如果後端返回 htmlContent，則自動提交表單
-      if (res.data.htmlContent) {
-        const tempDiv = document.createElement('div')
-        tempDiv.innerHTML = res.data.htmlContent
-        const form = tempDiv.querySelector('form')
-        if (form) {
-          document.body.appendChild(form)
-          form.submit()
-        } else {
-          console.error('找不到支付表單')
-        }
+      if (res.data.status === 'success') {
+        const params = res.data.params
+        const form = document.createElement('form')
+        form.method = 'POST'
+        form.action =
+          'https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V5'
+
+        Object.keys(params).forEach((key) => {
+          const input = document.createElement('input')
+          input.type = 'hidden'
+          input.name = key
+          input.value = params[key]
+          form.appendChild(input)
+        })
+
+        document.body.appendChild(form)
+        form.submit()
       } else {
         console.error('無效的回應格式')
       }
@@ -128,6 +161,16 @@ export default function Payment() {
 
   return (
     <>
+      {!isStarted && (
+        <>
+          {/* Mask */}
+          <Mask />
+
+          {/* Start */}
+          <Start onStart={handleStart} />
+        </>
+      )}
+
       {/* breadcrumb */}
 
       {isMobile ? (
@@ -138,7 +181,7 @@ export default function Payment() {
 
       {/* progressBar + timeCounter */}
 
-      <ProgressBar isStarted={isStarted} />
+      <ProgressBar />
 
       {/* Form */}
 

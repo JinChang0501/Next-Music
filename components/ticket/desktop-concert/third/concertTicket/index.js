@@ -4,11 +4,15 @@ import { BsGeoAlt, BsClock, BsQrCode } from 'react-icons/bs'
 import { useTicketContext } from '@/context/ticket/ticketContext'
 import moment from 'moment'
 
-export default function ConcertTicket() {
+export default function ConcertTicket({ orderData }) {
   const { selectedSeatDetails } = useTicketContext()
 
   const formatSeatNumber = (seatNumber) => {
     return seatNumber.toString().padStart(3, '0')
+  }
+
+  if (!orderData) {
+    return <div>正在加載訂單資料...</div>
   }
   return (
     <>
@@ -36,7 +40,7 @@ export default function ConcertTicket() {
             <div className={`${style.ticketTitle} text-white`}>
               <div className="chb-h5">{v.actname}</div>
               <div className="chb-h7">{v.art_name}</div>
-              <div className="chb-h7">#re159a753ct</div>
+              <div className="chb-h7">{orderData.order_num}</div>
             </div>
             <div className={`${style.ticketSeat} chb-h5 text-white`}>
               {v.seat_area} 區 • {v.seat_row} 排 •{' '}

@@ -1,9 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import WhiteLayout from '@/components/layout/ticket-layout/desktopLayout/whiteLayout'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
-import Mask from '@/components/ticket/mask'
-import Start from '@/components/ticket/start'
-import ProgressBar from '@/components/ticket/progressBar'
+import ProgressBarNoCountdown from '@/components/ticket/progressBarNoCountdown'
 import ActivityImage from '@/components/ticket/desktop-music-festival/activityImage'
 import Info from '@/components/ticket/desktop-music-festival/info'
 import SelectTicket from '@/components/ticket/desktop-music-festival/selectTicket'
@@ -16,7 +14,6 @@ import PhoneWhiteNoIconBtnPurple from '@/components/common/button/phoneWhiteButt
 import { useRouter } from 'next/router'
 import { useTicketContext } from '@/context/ticket/ticketContext'
 import { GET_TICKET } from '@/configs/api-path'
-import { useCountdown } from '@/context/ticket/countdownContext'
 
 export default function SelectSeat() {
   const breadcrumbsURL = [
@@ -25,13 +22,8 @@ export default function SelectSeat() {
     { label: '一生到底', href: '/activity/[aid]' },
     { label: '選擇座位', href: '/ticket/concert/first' },
   ]
-  const { isStarted, setIsStarted } = useCountdown()
 
   const [isMobile, setIsMobile] = useState(false)
-
-  const handleStart = () => {
-    setIsStarted(true)
-  }
 
   const router = useRouter()
   const { actid } = router.query
@@ -43,6 +35,7 @@ export default function SelectSeat() {
     setActid,
     setSelectedCount,
     setSelectedTickets,
+    isTicketSelected,
   } = useTicketContext()
 
   useEffect(() => {
@@ -113,9 +106,14 @@ export default function SelectSeat() {
   }, [actid, setActid, fetchTickets])
 
   const handleNext = () => {
+    if (!isTicketSelected()) {
+      alert('尚未選擇票數')
+      return
+    }
+
     const selectedTickets = tickets.slice(0, selectedCount)
     setSelectedSeatDetails(selectedTickets)
-    router.push(`/ticket/musicFestival/payment/${actid}`)
+    window.location.href = `/ticket/musicFestival/payment/${actid}`
   }
 
   useEffect(() => {
@@ -132,16 +130,6 @@ export default function SelectSeat() {
     <>
       {/* breadcrumb */}
 
-      {!isStarted && (
-        <>
-          {/* Mask */}
-          <Mask />
-
-          {/* Start */}
-          <Start onStart={handleStart} />
-        </>
-      )}
-
       {isMobile ? (
         <Breadcrumbs breadcrumbs={breadcrumbsURL} className="" />
       ) : (
@@ -149,7 +137,7 @@ export default function SelectSeat() {
       )}
 
       {/* progressBar + timeCounter */}
-      <ProgressBar isStarted={isStarted} />
+      <ProgressBarNoCountdown />
 
       {/* Form */}
       <div className={`${style.outsideFlexCenter}`}>

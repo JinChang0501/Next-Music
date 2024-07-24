@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import WhiteLayout from '@/components/layout/ticket-layout/desktopLayout/whiteLayout'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
-import ProgressBar from '@/components/ticket/progressBar'
+import ProgressBarNoCountdown from '@/components/ticket/progressBarNoCountdown'
 import Order from '@/components/ticket/desktop-concert/third/order'
 import ConcertTicket from '@/components/ticket/desktop-concert/third/concertTicket'
 import Button from '@/components/ticket/desktop-concert/third/button'
@@ -11,12 +11,14 @@ import PhoneButton from '@/components/ticket/phone-concert/phoneButton'
 import style from '@/styles/ticket/concert/third.module.scss'
 import { useTicketContext } from '@/context/ticket/ticketContext'
 import { useRouter } from 'next/router'
-import { useCountdown } from '@/context/ticket/countdownContext'
+import axiosInstance from '@/services/axios-instance'
 
 export default function Finish() {
-  const { isStarted } = useCountdown()
-  const [isMobile, setIsMobile] = useState(false)
   const router = useRouter()
+  const [isMobile, setIsMobile] = useState(false)
+  const [orderData, setOrderData] = useState(null)
+  const { order_num } = router.query
+
   const {
     setTickets,
     setSelectedSeatDetails,
@@ -24,6 +26,21 @@ export default function Finish() {
     setSelectedCount,
     setSelectedTickets,
   } = useTicketContext()
+
+  useEffect(() => {
+    if (order_num) {
+      const fetchOrderData = async () => {
+        try {
+          const response = await axiosInstance.get(`/ecpay/order/${order_num}`)
+          setOrderData(response.data)
+        } catch (error) {
+          console.error('獲取訂單資料時出錯:', error)
+        }
+      }
+
+      fetchOrderData()
+    }
+  }, [order_num])
 
   useEffect(() => {
     const handleRouteChange = (url) => {
@@ -79,6 +96,7 @@ export default function Finish() {
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
+
   return (
     <>
       {/* breadcrumb */}
@@ -89,10 +107,14 @@ export default function Finish() {
         <Breadcrumbs breadcrumbs={breadcrumbsURL} />
       )}
 
-      <ProgressBar isStarted={isStarted} />
+      <ProgressBarNoCountdown />
 
       {/* order */}
-      {isMobile ? <PhoneOrder /> : <Order />}
+      {isMobile ? (
+        <PhoneOrder orderData={orderData} />
+      ) : (
+        <Order orderData={orderData} />
+      )}
 
       {/* ticket */}
       <div className={`${style.orderTicketAccordion}`}>
@@ -115,7 +137,11 @@ export default function Finish() {
               <div className="accordion-body">
                 <div className={`${style.orderTicketBody}`}>
                   {/* ConcertTicket */}
-                  {isMobile ? <PhoneConcertTicket /> : <ConcertTicket />}
+                  {isMobile ? (
+                    <PhoneConcertTicket orderData={orderData} />
+                  ) : (
+                    <ConcertTicket orderData={orderData} />
+                  )}
                 </div>
               </div>
             </div>

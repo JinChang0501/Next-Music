@@ -7,7 +7,7 @@ export default function ActivityImage() {
 
   const { picture } = tickets[0] || {}
 
-  const fallbackImage = '../../../public/images/ticket/chilloutfest.jpg'
+  const fallbackImage = '/images/Activity/10.jpg'
   return (
     <>
       <div className={`${style.activityImage} mb-5`}>

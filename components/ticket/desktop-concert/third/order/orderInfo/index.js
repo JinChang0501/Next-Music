@@ -3,7 +3,7 @@ import style from './orderInfo.module.scss'
 import { BsCaretDownFill } from 'react-icons/bs'
 import { useTicketContext } from '@/context/ticket/ticketContext'
 
-export default function OrderInfo() {
+export default function OrderInfo({ orderData }) {
   const [selectBlockVisible, setSelectBlockVisible] = useState(false)
 
   const { selectedSeatDetails } = useTicketContext()
@@ -28,6 +28,9 @@ export default function OrderInfo() {
     return seatNumber.toString().padStart(3, '0')
   }
 
+  if (!orderData) {
+    return <div>正在加載訂單資料...</div>
+  }
   return (
     <>
       <div className={`${style.orderInfo}`}>
@@ -39,7 +42,7 @@ export default function OrderInfo() {
             <div className="chb-h5">座位</div>
           </div>
           <div className={`${style.orderBodyRight}`}>
-            <div className="chb-h5">#re159a753ct</div>
+            <div className="chb-h5">{orderData.order_num}</div>
             <div className="chb-h5">{selectedSeatDetails.length}</div>
             <div className={`${style.orderSelect}`}>
               <button

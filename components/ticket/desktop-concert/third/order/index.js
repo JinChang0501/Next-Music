@@ -3,7 +3,10 @@ import ActivityInfo from './activityInfo'
 import OrderInfo from './orderInfo'
 import style from './order.module.scss'
 
-export default function Order() {
+export default function Order({ orderData }) {
+  if (!orderData) {
+    return <div>正在加載訂單資料...</div>
+  }
   return (
     <>
       <div className={`${style.order}`}>
@@ -11,14 +14,14 @@ export default function Order() {
         <ActivityInfo />
 
         {/* orderInfo */}
-        <OrderInfo />
+        <OrderInfo orderData={orderData} />
 
         {/* paymentInfo */}
         <div className={`${style.paymentInfo}`}>
           <div className={`${style.paymentTitle} chb-h5`}>支付方式</div>
           <div className={`${style.paymentBody} chb-h5`}>
-            <div>已付款</div>
-            <div>( 信用卡 )</div>
+            <div>{orderData.payment}</div>
+            <div>( {orderData.status} )</div>
           </div>
         </div>
       </div>

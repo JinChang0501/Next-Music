@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
 import style from './accordionThird.module.scss'
 import Image from 'next/image'
+import { useTicketContext } from '@/context/ticket/ticketContext'
 
 export default function AccordionThird() {
   const [selected, setSelected] = useState(null) // 使用 null 初始狀態
+  const { setPaymentMethod } = useTicketContext()
 
   const handleCircleClick = (paymentMethod) => {
     setSelected((prev) => (prev === paymentMethod ? null : paymentMethod))
+    setPaymentMethod(paymentMethod)
   }
 
   return (

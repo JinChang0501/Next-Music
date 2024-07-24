@@ -358,16 +358,25 @@ export default function Left({
             {seatMap.map((v) => (
               <g
                 key={v.tid}
-                onClick={(event) => handleSeatClick(event, v.seat_number)}
+                onClick={(event) => {
+                  if (!v.order_num) {
+                    handleSeatClick(event, v.seat_number)
+                  }
+                }}
               >
                 <circle
                   cx={v.cx}
                   cy={v.cy}
                   r={v.r}
                   transform={v.transform}
-                  style={{ transition: 'opacity 0.5s, fill 0.5s' }}
+                  style={{
+                    transition: 'opacity 0.5s, fill 0.5s',
+                    cursor: v.order_num ? 'default' : 'pointer',
+                  }}
                   fill={
-                    isSeatSelected(v.seat_number)
+                    v.order_num
+                      ? '#d1d1d1'
+                      : isSeatSelected(v.seat_number)
                       ? '#03663c'
                       : hoveredCircle === v.seat_number
                       ? '#1F3FA2'
@@ -379,7 +388,7 @@ export default function Left({
                   onMouseLeave={handleMouseLeaveCircle}
                   onMouseMove={handleMouseMove}
                 />
-                {isSeatSelected(v.seat_number) && (
+                {isSeatSelected(v.seat_number) && !v.order_num && (
                   <foreignObject
                     onMouseEnter={(event) =>
                       handleMouseEnterCircle(event, v.seat_number)

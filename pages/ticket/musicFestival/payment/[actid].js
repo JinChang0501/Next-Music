@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import Mask from '@/components/ticket/mask'
+import Start from '@/components/ticket/start'
 import WhiteLayout from '@/components/layout/ticket-layout/desktopLayout/whiteLayout'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import ProgressBar from '@/components/ticket/progressBar'
@@ -14,11 +16,16 @@ import PhoneWhiteNoIconBtnPurple from '@/components/common/button/phoneWhiteButt
 import { useRouter } from 'next/router'
 import { useTicketContext } from '@/context/ticket/ticketContext'
 import { useCountdown } from '@/context/ticket/countdownContext'
+import axiosInstance from '@/services/axios-instance'
 
 export default function Payment() {
-  const [isMobile, setIsMobile] = useState(false)
-  const { isStarted } = useCountdown()
   const router = useRouter()
+  const [isMobile, setIsMobile] = useState(false)
+  const { isStarted, setIsStarted } = useCountdown()
+
+  const handleStart = () => {
+    setIsStarted(true)
+  }
 
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
@@ -28,13 +35,13 @@ export default function Payment() {
   ]
 
   const {
-    selectedCount,
-    tickets,
+    selectedTickets,
     setTickets,
     setSelectedSeatDetails,
     setActid,
     setSelectedCount,
     setSelectedTickets,
+    paymentMethod,
   } = useTicketContext()
 
   useEffect(() => {
@@ -77,10 +84,70 @@ export default function Payment() {
 
   const { actid } = router.query
 
-  const handleNext = () => {
-    const selectedTickets = tickets.slice(0, selectedCount)
-    setSelectedSeatDetails(selectedTickets)
-    router.push(`/ticket/musicFestival/finish/${actid}`)
+  const handleNext = async () => {
+    if (!paymentMethod) {
+      alert('請選擇付款方式')
+      return
+    }
+
+    if (paymentMethod === 'linePay') {
+      return
+    }
+
+    // 檢查是否所有 selectedTickets 的 order_num 都不為 null
+    const allSoldOut = selectedTickets.every(
+      (ticket) => ticket.order_num !== null
+    )
+
+    if (allSoldOut) {
+      // 如果所有票據的 order_num 都不為 null，顯示警告
+      alert(`${selectedTickets[0].actname} 已全部售出`)
+      return // 退出函數，不進行後續的付款處理
+    }
+
+    try {
+      const amount = selectedTickets.reduce(
+        (total, seat) => total + seat.price,
+        0
+      )
+      const products = selectedTickets.map((seat) => ({
+        id: seat.tid,
+        member_id: seat.member_id,
+        name: `${seat.art_name}  ${seat.actname}`,
+        price: `${seat.price} TWD`,
+      }))
+
+      // 發送 POST 請求
+      const res = await axiosInstance.post('/musicFestivalEcpay', {
+        amount,
+        products,
+        selectedTickets,
+        actid,
+      })
+
+      if (res.data.status === 'success') {
+        const params = res.data.params
+        const form = document.createElement('form')
+        form.method = 'POST'
+        form.action =
+          'https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V5'
+
+        Object.keys(params).forEach((key) => {
+          const input = document.createElement('input')
+          input.type = 'hidden'
+          input.name = key
+          input.value = params[key]
+          form.appendChild(input)
+        })
+
+        document.body.appendChild(form)
+        form.submit()
+      } else {
+        console.error('無效的回應格式')
+      }
+    } catch (error) {
+      console.error('處理付款過程中出錯:', error)
+    }
   }
 
   useEffect(() => {
@@ -92,8 +159,19 @@ export default function Payment() {
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
+
   return (
     <>
+      {!isStarted && (
+        <>
+          {/* Mask */}
+          <Mask />
+
+          {/* Start */}
+          <Start onStart={handleStart} />
+        </>
+      )}
+
       {/* breadcrumb */}
 
       {isMobile ? (

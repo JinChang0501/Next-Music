@@ -3,9 +3,8 @@ import { useTicketContext } from '@/context/ticket/ticketContext'
 import FixedContentLayout from '@/components/layout/ticket-layout/desktopLayout/fixedContentLayout'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import Mask from '@/components/ticket/mask'
-import Start from '@/components/ticket/start'
 import DeleteAllSeat from '@/components/ticket/desktop-concert/first/Left/deleteAllSeat'
-import ProgressBar from '@/components/ticket/progressBar'
+import ProgressBarNoCountdown from '@/components/ticket/progressBarNoCountdown'
 import PhoneTitle from '@/components/ticket/phone-concert/phoneTitle'
 import PhoneSelectTicket from '@/components/ticket/phone-concert/phoneSelectTicket'
 import Left from '@/components/ticket/desktop-concert/first/Left'
@@ -14,7 +13,6 @@ import RightSecond from '@/components/ticket/desktop-concert/first/rightSecond'
 import style from '@/styles/ticket/concert/first.module.scss'
 import { GET_TICKET } from '@/configs/api-path'
 import { useRouter } from 'next/router'
-import { useCountdown } from '@/context/ticket/countdownContext'
 
 export default function SelectSeat() {
   // #region 動態獲取 breadcrumb、progressBar 高度，返回給 content
@@ -24,7 +22,7 @@ export default function SelectSeat() {
   const breadcrumbRef = useRef(null)
   const progressBarRef = useRef(null)
   const [contentHeight, setContentHeight] = useState('100%')
-  const { isStarted, setIsStarted } = useCountdown()
+
   const [isPhoneView, setIsPhoneView] = useState(false)
 
   const breadcrumbsURL = [
@@ -171,10 +169,6 @@ export default function SelectSeat() {
     })
   }
 
-  const handleStart = () => {
-    setIsStarted(true)
-  }
-
   const [selectedSeats, setSelectedSeats] = useState([])
 
   const handleSeatsChange = (newSelectedSeats) => {
@@ -232,16 +226,6 @@ export default function SelectSeat() {
   if (isPhoneView) {
     return (
       <>
-        {!isStarted && (
-          <>
-            {/* Mask */}
-            <Mask />
-
-            {/* Start */}
-            <Start onStart={handleStart} />
-          </>
-        )}
-
         {showDeleteAllSeat && (
           <>
             <Mask />
@@ -260,7 +244,7 @@ export default function SelectSeat() {
           showDeleteAllSeat={toggleShowDeleteAllSeat}
         />
 
-        <ProgressBar progressBarRef={progressBarRef} isStarted={isStarted} />
+        <ProgressBarNoCountdown progressBarRef={progressBarRef} />
 
         <Left
           onSeatsChange={handleSeatsChange}
@@ -288,16 +272,6 @@ export default function SelectSeat() {
 
   return (
     <>
-      {!isStarted && (
-        <>
-          {/* Mask */}
-          <Mask />
-
-          {/* Start */}
-          <Start onStart={handleStart} />
-        </>
-      )}
-
       {showDeleteAllSeat && (
         <>
           <Mask />
@@ -315,7 +289,7 @@ export default function SelectSeat() {
       </div>
 
       {/* progressBar + timeCounter */}
-      <ProgressBar progressBarRef={progressBarRef} isStarted={isStarted} />
+      <ProgressBarNoCountdown progressBarRef={progressBarRef} />
 
       {/* content */}
       <div
