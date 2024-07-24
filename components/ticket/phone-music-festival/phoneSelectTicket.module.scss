@@ -21,7 +21,6 @@
 // #region selectTicketBox
 
 .selectTicketBox {
-  width: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,13 +32,21 @@
 }
 
 .selectTicketBoxFirst {
-  width: 50px;
   margin: 5px 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   background-color: white;
   cursor: pointer;
+}
+
+.selectTicketBoxFirstText {
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 15px;
+  color: black;
 }
 
 .selectTicketBoxIcon {

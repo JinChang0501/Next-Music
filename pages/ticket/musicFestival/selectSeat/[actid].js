@@ -35,6 +35,7 @@ export default function SelectSeat() {
     setActid,
     setSelectedCount,
     setSelectedTickets,
+    isTicketSelected,
   } = useTicketContext()
 
   useEffect(() => {
@@ -105,9 +106,14 @@ export default function SelectSeat() {
   }, [actid, setActid, fetchTickets])
 
   const handleNext = () => {
+    if (!isTicketSelected()) {
+      alert('尚未選擇票數')
+      return
+    }
+
     const selectedTickets = tickets.slice(0, selectedCount)
     setSelectedSeatDetails(selectedTickets)
-    router.push(`/ticket/musicFestival/payment/${actid}`)
+    window.location.href = `/ticket/musicFestival/payment/${actid}`
   }
 
   useEffect(() => {

@@ -8,6 +8,7 @@ export default function PhoneSelectTicket() {
     useTicketContext()
 
   const [isOpen, setIsOpen] = useState(false)
+  const [hasSelected, setHasSelected] = useState(false)
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen)
@@ -18,9 +19,21 @@ export default function PhoneSelectTicket() {
   }
 
   const handleSelect = (num) => {
+    // 過濾出 order_num 為 NULL 的項目
+    const filteredTickets = tickets.filter(
+      (ticket) => ticket.order_num === null
+    )
+
+    // 取得需要的票數資料
+    const ticketsToSelect = filteredTickets.slice(0, num)
+
+    // 按 tid 排序
+    const sortedTickets = ticketsToSelect.sort((a, b) => a.tid - b.tid)
+
+    // 更新選擇的票數
     setSelectedCount(num)
-    const selectedTickets = tickets.slice(0, num)
-    setSelectedTickets(selectedTickets)
+    setSelectedTickets(sortedTickets)
+    setHasSelected(true)
     setIsOpen(false)
   }
 
@@ -43,7 +56,9 @@ export default function PhoneSelectTicket() {
               className={`${style.selectTicketBoxFirst}`}
               onClick={toggleDropdown}
             >
-              <div className="text-black chb-h5">{selectedCount}</div>
+              <div className={`${style.selectTicketBoxFirstText} chb-h5`}>
+                {hasSelected ? selectedCount : '請選擇票數'}
+              </div>
               <BsCaretDownFill
                 className={`${style.selectTicketBoxIcon} ${
                   isOpen ? style.rotate : ''

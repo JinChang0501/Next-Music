@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useTicketContext } from '@/context/ticket/ticketContext'
 import moment from 'moment-timezone'
 
-export default function PhoneOrder() {
+export default function PhoneOrder({ orderData }) {
   const { tickets, selectedTickets, selectedCount } = useTicketContext()
 
   const ticketData = selectedTickets[0] || tickets[0] || {}
@@ -15,6 +15,10 @@ export default function PhoneOrder() {
     `${actdate} ${acttime}`,
     `YYYY-MM-DD HH:mm:ss`
   ).format('YYYY-MM-DD HH:mm:ss')
+
+  if (!orderData) {
+    return <div>正在加載訂單資料...</div>
+  }
   return (
     <>
       <div className={`${style.order}`}>
@@ -43,7 +47,7 @@ export default function PhoneOrder() {
               <div className="chb-h4">票數</div>
             </div>
             <div className={`${style.orderBodyRight}`}>
-              <div className="chb-h4">#re159a753ct</div>
+              <div className="chb-h4">{orderData.order_num}</div>
               <div className="chb-h4">{selectedCount}</div>
             </div>
           </div>
@@ -53,8 +57,8 @@ export default function PhoneOrder() {
         <div className={`${style.paymentInfo}`}>
           <div className={`${style.paymentTitle} chb-h3`}>支付方式</div>
           <div className={`${style.paymentBody} chb-h4`}>
-            <div>已付款</div>
-            <div>( 信用卡 )</div>
+            <div>{orderData.status}</div>
+            <div>( {orderData.payment} )</div>
           </div>
         </div>
       </div>

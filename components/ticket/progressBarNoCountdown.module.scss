@@ -88,8 +88,9 @@
   }
 
   .progressLeft {
+    width: 100%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
   }
 
@@ -101,7 +102,7 @@
     align-items: center;
     color: white;
     background-color: #685beb;
-    margin-right: 10px;
+    margin-right: 50px;
   }
 
   .progressLeftText {
@@ -109,34 +110,6 @@
     justify-content: center;
     align-items: center;
     color: black;
-  }
-
-  .progressRight {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .progressRight > div:not(:last-child) {
-    margin-right: 5px;
-  }
-
-  .progressRightClockBlock {
-    width: 35px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    border: 1px solid #a1a1a1;
-    color: black;
-  }
-
-  .progressRightClockColon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #a1a1a1;
   }
 }
 

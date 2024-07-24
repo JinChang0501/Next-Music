@@ -11,9 +11,14 @@ import PhoneButton from '@/components/ticket/phone-music-festival/phoneButton'
 import style from '@/styles/ticket/musicFestival/third.module.scss'
 import { useRouter } from 'next/router'
 import { useTicketContext } from '@/context/ticket/ticketContext'
+import axiosInstance from '@/services/axios-instance'
 
 export default function Finish() {
+  const router = useRouter()
   const [isMobile, setIsMobile] = useState(false)
+  const [orderData, setOrderData] = useState(null)
+  const { order_num } = router.query
+
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
     { label: '演出活動', href: '/activity' },
@@ -21,7 +26,6 @@ export default function Finish() {
     { label: '完成購票', href: '/ticket/concert/first' },
   ]
 
-  const router = useRouter()
   const {
     setTickets,
     setSelectedSeatDetails,
@@ -29,6 +33,23 @@ export default function Finish() {
     setSelectedCount,
     setSelectedTickets,
   } = useTicketContext()
+
+  useEffect(() => {
+    if (order_num) {
+      const fetchOrderData = async () => {
+        try {
+          const response = await axiosInstance.get(
+            `/musicFestivalEcpay/order/${order_num}`
+          )
+          setOrderData(response.data)
+        } catch (error) {
+          console.error('獲取訂單資料時出錯:', error)
+        }
+      }
+
+      fetchOrderData()
+    }
+  }, [order_num])
 
   useEffect(() => {
     const handleRouteChange = (url) => {
@@ -90,7 +111,11 @@ export default function Finish() {
       <ProgressBarNoCountdown />
 
       {/* order */}
-      {isMobile ? <PhoneOrder /> : <Order />}
+      {isMobile ? (
+        <PhoneOrder orderData={orderData} />
+      ) : (
+        <Order orderData={orderData} />
+      )}
 
       {/* ticket */}
       <div className={`${style.orderTicketAccordion}`}>
@@ -114,9 +139,9 @@ export default function Finish() {
                 <div className={`${style.orderTicketBody}`}>
                   {/* MusicFestivalTicket */}
                   {isMobile ? (
-                    <PhoneMusicFestivalTicket />
+                    <PhoneMusicFestivalTicket orderData={orderData} />
                   ) : (
-                    <MusicFestivalTicket />
+                    <MusicFestivalTicket orderData={orderData} />
                   )}
                 </div>
               </div>

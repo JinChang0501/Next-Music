@@ -8,7 +8,7 @@ export default function PhoneActivityImage() {
 
   const { picture } = tickets[0] || {}
 
-  const fallbackImage = '../../../public/images/ticket/carnival-fever.png'
+  const fallbackImage = picture
 
   return (
     <>

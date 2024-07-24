@@ -9,6 +9,9 @@ export default function Button() {
     router.push('/')
   }
 
+  const handleOrder = () => {
+    router.push('/member/ticket-order')
+  }
   return (
     <>
       <div className={`${style.buttonBody}`}>
@@ -17,7 +20,11 @@ export default function Button() {
           className={`${style.buttonMargin} chb-h6`}
           onClick={handleHome}
         />
-        <DesktopWhiteNoIconBtnPurple text="查看訂單" className="chb-h6" />
+        <DesktopWhiteNoIconBtnPurple
+          text="查看訂單"
+          className="chb-h6"
+          onClick={handleOrder}
+        />
       </div>
     </>
   )

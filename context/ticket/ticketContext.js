@@ -12,6 +12,7 @@ export const TicketProvider = ({ children }) => {
   const [selectedSeatDetails, setSelectedSeatDetails] = useState([])
   const [selectedCount, setSelectedCount] = useState(1)
   const [selectedTickets, setSelectedTickets] = useState([])
+  const [paymentMethod, setPaymentMethod] = useState(null)
 
   useEffect(() => {
     const storedActid = localStorage.getItem('actid')
@@ -42,6 +43,11 @@ export const TicketProvider = ({ children }) => {
     localStorage.setItem('selectedTickets', JSON.stringify(selectedTickets))
   }, [actid, tickets, selectedSeatDetails, selectedCount, selectedTickets])
 
+  const isTicketSelected = () => {
+    // 檢查是否有選擇票數
+    return selectedCount > 0 && selectedTickets.length > 0
+  }
+
   return (
     <TicketContext.Provider
       value={{
@@ -55,6 +61,9 @@ export const TicketProvider = ({ children }) => {
         setSelectedCount,
         selectedTickets,
         setSelectedTickets,
+        isTicketSelected,
+        paymentMethod,
+        setPaymentMethod,
       }}
     >
       {children}

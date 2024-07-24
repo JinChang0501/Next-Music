@@ -11,6 +11,8 @@ export default function PhoneAccordionFirst() {
   const { picture, actname, actdate, acttime, location, art_name } =
     tickets[0] || {}
 
+  const fallbackImage = picture
+
   const datetime = moment(
     `${actdate} ${acttime}`,
     `YYYY-MM-DD HH:mm:ss`
@@ -36,7 +38,11 @@ export default function PhoneAccordionFirst() {
             {/* activityImage */}
 
             <div className={`${style.activityImage}`}>
-              <Image src={picture} alt="test" fill priority />
+              {picture ? (
+                <Image src={picture} alt="Activity" fill priority />
+              ) : (
+                <Image src={fallbackImage} alt="Fallback Image" fill priority />
+              )}
             </div>
 
             {/* info */}

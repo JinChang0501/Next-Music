@@ -5,7 +5,7 @@ import { BsCaretDownFill } from 'react-icons/bs'
 import { useTicketContext } from '@/context/ticket/ticketContext'
 import moment from 'moment-timezone'
 
-export default function PhoneOrder() {
+export default function PhoneOrder({ orderData }) {
   const [selectBlockVisible, setSelectBlockVisible] = useState(false)
 
   const { selectedSeatDetails } = useTicketContext()
@@ -37,6 +37,10 @@ export default function PhoneOrder() {
   const formatSeatNumber = (seatNumber) => {
     return seatNumber.toString().padStart(3, '0')
   }
+
+  if (!orderData) {
+    return <div>正在加載訂單資料...</div>
+  }
   return (
     <>
       <div className={`${style.order}`}>
@@ -66,7 +70,7 @@ export default function PhoneOrder() {
               <div className="chb-h4">座位</div>
             </div>
             <div className={`${style.orderBodyRight}`}>
-              <div className="chb-h4">#re159a753ct</div>
+              <div className="chb-h4">{orderData.order_num}</div>
               <div className="chb-h4">{selectedSeatDetails.length}</div>
               <div className={`${style.orderSelect}`}>
                 <button
@@ -105,8 +109,8 @@ export default function PhoneOrder() {
         <div className={`${style.paymentInfo}`}>
           <div className={`${style.paymentTitle} chb-h3`}>支付方式</div>
           <div className={`${style.paymentBody} chb-h4`}>
-            <div>已付款</div>
-            <div>( 信用卡 )</div>
+            <div>{orderData.payment}</div>
+            <div>( {orderData.status} )</div>
           </div>
         </div>
       </div>
