@@ -15,7 +15,7 @@ import { CartProvider } from '@/hooks/product/use-cart'
 import { TicketProvider } from '@/context/ticket/ticketContext'
 import { FavProvider } from '@/hooks/use-Fav'
 import { CountdownProvider } from '@/context/ticket/countdownContext'
-import { SpotifyAuthProvider } from '@/hooks/use-SpotifyAuth'
+import { SpotifyAuthProvider } from '@/hooks/use-SpotifyAuth0724'
 import { RefreshProvider } from '@/hooks/useRefresh'
 import Script from 'next/script'
 
