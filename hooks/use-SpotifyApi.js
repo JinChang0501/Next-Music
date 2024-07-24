@@ -1,11 +1,14 @@
 import { API_SPOTIFY } from '@/configs/spotify-api'
-import { useSpotifyAuth } from '@/hooks/use-SpotifyAuth'
+import { useSpotifyAuth } from '@/hooks/use-SpotifyAuth0724'
 import { useCallback } from 'react'
 
 export const useSpotifyApi = () => {
-  // const { spotifyToken } = useSpotifyAuth()
-  const spotifyToken = localStorage.getItem('spotify_access_token')
+  const [token, setToken] = useState(null)
 
+  // 在 localStorage 讀取 access_token
+  useEffect(() => {
+    setToken(localStorage.getItem('spotify_access_token'))
+  }, [])
   const fetchWithToken = useCallback(
     async (url, options = {}) => {
       if (!spotifyToken) {

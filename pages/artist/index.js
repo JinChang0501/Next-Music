@@ -3,15 +3,8 @@ import { useEffect, useState, useRef } from 'react'
 
 // 帶資料的api
 import { ART_LIST } from '@/configs/api-path'
-// import { getFavorites, addFavorite, removeFavorite } from '@/configs/fav-api'
 // 路徑
 import { useRouter } from 'next/router'
-// 判斷登入
-// import { useAuth } from '@/hooks/use-auth'
-// import { useLogin } from '@/hooks/use-login'
-
-// 先帶前端資料
-import { artists } from '@/data/artist/artists-18'
 
 // 內容元件
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'

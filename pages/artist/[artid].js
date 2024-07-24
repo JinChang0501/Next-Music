@@ -24,7 +24,7 @@ export default function Artid() {
     rows2: [],
   })
 
-  const { getTopTracks, getArtist } = useSpotifyApi()
+  const { getTopTracks } = useSpotifyApi()
 
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
