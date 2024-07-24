@@ -3,7 +3,8 @@ import { useSpotifyAuth } from '@/hooks/use-SpotifyAuth'
 import { useCallback } from 'react'
 
 export const useSpotifyApi = () => {
-  const { spotifyToken, getRefreshToken } = useSpotifyAuth()
+  // const { spotifyToken } = useSpotifyAuth()
+  const spotifyToken = localStorage.getItem('spotify_access_token')
 
   const fetchWithToken = useCallback(
     async (url, options = {}) => {
@@ -30,12 +31,12 @@ export const useSpotifyApi = () => {
       } catch (error) {
         console.error('API call failed:', error)
         if (error.message.includes('401')) {
-          await getRefreshToken()
+          // await getSpotifyToken()
         }
         throw error
       }
     },
-    [spotifyToken, getRefreshToken]
+    [spotifyToken]
   )
 
   const getTopTracks = useCallback(
