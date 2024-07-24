@@ -5,7 +5,13 @@ export default function Callback() {
   const router = useRouter()
 
   useEffect(() => {
-    const { access_token, refresh_token } = router.query
+    // const { access_token, refresh_token } = router.query
+    // 使用 window.location.hash 來獲取 URL fragment
+    const hash = window.location.hash.substring(1)
+    const params = new URLSearchParams(hash)
+
+    const access_token = params.get('access_token')
+    const refresh_token = params.get('refresh_token')
 
     if (access_token && refresh_token) {
       // 將令牌存儲到 localStorage

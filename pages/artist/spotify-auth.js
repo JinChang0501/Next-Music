@@ -5,18 +5,6 @@ const SpotifyAuth = () => {
   const [token, setToken] = useState(null)
   const router = useRouter()
 
-  // useEffect(() => {
-  //   const { access_token, refresh_token } = router.query
-
-  //   if (access_token && refresh_token) {
-  //     setToken({ access_token, refresh_token })
-  //     // 可以將token儲存到localStorage或state中
-  //     localStorage.setItem('spotify_access_token', access_token)
-  //     localStorage.setItem('spotify_refresh_token', refresh_token)
-  //     router.push('/') // 導航回首頁
-  //   }
-  // }, [router.query])
-
   const handleLogin = () => {
     router.push('http://localhost:3005/login')
     // window.location.href = 'http://localhost:3005/login'
