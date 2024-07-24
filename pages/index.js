@@ -21,6 +21,7 @@ import 'swiper/css/free-mode'
 import 'swiper/css/pagination'
 // import required modules
 import { FreeMode, Pagination } from 'swiper/modules'
+import ArtCardMobile from '@/components/artist/art-card-mobile'
 
 export default function Index() {
   const [isDesktop, setIsDesktop] = useState(true)
@@ -189,54 +190,19 @@ export default function Index() {
                 </SwiperSlide>
               )
             })}
-            {/* {artistData.map((v, i) => (
-            <SwiperSlide
-              key={i}
-              className={`mx-0 ${styles['swiper-slide']} ${styles['swiper-width']}`}
-            >
-              <ArtCard photo={v.photo} art_name={v.art_name} />
-            </SwiperSlide>
-          ))} */}
           </Swiper>
         </div>
       ) : (
-        <div className="music-container mb-5 d-flex">
-          {artistData.map((v, i) => {
-            return <ArtCard key={i} photo={v.photo} art_name={v.art_name} />
-          })}
+        <div className="music-container mb-5">
+          <div className="col-12 align-items-center order-md-3 mb-5 mb-md-0 d-flex flex-wrap">
+            {artistData.map((v, i) => {
+              return (
+                <ArtCardMobile key={i} photo={v.photo} art_name={v.art_name} />
+              )
+            })}
+          </div>
         </div>
       )}
     </>
   )
-}
-
-{
-  /* <div
-className={`d-flex justify-content-md-center justify-content-around align-items-center ${styles['mt-80']} ${styles['mb-120']}`} */
-}
-// >
-{
-  /* 最大那顆，到時候要隨著滑鼠事件移動 */
-}
-{
-  /* <div className="col-md-4 col-8 d-flex flex-column align-items-center order-md-3 mb-5 mb-md-0">
-  <img
-    src="https://i.postimg.cc/dtx1T54J/m-S62j-SACo-Ptq-Bo-YSHPi-Rwp.jpg"
-    className={`rounded-circle mb-4 ${styles['artist-img-l']}`}
-  />
-  <div className="chb-h4 text-white">音樂人</div>
-</div> */
-}
-{
-  /* 其他顆 */
-}
-{
-  /* <Marquee pauseOnHover gradient gradientColor="black">
-  <div className="d-flex">
-    {artistData.map((v, i) => {
-      return <ArtCard key={i} photo={v.photo} art_name={v.art_name} />
-    })}
-  </div>
-</Marquee>
-</div> */
 }
