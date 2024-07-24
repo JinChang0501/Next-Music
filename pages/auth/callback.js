@@ -12,8 +12,8 @@ export default function Callback() {
       localStorage.setItem('spotify_access_token', access_token)
       localStorage.setItem('spotify_refresh_token', refresh_token)
 
-      // 重定向到首頁
-      router.push('/')
+      // 重定向到 音樂人 頁面
+      router.push('/artist')
     }
   }, [router.query])
 

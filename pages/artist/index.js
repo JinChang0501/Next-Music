@@ -21,14 +21,10 @@ import ArtistItem from '@/components/artist/artist-item'
 // import { useFav } from '@/hooks/use-Fav'
 
 export default function Artist() {
-  // const { favorite, handleToggleFav } = useFav()
   const router = useRouter()
   const topRef = useRef(null)
-  // 會員相關，判斷是否登入 auth.isAuth
-  // const { handleWakeLogin } = useLogin()
-  // const { auth } = useAuth()
 
-  // 活動資料陣列
+  // 音樂人資料陣列
   const [data, setData] = useState({
     success: false,
     rows: [],
@@ -106,6 +102,11 @@ export default function Artist() {
     }
   }
 
+  // spotify 授權隱藏按鈕
+  const handleLogin = () => {
+    router.push('http://localhost:3005/login')
+  }
+
   // 頁面重新渲染時：取得列表、搜尋條件
   useEffect(() => {
     const params = {
@@ -139,7 +140,12 @@ export default function Artist() {
             handleKeyDown={handleKeyDown}
           />
           <div className="col-md-9 col-12 mb-5">
-            <div className="chb-h4 mb-3 text-purple1">音樂人列表</div>
+            <div className="chb-h4 mb-3 text-purple1">
+              音樂人列表{' '}
+              <button onClick={handleLogin} className="text-dark bg-dark">
+                spotify
+              </button>
+            </div>
             <div className="row d-flex">
               {data.rows.map((r, i) => {
                 return (
