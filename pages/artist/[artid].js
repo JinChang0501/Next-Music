@@ -24,7 +24,7 @@ export default function Artid() {
     rows2: [],
   })
 
-  const { getTopTracks } = useSpotifyApi()
+  const { getTopTracks, isTokenLoaded } = useSpotifyApi()
 
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
@@ -54,11 +54,6 @@ export default function Artid() {
         setTracks(topTracks.tracks)
         console.log(tracks)
       }
-
-      // if (Array.isArray(thisArtist)) {
-      //   setArtist(thisArtist)
-      //   console.log(artist)
-      // }
     } catch (error) {
       console.error('Error fetching data:', error)
     }
@@ -79,9 +74,9 @@ export default function Artid() {
   }, [router.isReady, artid])
 
   useEffect(() => {
-    if (!router.isReady) return
+    if (!isTokenLoaded) return
     fetchData()
-  }, [])
+  }, [isTokenLoaded])
 
   if (!router.isReady) return null
 
