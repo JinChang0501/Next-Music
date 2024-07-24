@@ -195,8 +195,8 @@ export default function Profile() {
               {isDisable ? '點擊編輯即可上傳頭像' : '現在可以上傳頭像囉!'}
             </div>
             <div
-              className={`text-center chb-h7 mt-3 ${
-                isDisable ? 'text-black40' : 'text-purple1'
+              className={`text-center chb-p mt-3 ${
+                isDisable ? 'text-black40' : 'text-purple2'
               }`}
             >
               {isDisable ? '檔案大小最大2MB!' : '檔案大小最大2MB!'}
