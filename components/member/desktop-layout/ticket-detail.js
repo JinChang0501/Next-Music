@@ -93,7 +93,9 @@ export default function TicketDetail({ ticketData }) {
                 <p className="text-center p-0 m-0 chb-h5 text-white">
                   訂單編號:{ticketData[0].order_num}
                 </p>
-                <p className="text-center p-0 m-0 chb-h5 text-white">已完成</p>
+                <p className="text-center p-0 m-0 chb-h5 text-white">
+                  {ticketData[0].status}
+                </p>
               </div>
             </div>
 
@@ -233,7 +235,7 @@ export default function TicketDetail({ ticketData }) {
               <div className="px-sm-5 m-0 d-flex justify-content-between mb-2">
                 <p className="text-center p-0 m-0 chb-h5">付款方式</p>
                 <p className="text-center p-0 m-0 chr-h5">
-                  {/* {ticketData[0].payment} */}信用卡
+                  {ticketData[0].payment}
                 </p>
               </div>
             </div>

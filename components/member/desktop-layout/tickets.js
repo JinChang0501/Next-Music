@@ -18,6 +18,8 @@ export default function Tickets({
   actdate = '',
   acttime = '',
   amount = '',
+  payment = '',
+  status = '',
 }) {
   const formateCreated_At = moment(created_at)
     .tz('Asia/Taipei')
