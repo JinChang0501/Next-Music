@@ -9,7 +9,7 @@ import useSWR from 'swr'
 
 export const getArtist = async () => {
   try {
-    const res = await axiosInstance.get(`/artist`)
+    const res = await axiosInstance.get(`/artist-jin`)
 
     return res.data // 返回從後端獲取的data
   } catch (error) {
