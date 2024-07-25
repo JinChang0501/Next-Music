@@ -43,7 +43,7 @@ export default function TrySpotifyPlayer() {
           <p>正在載入 Spotify 播放器...</p>
         )}
       </div>
-      <h1>GPT ver</h1>
+      <h1 className="text-white">GPT ver</h1>
       <SpotifyPlayerGpt />
     </>
   )

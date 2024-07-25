@@ -110,9 +110,7 @@ export default function SdkPlayer() {
   return (
     <>
       <div className="p-4 bg-gray-100 rounded-lg shadow-md">
-        <h1 className="text-2xl font-bold mb-4">
-          Spotify Web Playback SDK Quick Start
-        </h1>
+        <h1 className="text-2xl text-white font-bold mb-4">SDK Player</h1>
         <div className="now-playing__side">
           <div className="now-playing__name">{current_track?.name}</div>
           <div className="now-playing__artist">
