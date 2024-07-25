@@ -254,6 +254,19 @@ export default function SelectSeat() {
     router.push('/Activity')
   }
 
+  useEffect(() => {
+    const handleRouteChange = () => {
+      Swal.close()
+    }
+
+    router.events.on('routeChangeStart', handleRouteChange)
+
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange)
+      Swal.close()
+    }
+  }, [router.events])
+
   const [isRightVisible, setIsRightVisible] = useState(true)
   const [isRightSecondVisible, setIsRightSecondVisible] = useState(false)
 
