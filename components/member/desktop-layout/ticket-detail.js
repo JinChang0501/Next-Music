@@ -121,7 +121,7 @@ export default function TicketDetail({ ticketData }) {
                     ref={textRef}
                     className={`${styles['marqee-content']} ${
                       isMarquee ? styles.marqee : ''
-                    }`}
+                    } chr-h6`}
                   >
                     {ticketData[0].actname}
                   </span>
@@ -138,7 +138,7 @@ export default function TicketDetail({ ticketData }) {
                   </div>
                 </div>
                 <div>
-                  <span className="text-center p-0 m-0 chr-h5">
+                  <span className="text-center p-0 m-0 chr-h6">
                     {ticketData[0].art_name}
                   </span>
                 </div>
@@ -154,7 +154,7 @@ export default function TicketDetail({ ticketData }) {
                   </div>
                 </div>
                 <div>
-                  <span className="text-center p-0 m-0 chr-h5">
+                  <span className="text-center p-0 m-0 chr-h6">
                     {ticketData[0].location}
                   </span>
                 </div>
@@ -170,7 +170,7 @@ export default function TicketDetail({ ticketData }) {
                   </div>
                 </div>
                 <div>
-                  <span className="text-center p-0 m-0 chr-h5">
+                  <span className="text-center p-0 m-0 chr-h6">
                     {`${formateActdate} ${formatteActtime}`}
                   </span>
                 </div>
