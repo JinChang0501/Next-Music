@@ -127,6 +127,19 @@ export default function SelectSeat() {
   }
 
   useEffect(() => {
+    const handleRouteChange = () => {
+      Swal.close()
+    }
+
+    router.events.on('routeChangeStart', handleRouteChange)
+
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange)
+      Swal.close()
+    }
+  }, [router.events])
+
+  useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 390)
     }

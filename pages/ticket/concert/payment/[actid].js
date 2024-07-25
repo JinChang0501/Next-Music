@@ -60,10 +60,17 @@ export default function Payment() {
       }
     })
 
-    return () => {
+    const handleRouteChange = () => {
       Swal.close()
     }
-  }, [isMobile, setIsStarted, router])
+
+    router.events.on('routeChangeStart', handleRouteChange)
+
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange)
+      Swal.close()
+    }
+  }, [isMobile, setIsStarted, router.events])
 
   useEffect(() => {
     const handleRouteChange = (url) => {
