@@ -7,22 +7,31 @@ import MainArtistInfo from '@/components/artist/main-artist-info'
 import TopTrackItem from '@/components/artist/top-track-item'
 import { useSpotifyApi } from '@/hooks/use-SpotifyApi'
 import ParticipatingActivity from '@/components/artist/participating-activity'
-import toast, { Toaster } from 'react-hot-toast'
+
+// const track = {
+//   name: '',
+//   album: {
+//     images: [{ url: '' }],
+//   },
+//   artists: [{ name: '' }],
+// }
 
 export default function Artid() {
   const router = useRouter()
-  console.log(router.query.artid)
+  // console.log(router.query.artid)
   const { artid } = router.query // 設定路由參數給 artid (參照)
   // ^^^^這裡的id是spotify_id，型態為「字串」，不用轉數字
   const topRef = useRef(null)
   const [tracks, setTracks] = useState([])
-  // const [artist, setArtist] = useState([]) // 圖片問題，改用資料庫的
-
-  // 藝人參加了哪些活動
+  // 參加了哪些活動 (包含！音樂人！資訊)
   const [activity, setActivity] = useState({
     success: false,
     rows2: [],
   })
+  // 播放相關
+  const [player, setPlayer] = useState(null)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [currentTrackUri, setCurrentTrackUri] = useState(null)
 
   const { getTopTracks, isTokenLoaded } = useSpotifyApi()
 
@@ -52,7 +61,7 @@ export default function Artid() {
 
       if (Array.isArray(topTracks.tracks)) {
         setTracks(topTracks.tracks)
-        console.log(tracks)
+        // console.log(tracks)
       }
     } catch (error) {
       console.error('Error fetching data:', error)
@@ -65,7 +74,7 @@ export default function Artid() {
     fetch(`${ART_LIST}${artid}`)
       .then((r) => r.json())
       .then((myData) => {
-        console.log(myData)
+        // console.log(myData)
         setActivity(myData)
       })
       .catch((ex) => {
@@ -73,10 +82,57 @@ export default function Artid() {
       })
   }, [router.isReady, artid])
 
+  // 取得熱門歌曲
   useEffect(() => {
     if (!isTokenLoaded || !router.isReady) return
     fetchData()
   }, [isTokenLoaded, router.isReady])
+
+  // 初始化播放器
+  useEffect(() => {
+    const script = document.createElement('script')
+    script.src = 'https://sdk.scdn.co/spotify-player.js'
+    script.async = true
+
+    document.body.appendChild(script)
+
+    window.onSpotifyWebPlaybackSDKReady = () => {
+      const player = new window.Spotify.Player({
+        name: '熱門歌曲',
+        getOAuthToken: (cb) => {
+          const token = localStorage.getItem('spotify_access_token')
+          cb(token)
+        },
+        volume: 0.5,
+      })
+
+      player.addListener('ready', ({ device_id }) => {
+        console.log('Ready with Device ID', device_id)
+        setPlayer(player)
+      })
+
+      player.connect()
+    }
+
+    return () => {
+      document.body.removeChild(script)
+    }
+  }, [])
+
+  const handlePlay = (trackUri) => {
+    if (player) {
+      if (currentTrackUri === trackUri && isPlaying) {
+        player.pause()
+        setIsPlaying(false)
+      } else {
+        player.resume({
+          uris: [trackUri],
+        })
+        setCurrentTrackUri(trackUri)
+        setIsPlaying(true)
+      }
+    }
+  }
 
   if (!router.isReady) return null
 
@@ -104,6 +160,8 @@ export default function Artid() {
                   number={i + 1}
                   cover={v.album.images[2].url}
                   song_name={v.name}
+                  isPlaying={isPlaying && currentTrackUri === v.uri}
+                  onPlay={() => handlePlay(v.uri)}
                 />
               )
             })}

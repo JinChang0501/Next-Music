@@ -8,6 +8,8 @@ export default function TopTrackItem({
   number = 1,
   cover = 'https://i.postimg.cc/28gJQ7xz/Cover11.jpg',
   song_name = 'Song Name',
+  isPlaying,
+  onPlay,
 }) {
   const [over, setOver] = useState(false)
   const [play, setplay] = useState(false)
@@ -25,8 +27,15 @@ export default function TopTrackItem({
         </div>
         <img className="img-size me-4 my-2" src={cover} />
         <div className="chr-h6 text-white me-auto">{song_name}</div>
-        {/* <div className="text-white eng-h4 me-4"> */}
-        {over ? (
+        {isPlaying ? (
+          <BsPauseCircleFill
+            onClick={onPlay}
+            className="text-white eng-h4 me-4"
+          />
+        ) : (
+          <BsPlayCircle onClick={onPlay} className="text-white eng-h4 me-4" />
+        )}
+        {/* {over ? (
           <BsPlayCircleFill
             className="text-white eng-h4 me-4"
             onClick={() => {
@@ -35,8 +44,7 @@ export default function TopTrackItem({
           />
         ) : (
           <BsPlayCircle className="text-white eng-h4 me-4" />
-        )}
-        {/* </div> */}
+        )} */}
       </div>
       <style jsx>{`
         .img-size {
