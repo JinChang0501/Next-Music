@@ -22,6 +22,7 @@ import 'swiper/css/pagination'
 // import required modules
 import { FreeMode, Pagination } from 'swiper/modules'
 import ArtCardMobile from '@/components/artist/art-card-mobile'
+import { API_SERVER } from '@/configs/api-path'
 
 export default function Index() {
   const [isDesktop, setIsDesktop] = useState(true)
@@ -40,13 +41,19 @@ export default function Index() {
 
   const [artistData, setArtData] = useState([])
 
+  //方法1 使用fetch
   const getUserData = async () => {
     try {
-      const res = await getArtist()
-      console.log('以下是response data')
+      const r = await fetch(`${API_SERVER}/api/artist-jin`)
+      console.log('以下是res')
+      console.log(r)
+      // 尝试解析 JSON 数据
+      const res = await r.json()
+
+      console.log('以下是res')
       console.log(res)
-      console.log('以下是res.data')
-      console.log(res.data)
+      console.log('以下是await res.json()')
+      console.log(res) // 输出解析后的数据
 
       if (res.status === 'success') {
         console.log('以下是res.data.result')
@@ -59,9 +66,33 @@ export default function Index() {
       }
     } catch (error) {
       console.error('Error fetching order data:', error)
-      // toast.error('會員購物紀錄載入失敗')
+      console.error('Catch首頁藝人資料載入失敗')
     }
   }
+
+  //方法2
+  // const getUserData = async () => {
+  //   try {
+  //     const res = await getArtist()
+  //     console.log('以下是response data')
+  //     console.log(res)
+  //     console.log('以下是res.data')
+  //     console.log(res.data)
+
+  //     if (res.status === 'success') {
+  //       console.log('以下是res.data.result')
+  //       console.log(res.data.result)
+  //       setArtData(res.data.result) //這一包是物件陣列[{},{},{}]
+  //       // toast.success('會員購物紀錄載入成功')
+  //       console.log('首頁藝人資料載入成功')
+  //     } else {
+  //       console.log('首頁藝人資料載入失敗')
+  //     }
+  //   } catch (error) {
+  //     console.error('Error fetching order data:', error)
+  //     // toast.error('會員購物紀錄載入失敗')
+  //   }
+  // }
 
   useEffect(() => {
     getUserData()
