@@ -8,14 +8,6 @@ import TopTrackItem from '@/components/artist/top-track-item'
 import { useSpotifyApi } from '@/hooks/use-SpotifyApi'
 import ParticipatingActivity from '@/components/artist/participating-activity'
 
-// const track = {
-//   name: '',
-//   album: {
-//     images: [{ url: '' }],
-//   },
-//   artists: [{ name: '' }],
-// }
-
 export default function Artid() {
   const router = useRouter()
   // console.log(router.query.artid)
@@ -31,7 +23,7 @@ export default function Artid() {
   // 播放相關
   const [player, setPlayer] = useState(null)
   const [isPlaying, setIsPlaying] = useState(false)
-  const [currentTrackUri, setCurrentTrackUri] = useState(null)
+  const [currentTrackUri, setCurrentTrackUri] = useState('')
   const [deviceId, setDeviceId] = useState(null)
 
   const { getTopTracks, isTokenLoaded } = useSpotifyApi()
@@ -121,10 +113,15 @@ export default function Artid() {
         if (!state) {
           return
         }
-
-        setCurrentTrackUri(state.track_window.current_track?.uri)
+        // console.log(state)
+        const currentTrack = state.track_window?.current_track
+        if (currentTrack) {
+          // console.log(currentTrack.uri)
+          setCurrentTrackUri(currentTrack.uri)
+        }
         setIsPlaying(!state.paused)
       })
+
       player.connect()
     }
 
