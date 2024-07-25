@@ -10,6 +10,7 @@ import {
 } from 'react-icons/bs'
 import { useRouter } from 'next/router'
 import { useTicketContext } from '@/context/ticket/ticketContext'
+import Swal from 'sweetalert2'
 
 export default function PhoneSelectTicket({
   selectedSeats,
@@ -58,7 +59,33 @@ export default function PhoneSelectTicket({
     if (selectedSeats.length > 0 && selectedSeats) {
       router.push(`/ticket/concert/payment/${actid}`)
     }
+
+    if (selectedSeats.length === 0) {
+      Swal.fire({
+        title: '尚未選擇票數',
+        icon: 'warning',
+        allowOutsideClick: false,
+        customClass: {
+          popup: style.customSwal,
+        },
+      })
+
+      return
+    }
   }
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      Swal.close()
+    }
+
+    router.events.on('routeChangeStart', handleRouteChange)
+
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange)
+      Swal.close()
+    }
+  }, [router.events])
 
   const { actid } = useTicketContext()
 

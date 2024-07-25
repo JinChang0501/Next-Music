@@ -9,7 +9,6 @@
 .zIndex > :first-child {
   position: absolute;
   bottom: 0;
-  z-index: 1400;
 }
 
 // #endregion zIndex
@@ -17,3 +16,15 @@
 .svgHeight {
   height: 551px;
 }
+
+
+// #region sweetalert2
+
+@media (max-width: 390px) {
+  .phoneSize {
+    width: 270px;
+    font-size: 15px;
+  }
+}
+
+// #endregion sweetalert2

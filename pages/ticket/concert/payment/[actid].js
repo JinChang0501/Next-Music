@@ -111,9 +111,15 @@ export default function Payment() {
   ])
 
   const breadcrumbsURL = [
-    { label: '首頁', href: '/' },
-    { label: '演出活動', href: '/activity' },
-    { label: '一生到底', href: '/activity/[aid]' },
+    ...(isMobile ? [] : [{ label: '首頁', href: '/' }]),
+    { label: '演出活動', href: '/Activity' },
+    {
+      label:
+        selectedSeatDetails && selectedSeatDetails.length > 0
+          ? `${selectedSeatDetails[0].actname}`
+          : '活動名稱',
+      href: `/Activity/${actid}`,
+    },
     { label: '支付方式', href: '/ticket/concert/first' },
   ]
 
@@ -132,6 +138,14 @@ export default function Payment() {
     }
 
     if (paymentMethod === 'linePay') {
+      Swal.fire({
+        title: '尚未提供 LINE PAY 支付方式',
+        icon: 'warning',
+        allowOutsideClick: false,
+        customClass: {
+          popup: style.customSwal,
+        },
+      })
       return
     }
 

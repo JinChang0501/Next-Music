@@ -18,13 +18,6 @@ import Swal from 'sweetalert2'
 // import toast, { Toaster } from 'react-hot-toast'
 
 export default function SelectSeat() {
-  const breadcrumbsURL = [
-    { label: '首頁', href: '/' },
-    { label: '演出活動', href: '/activity' },
-    { label: '一生到底', href: '/activity/[aid]' },
-    { label: '選擇座位', href: '/ticket/concert/first' },
-  ]
-
   const [isMobile, setIsMobile] = useState(false)
 
   const router = useRouter()
@@ -39,6 +32,17 @@ export default function SelectSeat() {
     setSelectedTickets,
     isTicketSelected,
   } = useTicketContext()
+
+  const breadcrumbsURL = [
+    ...(isMobile ? [] : [{ label: '首頁', href: '/' }]),
+    { label: '演出活動', href: '/Activity' },
+    {
+      label:
+        tickets && tickets.length > 0 ? `${tickets[0].actname}` : '活動名稱',
+      href: `/Activity/${actid}`,
+    },
+    { label: '選擇座位', href: '/ticket/musicFestival/first' },
+  ]
 
   useEffect(() => {
     const handleRouteChange = (url) => {

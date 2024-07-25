@@ -8,8 +8,15 @@ export default function PhoneAccordionThird() {
   const { setPaymentMethod } = useTicketContext()
 
   const handleCircleClick = (paymentMethod) => {
-    setSelected((prev) => (prev === paymentMethod ? null : paymentMethod))
-    setPaymentMethod(paymentMethod)
+    setSelected((prev) => {
+      if (prev === paymentMethod) {
+        setPaymentMethod(null)
+        return null
+      } else {
+        setPaymentMethod(paymentMethod)
+        return paymentMethod
+      }
+    })
   }
   return (
     <>

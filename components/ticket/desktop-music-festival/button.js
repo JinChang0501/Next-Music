@@ -3,7 +3,7 @@ import style from './button.module.scss'
 import DesktopWhiteNoIconBtnPurple from '@/components/common/button/desktopWhiteButton/desktopWhiteNoIconBtnPurple'
 import { useRouter } from 'next/router'
 
-export default function Button() {
+export default function Button({ orderData }) {
   const router = useRouter()
 
   const handleHome = () => {
@@ -11,7 +11,11 @@ export default function Button() {
   }
 
   const handleOrder = () => {
-    router.push('/member/ticket-order')
+    router.push(`/member/ticket-detail/${orderData.order_num}`)
+  }
+
+  if (!orderData) {
+    return <div>正在加載訂單資料...</div>
   }
   return (
     <>

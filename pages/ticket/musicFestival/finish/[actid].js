@@ -19,20 +19,28 @@ export default function Finish() {
   const [orderData, setOrderData] = useState(null)
   const { order_num } = router.query
 
-  const breadcrumbsURL = [
-    { label: '首頁', href: '/' },
-    { label: '演出活動', href: '/activity' },
-    { label: '一生到底', href: '/activity/[aid]' },
-    { label: '完成購票', href: '/ticket/concert/first' },
-  ]
-
   const {
+    actid,
+    selectedTickets,
     setTickets,
     setSelectedSeatDetails,
     setActid,
     setSelectedCount,
     setSelectedTickets,
   } = useTicketContext()
+
+  const breadcrumbsURL = [
+    ...(isMobile ? [] : [{ label: '首頁', href: '/' }]),
+    { label: '演出活動', href: '/Activity' },
+    {
+      label:
+        selectedTickets && selectedTickets.length > 0
+          ? `${selectedTickets[0].actname}`
+          : '活動名稱',
+      href: `/Activity/${actid}`,
+    },
+    { label: '完成購票', href: '/ticket/concert/first' },
+  ]
 
   useEffect(() => {
     if (order_num) {
@@ -151,7 +159,11 @@ export default function Finish() {
       </div>
 
       {/* button */}
-      {isMobile ? <PhoneButton /> : <Button />}
+      {isMobile ? (
+        <PhoneButton orderData={orderData} />
+      ) : (
+        <Button orderData={orderData} />
+      )}
     </>
   )
 }

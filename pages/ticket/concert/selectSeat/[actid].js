@@ -2,8 +2,6 @@ import React, { useRef, useEffect, useState } from 'react'
 import { useTicketContext } from '@/context/ticket/ticketContext'
 import FixedContentLayout from '@/components/layout/ticket-layout/desktopLayout/fixedContentLayout'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
-import Mask from '@/components/ticket/mask'
-import DeleteAllSeat from '@/components/ticket/desktop-concert/first/Left/deleteAllSeat'
 import ProgressBarNoCountdown from '@/components/ticket/progressBarNoCountdown'
 import PhoneTitle from '@/components/ticket/phone-concert/phoneTitle'
 import PhoneSelectTicket from '@/components/ticket/phone-concert/phoneSelectTicket'
@@ -13,6 +11,7 @@ import RightSecond from '@/components/ticket/desktop-concert/first/rightSecond'
 import style from '@/styles/ticket/concert/first.module.scss'
 import { GET_TICKET } from '@/configs/api-path'
 import { useRouter } from 'next/router'
+import Swal from 'sweetalert2'
 
 export default function SelectSeat() {
   // #region 動態獲取 breadcrumb、progressBar 高度，返回給 content
@@ -22,15 +21,7 @@ export default function SelectSeat() {
   const breadcrumbRef = useRef(null)
   const progressBarRef = useRef(null)
   const [contentHeight, setContentHeight] = useState('100%')
-
   const [isPhoneView, setIsPhoneView] = useState(false)
-
-  const breadcrumbsURL = [
-    { label: '首頁', href: '/' },
-    { label: '演出活動', href: '/activity' },
-    { label: '一生到底', href: '/activity/[aid]' },
-    { label: '選擇座位', href: '/ticket/concert/first' },
-  ]
 
   // useEffect 用於在組件渲染後執行副作用，比如事件監聽器的添加和清理
   useEffect(() => {
@@ -86,6 +77,17 @@ export default function SelectSeat() {
     setSelectedCount,
     setSelectedTickets,
   } = useTicketContext()
+
+  const breadcrumbsURL = [
+    ...(isPhoneView ? [] : [{ label: '首頁', href: '/' }]),
+    { label: '演出活動', href: '/Activity' },
+    {
+      label:
+        tickets && tickets.length > 0 ? `${tickets[0].actname}` : '活動名稱',
+      href: `/Activity/${actid}`,
+    },
+    { label: '選擇座位', href: '/ticket/concert/first' },
+  ]
 
   useEffect(() => {
     const handleRouteChange = (url) => {
@@ -183,15 +185,61 @@ export default function SelectSeat() {
     )
   }
 
-  const handleDeleteAllSeat = () => {
-    setSelectedSeatDetails([])
-    setDeleteAllSeat(false)
+  const handleDeleteAllSeat = async () => {
+    const result = await Swal.fire({
+      title: '確定嗎 ?',
+      html: '<span style="font-weight: bolder;">這將會刪除所選座位 !</span>',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: 'tomato',
+      cancelButtonColor: '#685BEB',
+      confirmButtonText: '確定',
+      cancelButtonText: '取消',
+      allowOutsideClick: false,
+    })
+
+    if (result.isConfirmed) {
+      await Swal.fire({
+        title: '已刪除 !',
+        html: '<span style="font-weight: bolder;">您所選的座位已成功刪除 !</span>',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+
+      Swal.close()
+
+      setTimeout(() => {
+        setSelectedSeatDetails([])
+      }, 100)
+    }
   }
 
-  const handleDeleteAllSeatAndChangeRouter = () => {
-    setSelectedSeatDetails([])
-    setDeleteAllSeat(false)
-    router.push(`/Activity`)
+  const handleDeleteAllSeatAndChangeRouter = async () => {
+    const result = await Swal.fire({
+      title: '確定嗎 ?',
+      html: '<span style="font-weight: bolder;">這將會刪除所選座位<br/>並返回活動頁面 !</span>',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: 'tomato',
+      cancelButtonColor: '#685BEB',
+      confirmButtonText: '確定',
+      cancelButtonText: '取消',
+      allowOutsideClick: false,
+      customClass: {
+        popup: style.phoneSize,
+      },
+    })
+
+    if (result.isConfirmed) {
+      setSelectedSeatDetails([])
+      Swal.close()
+      router.push('/Activity')
+    }
+  }
+
+  const handlePhoneChangeRouter = () => {
+    router.push('/Activity')
   }
 
   const [isRightVisible, setIsRightVisible] = useState(true)
@@ -213,12 +261,18 @@ export default function SelectSeat() {
     }
   }, [selectedSeatDetails])
 
-  const [showDeleteAllSeat, setDeleteAllSeat] = useState(false)
-
   const toggleShowDeleteAllSeat = () => {
-    selectedSeatDetails.length > 0
-      ? setDeleteAllSeat(!showDeleteAllSeat)
-      : setDeleteAllSeat(false)
+    if (selectedSeatDetails.length > 0) {
+      handleDeleteAllSeat() // 顯示 SweetAlert2 對話框
+    }
+
+    if (selectedSeatDetails.length > 0 && isPhoneView) {
+      handleDeleteAllSeatAndChangeRouter()
+    }
+
+    if (selectedSeatDetails.length === 0 && isPhoneView) {
+      handlePhoneChangeRouter()
+    }
   }
 
   // #region PhoneView
@@ -226,18 +280,6 @@ export default function SelectSeat() {
   if (isPhoneView) {
     return (
       <>
-        {showDeleteAllSeat && (
-          <>
-            <Mask />
-
-            <DeleteAllSeat
-              confirmDelete={handleDeleteAllSeat}
-              cancelDelete={toggleShowDeleteAllSeat}
-              confirmDeleteAndChangeRouter={handleDeleteAllSeatAndChangeRouter}
-            />
-          </>
-        )}
-
         <PhoneTitle
           tickets={tickets}
           selectedSeats={selectedSeatDetails}
@@ -272,17 +314,6 @@ export default function SelectSeat() {
 
   return (
     <>
-      {showDeleteAllSeat && (
-        <>
-          <Mask />
-
-          <DeleteAllSeat
-            confirmDelete={handleDeleteAllSeat}
-            cancelDelete={toggleShowDeleteAllSeat}
-          />
-        </>
-      )}
-
       {/* breadcrumb */}
       <div ref={breadcrumbRef}>
         <Breadcrumbs breadcrumbs={breadcrumbsURL} />

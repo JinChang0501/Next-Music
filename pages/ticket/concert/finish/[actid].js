@@ -20,6 +20,8 @@ export default function Finish() {
   const { order_num } = router.query
 
   const {
+    actid,
+    selectedSeatDetails,
     setTickets,
     setSelectedSeatDetails,
     setActid,
@@ -81,9 +83,15 @@ export default function Finish() {
   ])
 
   const breadcrumbsURL = [
-    { label: '首頁', href: '/' },
-    { label: '演出活動', href: '/activity' },
-    { label: '一生到底', href: '/activity/[aid]' },
+    ...(isMobile ? [] : [{ label: '首頁', href: '/' }]),
+    { label: '演出活動', href: '/Activity' },
+    {
+      label:
+        selectedSeatDetails && selectedSeatDetails.length > 0
+          ? `${selectedSeatDetails[0].actname}`
+          : '活動名稱',
+      href: `/Activity/${actid}`,
+    },
     { label: '完成購票', href: '/ticket/concert/first' },
   ]
 
@@ -150,7 +158,11 @@ export default function Finish() {
       </div>
 
       {/* button */}
-      {isMobile ? <PhoneButton /> : <Button />}
+      {isMobile ? (
+        <PhoneButton orderData={orderData} />
+      ) : (
+        <Button orderData={orderData} />
+      )}
     </>
   )
 }

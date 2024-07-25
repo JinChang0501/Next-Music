@@ -60,8 +60,8 @@ export default function Order({ orderData }) {
         <div className={`${style.paymentInfo}`}>
           <div className={`${style.paymentTitle} chb-h5`}>支付方式</div>
           <div className={`${style.paymentBody} chb-h5`}>
-            <div>{orderData.status}</div>
-            <div>( {orderData.payment} )</div>
+            <div>{orderData.payment}</div>
+            <div>( {orderData.status} )</div>
           </div>
         </div>
       </div>

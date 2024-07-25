@@ -23,14 +23,8 @@ export default function Payment() {
   const [isMobile, setIsMobile] = useState(false)
   const { isStarted, setIsStarted } = useCountdown()
 
-  const breadcrumbsURL = [
-    { label: '首頁', href: '/' },
-    { label: '演出活動', href: '/activity' },
-    { label: '一生到底', href: '/activity/[aid]' },
-    { label: '支付方式', href: '/ticket/concert/first' },
-  ]
-
   const {
+    actid,
     selectedTickets,
     setTickets,
     setSelectedSeatDetails,
@@ -39,6 +33,19 @@ export default function Payment() {
     setSelectedTickets,
     paymentMethod,
   } = useTicketContext()
+
+  const breadcrumbsURL = [
+    ...(isMobile ? [] : [{ label: '首頁', href: '/' }]),
+    { label: '演出活動', href: '/Activity' },
+    {
+      label:
+        selectedTickets && selectedTickets.length > 0
+          ? `${selectedTickets[0].actname}`
+          : '活動名稱',
+      href: `/Activity/${actid}`,
+    },
+    { label: '支付方式', href: '/ticket/musicFestival/first' },
+  ]
 
   useEffect(() => {
     const backdropImage = isMobile
@@ -116,8 +123,6 @@ export default function Payment() {
     setSelectedTickets,
   ])
 
-  const { actid } = router.query
-
   const handleNext = async () => {
     if (!paymentMethod) {
       Swal.fire({
@@ -133,6 +138,14 @@ export default function Payment() {
     }
 
     if (paymentMethod === 'linePay') {
+      Swal.fire({
+        title: '尚未提供 LINE PAY 支付方式',
+        icon: 'warning',
+        allowOutsideClick: false,
+        customClass: {
+          popup: style.customSwal,
+        },
+      })
       return
     }
 

@@ -57,8 +57,8 @@ export default function PhoneOrder({ orderData }) {
         <div className={`${style.paymentInfo}`}>
           <div className={`${style.paymentTitle} chb-h3`}>支付方式</div>
           <div className={`${style.paymentBody} chb-h4`}>
-            <div>{orderData.status}</div>
-            <div>( {orderData.payment} )</div>
+            <div>{orderData.payment}</div>
+            <div>( {orderData.status} )</div>
           </div>
         </div>
       </div>
