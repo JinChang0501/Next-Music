@@ -7,6 +7,7 @@ import MainArtistInfo from '@/components/artist/main-artist-info'
 import TopTrackItem from '@/components/artist/top-track-item'
 import { useSpotifyApi } from '@/hooks/use-SpotifyApi'
 import ParticipatingActivity from '@/components/artist/participating-activity'
+import PlaybackControl from '@/components/artist/playback-control'
 
 export default function Artid() {
   const router = useRouter()
@@ -175,10 +176,10 @@ export default function Artid() {
       {/* 音樂人主資訊 end */}
       <div className="music-container mt-80">
         {/* 熱門歌曲 start */}
-        <div className="row my-5">
-          <div className="chb-h4 mb-40 text-purple1">熱門歌曲</div>
-          <div className="width-50">
-            {/* <TopTrackList artist_id={artid} /> */}
+
+        <div className="chb-h4 mt-2 mb-40 text-purple1">熱門歌曲</div>
+        <div className="d-flex my-5">
+          <div className="width-60">
             {tracks.map((v, i) => {
               return (
                 <TopTrackItem
@@ -191,6 +192,14 @@ export default function Artid() {
                 />
               )
             })}
+          </div>
+          <div className="width-40">
+            <PlaybackControl
+              player={player}
+              currentTrack={tracks.find(
+                (track) => track.uri === currentTrackUri
+              )}
+            />
           </div>
         </div>
         {/* 熱門歌曲 end */}
@@ -223,8 +232,11 @@ export default function Artid() {
           margin-top: 80px;
           margin-bottom: 80px;
         }
-        .width-50 {
-          width: 50%;
+        .width-60 {
+          width: 60%;
+        }
+        .width-40 {
+          width: 40%;
         }
         @media (max-width: 390px) {
           .mt-80 {
