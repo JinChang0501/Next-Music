@@ -107,7 +107,7 @@ export default function Payment() {
   const handleSubmit = async () => {
     try {
       // 使用 fetch 或 axios 等方法發送 POST 請求
-      const res = await fetch('http://localhost:3005/api/order_detail/raw-sql', {
+      const res = await fetch(GET_PRODUCTS, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -230,16 +230,16 @@ export default function Payment() {
                 手機號碼
               </p>
               <input
-               type="text"
-               className={`form-control ${styles['w-800']} ${isValid ? '' : 'is-invalid'}`}
-               value={mobileNumber}
-               onChange={handleChange}
+                type="text"
+                className={`form-control ${styles['w-800']} ${isValid ? '' : 'is-invalid'}`}
+                value={mobileNumber}
+                onChange={handleChange}
               />
               {!isValid && (
-        <div className="invalid-feedback">
-          手機號碼格式不正確，請輸入正確格式 (09XXXXXXXX)
-        </div>
-      )}
+                <div className="invalid-feedback">
+                  手機號碼格式不正確，請輸入正確格式 (09XXXXXXXX)
+                </div>
+              )}
               <div id="emailHelp" className="form-text chb-p text-black40">
                 到貨時通知將發送至此手機號碼
               </div>
@@ -267,16 +267,27 @@ export default function Payment() {
         <div
           className={`fifth ${styles['my-40']} ${styles['w-800']} ${styles['center-item']}`}
         >
-          <Link href={`/cart/complete`}>
-            <DesktopBlackNoIconBtnPurple
-              text="確定訂購"
-              className={`chb-h6 ${styles['btn-760']}`}
-              onClick={(e) => {
-      handleSubmit();
-      clearLocalStorageCart();
-    }}
-            />
-          </Link>
+          {isValid ? (
+    <Link href={`/cart/complete`}>
+      <DesktopBlackNoIconBtnPurple
+        text="確定訂購"
+        className={`chb-h6 ${styles['btn-760']}`}
+        onClick={(e) => {
+          handleSubmit();
+          clearLocalStorageCart();
+        }}
+      />
+    </Link>
+  ) : (
+    <DesktopBlackNoIconBtnPurple
+      text="確定訂購"
+      className={`chb-h6 ${styles['btn-760']}`}
+      onClick={(e) => {
+        // Optionally provide user feedback or handle invalid case
+      }}
+      disabled={!isValid || mobileNumber.length === 0}
+    />
+  )}
         </div>
       </div>
     </>
