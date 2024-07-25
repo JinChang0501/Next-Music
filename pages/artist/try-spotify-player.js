@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import SpotifyPlayer from '@/components/artist/spotify-player-n'
-import SpotifyPlayerGpt from '@/components/artist/spotify-player-gpt'
+import SpotifyPlayer from '@/components/artist/player-test/spotify-player-n'
+import SpotifyPlayerGpt from '@/components/artist/player-test/spotify-player-gpt'
 import {
   WebPlaybackSDK,
   usePlaybackState,
   usePlayerDevice,
 } from 'react-spotify-web-playback-sdk'
-import TogglePlay from '@/components/artist/player/toggle-play'
-import SongTitle from '@/components/artist/player/song-title'
+import TogglePlay from '@/components/artist/player-test/toggle-play'
+import SongTitle from '@/components/artist/player-test/song-title'
 
 export default function TrySpotifyPlayer() {
   const [token, setToken] = useState(null)
