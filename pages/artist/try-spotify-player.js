@@ -43,25 +43,26 @@ export default function TrySpotifyPlayer() {
           <p>正在載入 Spotify 播放器...</p>
         )}
       </div>
+      <h1>GPT ver</h1>
       <SpotifyPlayerGpt />
     </>
   )
 }
 
-function SpotifyPlayerComponents() {
-  const playbackState = usePlaybackState()
-  const device = usePlayerDevice()
+// function SpotifyPlayerComponents() {
+//   const playbackState = usePlaybackState()
+//   const device = usePlayerDevice()
 
-  return (
-    <>
-      {device && playbackState ? (
-        <>
-          <TogglePlay />
-          <SongTitle />
-        </>
-      ) : (
-        <p>Initializing player...</p>
-      )}
-    </>
-  )
-}
+//   return (
+//     <>
+//       {device && playbackState ? (
+//         <>
+//           <TogglePlay />
+//           <SongTitle />
+//         </>
+//       ) : (
+//         <p>Initializing player...</p>
+//       )}
+//     </>
+//   )
+// }

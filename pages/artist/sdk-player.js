@@ -5,23 +5,21 @@ export default function SdkPlayer() {
   const [isPlaying, setIsPlaying] = useState(false)
   const playerRef = useRef(null)
   const [token, setToken] = useState(null)
-  const [player, setPlayer] = useState(undefined)
   const [is_paused, setPaused] = useState(false)
   const [is_active, setActive] = useState(false)
+  const [playerReady, setPlayerReady] = useState(false)
 
-  const track = {
+  const [current_track, setTrack] = useState({
     name: '',
     album: {
       images: [{ url: '' }],
     },
     artists: [{ name: '' }],
-  }
-
-  const [current_track, setTrack] = useState(track)
+  })
 
   const initializePlayer = useCallback(() => {
     const player = new window.Spotify.Player({
-      name: 'Web Playback SDK Quick Start Player',
+      name: 'SDK Player',
       getOAuthToken: (cb) => {
         cb(token)
       },
@@ -31,10 +29,12 @@ export default function SdkPlayer() {
     player.addListener('ready', ({ device_id }) => {
       console.log('Ready with Device ID', device_id)
       setDeviceId(device_id)
+      setPlayerReady(true)
     })
 
     player.addListener('not_ready', ({ device_id }) => {
       console.log('Device ID has gone offline', device_id)
+      setPlayerReady(false)
     })
 
     player.addListener('player_state_changed', (state) => {
@@ -44,10 +44,7 @@ export default function SdkPlayer() {
 
       setTrack(state.track_window.current_track)
       setPaused(state.paused)
-
-      player.getCurrentState().then((state) => {
-        !state ? setActive(false) : setActive(true)
-      })
+      setActive(true)
     })
 
     player.connect().then((success) => {
@@ -59,13 +56,12 @@ export default function SdkPlayer() {
     playerRef.current = player
   }, [token])
 
-  // 在 localStorage 讀取 access_token
   useEffect(() => {
     setToken(localStorage.getItem('spotify_access_token'))
   }, [])
 
   useEffect(() => {
-    if (!token) return // 確保 token 存在才初始化播放器
+    if (!token) return
     const script = document.createElement('script')
     script.src = 'https://sdk.scdn.co/spotify-player.js'
     script.async = true
@@ -83,12 +79,33 @@ export default function SdkPlayer() {
   }, [initializePlayer, token])
 
   const handleTogglePlay = useCallback(() => {
-    if (playerRef.current) {
-      playerRef.current.togglePlay().then(() => {
-        setIsPlaying(!isPlaying)
+    if (playerRef.current && playerReady) {
+      playerRef.current
+        .togglePlay()
+        .then(() => {
+          setIsPlaying((prevState) => !prevState)
+        })
+        .catch((error) => {
+          console.error('Error toggling play:', error)
+        })
+    }
+  }, [playerReady])
+
+  const handlePreviousTrack = useCallback(() => {
+    if (playerRef.current && playerReady) {
+      playerRef.current.previousTrack().catch((error) => {
+        console.error('Error changing to previous track:', error)
       })
     }
-  }, [isPlaying])
+  }, [playerReady])
+
+  const handleNextTrack = useCallback(() => {
+    if (playerRef.current && playerReady) {
+      playerRef.current.nextTrack().catch((error) => {
+        console.error('Error changing to next track:', error)
+      })
+    }
+  }, [playerReady])
 
   return (
     <>
@@ -97,17 +114,15 @@ export default function SdkPlayer() {
           Spotify Web Playback SDK Quick Start
         </h1>
         <div className="now-playing__side">
-          <div className="now-playing__name">{current_track.name}</div>
+          <div className="now-playing__name">{current_track?.name}</div>
           <div className="now-playing__artist">
             {current_track.artists[0].name}
           </div>
         </div>
         <button
           className="btn-spotify bg-purple3 py-2 px-2"
-          onClick={() => {
-            playerRef.current?.previousTrack()
-          }}
-          disabled={!is_active}
+          onClick={handlePreviousTrack}
+          disabled={!playerReady || !is_active}
         >
           &lt;&lt;
         </button>
@@ -115,22 +130,20 @@ export default function SdkPlayer() {
         <button
           onClick={handleTogglePlay}
           className="bg-purple1 text-white font-bold py-2 px-4 rounded"
-          disabled={!is_active}
+          disabled={!playerReady || !is_active}
         >
           {is_paused ? 'Play' : 'Pause'}
         </button>
 
         <button
           className="btn-spotify bg-purple3 py-2 px-2"
-          onClick={() => {
-            playerRef.current?.nextTrack()
-          }}
-          disabled={!is_active}
+          onClick={handleNextTrack}
+          disabled={!playerReady || !is_active}
         >
           &gt;&gt;
         </button>
         {deviceId && (
-          <p className="mt-4 text-sm text-gray-600">
+          <p className="mt-4 text-sm text-white">
             Connected to device: {deviceId}
           </p>
         )}
