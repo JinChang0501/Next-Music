@@ -199,7 +199,7 @@ export default function Profile() {
                 isDisable ? 'text-black40' : 'text-purple2'
               }`}
             >
-              {isDisable ? '檔案大小最大2MB!' : '檔案大小最大2MB!'}
+              {isDisable ? '檔案大小最大1MB!' : '檔案大小最大1MB!'}
               <br />
               {isDisable ? '檔案限制JPG、JPEG、PNG' : '檔案限制JPG、JPEG、PNG'}
             </div>
