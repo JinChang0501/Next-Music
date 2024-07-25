@@ -25,7 +25,7 @@ export default function TrySpotifyPlayer() {
   const getOAuthToken = useCallback((callback) => callback(token), [])
   return (
     <>
-      <h1>Spotify Web Playback</h1>
+      {/* <h1>Spotify Web Playback</h1> */}
       <div className="bg-white">
         {token ? (
           <WebPlaybackSDK
@@ -43,9 +43,7 @@ export default function TrySpotifyPlayer() {
           <p>正在載入 Spotify 播放器...</p>
         )}
       </div>
-      {/* <SpotifyLoginButton /> */}
-      {/* <SpotifyPlayerGpt /> */}
-      {/* {accessToken && <SpotifyPlayer accessToken={accessToken} />} */}
+      <SpotifyPlayerGpt />
     </>
   )
 }
