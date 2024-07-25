@@ -35,6 +35,7 @@ function OfficialPlayer() {
 
       player.addListener('ready', ({ device_id }) => {
         console.log('Ready with Device ID', device_id)
+        setActive(true)
       })
 
       player.addListener('not_ready', ({ device_id }) => {
@@ -43,18 +44,25 @@ function OfficialPlayer() {
 
       player.addListener('player_state_changed', (state) => {
         if (!state) {
+          console.error('No state found')
           return
         }
 
         setTrack(state.track_window.current_track)
         setPaused(state.paused)
+        console.log('is_paused', state.paused)
 
-        player.getCurrentState().then((state) => {
-          !state ? setActive(false) : setActive(true)
-        })
+        console.log('Currently Playing', state.track_window.current_track)
+        console.log('Playing Next', state.track_window.next_tracks[0])
       })
 
-      player.connect()
+      player.connect().then((success) => {
+        if (success) {
+          console.log('The Web Playback SDK successfully connected to Spotify!')
+        } else {
+          console.error('Failed to connect to the Web Playback SDK.')
+        }
+      })
     }
   }, [])
 
@@ -62,6 +70,9 @@ function OfficialPlayer() {
     return (
       <>
         <div className="container">
+          <h1 className="text-2xl text-white font-bold mb-4">
+            Official Player
+          </h1>
           <div className="main-wrapper">
             <b>
               {' '}
@@ -75,17 +86,21 @@ function OfficialPlayer() {
     return (
       <>
         <div className="container">
+          <h1 className="text-2xl text-white font-bold mb-4">
+            Official Player
+          </h1>
+
           <div className="main-wrapper">
             <img
-              src={current_track.album?.images[0].url}
+              src={current_track?.album?.images[0].url}
               className="now-playing__cover"
               alt=""
             />
 
             <div className="now-playing__side">
-              <div className="now-playing__name">{current_track.name}</div>
+              <div className="now-playing__name">{current_track?.name}</div>
               <div className="now-playing__artist">
-                {current_track.artists[0].name}
+                {current_track?.artists[0].name}
               </div>
 
               <button
