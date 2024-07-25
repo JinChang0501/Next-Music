@@ -9,7 +9,6 @@ import DesktopWhiteNoIconBtnPurple from '@/components/common/button/desktopWhite
 
 export default function Tickets({
   order_num = '',
-
   tid = {},
   created_at = '',
   price = {},

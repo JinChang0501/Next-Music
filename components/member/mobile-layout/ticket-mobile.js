@@ -26,6 +26,9 @@ export default function TicketMobile({
 
   const formatteActtime = moment(acttime, 'HH:mm:ss').format('HH:mm')
 
+  const formateCreated_At = moment(created_at)
+    .tz('Asia/Taipei')
+    .format('YYYY/MM/DD HH:mm')
   return (
     <>
       <div className="col-12 bg-purple1 py-1 px-2">
@@ -33,7 +36,9 @@ export default function TicketMobile({
           <p className="text-center p-0 m-0 chb-p text-white">
             訂單編號:{order_num}
           </p>
-          <p className="text-center p-0 m-0 chb-p text-white">X {amount}張</p>
+          <p className="text-center p-0 m-0 chb-p text-white">
+            {formateCreated_At}
+          </p>
         </div>
       </div>
       <div

@@ -53,7 +53,8 @@ export default function TicketDetail({ ticketData }) {
     }
     return sum
   }
-
+  console.log('ticketData[0].created_at')
+  console.log(ticketData[0].created_at)
   //更改時間格式
   const formateCreated_At = moment(ticketData[0].created_at)
     .tz('Asia/Taipei')
