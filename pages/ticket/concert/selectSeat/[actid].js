@@ -113,6 +113,18 @@ export default function SelectSeat() {
       }
     }
 
+    setActid(null)
+    setTickets([])
+    setSelectedSeatDetails([])
+    setSelectedCount(1)
+    setSelectedTickets([])
+
+    localStorage.removeItem('actid')
+    localStorage.removeItem('tickets')
+    localStorage.removeItem('selectedSeatDetails')
+    localStorage.removeItem('selectedCount')
+    localStorage.removeItem('selectedTickets')
+
     router.events.on('routeChangeStart', handleRouteChange)
 
     return () => {
