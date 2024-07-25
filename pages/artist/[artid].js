@@ -32,6 +32,7 @@ export default function Artid() {
   const [player, setPlayer] = useState(null)
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTrackUri, setCurrentTrackUri] = useState(null)
+  const [deviceId, setDeviceId] = useState(null)
 
   const { getTopTracks, isTokenLoaded } = useSpotifyApi()
 
@@ -108,9 +109,22 @@ export default function Artid() {
 
       player.addListener('ready', ({ device_id }) => {
         console.log('Ready with Device ID', device_id)
+        setDeviceId(device_id)
         setPlayer(player)
       })
 
+      player.addListener('not_ready', ({ device_id }) => {
+        console.log('Device ID has gone offline', device_id)
+      })
+
+      player.addListener('player_state_changed', (state) => {
+        if (!state) {
+          return
+        }
+
+        setCurrentTrackUri(state.track_window.current_track?.uri)
+        setIsPlaying(!state.paused)
+      })
       player.connect()
     }
 
@@ -119,17 +133,32 @@ export default function Artid() {
     }
   }, [])
 
-  const handlePlay = (trackUri) => {
-    if (player) {
-      if (currentTrackUri === trackUri && isPlaying) {
-        player.pause()
-        setIsPlaying(false)
-      } else {
-        player.resume({
-          uris: [trackUri],
-        })
+  const handlePlay = async (trackUri) => {
+    if (!player || !deviceId) return
+
+    const token = localStorage.getItem('spotify_access_token')
+
+    if (currentTrackUri === trackUri && isPlaying) {
+      await player.pause()
+      setIsPlaying(false)
+    } else {
+      const response = await fetch(
+        `https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`,
+        {
+          method: 'PUT',
+          body: JSON.stringify({ uris: [trackUri] }),
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+
+      if (response.ok) {
         setCurrentTrackUri(trackUri)
         setIsPlaying(true)
+      } else {
+        console.error('Error playing track:', response.statusText)
       }
     }
   }
