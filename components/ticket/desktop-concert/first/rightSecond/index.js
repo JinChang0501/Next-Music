@@ -45,7 +45,7 @@ export default function RightSecond({
         <button className="bg-white" onClick={showDeleteAllSeat}>
           <BsChevronLeft className={`${style.rightTitleIcon} text-black30`} />
         </button>
-        <div className="chb-h6 text-black40">返回選擇區域</div>
+        <div className="chb-h6 text-black40">刪除全部座位</div>
       </div>
 
       {/* ticketSeatBlock */}

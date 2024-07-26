@@ -35,6 +35,12 @@ export default function Finish() {
         try {
           const response = await axiosInstance.get(`/ecpay/order/${order_num}`)
           setOrderData(response.data)
+
+          // 發送訂單詳情到電子郵件
+          await axiosInstance.post('/ecpay/send-email', {
+            order_num: order_num,
+            email: 'makintuneshub@gmail.com',
+          })
         } catch (error) {
           console.error('獲取訂單資料時出錯:', error)
         }
