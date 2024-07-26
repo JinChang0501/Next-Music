@@ -20,7 +20,9 @@ export default function TopTrackItem({
           over ? 'bg-black90 hover' : 'bg-dark'
         }`}
         onMouseOver={() => setOver(true)}
+        onFocus={() => setOver(true)}
         onMouseOut={() => setOver(false)}
+        onBlur={() => setOver(false)}
       >
         <div className="eng-h6 width-box text-black60 ms-2 ms-md-4">
           {number}

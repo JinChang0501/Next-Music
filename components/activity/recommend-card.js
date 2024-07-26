@@ -19,7 +19,9 @@ export default function RecommendCard({
             over ? 'bg-black90 hover' : 'bg-dark'
           }`}
           onMouseOver={() => setOver(true)}
+          onFocus={() => setOver(true)}
           onMouseOut={() => setOver(false)}
+          onBlur={() => setOver(false)}
         >
           <Link href={`/Activity/${aid}`}>
             <img src={imgSrc} className="card-img-top" />

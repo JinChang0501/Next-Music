@@ -14,7 +14,9 @@ export default function ArtistFollowCard({
             over ? 'bg-black90 hover' : 'bg-dark'
           }`}
           onMouseOver={() => setOver(true)}
+          onFocus={() => setOver(true)}
           onMouseOut={() => setOver(false)}
+          onBlur={() => setOver(false)}
         >
           <div className="row d-flex align-items-center">
             {/* 圖 */}

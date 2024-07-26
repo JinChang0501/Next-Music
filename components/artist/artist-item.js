@@ -18,7 +18,9 @@ export default function ArtistItem({
             over ? 'bg-black95 hover outline' : 'bg-dark'
           }`}
           onMouseOver={() => setOver(true)}
+          onFocus={() => setOver(true)}
           onMouseOut={() => setOver(false)}
+          onBlur={() => setOver(false)}
         >
           <Link href={`/artist/${artid}`}>
             <div className="p-3">
