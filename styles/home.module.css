@@ -174,4 +174,16 @@
   }
 }
 
+/* styles/home.module.css */
+.follower {
+  position: fixed; 
+  width: 20px;
+  height: 20px;
+  background: salmon;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+}
+
 /* //#region chloe 測試 */
