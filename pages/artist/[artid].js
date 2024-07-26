@@ -114,7 +114,7 @@ export default function Artid() {
         if (!state) {
           return
         }
-        // console.log(state)
+        console.log(state)
         const currentTrack = state.track_window?.current_track
         if (currentTrack) {
           // console.log(currentTrack.uri)
@@ -194,12 +194,12 @@ export default function Artid() {
             })}
           </div>
           <div className="width-40">
-            <PlaybackControl
+            {/* <PlaybackControl
               player={player}
               currentTrack={tracks.find(
                 (track) => track.uri === currentTrackUri
               )}
-            />
+            /> */}
           </div>
         </div>
         {/* 熱門歌曲 end */}
@@ -221,6 +221,10 @@ export default function Artid() {
         </div>
         {/*  出演活動 end  */}
       </div>
+      <PlaybackControl
+        player={player}
+        currentTrack={tracks.find((track) => track.uri === currentTrackUri)}
+      />
       <style jsx>{`
         .mb-40 {
           margin-bottom: 40px;
