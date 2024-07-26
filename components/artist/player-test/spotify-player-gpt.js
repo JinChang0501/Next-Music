@@ -8,11 +8,12 @@ export default function SpotifyPlayerGpt() {
 
   const initializePlayer = useCallback(() => {
     const player = new window.Spotify.Player({
-      name: 'Web Playback SDK Quick Start Player',
+      name: 'GPT Player',
       getOAuthToken: (cb) => {
         cb(token)
       },
       volume: 0.5,
+      enableMediaSession: true,
     })
 
     player.addListener('ready', ({ device_id }) => {
@@ -69,12 +70,12 @@ export default function SpotifyPlayerGpt() {
       </h1>
       <button
         onClick={handleTogglePlay}
-        className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+        className="bg-purple1 text-white font-bold py-2 px-4 rounded"
       >
         {isPlaying ? 'Pause' : 'Play'}
       </button>
       {deviceId && (
-        <p className="mt-4 text-sm text-gray-600">
+        <p className="mt-4 text-sm text-white">
           Connected to device: {deviceId}
         </p>
       )}

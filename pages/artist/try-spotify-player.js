@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import SpotifyPlayer from '@/components/artist/spotify-player-n'
-import SpotifyPlayerGpt from '@/components/artist/spotify-player-gpt'
+import SpotifyPlayer from '@/components/artist/player-test/spotify-player-n'
+import SpotifyPlayerGpt from '@/components/artist/player-test/spotify-player-gpt'
 import {
   WebPlaybackSDK,
   usePlaybackState,
   usePlayerDevice,
 } from 'react-spotify-web-playback-sdk'
-import TogglePlay from '@/components/artist/player/toggle-play'
-import SongTitle from '@/components/artist/player/song-title'
+import TogglePlay from '@/components/artist/player-test/toggle-play'
+import SongTitle from '@/components/artist/player-test/song-title'
 
 export default function TrySpotifyPlayer() {
   const [token, setToken] = useState(null)
@@ -25,7 +25,7 @@ export default function TrySpotifyPlayer() {
   const getOAuthToken = useCallback((callback) => callback(token), [])
   return (
     <>
-      <h1>Spotify Web Playback</h1>
+      {/* <h1>Spotify Web Playback</h1> */}
       <div className="bg-white">
         {token ? (
           <WebPlaybackSDK
@@ -43,27 +43,26 @@ export default function TrySpotifyPlayer() {
           <p>正在載入 Spotify 播放器...</p>
         )}
       </div>
-      {/* <SpotifyLoginButton /> */}
-      {/* <SpotifyPlayerGpt /> */}
-      {/* {accessToken && <SpotifyPlayer accessToken={accessToken} />} */}
+      <h1 className="text-white">GPT ver</h1>
+      <SpotifyPlayerGpt />
     </>
   )
 }
 
-function SpotifyPlayerComponents() {
-  const playbackState = usePlaybackState()
-  const device = usePlayerDevice()
+// function SpotifyPlayerComponents() {
+//   const playbackState = usePlaybackState()
+//   const device = usePlayerDevice()
 
-  return (
-    <>
-      {device && playbackState ? (
-        <>
-          <TogglePlay />
-          <SongTitle />
-        </>
-      ) : (
-        <p>Initializing player...</p>
-      )}
-    </>
-  )
-}
+//   return (
+//     <>
+//       {device && playbackState ? (
+//         <>
+//           <TogglePlay />
+//           <SongTitle />
+//         </>
+//       ) : (
+//         <p>Initializing player...</p>
+//       )}
+//     </>
+//   )
+// }

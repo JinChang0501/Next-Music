@@ -34,11 +34,6 @@ export default function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      {/* spotify所需元件 */}
-      <Script
-        src="https://sdk.scdn.co/spotify-player.js"
-        strategy="afterInteractive"
-      />
       <LoginProvider>
         <RefreshProvider>
           <AuthProvider>
