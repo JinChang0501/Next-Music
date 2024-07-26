@@ -111,6 +111,16 @@ export default function Activity() {
     }
   }
 
+  // 連結訂票頁面
+  const handleBookTickets = (actid) => {
+    return () => {
+      const bookingRoute = `/ticket/${
+        actid > 9 ? 'musicFestival' : 'concert'
+      }/selectSeat/${actid}`
+      router.push(bookingRoute)
+    }
+  }
+
   // 頁面重新渲染時：取得列表、搜尋條件
   useEffect(() => {
     const params = {
@@ -156,7 +166,6 @@ export default function Activity() {
           <div className="col-md-9 col-12 mb-3">
             <div className="chb-h4 mb-3 text-purple1">活動列表</div>
             {/* 可放［活動列表 >> 搜尋結果］在標題，有結果再顯示 */}
-            {/* <div className="chb-h4 mb-3 text-purple1"></div> */}
             {data.rows.map((r, i) => {
               // 將ActivityCard-Fav元件引入，並傳入list、handleToggleFav屬性
               return (
@@ -175,6 +184,9 @@ export default function Activity() {
                   // 有登入的話切換toggle，沒有的話要先登入
                   handleToggleFav={
                     auth.isAuth ? handleToggleFav : handleWakeLogin
+                  }
+                  handleToTicket={
+                    auth.isAuth ? handleBookTickets(r.actid) : handleWakeLogin
                   }
                 />
               )

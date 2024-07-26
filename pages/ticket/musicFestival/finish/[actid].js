@@ -50,6 +50,11 @@ export default function Finish() {
             `/musicFestivalEcpay/order/${order_num}`
           )
           setOrderData(response.data)
+
+          await axiosInstance.post('/musicFestivalEcpay/send-email', {
+            order_num: order_num,
+            email: 'makintuneshub@gmail.com',
+          })
         } catch (error) {
           console.error('獲取訂單資料時出錯:', error)
         }

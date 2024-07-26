@@ -21,6 +21,7 @@ export default function MainMusicInfo({
   artist,
   banner,
   aid,
+  handleBookTicket,
 }) {
   const [isDesktop, setIsDesktop] = useState(true)
 
@@ -77,35 +78,19 @@ export default function MainMusicInfo({
             </div>
             <div className="col-12 text-nowrap mt-3">
               <div className="d-flex mb-5 mb-sm-0">
-                <Link
-                  href={`/ticket/${
-                    aid > 9 ? 'musicFestival' : 'concert'
-                  }/selectSeat/${aid}`}
-                  className={`d-inline-block ${!isDesktop ? 'w-100' : ''}`}
-                >
-                  {isDesktop ? (
-                    <DesktopBlackNoIconBtnPurple
-                      text="立即購票"
-                      className="chr-h5"
-                    />
-                  ) : (
-                    <PhoneBlackNoIconBtnPurple
-                      text="立即購票"
-                      className="chr-h4 w-100"
-                    />
-                  )}
-                </Link>
-                {/* <div className="ms-2 ms-md-4">
-                  {isDesktop ? (
-                    <DesktopBlackPureIconBtnBlack icon={BsBookmark} />
-                  ) : (
-                    <PhoneBlackPureIconBtnBlack
-                      icon={BsBookmark}
-                      iconWidth={25}
-                      iconHeight={25}
-                    />
-                  )}
-                </div> */}
+                {isDesktop ? (
+                  <DesktopBlackNoIconBtnPurple
+                    text="立即購票"
+                    className="chr-h5"
+                    onClick={handleBookTicket}
+                  />
+                ) : (
+                  <PhoneBlackNoIconBtnPurple
+                    text="立即購票"
+                    className="chr-h4 w-100"
+                    onClick={handleBookTicket}
+                  />
+                )}
               </div>
             </div>
           </div>

@@ -25,6 +25,7 @@ export default function ActivityCard({
   isFavorite,
   handleToggleFav,
   aid,
+  handleToTicket,
 }) {
   const [isDesktop, setIsDesktop] = useState(true)
   const [over, setOver] = useState(false)
@@ -107,27 +108,17 @@ export default function ActivityCard({
                 </Link>
                 {/* 如果變成手機大小，要變成手機按鈕的判斷式 */}
                 {isDesktop ? (
-                  <Link
-                    href={`/ticket/${
-                      aid > 9 ? 'musicFestival' : 'concert'
-                    }/selectSeat/${aid}`}
-                  >
-                    <DesktopBlackNoIconBtnPurple
-                      text="立即購票"
-                      className="chr-p"
-                    />
-                  </Link>
+                  <DesktopBlackNoIconBtnPurple
+                    text="立即購票"
+                    className="chr-p"
+                    onClick={handleToTicket}
+                  />
                 ) : (
-                  <Link
-                    href={`/ticket/${
-                      aid > 9 ? 'musicFestival' : 'concert'
-                    }/selectSeat/${aid}`}
-                  >
-                    <PhoneBlackNoIconBtnPurple
-                      text="立即購票"
-                      className="chr-p-10"
-                    />
-                  </Link>
+                  <PhoneBlackNoIconBtnPurple
+                    text="立即購票"
+                    className="chr-p-10"
+                    onClick={handleToTicket}
+                  />
                 )}
               </div>
             </div>

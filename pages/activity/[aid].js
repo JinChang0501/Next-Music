@@ -35,12 +35,6 @@ export default function Aid() {
     data: {},
   })
 
-  const breadcrumbsURL = [
-    { label: '首頁', href: '/' },
-    { label: '演出活動', href: '/Activity' },
-    { label: '活動詳情', href: '/Activity/[aid]' },
-  ]
-
   const scrollToTop = (e) => {
     //console.log('scrollToTop called')
     if (topRef.current) {
@@ -49,6 +43,13 @@ export default function Aid() {
     } else {
       console.log('topRef.current is null')
     }
+  }
+
+  const handleBookTicket = async (actid) => {
+    const bookingRoute = `/ticket/${
+      actid > 9 ? 'musicFestival' : 'concert'
+    }/selectSeat/${actid}`
+    await router.push(bookingRoute)
   }
 
   useEffect(
@@ -123,6 +124,13 @@ export default function Aid() {
 
   console.log(random4Recommend)
 
+  // 麵包屑，寫在判斷 mainInfoData 之後
+  const breadcrumbsURL = [
+    { label: '首頁', href: '/' },
+    { label: '演出活動', href: '/Activity' },
+    { label: `${mainInfoData.actname}`, href: '/Activity/[aid]' },
+  ]
+
   return (
     <>
       <div ref={topRef}></div>
@@ -138,6 +146,11 @@ export default function Aid() {
           artist={mainInfoData.artists}
           banner={mainInfoData.picture}
           aid={mainInfoData.actid}
+          handleBookTicket={
+            auth.isAuth
+              ? () => handleBookTicket(mainInfoData.actid)
+              : handleWakeLogin
+          }
         />
         {/* 活動主資訊 end */}
         {/* 簡介：頁籤 start */}

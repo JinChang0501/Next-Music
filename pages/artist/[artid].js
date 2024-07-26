@@ -32,7 +32,7 @@ export default function Artid() {
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
     { label: '音樂人', href: '/artist' },
-    { label: '個人主頁', href: '/artist/[artid]' },
+    { label: `${activity.rows2[0]?.art_name}`, href: '/artist/[artid]' },
   ]
 
   const scrollToTop = (e) => {
@@ -114,7 +114,7 @@ export default function Artid() {
         if (!state) {
           return
         }
-        // console.log(state)
+        console.log(state)
         const currentTrack = state.track_window?.current_track
         if (currentTrack) {
           // console.log(currentTrack.uri)
@@ -176,7 +176,6 @@ export default function Artid() {
       {/* 音樂人主資訊 end */}
       <div className="music-container mt-80">
         {/* 熱門歌曲 start */}
-
         <div className="chb-h4 mt-2 mb-40 text-purple1">熱門歌曲</div>
         <div className="d-flex my-5">
           <div className="width-60">
@@ -193,14 +192,9 @@ export default function Artid() {
               )
             })}
           </div>
-          <div className="width-40">
-            <PlaybackControl
-              player={player}
-              currentTrack={tracks.find(
-                (track) => track.uri === currentTrackUri
-              )}
-            />
-          </div>
+          {/* <div className="width-40">
+
+          </div> */}
         </div>
         {/* 熱門歌曲 end */}
         {/*  出演活動 start  */}
@@ -221,6 +215,21 @@ export default function Artid() {
         </div>
         {/*  出演活動 end  */}
       </div>
+      <PlaybackControl
+        player={player}
+        currentTrack={tracks.find((track) => track.uri === currentTrackUri)}
+        isPlaying={isPlaying}
+        onPlay={() => handlePlay(currentTrackUri)}
+        onPause={() => player.pause()}
+        onNextTrack={() => {
+          /* 實現下一曲邏輯 */
+        }}
+        onPreviousTrack={() => {
+          /* 實現上一曲邏輯 */
+        }}
+        onSeek={(position) => player.seek(position)}
+        onVolumeChange={(volume) => player.setVolume(volume)}
+      />
       <style jsx>{`
         .mb-40 {
           margin-bottom: 40px;

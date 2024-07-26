@@ -97,6 +97,16 @@ export default function Index() {
   useEffect(() => {
     getUserData()
   }, [])
+
+  const getRandomItems = (arr, count) => {
+    // 打亂陣列
+    const shuffled = arr.sort(() => Math.random() - 0.5)
+    // 選擇前 count 筆資料
+    return shuffled.slice(0, count)
+  }
+
+  const randomArtists = getRandomItems(artistData, 6)
+
   return (
     <>
       {/* banner一張（影片輪播） start */}
@@ -199,6 +209,7 @@ export default function Index() {
 
       {/* 音樂人 end */}
       {/* swiper套件 */}
+
       {isDesktop ? (
         <div className="music-container mb-5">
           <Swiper
@@ -231,7 +242,7 @@ export default function Index() {
       ) : (
         <div className="music-container mb-5">
           <div className="col-12 align-items-center order-md-3 mb-5 mb-md-0 d-flex flex-wrap">
-            {artistData.map((v, i) => {
+            {randomArtists.map((v, i) => {
               return (
                 <ArtCardMobile
                   key={i}
