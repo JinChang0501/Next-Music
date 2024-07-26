@@ -148,6 +148,7 @@ export default function Artist() {
                     imgSrc={`/images/artist/${r.photoname}`}
                     artist_name={r.art_name}
                     artid={r.spotify_id}
+                    scrollToTop={scrollToTop}
                   />
                 )
               })}

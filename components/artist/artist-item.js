@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import Image from 'next/image'
 import PhoneBlackNoIconBtnBlack from '../common/button/phoneBlackButton/phoneBlackNoIconBtnBlack'
 
@@ -7,9 +8,17 @@ export default function ArtistItem({
   imgSrc = 'https://i.postimg.cc/zB5Gh92q/temp-Image7-Gw6zu.avif',
   artist_name = '音樂人',
   artid,
+  scrollToTop,
 }) {
   const [over, setOver] = useState(false)
+  const router = useRouter()
 
+  const handleClick = (e) => {
+    e.preventDefault()
+    router.push(`/artist/${artid}`).then(() => {
+      scrollToTop()
+    })
+  }
   return (
     <>
       <div className="col-6 col-sm-6 col-md-4 my-2">
@@ -22,7 +31,7 @@ export default function ArtistItem({
           onMouseOut={() => setOver(false)}
           onBlur={() => setOver(false)}
         >
-          <Link href={`/artist/${artid}`}>
+          <Link href={`/artist/${artid}`} onClick={handleClick}>
             <div className="p-3">
               <Image
                 src={imgSrc}
