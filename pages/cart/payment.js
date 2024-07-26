@@ -129,11 +129,12 @@ export default function Payment() {
   }
   // 手機
   const handleChange = (e) => {
-    const formattedMobile = e.target.value.replace(/\D/g, ''); // 移除非数字字符
+    const formattedMobile = e.target.value.replace(/\D/g, '') // 移除非数字字符
 
-    if (formattedMobile.length <= 10) { // 确保不超过10个字符
-      setMobileNumber(formattedMobile);
-      setIsValid(/^09\d{8}$/.test(formattedMobile)); // 使用正则表达式验证格式
+    if (formattedMobile.length <= 10) {
+      // 确保不超过10个字符
+      setMobileNumber(formattedMobile)
+      setIsValid(/^09\d{8}$/.test(formattedMobile)) // 使用正则表达式验证格式
     }
   }
 
@@ -147,7 +148,7 @@ export default function Payment() {
           {/* 購物列表 start */}
           <div className="card mb-3 border-0 cart-card">
             {items.map((p) => (
-              <div key={p.id} className="row g-0">
+              <div key={p.id} className="row g-0" name="product_id">
                 <div className={`col-md-3 ${styles['columnCenter']}`}>
                   <img
                     src={`/images/product/list/${p.picture}`}
@@ -165,7 +166,7 @@ export default function Payment() {
                     </p>
                     <div className="row g-3 align-items-center">
                       <div className="col-auto">
-                        <p className="col-form-label chb-h6">
+                        <p className="col-form-label chb-h6" name="quantity">
                           數量: {p.quantity}
                         </p>
                       </div>
@@ -187,11 +188,15 @@ export default function Payment() {
           {/* 購物列表 end */}
           <hr />
         </div>
-        <div className={`second ${styles['mt-40']} ${styles['w-800']}`}>
-          <p className="chb-h5">請確認收貨人基本資訊</p>
-          {/* 表單 */}
 
+        {/* ------------------------------------------------------- */}
+        <div className={`second ${styles['mt-40']} ${styles['w-800']}`}>
           <form method="post">
+            <p className="chb-h5">訂單編號:123456</p>
+
+            <p className="chb-h5">請確認收貨人基本資訊</p>
+            {/* 表單 */}
+
             <div className="mb-3">
               <p for="exampleInputEmail1" className="chb-p">
                 姓名
@@ -201,6 +206,7 @@ export default function Payment() {
                 className={`form-control ${styles['w-800']}`}
                 aria-label="default input example"
                 value={userProfile.name}
+                name={userProfile.name}
                 disabled
               />
             </div>
@@ -231,7 +237,9 @@ export default function Payment() {
               </p>
               <input
                 type="text"
-                className={`form-control ${styles['w-800']} ${isValid ? '' : 'is-invalid'}`}
+                className={`form-control ${styles['w-800']} ${
+                  isValid ? '' : 'is-invalid'
+                }`}
                 value={mobileNumber}
                 onChange={handleChange}
               />
@@ -268,26 +276,26 @@ export default function Payment() {
           className={`fifth ${styles['my-40']} ${styles['w-800']} ${styles['center-item']}`}
         >
           {isValid ? (
-    <Link href={`/cart/complete`}>
-      <DesktopBlackNoIconBtnPurple
-        text="確定訂購"
-        className={`chb-h6 ${styles['btn-760']}`}
-        onClick={(e) => {
-          handleSubmit();
-          clearLocalStorageCart();
-        }}
-      />
-    </Link>
-  ) : (
-    <DesktopBlackNoIconBtnPurple
-      text="確定訂購"
-      className={`chb-h6 ${styles['btn-760']}`}
-      onClick={(e) => {
-        // Optionally provide user feedback or handle invalid case
-      }}
-      disabled={!isValid || mobileNumber.length === 0}
-    />
-  )}
+            <Link href={`/cart/complete`}>
+              <DesktopBlackNoIconBtnPurple
+                text="確定訂購"
+                className={`chb-h6 ${styles['btn-760']}`}
+                onClick={(e) => {
+                  handleSubmit()
+                  clearLocalStorageCart()
+                }}
+              />
+            </Link>
+          ) : (
+            <DesktopBlackNoIconBtnPurple
+              text="確定訂購"
+              className={`chb-h6 ${styles['btn-760']}`}
+              onClick={(e) => {
+                // Optionally provide user feedback or handle invalid case
+              }}
+              disabled={!isValid || mobileNumber.length === 0}
+            />
+          )}
         </div>
       </div>
     </>
