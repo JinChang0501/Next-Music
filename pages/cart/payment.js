@@ -107,12 +107,25 @@ export default function Payment() {
   const handleSubmit = async () => {
     try {
       // 使用 fetch 或 axios 等方法發送 POST 請求
+      const storageKey1 = localStorage.getItem('makin-cart')
+      const storageKey2 = localStorage.getItem('store711')
+      // 创建包含所有商品信息的数组
+    const orderItems = items.map(item => ({
+      product_id: item.id, // 这里将 p.id 作为 product_id 传递
+      quantity: item.quantity,
+      price: item.price
+    }));
       const res = await fetch(GET_PRODUCTS, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ items }), // 將資料轉換為 JSON 格式
+        body: JSON.stringify({
+          storageKey1: storageKey1, // 第一个 storageKey 的值
+          storageKey2: storageKey2, // 第二个 storageKey 的值
+          items: orderItems, // 将处理后的商品信息发送到后端
+        }),
+        credentials: 'include', // 將資料轉換為 JSON 格式
       })
 
       if (!res.ok) {
@@ -206,7 +219,6 @@ export default function Payment() {
                 className={`form-control ${styles['w-800']}`}
                 aria-label="default input example"
                 value={userProfile.name}
-                name={userProfile.name}
                 disabled
               />
             </div>
