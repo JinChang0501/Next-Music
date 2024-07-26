@@ -29,23 +29,22 @@ export default function Detail() {
     { label: '周邊商城', href: '/product' },
     { label: '商品資訊', href: `/product/${router.query.pid}` },
   ]
-  // ToTop 
+  // ToTop
   const scrollToTop = (e) => {
     //console.log('scrollToTop called')
     if (topRef.current) {
       console.log('topRef.current:', topRef.current)
       topRef.current.scrollIntoView({ behavior: 'smooth' })
-      
     } else {
       console.log('topRef.current is null')
     }
   }
-  useEffect((e)=>{
-    scrollToTop(e)
-  },[router])
- 
+  useEffect((e) => {
+      scrollToTop(e)
+    },[router])
   // ToTop end
 
+  // 獲得商品詳細內容
   useEffect(() => {
     if (router.isReady) {
       fetch(`${GET_PRODUCTS}`, {
@@ -65,7 +64,6 @@ export default function Detail() {
           } else {
             console.warn(`Product with id ${pid} not found`)
           }
-          // 設定所有產品資料到 state 中，以便後續使用
           setProducts(data);
         })
         .catch((error) => {
@@ -80,38 +78,36 @@ export default function Detail() {
     const cart = localStorage.getItem('makin-cart')
     setCardData(cart)
   }
+  // 加入購物車
   const addToCart = () => {
     if (!product) return
-
     const cartItem = {
       id: product.id,
       name: product.name,
       price: product.price,
       quantity: 1,
     }
-
-    const cartData = localStorage.getItem('makin-cart')
-
-    if (cartData) {
-      cart = JSON.parse(cartData)
-    }
-    setCardData(cart)
-    const existingItem = cart.find((item) => item.id === cartItem.id)
-    if (existingItem) {
-      existingItem.quantity += 1
+    let cart = JSON.parse(localStorage.getItem('makin-cart') || '[]');
+    const existingItemIndex = cart.findIndex(item => item.id === cartItem.id);
+    if (existingItemIndex !== -1) {
+      // 商品已經存在於購物車中，增加其數量
+      cart[existingItemIndex].quantity += 1;
     } else {
-      cart.push(cartItem)
+      // 商品不存在於購物車中，新增商品
+      cart.push(cartItem);
     }
 
+    // 更新 localStorage 中的購物車資料
     localStorage.setItem('makin-cart', JSON.stringify(cart))
 
     // 更新 totalQty 狀態
-    const updatedQty = cart.length; // 這裡根據你的購物車邏輯來確定更新後的數量
+    const updatedQty = cart.reduce((total, item) => total + item.quantity, 0);
     setTotalQty(updatedQty);
-    // 提示成功加入購物車
-    toast.success(`本商品已成功加入購物車`)
-  }
 
+    // 提示成功加入購物車
+    toast.success(`本商品已成功加入購物車`);
+  }
+  // 記錄購物車數據的變化
   useEffect(() => {
     checkCart()
     console.log(cartData)
@@ -140,19 +136,19 @@ export default function Detail() {
       }
   
       return indexes
-    }
-  
-    // 對應陣列index取得資料
-    function getRandomElementsFromArray(array, count) {
-      const randomIndexes = getRandomIndexes(array, count)
-      const randomElements = randomIndexes.map(index => array[index])
-      return randomElements
-    }
-    // 從所有活動的資料裡撈出 4 筆（隨機），且不包含本頁這筆：
-    const recommendData = products.filter((r) => r.pid !== pid)
-    const random4Recommend = getRandomElementsFromArray(recommendData, 4)
-  
-    console.log(random4Recommend)
+  }
+
+  // 對應陣列index取得資料
+  function getRandomElementsFromArray(array, count) {
+    const randomIndexes = getRandomIndexes(array, count)
+    const randomElements = randomIndexes.map(index => array[index])
+    return randomElements
+  }
+  // 從所有活動的資料裡撈出 4 筆（隨機），且不包含本頁這筆：
+  const recommendData = products.filter((r) => r.pid !== pid)
+  const random4Recommend = getRandomElementsFromArray(recommendData, 4)
+
+  console.log(random4Recommend)
 
   return (
     <>
@@ -164,30 +160,30 @@ export default function Detail() {
           >
             {/* <SwiperTop/> */}
             <Swiper
-        style={{
-          '--swiper-navigation-color': '#685beb',
-          '--swiper-pagination-color': '#685beb',
-        }}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
-        spaceBetween={10}
-        navigation={true}
-        thumbs={{ swiper: thumbsSwiper }}
-        modules={[Autoplay, FreeMode, Navigation, Thumbs]}
-        className={`mySwiper2`}
-      >
-        <SwiperSlide>
-          <img src={`/images/product/list/${product.picture}`} className={`${styles['pic']}`}/>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={`/images/product/list/${product.picture2}`} className={`${styles['pic']}`}/>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={`/images/product/list/${product.picture3}`} className={`${styles['pic']}`}/>
-        </SwiperSlide>
-      </Swiper>
+              style={{
+                '--swiper-navigation-color': '#685beb',
+                '--swiper-pagination-color': '#685beb',
+              }}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              spaceBetween={10}
+              navigation={true}
+              thumbs={{ swiper: thumbsSwiper }}
+              modules={[Autoplay, FreeMode, Navigation, Thumbs]}
+              className={`mySwiper2`}
+            >
+              <SwiperSlide>
+                <img src={`/images/product/list/${product.picture}`} className={`${styles['pic']}`}/>
+              </SwiperSlide>
+              <SwiperSlide>
+              <img src={`/images/product/list/${product.picture2}`} className={`${styles['pic']}`}/>
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src={`/images/product/list/${product.picture3}`} className={`${styles['pic']}`}/>
+              </SwiperSlide>
+            </Swiper>
             {/* <SwiperBottom /> */}
             <Swiper
         onSwiper={setThumbsSwiper}
@@ -227,7 +223,6 @@ export default function Detail() {
           </p>
           <div className={`row row-cols-md-2 ${styles['space-between']}`}>
             <DesktopBlackNoIconBtnBlack text="加入購物車" onClick={addToCart} />
-            {/* <Link href={`/cart/payment`}><DesktopBlackNoIconBtnPurple text="立即購買" /></Link> */}
           </div>
         </div>
       </div>
@@ -259,7 +254,7 @@ export default function Detail() {
           <p className={`text-purple3 chb-h6 `}>
             2.『LINE PAY』付款，宅配到府（限台灣本島）
           </p>
-          <p className={`text-purple3 chb-h6 `}>3.『7-11超商取貨付款』</p>
+          <p className={`text-purple3 chb-h6 `}>3.『超商取貨付款』</p>
           <p className={`text-purple3 chb-h6 `}>
             ※ 配合的宅配公司為：黑貓宅急便
           </p>
@@ -302,13 +297,11 @@ export default function Detail() {
                           onClick={{ scrollToTop }}
                         />
                       </Link>
-                      
                     </div>
                   </div>
                 </div>
-              );
-              
-          })}
+              )
+            })}
           </div>
         </div>
       </div>

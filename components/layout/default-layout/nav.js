@@ -169,7 +169,6 @@ export default function Nav() {
                   <Badge color="violet" content={totalQty}>
                     <BsCart />
                   </Badge>
-                  {/* <span>{totalQty}</span> */}
                 </Link>
               </li>
               {/* <li className={`me-3 me-md-1 dropdown`}>
