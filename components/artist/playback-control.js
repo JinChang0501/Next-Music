@@ -121,7 +121,7 @@ const PlaybackControl = ({
             </>
           )}
         </div>
-        <div className="d-flex align-items-center my-2 mx-0">
+        <div className="d-flex align-items-center my-2 mx-2">
           {/* 時間軸 Bar */}
           <Slider
             value={progress}
