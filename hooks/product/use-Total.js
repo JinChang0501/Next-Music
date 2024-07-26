@@ -68,7 +68,7 @@ export function TotalProvider({ children }) {
     }
     return cartData
   }
-  
+
   // 購物車內容
   useEffect(() => {
     setItems(

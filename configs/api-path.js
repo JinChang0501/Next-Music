@@ -18,6 +18,7 @@ export const GET_STORE_DETAIL = `${API_SERVER}/api/store-detail`
 export const MEM_GET_STORE = `${API_SERVER}/api/store-order/`
 
 export const GET_PRODUCTS = `${API_SERVER}/api/products`
+export const POST_PRODUCTS = `${API_SERVER}/api/products/post`
 
 export const INSERT_ORDER_DETAIL = `${API_SERVER}/api/order-detail`
 

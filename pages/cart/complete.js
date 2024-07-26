@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import styles from '@/styles/product/product.module.scss'
 import CartLayout from '@/components/layout/cart-layout'
@@ -77,7 +78,7 @@ export default function Complete() {
           已收到訂單，感謝您的購買
         </div>
         <div className={`second ${styles['my-20']} ${styles['w-800']}`}>
-          <p className="chb-p">訂單編號: Aa10032</p>
+          <p className="chb-p">訂單編號: YmzNtCq{}</p>
           {/* 表格 */}
           <table className={`table table-bordered border-dark`}>
             <thead>

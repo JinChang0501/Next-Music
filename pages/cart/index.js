@@ -135,12 +135,18 @@ export default function CartIndex() {
                     <div className="row g-3 align-items-center">
                       <div className="col-auto">
                         <p className="col-form-label chb-h6">數量: </p>
-                        <input type="number" value={p.quantity} className={`${styles['bg-grey']}`} onChange={(e) => {
-                            let newValue = parseInt(e.currentTarget.value);
+                        <input
+                          type="number"
+                          value={p.quantity}
+                          className={`${styles['bg-grey']}`}
+                          onChange={(e) => {
+                            let newValue = parseInt(e.currentTarget.value)
                             if (newValue < 1) {
-                              newValue = 1;
+                              newValue = 1
                             }
-                            cartModifyQty(p.id, newValue)}}/>
+                            cartModifyQty(p.id, newValue)
+                          }}
+                        />
                         {/* <select
                           className="form-select"
                           value={p.quantity}
@@ -164,7 +170,8 @@ export default function CartIndex() {
                   </div>
                 </div>
                 <div
-                  className={`col-md-2 ${styles['columnCenter']} ${styles['mb-m-40']}`}>
+                  className={`col-md-2 ${styles['columnCenter']} ${styles['mb-m-40']}`}
+                >
                   <DesktopBlackNoIconBtnPurple
                     text="刪除"
                     className={`chb-h6`}
@@ -190,11 +197,12 @@ export default function CartIndex() {
         >
           {totalQty > 0 && (
             <div className={`row ${styles['mb-40']} ${styles.centerItem}`}>
-              <div 
-                className={`col-12 col-md-8 cart-area ${styles['my-20']} ${styles['columnCenter']} `} >
+              <div
+                className={`col-12 col-md-8 cart-area ${styles['my-20']} ${styles['columnCenter']} `}
+              >
                 {/* 測試 */}
                 <Link href={`/cart/payment`}>
-                {/* 測試 */}
+                  {/* 測試 */}
                   <DesktopBlackNoIconBtnPurple
                     text="結帳"
                     className={`chb-h6 ${styles['btn-760']}`}
