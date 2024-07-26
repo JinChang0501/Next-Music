@@ -112,6 +112,7 @@ const PlaybackControl = ({
     onVolumeChange(newValue / 100)
   }
 
+  // 手動控制時間軸的位置
   const handleProgressChange = (newValue) => {
     setProgress(newValue)
     lastPosition.current = newValue
@@ -179,19 +180,6 @@ const PlaybackControl = ({
             style={{ width: '100%' }}
           />
         </div>
-        {/* 滑桿測試 */}
-        {/* <div className="d-flex align-items-center my-2 mx-2">
-          <input
-            type="range"
-            value={progress}
-            min={0}
-            max={duration}
-            step={1000}
-            onChange={handleProgressChange}
-            style={{ width: '100%' }}
-          />
-        </div> */}
-        {/* 滑桿測試 */}
         <div className="d-flex mx-1 justify-content-between text-black60 chr-p-12">
           <div className="">{formatTime(progress)}</div>
           <div className="">{formatTime(duration)}</div>

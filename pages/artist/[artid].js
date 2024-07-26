@@ -140,17 +140,33 @@ export default function Artid() {
       await player.pause()
       setIsPlaying(false)
     } else {
-      const response = await fetch(
-        `https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`,
-        {
-          method: 'PUT',
-          body: JSON.stringify({ uris: [trackUri] }),
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
+      let response
+      if (currentTrackUri === trackUri) {
+        // 如果是同一首歌，恢復播放
+        response = await fetch(
+          `https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`,
+          {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+      } else {
+        // 如果是不同首歌，從頭開始播放
+        response = await fetch(
+          `https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`,
+          {
+            method: 'PUT',
+            body: JSON.stringify({ uris: [trackUri] }),
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+      }
 
       if (response.ok) {
         setCurrentTrackUri(trackUri)
@@ -232,6 +248,7 @@ export default function Artid() {
         </div>
         {/*  出演活動 end  */}
       </div>
+      {/* 播放器 controller */}
       <PlaybackControl
         player={player}
         currentTrack={tracks.find((track) => track.uri === currentTrackUri)}
