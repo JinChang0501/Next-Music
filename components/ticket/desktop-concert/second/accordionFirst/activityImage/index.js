@@ -6,10 +6,13 @@ import { useTicketContext } from '@/context/ticket/ticketContext'
 export default function ActivityImage() {
   const { selectedSeatDetails } = useTicketContext()
 
-  const { mingpic } = selectedSeatDetails[0] || {}
+  const mingpic = selectedSeatDetails[0]?.mingpic
 
   const pic = `/images/Activity/banner/${mingpic}`
 
+  if (!mingpic) {
+    return null
+  }
   return (
     <>
       <div className={`${style.activityImage}`}>

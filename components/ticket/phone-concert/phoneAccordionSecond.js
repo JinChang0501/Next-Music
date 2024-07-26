@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import style from './phoneAccordionSecond.module.scss'
-import formData from '@/data/ticket/desktop-concert/third/form'
 import { useTicketContext } from '@/context/ticket/ticketContext'
 import moment from 'moment-timezone'
 import { getUserDatas } from '@/services/ticket'

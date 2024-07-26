@@ -10,7 +10,7 @@ export default function PhoneAccordionFirst() {
   const { selectedSeatDetails } = useTicketContext()
 
   const { mingpic, actname, actdate, acttime, location, art_name } =
-    selectedSeatDetails[0] || {}
+    selectedSeatDetails[0] || selectedSeatDetails[0]?.mingpic || {}
 
   const pic = `/images/Activity/banner/${mingpic}`
 
@@ -56,6 +56,10 @@ export default function PhoneAccordionFirst() {
 
   const formatSeatNumber = (seatNumber) => {
     return seatNumber.toString().padStart(3, '0')
+  }
+
+  if (!mingpic) {
+    return null
   }
 
   return (

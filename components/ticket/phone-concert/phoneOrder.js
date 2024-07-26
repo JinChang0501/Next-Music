@@ -11,7 +11,7 @@ export default function PhoneOrder({ orderData }) {
   const { selectedSeatDetails } = useTicketContext()
 
   const { mingpic, actname, actdate, acttime, location, art_name } =
-    selectedSeatDetails[0] || {}
+    selectedSeatDetails[0] || selectedSeatDetails[0]?.mingpic || {}
 
   const pic = `/images/Activity/banner/${mingpic}`
 
@@ -28,11 +28,13 @@ export default function PhoneOrder({ orderData }) {
 
   useEffect(() => {
     const selectBlock = selectBlockRef.current
-    if (selectBlockVisible) {
-      const selectBlockHeight = selectBlock.scrollHeight
-      selectBlock.style.maxHeight = `${selectBlockHeight}px`
-    } else {
-      selectBlock.style.maxHeight = '0'
+    if (selectBlock) {
+      if (selectBlockVisible) {
+        const selectBlockHeight = selectBlock.scrollHeight
+        selectBlock.style.maxHeight = `${selectBlockHeight}px`
+      } else {
+        selectBlock.style.maxHeight = '0'
+      }
     }
   }, [selectBlockVisible])
 
@@ -42,6 +44,10 @@ export default function PhoneOrder({ orderData }) {
 
   if (!orderData) {
     return <div>正在加載訂單資料...</div>
+  }
+
+  if (!mingpic) {
+    return null
   }
   return (
     <>

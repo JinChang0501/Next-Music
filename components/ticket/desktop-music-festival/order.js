@@ -7,7 +7,12 @@ import moment from 'moment-timezone'
 export default function Order({ orderData }) {
   const { tickets, selectedTickets, selectedCount } = useTicketContext()
 
-  const ticketData = selectedTickets[0] || tickets[0] || {}
+  const ticketData =
+    selectedTickets[0] ||
+    tickets[0] ||
+    selectedTickets[0]?.mingpic ||
+    tickets[0]?.mingpic ||
+    {}
 
   const { mingpic, actname, actdate, acttime, location, art_name } = ticketData
 
@@ -20,6 +25,10 @@ export default function Order({ orderData }) {
 
   if (!orderData) {
     return <div>正在加載訂單資料...</div>
+  }
+
+  if (!mingpic) {
+    return null
   }
   return (
     <>

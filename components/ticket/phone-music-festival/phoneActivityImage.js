@@ -6,10 +6,13 @@ import { useTicketContext } from '@/context/ticket/ticketContext'
 export default function PhoneActivityImage() {
   const { tickets } = useTicketContext()
 
-  const { mingpic } = tickets[0] || {}
+  const mingpic = tickets[0]?.mingpic
 
   const pic = `/images/Activity/banner/${mingpic}`
 
+  if (!mingpic) {
+    return null
+  }
   return (
     <>
       <div className={`${style.activityImage}`}>

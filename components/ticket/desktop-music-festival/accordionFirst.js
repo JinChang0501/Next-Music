@@ -9,7 +9,7 @@ export default function AccordionFirst() {
   const { tickets, selectedCount } = useTicketContext()
 
   const { mingpic, actname, actdate, acttime, location, art_name } =
-    tickets[0] || {}
+    tickets[0] || tickets[0]?.mingpic || {}
 
   const pic = `/images/Activity/banner/${mingpic}`
 
@@ -17,6 +17,10 @@ export default function AccordionFirst() {
     `${actdate} ${acttime}`,
     `YYYY-MM-DD HH:mm:ss`
   ).format('YYYY-MM-DD HH:mm:ss')
+
+  if (!mingpic) {
+    return null
+  }
   return (
     <>
       <div className="accordion-item">

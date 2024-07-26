@@ -8,7 +8,7 @@ export default function ActivityInfo() {
   const { selectedSeatDetails } = useTicketContext()
 
   const { mingpic, actname, actdate, acttime, location, art_name } =
-    selectedSeatDetails[0] || {}
+    selectedSeatDetails[0] || selectedSeatDetails[0]?.mingpic || {}
 
   const pic = `/images/Activity/banner/${mingpic}`
 
@@ -16,6 +16,10 @@ export default function ActivityInfo() {
     `${actdate} ${acttime}`,
     `YYYY-MM-DD HH:mm:ss`
   ).format('YYYY-MM-DD HH:mm:ss')
+
+  if (!mingpic) {
+    return null
+  }
   return (
     <>
       <div className={`${style.activityInfo}`}>
