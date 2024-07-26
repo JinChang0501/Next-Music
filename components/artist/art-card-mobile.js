@@ -4,7 +4,11 @@ import Link from 'next/link'
 // import required modules
 import styles from './art-card-mobile.module.scss'
 
-export default function ArtCardMobile({ photo = '', art_name = '' }) {
+export default function ArtCardMobile({
+  photo = '',
+  art_name = '',
+  spotify_id = '',
+}) {
   const [play, setPlay] = useState(false)
 
   const handleClick = () => {
@@ -21,7 +25,7 @@ export default function ArtCardMobile({ photo = '', art_name = '' }) {
             }`}
             onClick={handleClick}
           />
-          <Link href="/">
+          <Link href={`/artist/${spotify_id}`}>
             <div className="chb-h4 text-white">{art_name}</div>
           </Link>
         </div>

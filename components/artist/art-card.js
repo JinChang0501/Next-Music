@@ -4,7 +4,11 @@ import Link from 'next/link'
 // import required modules
 import styles from './art-card.module.scss'
 
-export default function ArtCard({ photo = '', art_name = '' }) {
+export default function ArtCard({
+  photo = '',
+  art_name = '',
+  spotify_id = '',
+}) {
   const [play, setPlay] = useState(false)
 
   const handleClick = () => {
@@ -12,7 +16,7 @@ export default function ArtCard({ photo = '', art_name = '' }) {
   }
   return (
     <>
-      <div className="bg-primary mx-4" style={{ width: '300px' }}>
+      <div className="mx-4" style={{ width: '300px' }}>
         <div className="w-100 col-md-2 col-5 d-flex flex-column align-items-center order-md-5">
           <img
             src={`${photo}`}
@@ -21,7 +25,7 @@ export default function ArtCard({ photo = '', art_name = '' }) {
             }`}
             onClick={handleClick}
           />
-          <Link href="/">
+          <Link href={`/artist/${spotify_id}`}>
             <div className="chb-h4 text-white">{art_name}</div>
           </Link>
         </div>

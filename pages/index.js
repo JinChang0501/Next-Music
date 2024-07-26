@@ -202,14 +202,14 @@ export default function Index() {
       {isDesktop ? (
         <div className="music-container mb-5">
           <Swiper
-            slidesPerView={5}
+            slidesPerView={4.51}
             spaceBetween={0}
             freeMode={true}
-            pagination={{
-              clickable: true,
-            }}
+            // pagination={{
+            //   clickable: true,
+            // }}
             modules={[FreeMode, Pagination]}
-            className="bg-purple1"
+            // className="bg-purple1"
           >
             {artistData.map((v, i) => {
               return (
@@ -217,7 +217,12 @@ export default function Index() {
                   key={i}
                   className={`mx-0 ${styles['swiper-slide']} ${styles['swiper-width']}`}
                 >
-                  <ArtCard key={i} photo={v.photo} art_name={v.art_name} />
+                  <ArtCard
+                    key={i}
+                    photo={v.photo}
+                    art_name={v.art_name}
+                    spotify_id={v.spotify_id}
+                  />
                 </SwiperSlide>
               )
             })}
@@ -228,7 +233,12 @@ export default function Index() {
           <div className="col-12 align-items-center order-md-3 mb-5 mb-md-0 d-flex flex-wrap">
             {artistData.map((v, i) => {
               return (
-                <ArtCardMobile key={i} photo={v.photo} art_name={v.art_name} />
+                <ArtCardMobile
+                  key={i}
+                  photo={v.photo}
+                  art_name={v.art_name}
+                  spotify_id={v.spotify_id}
+                />
               )
             })}
           </div>
