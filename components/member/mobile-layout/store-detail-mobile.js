@@ -111,7 +111,11 @@ export default function StoreDetailMobile({ storeData }) {
           </div>
           <div className="px-sm-5 m-0 d-flex justify-content-between mb-2">
             <p className="text-center p-0 m-0 chb-h5">配送方式</p>
-            <p className="text-center p-0 m-0 chr-h5">7-11 大安店</p>
+            <p className="text-center p-0 m-0 chr-h5">
+              {storeData[0].storename
+                ? `${storeData[0].pickup_method}${storeData[0].storename}`
+                : `${storeData[0].pickup_method}`}
+            </p>
           </div>
         </div>
       </div>

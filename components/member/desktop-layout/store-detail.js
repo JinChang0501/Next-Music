@@ -111,14 +111,14 @@ export default function StoreDetail({ storeData }) {
           <div className="px-sm-5 m-0 d-flex justify-content-between mb-2">
             <p className="text-center p-0 m-0 chb-h5">付款方式</p>
             <p className="text-center p-0 m-0 chr-h5">
-              {/* {storeData[0].payment_method} */}信用卡
+              {/* {storeData[0].payment_method} */}現金
             </p>
           </div>
           <div className="px-sm-5 m-0 d-flex justify-content-between mb-2">
             <p className="text-center p-0 m-0 chb-h5">配送方式</p>
             <p className="text-center p-0 m-0 chr-h5">
               {storeData[0].storename
-                ? `${storeData[0].pickup_method}-${storeData[0].storename}`
+                ? `${storeData[0].pickup_method}${storeData[0].storename}`
                 : `${storeData[0].pickup_method}`}
             </p>
           </div>
