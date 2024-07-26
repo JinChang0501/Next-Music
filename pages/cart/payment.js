@@ -216,8 +216,6 @@ export default function Payment() {
         {/* ------------------------------------------------------- */}
         <div className={`second ${styles['mt-40']} ${styles['w-800']}`}>
           <form method="post">
-            <p className="chb-h5">訂單編號:123456</p>
-
             <p className="chb-h5">請確認收貨人基本資訊</p>
             {/* 表單 */}
 
