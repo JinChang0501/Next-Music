@@ -188,6 +188,7 @@ export default function Aid() {
                 key={v.eaid}
                 imgSrc={v.photo}
                 artist_name={v.art_name}
+                linkToArtId={`/artist/${v.spotify_id}`}
               />
             )
           })}
