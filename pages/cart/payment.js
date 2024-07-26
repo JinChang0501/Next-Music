@@ -6,6 +6,8 @@ import ProgressBarTwo from '@/components/product/progressBarTwo'
 // import CartList from '@/components/checkout/cart-list'
 import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
 import { GET_PRODUCTS } from '@/configs/api-path'
+import { POST_PRODUCTS } from '@/configs/api-path'
+
 import Transport from '@/components/product/transport'
 import EcPay from '@/components/product/ec-pay'
 
@@ -69,6 +71,7 @@ export default function Payment() {
     setTotalQty(qty)
     setTotalPrice(price)
   }, [cart, products])
+
   // localStorage.getItem
   const getCartFromStorage = () => {
     let cartData = []
@@ -107,26 +110,31 @@ export default function Payment() {
   const handleSubmit = async () => {
     try {
       // 使用 fetch 或 axios 等方法發送 POST 請求
-      const storageKey1 = localStorage.getItem('makin-cart')
+
       const storageKey2 = localStorage.getItem('store711')
       // 创建包含所有商品信息的数组
-    const orderItems = items.map(item => ({
-      product_id: item.id, // 这里将 p.id 作为 product_id 传递
-      quantity: item.quantity,
-      price: item.price
-    }));
-      const res = await fetch(GET_PRODUCTS, {
+      console.log(
+        '----items---items--------items-----items-----items------------'
+      )
+      console.log(items)
+      const orderItems = items.map((item) => ({
+        product_id: item.id, // 这里将 p.id 作为 product_id 传递
+        quantity: item.quantity,
+        price: item.price,
+      }))
+      const res = await fetch(POST_PRODUCTS, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          storageKey1: storageKey1, // 第一个 storageKey 的值
           storageKey2: storageKey2, // 第二个 storageKey 的值
-          items: orderItems, // 将处理后的商品信息发送到后端
+          items: orderItems,
         }),
         credentials: 'include', // 將資料轉換為 JSON 格式
       })
+
+      console.log(storageKey2)
 
       if (!res.ok) {
         throw new Error('Network response was not ok')
@@ -161,7 +169,7 @@ export default function Payment() {
           {/* 購物列表 start */}
           <div className="card mb-3 border-0 cart-card">
             {items.map((p) => (
-              <div key={p.id} className="row g-0" name="product_id">
+              <div key={p.id} className="row g-0">
                 <div className={`col-md-3 ${styles['columnCenter']}`}>
                   <img
                     src={`/images/product/list/${p.picture}`}
@@ -174,7 +182,10 @@ export default function Payment() {
                     <p className="card-title card-text d-flex justify-content-between align-items-center chb-h6">
                       {p.activity} {p.name}
                     </p>
-                    <p className={`card-text chb-h6 ${styles['mt-40']}`}>
+                    <p
+                      className={`card-text chb-h6 ${styles['mt-40']}`}
+                      name="price"
+                    >
                       單價: NT$ {p.price}
                     </p>
                     <div className="row g-3 align-items-center">
@@ -292,7 +303,7 @@ export default function Payment() {
               <DesktopBlackNoIconBtnPurple
                 text="確定訂購"
                 className={`chb-h6 ${styles['btn-760']}`}
-                onClick={(e) => {
+                onClick={() => {
                   handleSubmit()
                   clearLocalStorageCart()
                 }}
@@ -302,9 +313,6 @@ export default function Payment() {
             <DesktopBlackNoIconBtnPurple
               text="確定訂購"
               className={`chb-h6 ${styles['btn-760']}`}
-              onClick={(e) => {
-                // Optionally provide user feedback or handle invalid case
-              }}
               disabled={!isValid || mobileNumber.length === 0}
             />
           )}

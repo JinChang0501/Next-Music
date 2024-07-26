@@ -84,23 +84,25 @@ export default function Transport() {
                 />
               )}
               {/* 門市名稱: <input type="text" value={store711.storename} disabled /> */}
-              <p className={`${styles['mt-28']}`} name="storename">
+              <p className={`${styles['mt-28']}`} >
                 門市名稱
               </p>
               <input
                 type="text"
                 className={`form-control ${styles['w-750']}`}
                 value={selected === 'market' ? storeName : ''}
+                name="storename"
                 disabled
               />
               {/* 門市地址: <input type="text" value={store711.storeaddress} disabled /> */}
-              <p className={`${styles['mt-28']}`} name="storeaddress">
+              <p className={`${styles['mt-28']}`} >
                 門市地址
               </p>
               <input
                 type="text"
                 className={`form-control ${styles['w-750']}`}
                 value={selected === 'market' ? storeAddress : ''}
+                name="storeaddress"
                 disabled
               />
             </div>
