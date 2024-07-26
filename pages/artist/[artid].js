@@ -32,7 +32,7 @@ export default function Artid() {
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
     { label: '音樂人', href: '/artist' },
-    { label: '個人主頁', href: '/artist/[artid]' },
+    { label: `${activity.rows2[0]?.art_name}`, href: '/artist/[artid]' },
   ]
 
   const scrollToTop = (e) => {
@@ -193,14 +193,9 @@ export default function Artid() {
               )
             })}
           </div>
-          <div className="width-40">
-            {/* <PlaybackControl
-              player={player}
-              currentTrack={tracks.find(
-                (track) => track.uri === currentTrackUri
-              )}
-            /> */}
-          </div>
+          {/* <div className="width-40">
+
+          </div> */}
         </div>
         {/* 熱門歌曲 end */}
         {/*  出演活動 start  */}
