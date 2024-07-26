@@ -17,7 +17,7 @@ import Link from 'next/link'
 import { useTotal } from '@/hooks/product/use-Total'
 
 export default function Payment() {
-  const { clearLocalStorageCart, userProfile } = useTotal()
+  const { clearLocalStorageCart, userProfile, setOrderNum } = useTotal()
   const [products, setProducts] = useState([])
   const cartKey = 'makin-cart'
   const storeKey = 'store711'
@@ -143,6 +143,10 @@ export default function Payment() {
       // 處理後端回應，例如顯示成功訊息
       const resData = await res.json()
       console.log('Server response:', resData)
+      console.log(resData)
+      const res_orderNum = resData.data.results[0].randomString
+      console.log(res_orderNum) //這是後端生的亂數7碼
+      setOrderNum(res_orderNum)
     } catch (error) {
       console.error('Error submitting cart:', error)
       // 處理錯誤，例如顯示錯誤訊息給使用者

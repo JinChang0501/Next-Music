@@ -31,7 +31,7 @@ export default function Complete() {
     'http://localhost:3005/api/shipment/711'
   )
   const storeKey = 'store711'
-  const { userProfile } = useTotal()
+  const { userProfile, orderNum } = useTotal()
   // const [userProfile, setUserProfile] = useState([])
   // 會員
   const { auth } = useAuth()
@@ -78,7 +78,7 @@ export default function Complete() {
           已收到訂單，感謝您的購買
         </div>
         <div className={`second ${styles['my-20']} ${styles['w-800']}`}>
-          <p className="chb-p">訂單編號: YmzNtCq{}</p>
+          <p className="chb-p">訂單編號: {orderNum}</p>
           {/* 表格 */}
           <table className={`table table-bordered border-dark`}>
             <thead>

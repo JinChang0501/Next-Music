@@ -16,11 +16,12 @@ const initUserProfile = {
   address: '',
   avatar: '',
 }
+const initOrderNum = 0
 export function TotalProvider({ children }) {
   const [products, setProducts] = useState([])
   const cartKey = 'makin-cart'
   const storeKey = 'store711'
-
+  const [orderNum, setOrderNum] = useState(initOrderNum)
   const [cart, setCart] = useState([])
   const [items, setItems] = useState([])
   const [totalQty, setTotalQty] = useState(0)
@@ -133,6 +134,8 @@ export function TotalProvider({ children }) {
           userProfile,
           items,
           totalPrice,
+          setOrderNum,
+          orderNum,
         }}
       >
         {children}
