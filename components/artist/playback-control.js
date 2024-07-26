@@ -2,11 +2,30 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Slider } from 'rsuite'
 import Image from 'next/image'
 
-import { BsFillVolumeDownFill } from 'react-icons/bs'
-import { BsVolumeUpFill } from 'react-icons/bs'
-import { BsVolumeMuteFill } from 'react-icons/bs'
+import {
+  BsFillVolumeDownFill,
+  BsVolumeUpFill,
+  BsVolumeMuteFill,
+} from 'react-icons/bs'
+import {
+  BsPlayCircle,
+  BsPlayCircleFill,
+  BsPauseCircle,
+  BsPauseCircleFill,
+} from 'react-icons/bs'
+import { BiSkipPrevious, BiSkipNext } from 'react-icons/bi'
 
-const PlaybackControl = ({ player, currentTrack }) => {
+const PlaybackControl = ({
+  player,
+  currentTrack,
+  isPlaying,
+  onPlay,
+  onPause,
+  onNextTrack,
+  onPreviousTrack,
+  onSeek,
+  onVolumeChange,
+}) => {
   const [volume, setVolume] = useState(50)
   const [progress, setProgress] = useState(0)
   const [duration, setDuration] = useState(0)
@@ -50,12 +69,12 @@ const PlaybackControl = ({ player, currentTrack }) => {
 
   const handleVolumeChange = (newValue) => {
     setVolume(newValue)
-    player.setVolume(newValue / 100)
+    onVolumeChange(newValue / 100)
   }
 
   const handleProgressChange = (newValue) => {
     setProgress(newValue)
-    player.seek(newValue)
+    onSeek(newValue)
   }
   // 時間格式
   const formatTime = (ms) => {
@@ -74,8 +93,9 @@ const PlaybackControl = ({ player, currentTrack }) => {
                 <Image
                   width={220}
                   height={220}
-                  src={`${currentTrack.album.images[1].url}`}
-                ></Image>
+                  src={currentTrack.album.images[1].url}
+                  alt={currentTrack.name}
+                />
               </div>
               <div className="chb-p mb-1">{currentTrack.name}</div>
               <div className="chr-p text-purple3">
@@ -88,8 +108,9 @@ const PlaybackControl = ({ player, currentTrack }) => {
                 <Image
                   width={220}
                   height={220}
-                  src={`/images/artist/no-music.jpg`}
-                ></Image>
+                  src="/images/artist/no-music.jpg"
+                  alt="No music playing"
+                />
               </div>
               <div className="chb-p mb-1">未播放</div>
             </>
@@ -114,12 +135,31 @@ const PlaybackControl = ({ player, currentTrack }) => {
           <div className="">{formatTime(progress)}</div>
           <div className="">{formatTime(duration)}</div>
         </div>
+
+        {/* Playback controls */}
+        <div className="d-flex justify-content-center align-items-center my-2">
+          <button onClick={onPreviousTrack} className="btn btn-link text-white">
+            <i className="bi bi-skip-start-fill text-white"></i>
+          </button>
+          {isPlaying ? (
+            <BsPauseCircleFill
+              onClick={onPause}
+              className="text-white eng-h4 mx-2"
+            />
+          ) : (
+            <BsPlayCircle onClick={onPlay} className="text-white eng-h4 mx-2" />
+          )}
+          <button onClick={onNextTrack} className="btn btn-link text-white">
+            <i className="bi bi-skip-end-fill text-white"></i>
+          </button>
+        </div>
+
+        {/* Volume control */}
         <div className="d-flex align-items-center">
           <div className="text-white eng-h5 me-2">
             <BsFillVolumeDownFill />
           </div>
           <div className="text-white eng-h5 mt-2 me-2">
-            {/* 聲音 Bar */}
             <Slider
               value={volume}
               min={0}

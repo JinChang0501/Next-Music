@@ -176,7 +176,6 @@ export default function Artid() {
       {/* 音樂人主資訊 end */}
       <div className="music-container mt-80">
         {/* 熱門歌曲 start */}
-
         <div className="chb-h4 mt-2 mb-40 text-purple1">熱門歌曲</div>
         <div className="d-flex my-5">
           <div className="width-60">
@@ -219,6 +218,17 @@ export default function Artid() {
       <PlaybackControl
         player={player}
         currentTrack={tracks.find((track) => track.uri === currentTrackUri)}
+        isPlaying={isPlaying}
+        onPlay={() => handlePlay(currentTrackUri)}
+        onPause={() => player.pause()}
+        onNextTrack={() => {
+          /* 實現下一曲邏輯 */
+        }}
+        onPreviousTrack={() => {
+          /* 實現上一曲邏輯 */
+        }}
+        onSeek={(position) => player.seek(position)}
+        onVolumeChange={(volume) => player.setVolume(volume)}
       />
       <style jsx>{`
         .mb-40 {
