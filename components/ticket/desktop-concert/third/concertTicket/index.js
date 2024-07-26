@@ -5,7 +5,8 @@ import { useTicketContext } from '@/context/ticket/ticketContext'
 import moment from 'moment'
 
 export default function ConcertTicket({ orderData }) {
-  const { selectedSeatDetails } = useTicketContext()
+  const context = useTicketContext()
+  const selectedSeatDetails = context?.selectedSeatDetails || []
 
   const formatSeatNumber = (seatNumber) => {
     return seatNumber.toString().padStart(3, '0')
