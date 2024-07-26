@@ -22,6 +22,7 @@ export default function Detail() {
   const { id } = router.query  // 設定路由參數給 pid (參照)
   const pid = parseInt(id)   // 型態轉換：字串轉數字！！
   const topRef = useRef(null)
+  const [totalQty, setTotalQty] = useState(0);
  
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
@@ -104,6 +105,10 @@ export default function Detail() {
 
     localStorage.setItem('makin-cart', JSON.stringify(cart))
 
+    // 更新 totalQty 狀態
+    const updatedQty = cart.length; // 這裡根據你的購物車邏輯來確定更新後的數量
+    setTotalQty(updatedQty);
+    // 提示成功加入購物車
     toast.success(`本商品已成功加入購物車`)
   }
 

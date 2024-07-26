@@ -64,7 +64,8 @@ export default function Transport() {
               }`}
               onClick={() => handleCircleClick('market')}
             ></button>
-            <div className="chb-h6">7-11超商付款取貨(現金)
+            <div className="chb-h6">超商付款取貨
+                <div className='chb-h7 mt-3'><span name="pickup_method">711取貨付款</span><span name="payment_method">現金</span></div>
             {selected === 'market' &&
               <DesktopWhiteNoIconBtnBlack 
                 text="選擇門市"
@@ -73,7 +74,7 @@ export default function Transport() {
                 onClick={() => { openWindow() }} 
               /> }
               {/* 門市名稱: <input type="text" value={store711.storename} disabled /> */}
-              <p className={`${styles['mt-28']}`}>門市名稱</p>
+              <p className={`${styles['mt-28']}`} name="storename">門市名稱</p>
               <input
                 type="text"
                 className={`form-control ${styles['w-750']}`}
@@ -81,7 +82,7 @@ export default function Transport() {
                 disabled
               />
               {/* 門市地址: <input type="text" value={store711.storeaddress} disabled /> */}
-              <p className={`${styles['mt-28']}`}>門市地址</p>
+              <p className={`${styles['mt-28']}`} name="storeaddress">門市地址</p>
               <input
                 type="text"
                 className={`form-control ${styles['w-750']}`}
