@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Slider } from 'rsuite'
+// import 'rsuite/dist/styles/rsuite-default.css'
+// import './custom-slider.css'
+import 'rsuite/Slider/styles/index.css'
 import Image from 'next/image'
 
 import {
@@ -89,6 +92,7 @@ const PlaybackControl = ({
         <div className="text-white mb-2">
           {currentTrack ? (
             <>
+              {/* 有專輯正在播放 */}
               <div className="m-3">
                 <Image
                   width={220}
@@ -104,6 +108,7 @@ const PlaybackControl = ({
             </>
           ) : (
             <>
+              {/* 未播放狀態 */}
               <div className="m-3">
                 <Image
                   width={220}
@@ -126,12 +131,13 @@ const PlaybackControl = ({
             graduated
             tooltip={false}
             onChange={handleProgressChange}
-            className="flex-grow-1"
-            style={{ color: 'black', width: '180px' }}
+            // className="flex-grow-1"
+            className="custom-slider"
+            style={{ width: '100%' }}
           />
         </div>
 
-        <div className="d-flex bg-white mx-1 justify-content-between text-black60 chr-p-8">
+        <div className="d-flex mx-1 justify-content-between text-black60 chr-p-12">
           <div className="">{formatTime(progress)}</div>
           <div className="">{formatTime(duration)}</div>
         </div>
@@ -139,7 +145,7 @@ const PlaybackControl = ({
         {/* Playback controls */}
         <div className="d-flex justify-content-center align-items-center my-2">
           <button onClick={onPreviousTrack} className="btn btn-link text-white">
-            <i className="bi bi-skip-start-fill text-white"></i>
+            <BiSkipPrevious className="text-white eng-h4" />
           </button>
           {isPlaying ? (
             <BsPauseCircleFill
@@ -150,38 +156,36 @@ const PlaybackControl = ({
             <BsPlayCircle onClick={onPlay} className="text-white eng-h4 mx-2" />
           )}
           <button onClick={onNextTrack} className="btn btn-link text-white">
-            <i className="bi bi-skip-end-fill text-white"></i>
+            <BiSkipNext className="text-white eng-h4" />
           </button>
         </div>
 
         {/* Volume control */}
         <div className="d-flex align-items-center">
-          <div className="text-white eng-h5 me-2">
-            <BsFillVolumeDownFill />
-          </div>
-          <div className="text-white eng-h5 mt-2 me-2">
-            <Slider
-              value={volume}
-              min={0}
-              max={100}
-              step={1}
-              graduated
-              onChange={handleVolumeChange}
-              // barClassName="bg-dark"
-              // handleStyle={{ backgroundColor: 'black' }}
-              style={{ width: '120px' }}
-            />
-          </div>
-
-          <div className="text-white eng-h5 me-2">
-            <BsVolumeUpFill />
-          </div>
+          <BsFillVolumeDownFill className="text-white eng-h5 me-2" />
+          <Slider
+            value={volume}
+            min={0}
+            max={100}
+            step={1}
+            graduated
+            onChange={handleVolumeChange}
+            style={{ width: '120px' }}
+          />
+          <BsVolumeUpFill className="text-white eng-h5 ms-2" />
         </div>
       </div>
+
       <style jsx>
         {`
           .outline {
             border: 1px solid #dbd7ff;
+          }
+          .custom-slider .rs-slider-bar {
+            background-color: #dbd7ff; /* 更改滑動條顏色 */
+          }
+          .custom-slider .rs-slider-handle {
+            background-color: #dbd7ff; /* 更改滑動手柄顏色 */
           }
         `}
       </style>

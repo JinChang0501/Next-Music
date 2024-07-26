@@ -161,6 +161,23 @@ export default function Artid() {
     }
   }
 
+  const handleNextTrack = () => {
+    const currentIndex = tracks.findIndex(
+      (track) => track.uri === currentTrackUri
+    )
+    const nextTrack = tracks[(currentIndex + 1) % tracks.length]
+    handlePlay(nextTrack.uri)
+  }
+
+  const handlePreviousTrack = () => {
+    const currentIndex = tracks.findIndex(
+      (track) => track.uri === currentTrackUri
+    )
+    const previousTrack =
+      tracks[(currentIndex - 1 + tracks.length) % tracks.length]
+    handlePlay(previousTrack.uri)
+  }
+
   if (!router.isReady) return null
 
   return (
@@ -221,12 +238,8 @@ export default function Artid() {
         isPlaying={isPlaying}
         onPlay={() => handlePlay(currentTrackUri)}
         onPause={() => player.pause()}
-        onNextTrack={() => {
-          /* 實現下一曲邏輯 */
-        }}
-        onPreviousTrack={() => {
-          /* 實現上一曲邏輯 */
-        }}
+        onNextTrack={handleNextTrack}
+        onPreviousTrack={handlePreviousTrack}
         onSeek={(position) => player.seek(position)}
         onVolumeChange={(volume) => player.setVolume(volume)}
       />
