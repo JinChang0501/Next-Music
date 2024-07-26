@@ -51,6 +51,13 @@ export default function Aid() {
     }
   }
 
+  const handleBookTicket = async (actid) => {
+    const bookingRoute = `/ticket/${
+      actid > 9 ? 'musicFestival' : 'concert'
+    }/selectSeat/${actid}`
+    await router.push(bookingRoute)
+  }
+
   useEffect(
     (e) => {
       scrollToTop(e)
@@ -138,6 +145,11 @@ export default function Aid() {
           artist={mainInfoData.artists}
           banner={mainInfoData.picture}
           aid={mainInfoData.actid}
+          handleBookTicket={
+            auth.isAuth
+              ? () => handleBookTicket(mainInfoData.actid)
+              : handleWakeLogin
+          }
         />
         {/* 活動主資訊 end */}
         {/* 簡介：頁籤 start */}
