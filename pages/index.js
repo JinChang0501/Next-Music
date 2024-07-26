@@ -21,6 +21,8 @@ import 'swiper/css/free-mode'
 import 'swiper/css/pagination'
 // import required modules
 import { FreeMode, Pagination } from 'swiper/modules'
+import ArtCardMobile from '@/components/artist/art-card-mobile'
+import { API_SERVER } from '@/configs/api-path'
 
 export default function Index() {
   const [isDesktop, setIsDesktop] = useState(true)
@@ -39,13 +41,19 @@ export default function Index() {
 
   const [artistData, setArtData] = useState([])
 
+  //方法1 使用fetch
   const getUserData = async () => {
     try {
-      const res = await getArtist()
-      console.log('以下是response data')
+      const r = await fetch(`${API_SERVER}/api/artist-jin`)
+      console.log('以下是res')
+      console.log(r)
+      // 尝试解析 JSON 数据
+      const res = await r.json()
+
+      console.log('以下是res')
       console.log(res)
-      console.log('以下是res.data')
-      console.log(res.data)
+      console.log('以下是await res.json()')
+      console.log(res) // 输出解析后的数据
 
       if (res.status === 'success') {
         console.log('以下是res.data.result')
@@ -58,9 +66,33 @@ export default function Index() {
       }
     } catch (error) {
       console.error('Error fetching order data:', error)
-      // toast.error('會員購物紀錄載入失敗')
+      console.error('Catch首頁藝人資料載入失敗')
     }
   }
+
+  //方法2
+  // const getUserData = async () => {
+  //   try {
+  //     const res = await getArtist()
+  //     console.log('以下是response data')
+  //     console.log(res)
+  //     console.log('以下是res.data')
+  //     console.log(res.data)
+
+  //     if (res.status === 'success') {
+  //       console.log('以下是res.data.result')
+  //       console.log(res.data.result)
+  //       setArtData(res.data.result) //這一包是物件陣列[{},{},{}]
+  //       // toast.success('會員購物紀錄載入成功')
+  //       console.log('首頁藝人資料載入成功')
+  //     } else {
+  //       console.log('首頁藝人資料載入失敗')
+  //     }
+  //   } catch (error) {
+  //     console.error('Error fetching order data:', error)
+  //     // toast.error('會員購物紀錄載入失敗')
+  //   }
+  // }
 
   useEffect(() => {
     getUserData()
@@ -170,14 +202,14 @@ export default function Index() {
       {isDesktop ? (
         <div className="music-container mb-5">
           <Swiper
-            slidesPerView={5}
+            slidesPerView={4.51}
             spaceBetween={0}
             freeMode={true}
-            pagination={{
-              clickable: true,
-            }}
+            // pagination={{
+            //   clickable: true,
+            // }}
             modules={[FreeMode, Pagination]}
-            className="bg-purple1"
+            // className="bg-purple1"
           >
             {artistData.map((v, i) => {
               return (
@@ -185,58 +217,33 @@ export default function Index() {
                   key={i}
                   className={`mx-0 ${styles['swiper-slide']} ${styles['swiper-width']}`}
                 >
-                  <ArtCard key={i} photo={v.photo} art_name={v.art_name} />
+                  <ArtCard
+                    key={i}
+                    photo={v.photo}
+                    art_name={v.art_name}
+                    spotify_id={v.spotify_id}
+                  />
                 </SwiperSlide>
               )
             })}
-            {/* {artistData.map((v, i) => (
-            <SwiperSlide
-              key={i}
-              className={`mx-0 ${styles['swiper-slide']} ${styles['swiper-width']}`}
-            >
-              <ArtCard photo={v.photo} art_name={v.art_name} />
-            </SwiperSlide>
-          ))} */}
           </Swiper>
         </div>
       ) : (
-        <div className="music-container mb-5 d-flex">
-          {artistData.map((v, i) => {
-            return <ArtCard key={i} photo={v.photo} art_name={v.art_name} />
-          })}
+        <div className="music-container mb-5">
+          <div className="col-12 align-items-center order-md-3 mb-5 mb-md-0 d-flex flex-wrap">
+            {artistData.map((v, i) => {
+              return (
+                <ArtCardMobile
+                  key={i}
+                  photo={v.photo}
+                  art_name={v.art_name}
+                  spotify_id={v.spotify_id}
+                />
+              )
+            })}
+          </div>
         </div>
       )}
     </>
   )
-}
-
-{
-  /* <div
-className={`d-flex justify-content-md-center justify-content-around align-items-center ${styles['mt-80']} ${styles['mb-120']}`} */
-}
-// >
-{
-  /* 最大那顆，到時候要隨著滑鼠事件移動 */
-}
-{
-  /* <div className="col-md-4 col-8 d-flex flex-column align-items-center order-md-3 mb-5 mb-md-0">
-  <img
-    src="https://i.postimg.cc/dtx1T54J/m-S62j-SACo-Ptq-Bo-YSHPi-Rwp.jpg"
-    className={`rounded-circle mb-4 ${styles['artist-img-l']}`}
-  />
-  <div className="chb-h4 text-white">音樂人</div>
-</div> */
-}
-{
-  /* 其他顆 */
-}
-{
-  /* <Marquee pauseOnHover gradient gradientColor="black">
-  <div className="d-flex">
-    {artistData.map((v, i) => {
-      return <ArtCard key={i} photo={v.photo} art_name={v.art_name} />
-    })}
-  </div>
-</Marquee>
-</div> */
 }

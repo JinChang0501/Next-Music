@@ -276,7 +276,7 @@ export default function TicketOrder() {
                   {userTicketsCon.map((v, i) => {
                     return (
                       <Tickets
-                        key={i}
+                        key={v.order_num}
                         order_num={v.order_num}
                         created_at={v.created_at}
                         price={v.price}
@@ -298,7 +298,7 @@ export default function TicketOrder() {
                 {userTicketsCon.map((v, i) => {
                   return (
                     <TicketMobile
-                      key={i}
+                      key={v.order_num}
                       order_num={v.order_num}
                       created_at={v.created_at}
                       price={v.price}
@@ -370,7 +370,7 @@ export default function TicketOrder() {
                   {userTicketsFes.map((v, i) => {
                     return (
                       <Tickets
-                        key={i}
+                        key={v.order_num}
                         order_num={v.order_num}
                         created_at={v.created_at}
                         price={v.price}
@@ -392,7 +392,7 @@ export default function TicketOrder() {
                 {userTicketsFes.map((v, i) => {
                   return (
                     <TicketMobile
-                      key={i}
+                      key={v.order_num}
                       order_num={v.order_num}
                       created_at={v.created_at}
                       price={v.price}

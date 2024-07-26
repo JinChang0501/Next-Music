@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
 import Link from 'next/link'
 // import required modules
-import styles from './art-card.module.scss'
+import styles from './art-card-mobile.module.scss'
 
-export default function ArtCard({
+export default function ArtCardMobile({
   photo = '',
   art_name = '',
   spotify_id = '',
@@ -16,7 +16,7 @@ export default function ArtCard({
   }
   return (
     <>
-      <div className="mx-4" style={{ width: '300px' }}>
+      <div className="mx-2 mb-5" style={{ width: '150px' }}>
         <div className="w-100 col-md-2 col-5 d-flex flex-column align-items-center order-md-5">
           <img
             src={`${photo}`}
