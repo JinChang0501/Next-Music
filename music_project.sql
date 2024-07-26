@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2024-07-23 05:36:21
+-- 產生時間： 2024-07-26 16:28:16
 -- 伺服器版本： 8.0.36
 -- PHP 版本： 8.1.25
 
@@ -60,35 +60,36 @@ CREATE TABLE `activity` (
   `artist_id` int DEFAULT NULL,
   `picture` varchar(255) DEFAULT NULL,
   `cover` varchar(255) DEFAULT NULL,
-  `picinfrontend` varchar(255) NOT NULL
+  `picinfrontend` varchar(255) NOT NULL,
+  `mingpic` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- 傾印資料表的資料 `activity`
 --
 
-INSERT INTO `activity` (`actid`, `class`, `actname`, `actdate`, `acttime`, `location`, `area`, `address`, `descriptions`, `organizer`, `artist_id`, `picture`, `cover`, `picinfrontend`) VALUES
-(1, 'concert', '一生到底', '2024-08-17', '19:30:00', '臺北流行音樂中心', '北部', '台北市南港區市民大道8段99號', '一生到底 One Life,One Shot人生像場一鏡到底的電影，時間不曾為誰停下，無法倒轉重來、也無法按下暫停。Let’s keep rolling!不斷前進的過程中，最珍貴的便是每次聚在一起就充滿能量，很多事情一時沒有答案，至少、你有滅火器的音樂可以作伴。人生keep rolling的BGM，讓滅火器陪你，一生到底。', '火氣音樂', 16, 'https://i.postimg.cc/v8Vr7zcZ/temp-Image-GXQJZ9.avif', 'https://i.postimg.cc/tTVx5qRM/temp-Image-GTMpop.avif', '1.avif'),
-(2, 'concert', 'The Yussef  Live', '2024-08-03', '20:00:00', 'Legacy Taipei', '北部', '台北市中正區八德路一段1號華山1914創意文化園區中5A館', '南倫敦出生的 Yussef Dayes，合成一系列來自南半球、西非到加勒比海和南美洲等令人眼花繚亂的聲音和節奏，他的表演融合了精湛的技術、強烈的激情和原始的情感，更以突破界限的音樂風景吸引全世界的樂迷觀眾，在倫敦當代爵士樂壇中占有重要地位。\nYussef Dayes 4歲就開始了他的音樂生涯，10歲從師 Billy Cobham（爵士巨人 Miles Davis 鼓手、Mahavishnu Orchestra 成員），和兄弟及朋友們組成樂團 United Vibrations，2011年發行《Galaxies Not Ghettos》，當時的 Yussef Dayes 只有16歲。儘管後來以 Kamaal Williams 組成的 Yussef Kamaal、以及和 Tom Misch 合作專輯《What Kinda Music》聲名大噪，Yussef Dayes 在2023年發行個人首張專輯《Black Classical Music》，融合爵士樂、雷鬼與嘻哈，邀來 Masego、Chronixx、Jamiliah Barry、Tom Misch 等人合作，獲得全英音樂獎（BRIT Awards）「最佳新人」「最佳另類／搖滾藝人」兩項年度提名。', 'Young Team Productions', 14, 'https://i.postimg.cc/XvqFrKR3/temp-Image-DYHcq-Q.avif', 'https://i.postimg.cc/nzsvPK2T/temp-Imagenl-Bj-Y0.avif', '2.avif'),
-(3, 'concert', '10CM 2024 ONLY', '2024-09-06', '19:00:00', 'Zepp New Taipei', '北部', '新北市新莊區新北大道四段3號8樓', '10CM在今年1月推出單曲’5.5 소년(少年)’，而4月25日發布全新單曲 5.6 ’너랑 밤새고 싶어(Late Night Walk)‘緩慢而甜蜜的唱出了戀情萌芽的羞澀與喜悅，近期甫創下收視紀錄的韓劇《淚之女王》中，10CM的聲音也讓電視劇大放異彩，過去半年內不斷推出作品的10CM將從7月開始於亞洲各國帶來精彩的演出。', 'LA RUE 文創設計', 12, 'https://i.postimg.cc/Hs0bRk0G/temp-Imagevb-O7v1.avif', 'https://i.postimg.cc/mkY1vmH3/temp-Image-DW5gw-H.avif', '3.avif'),
-(4, 'concert', 'aespa演唱會', '2024-10-22', '19:00:00', '國立體育大學綜合體育館(林口體育館)', '北部', '桃園市龜山區文化一路250號', 'aespa出道四年首次正式來台北開專場演唱會，將於8月10號在林口體育館舉行。自從今年一月在台北舉行過專輯簽售會和受邀參加科技公司商演後，台北的MY對aespa來台北舉辦演唱會的呼聲越發高漲，在之後無預警公布的世界巡演城市名單中台北赫然在列，讓台北粉絲又驚又喜，希望演唱會快點到來。\naespa由四名成員Karina、Giselle、Winter、Ningning組成，自出道以來就以獨特的世界觀、前衛的團體概念，以及超強的舞台魅力，收穫眾多粉絲的心。她們在Youtube上每首MV的最低觀看次數都超過1億，是當代超人氣女團。\naespa在時尚方面也非常出色，瑞士奢華珠寶Chopard、義大利Versace、美國Ralph Lauren等世界知名品牌也選擇aespa團體及其成員作為該品牌的宣傳大使和代言人。\n這次台北場的演出日剛好是七夕情人節，在這個充滿粉色泡泡的日子裡，不知道成員們會給台北粉絲們帶來什麼樣的驚喜呢! 台北的MY們，八月一定要來現場和aespa一起創造幸福的回憶！', 'iMe TW', 4, 'https://i.postimg.cc/GtSrQnS9/Banner13.jpg', 'https://i.postimg.cc/257KfRN6/Cover13.jpg', '4.jpg'),
-(5, 'concert', 'Energy 一觸即發', '2024-08-04', '19:30:00', '台北小巨蛋', '北部', '臺北市松山區南京東路4段2號', '招牌發電｜經典回憶殺唱個夠\n帶你走進音樂回憶殺，首首都是陪伴人生的迷人觸景，不只「放手」、「多愛我一天」、「某年某月某一天」、「Come On」、「無懈可擊」，承諾過「永遠不說再見」的Energy，現在實現諾言，再度因你而聚，為你而跳。\n全面放電｜天王天后御用總監 打造最大夜店 \n潮流舞曲製造機音樂總監 Starr Chen 陳星翰，全新改編經典歌曲，將音樂能量觸電、發電、放電，音浪電力無限激盪，震撼台北小巨蛋！\n天王天后御用舞蹈總監林大鈞，炸裂編舞跨年代舞風大精華！舞曲全場炸翻最大夜店！\n零距離觸電｜天地對立光柱 巨型地面Led延伸舞台\n演唱會製作魔法團隊必應創造，訂製天地對立移動巨型異變光柱、巨型地面Led延伸舞台，近距離與你接觸！重磅打造超升級超大型的動感Party！\n記憶充電｜橫跨街舞世代挑動舞感神經 \n睽違22年重返當年，結合跨世代舞曲大招，當累積的能量重新匯集，走過分合 Energy 再衝一次，一起共寫屬於我們的新傳奇！', '用心音樂', 13, 'https://i.postimg.cc/8PghZ66B/temp-Imagep-QE9yu.avif', 'https://i.postimg.cc/V6QjpXjC/energy.jpg', '5.jpg'),
-(6, 'concert', 'Travis World  Tour', '2024-09-03', '20:00:00', 'Zepp New Taipei', '北部', '新北市新莊區新北大道四段3號8樓', 'Travis Japan於2012年由麥可傑克森的編舞師Travis Payne所舉辦的徵選會中選出的成員所組成，是一支擁有強大舞蹈、表演實力的七人團體。\nTravis Japan曾參與舞台劇《虎者-NINJAPAN-》演出並擔任重要角色。2020年於可容納一萬七千人的橫濱體育場連續舉辦三場演出，門票全數售罄，2021年即在日本12個城市展開全國巡演《IMAGE NATION》。\n2022年3月，成員們為了精進自身能力，前往美國洛杉磯留學，留學期間參加了世界最大規模的舞蹈比賽「World of Dance」，以及美國NBC播出的指標性選秀節目「美國達人秀」，展現出他們精湛的舞蹈技巧，也成為了他們出道的契機。備受高度期待的首支主打單曲《JUST DANCE!》MV不但於YouTube觀看次數衝破千萬，也是J-POP史上首位以出道曲強勢登上告示牌美國除外全球單曲榜第五名的團體，此曲MV在YouTube觀看次數已突破千萬次。\n以首張專輯《Road to A》為題，不僅已在日本完成全國巡迴演唱會，吸引約31萬人參與，如今更宣布將開啟首次世界巡迴演唱會《Travis Japan World Tour 2024 Road to A》，要向世界展現他們最精彩、吸睛的舞蹈魅力！', '大鴻藝術BIG ART', 15, 'https://i.postimg.cc/tJRCk5qv/Banner01.jpg', 'https://i.postimg.cc/RVq5QF5T/Cover01.jpg', '6.jpg'),
-(7, 'concert', 'BTOB FAN-CON', '2024-09-28', '19:30:00', '臺北流行音樂中心', '北部', '台北市南港區市民大道8段99號', '等了近六年！韓流三代團BTOB徐恩光、李旼赫、任炫植、PENIEL宣布6/29來台！\n很會唱、很會跳還很放閃！BTOB 終於要來啦！\n距離上次2018/9/8來台舉辦「BTOB TIME -THIS IS US」演唱會後，Melody（官粉名）等了近六年，終於要在6/29（六）見到韓流人氣實力三代團BTOB的四帥成員徐恩光、李旼赫、任炫植、PENIEL於TICC台北國際會議中心舉辦「2024 BTOB FAN-CON [OUR DREAM] in TAIPEI」！', '火氣音樂', 7, 'https://i.postimg.cc/j20J3pLd/temp-Imagel-FGn-Vc.avif', 'https://i.postimg.cc/G2ZkwBSR/temp-Imageiixi-F0.avif', '7.avif'),
-(8, 'concert', 'Starry Sky', '2024-09-30', '18:00:00', 'Legacy Taipei', '北部', '台北市中正區八德路一段1號華山1914創意文化園區中5A館', '是勞模們迷茫徬徨的職涯課題\n是小男孩拒絕世故的搖滾初心', 'Young Team Productions', 8, 'https://i.postimg.cc/9Frcfzr9/Banner14.jpg', 'https://i.postimg.cc/k4MhJ17y/Cover14.jpg', '8.jpg'),
-(9, 'concert', '建宮蓋廟', '2024-08-15', '19:30:00', 'Zepp New Taipei', '北部', '新北市新莊區新北大道四段3號8樓', '宮廟\n不僅是多重領域大門，也是意識流的集合中心；\n宮廟\n不僅建造在地球上，也建造在太陽系八大行星衛星裡。\n令人驚奇的是\n太陽系邊界守門行星冥王星本身就是一座漂浮的宮廟行星。\n為什麼太陽系裏遍佈宮廟？\n是古地球人得到神仙的旨意、神仙的法力，而建宮蓋廟於整個太陽系？\n還是太陽系的古生命對於信仰有共識？\n我們看到的不只是過去，而是未來。\n2154年9大行星及衛星出現鬧鬼附身現象\n2159年正式進入「交由撒旦統治太陽系1000年」。\n3206年進入土星環發現多座破損宮廟隕石漂流在環中\n3264年發現冥王星是一座巨大的漂流宮廟\n3278年太陽系血肉宮廟網絡完成，血肉Boyz持續在宇宙中殺翻現場！', 'LA RUE 文創設計', 17, 'https://i.postimg.cc/CLWYD3d9/temp-Imagea-Dk-U5o.avif', 'https://i.postimg.cc/P52YfVF2/temp-Image9-Blyq-T.avif', '9.avif'),
-(10, 'festival', '霓虹綠洲音樂祭', '2024-12-25', '12:00:00', '國立體育大學綜合體育館(林口體育館)', '北部', '桃園市龜山區文化一路250號', '本屆活動除了再度邀請台灣、日本、韓國、泰國等地的音樂人，更邀請到來自中國石家莊的搖滾傳奇萬能青年旅店、紐西蘭的蒙面歌手 JonathanBree、香港天團 RubberBand，以及前陣子於社群引起熱烈關注的金氏世界紀錄年紀最小的小學生DJ RINOKA，吸引了許多親子、寵物家庭族群一同參與本屆活動。此外，霓虹綠洲音樂祭還將新增主打嘻哈、新聲的舞台與「前夜祭」擴大舉辦，透過結合音樂祭、露營、市集，為北部都會區帶來冬日弛放音樂盛事！', 'iMe TW', 10, 'https://i.postimg.cc/8ky1DLPD/Banner12.jpg', 'https://i.postimg.cc/KY2HVcVw/Cover12.jpg', '10.jpg'),
-(11, 'festival', '雨山祭', '2024-09-24', '11:00:00', '台北小巨蛋', '北部', '臺北市松山區南京東路4段2號', '・2024年春假出遊首選音樂祭盛事\n・連續三年完售，台灣大型指標性音樂祭之一\n・台中海線小鎮漫遊，吃喝玩樂應有盡有\n・五周年擴大舉行，九大區域等你來解鎖\n・超過六國演出藝人即將來台獻技\n生活的紛擾及懊悔就留在那裡吧！一起邁向未知的新方向，大步踏出步伐，每一步都會有新風景的誕生，如同主視覺想傳達給每個朋友，跨過「浮現大門」後，回歸最純粹的模樣，化身為能代表你自己的角色，讓我們一起登陸小鎮的慶典吧！\n浮現祭五周年，再解鎖兩大場域，走進常民生活場景中，以及與海線當地有更多連結。未來，我們也將持續跨出海外，寫下更多新故事！如果你也想加入這段旅程，明年春天，我們相約老地方——台中清水，一個屬於我們冒險的起點。', '用心音樂', 9, 'https://i.postimg.cc/3NwYmx1P/Banner11.jpg', 'https://i.postimg.cc/28gJQ7xz/Cover11.jpg', '11.jpg'),
-(12, 'festival', '大港開唱', '2024-11-09', '11:00:00', 'Zepp New Taipei', '南部', '新北市新莊區新北大道四段3號8樓', '《大港開唱》（Megaport Festival），創立於2006年，由台北《野台開唱》（Formoz Festival：1995～2013）主辦團隊，在高雄創立。一南一北的兩大型音樂祭品牌，是台灣如今百花齊放音樂祭市場的先趨。即將於今年邁入第十五屆的大港開唱，於每年三月底舉辦，也是目前台灣最具指標性的大型戶外音樂祭活動。\n大港位於高雄港邊，獨特的海港地景和人文風情，常勾起人生中各種酸甜苦辣的回憶。也因如此，大港總是邀請有著豐富人生歷程的知名藝人及業界前輩演出，也會與新一代的樂團或藝人一起合作演出，交融出世代之間的化學效應，往往成為當年度為人津津樂道的經典現場，包括《黃金夜總會》的賀一航、《古惑仔》裡的大飛哥-黃秋生，永駐在人們青春回憶中的日本偶像酒井法子，再到唱出《心事誰人知》的沈文程和演出《花甲男孩》的三金得主蔡振南。除此之外，唱著《少年吔，安啦！》的伍佰以及後來變成姐姐的謝金燕，都曾是大港舞台的主角之一。', '大鴻藝術BIG ART', 10, 'https://i.postimg.cc/Zqrbhg0D/Banner07.jpg', 'https://i.postimg.cc/C51tNvtK/Cover07.jpg', '12.jpg'),
-(13, 'festival', '火球祭', '2024-08-31', '11:00:00', '臺北流行音樂中心', '北部', '台北市南港區市民大道8段99號', '地球人請注意\n重返愛的主場，火球祭正式回歸！\n距離上次火球祭\n已經過了 1,344 天\n但！有些記憶不管過多久還是難忘\n還記得播放著搖滾樂的旋轉木馬上，她的笑容讓我暈到現在\n人生中第一次踏上紅土、在音樂聲中滾草皮\n時不時被感動到哭得像個傻瓜、下一秒又笑得像個笨蛋\n在雨中熱舞、在太陽下的草皮曬乾自己\n直接拿著感應手環、買個外帶坐到看台區爽吃爽喝爽聽團❤\n48 小時裡不間斷的快樂\n現在回想起來都會笑，太爽了吧？有夠夢幻\n準備好重返我們的搖滾遊樂園嗎？', '火氣音樂', 1, 'https://i.postimg.cc/Nfzf8mWb/Banner03.jpg', 'https://i.postimg.cc/QMG23JB6/Cover03.jpg', '13.jpg'),
-(14, 'festival', '赤聲躁動音樂祭', '2024-10-13', '11:00:00', 'Legacy Taipei', '北部', '台北市中正區八德路一段1號華山1914創意文化園區中5A館', '大膽飛天｜不純的純愛｜Y2K大爆炸\n「把糖果穿在身上、大聲唱歌，和冰友跳著最in的舞步並肩搖擺！」\n千禧年代的自由及美好令人無限懷念，\n浪漫五月，跟著赤聲戰隊來去Y2K的世界，\n一起大膽追愛，在浪漫大宇宙中自由飛翔！！', 'Young Team Productions', 2, 'https://i.postimg.cc/k4qnMcbM/Banner10.jpg', 'https://i.postimg.cc/jSN1Zn8y/Cover10.jpg', '14.jpg'),
-(15, 'festival', '台秋祭', '2024-08-31', '11:00:00', 'Zepp New Taipei', '中部', '新北市新莊區新北大道四段3號8樓', '台中，\n是一個充滿熱情的所在，\n一個從北到南都得路過的所在，\n在這個交會點，\n無論是快樂、寂寞還是難過，我們都曾一起度過，\n就在「台秋祭」這個地方。\n說的沒錯，\n彼此都是生命中的過客，\n那既然你我都是旅客，\n就一起感受現場的一切，\n像是一種洗禮，一種契機，\n也會是一種轉運。\n感謝過去兩年的支持，\n歡迎來到，台秋轉運站。', 'LA RUE 文創設計', 3, 'https://i.postimg.cc/ZKR5yVDC/Banner02.jpg', 'https://i.postimg.cc/3R9V2Mt6/Cover02.jpg', '15.jpg'),
-(16, 'festival', '打狗祭', '2024-10-12', '11:00:00', '國立體育大學綜合體育館(林口體育館)', '南部', '桃園市龜山區文化一路250號', '遨遊在大宇宙中的外星小怪獸，受到打狗港灣的強大召喚！為了這群有夢想的人，打狗星際入口再度開啟》》》》》》\n延續去年的活動場域，以高流海音館、海風廣場為核心演出場域，加上珊瑚礁群、LIVE WAREHOUSE等五大場域，再次將愛河灣打造成充滿奇幻外星小怪獸的音樂宇宙星樂園，就是要讓樂迷與外星小怪獸一同遨遊穿梭，享受音樂的衝撞搖擺與微醺的快樂。', 'iMe TW', 6, 'https://i.postimg.cc/dVqGYcnh/temp-Image-FAo-ZMq.avif', 'https://i.postimg.cc/W4yZgFVZ/temp-Image-LPZrg4.avif', '16.avif'),
-(17, 'festival', '浮現祭', '2024-08-19', '20:00:00', '台北小巨蛋', '中部', '臺北市松山區南京東路4段2號', '單日雙舞台十二組卡司，一次滿足你12個願望\n雨山眾神召集中：椅子樂團、南西肯恩、庸俗救星、靈魂沙發、JADE⋯⋯等共聚一堂，邀請所有觀眾與神同慶！\n與 「 Legacy 傳 音樂展演空間 」共同合作，將聲光音響的極致饗宴帶至政大校園\n當日活動將與「小蝸牛市集」合作，精選文山區在地特色商家，並邀請各式特色攤商集結雨山祭，打造獨一無二的雨山市集', '用心音樂', 7, 'https://i.postimg.cc/cCD1bn6x/Banner04.jpg', 'https://i.postimg.cc/mgFvJ5rz/Cover04.jpg', '17.jpg'),
-(18, 'festival', '貴人散步音樂節', '2024-11-04', '11:00:00', 'Zepp New Taipei', '南部', '新北市新莊區新北大道四段3號8樓', '象徵圓滿幸運的第7年，超強Lucky 7企劃陣容展現台灣音樂面貌\n來自世界各地多種面向的77組音樂人等你來挖寶\n全亞洲最多人潮、全台灣最國際化的Showcase音樂節\n在台南多個場館從古蹟到藝廊感受不同的演出體驗\n音樂演出之外還能享受城市探險的吃喝玩樂\n各式講座論壇，產業人士齊聚，與同業對話交流的好機會！\n多元跨界展演、城市漫遊旅程，還有更多結合音樂的另類體驗享受！', '大鴻藝術BIG ART', 1, 'https://i.postimg.cc/C17wRqGG/Banner09.jpg', 'https://i.postimg.cc/CMP91gBn/Cover09.jpg', '18.jpg'),
-(19, 'festival', '禾火OUT', '2024-09-14', '11:00:00', '臺北流行音樂中心', '北部', '台北市南港區市民大道8段99號', '中秋連假首選，雙日雙舞台，超過 25 組超強卡司在公館水岸輪番演出\n最酷主題市集：從美食、飲品、到古著選物，吃喝玩買一次到位\n充氣沙發區、露天座位區，讓你躺著看坐著看都可以', '火氣音樂', 9, 'https://i.postimg.cc/wxFBvS2C/Banner05.jpg', 'https://i.postimg.cc/wBXSTRL9/Cover05.jpg', '19.jpg'),
-(20, 'festival', '浪人祭', '2024-12-10', '11:00:00', '漁光島', '南部', '台北市中正區八德路一段1號華山1914創意文化園區中5A館', '⟢　五週年 - 震撼王城 海味鉅獻　⟣\n戎克、朱印、克拉克大帆船，晚渡於海陸之城，港內寬衍，可泊千艘。\n夕陽西下，海晏捲朱旗，歷史的軌跡被鑲入城牆壁鎖，世世代代的王城，經過四個世紀的變革，帶來多族群的共生共榮。\n⟢　浪撼魚龍宅，盂懸上下天　⟣\n深海的龍嚎引萬物復甦，海底的熔岩劃開一道赤浪，鯤魚鼓浪，位於高處的龍宮，秋夜即將展開三日熱鬧晚宴，龍宮照欲醒，金黃色魚群奏起樂器，抬起「玉手箱」穿梭於赤足章魚觸手前，優美的旋律將撼動這片大海。', 'Young Team Productions', 2, 'https://i.postimg.cc/rwRyfzTT/Banner06.jpg', 'https://i.postimg.cc/Y9tT42zY/Cover06.jpg', '20.jpg'),
-(21, 'festival', '簡單生活節', '2024-12-28', '12:00:00', 'Legacy Taipei', '北部', '台北市中正區八德路一段1號華山1914創意文化園區中5A館', '「簡單生活 Simple Life」這個品牌，自我期許是個風格化的媒介，我們希望能夠讓創作者與熱愛者在其中相遇，並且彼此扶持成長。創作者可以從生活中萌芽，在生活中成長，直到力量足夠強大。', 'Young Team Productions', 8, 'https://i.postimg.cc/N0hsSYGH/Banner08.jpg', 'https://i.postimg.cc/nrPWw4bG/Cover08.jpg', '21.jpg');
+INSERT INTO `activity` (`actid`, `class`, `actname`, `actdate`, `acttime`, `location`, `area`, `address`, `descriptions`, `organizer`, `artist_id`, `picture`, `cover`, `picinfrontend`, `mingpic`) VALUES
+(1, 'concert', '一生到底', '2024-08-17', '19:30:00', '臺北流行音樂中心', '北部', '台北市南港區市民大道8段99號', '一生到底 One Life,One Shot人生像場一鏡到底的電影，時間不曾為誰停下，無法倒轉重來、也無法按下暫停。Let’s keep rolling!不斷前進的過程中，最珍貴的便是每次聚在一起就充滿能量，很多事情一時沒有答案，至少、你有滅火器的音樂可以作伴。人生keep rolling的BGM，讓滅火器陪你，一生到底。', '火氣音樂', 16, 'https://i.postimg.cc/v8Vr7zcZ/temp-Image-GXQJZ9.avif', 'https://i.postimg.cc/tTVx5qRM/temp-Image-GTMpop.avif', '1.avif', 'Banner01.jpg'),
+(2, 'concert', 'The Yussef  Live', '2024-08-03', '20:00:00', 'Legacy Taipei', '北部', '台北市中正區八德路一段1號華山1914創意文化園區中5A館', '南倫敦出生的 Yussef Dayes，合成一系列來自南半球、西非到加勒比海和南美洲等令人眼花繚亂的聲音和節奏，他的表演融合了精湛的技術、強烈的激情和原始的情感，更以突破界限的音樂風景吸引全世界的樂迷觀眾，在倫敦當代爵士樂壇中占有重要地位。\nYussef Dayes 4歲就開始了他的音樂生涯，10歲從師 Billy Cobham（爵士巨人 Miles Davis 鼓手、Mahavishnu Orchestra 成員），和兄弟及朋友們組成樂團 United Vibrations，2011年發行《Galaxies Not Ghettos》，當時的 Yussef Dayes 只有16歲。儘管後來以 Kamaal Williams 組成的 Yussef Kamaal、以及和 Tom Misch 合作專輯《What Kinda Music》聲名大噪，Yussef Dayes 在2023年發行個人首張專輯《Black Classical Music》，融合爵士樂、雷鬼與嘻哈，邀來 Masego、Chronixx、Jamiliah Barry、Tom Misch 等人合作，獲得全英音樂獎（BRIT Awards）「最佳新人」「最佳另類／搖滾藝人」兩項年度提名。', 'Young Team Productions', 14, 'https://i.postimg.cc/XvqFrKR3/temp-Image-DYHcq-Q.avif', 'https://i.postimg.cc/nzsvPK2T/temp-Imagenl-Bj-Y0.avif', '2.avif', 'Banner02.jpg'),
+(3, 'concert', '10CM 2024 ONLY', '2024-09-06', '19:00:00', 'Zepp New Taipei', '北部', '新北市新莊區新北大道四段3號8樓', '10CM在今年1月推出單曲’5.5 소년(少年)’，而4月25日發布全新單曲 5.6 ’너랑 밤새고 싶어(Late Night Walk)‘緩慢而甜蜜的唱出了戀情萌芽的羞澀與喜悅，近期甫創下收視紀錄的韓劇《淚之女王》中，10CM的聲音也讓電視劇大放異彩，過去半年內不斷推出作品的10CM將從7月開始於亞洲各國帶來精彩的演出。', 'LA RUE 文創設計', 12, 'https://i.postimg.cc/Hs0bRk0G/temp-Imagevb-O7v1.avif', 'https://i.postimg.cc/mkY1vmH3/temp-Image-DW5gw-H.avif', '3.avif', 'Banner03.jpg'),
+(4, 'concert', 'aespa演唱會', '2024-10-22', '19:00:00', '林口體育館', '北部', '桃園市龜山區文化一路250號', 'aespa出道四年首次正式來台北開專場演唱會，將於8月10號在林口體育館舉行。自從今年一月在台北舉行過專輯簽售會和受邀參加科技公司商演後，台北的MY對aespa來台北舉辦演唱會的呼聲越發高漲，在之後無預警公布的世界巡演城市名單中台北赫然在列，讓台北粉絲又驚又喜，希望演唱會快點到來。\naespa由四名成員Karina、Giselle、Winter、Ningning組成，自出道以來就以獨特的世界觀、前衛的團體概念，以及超強的舞台魅力，收穫眾多粉絲的心。她們在Youtube上每首MV的最低觀看次數都超過1億，是當代超人氣女團。\naespa在時尚方面也非常出色，瑞士奢華珠寶Chopard、義大利Versace、美國Ralph Lauren等世界知名品牌也選擇aespa團體及其成員作為該品牌的宣傳大使和代言人。\n這次台北場的演出日剛好是七夕情人節，在這個充滿粉色泡泡的日子裡，不知道成員們會給台北粉絲們帶來什麼樣的驚喜呢! 台北的MY們，八月一定要來現場和aespa一起創造幸福的回憶！', 'iMe TW', 4, 'https://i.postimg.cc/GtSrQnS9/Banner13.jpg', 'https://i.postimg.cc/257KfRN6/Cover13.jpg', '4.jpg', 'Banner04.jpg'),
+(5, 'concert', 'Energy 一觸即發', '2024-08-04', '19:30:00', '台北小巨蛋', '北部', '臺北市松山區南京東路4段2號', '招牌發電｜經典回憶殺唱個夠\n帶你走進音樂回憶殺，首首都是陪伴人生的迷人觸景，不只「放手」、「多愛我一天」、「某年某月某一天」、「Come On」、「無懈可擊」，承諾過「永遠不說再見」的Energy，現在實現諾言，再度因你而聚，為你而跳。\n全面放電｜天王天后御用總監 打造最大夜店 \n潮流舞曲製造機音樂總監 Starr Chen 陳星翰，全新改編經典歌曲，將音樂能量觸電、發電、放電，音浪電力無限激盪，震撼台北小巨蛋！\n天王天后御用舞蹈總監林大鈞，炸裂編舞跨年代舞風大精華！舞曲全場炸翻最大夜店！\n零距離觸電｜天地對立光柱 巨型地面Led延伸舞台\n演唱會製作魔法團隊必應創造，訂製天地對立移動巨型異變光柱、巨型地面Led延伸舞台，近距離與你接觸！重磅打造超升級超大型的動感Party！\n記憶充電｜橫跨街舞世代挑動舞感神經 \n睽違22年重返當年，結合跨世代舞曲大招，當累積的能量重新匯集，走過分合 Energy 再衝一次，一起共寫屬於我們的新傳奇！', '用心音樂', 13, 'https://i.postimg.cc/8PghZ66B/temp-Imagep-QE9yu.avif', 'https://i.postimg.cc/V6QjpXjC/energy.jpg', '5.jpg', 'Banner05.jpg'),
+(6, 'concert', 'Travis World  Tour', '2024-09-03', '20:00:00', 'Zepp New Taipei', '北部', '新北市新莊區新北大道四段3號8樓', 'Travis Japan於2012年由麥可傑克森的編舞師Travis Payne所舉辦的徵選會中選出的成員所組成，是一支擁有強大舞蹈、表演實力的七人團體。\nTravis Japan曾參與舞台劇《虎者-NINJAPAN-》演出並擔任重要角色。2020年於可容納一萬七千人的橫濱體育場連續舉辦三場演出，門票全數售罄，2021年即在日本12個城市展開全國巡演《IMAGE NATION》。\n2022年3月，成員們為了精進自身能力，前往美國洛杉磯留學，留學期間參加了世界最大規模的舞蹈比賽「World of Dance」，以及美國NBC播出的指標性選秀節目「美國達人秀」，展現出他們精湛的舞蹈技巧，也成為了他們出道的契機。備受高度期待的首支主打單曲《JUST DANCE!》MV不但於YouTube觀看次數衝破千萬，也是J-POP史上首位以出道曲強勢登上告示牌美國除外全球單曲榜第五名的團體，此曲MV在YouTube觀看次數已突破千萬次。\n以首張專輯《Road to A》為題，不僅已在日本完成全國巡迴演唱會，吸引約31萬人參與，如今更宣布將開啟首次世界巡迴演唱會《Travis Japan World Tour 2024 Road to A》，要向世界展現他們最精彩、吸睛的舞蹈魅力！', '大鴻藝術BIG ART', 15, 'https://i.postimg.cc/tJRCk5qv/Banner01.jpg', 'https://i.postimg.cc/RVq5QF5T/Cover01.jpg', '6.jpg', 'Banner06.jpg'),
+(7, 'concert', 'BTOB FAN-CON', '2024-09-28', '19:30:00', '臺北流行音樂中心', '北部', '台北市南港區市民大道8段99號', '等了近六年！韓流三代團BTOB徐恩光、李旼赫、任炫植、PENIEL宣布6/29來台！\n很會唱、很會跳還很放閃！BTOB 終於要來啦！\n距離上次2018/9/8來台舉辦「BTOB TIME -THIS IS US」演唱會後，Melody（官粉名）等了近六年，終於要在6/29（六）見到韓流人氣實力三代團BTOB的四帥成員徐恩光、李旼赫、任炫植、PENIEL於TICC台北國際會議中心舉辦「2024 BTOB FAN-CON [OUR DREAM] in TAIPEI」！', '火氣音樂', 7, 'https://i.postimg.cc/j20J3pLd/temp-Imagel-FGn-Vc.avif', 'https://i.postimg.cc/G2ZkwBSR/temp-Imageiixi-F0.avif', '7.avif', 'Banner07.jpg'),
+(8, 'concert', 'Starry Sky', '2024-09-30', '18:00:00', 'Legacy Taipei', '北部', '台北市中正區八德路一段1號華山1914創意文化園區中5A館', '是勞模們迷茫徬徨的職涯課題\n是小男孩拒絕世故的搖滾初心', 'Young Team Productions', 8, 'https://i.postimg.cc/9Frcfzr9/Banner14.jpg', 'https://i.postimg.cc/k4MhJ17y/Cover14.jpg', '8.jpg', 'Banner08.jpg'),
+(9, 'concert', '建宮蓋廟', '2024-08-15', '19:30:00', 'Zepp New Taipei', '北部', '新北市新莊區新北大道四段3號8樓', '宮廟\n不僅是多重領域大門，也是意識流的集合中心；\n宮廟\n不僅建造在地球上，也建造在太陽系八大行星衛星裡。\n令人驚奇的是\n太陽系邊界守門行星冥王星本身就是一座漂浮的宮廟行星。\n為什麼太陽系裏遍佈宮廟？\n是古地球人得到神仙的旨意、神仙的法力，而建宮蓋廟於整個太陽系？\n還是太陽系的古生命對於信仰有共識？\n我們看到的不只是過去，而是未來。\n2154年9大行星及衛星出現鬧鬼附身現象\n2159年正式進入「交由撒旦統治太陽系1000年」。\n3206年進入土星環發現多座破損宮廟隕石漂流在環中\n3264年發現冥王星是一座巨大的漂流宮廟\n3278年太陽系血肉宮廟網絡完成，血肉Boyz持續在宇宙中殺翻現場！', 'LA RUE 文創設計', 17, 'https://i.postimg.cc/CLWYD3d9/temp-Imagea-Dk-U5o.avif', 'https://i.postimg.cc/P52YfVF2/temp-Image9-Blyq-T.avif', '9.avif', 'Banner09.jpg'),
+(10, 'festival', '霓虹綠洲音樂祭', '2024-12-25', '12:00:00', '文山農場', '北部', '桃園市龜山區文化一路250號', '本屆活動除了再度邀請台灣、日本、韓國、泰國等地的音樂人，更邀請到來自中國石家莊的搖滾傳奇萬能青年旅店、紐西蘭的蒙面歌手 JonathanBree、香港天團 RubberBand，以及前陣子於社群引起熱烈關注的金氏世界紀錄年紀最小的小學生DJ RINOKA，吸引了許多親子、寵物家庭族群一同參與本屆活動。此外，霓虹綠洲音樂祭還將新增主打嘻哈、新聲的舞台與「前夜祭」擴大舉辦，透過結合音樂祭、露營、市集，為北部都會區帶來冬日弛放音樂盛事！', 'iMe TW', 10, 'https://i.postimg.cc/8ky1DLPD/Banner12.jpg', 'https://i.postimg.cc/KY2HVcVw/Cover12.jpg', '10.jpg', 'Banner10.jpg'),
+(11, 'festival', '雨山祭', '2024-09-24', '11:00:00', '台北小巨蛋', '北部', '臺北市松山區南京東路4段2號', '・2024年春假出遊首選音樂祭盛事\n・連續三年完售，台灣大型指標性音樂祭之一\n・台中海線小鎮漫遊，吃喝玩樂應有盡有\n・五周年擴大舉行，九大區域等你來解鎖\n・超過六國演出藝人即將來台獻技\n生活的紛擾及懊悔就留在那裡吧！一起邁向未知的新方向，大步踏出步伐，每一步都會有新風景的誕生，如同主視覺想傳達給每個朋友，跨過「浮現大門」後，回歸最純粹的模樣，化身為能代表你自己的角色，讓我們一起登陸小鎮的慶典吧！\n浮現祭五周年，再解鎖兩大場域，走進常民生活場景中，以及與海線當地有更多連結。未來，我們也將持續跨出海外，寫下更多新故事！如果你也想加入這段旅程，明年春天，我們相約老地方——台中清水，一個屬於我們冒險的起點。', '用心音樂', 9, 'https://i.postimg.cc/3NwYmx1P/Banner11.jpg', 'https://i.postimg.cc/28gJQ7xz/Cover11.jpg', '11.jpg', 'Banner11.jpg'),
+(12, 'festival', '大港開唱', '2024-11-09', '11:00:00', '駁二藝術特區', '南部', '新北市新莊區新北大道四段3號8樓', '《大港開唱》（Megaport Festival），創立於2006年，由台北《野台開唱》（Formoz Festival：1995～2013）主辦團隊，在高雄創立。一南一北的兩大型音樂祭品牌，是台灣如今百花齊放音樂祭市場的先趨。即將於今年邁入第十五屆的大港開唱，於每年三月底舉辦，也是目前台灣最具指標性的大型戶外音樂祭活動。\n大港位於高雄港邊，獨特的海港地景和人文風情，常勾起人生中各種酸甜苦辣的回憶。也因如此，大港總是邀請有著豐富人生歷程的知名藝人及業界前輩演出，也會與新一代的樂團或藝人一起合作演出，交融出世代之間的化學效應，往往成為當年度為人津津樂道的經典現場，包括《黃金夜總會》的賀一航、《古惑仔》裡的大飛哥-黃秋生，永駐在人們青春回憶中的日本偶像酒井法子，再到唱出《心事誰人知》的沈文程和演出《花甲男孩》的三金得主蔡振南。除此之外，唱著《少年吔，安啦！》的伍佰以及後來變成姐姐的謝金燕，都曾是大港舞台的主角之一。', '大鴻藝術BIG ART', 10, 'https://i.postimg.cc/Zqrbhg0D/Banner07.jpg', 'https://i.postimg.cc/C51tNvtK/Cover07.jpg', '12.jpg', 'Banner12.jpg'),
+(13, 'festival', '火球祭', '2024-08-31', '11:00:00', '臺北流行音樂中心', '北部', '台北市南港區市民大道8段99號', '地球人請注意\n重返愛的主場，火球祭正式回歸！\n距離上次火球祭\n已經過了 1,344 天\n但！有些記憶不管過多久還是難忘\n還記得播放著搖滾樂的旋轉木馬上，她的笑容讓我暈到現在\n人生中第一次踏上紅土、在音樂聲中滾草皮\n時不時被感動到哭得像個傻瓜、下一秒又笑得像個笨蛋\n在雨中熱舞、在太陽下的草皮曬乾自己\n直接拿著感應手環、買個外帶坐到看台區爽吃爽喝爽聽團❤\n48 小時裡不間斷的快樂\n現在回想起來都會笑，太爽了吧？有夠夢幻\n準備好重返我們的搖滾遊樂園嗎？', '火氣音樂', 1, 'https://i.postimg.cc/Nfzf8mWb/Banner03.jpg', 'https://i.postimg.cc/QMG23JB6/Cover03.jpg', '13.jpg', 'Banner13.jpg'),
+(14, 'festival', '赤聲躁動音樂祭', '2024-10-13', '11:00:00', 'Legacy Taipei', '北部', '台北市中正區八德路一段1號華山1914創意文化園區中5A館', '大膽飛天｜不純的純愛｜Y2K大爆炸\n「把糖果穿在身上、大聲唱歌，和冰友跳著最in的舞步並肩搖擺！」\n千禧年代的自由及美好令人無限懷念，\n浪漫五月，跟著赤聲戰隊來去Y2K的世界，\n一起大膽追愛，在浪漫大宇宙中自由飛翔！！', 'Young Team Productions', 2, 'https://i.postimg.cc/k4qnMcbM/Banner10.jpg', 'https://i.postimg.cc/jSN1Zn8y/Cover10.jpg', '14.jpg', 'Banner14.jpg'),
+(15, 'festival', '台秋祭', '2024-08-31', '11:00:00', '驛鐵道文化園區', '中部', '新北市新莊區新北大道四段3號8樓', '台中，\n是一個充滿熱情的所在，\n一個從北到南都得路過的所在，\n在這個交會點，\n無論是快樂、寂寞還是難過，我們都曾一起度過，\n就在「台秋祭」這個地方。\n說的沒錯，\n彼此都是生命中的過客，\n那既然你我都是旅客，\n就一起感受現場的一切，\n像是一種洗禮，一種契機，\n也會是一種轉運。\n感謝過去兩年的支持，\n歡迎來到，台秋轉運站。', 'LA RUE 文創設計', 3, 'https://i.postimg.cc/ZKR5yVDC/Banner02.jpg', 'https://i.postimg.cc/3R9V2Mt6/Cover02.jpg', '15.jpg', 'Banner15.jpg'),
+(16, 'festival', '打狗祭', '2024-10-12', '11:00:00', '高雄流行音樂中心', '南部', '桃園市龜山區文化一路250號', '遨遊在大宇宙中的外星小怪獸，受到打狗港灣的強大召喚！為了這群有夢想的人，打狗星際入口再度開啟》》》》》》\n延續去年的活動場域，以高流海音館、海風廣場為核心演出場域，加上珊瑚礁群、LIVE WAREHOUSE等五大場域，再次將愛河灣打造成充滿奇幻外星小怪獸的音樂宇宙星樂園，就是要讓樂迷與外星小怪獸一同遨遊穿梭，享受音樂的衝撞搖擺與微醺的快樂。', 'iMe TW', 6, 'https://i.postimg.cc/dVqGYcnh/temp-Image-FAo-ZMq.avif', 'https://i.postimg.cc/W4yZgFVZ/temp-Image-LPZrg4.avif', '16.avif', 'Banner16.jpg'),
+(17, 'festival', '浮現祭', '2024-08-19', '20:00:00', '霧峰', '中部', '臺北市松山區南京東路4段2號', '單日雙舞台十二組卡司，一次滿足你12個願望\n雨山眾神召集中：椅子樂團、南西肯恩、庸俗救星、靈魂沙發、JADE⋯⋯等共聚一堂，邀請所有觀眾與神同慶！\n與 「 Legacy 傳 音樂展演空間 」共同合作，將聲光音響的極致饗宴帶至政大校園\n當日活動將與「小蝸牛市集」合作，精選文山區在地特色商家，並邀請各式特色攤商集結雨山祭，打造獨一無二的雨山市集', '用心音樂', 7, 'https://i.postimg.cc/cCD1bn6x/Banner04.jpg', 'https://i.postimg.cc/mgFvJ5rz/Cover04.jpg', '17.jpg', 'Banner17.jpg'),
+(18, 'festival', '貴人散步音樂節', '2024-11-04', '11:00:00', '台南市中西區', '南部', '新北市新莊區新北大道四段3號8樓', '象徵圓滿幸運的第7年，超強Lucky 7企劃陣容展現台灣音樂面貌\n來自世界各地多種面向的77組音樂人等你來挖寶\n全亞洲最多人潮、全台灣最國際化的Showcase音樂節\n在台南多個場館從古蹟到藝廊感受不同的演出體驗\n音樂演出之外還能享受城市探險的吃喝玩樂\n各式講座論壇，產業人士齊聚，與同業對話交流的好機會！\n多元跨界展演、城市漫遊旅程，還有更多結合音樂的另類體驗享受！', '大鴻藝術BIG ART', 1, 'https://i.postimg.cc/C17wRqGG/Banner09.jpg', 'https://i.postimg.cc/CMP91gBn/Cover09.jpg', '18.jpg', 'Banner18.jpg'),
+(19, 'festival', '禾火OUT', '2024-09-14', '11:00:00', 'Pipe', '北部', '台北市南港區市民大道8段99號', '中秋連假首選，雙日雙舞台，超過 25 組超強卡司在公館水岸輪番演出\n最酷主題市集：從美食、飲品、到古著選物，吃喝玩買一次到位\n充氣沙發區、露天座位區，讓你躺著看坐著看都可以', '火氣音樂', 9, 'https://i.postimg.cc/wxFBvS2C/Banner05.jpg', 'https://i.postimg.cc/wBXSTRL9/Cover05.jpg', '19.jpg', 'Banner19.jpg'),
+(20, 'festival', '浪人祭', '2024-12-10', '11:00:00', '漁光島', '南部', '台北市中正區八德路一段1號華山1914創意文化園區中5A館', '⟢　五週年 - 震撼王城 海味鉅獻　⟣\n戎克、朱印、克拉克大帆船，晚渡於海陸之城，港內寬衍，可泊千艘。\n夕陽西下，海晏捲朱旗，歷史的軌跡被鑲入城牆壁鎖，世世代代的王城，經過四個世紀的變革，帶來多族群的共生共榮。\n⟢　浪撼魚龍宅，盂懸上下天　⟣\n深海的龍嚎引萬物復甦，海底的熔岩劃開一道赤浪，鯤魚鼓浪，位於高處的龍宮，秋夜即將展開三日熱鬧晚宴，龍宮照欲醒，金黃色魚群奏起樂器，抬起「玉手箱」穿梭於赤足章魚觸手前，優美的旋律將撼動這片大海。', 'Young Team Productions', 2, 'https://i.postimg.cc/rwRyfzTT/Banner06.jpg', 'https://i.postimg.cc/Y9tT42zY/Cover06.jpg', '20.jpg', 'Banner20.jpg'),
+(21, 'festival', '簡單生活節', '2024-12-28', '12:00:00', '華山文創園區', '北部', '台北市中正區八德路一段1號華山1914創意文化園區中5A館', '「簡單生活 Simple Life」這個品牌，自我期許是個風格化的媒介，我們希望能夠讓創作者與熱愛者在其中相遇，並且彼此扶持成長。創作者可以從生活中萌芽，在生活中成長，直到力量足夠強大。', 'Young Team Productions', 8, 'https://i.postimg.cc/N0hsSYGH/Banner08.jpg', 'https://i.postimg.cc/nrPWw4bG/Cover08.jpg', '21.jpg', 'Banner21.jpeg');
 
 -- --------------------------------------------------------
 
@@ -100,6 +101,9 @@ CREATE TABLE `artist` (
   `id` int NOT NULL,
   `art_name` varchar(50) DEFAULT NULL,
   `photo` varchar(300) DEFAULT NULL,
+  `photoname` varchar(100) DEFAULT NULL,
+  `spotify_id` varchar(100) DEFAULT NULL,
+  `genres` varchar(100) DEFAULT NULL,
   `followers` int DEFAULT NULL,
   `introduction` text,
   `debutDate` datetime DEFAULT NULL,
@@ -111,25 +115,38 @@ CREATE TABLE `artist` (
 -- 傾印資料表的資料 `artist`
 --
 
-INSERT INTO `artist` (`id`, `art_name`, `photo`, `followers`, `introduction`, `debutDate`, `album`, `albumDate`) VALUES
-(1, '珂拉琪 ', 'https://i.postimg.cc/fbvKBGY9/photo01.jpg', 57092, '性別：其他\n珂拉琪Collage DUO\n主唱 Vocal／夏子 Natsuko\n吉他 Guitar／王家權 Hunter Wang', '2019-01-31 00:00:00', 20, '2024-04-30 00:00:00'),
-(2, '海口人', 'https://i.postimg.cc/G2hjNXjS/photo02.jpg', 257, '\"\n音樂喚醒、漂泊的詩人\n我們來自中部的海岸線\nＩＧ： haikou._official (海口人)\nＦＢ： https://www.facebook.com/haikouofficial\nＹＴ： https://www.youtube.com/channel/UCdRrd4XBDrLcGTqJQKA1vaw/about\"\n', '2022-08-16 00:00:00', 5, '2023-05-21 00:00:00'),
-(3, 'LÜCY', 'https://i.postimg.cc/ZnWxY028/photo03.jpg', 16590, '性別：女\n\nContact：\nlucyfairygood@gmail.com\n\nMore information：\nhttps://linktr.ee/LucyLiao\n\nInstagram：\nhttps://www.instagram.com/_lucyliao_/\n\nYoutube：\nhttps://www.youtube.com/@LUCY-kc7zz\n', '2020-10-20 00:00:00', 6, '2023-09-22 00:00:00'),
-(4, '魚條', 'https://i.postimg.cc/pTGBtKGV/photo04.jpg', 3480, '生日 / 成立時間：2011 年 12 月 27 日\n\n成立於2011。', '2011-12-27 00:00:00', 20, '2024-03-20 00:00:00'),
-(5, '薄暮', 'https://i.postimg.cc/0jhdzP1L/photo05.jpg', 362, '性別：男\n\n來自台中的四人編制金屬樂團「薄暮EVENFALL」，由主唱佑星、吉他手ED、貝斯手明倫和鼓手旻璋組成。創作內核融合了高張的情緒流動和撕裂旋律的唱腔，如落日餘暉燃燒著支離破碎的雲朵，音樂勾勒出每一幕畫面，編織成電影般穿透人心的作品，將你置身於浩瀚音牆之中，感受薄暮EVENFALL最純粹的音樂衝擊。\n\n2019 年底發行首張迷你專輯『State Of Mind』，並完成首次發片巡迴；2021 年發行第二張 EP『Closer To Hell』，首張中文創作專輯即將於2024年底發行。\n\n追蹤更多 薄暮/EVENFALL 資訊\nInstagram :\nhttps://www.instagram.com/evenfallTW\nFacebook :\nhttps://www.facebook.com/evenfallTW\nYoutube:\nhttps://www.youtube.com/channel/UCtUPgDWx_dsr9C0nLRuP6rQ', '2022-08-31 00:00:00', 4, '2024-02-22 00:00:00'),
-(6, '守夜人', 'https://i.postimg.cc/wxrkfcR0/photo06.jpg', 17367, '淨化系的跨領域重唱組合——守夜人 Night Keepers已於 12/12 發行全新專輯《Retune》\n\n守夜人 Night Keepers 由團長旭章、主唱稚翎、鼓手其偉及電吉他手佳穎所組成，他們用樂團及部落客的形式成團，主打療癒心靈創作，作品涵蓋了音樂、電玩、文化跨域、人工智慧以及插畫創作等各種跨界媒材，曾接連入圍了第 31 屆、第 32 屆金曲獎最佳演唱組合獎，更獲得第 24 屆台北電影獎最佳配樂獎。他們近幾年陸續參與了多項影視作品，為其量身打造戲劇主題曲，包括：電影《我的天堂城市》配樂及主題曲、電影《該死的阿修羅》配樂及片尾曲、 戲劇《四樓的天堂》片尾曲、電影《跟你老婆去旅行》插曲等，拓展了更多的聽眾面相。\n\n他們也因順流著認識各創作領域人們的焦慮，於 2023 年 12 月推出第三張專輯《Retune》，並在這張專輯裡加入天鼓和頌缽的聲音，以 Indie Pop 為骨幹，增添成人流行、情緒搖滾、電子聲響和氛圍音樂等元素，用 9 首創作與身心靈音樂頻率產生連結，期許讓每個人在慌忙的世代裡，找回日常能安穩內在價值的狀態。', '2015-10-19 00:00:00', 12, '2024-02-12 00:00:00'),
-(7, '胡凱兒', 'https://i.postimg.cc/7YTnpGgD/photo07.jpg', 13985, '性別：其他\n\n“Who Cares? ”\n2016年4月成立於台中\n第三人稱單數後面動詞要加s，很重要。\n\n我們是胡凱兒。\n\n這裡可以找到我們：\nFacebook:www.facebook.com/whofXXkingcares\nInstagram:instagram.com/whocares_band\n\n演出邀約請洽：\n✉️ wearewhocares@gmail.com\n0988-851-557', '2016-04-20 00:00:00', 32, '2023-05-25 00:00:00'),
-(8, '雨國', 'https://i.postimg.cc/Z5txZbcN/photo08.jpg', 1794, '雨國由主唱陳翰於2016年底組成，風格以迷幻電子舞曲為基底，加上發人省思的生存哲理歌詞，不盲目追求大眾口味，用音樂記錄生命的軌跡，創造獨有氛圍。\r\n共感、自省、坦然是建構我們音樂的裡，極簡、電子、搖滾、另類，呈現的是我們音樂的外在。\r\nhttps://linktr.ee/kingdomofrain', '2016-05-06 00:00:00', 12, '2022-06-06 00:00:00'),
-(9, '老王樂隊', 'https://i.postimg.cc/zfpCnn1w/photo09.jpg', 43232, '民謠搖滾\r\n臉書：https://www.facebook.com/yourwomansleepwithothers/\r\n微博：https://m.weibo.cn/u/6364009385?uid=6364009385&luicode=10000011&lfid=1076036396826066\r\n歡迎私訊捐款\r\n', '2015-10-27 00:00:00', 17, '2022-10-25 00:00:00'),
-(10, '汪定中 DEW', 'https://i.postimg.cc/rw1CwBnP/photo10.jpg', 368, '性別：男\r\n\r\nDEW（汪定中）的音樂散發一股清新的氣息，自己創作自己製作。擅長捕捉涼爽的微風和將白日夢編織成旋律，遊走在Bedroom pop、R&B、lo-fi之間。DEW於2023年發行了《NIGHTFALL》和《DAYLIGHT》兩張 EP，更舉辦了完售的專場及活躍於音樂節演出。\r\n\r\n接下來，請繫好安全帶，準備在DEW的音樂中駛向悲喜交加的公路之旅', '2013-12-04 00:00:00', 13, '2023-12-12 00:00:00'),
-(11, 'BTOB', 'https://i.postimg.cc/1zy0nvb5/photo11.jpg', 1446698, 'BTOB的名稱代表著「Born TO Beat」，意思指「包含音樂抱負，希望和決心，為Beat而生」。以「Beat」的意思為節拍、伴奏、背景、衝擊，也分為「為新的音樂和舞台而生」和「用音樂給全世界聽眾帶來衝擊而生」兩個主題。成員均具有堅強的現場演唱實力以及創作能力。', '2024-07-09 09:41:51', NULL, '2024-07-17 09:41:51'),
-(12, '10cm', 'https://i.postimg.cc/NMM1b5g3/photo12.jpg', 230987, '是韓國一支獨立音樂樂隊，原由權正烈和尹哲種兩位成員組成。以輕快的曲調和活潑的歌詞為主的他們自2010年正式出道以來便成為韓國一支著名的非主流樂隊。\r\n\r\n組合中，由權正烈擔任主音、尹哲種擔任和音。因為兩位成員的身高差距剛好為10公分，因此隊名改為「10cm」。首張單曲《Americano》在2010年發行。而首張正規專輯《1.0》在2011年2月發行，至今已售超過兩萬張。2011年2月，10cm舉行了首場演唱會。2016年8月，樂團來台開唱。', '2024-07-09 09:41:51', NULL, '2024-07-17 09:41:51'),
-(13, 'Energy', 'https://i.postimg.cc/hj5VYcvf/photo13.jpg', 346698, NULL, NULL, NULL, NULL),
-(14, 'Yussef', 'https://i.postimg.cc/0jK7RFKZ/photo14.jpg', 1800345, NULL, NULL, NULL, NULL),
-(15, 'Travis J', 'https://i.postimg.cc/z3mKJ7nN/photo15.jpg', 457890, NULL, NULL, NULL, NULL),
-(16, '滅火器', 'https://i.postimg.cc/7P5RZLgt/photo16.jpg', 106698, NULL, NULL, NULL, NULL),
-(17, '血肉果汁機', 'https://i.postimg.cc/DfRMJK6v/photo17.jpg', 80865, NULL, NULL, NULL, NULL),
-(18, 'aespa', 'https://i.postimg.cc/8zjpNv1K/photo18.jpg', 3246698, NULL, NULL, NULL, NULL);
+INSERT INTO `artist` (`id`, `art_name`, `photo`, `photoname`, `spotify_id`, `genres`, `followers`, `introduction`, `debutDate`, `album`, `albumDate`) VALUES
+(1, '珂拉琪 ', 'https://i.postimg.cc/fbvKBGY9/photo01.jpg', 'photo01.jpg', '1YtYHaWLV0IU7SwhvG6Luk', '獨立', 57092, '性別：其他\n珂拉琪Collage DUO\n主唱 Vocal／夏子 Natsuko\n吉他 Guitar／王家權 Hunter Wang', '2019-01-31 00:00:00', 20, '2024-04-30 00:00:00'),
+(2, '海口人', 'https://i.postimg.cc/G2hjNXjS/photo02.jpg', 'photo02.jpeg', '1NMbvELmk3EkG7zDq5OO6K', '獨立', 257, '\"\n音樂喚醒、漂泊的詩人\n我們來自中部的海岸線\nＩＧ： haikou._official (海口人)\nＦＢ： https://www.facebook.com/haikouofficial\nＹＴ： https://www.youtube.com/channel/UCdRrd4XBDrLcGTqJQKA1vaw/about\"\n', '2022-08-16 00:00:00', 5, '2023-05-21 00:00:00'),
+(3, 'LÜCY', 'https://i.postimg.cc/ZnWxY028/photo03.jpg', 'photo03.jpeg', '6opBMmpW2ODmI9iPF2btzD', '流行', 16590, '性別：女\n\nContact：\nlucyfairygood@gmail.com\n\nMore information：\nhttps://linktr.ee/LucyLiao\n\nInstagram：\nhttps://www.instagram.com/_lucyliao_/\n\nYoutube：\nhttps://www.youtube.com/@LUCY-kc7zz\n', '2020-10-20 00:00:00', 6, '2023-09-22 00:00:00'),
+(4, '魚條', 'https://i.postimg.cc/pTGBtKGV/photo04.jpg', 'photo04.jpg', '5NpkBOIMi2iJocLhi5MTde', '搖滾', 3480, '生日 / 成立時間：2011 年 12 月 27 日\n\n成立於2011。', '2011-12-27 00:00:00', 20, '2024-03-20 00:00:00'),
+(5, '薄暮', 'https://i.postimg.cc/0jhdzP1L/photo05.jpg', 'photo05.jpeg', '778rPzhc5oSLtFOeA3SfyF', '金屬', 362, '性別：男\n\n來自台中的四人編制金屬樂團「薄暮EVENFALL」，由主唱佑星、吉他手ED、貝斯手明倫和鼓手旻璋組成。創作內核融合了高張的情緒流動和撕裂旋律的唱腔，如落日餘暉燃燒著支離破碎的雲朵，音樂勾勒出每一幕畫面，編織成電影般穿透人心的作品，將你置身於浩瀚音牆之中，感受薄暮EVENFALL最純粹的音樂衝擊。\n\n2019 年底發行首張迷你專輯『State Of Mind』，並完成首次發片巡迴；2021 年發行第二張 EP『Closer To Hell』，首張中文創作專輯即將於2024年底發行。\n\n追蹤更多 薄暮/EVENFALL 資訊\nInstagram :\nhttps://www.instagram.com/evenfallTW\nFacebook :\nhttps://www.facebook.com/evenfallTW\nYoutube:\nhttps://www.youtube.com/channel/UCtUPgDWx_dsr9C0nLRuP6rQ', '2022-08-31 00:00:00', 4, '2024-02-22 00:00:00'),
+(6, '守夜人', 'https://i.postimg.cc/wxrkfcR0/photo06.jpg', 'photo06.jpeg', '7Ec6c9lhFbsTfuwmIkhZa9', '流行', 17367, '淨化系的跨領域重唱組合——守夜人 Night Keepers已於 12/12 發行全新專輯《Retune》\n\n守夜人 Night Keepers 由團長旭章、主唱稚翎、鼓手其偉及電吉他手佳穎所組成，他們用樂團及部落客的形式成團，主打療癒心靈創作，作品涵蓋了音樂、電玩、文化跨域、人工智慧以及插畫創作等各種跨界媒材，曾接連入圍了第 31 屆、第 32 屆金曲獎最佳演唱組合獎，更獲得第 24 屆台北電影獎最佳配樂獎。他們近幾年陸續參與了多項影視作品，為其量身打造戲劇主題曲，包括：電影《我的天堂城市》配樂及主題曲、電影《該死的阿修羅》配樂及片尾曲、 戲劇《四樓的天堂》片尾曲、電影《跟你老婆去旅行》插曲等，拓展了更多的聽眾面相。\n\n他們也因順流著認識各創作領域人們的焦慮，於 2023 年 12 月推出第三張專輯《Retune》，並在這張專輯裡加入天鼓和頌缽的聲音，以 Indie Pop 為骨幹，增添成人流行、情緒搖滾、電子聲響和氛圍音樂等元素，用 9 首創作與身心靈音樂頻率產生連結，期許讓每個人在慌忙的世代裡，找回日常能安穩內在價值的狀態。', '2015-10-19 00:00:00', 12, '2024-02-12 00:00:00'),
+(7, '胡凱兒', 'https://i.postimg.cc/7YTnpGgD/photo07.jpg', 'photo07.jpeg', '0AiFba38vwZy2L1SJGX4mW', '獨立', 13985, '性別：其他\n\n“Who Cares? ”\n2016年4月成立於台中\n第三人稱單數後面動詞要加s，很重要。\n\n我們是胡凱兒。\n\n這裡可以找到我們：\nFacebook:www.facebook.com/whofXXkingcares\nInstagram:instagram.com/whocares_band\n\n演出邀約請洽：\n✉️ wearewhocares@gmail.com\n0988-851-557', '2016-04-20 00:00:00', 32, '2023-05-25 00:00:00'),
+(8, '雨國', 'https://i.postimg.cc/Z5txZbcN/photo08.jpg', 'photo08.jpeg', '1iXlwof3416Q7LT3mt1T6M', '龐克', 1794, '雨國由主唱陳翰於2016年底組成，風格以迷幻電子舞曲為基底，加上發人省思的生存哲理歌詞，不盲目追求大眾口味，用音樂記錄生命的軌跡，創造獨有氛圍。\r\n共感、自省、坦然是建構我們音樂的裡，極簡、電子、搖滾、另類，呈現的是我們音樂的外在。\r\nhttps://linktr.ee/kingdomofrain', '2016-05-06 00:00:00', 12, '2022-06-06 00:00:00'),
+(9, '老王樂隊', 'https://i.postimg.cc/zfpCnn1w/photo09.jpg', 'photo09.jpeg', '4MRQK5pLyNbcOW493n55iT', '獨立', 43232, '民謠搖滾\r\n臉書：https://www.facebook.com/yourwomansleepwithothers/\r\n微博：https://m.weibo.cn/u/6364009385?uid=6364009385&luicode=10000011&lfid=1076036396826066\r\n歡迎私訊捐款\r\n', '2015-10-27 00:00:00', 17, '2022-10-25 00:00:00'),
+(10, 'DEW', 'https://i.postimg.cc/rw1CwBnP/photo10.jpg', 'photo10.jpeg', '0cx8Y0CHBbSVWtAufwKdhk', '流行', 368, '性別：男\r\n\r\nDEW（汪定中）的音樂散發一股清新的氣息，自己創作自己製作。擅長捕捉涼爽的微風和將白日夢編織成旋律，遊走在Bedroom pop、R&B、lo-fi之間。DEW於2023年發行了《NIGHTFALL》和《DAYLIGHT》兩張 EP，更舉辦了完售的專場及活躍於音樂節演出。\r\n\r\n接下來，請繫好安全帶，準備在DEW的音樂中駛向悲喜交加的公路之旅', '2013-12-04 00:00:00', 13, '2023-12-12 00:00:00'),
+(11, 'BTOB', 'https://i.postimg.cc/1zy0nvb5/photo11.jpg', 'photo11.jpeg', '2hcsKca6hCfFMwwdbFvenJ', '流行', 1446698, 'BTOB的名稱代表著「Born TO Beat」，意思指「包含音樂抱負，希望和決心，為Beat而生」。以「Beat」的意思為節拍、伴奏、背景、衝擊，也分為「為新的音樂和舞台而生」和「用音樂給全世界聽眾帶來衝擊而生」兩個主題。成員均具有堅強的現場演唱實力以及創作能力。', '2024-07-09 09:41:51', NULL, '2024-07-17 09:41:51'),
+(12, '10cm', 'https://i.postimg.cc/NMM1b5g3/photo12.jpg', 'photo12.jpeg', '6zn0ihyAApAYV51zpXxdEp', '流行', 230987, '是韓國一支獨立音樂樂隊，原由權正烈和尹哲種兩位成員組成。以輕快的曲調和活潑的歌詞為主的他們自2010年正式出道以來便成為韓國一支著名的非主流樂隊。\r\n\r\n組合中，由權正烈擔任主音、尹哲種擔任和音。因為兩位成員的身高差距剛好為10公分，因此隊名改為「10cm」。首張單曲《Americano》在2010年發行。而首張正規專輯《1.0》在2011年2月發行，至今已售超過兩萬張。2011年2月，10cm舉行了首場演唱會。2016年8月，樂團來台開唱。', '2024-07-09 09:41:51', NULL, '2024-07-17 09:41:51'),
+(13, 'Energy', 'https://i.postimg.cc/hj5VYcvf/photo13.jpg', 'photo13.jpeg', '6GUGvmk5XZesTWRQdkp69u', '流行', 346698, NULL, NULL, NULL, NULL),
+(14, 'Yussef', 'https://i.postimg.cc/0jK7RFKZ/photo14.jpg', 'photo14.jpeg', '2rspptKP0lPBdlJJAJHqht', '爵士藍調', 1800345, NULL, NULL, NULL, NULL),
+(15, 'Travis Japan', 'https://i.postimg.cc/z3mKJ7nN/photo15.jpg', 'photo15.jpeg', '28IJpwoVi5R92MtHxkj2Lk', '流行', 457890, NULL, NULL, NULL, NULL),
+(16, '滅火器', 'https://i.postimg.cc/7P5RZLgt/photo16.jpg', 'photo16.jpeg', '7qBIgabdHdcr6NLujDxWAU', '龐克', 106698, NULL, NULL, NULL, NULL),
+(17, '血肉果汁機', 'https://i.postimg.cc/DfRMJK6v/photo17.jpg', 'photo17.jpeg', '78ltY2tUrZpkWJ9CWYGZfl', '金屬', 80865, NULL, NULL, NULL, NULL),
+(18, 'aespa', 'https://i.postimg.cc/8zjpNv1K/photo18.jpg', 'photo18.jpg', '6YVMFz59CuY7ngCxTxjpxE', '流行', 3246698, NULL, NULL, NULL, NULL),
+(19, '福祿壽', 'https://i.postimg.cc/7LP0Txk2/temp-Imager-Heb-QS.avif', 'photo19.jpeg', '08R79pzvOjaPaU3YOGFspZ', '獨立', 106698, NULL, NULL, NULL, NULL),
+(20, '萬能青年旅店', 'https://i.postimg.cc/FR7SDD1F/temp-Imagei1-Fhek.avif', 'photo20.jpeg', '4ntvojSPscU3PxselAEeY2', '獨立', 689665, NULL, NULL, NULL, NULL),
+(21, '海朋森', 'https://i.postimg.cc/wMNmdMhS/temp-Image-Fs-Xsm-G.avif', 'photo21.jpeg', '069NvUyP0gLi6YL3FT3doa', '獨立', 106698, NULL, NULL, NULL, NULL),
+(22, '伍佰', 'https://i.postimg.cc/mDJHqCFY/temp-Imagev1-Kq4n.avif', 'photo22.jpeg', '5H8TJITZE1sPjVR2ACzXNS', '流行', 689665, NULL, NULL, NULL, NULL),
+(23, '草東沒有派對', 'https://i.postimg.cc/q7mns9JZ/temp-Image-Gg-GEfn.avif', 'photo23.jpeg', '3HXSUfI76zVZk71UMAeVfp', '獨立', 106698, NULL, NULL, NULL, NULL),
+(24, '魏如萱', 'https://i.postimg.cc/Kc3LTqdJ/temp-Image-Ld1-HS2.avif', 'photo24.jpeg', '190bkHbFrRvEhcB7Zpuv3y', '流行', 689665, NULL, NULL, NULL, NULL),
+(25, 'Traveller旅人', 'https://i.postimg.cc/9QCqvWzn/temp-Image-W6dw-Zw.avif', 'photo25.jpeg', '1FZr7h9QbCHWkWsMm6pYH9', '龐克', 689665, NULL, NULL, NULL, NULL),
+(26, 'YAPOOS', 'https://i.postimg.cc/PrGDQbHh/temp-Imagepgm-V9-I.avif', 'photo26.jpeg', '6pH2ETRZ1jTzYH8OT1QGrp', '搖滾', 689665, NULL, NULL, NULL, NULL),
+(27, '巴奈', 'https://i.postimg.cc/kXxb1VMS/temp-Image-L0g-Yj0.avif', 'photo27.jpeg', '2PbU3CmXZmV6dPfzLONLIA', '民謠', 689665, NULL, NULL, NULL, NULL),
+(28, 'Schoolgirl Byebye', 'https://i.postimg.cc/1zzV3JG0/temp-Image-Gt-K4bv.avif', 'photo28.jpeg', '6kfcndVsu8F9Y5gL5xc717', '流行', 689665, NULL, NULL, NULL, NULL),
+(29, '裝咖人', 'https://i.postimg.cc/nzyXTx6T/temp-Image-C4xn3-U.avif', 'photo29.jpeg', '3wJp7X8GuQvMrPLAwJcwT6', '搖滾', 689665, NULL, NULL, NULL, NULL),
+(30, '洪佩瑜', 'https://i.postimg.cc/jjkwwPcp/temp-Image-UQ5ouv.avif', 'photo30.jpeg', '0rARfHZ4ZteUlzbAuxUwAs', '流行', 689665, NULL, NULL, NULL, NULL),
+(31, '美秀集團', 'https://i.postimg.cc/V6rSjvHd/temp-Imagex-Bn5-Y9.avif', 'photo31.jpeg', '3n16EAnJtz6SZGx2zJssrI', '搖滾', 689665, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -193,22 +210,22 @@ INSERT INTO `event_artists` (`eaid`, `event_id`, `artist_id`) VALUES
 (15, 11, 13),
 (16, 11, 7),
 (17, 11, 12),
-(18, 11, 4),
+(18, 11, 29),
 (19, 11, 3),
 (20, 12, 17),
-(21, 12, 15),
+(21, 12, 30),
 (22, 12, 9),
 (23, 13, 1),
-(24, 13, 5),
-(25, 13, 8),
+(24, 13, 26),
+(25, 13, 24),
 (26, 13, 6),
 (27, 14, 17),
-(28, 14, 11),
+(28, 14, 31),
 (29, 14, 10),
-(30, 14, 5),
+(30, 14, 28),
 (31, 14, 8),
-(32, 14, 14),
-(38, 15, 13),
+(32, 14, 18),
+(38, 15, 23),
 (39, 15, 12),
 (40, 15, 11),
 (41, 15, 5),
@@ -216,15 +233,15 @@ INSERT INTO `event_artists` (`eaid`, `event_id`, `artist_id`) VALUES
 (43, 16, 13),
 (44, 16, 12),
 (45, 16, 11),
-(46, 16, 13),
-(47, 16, 14),
+(46, 16, 21),
+(47, 16, 25),
 (48, 16, 5),
-(49, 17, 2),
+(49, 17, 22),
 (50, 17, 15),
-(51, 17, 17),
+(51, 17, 29),
 (52, 17, 13),
 (53, 17, 7),
-(54, 17, 12),
+(54, 17, 19),
 (55, 18, 11),
 (56, 18, 12),
 (57, 18, 17),
@@ -236,16 +253,24 @@ INSERT INTO `event_artists` (`eaid`, `event_id`, `artist_id`) VALUES
 (63, 19, 14),
 (64, 19, 7),
 (65, 19, 8),
-(66, 19, 1),
-(67, 20, 8),
+(66, 19, 21),
+(67, 20, 31),
 (68, 20, 6),
 (69, 20, 7),
-(70, 20, 1),
-(71, 21, 4),
-(72, 21, 10),
+(70, 20, 23),
+(71, 20, 20),
+(72, 21, 20),
 (73, 21, 9),
 (74, 21, 8),
-(75, 21, 11);
+(75, 21, 11),
+(76, 21, 9),
+(77, 16, 26),
+(78, 12, 20),
+(79, 12, 26),
+(80, 12, 29),
+(81, 20, 27),
+(82, 21, 22),
+(83, 11, 27);
 
 -- --------------------------------------------------------
 
@@ -427,13 +452,21 @@ INSERT INTO `member` (`id`, `name`, `email`, `password`, `gender`, `mobile`, `bi
 (39, '邱志偉', 'chunyun32@gmail.com', '$2b$10$dafmy0DzGDDN22tfMwxEpOd.G/59CHqCn.lOh3SzEY22.Abg88K2y', 'female', '0921436987', '1995-12-12', '704 台中市文化街5段12號8樓', NULL, NULL, NULL, '2024-07-08 16:26:37', '2024-07-08 16:26:37'),
 (40, '隨意', 'castle@gg.com', '$2b$10$svZSWQ9UKrPo1nuobvGQLuGcYIn3LTdRTyM.7W0.yCEtT/LjF/lea', 'female', '0974338231', '2010-06-29', '816 高雄市中華路2段78號5樓', '40.jpg', NULL, NULL, '2024-07-08 16:26:37', '2024-07-08 16:35:32'),
 (41, 'Ming', 'ming@gg.com', '$2b$10$vp3EUVtmGrxovBkKGPQMOO7jcqV25QJTJWEr60NFS6bgwqWeRdjsW', 'male', '0974337231', '2010-07-23', '816 高雄市中華路2段78號5樓', NULL, NULL, NULL, '2024-07-08 16:26:37', '2024-07-08 16:26:37'),
-(42, 'Jin', 'jin@test.com', '$2b$10$JNq7y7nHU3.RxoS3Zi.5auIU6Frax7N6EvPbA0aqvpeUn3Recho1S', 'female', '0922222222', '2021-11-17', '816 高雄市中華路2段78號999樓', '42.jpg', NULL, NULL, '2024-07-08 16:26:37', '2024-07-19 18:45:32'),
+(42, 'Jin', 'jin@test.com', '$2b$10$JNq7y7nHU3.RxoS3Zi.5auIU6Frax7N6EvPbA0aqvpeUn3Recho1S', 'male', '0922222222', '2021-11-17', '816 高雄市中華路2段78號999樓', '42-1721755873283.jpg', NULL, NULL, '2024-07-08 16:26:37', '2024-07-24 01:31:13'),
 (43, 'testgrr', 'test@grr.la', '$2b$10$6hY.G7vAxMbqZ7Lo2Oi.FOkM7KJyFkVKSMZA43vzZDVg.fqFAlZIS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-07-09 12:39:40', '2024-07-09 12:40:35'),
 (44, '張殷睿', 'jinchang0501@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, '106286310148328124364', 'https://lh3.googleusercontent.com/a/ACg8ocKqLf7dYEU6tOkkm5pqM8rGCum1jGhi6iYelsIIZA6xoVcoAA=s96-c', '2024-07-15 13:41:13', '2024-07-15 13:41:13'),
 (45, '0716測試', 'test0716@@grr.la', '$2b$10$t/jkYlnvd/WgFbFMm7fs1OvY2zQhNZW34aC9nXLBykWrDKAEH2Zxu', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-07-17 15:39:16', '2024-07-17 15:39:16'),
-(46, '測試TEST', 'test0716@grr.la', '$2b$10$SkGAGK50J2KqOzo8ZR9IvONIWTct153hg8FlJR879XYaQp22EslNa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-07-17 15:40:54', '2024-07-17 15:42:22'),
-(47, '張殷睿', 'iamjin910501@gmail.com', '$2b$10$YEXZfyz4YnCiCcrQgmVW4ejthezbRpe82E2afbuPYj0kUQgGt8a/.', 'male', '0912345678', '2024-01-17', '106台北市大安區復興南路一段390號2樓', '47.jpg', NULL, NULL, '2024-07-17 16:40:14', '2024-07-19 16:35:05'),
-(49, '張殷睿', 'iamjin910501@gmail.com', NULL, '', '', NULL, '', '49.jpg', '106479056515652230705', 'https://lh3.googleusercontent.com/a/ACg8ocIYlffyN8E1YB9PsadaUm894vQ6ArDo9BboGc59XfTwLjzB=s96-c', '2024-07-23 11:33:28', '2024-07-23 11:35:44');
+(46, '測試TEST', 'test0716@grr.la', '$2b$10$FV2mpch0lQzyjbCHBYIwd.XSnZvT/SzzpKR4JOcn3NFu6I0dD8vsK', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-07-17 15:40:54', '2024-07-23 18:49:05'),
+(50, '測試0723', 'test0723@grr.la', '$2b$10$dLHiFfG0w/Pnhtj0NyD.6.sMUnQOGZZ6.S1h3eayNbT3KSS1gqJaO', '', '', NULL, '', '50.webp', NULL, NULL, '2024-07-23 14:18:48', '2024-07-23 16:38:17'),
+(51, '測試0723', 'test0723pic@grr.la', '$2b$10$Sn.ZrBfmSDE.giGgTstZv.Kv/xxDosyF3F5KSSKA6aVcUtWqMSKWe', '', '', NULL, '', '51-1721735268625.jpg', NULL, NULL, '2024-07-23 19:47:34', '2024-07-23 19:47:48'),
+(52, '測試0723', 'test07232@grr.la', '$2b$10$2m9L3XwjQJBJyjNW4KLiIONQkuIhV43PDtwh5y4YPjccW6LkZBEQ.', '', '', NULL, '', '52-1721735826630.jpg', NULL, NULL, '2024-07-23 19:52:24', '2024-07-23 19:57:06'),
+(53, '測試', 'test99@grr.la', '$2b$10$PnQ9SifA2EyIWGVgyJCwwOq9LOxnYoc4MqDrS8W6zXaYDcJrbQk/G', '', '', NULL, '', '53-1721737830444.jpg', NULL, NULL, '2024-07-23 20:27:09', '2024-07-23 20:30:30'),
+(54, '123456', '123456@gmail.com', '$2b$10$31fXZNHi3BGL.HV/L0LrDemYEWrDkI3NVDx/4cVsaJo0O41uClMXy', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-07-23 20:45:48', '2024-07-23 20:45:48'),
+(55, '222', '222@gmail.com', '$2b$10$WvqhOtLEIciGgmDWxIgr2.DrNsd2OqsYHhfqk54E330kEHqtyTXcC', 'male', '0978454848', '2024-06-30', 'Test City1421324sdfsdfsdf', '55-1721739352361.jpg', NULL, NULL, '2024-07-23 20:46:58', '2024-07-23 20:55:52'),
+(56, 'Test98', 'test98@grr.la', '$2b$10$UUSPjjpKCX4iJDmD089lFe6QReU1CxVt3yYJm3G6w1r8u5GFixpNq', '', '', NULL, '', '56-1721745254041.webp', NULL, NULL, '2024-07-23 21:30:33', '2024-07-23 22:35:10'),
+(57, '測試077', 'test077@grr.la', '$2b$10$kSbirfOOLSKnvTrHL3utEODa0HFRF53CRZiB1hyUDjKJAmoPQthJq', '', '', NULL, '', '57-1721749552157.jpg', NULL, NULL, '2024-07-23 23:16:09', '2024-07-23 23:45:52'),
+(58, 'new99', 'new99@grr.la', '$2b$10$ksr6G9xfecThdlAmBrlCFOHETCaGC0LZ6miS4TQjDhGqovbjxRxny', '', '', NULL, '', NULL, NULL, NULL, '2024-07-24 01:31:42', '2024-07-24 01:31:57'),
+(63, '榮恩', 'test999@grr.la', '$2b$10$lYUsLMZziowojIvy7HjVuOX/Gul/gqAUBCXSfYOEuGUr9ZuLl0n9u', 'male', '0912345678', '2024-07-01', 'GGGGGGGGGGG', '63-1721963523010.jpg', NULL, NULL, '2024-07-26 11:11:33', '2024-07-26 11:12:03');
 
 -- --------------------------------------------------------
 
@@ -545,7 +578,13 @@ INSERT INTO `order_detail` (`id`, `order_num`, `member_id`, `product_id`, `quant
 (27, 'Aa10027', 24, 15, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
 (28, 'Aa10028', 5, 16, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
 (29, 'Aa10029', 16, 7, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(30, 'Aa10030', 1, 8, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', '');
+(30, 'Aa10030', 1, 8, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
+(35, 'Aa10031', 42, 1, 1, '現金', '711取貨付款', '2024-07-22 09:09:42', NULL, 0, 1111111, 863698, '豫銘門市', '台北市大安區大安路二段102號'),
+(36, 'Aa10031', 42, 4, 2, '現金', '711取貨付款', '2024-07-22 09:09:42', NULL, 0, 1111111, 863698, '豫銘門市', '台北市大安區大安路二段102號'),
+(37, 'Aa10031', 42, 23, 1, '現金', '711取貨付款', '2024-07-22 09:09:42', NULL, 0, 1111111, 863698, '豫銘門市', '台北市大安區大安路二段102號'),
+(38, 'Aa10031', 42, 1, 1, '現金', '711取貨付款', '2024-07-25 09:09:42', NULL, 0, 1111111, 863698, '豫銘門市', '台北市大安區大安路二段102號'),
+(39, 'Aa10031', 42, 4, 2, '現金', '711取貨付款', '2024-07-25 09:09:42', NULL, 0, 1111111, 863698, '豫銘門市', '台北市大安區大安路二段102號'),
+(40, 'Aa10031', 42, 23, 1, '現金', '711取貨付款', '2024-07-25 09:09:42', NULL, 0, 1111111, 863698, '豫銘門市', '台北市大安區大安路二段102號');
 
 -- --------------------------------------------------------
 
@@ -568,7 +607,8 @@ CREATE TABLE `otp` (
 --
 
 INSERT INTO `otp` (`id`, `user_id`, `email`, `token`, `exp_timestamp`, `created_at`, `updated_at`) VALUES
-(1, 45, 'test0716@@grr.la', '697517', 1721203793672, '2024-07-17 15:39:53', '2024-07-17 15:39:53');
+(1, 45, 'test0716@@grr.la', '697517', 1721203793672, '2024-07-17 15:39:53', '2024-07-17 15:39:53'),
+(4, 47, 'iamjin910501@gmail.com', '415552', 1721749245425, '2024-07-23 23:10:45', '2024-07-23 23:10:45');
 
 -- --------------------------------------------------------
 
@@ -598,10 +638,10 @@ INSERT INTO `product` (`id`, `picture`, `picture2`, `picture3`, `activity`, `nam
 (1, 't-1.jpg', 't-2.jpg', 't-3.jpg', 'Wonderland演唱會', 'T恤上衣', 1500, '這款活動T恤與 ellesse 聯名合作，名牌設計總監親自設計，是滑雪場內外的必備單品。充滿活力的節日能量和經典滑雪服美學的融合，專為那些尋求滑雪樂趣和音樂、文化和社區活力的人們而設計。 \r\n\r\n**材質資訊：100% 棉\r\nTomorrowland x ellesse 系列的一部分\r\n胸前飾有 Tomorrowland x ellesse 徽章\r\n袖子頂部飾有同色蝴蝶印花*', 1000, '2024-07-09 15:27:09', '2024-07-09 15:27:09'),
 (2, 'ellesse_hoodie-1.jpg', 'ellesse_hoodie-2.jpg', 'ellesse_hoodie-3.jpg', 'Wonderland演唱會', '連帽長袖上衣', 3000, '這款連帽上衣與 ellesse 合作設計，是滑雪場內外的必備單品。充滿活力的節日能量和經典滑雪服美學的融合，專為那些尋求滑雪樂趣和音樂、文化和社區活力的人們而設計。\r\n\r\n**材質資訊：100% 棉\r\nTomorrowland x ellesse 系列的一部分\r\n胸前飾有 Tomorrowland x ellesse 徽章\r\n袖子頂部有同色蝴蝶刺繡\r\n底部和袖口下擺有 2x2 羅紋', 1000, '2024-07-09 15:27:09', '2024-07-09 15:27:09'),
 (3, 'pet_postcard-1.jpg', 'pet_postcard-3.jpg', 'pet_postcard-4.jpg', '寵物嘉年華(音樂祭)', '明信片組', 150, '2024寵物嘉年華-明信片組，限量發售，全套4張，每一張都可愛度破表。', 1000, '2024-07-09 15:27:09', '2024-07-09 15:27:09'),
-(4, 'pet_keyring-dog.jpg', 'pet_keyring-dog.jpg', 'pet_keyring-dog.jpg', '寵物嘉年華(音樂祭)', '毛毛鑰匙圈-旺旺', 200, '2024寵物嘉年華-毛毛鑰匙圈(旺旺)，限量發售，可愛度破表。', 1000, '2024-07-09 15:27:09', '2024-07-09 15:27:09'),
-(5, 'pet_keyring-cat.jpg', 'pet_keyring-cat.jpg', 'pet_keyring-cat.jpg', '寵物嘉年華(音樂祭)', '毛毛鑰匙圈-喵喵', 200, '2024寵物嘉年華-毛毛鑰匙圈(喵喵)，限量發售，可愛度破表。', 1000, '2024-07-09 15:27:09', '2024-07-09 15:27:09'),
+(4, 'pet_keyring-dog.jpg', 'pet_keyring-dog2.jpg', 'pet_keyring-dog3.jpg', '寵物嘉年華(音樂祭)', '毛毛鑰匙圈-旺旺', 200, '2024寵物嘉年華-毛毛鑰匙圈(旺旺)，限量發售，可愛度破表。', 1000, '2024-07-09 15:27:09', '2024-07-09 15:27:09'),
+(5, 'pet_keyring-cat.jpg', 'pet_keyring-dog2.jpg', 'pet_keyring-dog3.jpg', '寵物嘉年華(音樂祭)', '毛毛鑰匙圈-喵喵', 200, '2024寵物嘉年華-毛毛鑰匙圈(喵喵)，限量發售，可愛度破表。', 1000, '2024-07-09 15:27:09', '2024-07-09 15:27:09'),
 (6, 'pet_basket.jpg', 'pet_basket.jpg', 'pet_basket.jpg', '寵物嘉年華(音樂祭)', '多功能野餐籃', 800, '寵物嘉年華-多功能野餐籃，可愛度破表，提升野餐的質感，文青最愛。', 1000, '2024-07-09 15:27:09', '2024-07-09 15:27:09'),
-(7, 'pet_mat.jpg', 'pet_mat.jpg', 'pet_mat.jpg', '寵物嘉年華(音樂祭)', '野餐墊', 600, '有了春日、陽光、草地與美食，差一個最搖擺的野餐墊就完美！\r\n寵物嘉年華-野餐墊，可愛度破表，文青最愛，讓您優雅輕鬆享受野餐的美好時光。\r\n\r\n\r\nOOO\r\n*內容物包含：野餐墊、帆布束口袋、營釘\r\n*野餐墊尺寸：110cm x 142cm\r\n*束口袋尺寸：12.5cm x 18.5cm\r\n', 1000, '2024-07-09 15:27:09', '2024-07-09 15:27:09'),
+(7, 'pet_mat.jpg', 'pet_mat2.jpg', 'pet_mat3.jpg', '寵物嘉年華(音樂祭)', '野餐墊', 600, '有了春日、陽光、草地與美食，差一個最搖擺的野餐墊就完美！\r\n寵物嘉年華-野餐墊，可愛度破表，文青最愛，讓您優雅輕鬆享受野餐的美好時光。\r\n\r\n\r\nOOO\r\n*內容物包含：野餐墊、帆布束口袋、營釘\r\n*野餐墊尺寸：110cm x 142cm\r\n*束口袋尺寸：12.5cm x 18.5cm\r\n', 1000, '2024-07-09 15:27:09', '2024-07-09 15:27:09'),
 (8, 'tmf_towel.jpg', 'tmf_towel.jpg', 'tmf_towel.jpg', '台灣音樂祭', '毛巾', 500, '2024台灣音樂祭T恤，最新2024台灣音樂祭官方毛巾，本網站限量1000件。高質感，柔軟快乾', 1000, '2024-07-09 15:27:09', '2024-07-09 15:27:09'),
 (9, 'tmf_mat.jpg', 'tmf_mat.jpg', 'tmf_mat.jpg', '台灣音樂祭', '地毯', 500, '最新2024台灣音樂祭官方地毯，本網站限量1000件。高質感，居家裝飾好物', 1000, '2024-07-09 15:27:09', '2024-07-09 15:27:09'),
 (10, 'tmf_lightstick.jpg', 'tmf_lightstick.jpg', 'tmf_lightstick.jpg', '台灣音樂祭', '應援手燈', 200, '最新2024台灣音樂祭-官方應援手燈，在音樂祭中跟隨音樂搖動手中的手燈，舞動您的身體，盡情沉浸在超High氣氛中。', 1000, '2024-07-09 15:27:09', '2024-07-09 15:27:09'),
@@ -614,7 +654,7 @@ INSERT INTO `product` (`id`, `picture`, `picture2`, `picture3`, `activity`, `nam
 (17, 'sw_towel.jpg', 'sw_towel.jpg', 'sw_towel.jpg', '春浪(演唱會)', '毛巾', 300, '最新2024春浪官方毛巾，高質感，柔軟快乾', 1000, '2024-07-09 15:27:09', '2024-07-09 15:27:09'),
 (18, 'sw_sticker.jpg', 'sw_sticker.jpg', 'sw_sticker.jpg', '春浪(演唱會)', '貼紙', 100, '活動聯名限量貼紙，名牌設計總監親自設計，可愛度破表！', 1000, '2024-07-09 15:27:09', '2024-07-09 15:27:09'),
 (19, 'sw_bag.jpg', 'sw_bag.jpg', 'sw_bag.jpg', '春浪(演唱會)', '購物袋', 300, '活動聯名限量購物袋，名牌設計總監親自設計，好裝耐用，美觀！', 1000, '2024-07-09 15:27:09', '2024-07-09 15:27:09'),
-(20, 'sw_t-shirt.jpg', 'sw_t-shirt.jpg', 'sw_t-shirt.jpg', '春浪(演唱會)', 'T恤上衣', 500, '活動聯名限量T恤，名牌設計總監親自設計，超高回頭率！', 1000, '2024-07-09 15:27:09', '2024-07-09 15:27:09'),
+(20, 'sw_t-shirt.jpg', 'sw_t-shirt-1.jpg', 'sw_t-shirt-2.jpg', '春浪(演唱會)', 'T恤上衣', 500, '活動聯名限量T恤，名牌設計總監親自設計，超高回頭率！', 1000, '2024-07-09 15:27:09', '2024-07-09 15:27:09'),
 (21, 'sw_mat.jpg', 'sw_mat.jpg', 'sw_mat.jpg', '春浪(演唱會)', '野餐墊', 500, '2024春浪活動限量野餐墊，可愛度破表，文青最愛，讓您優雅輕鬆享受野餐的美好時光。', 1000, '2024-07-09 15:27:09', '2024-07-09 15:27:09'),
 (22, 'bubble_t-shirt-white.jpg', 'bubble_t-shirt-white2.jpg', 'bubble_t-shirt-white3.jpg', 'Tomorrowland音樂祭', 'T恤上衣-白', 2100, '活動聯名限量T恤，本網站限量1000件。名牌設計總監親自設計。\r\n想像一下，漫步在夢幻般的風景中，「Tomorrowland」字樣以氣泡字體漂浮在其中。每個字母都以自己的節奏舞動，象徵著節日充滿活力的精神。 Bubble T 恤的靈感來自於讓自己沉浸在音樂和發自內心的舞蹈中。無論您是獨自跳舞還是迷失在人群中，唯一重要的是明日之人與音樂之間的聯繫。', 1000, '2024-07-09 15:27:09', '2024-07-09 15:27:09'),
 (23, 'bubble_t-shirt-pink.jpg', 'bubble_t-shirt-pink2.jpg', 'bubble_t-shirt-pink3.jpg', 'Tomorrowland音樂祭', 'T恤上衣-粉', 2100, '活動聯名限量T恤，本網站限量1000件。名牌設計總監親自設計。\r\n想像一下，漫步在夢幻般的風景中，「Tomorrowland」字樣以氣泡字體漂浮在其中。每個字母都以自己的節奏舞動，象徵著節日充滿活力的精神。 Bubble T 恤的靈感來自於讓自己沉浸在音樂和發自內心的舞蹈中。無論您是獨自跳舞還是迷失在人群中，唯一重要的是明日之人與音樂之間的聯繫。', 1000, '2024-07-09 15:27:09', '2024-07-09 15:27:09'),
@@ -3718,19 +3758,19 @@ ALTER TABLE `activity`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `artist`
 --
 ALTER TABLE `artist`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `event_artists`
 --
 ALTER TABLE `event_artists`
-  MODIFY `eaid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `eaid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `favorite`
 --
 ALTER TABLE `favorite`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `markets`
@@ -3742,7 +3782,7 @@ ALTER TABLE `markets`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `member`
 --
 ALTER TABLE `member`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `nclass`
@@ -3760,13 +3800,13 @@ ALTER TABLE `notification`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `order_detail`
 --
 ALTER TABLE `order_detail`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `otp`
 --
 ALTER TABLE `otp`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `product`
