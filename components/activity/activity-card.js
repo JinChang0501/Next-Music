@@ -111,17 +111,13 @@ export default function ActivityCard({
                   <DesktopBlackNoIconBtnPurple
                     text="立即購票"
                     className="chr-p"
-                    onClick={() => {
-                      handleToTicket
-                    }}
+                    onClick={handleToTicket}
                   />
                 ) : (
                   <PhoneBlackNoIconBtnPurple
                     text="立即購票"
                     className="chr-p-10"
-                    onClick={() => {
-                      handleToTicket
-                    }}
+                    onClick={handleToTicket}
                   />
                 )}
               </div>
