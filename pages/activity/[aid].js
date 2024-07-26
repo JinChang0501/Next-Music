@@ -35,12 +35,6 @@ export default function Aid() {
     data: {},
   })
 
-  const breadcrumbsURL = [
-    { label: '首頁', href: '/' },
-    { label: '演出活動', href: '/Activity' },
-    { label: '活動詳情', href: '/Activity/[aid]' },
-  ]
-
   const scrollToTop = (e) => {
     //console.log('scrollToTop called')
     if (topRef.current) {
@@ -129,6 +123,13 @@ export default function Aid() {
   const random4Recommend = getRandomElementsFromArray(recommendData, 4)
 
   console.log(random4Recommend)
+
+  // 麵包屑，寫在判斷 mainInfoData 之後
+  const breadcrumbsURL = [
+    { label: '首頁', href: '/' },
+    { label: '演出活動', href: '/Activity' },
+    { label: `${mainInfoData.actname}`, href: '/Activity/[aid]' },
+  ]
 
   return (
     <>
