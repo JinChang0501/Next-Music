@@ -12,7 +12,7 @@ import { getArtist } from '@/services/artist'
 import toast, { Toaster } from 'react-hot-toast'
 import ArtCard from '@/components/artist/art-card'
 import Marquee from 'react-fast-marquee'
-
+import 'swiper/css/navigation'
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react'
 // Import Swiper styles
@@ -23,6 +23,7 @@ import 'swiper/css/pagination'
 import { FreeMode, Pagination } from 'swiper/modules'
 import ArtCardMobile from '@/components/artist/art-card-mobile'
 import { API_SERVER } from '@/configs/api-path'
+import { Navigation } from 'swiper/modules'
 
 export default function Index() {
   const [isDesktop, setIsDesktop] = useState(true)
@@ -213,13 +214,16 @@ export default function Index() {
       {isDesktop ? (
         <div className="music-container mb-5">
           <Swiper
-            slidesPerView={4.51}
-            spaceBetween={0}
-            freeMode={true}
+            // slidesPerView={4.51}
+            slidesPerView={4.5} // 每个幻灯片显示5个 ArtCard
+            freeMode={false} // 禁用自由模式以保持幻灯片对齐}
+            // spaceBetween={0}
+            // freeMode={true}
             // pagination={{
             //   clickable: true,
             // }}
-            modules={[FreeMode, Pagination]}
+            navigation={true}
+            modules={[Navigation]}
             // className="bg-purple1"
           >
             {artistData.map((v, i) => {
@@ -233,6 +237,7 @@ export default function Index() {
                     photo={v.photo}
                     art_name={v.art_name}
                     spotify_id={v.spotify_id}
+                    shortDes={v.shortDes}
                   />
                 </SwiperSlide>
               )
@@ -249,6 +254,7 @@ export default function Index() {
                   photo={v.photo}
                   art_name={v.art_name}
                   spotify_id={v.spotify_id}
+                  shortDes={v.shortDes}
                 />
               )
             })}
