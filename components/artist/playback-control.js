@@ -33,6 +33,7 @@ const PlaybackControl = ({
   const [progress, setProgress] = useState(0)
   const [duration, setDuration] = useState(0)
   const progressInterval = useRef(null)
+  const lastPosition = useRef(0) // 記錄最後播放位置
 
   useEffect(() => {
     if (player) {
@@ -40,7 +41,7 @@ const PlaybackControl = ({
         setVolume(vol * 100)
       })
 
-      player.addListener('player_state_changed', (state) => {
+      const handleStateChange = (state) => {
         if (state) {
           setDuration(state.duration)
           setProgress(state.position)
@@ -49,10 +50,19 @@ const PlaybackControl = ({
             clearInterval(progressInterval.current)
           }
 
+          if (state.paused) {
+            // 如果暫停，不要更新進度
+            return
+          }
+
+          // 播放進度的邏輯
           progressInterval.current = setInterval(() => {
             setProgress((prev) => {
-              if (prev < duration) {
-                return prev + 1000
+              const newProgress = prev + 1000
+              // 還沒播完的話，記錄上次播放的位置
+              if (newProgress < state.duration) {
+                lastPosition.current = newProgress
+                return newProgress
               } else {
                 clearInterval(progressInterval.current)
                 return prev
@@ -60,15 +70,42 @@ const PlaybackControl = ({
             })
           }, 1000)
         }
-      })
-    }
+      }
 
-    return () => {
-      if (progressInterval.current) {
-        clearInterval(progressInterval.current)
+      player.addListener('player_state_changed', handleStateChange)
+
+      //播放器卸載時，也移除事件監聽器
+      return () => {
+        player.removeListener('player_state_changed', handleStateChange)
+        if (progressInterval.current) {
+          clearInterval(progressInterval.current)
+        }
       }
     }
-  }, [player, duration])
+  }, [player])
+
+  // 處理暫停狀態
+  useEffect(() => {
+    if (!isPlaying && progressInterval.current) {
+      clearInterval(progressInterval.current)
+    } else if (isPlaying && !progressInterval.current) {
+      // 恢復播放時，從上次的位置繼續
+      setProgress(lastPosition.current)
+      progressInterval.current = setInterval(() => {
+        setProgress((prev) => {
+          // 更新進度的邏輯
+          const newProgress = prev + 1000
+          if (newProgress < duration) {
+            lastPosition.current = newProgress
+            return newProgress
+          } else {
+            clearInterval(progressInterval.current)
+            return prev
+          }
+        })
+      }, 1000)
+    }
+  }, [isPlaying, duration])
 
   const handleVolumeChange = (newValue) => {
     setVolume(newValue)
@@ -77,15 +114,21 @@ const PlaybackControl = ({
 
   const handleProgressChange = (newValue) => {
     setProgress(newValue)
+    lastPosition.current = newValue
     onSeek(newValue)
   }
-  // 時間格式
+  // 時間格式換算
   const formatTime = (ms) => {
     const seconds = Math.floor((ms / 1000) % 60)
     const minutes = Math.floor((ms / 1000 / 60) % 60)
     return `${minutes}:${seconds.toString().padStart(2, '0')}`
   }
 
+  // 確保從上次暫停的位置開始播放
+  const handlePlay = () => {
+    onPlay()
+    player.seek(lastPosition.current)
+  }
   return (
     <>
       <div className="position-fixed bottom-0 end-0 m-3 p-3 bg-dark outline">
@@ -131,12 +174,24 @@ const PlaybackControl = ({
             graduated
             tooltip={false}
             onChange={handleProgressChange}
-            // className="flex-grow-1"
-            className="custom-slider"
+            // className="custom-slider"
+            handleClassName="custom-slider"
             style={{ width: '100%' }}
           />
         </div>
-
+        {/* 滑桿測試 */}
+        {/* <div className="d-flex align-items-center my-2 mx-2">
+          <input
+            type="range"
+            value={progress}
+            min={0}
+            max={duration}
+            step={1000}
+            onChange={handleProgressChange}
+            style={{ width: '100%' }}
+          />
+        </div> */}
+        {/* 滑桿測試 */}
         <div className="d-flex mx-1 justify-content-between text-black60 chr-p-12">
           <div className="">{formatTime(progress)}</div>
           <div className="">{formatTime(duration)}</div>
@@ -153,7 +208,10 @@ const PlaybackControl = ({
               className="text-white eng-h4 mx-2"
             />
           ) : (
-            <BsPlayCircle onClick={onPlay} className="text-white eng-h4 mx-2" />
+            <BsPlayCircle
+              onClick={handlePlay}
+              className="text-white eng-h4 mx-2"
+            />
           )}
           <button onClick={onNextTrack} className="btn btn-link text-white">
             <BiSkipNext className="text-white eng-h4" />
@@ -186,6 +244,25 @@ const PlaybackControl = ({
           }
           .custom-slider .rs-slider-handle {
             background-color: #dbd7ff; /* 更改滑動手柄顏色 */
+          }
+          input[type='range']::-webkit-slider-thumb:before,
+          input[type='range']::-webkit-slider-thumb:after {
+            position: absolute;
+            top: 3px;
+            width: 50px; /* 使用較小的寬度進行測試 */
+            height: 4px;
+            content: '';
+            pointer-events: none;
+            transition: 0.2s;
+          }
+
+          input[type='range']::-webkit-slider-thumb:before {
+            left: -47px;
+            background: #f22;
+          }
+          input[type='range']::-webkit-slider-thumb:after {
+            left: 10px;
+            background: #edc;
           }
         `}
       </style>
