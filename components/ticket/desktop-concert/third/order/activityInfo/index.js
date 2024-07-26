@@ -7,8 +7,10 @@ import moment from 'moment-timezone'
 export default function ActivityInfo() {
   const { selectedSeatDetails } = useTicketContext()
 
-  const { picture, actname, actdate, acttime, location, art_name } =
+  const { mingpic, actname, actdate, acttime, location, art_name } =
     selectedSeatDetails[0] || {}
+
+  const pic = `/images/Activity/banner/${mingpic}`
 
   const datetime = moment(
     `${actdate} ${acttime}`,
@@ -20,7 +22,7 @@ export default function ActivityInfo() {
         <div className={`${style.activityTitle} chb-h5`}>演唱會資訊</div>
         <div className={`${style.activityBody}`}>
           <div className={`${style.activityImage}`}>
-            <Image src={picture} fill alt="test" priority />
+            <Image src={pic} fill alt="test" priority />
           </div>
           <div className={`${style.activityText} chb-h5`}>
             <div>{actname}</div>

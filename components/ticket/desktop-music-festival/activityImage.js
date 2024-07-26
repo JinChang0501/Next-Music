@@ -5,17 +5,13 @@ import { useTicketContext } from '@/context/ticket/ticketContext'
 export default function ActivityImage() {
   const { tickets } = useTicketContext()
 
-  const { picture } = tickets[0] || {}
+  const { mingpic } = tickets[0] || {}
 
-  const fallbackImage = '/images/Activity/10.jpg'
+  const pic = `/images/Activity/banner/${mingpic}`
   return (
     <>
       <div className={`${style.activityImage} mb-5`}>
-        {picture ? (
-          <Image src={picture} alt="Activity" fill priority />
-        ) : (
-          <Image src={fallbackImage} alt="Fallback Image" fill priority />
-        )}
+        <Image src={pic} alt="Activity" fill priority />
       </div>
     </>
   )

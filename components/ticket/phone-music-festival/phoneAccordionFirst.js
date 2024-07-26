@@ -8,10 +8,10 @@ import moment from 'moment-timezone'
 export default function PhoneAccordionFirst() {
   const { tickets, selectedCount } = useTicketContext()
 
-  const { picture, actname, actdate, acttime, location, art_name } =
+  const { mingpic, actname, actdate, acttime, location, art_name } =
     tickets[0] || {}
 
-  const fallbackImage = picture
+  const pic = `/images/Activity/banner/${mingpic}`
 
   const datetime = moment(
     `${actdate} ${acttime}`,
@@ -38,11 +38,7 @@ export default function PhoneAccordionFirst() {
             {/* activityImage */}
 
             <div className={`${style.activityImage}`}>
-              {picture ? (
-                <Image src={picture} alt="Activity" fill priority />
-              ) : (
-                <Image src={fallbackImage} alt="Fallback Image" fill priority />
-              )}
+              <Image src={pic} alt="Activity" fill priority />
             </div>
 
             {/* info */}

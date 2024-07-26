@@ -9,7 +9,9 @@ export default function PhoneOrder({ orderData }) {
 
   const ticketData = selectedTickets[0] || tickets[0] || {}
 
-  const { picture, actname, actdate, acttime, location, art_name } = ticketData
+  const { mingpic, actname, actdate, acttime, location, art_name } = ticketData
+
+  const pic = `/images/Activity/banner/${mingpic}`
 
   const datetime = moment(
     `${actdate} ${acttime}`,
@@ -27,7 +29,7 @@ export default function PhoneOrder({ orderData }) {
           <div className={`${style.activityTitle} chb-h3`}>演唱會資訊</div>
           <div className={`${style.activityBody}`}>
             <div className={`${style.activityImage}`}>
-              <Image src={picture} fill alt="test" priority />
+              <Image src={pic} fill alt="test" priority />
             </div>
             <div className={`${style.activityText} chb-h4`}>
               <div>{actname}</div>
