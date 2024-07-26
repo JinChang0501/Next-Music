@@ -1,12 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react'
-import Mask from '@/components/ticket/mask'
-import TicketLimit from './ticketLimit'
 import TicketArea from './ticketArea'
 import SelectTicketBlock from './selectTicketBlock'
 import Zoom from './zoom'
 import Sold from './sold'
 import Minimap from './minimap'
 import { BsCheck } from 'react-icons/bs'
+import Swal from 'sweetalert2'
+import style from './left.module.scss'
+import { useRouter } from 'next/router'
 
 export default function Left({
   width = '100%',
@@ -18,6 +19,7 @@ export default function Left({
   tickets,
   onSeatClick,
 }) {
+  const router = useRouter()
   const [hoveredCircle, setHoveredCircle] = useState(null)
   const [showSelectTicketBlock, setShowSelectTicketBlock] = useState(false)
   const [blockPosition, setBlockPosition] = useState({ top: 0, left: 0 })
@@ -25,7 +27,6 @@ export default function Left({
   const [withTransition, setWithTransition] = useState(false)
   const [isFirstClick, setIsFirstClick] = useState(true)
   const [colorBarBackground, setColorBarBackground] = useState('transparent')
-  const [showMaskAndLimit, setShowMaskAndLimit] = useState(false)
   const [seatMap, setSeatMap] = useState([])
   const [seatNumber, setSeatNumber] = useState('')
   useEffect(() => {
@@ -85,18 +86,35 @@ export default function Left({
       selectedSeats.length >= 6 &&
       !selectedSeats.some((seat) => seat.seat_number === seatNumber)
     ) {
-      setShowMaskAndLimit(true)
+      Swal.fire({
+        title: '已達訂票上限',
+        html: '<span style="font-weight: bolder;"> 哎呀 ! 超出了訂票 6 張的限制，<br/>如果您確實想要這個座位，請更改您的選擇。</span>',
+        icon: 'warning',
+        allowOutsideClick: false,
+        customClass: {
+          popup: style.customSwal,
+        },
+      })
       return
     }
     onSeatClick(seatNumber)
   }
 
+  useEffect(() => {
+    const handleRouteChange = () => {
+      Swal.close()
+    }
+
+    router.events.on('routeChangeStart', handleRouteChange)
+
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange)
+      Swal.close()
+    }
+  }, [router.events])
+
   const isSeatSelected = (seatNumber) => {
     return selectedSeats.some((seat) => seat.seat_number === seatNumber)
-  }
-
-  const handleCloseTicketLimit = () => {
-    setShowMaskAndLimit(false)
   }
 
   const [translateX, setTranslateX] = useState(0)
@@ -289,12 +307,6 @@ export default function Left({
 
   return (
     <>
-      {showMaskAndLimit && (
-        <>
-          <Mask />
-          <TicketLimit onDelete={handleCloseTicketLimit} />
-        </>
-      )}
       <SelectTicketBlock
         colorBarBackground={colorBarBackground}
         show={showSelectTicketBlock}
