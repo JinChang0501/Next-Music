@@ -1,9 +1,6 @@
 import Link from 'next/link'
 
-export default function Breadcrumbs({
-  breadcrumbs,
-  className = 'container',
-}) {
+export default function Breadcrumbs({ breadcrumbs, className = 'container' }) {
   return (
     <>
       <div className={className} style={{ userSelect: 'none' }}>
@@ -14,7 +11,7 @@ export default function Breadcrumbs({
                 return (
                   <li
                     key={index}
-                    className="breadcrumb-item active p-2"
+                    className="breadcrumb-item active ps-0 pe-2 py-2"
                     aria-current="page"
                   >
                     {breadItem.label}
@@ -22,7 +19,7 @@ export default function Breadcrumbs({
                 )
               } else {
                 return (
-                  <li key={index} className="breadcrumb-item ps-0 p-2">
+                  <li key={index} className="breadcrumb-item ps-0 pe-2 py-2">
                     <Link style={{ color: '#958cea' }} href={breadItem.href}>
                       {breadItem.label}
                     </Link>
