@@ -33,6 +33,7 @@ export default function LoginForm({
 
   // 登入後設定全域的會員資料用
   const { auth, setAuth } = useAuth()
+
   // 登入表單
   const [user, setUser] = useState({ email: '', password: '' })
   // 錯誤訊息狀態
@@ -111,7 +112,7 @@ export default function LoginForm({
           setWakeLogin(false)
           setUser({ email: '', password: '' })
         } else {
-          toast.error('登入後無法得到會員資料')
+          // toast.error('登入後無法得到會員資料')
           // 這裡可以讓會員登出，因為這也算登入失敗，有可能會造成資料不統一
         }
       } else {
@@ -133,10 +134,6 @@ export default function LoginForm({
   //Google登入
   // loginGoogleRedirect無callback，要改用initApp在頁面初次渲染後監聽google登入狀態
   const { loginGoogle, initApp } = useFirebase()
-  // 這裡要設定initApp，讓這個頁面能監聽firebase的google登入狀態
-  useEffect(() => {
-    initApp(callbackGoogleLoginRedirect)
-  }, [])
 
   // 處理google登入後，要向伺服器進行登入動作
   const callbackGoogleLoginRedirect = async (providerData) => {
@@ -181,7 +178,7 @@ export default function LoginForm({
         })
 
         if (!hasShownToast.current) {
-          toast.success('已成功登入')
+          toast.success('已成功登入Google')
           hasShownToast.current = true
         }
 
@@ -194,6 +191,10 @@ export default function LoginForm({
       toast.error(`登入失敗`)
     }
   }
+  // 這裡要設定initApp，讓這個頁面能監聽firebase的google登入狀態
+  useEffect(() => {
+    initApp(callbackGoogleLoginRedirect)
+  }, [])
 
   const quickLogin = () => {
     setUser({ email: 'jin@test.com', password: '123456' })
@@ -292,7 +293,10 @@ export default function LoginForm({
             type="button"
             text=<FcGoogle />
             className="chb-h5 w-100 py-2"
-            onClick={() => loginGoogle()}
+            onClick={(e) => {
+              e.preventDefault()
+              loginGoogle()
+            }}
           />
         </div>
       </form>
