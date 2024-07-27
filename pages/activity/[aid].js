@@ -9,7 +9,6 @@ import Tab from '@/components/common/tabs/tab'
 import RecommendCard from '@/components/Activity/recommend-card'
 import TabContentAid from '@/components/Activity/info-tab-content/tab-content-aid'
 import TabContentIntro from '@/components/Activity/info-tab-content/tab-content-intro'
-import toast, { Toaster } from 'react-hot-toast'
 
 // 判斷登入
 import { useAuth } from '@/hooks/use-auth'
@@ -189,6 +188,7 @@ export default function Aid() {
                 key={v.eaid}
                 imgSrc={v.photo}
                 artist_name={v.art_name}
+                linkToArtId={`/artist/${v.spotify_id}`}
               />
             )
           })}

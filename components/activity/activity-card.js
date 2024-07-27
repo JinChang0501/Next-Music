@@ -47,7 +47,9 @@ export default function ActivityCard({
         key={eventId}
         className={`card mb-3 outline ${over ? 'bg-black90 hover' : 'bg-dark'}`}
         onMouseOver={() => setOver(true)}
+        onFocus={() => setOver(true)}
         onMouseOut={() => setOver(false)}
+        onBlur={() => setOver(false)}
       >
         <div className="row g-0">
           {/* 圖 */}

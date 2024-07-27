@@ -35,13 +35,10 @@ export default function Artid() {
     { label: `${activity.rows2[0]?.art_name}`, href: '/artist/[artid]' },
   ]
 
-  const scrollToTop = (e) => {
-    //console.log('scrollToTop called')
+  // 換頁後滾動到頂部
+  const scrollToTop = () => {
     if (topRef.current) {
-      console.log('topRef.current:', topRef.current)
       topRef.current.scrollIntoView({ behavior: 'smooth' })
-    } else {
-      console.log('topRef.current is null')
     }
   }
 
@@ -61,7 +58,14 @@ export default function Artid() {
       console.error('Error fetching data:', error)
     }
   }
+  // 換頁後回到頂部
+  useEffect(() => {
+    if (router.isReady) {
+      scrollToTop()
+    }
+  }, [router.isReady])
 
+  // 音樂人資訊
   useEffect(() => {
     if (!router.isReady) return
 
@@ -131,6 +135,7 @@ export default function Artid() {
     }
   }, [])
 
+  // 控制播放按鈕
   const handlePlay = async (trackUri) => {
     if (!player || !deviceId) return
 
@@ -140,17 +145,33 @@ export default function Artid() {
       await player.pause()
       setIsPlaying(false)
     } else {
-      const response = await fetch(
-        `https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`,
-        {
-          method: 'PUT',
-          body: JSON.stringify({ uris: [trackUri] }),
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
+      let response
+      if (currentTrackUri === trackUri) {
+        // 如果是同一首歌，恢復播放
+        response = await fetch(
+          `https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`,
+          {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+      } else {
+        // 如果是不同首歌，從頭開始播放
+        response = await fetch(
+          `https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`,
+          {
+            method: 'PUT',
+            body: JSON.stringify({ uris: [trackUri] }),
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+      }
 
       if (response.ok) {
         setCurrentTrackUri(trackUri)
@@ -161,6 +182,24 @@ export default function Artid() {
     }
   }
 
+  // 上一首歌
+  const handleNextTrack = () => {
+    const currentIndex = tracks.findIndex(
+      (track) => track.uri === currentTrackUri
+    )
+    const nextTrack = tracks[(currentIndex + 1) % tracks.length]
+    handlePlay(nextTrack.uri)
+  }
+  // 下一首歌
+  const handlePreviousTrack = () => {
+    const currentIndex = tracks.findIndex(
+      (track) => track.uri === currentTrackUri
+    )
+    const previousTrack =
+      tracks[(currentIndex - 1 + tracks.length) % tracks.length]
+    handlePlay(previousTrack.uri)
+  }
+
   if (!router.isReady) return null
 
   return (
@@ -168,7 +207,6 @@ export default function Artid() {
       <div ref={topRef}></div>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
       {/* 音樂人主資訊 start */}
-
       <MainArtistInfo
         imgSrc={`/images/artist/${activity.rows2[0]?.photoname}`}
         artist_name={activity.rows2[0]?.art_name}
@@ -215,18 +253,15 @@ export default function Artid() {
         </div>
         {/*  出演活動 end  */}
       </div>
+      {/* 播放器 controller */}
       <PlaybackControl
         player={player}
         currentTrack={tracks.find((track) => track.uri === currentTrackUri)}
         isPlaying={isPlaying}
         onPlay={() => handlePlay(currentTrackUri)}
         onPause={() => player.pause()}
-        onNextTrack={() => {
-          /* 實現下一曲邏輯 */
-        }}
-        onPreviousTrack={() => {
-          /* 實現上一曲邏輯 */
-        }}
+        onNextTrack={handleNextTrack}
+        onPreviousTrack={handlePreviousTrack}
         onSeek={(position) => player.seek(position)}
         onVolumeChange={(volume) => player.setVolume(volume)}
       />

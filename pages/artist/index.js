@@ -16,6 +16,7 @@ import ArtistItem from '@/components/artist/artist-item'
 export default function Artist() {
   const router = useRouter()
   const topRef = useRef(null)
+  const topRefTwo = useRef(null)
 
   // 音樂人資料陣列
   const [data, setData] = useState({
@@ -84,7 +85,7 @@ export default function Artist() {
     }
   }
 
-  // 滾動到Top
+  // 搜尋滾動到Top
   const scrollToTop = (e) => {
     //console.log('scrollToTop called')
     if (topRef.current) {
@@ -93,6 +94,11 @@ export default function Artist() {
     } else {
       console.log('topRef.current is null')
     }
+  }
+
+  // 換頁滾動到 Top
+  const scrollToTopTwo = () => {
+    topRefTwo.current?.scrollIntoView({ behavior: 'smooth' })
   }
 
   // spotify 授權隱藏按鈕
@@ -115,6 +121,7 @@ export default function Artist() {
 
   return (
     <>
+      <div ref={topRefTwo}></div>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
       <BannerA />
       <div ref={topRef}></div>
@@ -148,6 +155,7 @@ export default function Artist() {
                     imgSrc={`/images/artist/${r.photoname}`}
                     artist_name={r.art_name}
                     artid={r.spotify_id}
+                    scrollToTopTwo={scrollToTopTwo}
                   />
                 )
               })}
