@@ -1,4 +1,4 @@
-import { Suspense, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion, MotionConfig, useMotionValue } from 'framer-motion'
 import { Shapes } from './Shapes'
 import { transition } from './settings'
@@ -11,6 +11,11 @@ export default function ThreeDBtn() {
   const [isPress, setIsPress] = useState(false)
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
+  const [showShapes, setShowShapes] = useState(false)
+
+  useEffect(() => {
+    setShowShapes(true)
+  }, [])
 
   const resetMousePosition = () => {
     mouseX.set(0)
@@ -56,14 +61,14 @@ export default function ThreeDBtn() {
           <div className={`${style.pink} ${style.blush}`} />
           <div className={`${style.blue} ${style.blush}`} />
           <div className={`${style.container}`}>
-            <Suspense fallback={null}>
+            {showShapes && (
               <Shapes
                 isHover={isHover}
                 isPress={isPress}
                 mouseX={mouseX}
                 mouseY={mouseY}
               />
-            </Suspense>
+            )}
           </div>
         </motion.div>
         <motion.div
