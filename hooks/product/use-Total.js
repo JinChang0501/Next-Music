@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { createContext } from 'react'
+import { createContext } from 'react';
 import { GET_PRODUCTS } from '@/configs/api-path'
 // 會員
 import { getUserById } from '@/services/user'
@@ -129,6 +129,7 @@ export function TotalProvider({ children }) {
       <TotalContext.Provider
         value={{
           totalQty,
+          setTotalQty,
           clearLocalStorageCart,
           userProfile,
           items,

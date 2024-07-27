@@ -18,7 +18,7 @@ export default function Detail() {
   const [products, setProducts] = useState([])
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
   const router = useRouter()
-  const [cartData, setCardData] = useState([])
+  const [cartData, setCartData] = useState([])
   const { id } = router.query  // 設定路由參數給 pid (參照)
   const pid = parseInt(id)   // 型態轉換：字串轉數字！！
   const topRef = useRef(null)
@@ -78,7 +78,7 @@ export default function Detail() {
 
   const checkCart = () => {
     const cart = localStorage.getItem('makin-cart')
-    setCardData(cart)
+    setCartData(cart)
   }
   const addToCart = () => {
     if (!product) return
@@ -95,7 +95,7 @@ export default function Detail() {
     if (cartData) {
       cart = JSON.parse(cartData)
     }
-    setCardData(cart)
+    setCartData(cart)
     const existingItem = cart.find((item) => item.id === cartItem.id)
     if (existingItem) {
       existingItem.quantity += 1
@@ -105,9 +105,9 @@ export default function Detail() {
 
     localStorage.setItem('makin-cart', JSON.stringify(cart))
 
-    // 更新 totalQty 狀態
-    const updatedQty = cart.length; // 這裡根據你的購物車邏輯來確定更新後的數量
-    setTotalQty(updatedQty);
+    const newQty = cart.reduce((total, item) => total + item.quantity, 0)
+    setTotalQty(newQty)
+
     // 提示成功加入購物車
     toast.success(`本商品已成功加入購物車`)
   }
