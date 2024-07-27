@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Image from 'next/image'
 import { BsPlayCircle } from 'react-icons/bs'
 import { BsPlayCircleFill } from 'react-icons/bs'
 import { BsPauseCircle } from 'react-icons/bs'
@@ -27,15 +28,24 @@ export default function TopTrackItem({
         <div className="eng-h6 width-box text-black60 ms-2 ms-md-4">
           {number}
         </div>
-        <img className="img-size me-4 my-2" src={cover} />
-        <div className="chr-h6 text-white me-auto">{song_name}</div>
+        <Image
+          width={50}
+          height={50}
+          className="img-size me-4 my-2"
+          src={cover}
+          alt={song_name}
+        />
+        <div className="chr-h6 text-white text-fixed me-auto">{song_name}</div>
         {isPlaying ? (
           <BsPauseCircleFill
             onClick={onPlay}
-            className="text-white eng-h4 me-4"
+            className="text-white icon-fixed eng-h4 me-4"
           />
         ) : (
-          <BsPlayCircle onClick={onPlay} className="text-white eng-h4 me-4" />
+          <BsPlayCircle
+            onClick={onPlay}
+            className="text-white icon-fixed eng-h4 me-4"
+          />
         )}
         {/* {over ? (
           <BsPlayCircleFill
@@ -55,6 +65,15 @@ export default function TopTrackItem({
         }
         .width-box {
           width: 45px;
+        }
+        .text-fixed {
+          max-width: 380px;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+        .icon-fixed {
+          min-width: 100px;
         }
         @media (max-width: 390px) {
           .img-size {
