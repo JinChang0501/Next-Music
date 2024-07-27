@@ -4,7 +4,9 @@ import { IoEyeOffSharp } from 'react-icons/io5'
 import toast, { Toaster } from 'react-hot-toast'
 import { initUserData, useAuth } from '@/hooks/use-auth'
 import { FcGoogle } from 'react-icons/fc'
-
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+import styles from './login-form.module.scss'
 import {
   checkAuth,
   login,
@@ -103,7 +105,8 @@ export default function LoginForm({
             userData,
           })
 
-          toast.success('已成功登入')
+          toast.success('成功登入')
+
           updateLoginStatus(true)
           setWakeLogin(false)
           setUser({ email: '', password: '' })
@@ -205,8 +208,8 @@ export default function LoginForm({
         <div style={{ marginBottom: '20px' }}>
           <button
             className="bg-white text-black px-0"
-            onClick={(e) => {
-              e.preventDefault()
+            onClick={() => {
+              // e.preventDefault()
               quickLogin()
             }}
           >

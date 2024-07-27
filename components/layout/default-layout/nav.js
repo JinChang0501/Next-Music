@@ -23,7 +23,8 @@ import { useTotal } from '@/hooks/product/use-Total'
 import { API_SERVER } from '@/configs/api-path'
 import { useRefresh } from '@/hooks/useRefresh'
 import PreviewUploadImage from '@/components/member/desktop-layout/preview-upload-image'
-
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 export default function Nav() {
   //
   const {
