@@ -5,7 +5,7 @@ import { useShip711StoreOpener } from '@/hooks/use-ship-711-store'
 import { useTotal } from '@/hooks/product/use-Total'
 import EcPay from '@/components/product/ec-pay'
 
-export default function Transport() {
+export default function Transport({ onSelectTransport }) {
   const [selected, setSelected] = useState(null) // 使用 null 初始狀態
   const [homeDeliveryAddress, setHomeDeliveryAddress] = useState('')
   const [storeName, setStoreName] = useState('')
@@ -24,6 +24,12 @@ export default function Transport() {
       setStoreAddress(store711.storeaddress || '')
     }
   }, [store711])
+
+  useEffect(() => {
+    if (onSelectTransport) {
+      onSelectTransport(selected)
+    }
+  }, [selected, onSelectTransport])
   // 選擇誘發的變化
   const handleCircleClick = (paymentMethod) => {
     if (selected === 'home' && paymentMethod !== 'home') {

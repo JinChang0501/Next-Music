@@ -105,8 +105,8 @@ export default function Detail() {
 
     localStorage.setItem('makin-cart', JSON.stringify(cart))
 
-    const newQty = cart.reduce((total, item) => total + item.quantity, 0)
-    setTotalQty(newQty)
+    const qty = cart.reduce((total, item) => total + item.quantity, 0);
+    setTotalQty(qty);
 
     // 提示成功加入購物車
     toast.success(`本商品已成功加入購物車`)
@@ -164,19 +164,19 @@ export default function Detail() {
           >
             {/* <SwiperTop/> */}
             <Swiper
-        style={{
-          '--swiper-navigation-color': '#685beb',
-          '--swiper-pagination-color': '#685beb',
-        }}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
-        spaceBetween={10}
-        navigation={true}
-        thumbs={{ swiper: thumbsSwiper }}
-        modules={[Autoplay, FreeMode, Navigation, Thumbs]}
-        className={`mySwiper2`}
+              style={{
+                '--swiper-navigation-color': '#685beb',
+                '--swiper-pagination-color': '#685beb',
+              }}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              spaceBetween={10}
+              navigation={true}
+              thumbs={{ swiper: thumbsSwiper }}
+              modules={[Autoplay, FreeMode, Navigation, Thumbs]}
+              className={`mySwiper2`}
       >
         <SwiperSlide>
           <img src={`/images/product/list/${product.picture}`} className={`${styles['pic']}`}/>
