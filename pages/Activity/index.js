@@ -181,7 +181,7 @@ export default function Activity() {
                 <ActivityCard
                   key={r.actid}
                   eventId={r.actid}
-                  imgSrc={r.cover}
+                  imgSrc={`/images/Activity/${r.picinfrontend}`}
                   title={r.actname}
                   artist={r.artists}
                   location={r.location}

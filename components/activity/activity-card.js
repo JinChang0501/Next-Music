@@ -16,7 +16,7 @@ import PhoneBlackPureIconBtnBlack from '../common/button/phoneBlackButton/phoneB
 import PhoneBlackNoIconBtnPurple from '../common/button/phoneBlackButton/phoneBlackNoIconBtnPurple'
 
 export default function ActivityCard({
-  imgSrc = 'https://i.postimg.cc/zB5Gh92q/temp-Image7-Gw6zu.avif',
+  imgSrc = '1.avif',
   title,
   artist,
   location,
