@@ -32,7 +32,7 @@ export default function ArtistFollowCard({
                 />
               </div>
               {/* 卡片文字 */}
-              <h5 className="card-title col-5 text-white m-0">{artist_name}</h5>
+              <h5 className="card-title col-9 text-white m-0">{artist_name}</h5>
               {/* <div className="col-4 text-nowrap d-flex justify-content-center">
               <PhoneBlackIconBtnBlack text="追蹤" className="chb-p" />
             </div> */}
