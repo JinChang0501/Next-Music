@@ -229,7 +229,11 @@ export default function Index() {
               className="eng-h5"
               onClick={auth.isAuth ? handleGotoMember : handleWakeLogin}
             /> */}
-            <ThreeDBtn />
+            <ThreeDBtn
+              text={auth.isAuth ? 'Member Center' : 'MY ACCOUNT'}
+              className="eng-h5"
+              onClick={auth.isAuth ? handleGotoMember : handleWakeLogin}
+            />
           </div>
         </div>
       </div>

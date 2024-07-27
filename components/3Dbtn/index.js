@@ -5,7 +5,11 @@ import { transition } from './settings'
 import useMeasure from 'react-use-measure'
 import style from './btn.module.scss'
 
-export default function ThreeDBtn() {
+export default function ThreeDBtn({
+  text = 'button',
+  className = 'chb-h6',
+  onClick = () => {},
+}) {
   const [ref, bounds] = useMeasure({ scroll: false })
   const [isHover, setIsHover] = useState(false)
   const [isPress, setIsPress] = useState(false)
@@ -50,6 +54,7 @@ export default function ThreeDBtn() {
           mouseX.set(e.clientX - bounds.x - bounds.width / 2)
           mouseY.set(e.clientY - bounds.y - bounds.height / 2)
         }}
+        onClick={onClick}
       >
         <motion.div
           className={`${style.shapes}`}
@@ -73,9 +78,9 @@ export default function ThreeDBtn() {
         </motion.div>
         <motion.div
           variants={{ hover: { scale: 0.85 }, press: { scale: 1.1 } }}
-          className={`${style.label}`}
+          className={`${style.label} ${className}`}
         >
-          MY&nbsp;&nbsp;&nbsp;ACCOUNT
+          {text}
         </motion.div>
       </motion.button>
     </MotionConfig>
