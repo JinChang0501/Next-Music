@@ -150,7 +150,7 @@ export default function Artist() {
               {data.rows.map((r, i) => {
                 return (
                   <ArtistItem
-                    key={r.id}
+                    key={r.spotify_id}
                     // imgSrc={r.photo}
                     imgSrc={`/images/artist/${r.photoname}`}
                     artist_name={r.art_name}

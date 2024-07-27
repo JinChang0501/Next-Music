@@ -105,7 +105,7 @@ export default function Artid() {
       })
 
       player.addListener('ready', ({ device_id }) => {
-        console.log('Ready with Device ID', device_id)
+        // console.log('Ready with Device ID', device_id)
         setDeviceId(device_id)
         setPlayer(player)
       })
@@ -118,7 +118,7 @@ export default function Artid() {
         if (!state) {
           return
         }
-        console.log(state)
+        // console.log(state)
         const currentTrack = state.track_window?.current_track
         if (currentTrack) {
           // console.log(currentTrack.uri)

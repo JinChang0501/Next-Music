@@ -133,7 +133,7 @@ const PlaybackControl = ({
   return (
     <>
       <div className="position-fixed bottom-0 end-0 m-3 p-3 bg-dark outline">
-        <div className="text-white mb-2">
+        <div className="text-white wid-250 mb-3">
           {currentTrack ? (
             <>
               {/* 有專輯正在播放 */}
@@ -145,8 +145,10 @@ const PlaybackControl = ({
                   alt={currentTrack.name}
                 />
               </div>
-              <div className="chb-p mb-1">{currentTrack.name}</div>
-              <div className="chr-p text-purple3">
+              <div className="marquee">
+                <span className="chb-p mb-1">{currentTrack.name}</span>
+              </div>
+              <div className="chr-p-12 text-purple3">
                 {currentTrack.artists[0].name}
               </div>
             </>
@@ -221,7 +223,6 @@ const PlaybackControl = ({
           <BsVolumeUpFill className="text-white eng-h5 ms-2" />
         </div>
       </div>
-
       <style jsx>
         {`
           .outline {
@@ -231,26 +232,33 @@ const PlaybackControl = ({
             background-color: #dbd7ff; /* 更改滑動條顏色 */
           }
           .custom-slider .rs-slider-handle {
-            background-color: #dbd7ff; /* 更改滑動手柄顏色 */
+            background-color: #000000; /* 更改滑動手柄顏色 */
           }
-          input[type='range']::-webkit-slider-thumb:before,
-          input[type='range']::-webkit-slider-thumb:after {
-            position: absolute;
-            top: 3px;
-            width: 50px; /* 使用較小的寬度進行測試 */
-            height: 4px;
-            content: '';
-            pointer-events: none;
-            transition: 0.2s;
+          .wid-250 {
+            width: 250px;
+          }
+          .marquee {
+            position: relative;
+            width: 245px;
+            height: 24px;
+            margin: auto;
+            overflow: hidden;
+          }
+          .marquee span {
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            padding-left: 100%;
+            animation: run 10s infinite linear;
           }
 
-          input[type='range']::-webkit-slider-thumb:before {
-            left: -47px;
-            background: #f22;
-          }
-          input[type='range']::-webkit-slider-thumb:after {
-            left: 10px;
-            background: #edc;
+          @keyframes run {
+            0% {
+              transform: translateX(0%);
+            }
+            100% {
+              transform: translateX(-100%);
+            }
           }
         `}
       </style>
