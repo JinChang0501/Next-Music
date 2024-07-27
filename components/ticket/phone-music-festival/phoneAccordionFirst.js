@@ -8,7 +8,7 @@ import moment from 'moment-timezone'
 export default function PhoneAccordionFirst() {
   const { tickets, selectedCount } = useTicketContext()
 
-  const { mingpic, actname, actdate, acttime, location, art_name } =
+  const { mingpic, actname, actdate, acttime, location, art_name, price } =
     tickets[0] || tickets[0]?.mingpic || {}
 
   const pic = `/images/Activity/banner/${mingpic}`
@@ -83,7 +83,7 @@ export default function PhoneAccordionFirst() {
 
             <div className={`${style.totalPrice} chb-h5 text-black`}>
               <div>張數 : {selectedCount} 張</div>
-              <div>總價 : {2500 * selectedCount}</div>
+              <div>總價 : {price * selectedCount}</div>
             </div>
           </div>
         </div>
