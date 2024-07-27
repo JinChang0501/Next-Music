@@ -18,7 +18,7 @@ import {
 } from 'react-icons/bs'
 import { BiSkipPrevious, BiSkipNext } from 'react-icons/bi'
 
-const PlaybackControl = ({
+const PlaybackControlMob = ({
   player,
   currentTrack,
   isPlaying,
@@ -132,24 +132,26 @@ const PlaybackControl = ({
   }
   return (
     <>
-      <div className="position-fixed bottom-0 end-0 m-3 p-3 bg-black95 outline">
-        <div className="text-white wid-250 mb-3">
+      <div className="position-sticky bottom-0 bg-dark outline">
+        <div className="m-2 text-white d-flex align-items-center">
           {currentTrack ? (
             <>
               {/* 有專輯正在播放 */}
-              <div className="m-3">
+              <div className="m-2">
                 <Image
-                  width={220}
-                  height={220}
+                  width={50}
+                  height={50}
                   src={currentTrack.album.images[1].url}
                   alt={currentTrack.name}
                 />
               </div>
-              <div className="marquee">
-                <span className="chb-p mb-1">{currentTrack.name}</span>
-              </div>
-              <div className="chr-p-12 text-purple3">
-                {currentTrack.artists[0].name}
+              <div className="d-flex flex-column ms-2">
+                <div className="marquee mb-2">
+                  <span className="chb-p">{currentTrack.name}</span>
+                </div>
+                <div className="chr-p-10 text-purple3">
+                  {currentTrack.artists[0].name}
+                </div>
               </div>
             </>
           ) : (
@@ -157,8 +159,8 @@ const PlaybackControl = ({
               {/* 未播放狀態 */}
               <div className="m-3">
                 <Image
-                  width={220}
-                  height={220}
+                  width={50}
+                  height={50}
                   src="/images/artist/no-music.jpg"
                   alt="No music playing"
                 />
@@ -166,61 +168,19 @@ const PlaybackControl = ({
               <div className="chb-p mb-1">未播放</div>
             </>
           )}
-        </div>
-        <div className="d-flex align-items-center my-2 mx-2">
-          {/* 時間軸 Bar */}
-          <Slider
-            value={progress}
-            min={0}
-            max={duration}
-            step={1000}
-            progress
-            tooltip={false}
-            onChange={handleProgressChange}
-            // className="custom-slider"
-            handleClassName="custom-slider"
-            style={{ width: '100%' }}
-          />
-        </div>
-        <div className="d-flex mx-1 justify-content-between text-black60 chr-p-12">
-          <div className="">{formatTime(progress)}</div>
-          <div className="">{formatTime(duration)}</div>
-        </div>
-
-        {/* Playback controls */}
-        <div className="d-flex justify-content-center align-items-center my-2">
-          <button onClick={onPreviousTrack} className="btn btn-link text-white">
-            <BiSkipPrevious className="text-white eng-h4" />
-          </button>
-          {isPlaying ? (
-            <BsPauseCircleFill
-              onClick={onPause}
-              className="text-white eng-h4 mx-2"
-            />
-          ) : (
-            <BsPlayCircle
-              onClick={handlePlay}
-              className="text-white eng-h4 mx-2"
-            />
-          )}
-          <button onClick={onNextTrack} className="btn btn-link text-white">
-            <BiSkipNext className="text-white eng-h4" />
-          </button>
-        </div>
-
-        {/* Volume control */}
-        <div className="d-flex justify-content-center align-items-center">
-          <BsFillVolumeDownFill className="text-white eng-h5 me-2" />
-          <Slider
-            value={volume}
-            min={0}
-            max={100}
-            step={1}
-            progress
-            onChange={handleVolumeChange}
-            style={{ width: '120px' }}
-          />
-          <BsVolumeUpFill className="text-white eng-h5 ms-2" />
+          <div className="ms-auto me-2">
+            {isPlaying ? (
+              <BsPauseCircleFill
+                onClick={onPause}
+                className="text-white eng-h3 mx-2"
+              />
+            ) : (
+              <BsPlayCircle
+                onClick={handlePlay}
+                className="text-white eng-h3 mx-2"
+              />
+            )}
+          </div>
         </div>
       </div>
       <style jsx>
@@ -228,19 +188,10 @@ const PlaybackControl = ({
           .outline {
             border: 1px solid #dbd7ff;
           }
-          .custom-slider .rs-slider-bar {
-            background-color: #dbd7ff; /* 更改滑動條顏色 */
-          }
-          .custom-slider .rs-slider-handle {
-            background-color: #000000; /* 更改滑動手柄顏色 */
-          }
-          .wid-250 {
-            width: 250px;
-          }
           .marquee {
             position: relative;
-            width: 245px;
-            height: 24px;
+            width: 200px;
+            height: 18px;
             margin: auto;
             overflow: hidden;
           }
@@ -249,7 +200,7 @@ const PlaybackControl = ({
             white-space: nowrap;
             overflow: hidden;
             padding-left: 100%;
-            animation: run 10s infinite linear;
+            animation: run 8s infinite linear;
           }
 
           @keyframes run {
@@ -266,4 +217,4 @@ const PlaybackControl = ({
   )
 }
 
-export default PlaybackControl
+export default PlaybackControlMob
