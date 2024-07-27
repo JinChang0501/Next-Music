@@ -29,6 +29,8 @@ export default function Payment() {
   // 手機
   const [mobileNumber, setMobileNumber] = useState('')
   const [isValid, setIsValid] = useState(true)
+  const [selectedTransport, setSelectedTransport] = useState(null) 
+
   const breadcrumbsURL = [
     { label: '周邊商城', href: '/product' },
     { label: '購物車', href: '/cart' },
@@ -281,7 +283,7 @@ export default function Payment() {
         </div>
         <div className={`third ${styles['mt-40']} ${styles['w-800']}`}>
           <p className="chb-h5">請選擇配送方式</p>
-          <Transport />
+          <Transport onSelectTransport={setSelectedTransport} />
         </div>
         <div
           className={`fourth ${styles['mt-40']} ${styles['w-800']}`}
@@ -300,7 +302,7 @@ export default function Payment() {
         <div
           className={`fifth ${styles['my-40']} ${styles['w-800']} ${styles['center-item']}`}
         >
-          {isValid ? (
+          {isValid && mobileNumber.length > 1 && selectedTransport ? (
             <Link href={`/cart/complete`}>
               <DesktopBlackNoIconBtnPurple
                 text="確定訂購"
@@ -315,7 +317,7 @@ export default function Payment() {
             <DesktopBlackNoIconBtnPurple
               text="確定訂購"
               className={`chb-h6 ${styles['btn-760']}`}
-              disabled={!isValid || mobileNumber.length === 0}
+              disabled
             />
           )}
         </div>

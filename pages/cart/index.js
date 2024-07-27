@@ -8,6 +8,7 @@ import { GET_PRODUCTS } from '@/configs/api-path'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 // import toast, { Toaster } from 'react-hot-toast'
+import Swal from 'sweetalert2'
 
 export default function CartIndex() {
   const [products, setProducts] = useState([])
@@ -107,6 +108,27 @@ export default function CartIndex() {
     setCart(resultCart)
   }
 
+  const handleRemoveCart = (pid) => {
+    Swal.fire({
+      title: '確定要刪除這項商品嗎?',
+      text: "刪除後，無法復原!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '確定, 刪除!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: '已刪除!',
+          text: '這項商品已刪除',
+          icon: 'success',
+        })
+        cartRemoveItem(pid)
+      }
+    })
+  }
+
   return (
     <>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
@@ -176,9 +198,7 @@ export default function CartIndex() {
                     text="刪除"
                     className={`chb-h6`}
                     onClick={() => {
-                      if (confirm('你確定要移除這項商品?')) {
-                        cartRemoveItem(p.id)
-                      }
+                      handleRemoveCart(p.id)
                     }}
                   />
                 </div>
@@ -200,9 +220,7 @@ export default function CartIndex() {
               <div
                 className={`col-12 col-md-8 cart-area ${styles['my-20']} ${styles['columnCenter']} `}
               >
-                {/* 測試 */}
                 <Link href={`/cart/payment`}>
-                  {/* 測試 */}
                   <DesktopBlackNoIconBtnPurple
                     text="結帳"
                     className={`chb-h6 ${styles['btn-760']}`}
