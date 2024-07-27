@@ -31,10 +31,6 @@ export default function Activity() {
     rows: [],
   })
 
-  // 初始值至少要空白陣列。初次render是用初始值，需要對應伺服器回應的資料類型。
-  // 在應用程式執行過程中，一定要保持狀態的資料類型(一定要是陣列)
-  // const [activity, setActivity] = useState([])
-
   // 查詢條件用(這裡用的初始值都與伺服器的預設值一致)
   const [keyword, setKeyword] = useState('')
   const [actClass, setActClass] = useState('')
@@ -135,6 +131,19 @@ export default function Activity() {
     console.log(params)
     // eslint-disable-next-line
   }, [])
+
+  // 登出的話
+  useEffect(() => {
+    if (!auth.isAuth) {
+      // 使用空的參數重新抓取活動資料
+      getActivity({
+        keyword: keyword,
+        actClass: actClass,
+        area: area,
+        dateRange: dateRange,
+      })
+    }
+  }, [auth.isAuth])
 
   return (
     <>

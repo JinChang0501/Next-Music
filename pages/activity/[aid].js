@@ -143,7 +143,7 @@ export default function Aid() {
           acttime={mainInfoData.acttime}
           location={mainInfoData.location}
           artist={mainInfoData.artists}
-          banner={mainInfoData.picture}
+          banner={`/images/Activity/banner/${mainInfoData.mingpic}`}
           aid={mainInfoData.actid}
           handleBookTicket={
             auth.isAuth
