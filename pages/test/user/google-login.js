@@ -9,7 +9,7 @@ import {
   getUserById,
 } from '@/services/user'
 import toast, { Toaster } from 'react-hot-toast'
-import GoogleLogo from '@/components/icons/google-logo'
+// import GoogleLogo from '@/components/icons/google-logo'
 
 export default function GoogleLoginRedirect() {
   // loginGoogleRedirect無callback，要改用initApp在頁面初次渲染後監聽google登入狀態
@@ -107,7 +107,7 @@ export default function GoogleLoginRedirect() {
       <h1>Google Login重定向測試頁</h1>
       <p>會員狀態:{auth.isAuth ? '已登入' : '未登入'}</p>
       <button onClick={() => loginGoogleRedirect()}>
-        <GoogleLogo /> Google登入
+        {/* <GoogleLogo /> Google登入 */}
       </button>
       <br />
       <button onClick={handleLogout}>登出</button>

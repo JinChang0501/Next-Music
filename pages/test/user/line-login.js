@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { initUserData, useAuth } from '@/hooks/use-auth'
-import LineLogo from '@/components/icons/line-logo'
+// import LineLogo from '@/components/icons/line-logo'
 import {
   lineLoginRequest,
   lineLogout,
@@ -106,9 +106,7 @@ export default function LineLogin() {
       <p>會員狀態:{auth.isAuth ? '已登入' : '未登入'}</p>
       <p>會員資料:{JSON.stringify(auth.userData)}</p>
       <hr />
-      <button onClick={goLineLogin}>
-        <LineLogo /> 登入
-      </button>
+      <button onClick={goLineLogin}>{/* <LineLogo /> 登入 */}</button>
       <br />
       <button onClick={handleLineLogout}>LINE 登出(logout)</button>
       {/* 土司訊息視窗用 */}
