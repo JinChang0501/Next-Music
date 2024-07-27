@@ -201,7 +201,7 @@ export default function Aid() {
             return (
               <RecommendCard
                 key={v.actid}
-                imgSrc={v.cover}
+                imgSrc={`/images/Activity/${v.picinfrontend}`}
                 activity_name={v.actname}
                 artist_name={v.artists}
                 aid={v.actid}
