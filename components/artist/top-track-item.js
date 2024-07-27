@@ -39,12 +39,12 @@ export default function TopTrackItem({
         {isPlaying ? (
           <BsPauseCircleFill
             onClick={onPlay}
-            className="text-white icon-fixed eng-h4 me-4"
+            className="text-white icon-fixed eng-h4 me-md-4 me-2"
           />
         ) : (
           <BsPlayCircle
             onClick={onPlay}
-            className="text-white icon-fixed eng-h4 me-4"
+            className="text-white icon-fixed eng-h4 me-md-4 me-2"
           />
         )}
         {/* {over ? (
@@ -81,7 +81,13 @@ export default function TopTrackItem({
             height: 40px;
           }
           .width-box {
-            width: 35px;
+            width: 30px;
+          }
+          .text-fixed {
+            max-width: 170px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
           }
         }
       `}</style>

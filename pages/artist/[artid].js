@@ -8,6 +8,7 @@ import TopTrackItem from '@/components/artist/top-track-item'
 import { useSpotifyApi } from '@/hooks/use-SpotifyApi'
 import ParticipatingActivity from '@/components/artist/participating-activity'
 import PlaybackControl from '@/components/artist/playback-control'
+import PlaybackControlMob from '@/components/artist/playback-control-mob'
 
 export default function Artid() {
   const router = useRouter()
@@ -15,6 +16,7 @@ export default function Artid() {
   const { artid } = router.query // 設定路由參數給 artid (參照)
   // ^^^^這裡的id是spotify_id，型態為「字串」，不用轉數字
   const topRef = useRef(null)
+  const [isDesktop, setIsDesktop] = useState(true)
   const [tracks, setTracks] = useState([])
   // 參加了哪些活動 (包含！音樂人！資訊)
   const [activity, setActivity] = useState({
@@ -199,6 +201,17 @@ export default function Artid() {
       tracks[(currentIndex - 1 + tracks.length) % tracks.length]
     handlePlay(previousTrack.uri)
   }
+  // 畫面大小
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth > 576) // 螢幕寬度 > 576px 為電腦板
+    }
+    handleResize() // 初始設定一次
+
+    window.addEventListener('resize', handleResize) // 監聽視窗大小變化
+
+    return () => window.removeEventListener('resize', handleResize) // 清除事件監聽器
+  }, [])
 
   if (!router.isReady) return null
 
@@ -251,17 +264,32 @@ export default function Artid() {
         {/*  出演活動 end  */}
       </div>
       {/* 播放器 controller */}
-      <PlaybackControl
-        player={player}
-        currentTrack={tracks.find((track) => track.uri === currentTrackUri)}
-        isPlaying={isPlaying}
-        onPlay={() => handlePlay(currentTrackUri)}
-        onPause={() => player.pause()}
-        onNextTrack={handleNextTrack}
-        onPreviousTrack={handlePreviousTrack}
-        onSeek={(position) => player.seek(position)}
-        onVolumeChange={(volume) => player.setVolume(volume)}
-      />
+      {isDesktop ? (
+        <PlaybackControl
+          player={player}
+          currentTrack={tracks.find((track) => track.uri === currentTrackUri)}
+          isPlaying={isPlaying}
+          onPlay={() => handlePlay(currentTrackUri)}
+          onPause={() => player.pause()}
+          onNextTrack={handleNextTrack}
+          onPreviousTrack={handlePreviousTrack}
+          onSeek={(position) => player.seek(position)}
+          onVolumeChange={(volume) => player.setVolume(volume)}
+        />
+      ) : (
+        <PlaybackControlMob
+          player={player}
+          currentTrack={tracks.find((track) => track.uri === currentTrackUri)}
+          isPlaying={isPlaying}
+          onPlay={() => handlePlay(currentTrackUri)}
+          onPause={() => player.pause()}
+          onNextTrack={handleNextTrack}
+          onPreviousTrack={handlePreviousTrack}
+          onSeek={(position) => player.seek(position)}
+          onVolumeChange={(volume) => player.setVolume(volume)}
+        />
+      )}
+
       <style jsx>{`
         .mb-40 {
           margin-bottom: 40px;
@@ -276,9 +304,6 @@ export default function Artid() {
         .width-70 {
           width: 70%;
         }
-        .width-40 {
-          width: 40%;
-        }
         @media (max-width: 390px) {
           .mt-80 {
             margin-top: 20px;
@@ -290,7 +315,7 @@ export default function Artid() {
             margin-top: 20px;
             margin-bottom: 20px;
           }
-          .width-50 {
+          .width-70 {
             width: 100%;
           }
         }
