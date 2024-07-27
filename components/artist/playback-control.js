@@ -207,7 +207,7 @@ const PlaybackControl = ({
         </div>
 
         {/* Volume control */}
-        <div className="d-flex align-items-center">
+        <div className="d-flex justify-content-center align-items-center">
           <BsFillVolumeDownFill className="text-white eng-h5 me-2" />
           <Slider
             value={volume}
