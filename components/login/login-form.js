@@ -25,6 +25,7 @@ export default function LoginForm({
 }) {
   const [showPassword, setShowPassword] = useState(false)
   // const [hasShownToast, setHasShownToast] = useState(false)
+  const [googleTrigger, setGoogleTrigger] = useState(0)
   const hasShownToast = useRef(false)
   const toggleShowPassword = (e) => {
     setShowPassword(!showPassword)
@@ -106,7 +107,7 @@ export default function LoginForm({
             userData,
           })
 
-          toast.success('成功登入')
+          toast.success('登入成功')
 
           updateLoginStatus(true)
           setWakeLogin(false)
@@ -138,6 +139,7 @@ export default function LoginForm({
   // 處理google登入後，要向伺服器進行登入動作
   const callbackGoogleLoginRedirect = async (providerData) => {
     console.log(providerData)
+    setGoogleTrigger(googleTrigger + 1)
 
     // 如果目前react(next)已經登入中，不需要再作登入動作
     if (auth.isAuth) return
@@ -158,7 +160,8 @@ export default function LoginForm({
       localStorage.setItem('accessToken', accessToken)
 
       const res1 = await getUserById(jwtUser.id)
-      //console.log(res1.data)
+      console.log('163163163163163163163163163163')
+      console.log(res1.data)
 
       if (res1.data.status === 'success') {
         // 只需要initUserData中的定義屬性值，詳見use-auth勾子
@@ -177,10 +180,10 @@ export default function LoginForm({
           userData,
         })
 
-        if (!hasShownToast.current) {
-          toast.success('已成功登入Google')
-          hasShownToast.current = true
-        }
+        // if (!hasShownToast.current) {
+        //   toast.success('已成功登入Google')
+        //   hasShownToast.current = true
+        // }
 
         setWakeLogin(false)
       } else {
@@ -191,6 +194,14 @@ export default function LoginForm({
       toast.error(`登入失敗`)
     }
   }
+
+  useEffect(() => {
+    if (googleTrigger > 0) {
+      toast.success('登入成功(3)')
+      console.log('Line 203')
+    }
+  }, [googleTrigger])
+
   // 這裡要設定initApp，讓這個頁面能監聽firebase的google登入狀態
   useEffect(() => {
     initApp(callbackGoogleLoginRedirect)
