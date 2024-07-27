@@ -10,25 +10,9 @@ export default function ArtCard({
   spotify_id = '',
   shortDes = '',
 }) {
-  // const [play, setPlay] = useState(false)
-
-  // const handleClick = () => {
-  //   setPlay(!play)
-  // }
   return (
     <>
       <div className="mx-4" style={{ width: '300px' }}>
-        {/* <div className="mx-4" style={{ width: '300px' }}>
-        <div className="w-100 col-md-2 col-5 d-flex flex-column align-items-center order-md-5">
-          <img
-            src={`${photo}`}
-            className={`rounded-circle mb-4 ${styles['artist-img-s']} `}
-          />
-          <Link href={`/artist/${spotify_id}`}>
-            <div className="chb-h4 text-white">{art_name}</div>
-          </Link>
-        </div>
-      </div> */}
         <div className="border-0 bg-transparent">
           <div className="w-100 col-md-2 col-5 d-flex flex-column align-items-center order-md-5">
             <div className="card rounded-circle mb-3">
