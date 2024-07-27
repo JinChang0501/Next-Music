@@ -24,7 +24,7 @@ export default function ArtCard({
               </div>
               <div className="card-back rounded-circle p-5">
                 <div className="text-content">
-                  <span className="chr-p14 py-5">{shortDes}</span>
+                  <span className="chr-p py-5">{shortDes}</span>
                 </div>
               </div>
             </div>
@@ -64,16 +64,6 @@ export default function ArtCard({
             justify-content: center;
             text-align: center;
             transform: rotateY(180deg); /* 背面翻转 */
-          }
-
-          .content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-          }
-
-          .text-content h4 {
-            margin: 0;
           }
         `}</style>
       </div>
