@@ -8,7 +8,7 @@ export default function ArtistItem({
   imgSrc = 'https://i.postimg.cc/zB5Gh92q/temp-Image7-Gw6zu.avif',
   artist_name = '音樂人',
   artid,
-  scrollToTop,
+  scrollToTopTwo,
 }) {
   const [over, setOver] = useState(false)
   const router = useRouter()
@@ -16,7 +16,7 @@ export default function ArtistItem({
   const handleClick = (e) => {
     e.preventDefault()
     router.push(`/artist/${artid}`).then(() => {
-      scrollToTop()
+      scrollToTopTwo()
     })
   }
   return (

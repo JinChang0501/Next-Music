@@ -35,13 +35,10 @@ export default function Artid() {
     { label: `${activity.rows2[0]?.art_name}`, href: '/artist/[artid]' },
   ]
 
-  const scrollToTop = (e) => {
-    //console.log('scrollToTop called')
+  // 換頁後滾動到頂部
+  const scrollToTop = () => {
     if (topRef.current) {
-      console.log('topRef.current:', topRef.current)
       topRef.current.scrollIntoView({ behavior: 'smooth' })
-    } else {
-      console.log('topRef.current is null')
     }
   }
 
@@ -61,7 +58,14 @@ export default function Artid() {
       console.error('Error fetching data:', error)
     }
   }
+  // 換頁後回到頂部
+  useEffect(() => {
+    if (router.isReady) {
+      scrollToTop()
+    }
+  }, [router.isReady])
 
+  // 音樂人資訊
   useEffect(() => {
     if (!router.isReady) return
 
@@ -131,6 +135,7 @@ export default function Artid() {
     }
   }, [])
 
+  // 控制播放按鈕
   const handlePlay = async (trackUri) => {
     if (!player || !deviceId) return
 
@@ -177,6 +182,7 @@ export default function Artid() {
     }
   }
 
+  // 上一首歌
   const handleNextTrack = () => {
     const currentIndex = tracks.findIndex(
       (track) => track.uri === currentTrackUri
@@ -184,7 +190,7 @@ export default function Artid() {
     const nextTrack = tracks[(currentIndex + 1) % tracks.length]
     handlePlay(nextTrack.uri)
   }
-
+  // 下一首歌
   const handlePreviousTrack = () => {
     const currentIndex = tracks.findIndex(
       (track) => track.uri === currentTrackUri
@@ -201,7 +207,6 @@ export default function Artid() {
       <div ref={topRef}></div>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
       {/* 音樂人主資訊 start */}
-
       <MainArtistInfo
         imgSrc={`/images/artist/${activity.rows2[0]?.photoname}`}
         artist_name={activity.rows2[0]?.art_name}
