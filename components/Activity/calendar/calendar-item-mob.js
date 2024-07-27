@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { Calendar, Whisper, Popover, Badge } from 'rsuite'
 import { useFav } from '@/hooks/use-Fav'
 import style from './calendar.module.scss'
 
 export default function CalendarItemMob() {
-  const { favorite } = useFav()
-
-  const activities = favorite.rows.activities
-  console.log(activities)
-  // 取得收藏資料，準備放上行事曆
+  const { favorite, resetFavorites } = useFav()
+  const [groupedActivities, setGroupedActivities] = useState({})
 
   // 將活動按月份和日期分組的函數
   const groupActByMonthAndDay = (activities) => {
@@ -32,9 +29,18 @@ export default function CalendarItemMob() {
       return acc
     }, {})
   }
-  // 取得該會員按月份和日期分組的收藏資料
-  const groupedActivities = groupActByMonthAndDay(activities)
-  console.log(groupedActivities)
+
+  // 使用 useMemo 來優化性能
+  const activities = useMemo(
+    () => favorite.rows.activities,
+    [favorite.rows.activities]
+  )
+
+  // 當 favorite 變化時，重新計算 groupedActivities
+  useEffect(() => {
+    const newGroupedActivities = groupActByMonthAndDay(activities)
+    setGroupedActivities(newGroupedActivities)
+  }, [activities])
 
   // 渲染每一格要放的資料
   const renderingCell = (date) => {
@@ -92,7 +98,7 @@ export default function CalendarItemMob() {
         bordered
         compact // 緊湊型（for 手機）
         renderCell={renderingCell} //渲染每格，把 ToDoList 資料帶入
-        cellClassName={(date) => (date.getDay() % 2 ? 'bg-gray' : undefined)}
+        // cellClassName={(date) => (date.getDay() % 2 ? 'bg-gray' : undefined)}
       />
       <style jsx>{`
         .bg-gray {

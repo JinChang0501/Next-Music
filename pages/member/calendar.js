@@ -2,9 +2,14 @@ import React, { useEffect, useState } from 'react'
 import MemberDLayout from '@/components/member/desktop-layout'
 import CalendarItem from '@/components/Activity/calendar/calendar-item'
 import CalendarItemMob from '@/components/Activity/calendar/calendar-item-mob'
+import { useFav } from '@/hooks/use-Fav'
+import { useRouter } from 'next/router'
 
 export default function Calendar() {
   const [isDesktop, setIsDesktop] = useState(true)
+  const { favorite, fetchFavorites } = useFav
+  const router = useRouter()
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const handleResize = () => {
@@ -16,6 +21,26 @@ export default function Calendar() {
 
     return () => window.removeEventListener('resize', handleResize) // 清除事件監聽器
   }, [])
+
+  useEffect(() => {
+    async function loadFavorites() {
+      if (router.isReady) {
+        try {
+          await fetchFavorites
+        } catch (error) {
+          console.error('Failed to fetch favorites:', error)
+        } finally {
+          setIsLoading(false)
+        }
+      }
+    }
+    loadFavorites()
+  }, [router.isReady, favorite])
+
+  // 加載中，拔掉
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
 
   return (
     <>

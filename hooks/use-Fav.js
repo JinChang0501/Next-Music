@@ -6,6 +6,7 @@ import { useAuth } from '@/hooks/use-auth'
 import toast, { Toaster } from 'react-hot-toast'
 
 const FavContext = createContext(null)
+
 export function FavProvider({ children }) {
   const { auth } = useAuth()
 
@@ -85,7 +86,12 @@ export function FavProvider({ children }) {
   return (
     <>
       <FavContext.Provider
-        value={{ favorite, setFavorite, resetFavorites, handleToggleFav }}
+        value={{
+          favorite,
+          fetchFavorites,
+          resetFavorites,
+          handleToggleFav,
+        }}
       >
         {children}
       </FavContext.Provider>
