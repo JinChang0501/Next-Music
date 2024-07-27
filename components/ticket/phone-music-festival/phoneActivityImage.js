@@ -6,18 +6,17 @@ import { useTicketContext } from '@/context/ticket/ticketContext'
 export default function PhoneActivityImage() {
   const { tickets } = useTicketContext()
 
-  const { picture } = tickets[0] || {}
+  const mingpic = tickets[0]?.mingpic
 
-  const fallbackImage = picture
+  const pic = `/images/Activity/banner/${mingpic}`
 
+  if (!mingpic) {
+    return null
+  }
   return (
     <>
       <div className={`${style.activityImage}`}>
-        {picture ? (
-          <Image src={picture} alt="Activity" fill priority />
-        ) : (
-          <Image src={fallbackImage} alt="Fallback Image" fill priority />
-        )}
+        <Image src={pic} alt="Activity" fill priority />
       </div>
     </>
   )

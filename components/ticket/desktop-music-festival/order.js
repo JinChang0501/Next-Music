@@ -7,9 +7,16 @@ import moment from 'moment-timezone'
 export default function Order({ orderData }) {
   const { tickets, selectedTickets, selectedCount } = useTicketContext()
 
-  const ticketData = selectedTickets[0] || tickets[0] || {}
+  const ticketData =
+    selectedTickets[0] ||
+    tickets[0] ||
+    selectedTickets[0]?.mingpic ||
+    tickets[0]?.mingpic ||
+    {}
 
-  const { picture, actname, actdate, acttime, location, art_name } = ticketData
+  const { mingpic, actname, actdate, acttime, location, art_name } = ticketData
+
+  const pic = `/images/Activity/banner/${mingpic}`
 
   const datetime = moment(
     `${actdate} ${acttime}`,
@@ -18,6 +25,10 @@ export default function Order({ orderData }) {
 
   if (!orderData) {
     return <div>正在加載訂單資料...</div>
+  }
+
+  if (!mingpic) {
+    return null
   }
   return (
     <>
@@ -28,7 +39,7 @@ export default function Order({ orderData }) {
           <div className={`${style.activityTitle} chb-h5`}>演唱會資訊</div>
           <div className={`${style.activityBody}`}>
             <div className={`${style.activityImage}`}>
-              <Image src={picture} fill alt="test" priority />
+              <Image src={pic} fill alt="test" priority />
             </div>
             <div className={`${style.activityText} chb-h5`}>
               <div>{actname}</div>

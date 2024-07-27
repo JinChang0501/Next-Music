@@ -8,15 +8,19 @@ import moment from 'moment-timezone'
 export default function AccordionFirst() {
   const { tickets, selectedCount } = useTicketContext()
 
-  const { picture, actname, actdate, acttime, location, art_name } =
-    tickets[0] || {}
+  const { mingpic, actname, actdate, acttime, location, art_name } =
+    tickets[0] || tickets[0]?.mingpic || {}
 
-  const fallbackImage = picture
+  const pic = `/images/Activity/banner/${mingpic}`
 
   const datetime = moment(
     `${actdate} ${acttime}`,
     `YYYY-MM-DD HH:mm:ss`
   ).format('YYYY-MM-DD HH:mm:ss')
+
+  if (!mingpic) {
+    return null
+  }
   return (
     <>
       <div className="accordion-item">
@@ -37,11 +41,7 @@ export default function AccordionFirst() {
           <div className="accordion-body">
             {/* ActivityImage */}
             <div className={`${style.activityImage} mb-5`}>
-              {picture ? (
-                <Image src={picture} alt="Activity" fill priority />
-              ) : (
-                <Image src={fallbackImage} alt="Fallback Image" fill priority />
-              )}
+              <Image src={pic} alt="Activity" fill priority />
             </div>
 
             {/* info */}

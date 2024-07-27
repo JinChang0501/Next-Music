@@ -9,8 +9,10 @@ import moment from 'moment-timezone'
 export default function PhoneAccordionFirst() {
   const { selectedSeatDetails } = useTicketContext()
 
-  const { picture, actname, actdate, acttime, location, art_name } =
-    selectedSeatDetails[0] || {}
+  const { mingpic, actname, actdate, acttime, location, art_name } =
+    selectedSeatDetails[0] || selectedSeatDetails[0]?.mingpic || {}
+
+  const pic = `/images/Activity/banner/${mingpic}`
 
   const [backgroundColor, setBackgroundColor] = useState('transparent')
 
@@ -56,6 +58,10 @@ export default function PhoneAccordionFirst() {
     return seatNumber.toString().padStart(3, '0')
   }
 
+  if (!mingpic) {
+    return null
+  }
+
   return (
     <>
       <div className="accordion-item">
@@ -77,7 +83,7 @@ export default function PhoneAccordionFirst() {
             {/* activityImage */}
 
             <div className={`${style.activityImage}`}>
-              <Image src={picture} alt="test" fill priority />
+              <Image src={pic} alt="test" fill priority />
             </div>
 
             {/* info */}

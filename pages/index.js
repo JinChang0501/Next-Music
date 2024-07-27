@@ -12,6 +12,9 @@ import { getArtist } from '@/services/artist'
 import toast, { Toaster } from 'react-hot-toast'
 import ArtCard from '@/components/artist/art-card'
 import Marquee from 'react-fast-marquee'
+import HomeLayout from '@/components/layout/homeLayout'
+import gsap from 'gsap'
+
 import 'swiper/css/navigation'
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -108,8 +111,48 @@ export default function Index() {
 
   const randomArtists = getRandomItems(artistData, 6)
 
+  useEffect(() => {
+    const follower = document.querySelector(`.${styles.follower}`)
+
+    const handleMouseMove = (e) => {
+      gsap.to(follower, {
+        duration: 1,
+        x: e.clientX + 45,
+        y: e.clientY - 15,
+        ease: 'power1.out',
+        opacity: 0.7,
+      })
+    }
+
+    const handleMouseLeave = () => {
+      gsap.to(follower, {
+        duration: 1,
+        opacity: 0,
+      })
+    }
+
+    const handleBlur = () => {
+      gsap.to(follower, {
+        duration: 1,
+        opacity: 0,
+      })
+    }
+
+    document.addEventListener('mousemove', handleMouseMove)
+    document.addEventListener('mouseleave', handleMouseLeave)
+    window.addEventListener('blur', handleBlur)
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove)
+      document.removeEventListener('mouseleave', handleMouseLeave)
+      window.removeEventListener('blur', handleBlur)
+    }
+  }, [])
+
   return (
     <>
+      <div className={`${styles.follower}`} />
+
       {/* banner一張（影片輪播） start */}
       <div className={`${styles['bannerSty']}`}>
         <div
@@ -263,4 +306,8 @@ export default function Index() {
       )}
     </>
   )
+}
+
+Index.getLayout = function getLayout(page) {
+  return <HomeLayout showLoader={true}>{page}</HomeLayout>
 }
