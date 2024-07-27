@@ -17,18 +17,33 @@
 
 .bannerSty {
   width: 100%;
-  height: 600px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  background-image: url('https://i.postimg.cc/Vk2Tz92R/cove-default-bg.png');
-  background-attachment: fixed;
-  background-color: #d8c1c1;
+  height: 100vh;
+  object-fit: cover;
+  position: relative;
+  top: 0;
+  left: 0;
+  user-select: none;
+  z-index: 999;
 }
 
-.p-relative {
-  position: relative;
-  top: 35%;
+.bannerSty video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -999;
+}
+
+.pRelative {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+
 }
 
 .p-absolute {
@@ -135,7 +150,7 @@
 
 @media (max-width: 390px) {
   .bannerSty {
-    height: 240px;
+    height: 100vh;
     background-attachment: unset;
   }
 
@@ -172,18 +187,22 @@
   .custom-bg-02 {
     height: 11rem;
   }
+
+  .follower {
+    display: none;
+  }
 }
 
 /* styles/home.module.css */
 .follower {
   position: fixed; 
-  width: 20px;
-  height: 20px;
-  background: salmon;
-  border-radius: 50%;
+  width: 110px;
+  height: 33px;
+  background: url('/images/makin-Logo-1.png') no-repeat;
+  /* border-radius: 50%; */
   pointer-events: none;
   transform: translate(-50%, -50%);
-  z-index: 999;
+  z-index: 2000;
 }
 
 /* //#region chloe 測試 */
