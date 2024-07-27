@@ -117,7 +117,6 @@ export default function Collection() {
                     name="activity"
                     className="align-item-center h-100 w-100"
                     onChange={getFilter}
-                    disabled
                   >
                     <option value="all" className="text-center">
                       - - 全部 - -
