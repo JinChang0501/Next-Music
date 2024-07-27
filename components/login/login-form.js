@@ -195,14 +195,33 @@ export default function LoginForm({
   const quickLogin = () => {
     setUser({ email: 'jin@test.com', password: '123456' })
   }
+
+  const quickLoginRegister = () => {
+    setUser({ email: 'iamjin910501@gmail.com', password: 'P@ssw0rd' })
+  }
   return (
     <>
       <form onSubmit={handleLoginForm}>
-        <h1 style={{ marginBottom: '20px' }}>
-          <button className="bg-white text-black" onClick={quickLogin}>
-            <div className="chb-h3">登入</div>
+        <div style={{ marginBottom: '20px' }}>
+          <button
+            className="bg-white text-black px-0"
+            onClick={(e) => {
+              e.preventDefault()
+              quickLogin()
+            }}
+          >
+            <div className="chb-h3">登</div>
           </button>
-        </h1>
+          <button
+            className="bg-white text-black px-0"
+            onClick={(e) => {
+              e.preventDefault()
+              quickLoginRegister()
+            }}
+          >
+            <div className="chb-h3">入</div>
+          </button>
+        </div>
 
         <div className="w-100">
           <label htmlFor="email">電子信箱:</label>
