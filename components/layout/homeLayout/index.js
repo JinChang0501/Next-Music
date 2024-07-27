@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
-import Nav from './nav'
-import Footer from './footer'
+import Nav from '../default-layout/nav'
+import Footer from '../default-layout/footer'
 import Loader from './loader'
 import style from './loader.module.scss' // 引入 CSS 模組
 

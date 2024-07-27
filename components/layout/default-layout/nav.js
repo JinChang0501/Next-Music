@@ -166,38 +166,16 @@ export default function Nav() {
             >
               <li className={`me-3 me-md-1`}>
                 <Link className="nav-link" href="/cart">
-                  <Badge color="violet" content={totalQty}>
+                  {auth.isAuth ? (
+                    <Badge color="violet" content={totalQty}>
+                      <BsCart />
+                    </Badge>
+                  ) : (
                     <BsCart />
-                  </Badge>
+                  )}
                 </Link>
               </li>
-              {/* <li className={`me-3 me-md-1 dropdown`}>
-                <Link
-                  className="nav-link"
-                  href="#"
-                  id="navbarDropdown01"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <BsBell />
-                </Link>
-                <ul
-                  className="dropdown-menu dropdown-menu-dark dropdown-menu-end"
-                  aria-labelledby="navbarDropdown01"
-                >
-                  <li>
-                    <Link className="dropdown-item" href="#">
-                      通知1
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" href="#">
-                      通知2
-                    </Link>
-                  </li>
-                </ul>
-              </li> */}
+
               <li className={`me-3 me-md-1 dropdown`}>
                 <Link
                   className="nav-link"
