@@ -10,13 +10,15 @@ export function FavProvider({ children }) {
   const { auth } = useAuth()
 
   // 收藏列表，收藏初始值
-  const [favorite, setFavorite] = useState({
+  const initialFavoriteState = {
     success: false,
     rows: {
       favorites: [], // 有收藏的 activity_id
       activities: [],
     },
-  })
+  }
+
+  const [favorite, setFavorite] = useState(initialFavoriteState)
 
   // 取得收藏項目
   const fetchFavorites = async () => {
@@ -66,15 +68,25 @@ export function FavProvider({ children }) {
     }
   }
 
+  const resetFavorites = () => {
+    setFavorite(initialFavoriteState)
+  }
+
   useEffect(() => {
     if (auth.isAuth) {
       fetchFavorites()
       console.log(favorite)
+    } else {
+      // 當用戶登出時，重置收藏狀態
+      resetFavorites()
     }
   }, [auth])
+
   return (
     <>
-      <FavContext.Provider value={{ favorite, setFavorite, handleToggleFav }}>
+      <FavContext.Provider
+        value={{ favorite, setFavorite, resetFavorites, handleToggleFav }}
+      >
         {children}
       </FavContext.Provider>
     </>

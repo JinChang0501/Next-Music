@@ -18,7 +18,7 @@ import ActivityCard from '@/components/Activity/activity-card'
 import { useFav } from '@/hooks/use-Fav'
 
 export default function Activity() {
-  const { favorite, handleToggleFav } = useFav()
+  const { favorite, handleToggleFav, resetFavorites } = useFav()
   const router = useRouter()
   const topRef = useRef(null)
   // 會員相關，判斷是否登入 auth.isAuth
@@ -135,7 +135,9 @@ export default function Activity() {
   // 登出的話
   useEffect(() => {
     if (!auth.isAuth) {
-      // 使用空的參數重新抓取活動資料
+      // 用戶登出時重置收藏
+      resetFavorites()
+      // 獲取最新的活動數據
       getActivity({
         keyword: keyword,
         actClass: actClass,
@@ -143,7 +145,7 @@ export default function Activity() {
         dateRange: dateRange,
       })
     }
-  }, [auth.isAuth])
+  }, [auth.isAuth, resetFavorites, keyword, actClass, area, dateRange])
 
   return (
     <>
