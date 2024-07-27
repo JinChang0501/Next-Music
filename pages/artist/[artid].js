@@ -216,7 +216,7 @@ export default function Artid() {
         {/* 熱門歌曲 start */}
         <div className="chb-h4 mt-2 mb-40 text-purple1">熱門歌曲</div>
         <div className="d-flex my-5">
-          <div className="width-60">
+          <div className="width-70">
             {tracks.map((v, i) => {
               return (
                 <TopTrackItem
@@ -230,9 +230,6 @@ export default function Artid() {
               )
             })}
           </div>
-          {/* <div className="width-40">
-
-          </div> */}
         </div>
         {/* 熱門歌曲 end */}
         {/*  出演活動 start  */}
@@ -276,8 +273,8 @@ export default function Artid() {
           margin-top: 80px;
           margin-bottom: 80px;
         }
-        .width-60 {
-          width: 60%;
+        .width-70 {
+          width: 70%;
         }
         .width-40 {
           width: 40%;
