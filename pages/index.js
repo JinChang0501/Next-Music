@@ -155,7 +155,6 @@ export default function Index() {
     }
   }, [])
 
-  // 動畫變化配置
   const fadeIn1 = {
     hidden: { opacity: 0, y: 100, scale: 0.1, rotateY: 180 },
     visible: { opacity: 1, y: 0, scale: 1, rotateY: 0 },
