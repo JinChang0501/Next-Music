@@ -19,31 +19,34 @@ export default function Detail() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
   const router = useRouter()
   const [cartData, setCardData] = useState([])
-  const { id } = router.query  // 設定路由參數給 pid (參照)
-  const pid = parseInt(id)   // 型態轉換：字串轉數字！！
+  const { id } = router.query // 設定路由參數給 pid (參照)
+  const pid = parseInt(id) // 型態轉換：字串轉數字！！
   const topRef = useRef(null)
-  const [totalQty, setTotalQty] = useState(0);
- 
+  const [itemCount, setItemCount] = useState(0)
+  const { addOne, setAddone, setTotalQty } = useTotal()
+
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
     { label: '周邊商城', href: '/product' },
     { label: '商品資訊', href: `/product/${router.query.pid}` },
   ]
-  // ToTop 
-  const scrollToTop = (e) => {
+  // ToTop
+  const scrollToTop = () => {
     //console.log('scrollToTop called')
     if (topRef.current) {
       console.log('topRef.current:', topRef.current)
       topRef.current.scrollIntoView({ behavior: 'smooth' })
-      
     } else {
       console.log('topRef.current is null')
     }
   }
-  useEffect((e)=>{
-    scrollToTop(e)
-  },[router])
- 
+  useEffect(
+    (e) => {
+      scrollToTop(e)
+    },
+    [router]
+  )
+
   // ToTop end
 
   useEffect(() => {
@@ -66,7 +69,7 @@ export default function Detail() {
             console.warn(`Product with id ${pid} not found`)
           }
           // 设置所有产品数据到 state 中，以便后续使用
-        setProducts(data);
+          setProducts(data)
         })
         .catch((error) => {
           console.error('Error fetching products', error)
@@ -91,25 +94,48 @@ export default function Detail() {
     }
 
     const cartData = localStorage.getItem('makin-cart')
+    console.log('cartDatacartDatacartDatacartDatacartDatacartDatacartData')
+    console.log(cartData)
 
     if (cartData) {
       cart = JSON.parse(cartData)
     }
+
+    const countSum = () => {
+      let sum = 0
+
+      for (let i = 0; i < cart.length; i++) {
+        sum += cart[i].quantity
+      }
+      return sum
+    }
+    console.log('我是total')
+    console.log(countSum())
+    setTotalQty(countSum() + 1)
+    console.log('我是CART-----------')
+    console.log(cart)
     setCardData(cart)
+    console.log('-------cart-------')
+    console.log(cart)
     const existingItem = cart.find((item) => item.id === cartItem.id)
     if (existingItem) {
       existingItem.quantity += 1
     } else {
       cart.push(cartItem)
     }
+    console.log('--------existingItem------------')
+    console.log(existingItem)
 
     localStorage.setItem('makin-cart', JSON.stringify(cart))
 
-    // 更新 totalQty 狀態
-    const updatedQty = cart.length; // 這裡根據你的購物車邏輯來確定更新後的數量
-    setTotalQty(updatedQty);
+    // 更新 itemCount 狀態 => 這裡是紀錄cart裡面有幾筆商品
+    const updatedQty = cart.length // 這裡根據你的購物車邏輯來確定更新後的數量
+    setItemCount(updatedQty)
     // 提示成功加入購物車
     toast.success(`本商品已成功加入購物車`)
+    setAddone(addOne + 1)
+    console.log('我是addone')
+    console.log(addOne)
   }
 
   useEffect(() => {
@@ -122,37 +148,37 @@ export default function Detail() {
   }
 
   // 推薦商品
-    // 亂數取得陣列中的index
-    function getRandomIndexes(array, num) {
-      const indexes = []
-  
-      // 計算原始資料數
-      const arrayLength = array.length
-  
-      // 避免取得資料數量 num > 原始資料數量時造成的 Error
-      const count = num < array.length ? num : array.length
-  
-      while (indexes.length < count) {
-        const randomIndex = Math.floor(Math.random() * arrayLength)
-        if (!indexes.includes(randomIndex)) {
-          indexes.push(randomIndex)
-        }
+  // 亂數取得陣列中的index
+  function getRandomIndexes(array, num) {
+    const indexes = []
+
+    // 計算原始資料數
+    const arrayLength = array.length
+
+    // 避免取得資料數量 num > 原始資料數量時造成的 Error
+    const count = num < array.length ? num : array.length
+
+    while (indexes.length < count) {
+      const randomIndex = Math.floor(Math.random() * arrayLength)
+      if (!indexes.includes(randomIndex)) {
+        indexes.push(randomIndex)
       }
-  
-      return indexes
     }
-  
-    // 對應陣列index取得資料
-    function getRandomElementsFromArray(array, count) {
-      const randomIndexes = getRandomIndexes(array, count)
-      const randomElements = randomIndexes.map(index => array[index])
-      return randomElements
-    }
-    // 從所有活動的資料裡撈出 4 筆（隨機），且不包含本頁這筆：
-    const recommendData = products.filter((r) => r.pid !== pid)
-    const random4Recommend = getRandomElementsFromArray(recommendData, 4)
-  
-    console.log(random4Recommend)
+
+    return indexes
+  }
+
+  // 對應陣列index取得資料
+  function getRandomElementsFromArray(array, count) {
+    const randomIndexes = getRandomIndexes(array, count)
+    const randomElements = randomIndexes.map((index) => array[index])
+    return randomElements
+  }
+  // 從所有活動的資料裡撈出 4 筆（隨機），且不包含本頁這筆：
+  const recommendData = products.filter((r) => r.pid !== pid)
+  const random4Recommend = getRandomElementsFromArray(recommendData, 4)
+
+  console.log(random4Recommend)
 
   return (
     <>
@@ -164,50 +190,68 @@ export default function Detail() {
           >
             {/* <SwiperTop/> */}
             <Swiper
-        style={{
-          '--swiper-navigation-color': '#685beb',
-          '--swiper-pagination-color': '#685beb',
-        }}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
-        spaceBetween={10}
-        navigation={true}
-        thumbs={{ swiper: thumbsSwiper }}
-        modules={[Autoplay, FreeMode, Navigation, Thumbs]}
-        className={`mySwiper2`}
-      >
-        <SwiperSlide>
-          <img src={`/images/product/list/${product.picture}`} className={`${styles['pic']}`}/>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={`/images/product/list/${product.picture2}`} className={`${styles['pic']}`}/>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={`/images/product/list/${product.picture3}`} className={`${styles['pic']}`}/>
-        </SwiperSlide>
-      </Swiper>
+              style={{
+                '--swiper-navigation-color': '#685beb',
+                '--swiper-pagination-color': '#685beb',
+              }}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              spaceBetween={10}
+              navigation={true}
+              thumbs={{ swiper: thumbsSwiper }}
+              modules={[Autoplay, FreeMode, Navigation, Thumbs]}
+              className={`mySwiper2`}
+            >
+              <SwiperSlide>
+                <img
+                  src={`/images/product/list/${product.picture}`}
+                  className={`${styles['pic']}`}
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src={`/images/product/list/${product.picture2}`}
+                  className={`${styles['pic']}`}
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src={`/images/product/list/${product.picture3}`}
+                  className={`${styles['pic']}`}
+                />
+              </SwiperSlide>
+            </Swiper>
             {/* <SwiperBottom /> */}
             <Swiper
-        onSwiper={setThumbsSwiper}
-        spaceBetween={10}
-        slidesPerView={3}
-        freeMode={true}
-        watchSlidesProgress={true}
-        modules={[FreeMode, Navigation, Thumbs]}
-        className={`mySwiper`}
-      >
-        <SwiperSlide>
-          <img src={`/images/product/list/${product.picture}`} className={`${styles['pic2']}`}/>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={`/images/product/list/${product.picture2}`} className={`${styles['pic2']}`}/>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={`/images/product/list/${product.picture3}`} className={`${styles['pic2']}`}/>
-        </SwiperSlide>
-      </Swiper>
+              onSwiper={setThumbsSwiper}
+              spaceBetween={10}
+              slidesPerView={3}
+              freeMode={true}
+              watchSlidesProgress={true}
+              modules={[FreeMode, Navigation, Thumbs]}
+              className={`mySwiper`}
+            >
+              <SwiperSlide>
+                <img
+                  src={`/images/product/list/${product.picture}`}
+                  className={`${styles['pic2']}`}
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src={`/images/product/list/${product.picture2}`}
+                  className={`${styles['pic2']}`}
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src={`/images/product/list/${product.picture3}`}
+                  className={`${styles['pic2']}`}
+                />
+              </SwiperSlide>
+            </Swiper>
           </div>
         </div>
         <div className="col-sm-3">
@@ -288,27 +332,29 @@ export default function Detail() {
                     >
                       {v.name}
                     </p>
-                    <p className={`card-text chb-h6 text-white ${styles['text-center']}`}>{v.activity}</p>
+                    <p
+                      className={`card-text chb-h6 text-white ${styles['text-center']}`}
+                    >
+                      {v.activity}
+                    </p>
                     <p
                       className={`card-text chb-h6 text-white ${styles['text-center']}`}
                     >
                       NT$ {v.price}
                     </p>
                     <div className={`${styles['text-center']}`}>
-                      <Link href={`/product/${v.id}`} >
+                      <Link href={`/product/${v.id}`}>
                         <DesktopBlackNoIconBtnPurple
                           text="詳細資訊"
                           className={`chb-p`}
-                          onClick={{ scrollToTop }}
+                          onClick={(e) => scrollToTop(e)}
                         />
                       </Link>
-                      
                     </div>
                   </div>
                 </div>
-              );
-              
-          })}
+              )
+            })}
           </div>
         </div>
       </div>

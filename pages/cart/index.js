@@ -7,18 +7,17 @@ import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlack
 import { GET_PRODUCTS } from '@/configs/api-path'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-// import toast, { Toaster } from 'react-hot-toast'
 import Swal from 'sweetalert2'
+import { useTotal } from '@/hooks/product/use-Total'
 
 export default function CartIndex() {
   const [products, setProducts] = useState([])
   const cartKey = 'makin-cart'
   const [cart, setCart] = useState([])
   const [items, setItems] = useState([])
-  const [totalQty, setTotalQty] = useState(0)
   const [totalPrice, setTotalPrice] = useState(0)
-  // const [cartDatas, setCardDatas] = useState([])
   const router = useRouter()
+  const { totalQty, setTotalQty, addOne } = useTotal()
 
   const breadcrumbsURL = [
     { label: '周邊商城', href: '/product' },
@@ -73,6 +72,7 @@ export default function CartIndex() {
     })
     setTotalQty(qty)
     setTotalPrice(price)
+    console.log(qty)
   }, [cart, products])
 
   const getCartFromStorage = () => {
@@ -111,7 +111,7 @@ export default function CartIndex() {
   const handleRemoveCart = (pid) => {
     Swal.fire({
       title: '確定要刪除這項商品嗎?',
-      text: "刪除後，無法復原!",
+      text: '刪除後，無法復原!',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',

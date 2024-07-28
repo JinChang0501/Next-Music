@@ -32,7 +32,8 @@ export function TotalProvider({ children }) {
   // const [cartDatas, setCardDatas] = useState([])
   const router = useRouter()
   const [userProfile, setUserProfile] = useState([])
-
+  const [totalTrigger, setTotalTrigger] = useState(0)
+  const [addOne, setAddone] = useState(0)
   // const breadcrumbsURL = [
   //   { label: '周邊商城', href: '/product' },
   //   { label: '商品資訊', href: '/product[pid]' },
@@ -58,6 +59,7 @@ export function TotalProvider({ children }) {
 
     setCart(getCartFromStorage())
   }, [])
+
   const getCartFromStorage = () => {
     let cartData = []
     const oriData = localStorage.getItem(cartKey)
@@ -75,7 +77,7 @@ export function TotalProvider({ children }) {
   //
   const addToCart = () => {
     if (!product) return
-
+    setTotalTrigger(totalTrigger + 1)
     const cartItem = {
       id: product.id,
       name: product.name,
@@ -97,11 +99,6 @@ export function TotalProvider({ children }) {
     }
 
     localStorage.setItem('makin-cart', JSON.stringify(cart))
-
-    const qty = cart.reduce((total, item) => total + item.quantity, 0)
-    setTotalQty(qty)
-
-    toast.success(`本商品已成功加入購物車`)
   }
 
   // 購物車內容
@@ -121,6 +118,9 @@ export function TotalProvider({ children }) {
     })
     setTotalQty(qty)
     setTotalPrice(price)
+    console.log('執行totalTrigger in useEffect')
+    console.log('我是useEffect裡面的QTY')
+    console.log(qty)
   }, [cart, products])
 
   // 清除LocalStorage的資料
@@ -171,7 +171,9 @@ export function TotalProvider({ children }) {
           totalPrice,
           setOrderNum,
           orderNum,
-          addToCart
+          addToCart,
+          addOne,
+          setAddone,
         }}
       >
         {children}
