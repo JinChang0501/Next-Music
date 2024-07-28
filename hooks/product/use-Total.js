@@ -171,6 +171,7 @@ export function TotalProvider({ children }) {
           totalPrice,
           setOrderNum,
           orderNum,
+          addToCart
         }}
       >
         {children}
