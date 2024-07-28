@@ -10,12 +10,15 @@
   background-color: black;
   opacity: 1;
   z-index: 9999;
-  transition: all 3.5s linear;
+  transition: all 1.5s linear;
 }
 
 .logoLoader.hidden {
   opacity: 0;
   visibility: hidden;
+}
+
+.logoLoader.zindex {
   z-index: -9999;
 }
 
