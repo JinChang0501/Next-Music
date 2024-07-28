@@ -28,8 +28,14 @@ const initUserProfile = {
 
 export default function Profile() {
   const [isDisable, setIsDisable] = useState(true)
-  const { newURL, setNewURl, newFileName, setNewFileName, setUpdate } =
-    useRefresh()
+  const { newFileName, setNewFileName, setUpdate } = useRefresh()
+  // 更新表單
+  const { auth } = useAuth()
+  const [userProfile, setUserProfile] = useState(initUserProfile)
+  const [oldData, setOldData] = useState({})
+  const [hasProfile, setHasProfile] = useState(false)
+  const [selectedFile, setSelectedFile] = useState(null)
+
   const handleEdit = (e) => {
     e.preventDefault()
 
@@ -37,14 +43,11 @@ export default function Profile() {
   }
 
   const handleCancel = () => {
+    setUserProfile(oldData) //取消後復原原始的資料
+    setSelectedFile(null)
     setIsDisable(true)
   }
 
-  // 更新表單
-  const { auth } = useAuth()
-  const [userProfile, setUserProfile] = useState(initUserProfile)
-  const [hasProfile, setHasProfile] = useState(false)
-  const [selectedFile, setSelectedFile] = useState(null)
   // !! 注意phone, birth_date...等資料並沒有在auth.userData中，需自行向伺服器獲取
   // 這裡的設計重點，是auth.userData或JWT存取令牌中，並不記錄"會改變"的會員資料(密碼當然更不行，會有安全性問題)
   // 因此更新會員資料與auth.userData或JWT存取令牌無關
@@ -67,7 +70,7 @@ export default function Profile() {
 
       // 設定到狀態中
       setUserProfile(dbUserProfile)
-
+      setOldData(dbUserProfile)
       // toast.success('會員資料載入成功')
     } else {
       toast.error(`會員資料載入失敗`)
