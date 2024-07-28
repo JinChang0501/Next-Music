@@ -5,6 +5,7 @@ export default function DesktopBlackNoIconBtnBlack({
   className = 'chb-h6',
   onClick = () => {},
 }) {
+  //console.log('onClick:', onClick) // 輸出 onClick 以確認它的類型
   return (
     <>
       <button
