@@ -126,7 +126,7 @@ export default function Nav() {
         <div className="container">
           {/* Logo */}
           <Link className="navbar-brand" href="/">
-            <img src="https://i.postimg.cc/zX9tnq1L/makin-Logo-1.png" />
+            <img src="/images/makin-Logo-index.png" />
           </Link>
           <button
             className="navbar-toggler"
