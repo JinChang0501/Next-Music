@@ -1,8 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Slider } from 'rsuite'
-// import 'rsuite/dist/styles/rsuite-default.css'
-// import './custom-slider.css'
-import 'rsuite/Slider/styles/index.css'
 import Image from 'next/image'
 
 import {
@@ -24,12 +20,8 @@ const PlaybackControlMob = ({
   isPlaying,
   onPlay,
   onPause,
-  onNextTrack,
-  onPreviousTrack,
   onSeek,
-  onVolumeChange,
 }) => {
-  const [volume, setVolume] = useState(50)
   const [progress, setProgress] = useState(0)
   const [duration, setDuration] = useState(0)
   const progressInterval = useRef(null)
@@ -37,10 +29,6 @@ const PlaybackControlMob = ({
 
   useEffect(() => {
     if (player) {
-      player.getVolume().then((vol) => {
-        setVolume(vol * 100)
-      })
-
       const handleStateChange = (state) => {
         if (state) {
           setDuration(state.duration)
@@ -107,24 +95,6 @@ const PlaybackControlMob = ({
     }
   }, [isPlaying, duration])
 
-  const handleVolumeChange = (newValue) => {
-    setVolume(newValue)
-    onVolumeChange(newValue / 100)
-  }
-
-  // 手動控制時間軸的位置
-  const handleProgressChange = (newValue) => {
-    setProgress(newValue)
-    lastPosition.current = newValue
-    onSeek(newValue)
-  }
-  // 時間格式換算
-  const formatTime = (ms) => {
-    const seconds = Math.floor((ms / 1000) % 60)
-    const minutes = Math.floor((ms / 1000 / 60) % 60)
-    return `${minutes}:${seconds.toString().padStart(2, '0')}`
-  }
-
   // 確保從上次暫停的位置開始播放
   const handlePlay = () => {
     onPlay()
@@ -147,9 +117,9 @@ const PlaybackControlMob = ({
               </div>
               <div className="d-flex flex-column ms-2">
                 <div className="marquee mb-2">
-                  <span className="chb-p">{currentTrack.name}</span>
+                  <span className="chr-h6">{currentTrack.name}</span>
                 </div>
-                <div className="chr-p-10 text-purple3">
+                <div className="chr-p text-purple3">
                   {currentTrack.artists[0].name}
                 </div>
               </div>
@@ -165,19 +135,19 @@ const PlaybackControlMob = ({
                   alt="No music playing"
                 />
               </div>
-              <div className="chb-p mb-1">未播放</div>
+              <div className="chr-h6 mb-1">未播放</div>
             </>
           )}
           <div className="ms-auto me-2">
             {isPlaying ? (
               <BsPauseCircleFill
                 onClick={onPause}
-                className="text-white eng-h3 mx-2"
+                className="text-white eng-h2 mx-2"
               />
             ) : (
               <BsPlayCircle
                 onClick={handlePlay}
-                className="text-white eng-h3 mx-2"
+                className="text-white eng-h2 mx-2"
               />
             )}
           </div>
@@ -190,7 +160,7 @@ const PlaybackControlMob = ({
           }
           .marquee {
             position: relative;
-            width: 200px;
+            width: 180px;
             height: 18px;
             margin: auto;
             overflow: hidden;
@@ -200,7 +170,7 @@ const PlaybackControlMob = ({
             white-space: nowrap;
             overflow: hidden;
             padding-left: 100%;
-            animation: run 8s infinite linear;
+            animation: run 6s infinite linear;
           }
 
           @keyframes run {

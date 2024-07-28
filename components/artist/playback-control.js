@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Slider } from 'rsuite'
 // import 'rsuite/dist/styles/rsuite-default.css'
 // import './custom-slider.css'
-import 'rsuite/Slider/styles/index.css'
+// import 'rsuite/Slider/styles/index.css'
 import Image from 'next/image'
 
 import {
@@ -132,7 +132,7 @@ const PlaybackControl = ({
   }
   return (
     <>
-      <div className="position-fixed bottom-0 end-0 m-3 p-3 bg-black95 outline">
+      <div className="position-fixed pos-end m-3 p-3 bg-black95 outline">
         <div className="text-white wid-250 mb-3">
           {currentTrack ? (
             <>
@@ -237,6 +237,10 @@ const PlaybackControl = ({
           .wid-250 {
             width: 250px;
           }
+          .pos-end {
+            top: 40%;
+            left: 80%;
+          }
           .marquee {
             position: relative;
             width: 245px;
@@ -251,7 +255,6 @@ const PlaybackControl = ({
             padding-left: 100%;
             animation: run 10s infinite linear;
           }
-
           @keyframes run {
             0% {
               transform: translateX(0%);

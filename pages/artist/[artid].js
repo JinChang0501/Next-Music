@@ -229,7 +229,7 @@ export default function Artid() {
         {/* 熱門歌曲 start */}
         <div className="chb-h4 mt-2 mb-40 text-purple1">熱門歌曲</div>
         <div className="d-flex my-5">
-          <div className="width-70">
+          <div className="width-60">
             {tracks.map((v, i) => {
               return (
                 <TopTrackItem
@@ -248,7 +248,6 @@ export default function Artid() {
         {/*  出演活動 start  */}
         <div className="row my-5">
           <div className="chb-h4 mb-40 text-purple1">出演活動</div>
-          {/* <ParticipatingActivity imgSrc act_name act_date aid /> */}
           {activity.rows2.map((v, i) => {
             return (
               <ParticipatingActivity
@@ -283,10 +282,7 @@ export default function Artid() {
           isPlaying={isPlaying}
           onPlay={() => handlePlay(currentTrackUri)}
           onPause={() => player.pause()}
-          onNextTrack={handleNextTrack}
-          onPreviousTrack={handlePreviousTrack}
           onSeek={(position) => player.seek(position)}
-          onVolumeChange={(volume) => player.setVolume(volume)}
         />
       )}
 
@@ -301,8 +297,8 @@ export default function Artid() {
           margin-top: 80px;
           margin-bottom: 80px;
         }
-        .width-70 {
-          width: 70%;
+        .width-60 {
+          width: 60%;
         }
         @media (max-width: 390px) {
           .mt-80 {
@@ -315,7 +311,7 @@ export default function Artid() {
             margin-top: 20px;
             margin-bottom: 20px;
           }
-          .width-70 {
+          .width-60 {
             width: 100%;
           }
         }

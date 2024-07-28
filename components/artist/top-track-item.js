@@ -39,12 +39,12 @@ export default function TopTrackItem({
         {isPlaying ? (
           <BsPauseCircleFill
             onClick={onPlay}
-            className="text-white icon-fixed eng-h4 me-md-4 me-2"
+            className="text-white icon-fixed eng-h3 me-md-4 me-2"
           />
         ) : (
           <BsPlayCircle
             onClick={onPlay}
-            className="text-white icon-fixed eng-h4 me-md-4 me-2"
+            className="text-white icon-fixed eng-h3 me-md-4 me-2"
           />
         )}
         {/* {over ? (
