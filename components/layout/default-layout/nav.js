@@ -117,12 +117,11 @@ export default function Nav() {
   }, [auth.isAuth, router])
   // 直接從 localStorage 獲取購物車數據並更新 totalQty
   useEffect(() => {
-    const cartData = localStorage.getItem('makin-cart');
-    const cart = JSON.parse(cartData) || [];
-    const qty = cart.reduce((total, item) => total + item.quantity, 0);
-    setTotalQty(qty);
-  }, []);
-  
+    const cartData = localStorage.getItem('makin-cart')
+    const cart = JSON.parse(cartData) || []
+    const qty = cart.reduce((total, item) => total + item.quantity, 0)
+    setTotalQty(qty)
+  }, [])
 
   return (
     <>
@@ -134,7 +133,7 @@ export default function Nav() {
         <div className="container">
           {/* Logo */}
           <Link className="navbar-brand" href="/">
-            <img src="https://i.postimg.cc/zX9tnq1L/makin-Logo-1.png" />
+            <img src="/images/makin-Logo-index.png" />
           </Link>
           <button
             className="navbar-toggler"
