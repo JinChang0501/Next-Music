@@ -112,7 +112,6 @@ $theme-colors: (
   'warning': #ffc107,
   'danger': #dc3545,
   'light': #f8f9fa,
-  // 'dark': #212529,
   'dark': #000000,
   // 新增自定義顏色
   'purple1': #685beb,
@@ -223,6 +222,14 @@ $accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3
 $form-check-input-checked-bg-color: #685beb;
 
 // #endregion checkBox
+
+// #region animate.css
+
+.animate__animated.animate__zoomInDown {
+  animation-duration: 2s;
+}
+
+// #endregion animate.css
 
 // ↑↑↑  變數覆蓋(Variable overrides) 要寫在這行"上面"  ↑↑↑
 // 這裡導入所有 bootstrap 樣式
@@ -799,6 +806,7 @@ body {
   max-width: 100vw;
   height: 100%;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {

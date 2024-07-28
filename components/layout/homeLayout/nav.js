@@ -23,7 +23,8 @@ import { useTotal } from '@/hooks/product/use-Total'
 import { API_SERVER } from '@/configs/api-path'
 import { useRefresh } from '@/hooks/useRefresh'
 import PreviewUploadImage from '@/components/member/desktop-layout/preview-upload-image'
-
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 export default function Nav() {
   //
   const {
@@ -117,9 +118,9 @@ export default function Nav() {
   return (
     <>
       <nav
-        className="navbar navbar-expand-lg navbar-dark bg-dark"
+        className="position-absolute top-0 w-100 navbar navbar-expand-lg navbar-dark bg-transparent"
         aria-label="Eighth navbar example"
-        style={{ borderBottom: '1px solid var(--Primary-03, #DBD7FF)' }}
+        // style={{ borderBottom: '1px solid var(--Primary-03, #DBD7FF)' }}
       >
         <div className="container">
           {/* Logo */}
@@ -166,39 +167,16 @@ export default function Nav() {
             >
               <li className={`me-3 me-md-1`}>
                 <Link className="nav-link" href="/cart">
-                  <Badge color="violet" content={totalQty}>
+                  {auth.isAuth ? (
+                    <Badge color="violet" content={totalQty}>
+                      <BsCart />
+                    </Badge>
+                  ) : (
                     <BsCart />
-                  </Badge>
-                  {/* <span>{totalQty}</span> */}
+                  )}
                 </Link>
               </li>
-              {/* <li className={`me-3 me-md-1 dropdown`}>
-                <Link
-                  className="nav-link"
-                  href="#"
-                  id="navbarDropdown01"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <BsBell />
-                </Link>
-                <ul
-                  className="dropdown-menu dropdown-menu-dark dropdown-menu-end"
-                  aria-labelledby="navbarDropdown01"
-                >
-                  <li>
-                    <Link className="dropdown-item" href="#">
-                      通知1
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" href="#">
-                      通知2
-                    </Link>
-                  </li>
-                </ul>
-              </li> */}
+
               <li className={`me-3 me-md-1 dropdown`}>
                 <Link
                   className="nav-link"

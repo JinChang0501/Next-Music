@@ -7,6 +7,8 @@ export default function PhoneSelectTicket() {
   const { tickets, selectedCount, setSelectedCount, setSelectedTickets } =
     useTicketContext()
 
+  const { price } = tickets[0] || {}
+
   const [isOpen, setIsOpen] = useState(false)
   const [hasSelected, setHasSelected] = useState(false)
 
@@ -84,7 +86,7 @@ export default function PhoneSelectTicket() {
 
           {/* totalPrice */}
           <div className={`${style.totalPrice} chb-h5 text-black60`}>
-            總價 : $ {2500 * selectedCount}
+            總價 : $ {price * selectedCount}
           </div>
         </div>
       </div>

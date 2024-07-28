@@ -55,6 +55,7 @@ export default function Collection() {
         }
       )
       setUpdateTrigger(activity_id)
+      toast.success('成功移除收藏')
       const data = await response.json()
       console.log(data)
       return data

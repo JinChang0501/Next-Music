@@ -45,6 +45,17 @@ export default function RegisterForm({ setIsActive }) {
     // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Object_initializer#%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E5%90%8D
   }
 
+  //快速輸入註冊資訊
+  const insertRegisterData = () => {
+    const newData = {
+      name: '派大星',
+      email: 'iamjin910501@gmail.com',
+      password: 'P@ssw0rd',
+      confirmPassword: 'P@ssw0rd',
+    }
+    setUserRegister(newData)
+  }
+
   const handleSubmit = async (e) => {
     // 阻擋表單預設送出行為
     e.preventDefault()
@@ -120,7 +131,15 @@ export default function RegisterForm({ setIsActive }) {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <div className="chb-h4">註冊帳戶</div>
+        <button
+          className="bg-transparent text-black"
+          onClick={(e) => {
+            e.preventDefault()
+            insertRegisterData()
+          }}
+        >
+          <div className="chb-h4">註冊帳戶</div>
+        </button>
 
         <div className="w-100">
           <label htmlFor="name">姓名:</label>
