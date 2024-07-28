@@ -189,7 +189,7 @@
   }
 
   .follower {
-    display: none;
+    visibility: hidden;
   }
 }
 

@@ -257,9 +257,9 @@ export default function Index() {
           animate={inView1 ? 'visible' : 'hidden'}
           variants={fadeIn1}
           transition={{ duration: 1 }}
-          className={`row mb-5 ${styles['mt-120']}`}
+          className={`row mx-0 mb-5 ${styles['mt-120']}`}
         >
-          <div className={`row mb-5 ${styles['mt-120']}`}>
+          <div className={`row mx-0 mb-5 ${styles['mt-120']}`}>
             <div className="d-flex flex-column align-items-center text-align">
               <div className="eng-h1 text-white">Activities</div>
               <div className="chb-h3 text-purple3 text-center">
@@ -277,9 +277,9 @@ export default function Index() {
           animate={inView2 ? 'visible' : 'hidden'}
           variants={fadeIn2}
           transition={{ duration: 0.6 }}
-          className={`row ${styles['mb-120']}`}
+          className={`row mx-0 ${styles['mb-120']}`}
         >
-          <div className={`row ${styles['mb-120']}`}>
+          <div className={`row mx-0 ${styles['mb-120']}`}>
             <div
               className={`col-md-7 col-12 p-2 ${styles['ov-hide']} ${styles['img-borderA']}`}
             >
@@ -316,9 +316,9 @@ export default function Index() {
           animate={inView3 ? 'visible' : 'hidden'}
           variants={fadeIn3}
           transition={{ duration: 0.6 }}
-          className="row"
+          className="row mx-0"
         >
-          <div className="row">
+          <div className="row mx-0">
             <div
               className={`col-md-7 col-12 p-2 order-md-2 ${styles.cover} ${styles['img-borderA']}`}
             >
@@ -356,9 +356,9 @@ export default function Index() {
           animate={inView4 ? 'visible' : 'hidden'}
           variants={fadeIn4}
           transition={{ duration: 0.6 }}
-          className="row"
+          className="row mx-0"
         >
-          <div className={`row ${styles['mb-120']} ${styles['mt-120']}`}>
+          <div className={`row mx-0 ${styles['mb-120']} ${styles['mt-120']}`}>
             <div className="d-flex flex-column align-items-center">
               <div className="eng-h1 text-white">Discover More</div>
               <div className="chb-h3 text-purple3 text-center">

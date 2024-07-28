@@ -14,11 +14,18 @@ function LogoLoader() {
       document
         .querySelector(`.${styles.logoLoader}`)
         .classList.add(styles.hidden)
+    }, 2000)
+
+    const thirdTimer = setTimeout(() => {
+      document
+        .querySelector(`.${styles.logoLoader}`)
+        .classList.add(styles.zindex)
     }, 3000)
 
     return () => {
       clearTimeout(firstTimer)
       clearTimeout(secondTimer)
+      clearTimeout(thirdTimer)
     }
   }, [])
 
