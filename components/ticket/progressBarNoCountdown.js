@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react'
 import style from './progressBarNoCountdown.module.scss'
 import { FaChevronRight } from 'react-icons/fa'
 import { useTitle } from '@/context/ticket/useTitle'
+import { useRouter } from 'next/router'
 
 export default function ProgressBarNoCountdown({ progressBarRef }) {
+  const router = useRouter()
   const title = useTitle() // 獲取 Context 中的 title
   const [isPhoneView, setIsPhoneView] = useState(false)
+  const { actid } = router.query
 
   useEffect(() => {
     const handleResize = () => {
@@ -20,7 +23,12 @@ export default function ProgressBarNoCountdown({ progressBarRef }) {
   }, [])
 
   const steps = [
-    { id: 1, stepTitle: 'select-Seat', stepText: '選擇座位', stepNumber: 1 },
+    {
+      id: 1,
+      stepTitle: 'select-Seat',
+      stepText: `選擇${actid > 0 && actid < 10 ? '座位' : '票數'}`,
+      stepNumber: 1,
+    },
     { id: 2, stepTitle: 'payment', stepText: '支付方式', stepNumber: 2 },
     { id: 3, stepTitle: 'finish', stepText: '完成購票', stepNumber: 3 },
   ]
