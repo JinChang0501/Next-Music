@@ -31,7 +31,7 @@ export default function Detail() {
     { label: '商品資訊', href: `/product/${router.query.pid}` },
   ]
   // ToTop
-  const scrollToTop = () => {
+  const scrollToTop = (e) => {
     //console.log('scrollToTop called')
     if (topRef.current) {
       console.log('topRef.current:', topRef.current)
@@ -182,6 +182,7 @@ export default function Detail() {
 
   return (
     <>
+      <div ref={topRef}></div>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
       <div className={`row ${styles['mx-160']} ${styles['mt-80']}`}>
         <div className="col-sm-6">
@@ -347,7 +348,7 @@ export default function Detail() {
                         <DesktopBlackNoIconBtnPurple
                           text="詳細資訊"
                           className={`chb-p`}
-                          onClick={(e) => scrollToTop(e)}
+                          onClick={scrollToTop}
                         />
                       </Link>
                     </div>
