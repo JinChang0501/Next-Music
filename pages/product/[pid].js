@@ -227,7 +227,7 @@ export default function Detail() {
             {/* <SwiperBottom /> */}
             <Swiper
               onSwiper={setThumbsSwiper}
-              spaceBetween={10}
+              spaceBetween={0}
               slidesPerView={3}
               freeMode={true}
               watchSlidesProgress={true}
@@ -296,15 +296,12 @@ export default function Detail() {
             付款方式
           </p>
           <p className={`text-purple3 chb-h6 ${styles['mt-40']}`}>
-            目前提供付款方式有3種：
+            目前提供付款方式有2種：
           </p>
           <p className={`text-purple3 chb-h6 `}>
             1.『綠界』付款，宅配到府（限台灣本島）
           </p>
-          <p className={`text-purple3 chb-h6 `}>
-            2.『LINE PAY』付款，宅配到府（限台灣本島）
-          </p>
-          <p className={`text-purple3 chb-h6 `}>3.『超商取貨付款』</p>
+          <p className={`text-purple3 chb-h6 `}>2.『超商取貨付款』</p>
           <p className={`text-purple3 chb-h6 `}>
             ※ 配合的宅配公司為：黑貓宅急便
           </p>
@@ -319,7 +316,7 @@ export default function Detail() {
             {random4Recommend.map((v) => {
               return (
                 <div
-                  key={v.ppid}
+                  key={v.pid}
                   className={`card ${styles['card']} ${styles['mt-28']}`}
                 >
                   <img
