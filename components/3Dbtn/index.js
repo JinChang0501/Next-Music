@@ -7,7 +7,7 @@ import style from './btn.module.scss'
 
 export default function ThreeDBtn({
   text = 'button',
-  className = 'chb-h6',
+  className = 'chb-h5',
   onClick = () => {},
 }) {
   const [ref, bounds] = useMeasure({ scroll: false })
