@@ -39,7 +39,7 @@ export default function Nav() {
   } = useLogin()
   //
   //yun
-  const { totalQty } = useTotal()
+  const { totalQty, setTotalQty } = useTotal()
   const [isLoggedIn, setIsLoggedIn] = useState(false) // 這裡要接Login元件傳回來的狀態
   const router = useRouter()
   const { logoutFirebase, loginGoogleRedirect, initApp } = useFirebase()
@@ -115,6 +115,15 @@ export default function Nav() {
   useEffect(() => {
     console.log('router')
   }, [auth.isAuth, router])
+  // 直接從 localStorage 獲取購物車數據並更新 totalQty
+  useEffect(() => {
+    const cartData = localStorage.getItem('makin-cart');
+    const cart = JSON.parse(cartData) || [];
+    const qty = cart.reduce((total, item) => total + item.quantity, 0);
+    setTotalQty(qty);
+  }, []);
+  
+
   return (
     <>
       <nav

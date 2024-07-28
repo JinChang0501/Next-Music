@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { createContext } from 'react'
 import { GET_PRODUCTS } from '@/configs/api-path'
+import toast, { Toaster } from 'react-hot-toast'
 // 會員
 import { getUserById } from '@/services/user'
 import { useAuth } from '@/hooks/use-auth'
@@ -18,11 +19,13 @@ const initUserProfile = {
 }
 const initOrderNum = 0
 export function TotalProvider({ children }) {
+  const [product, setProduct] = useState(null)
   const [products, setProducts] = useState([])
   const cartKey = 'makin-cart'
   const storeKey = 'store711'
   const [orderNum, setOrderNum] = useState(initOrderNum)
   const [cart, setCart] = useState([])
+  const [cartData, setCartData] = useState([])
   const [items, setItems] = useState([])
   const [totalQty, setTotalQty] = useState(0)
   const [totalPrice, setTotalPrice] = useState(0)
@@ -68,6 +71,37 @@ export function TotalProvider({ children }) {
       console.error('Error parsing cart data', ex)
     }
     return cartData
+  }
+  //
+  const addToCart = () => {
+    if (!product) return
+
+    const cartItem = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      quantity: 1,
+    }
+
+    let cartData = localStorage.getItem('makin-cart')
+
+    if (cartData) {
+      setCart(JSON.parse(cartData))
+    }
+
+    const existingItem = cart.find((item) => item.id === cartItem.id)
+    if (existingItem) {
+      existingItem.quantity += 1
+    } else {
+      cart.push(cartItem)
+    }
+
+    localStorage.setItem('makin-cart', JSON.stringify(cart))
+
+    const qty = cart.reduce((total, item) => total + item.quantity, 0)
+    setTotalQty(qty)
+
+    toast.success(`本商品已成功加入購物車`)
   }
 
   // 購物車內容
@@ -130,6 +164,7 @@ export function TotalProvider({ children }) {
       <TotalContext.Provider
         value={{
           totalQty,
+          setTotalQty,
           clearLocalStorageCart,
           userProfile,
           items,
