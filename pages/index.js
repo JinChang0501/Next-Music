@@ -444,5 +444,5 @@ export default function Index() {
 }
 
 Index.getLayout = function getLayout(page) {
-  return <HomeLayout showLoader={false}>{page}</HomeLayout>
+  return <HomeLayout>{page}</HomeLayout>
 }

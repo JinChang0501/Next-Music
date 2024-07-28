@@ -1,7 +1,7 @@
 import useFirebase from '@/hooks/use-firebase'
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-import styles from './default.module.css'
+import styles from './default.module.scss'
 import { BsPersonCircle, BsBell, BsCart } from 'react-icons/bs'
 import { useRouter } from 'next/router'
 import Login from '@/components/login/login'
@@ -143,7 +143,7 @@ export default function Nav() {
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link
-                  className="nav-link eng-p"
+                  className={`${styles.navLink} nav-link eng-p`}
                   aria-current="page"
                   href="/Activity"
                 >
@@ -151,12 +151,18 @@ export default function Nav() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link eng-p" href="/product">
+                <Link
+                  className={`${styles.navLink} nav-link eng-p mx-4`}
+                  href="/product"
+                >
                   周邊商城
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link eng-p" href="/artist">
+                <Link
+                  className={`${styles.navLink} nav-link eng-p`}
+                  href="/artist"
+                >
                   音樂人
                 </Link>
               </li>
