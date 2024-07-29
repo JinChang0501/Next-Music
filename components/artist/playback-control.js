@@ -238,8 +238,8 @@ const PlaybackControl = ({
             width: 250px;
           }
           .pos-end {
-            top: 40%;
-            left: 80%;
+            top: 42%;
+            right: 5%;
           }
           .marquee {
             position: relative;
