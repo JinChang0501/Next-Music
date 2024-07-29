@@ -152,7 +152,7 @@ export default function Nav() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link eng-p" href="/product">
+                <Link className="nav-link eng-p mx-4" href="/product">
                   周邊商城
                 </Link>
               </li>
