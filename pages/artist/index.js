@@ -123,7 +123,11 @@ export default function Artist() {
     <>
       <div ref={topRefTwo}></div>
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
-      <BannerA />
+      <BannerA
+        bn1="/images/artist/banner/Music02.png"
+        bn2="/images/artist/banner/Music03.png"
+        bn3="/images/artist/banner/Music04.png"
+      />
       <div ref={topRef}></div>
       <div className="music-container mt-3 mt-md-5">
         <div className="row">
