@@ -1,16 +1,30 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect, useCallback, useMemo } from 'react'
 import { Calendar, Whisper, Popover, Badge } from 'rsuite'
 import { useFav } from '@/hooks/use-Fav'
 import style from './calendar.module.scss'
-import Router, { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
+import { getTicketCalendar } from '@/services/ticket-order'
 
 export default function CalendarItem({ compact }) {
   const { favorite, resetFavorites } = useFav()
   const [groupedActivities, setGroupedActivities] = useState({})
+  const [groupedTickets, setGroupedTickets] = useState({})
   const router = useRouter()
+
+  // 訂票內容
+  const initialTicketeState = {
+    status: 'false',
+    data: {
+      result: [],
+      calendar: [], // 已訂票的活動資訊
+    },
+  }
+
+  const [ticket, setTicket] = useState(initialTicketeState)
 
   // 將活動按月份和日期分組的函數
   const groupActByMonthAndDay = (activities) => {
+    // reduce(方法,初始值) acc為累加器
     return activities.reduce((acc, activity) => {
       const actDate = new Date(activity.actdate)
       const month = actDate.getMonth() + 1 // JavaScript 的月份從 0 開始，所以需要 +1
@@ -32,11 +46,41 @@ export default function CalendarItem({ compact }) {
     }, {})
   }
 
-  // 使用 useMemo 來優化性能
+  // 使用 useMemo 來優化性能，定義 activities 資料
   const activities = useMemo(
     () => favorite.rows.activities,
     [favorite.rows.activities]
   )
+
+  // 獲取已訂票的資料
+  const getUserData = useCallback(async () => {
+    try {
+      const res = await getTicketCalendar()
+      // console.log('以下是response data')
+      // console.log(res)
+      // console.log('以下是res.data')
+      console.log(res.data)
+
+      if (res.status === 'success') {
+        // console.log('以下是res.data.calendar')
+        console.log(res.data.calendar)
+        setTicket(res.data.calendar)
+        // console.log('會員訂單資料載入成功')
+      } else {
+        console.log('會員訂單資料載入失敗')
+      }
+    } catch (error) {
+      console.error('Error fetching order data:', error)
+      console.log('會員訂單資料載入失敗')
+    }
+  }, [setGroupedTickets])
+
+  useEffect(() => {
+    getUserData()
+  }, [getUserData])
+
+  // 使用 useMemo 來優化性能，定義 tickets 資料
+  const tickets = useMemo(() => ticket.data.calendar, [ticket.data.calendar])
 
   // 當 favorite 變化時，重新計算 groupedActivities
   useEffect(() => {
@@ -45,6 +89,13 @@ export default function CalendarItem({ compact }) {
     setGroupedActivities(newGroupedActivities)
     // renderingCell()
   }, [activities, favorite, router])
+
+  // 當 訂單 變化時，重新計算 groupedTickets
+  useEffect(() => {
+    console.log('Tickets updated:', tickets)
+    const newGroupedTickets = groupActByMonthAndDay(tickets)
+    setGroupedTickets(newGroupedTickets)
+  }, [tickets, router])
 
   // 渲染每一格要放的資料
   const renderingCell = (date) => {
@@ -81,7 +132,6 @@ export default function CalendarItem({ compact }) {
                 </li>
               </Whisper>
             ))}
-            {/* {moreCount ? moreItem : null} */}
           </ul>
         </>
       )
