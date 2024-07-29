@@ -293,7 +293,7 @@ export default function Artid() {
           margin-bottom: 40px;
         }
         .mt-120 {
-          margin-top: 180px;
+          margin-top: 220px;
         }
         .my-80 {
           margin-top: 80px;
