@@ -16,3 +16,13 @@ export const getTicketOrder = async (sortBy) => {
     throw error // 抛出错误以便上层处理
   }
 }
+
+export const getTicketCalendar = async () => {
+  try {
+    const res = await axiosInstance.get(`/ticket-order/`)
+    return res.data // 返回從後端獲取的data
+  } catch (error) {
+    console.error('Error fetching user tickets:', error)
+    throw error // 抛出錯誤以便上層處理
+  }
+}
