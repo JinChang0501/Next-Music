@@ -221,8 +221,10 @@ export default function Artid() {
       <Breadcrumbs breadcrumbs={breadcrumbsURL} />
       {/* 音樂人主資訊 start */}
       <MainArtistInfo
+        bgImgSrc={`/images/artist/bannerM/${activity.rows2[0]?.album}`}
         imgSrc={`/images/artist/${activity.rows2[0]?.photoname}`}
         artist_name={activity.rows2[0]?.art_name}
+        artist_des={activity.rows2[0]?.shortDes}
       />
       {/* 音樂人主資訊 end */}
       <div className="music-container mt-120">
