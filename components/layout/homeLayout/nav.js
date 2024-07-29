@@ -117,6 +117,7 @@ export default function Nav() {
   }, [auth.isAuth, router])
   return (
     <>
+      {/* bg-transparent */}
       <nav
         className="position-absolute top-0 w-100 navbar navbar-expand-lg navbar-dark bg-transparent"
         aria-label="Eighth navbar example"
@@ -124,7 +125,7 @@ export default function Nav() {
       >
         <div className="container">
           {/* Logo */}
-          <Link className="navbar-brand" href="/">
+          <Link className="navbar-brand mx-0" href="/">
             <img src="/images/makin-Logo-index.png" />
           </Link>
           <button
@@ -140,7 +141,7 @@ export default function Nav() {
           </button>
           {/* 分頁連結 */}
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link
                   className="nav-link eng-p"
@@ -157,10 +158,12 @@ export default function Nav() {
               </li>
               <li className="nav-item">
                 <Link className="nav-link eng-p" href="/artist">
-                  音樂人
+                  音樂人 &nbsp;
                 </Link>
               </li>
             </ul>
+          </div>
+          <div style={{ width: '110px' }}>
             {/* 右方icon */}
             <ul
               className={`navbar-nav d-flex flex-row ms-auto mb-2 mb-lg-0 ${styles['icon-lg-size']}`}

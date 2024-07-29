@@ -36,7 +36,7 @@ export default function ArtCardMobile({
             </div>
 
             <Link href={`/artist/${spotify_id}`}>
-              <div className="chb-h4 text-white">{art_name}</div>
+              <div className="chb-h6 text-white">{art_name}</div>
             </Link>
           </div>
         </div>

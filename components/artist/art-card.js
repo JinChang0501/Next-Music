@@ -30,7 +30,7 @@ export default function ArtCard({
             </div>
 
             <Link href={`/artist/${spotify_id}`}>
-              <div className="chb-h4 text-white">{art_name}</div>
+              <div className="chb-h5 text-white">{art_name}</div>
             </Link>
           </div>
         </div>
