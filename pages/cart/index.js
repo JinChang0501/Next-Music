@@ -135,7 +135,7 @@ export default function CartIndex() {
       <ProgressBarOne />
       <div className={`row ${styles['mb-40']} ${styles.centerItem}`}>
         <div className={`col-12 col-md-8 cart-area ${styles['my-20']} `}>
-          <p className={`chb-h5 ${styles['ml-20']} ${styles.text14}`}>購物車</p>
+          <p className={`chb-h5 ${styles['ml-20']} ${styles.text18}`}>購物車</p>
           <div className="card mb-3 border-0 cart-card">
             {items.map((p) => (
               <div key={p.id} className="row g-0">
