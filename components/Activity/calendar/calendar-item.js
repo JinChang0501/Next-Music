@@ -8,12 +8,12 @@ import { getTicketCalendar } from '@/services/ticket-order'
 export default function CalendarItem({ compact }) {
   const { favorite, resetFavorites } = useFav()
   const [groupedActivities, setGroupedActivities] = useState({})
-  const [groupedTickets, setGroupedTickets] = useState({})
+  // const [groupedTickets, setGroupedTickets] = useState({})
   const router = useRouter()
 
   // 訂票內容
   const initialTicketeState = {
-    status: 'false',
+    status: 'failed',
     data: {
       result: [],
       calendar: [], // 已訂票的活動資訊
@@ -40,32 +40,20 @@ export default function CalendarItem({ compact }) {
       acc[month][day].push({
         time: activity.acttime,
         title: activity.actname,
+        isTicket: activity.isTicket || false, // 新增標記是否為已訂票活動
       })
 
       return acc
     }, {})
   }
 
-  // 使用 useMemo 來優化性能，定義 activities 資料
-  const activities = useMemo(
-    () => favorite.rows.activities,
-    [favorite.rows.activities]
-  )
-
   // 獲取已訂票的資料
   const getUserData = useCallback(async () => {
     try {
       const res = await getTicketCalendar()
-      // console.log('以下是response data')
-      // console.log(res)
-      // console.log('以下是res.data')
-      console.log(res.data)
-
-      if (res.status === 'success') {
-        // console.log('以下是res.data.calendar')
-        console.log(res.data.calendar)
-        setTicket(res.data.calendar)
-        // console.log('會員訂單資料載入成功')
+      if (res.status === 'success' && res.data && res.data.calendar) {
+        setTicket(res)
+        console.log('會員訂單資料載入成功')
       } else {
         console.log('會員訂單資料載入失敗')
       }
@@ -73,29 +61,30 @@ export default function CalendarItem({ compact }) {
       console.error('Error fetching order data:', error)
       console.log('會員訂單資料載入失敗')
     }
-  }, [setGroupedTickets])
+  }, [])
 
   useEffect(() => {
     getUserData()
   }, [getUserData])
 
-  // 使用 useMemo 來優化性能，定義 tickets 資料
-  const tickets = useMemo(() => ticket.data.calendar, [ticket.data.calendar])
+  // 使用 useMemo 來優化性能，整合收藏和已訂票的活動
+  const combinedActivities = useMemo(() => {
+    const favoriteActivities = favorite.rows.activities.map((act) => ({
+      ...act,
+      isTicket: false,
+    }))
+    const ticketActivities = (ticket.data.calendar || []).map((act) => ({
+      ...act,
+      isTicket: true,
+    }))
+    return [...favoriteActivities, ...ticketActivities]
+  }, [favorite.rows.activities, ticket.data.calendar])
 
-  // 當 favorite 變化時，重新計算 groupedActivities
+  // 當 combinedActivities 變化時，重新計算 groupedActivities
   useEffect(() => {
-    console.log('Activities updated:', activities)
-    const newGroupedActivities = groupActByMonthAndDay(activities)
+    const newGroupedActivities = groupActByMonthAndDay(combinedActivities)
     setGroupedActivities(newGroupedActivities)
-    // renderingCell()
-  }, [activities, favorite, router])
-
-  // 當 訂單 變化時，重新計算 groupedTickets
-  useEffect(() => {
-    console.log('Tickets updated:', tickets)
-    const newGroupedTickets = groupActByMonthAndDay(tickets)
-    setGroupedTickets(newGroupedTickets)
-  }, [tickets, router])
+  }, [combinedActivities])
 
   // 渲染每一格要放的資料
   const renderingCell = (date) => {
@@ -117,17 +106,30 @@ export default function CalendarItem({ compact }) {
                 trigger={['hover', 'focus']}
                 speaker={
                   // 彈出視窗的內容
-                  <Popover title="已收藏：">
+                  <Popover title={item.isTicket ? '已訂票' : '已收藏'}>
                     <div className={`w-100 ${style['line-bk']}`}></div>
-                    <p className="text-purple1 chr-p">
-                      <b className="text-purple2 chr-p">{item.time}</b> -{' '}
-                      {item.title}
+                    <p
+                      className={`${
+                        item.isTicket ? 'text-purple1' : 'text-black60'
+                      } chr-p`}
+                    >
+                      <b
+                        className={`${
+                          item.isTicket ? 'text-purple1' : 'text-black60'
+                        } chr-p`}
+                      >
+                        {item.time}
+                      </b>{' '}
+                      - {item.title}
                     </p>
                   </Popover>
                 }
               >
                 <li>
-                  <Badge color="blue" className="mx-1" />{' '}
+                  <Badge
+                    color={item.isTicket ? 'green' : 'blue'}
+                    className="mx-1"
+                  />{' '}
                   <b className="text-black60 chr-p">{item.title}</b>
                 </li>
               </Whisper>
