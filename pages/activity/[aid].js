@@ -186,7 +186,7 @@ export default function Aid() {
             return (
               <ArtistFollowCard
                 key={v.eaid}
-                imgSrc={`/images/artist/${v.photoname}`}
+                imgSrc={`/images/artist/cover/${v.photoname}`}
                 artist_name={v.art_name}
                 linkToArtId={`/artist/${v.spotify_id}`}
               />
