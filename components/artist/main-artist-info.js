@@ -27,6 +27,7 @@ export default function MainArtistInfo({
         .banner {
           height: 50vh;
           background-image: url(${bgImgSrc});
+          background-attachment: fixed;
           background-size: cover;
           background-position: center;
           position: relative;
