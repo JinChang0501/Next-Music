@@ -63,7 +63,7 @@ export default function TicketDetailCard({
         <div className="col my-auto p-0 chr-h7 text-nowrap">
           {seat_area
             ? `${seat_area}區${seat_row}排${seat_number}號`
-            : '自由入場'}
+            : '全區站席'}
         </div>
         <div className="col my-auto p-0 chr-h7">${price}</div>
         <div className="col my-auto p-0 mx-auto d-flex justify-content-center">
@@ -112,7 +112,7 @@ export default function TicketDetailCard({
                 <div className={`${style.ticketSeat} chb-h5 text-white`}>
                   {seat_area
                     ? `${seat_area}區${seat_row}排${seat_number}號`
-                    : '自由入場'}
+                    : '全區站席'}
                 </div>
                 <div className={`${style.ticketInfo} chb-p text-white`}>
                   <div className="d-flex">
@@ -170,7 +170,7 @@ export default function TicketDetailCard({
                 <div className={`${style.ticketSeat} chb-h5 text-white`}>
                   {seat_area
                     ? `${seat_area}區${seat_row}排${seat_number}號`
-                    : '自由入場'}
+                    : '全區站席'}
                 </div>
                 <div className={`${style.ticketInfo} chb-p text-white`}>
                   <div className="d-flex">
