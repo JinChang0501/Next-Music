@@ -93,12 +93,12 @@ export default function MainArtistInfo({
             bottom: -50px;
           }
           .artist-name {
-            bottom: -10px;
+            bottom: 0px;
             left: calc(5% + 120px);
             font-size: 1.2rem;
           }
           .artist-des {
-            bottom: -30px;
+            bottom: -55px;
             left: calc(5% + 120px);
           }
         }
