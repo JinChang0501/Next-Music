@@ -26,6 +26,8 @@ import PreviewUploadImage from '@/components/member/desktop-layout/preview-uploa
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 export default function Nav() {
+  const [isMobile, setIsMobile] = useState(false)
+
   //
   const {
     wakeLogin,
@@ -115,6 +117,16 @@ export default function Nav() {
   useEffect(() => {
     console.log('router')
   }, [auth.isAuth, router])
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 390)
+    }
+
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
   return (
     <>
       {/* bg-transparent */}
@@ -144,7 +156,7 @@ export default function Nav() {
             <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link
-                  className={`${styles.navLink} nav-link eng-p`}
+                  className={`${isMobile ? '' : styles.navLink} nav-link eng-p`}
                   aria-current="page"
                   href="/Activity"
                 >
@@ -153,7 +165,9 @@ export default function Nav() {
               </li>
               <li className="nav-item">
                 <Link
-                  className={`${styles.navLink} nav-link eng-p mx-4`}
+                  className={`${
+                    isMobile ? '' : styles.navLink
+                  } nav-link eng-p ${isMobile ? '' : 'mx-4'}`}
                   href="/product"
                 >
                   周邊商城
@@ -161,7 +175,7 @@ export default function Nav() {
               </li>
               <li className="nav-item">
                 <Link
-                  className={`${styles.navLink} nav-link eng-p`}
+                  className={`${isMobile ? '' : styles.navLink} nav-link eng-p`}
                   href="/artist"
                 >
                   音樂人
