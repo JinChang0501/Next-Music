@@ -155,7 +155,7 @@ export default function Artist() {
                 return (
                   <ArtistItem
                     key={r.spotify_id}
-                    imgSrc={`/images/artist/${r.photoname}`}
+                    imgSrc={`/images/artist/cover/${r.photoname}`}
                     artist_name={r.art_name}
                     artid={r.spotify_id}
                     scrollToTopTwo={scrollToTopTwo}
