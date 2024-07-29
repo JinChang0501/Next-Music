@@ -53,7 +53,7 @@ export default function List() {
           <div className="outline sticky-40"> 
           <div className="col-10 mx-auto">
           {/* 輸入框 */}
-          <div className="my-4 col-12 text-white chr-p">輸入關鍵字:搜尋商品名稱或活動名稱</div>
+          <div className="my-4 col-12 text-white chr-h6">請輸入商品名稱或活動名稱</div>
           <div className="mt-4 mb-4 mb-md-4 col-12 input-group">
             <input
                   type="text"

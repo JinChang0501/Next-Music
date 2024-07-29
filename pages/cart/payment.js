@@ -114,13 +114,13 @@ export default function Payment() {
       // 使用 fetch 或 axios 等方法發送 POST 請求
 
       const storageKey2 = localStorage.getItem('store711')
-      // 创建包含所有商品信息的数组
+      // 創建包含所有商品信息的數组
       console.log(
         '----items---items--------items-----items-----items------------'
       )
       console.log(items)
       const orderItems = items.map((item) => ({
-        product_id: item.id, // 这里将 p.id 作为 product_id 传递
+        product_id: item.id, // 這里將 p.id 作為 product_id 傳遞
         quantity: item.quantity,
         price: item.price,
       }))
@@ -156,12 +156,12 @@ export default function Payment() {
   }
   // 手機
   const handleChange = (e) => {
-    const formattedMobile = e.target.value.replace(/\D/g, '') // 移除非数字字符
+    const formattedMobile = e.target.value.replace(/\D/g, '') // 移除非數字字符
 
     if (formattedMobile.length <= 10) {
-      // 确保不超过10个字符
+      // 確保不超過10個字符
       setMobileNumber(formattedMobile)
-      setIsValid(/^09\d{8}$/.test(formattedMobile)) // 使用正则表达式验证格式
+      setIsValid(/^09\d{8}$/.test(formattedMobile)) // 使用正則表達式驗證格式
     }
   }
 
