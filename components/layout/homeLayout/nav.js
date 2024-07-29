@@ -158,7 +158,7 @@ export default function Nav() {
               </li>
               <li className="nav-item">
                 <Link className="nav-link eng-p" href="/artist">
-                  音樂人
+                  音樂人 &nbsp;
                 </Link>
               </li>
             </ul>
