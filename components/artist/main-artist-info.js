@@ -66,6 +66,7 @@ export default function MainArtistInfo({
         @media (max-width: 768px) {
           .banner {
             height: 30vh;
+            background-size: 300px;
           }
           .artist-image {
             width: 150px;
@@ -86,6 +87,8 @@ export default function MainArtistInfo({
         @media (max-width: 480px) {
           .banner {
             height: 25vh;
+            background-size: 100%;
+            background-attachment: scroll;
           }
           .artist-image {
             width: 100px;
