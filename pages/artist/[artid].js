@@ -225,7 +225,7 @@ export default function Artid() {
         artist_name={activity.rows2[0]?.art_name}
       />
       {/* 音樂人主資訊 end */}
-      <div className="music-container mt-80">
+      <div className="music-container mt-120">
         {/* 熱門歌曲 start */}
         <div className="chb-h4 mt-2 mb-40 text-purple1">熱門歌曲</div>
         <div className="d-flex my-5">
@@ -290,8 +290,8 @@ export default function Artid() {
         .mb-40 {
           margin-bottom: 40px;
         }
-        .mt-80 {
-          margin-top: 80px;
+        .mt-120 {
+          margin-top: 180px;
         }
         .my-80 {
           margin-top: 80px;
@@ -301,8 +301,8 @@ export default function Artid() {
           width: 60%;
         }
         @media (max-width: 390px) {
-          .mt-80 {
-            margin-top: 20px;
+          .mt-120 {
+            margin-top: 80px;
           }
           .mb-40 {
             margin-bottom: 20px;
