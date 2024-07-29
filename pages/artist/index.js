@@ -155,7 +155,6 @@ export default function Artist() {
                 return (
                   <ArtistItem
                     key={r.spotify_id}
-                    // imgSrc={r.photo}
                     imgSrc={`/images/artist/${r.photoname}`}
                     artist_name={r.art_name}
                     artid={r.spotify_id}

@@ -5,7 +5,7 @@ import Image from 'next/image'
 import PhoneBlackNoIconBtnBlack from '../common/button/phoneBlackButton/phoneBlackNoIconBtnBlack'
 
 export default function ArtistItem({
-  imgSrc = 'https://i.postimg.cc/zB5Gh92q/temp-Image7-Gw6zu.avif',
+  imgSrc = '/images/artist/photo04.jpg',
   artist_name = '音樂人',
   artid,
   scrollToTopTwo,
@@ -21,7 +21,7 @@ export default function ArtistItem({
   }
   return (
     <>
-      <div className="col-6 col-sm-6 col-md-4 my-2">
+      <div className="col-6 col-md-4 my-2">
         <div
           className={`img-minW d-flex flex-column align-items-center ${
             over ? 'bg-black95 hover outline' : 'bg-dark'
@@ -32,12 +32,13 @@ export default function ArtistItem({
           onBlur={() => setOver(false)}
         >
           <Link href={`/artist/${artid}`} onClick={handleClick}>
-            <div className="p-3">
+            <div className="p-3 p-md-4">
               <Image
                 src={imgSrc}
-                width={180}
-                height={180}
-                alt=""
+                width={160}
+                height={160}
+                layout="responsive"
+                alt={artist_name}
                 className="ob-cover rounded-circle"
               />
             </div>
