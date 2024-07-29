@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 
-export default function HomeLayout({ title = 'Makin', children }) {
+export default function HomeLayout({ title = "Mak'in", children }) {
   return (
     <>
       <Head>

@@ -136,16 +136,22 @@ export default function Index() {
     }
 
     const handleMouseLeave = () => {
-      gsap.to(followerImgs, {
-        duration: 1,
-        opacity: 0,
+      followerImgs.forEach((img, index) => {
+        gsap.to(img, {
+          duration: 1,
+          opacity: 0,
+          delay: index * 0.1,
+        })
       })
     }
 
     const handleBlur = () => {
-      gsap.to(followerImgs, {
-        duration: 1,
-        opacity: 0,
+      followerImgs.forEach((img, index) => {
+        gsap.to(img, {
+          duration: 1,
+          opacity: 0,
+          delay: index * 0.1,
+        })
       })
     }
 
@@ -224,27 +230,20 @@ export default function Index() {
 
       {/* banner一張（影片輪播） start */}
       <div className={styles.bannerSty}>
+        <Nav />
         <video muted autoPlay loop playsInline>
           <source src="/video/1.mp4" type="video/mp4" />
         </video>
-        <Nav />
-        <div
-          className={`d-none d-md-flex flex-column align-items-center ${styles.pRelative}`}
-        >
-          <div className="eng-h1 mb-2">Lose Yourself in Music</div>
-          <div className="eng-h1 mb-4">Find Yourself in the Festivity</div>
-          <div className="eng-p">
-            {/* <DesktopBlackNoIconBtnBlack
-              text={auth.isAuth ? 'Member Center' : 'MY ACCOUNT'}
-              className="eng-h5"
-              onClick={auth.isAuth ? handleGotoMember : handleWakeLogin}
-            /> */}
-            <ThreeDBtn
-              text={auth.isAuth ? 'Member Center' : 'MY ACCOUNT'}
-              className="eng-h5"
-              onClick={auth.isAuth ? handleGotoMember : handleWakeLogin}
-            />
-          </div>
+        <div className={`${styles.text1} eng-h1`}>Lose Yourself in Music</div>
+        <div className={`${styles.text2} eng-h1`}>
+          Find Yourself in the Festivity
+        </div>
+        <div className={`${styles.threeBtn}`}>
+          <ThreeDBtn
+            text={auth.isAuth ? 'Member Center' : 'MY ACCOUNT'}
+            className="eng-h4"
+            onClick={auth.isAuth ? handleGotoMember : handleWakeLogin}
+          />
         </div>
       </div>
 
@@ -445,5 +444,5 @@ export default function Index() {
 }
 
 Index.getLayout = function getLayout(page) {
-  return <HomeLayout showLoader={false}>{page}</HomeLayout>
+  return <HomeLayout>{page}</HomeLayout>
 }

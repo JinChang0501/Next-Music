@@ -26,6 +26,30 @@
   z-index: 999;
 }
 
+.text1{
+  position: absolute;
+  top: 33%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  color: white;
+}
+
+.text2{
+  position: absolute;
+  top: 43%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  color: white;
+}
+
+.threeBtn{
+  position: absolute;
+  top: 58%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  color: white;
+}
+
 .bannerSty video {
   width: 100%;
   height: 100%;
@@ -34,16 +58,6 @@
   top: 0;
   left: 0;
   z-index: -999;
-}
-
-.pRelative {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: white;
-
 }
 
 .p-absolute {
@@ -190,6 +204,18 @@
 
   .follower {
     visibility: hidden;
+  }
+
+  .text1{
+    display: none;
+  }
+
+  .text2{
+    display: none;
+  }
+
+  .threeBtn{
+    display: none;
   }
 }
 
