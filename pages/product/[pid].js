@@ -268,11 +268,10 @@ export default function Detail() {
           <p
             className={`text-purple2 chb-h5 ${styles['mt-40']} ${styles['mb-60']}`}
           >
-            尺寸: F
+            尺寸: {product.size}
           </p>
           <div className={`row row-cols-md-2 ${styles['space-between']}`}>
             <DesktopBlackNoIconBtnBlack text="加入購物車" onClick={addToCart} />
-            {/* <Link href={`/cart/payment`}><DesktopBlackNoIconBtnPurple text="立即購買" /></Link> */}
           </div>
         </div>
       </div>
