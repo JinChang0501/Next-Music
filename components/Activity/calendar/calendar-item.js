@@ -125,7 +125,7 @@ export default function CalendarItem({ compact }) {
                   // 彈出視窗的內容
                   <Popover>
                     <div className={`w-100 ${style['line-bk']}`}></div>
-                    <p>
+                    <div className="mb-2">
                       {item.isTicket && (
                         <Badge color="green" className="mx-1" />
                       )}
@@ -135,7 +135,7 @@ export default function CalendarItem({ compact }) {
                         <Badge color="blue" className="mx-1" />
                       )}
                       {item.isFavorite ? '已收藏' : ''}
-                    </p>
+                    </div>
                     <p className="text-purple1 chr-p">
                       <b className="text-purple1 chr-p">{item.time}</b> -{' '}
                       {item.title}
@@ -164,9 +164,7 @@ export default function CalendarItem({ compact }) {
     <>
       <Calendar
         bordered
-        compact={compact} // 緊湊型（for 手機）
         renderCell={renderingCell} //渲染每格，把 ToDoList 資料帶入
-        // cellClassName={(date) => (date.getDay() % 2 ? 'bg-gray' : undefined)}
       />
       <style jsx>{`
         .bg-gray {
