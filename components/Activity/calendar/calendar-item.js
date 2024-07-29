@@ -11,7 +11,7 @@ export default function CalendarItem({ compact }) {
   // const [groupedTickets, setGroupedTickets] = useState({})
   const router = useRouter()
 
-  // 訂票內容
+  // 訂票內容 預設資料
   const initialTicketeState = {
     status: 'failed',
     data: {
@@ -37,11 +37,26 @@ export default function CalendarItem({ compact }) {
         acc[month][day] = []
       }
 
-      acc[month][day].push({
-        time: activity.acttime,
-        title: activity.actname,
-        isTicket: activity.isTicket || false, // 新增標記是否為已訂票活動
-      })
+      const existingActivityIndex = acc[month][day].findIndex(
+        (existingActivity) => existingActivity.title === activity.actname
+      )
+
+      if (existingActivityIndex !== -1) {
+        // 如果活動已存在，更新狀態
+        const existingActivity = acc[month][day][existingActivityIndex]
+        existingActivity.isTicket =
+          existingActivity.isTicket || activity.isTicket
+        existingActivity.isFavorite =
+          existingActivity.isFavorite || !activity.isTicket
+      } else {
+        // 如果活動不存在，添加新活動
+        acc[month][day].push({
+          time: activity.acttime,
+          title: activity.actname,
+          isTicket: activity.isTicket || false,
+          isFavorite: !activity.isTicket,
+        })
+      }
 
       return acc
     }, {})
@@ -72,10 +87,12 @@ export default function CalendarItem({ compact }) {
     const favoriteActivities = favorite.rows.activities.map((act) => ({
       ...act,
       isTicket: false,
+      isFavorite: true,
     }))
     const ticketActivities = (ticket.data.calendar || []).map((act) => ({
       ...act,
       isTicket: true,
+      isFavorite: false,
     }))
     return [...favoriteActivities, ...ticketActivities]
   }, [favorite.rows.activities, ticket.data.calendar])
@@ -106,21 +123,22 @@ export default function CalendarItem({ compact }) {
                 trigger={['hover', 'focus']}
                 speaker={
                   // 彈出視窗的內容
-                  <Popover title={item.isTicket ? '已訂票' : '已收藏'}>
+                  <Popover>
                     <div className={`w-100 ${style['line-bk']}`}></div>
-                    <p
-                      className={`${
-                        item.isTicket ? 'text-purple1' : 'text-black60'
-                      } chr-p`}
-                    >
-                      <b
-                        className={`${
-                          item.isTicket ? 'text-purple1' : 'text-black60'
-                        } chr-p`}
-                      >
-                        {item.time}
-                      </b>{' '}
-                      - {item.title}
+                    <p>
+                      {item.isTicket && (
+                        <Badge color="green" className="mx-1" />
+                      )}
+                      {item.isTicket ? '已訂票' : ''}
+                      {item.isTicket && item.isFavorite ? '  ' : ''}
+                      {item.isFavorite && (
+                        <Badge color="blue" className="mx-1" />
+                      )}
+                      {item.isFavorite ? '已收藏' : ''}
+                    </p>
+                    <p className="text-purple1 chr-p">
+                      <b className="text-purple1 chr-p">{item.time}</b> -{' '}
+                      {item.title}
                     </p>
                   </Popover>
                 }
