@@ -32,11 +32,11 @@ export default function EcPay() {
           <div className={style.paymentBlockLeft}>
             <button
               className={`${style.paymentCircle} ${
-                selected === 'linePay' ? 'bg-black' : 'bg-white'
+                selected === 'linePay' ? 'bg-white' : 'bg-white'
               }`}
               onClick={() => handleCircleClick('linePay')}
             ></button>
-            <div className="chb-h6">LINE PAY</div>
+            <div className="chb-h6 text-black20">LINE PAY</div>
           </div>
           <div className={style.linePayImage}>
             <Image src="/images/ticket/linePay.jpg" alt="test" fill priority />
