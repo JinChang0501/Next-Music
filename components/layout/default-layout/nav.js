@@ -137,7 +137,7 @@ export default function Nav() {
       >
         <div className="container">
           {/* Logo */}
-          <Link className="navbar-brand" href="/">
+          <Link className="navbar-brand me-0" href="/">
             <img src="/images/makin-Logo-index.png" />
           </Link>
           <button
@@ -173,7 +173,7 @@ export default function Nav() {
               </li>
               <li className="nav-item">
                 <Link className="nav-link eng-p" href="/artist">
-                  音樂人
+                  音樂人 &nbsp;
                 </Link>
               </li>
             </ul>
