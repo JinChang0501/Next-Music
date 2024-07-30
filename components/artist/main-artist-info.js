@@ -60,13 +60,15 @@ export default function MainArtistInfo({
         }
         .artist-des {
           position: absolute;
-          bottom: -80px;
+          top: 520px;
+          width: 40%;
           left: 32%;
         }
         @media (max-width: 768px) {
           .banner {
             height: 30vh;
-            background-size: 300px;
+            background-size: 100%;
+            background-attachment: scroll;
           }
           .artist-image {
             width: 150px;
@@ -80,7 +82,8 @@ export default function MainArtistInfo({
             font-size: 1.5rem;
           }
           .artist-des {
-            bottom: -55px;
+            width: 50%;
+            top: 320px;
             left: calc(5% + 170px);
           }
         }
@@ -96,12 +99,13 @@ export default function MainArtistInfo({
             bottom: -50px;
           }
           .artist-name {
-            bottom: 0px;
+            bottom: 5px;
             left: calc(5% + 120px);
             font-size: 1.2rem;
           }
           .artist-des {
-            bottom: -55px;
+            width: 60%;
+            top: 210px;
             left: calc(5% + 120px);
           }
         }
