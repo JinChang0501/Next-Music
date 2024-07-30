@@ -245,6 +245,7 @@ export default function Index() {
             onClick={auth.isAuth ? handleGotoMember : handleWakeLogin}
           />
         </div>
+        <div className={`${styles.copyright}`}>非商業使用</div>
       </div>
 
       {/* banner（影片輪播） end */}

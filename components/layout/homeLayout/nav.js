@@ -178,7 +178,7 @@ export default function Nav() {
                   className={`${isMobile ? '' : styles.navLink} nav-link eng-p`}
                   href="/artist"
                 >
-                  音樂人
+                  音樂人 &nbsp;
                 </Link>
               </li>
             </ul>
