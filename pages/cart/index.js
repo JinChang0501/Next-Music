@@ -116,7 +116,8 @@ export default function CartIndex() {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: '確定, 刪除!',
+      confirmButtonText: '確定',
+      cancelButtonText: '取消',
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire({
