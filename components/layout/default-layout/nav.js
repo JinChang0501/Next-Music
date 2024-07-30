@@ -26,6 +26,8 @@ import PreviewUploadImage from '@/components/member/desktop-layout/preview-uploa
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 export default function Nav() {
+  const [isMobile, setIsMobile] = useState(false)
+
   //
   const {
     wakeLogin,
@@ -116,6 +118,16 @@ export default function Nav() {
     console.log('router')
   }, [auth.isAuth, router])
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 390)
+    }
+
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   return (
     <>
       <nav
@@ -152,7 +164,10 @@ export default function Nav() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link eng-p mx-4" href="/product">
+                <Link
+                  className={`nav-link eng-p ${isMobile ? '' : 'mx-4'}`}
+                  href="/product"
+                >
                   周邊商城
                 </Link>
               </li>
