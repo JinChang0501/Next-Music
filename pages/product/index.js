@@ -73,7 +73,7 @@ export default function List() {
           </div>
 
           <div className={`col-md-9`}>
-            <div className={`chb-h3 text-white ${styles['ml-28']}`}>所有商品</div>
+            <div className={`chb-h3 text-white ${styles['ml-28']}`}>周邊商品</div>
             <div className={`row row-cols-md-3 ${styles['ml-28']}`}>
               {filteredProducts.map((product) => (
                 <div key={product.id} className={`card ${styles['card']} ${styles['mt-28']}`}>
