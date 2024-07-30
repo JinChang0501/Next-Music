@@ -153,7 +153,7 @@ export default function Nav() {
           </button>
           {/* 分頁連結 */}
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link
                   className="nav-link eng-p"
@@ -177,104 +177,109 @@ export default function Nav() {
                 </Link>
               </li>
             </ul>
-            {/* 右方icon */}
-            <ul
-              className={`navbar-nav d-flex flex-row ms-auto mb-2 mb-lg-0 ${styles['icon-lg-size']}`}
-            >
-              <li className={`me-3 me-md-1`}>
-                <Link className="nav-link" href="/cart">
-                  {auth.isAuth ? (
-                    <Badge color="violet" content={totalQty}>
+            <div style={{ width: '110px' }}>
+              {/* 右方icon */}
+              <ul
+                className={`navbar-nav d-flex flex-row ms-auto mb-2 mb-lg-0 ${styles['icon-lg-size']}`}
+              >
+                <li className={`me-3 me-md-1`}>
+                  <Link className="nav-link" href="/cart">
+                    {auth.isAuth ? (
+                      <Badge color="violet" content={totalQty}>
+                        <BsCart />
+                      </Badge>
+                    ) : (
                       <BsCart />
-                    </Badge>
-                  ) : (
-                    <BsCart />
-                  )}
-                </Link>
-              </li>
+                    )}
+                  </Link>
+                </li>
 
-              <li className={`me-3 me-md-1 dropdown`}>
-                <Link
-                  className="nav-link"
-                  href="#"
-                  id="navbarDropdown02"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  {auth.isAuth ? (
-                    update ? (
-                      <div className="rounded-circle my-auto">
-                        {/* newFileName */}
-                        <img
-                          src={`${API_SERVER}/avatar/${newFileName}`}
-                          style={{ width: '30px', height: '30px' }}
-                          className="rounded-circle"
-                        />
-                      </div>
-                    ) : memberPicData ? (
-                      <div className="rounded-circle my-auto">
-                        {/* newFileName */}
-                        <img
-                          src={`${API_SERVER}/avatar/${memberPicData}`}
-                          style={{ width: '30px', height: '30px' }}
-                          className="rounded-circle"
-                        />
-                      </div>
+                <li className={`me-3 me-md-1 dropdown`}>
+                  <Link
+                    className="nav-link"
+                    href="#"
+                    id="navbarDropdown02"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    {auth.isAuth ? (
+                      update ? (
+                        <div className="rounded-circle my-auto">
+                          {/* newFileName */}
+                          <img
+                            src={`${API_SERVER}/avatar/${newFileName}`}
+                            style={{ width: '30px', height: '30px' }}
+                            className="rounded-circle"
+                          />
+                        </div>
+                      ) : memberPicData ? (
+                        <div className="rounded-circle my-auto">
+                          {/* newFileName */}
+                          <img
+                            src={`${API_SERVER}/avatar/${memberPicData}`}
+                            style={{ width: '30px', height: '30px' }}
+                            className="rounded-circle"
+                          />
+                        </div>
+                      ) : (
+                        <BsPersonCircle />
+                      )
                     ) : (
                       <BsPersonCircle />
-                    )
-                  ) : (
-                    <BsPersonCircle />
-                  )}
-                </Link>
-                <ul
-                  className="dropdown-menu dropdown-menu-dark dropdown-menu-end"
-                  aria-labelledby="navbarDropdown02"
-                >
-                  {isLoggedIn ? (
-                    <>
-                      <li>
-                        <Link className="dropdown-item" href="/member/profile">
-                          會員中心
-                        </Link>
-                      </li>
-                      <li>
-                        <button
-                          className="dropdown-item"
-                          onClick={handleLogout}
-                        >
-                          登出
-                        </button>
-                      </li>
-                    </>
-                  ) : (
-                    <>
-                      <li>
-                        <div className={`${styles['mouse-cursor']}`}>
+                    )}
+                  </Link>
+                  <ul
+                    className="dropdown-menu dropdown-menu-dark dropdown-menu-end"
+                    aria-labelledby="navbarDropdown02"
+                  >
+                    {isLoggedIn ? (
+                      <>
+                        <li>
+                          <Link
+                            className="dropdown-item"
+                            href="/member/profile"
+                          >
+                            會員中心
+                          </Link>
+                        </li>
+                        <li>
                           <button
                             className="dropdown-item"
-                            onClick={handleWakeLogin}
+                            onClick={handleLogout}
                           >
-                            登入
+                            登出
                           </button>
-                        </div>
-                      </li>
-                      <li>
-                        <div className={`${styles['mouse-cursor']}`}>
-                          <button
-                            className="dropdown-item"
-                            onClick={handleWakeLogin}
-                          >
-                            註冊
-                          </button>
-                        </div>
-                      </li>
-                    </>
-                  )}
-                </ul>
-              </li>
-            </ul>
+                        </li>
+                      </>
+                    ) : (
+                      <>
+                        <li>
+                          <div className={`${styles['mouse-cursor']}`}>
+                            <button
+                              className="dropdown-item"
+                              onClick={handleWakeLogin}
+                            >
+                              登入
+                            </button>
+                          </div>
+                        </li>
+                        <li>
+                          <div className={`${styles['mouse-cursor']}`}>
+                            <button
+                              className="dropdown-item"
+                              onClick={handleWakeLogin}
+                            >
+                              註冊
+                            </button>
+                          </div>
+                        </li>
+                      </>
+                    )}
+                  </ul>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </nav>
