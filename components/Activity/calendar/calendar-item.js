@@ -8,7 +8,6 @@ import { getTicketCalendar } from '@/services/ticket-order'
 export default function CalendarItem({ compact }) {
   const { favorite, resetFavorites } = useFav()
   const [groupedActivities, setGroupedActivities] = useState({})
-  // const [groupedTickets, setGroupedTickets] = useState({})
   const router = useRouter()
 
   // 訂票內容 預設資料
@@ -166,11 +165,6 @@ export default function CalendarItem({ compact }) {
         bordered
         renderCell={renderingCell} //渲染每格，把 ToDoList 資料帶入
       />
-      <style jsx>{`
-        .bg-gray {
-          background-color: #1a1a1a;
-        }
-      `}</style>
     </>
   )
 }
