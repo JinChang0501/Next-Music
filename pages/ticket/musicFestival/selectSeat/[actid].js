@@ -15,7 +15,6 @@ import { useRouter } from 'next/router'
 import { useTicketContext } from '@/context/ticket/ticketContext'
 import { GET_TICKET } from '@/configs/api-path'
 import Swal from 'sweetalert2'
-// import toast, { Toaster } from 'react-hot-toast'
 
 export default function SelectSeat() {
   const [isMobile, setIsMobile] = useState(false)
@@ -133,7 +132,6 @@ export default function SelectSeat() {
           popup: style.customSwal,
         },
       })
-      // toast.error('請選擇付款方式')
       return
     }
 

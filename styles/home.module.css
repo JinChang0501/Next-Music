@@ -235,6 +235,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  user-select: none;
 }
 
 /* //#region chloe 測試 */

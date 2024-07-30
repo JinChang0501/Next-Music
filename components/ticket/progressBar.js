@@ -4,7 +4,6 @@ import { FaChevronRight } from 'react-icons/fa'
 import { useTitle } from '@/context/ticket/useTitle'
 import { useCountdown } from '@/context/ticket/countdownContext'
 import Swal from 'sweetalert2'
-import 'animate.css'
 import { useRouter } from 'next/router'
 
 export default function ProgressBar({ progressBarRef }) {
@@ -32,16 +31,11 @@ export default function ProgressBar({ progressBarRef }) {
         title: '時間到 !',
         html: '<span style="font-weight: bolder;">您的訂票時間已經結束 。</span>',
         icon: 'warning',
-        showClass: {
-          popup: 'animate__animated animate__fadeInUp animate__faster',
-        },
-        hideClass: {
-          popup: 'animate__animated animate__fadeOutDown animate__faster',
-        },
+        allowOutsideClick: false,
+        confirmButtonText: '返回活動列表',
         customClass: {
           popup: style.phoneSize,
         },
-        allowOutsideClick: false,
       }).then((result) => {
         if (result.isConfirmed) {
           Swal.close()
