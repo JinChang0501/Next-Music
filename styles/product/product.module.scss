@@ -1,3 +1,19 @@
+.imgContainer {
+  position: relative;
+  width: 100%;
+  height: 100%; // 确保容器高度与 SwiperSlide 高度匹配
+  overflow: hidden;
+}
+
+.indexImg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: auto; // 或者使用 cover 根据需要调整
+  transform: translate(-50%, -50%);
+}
+
 /* margin */
 .mt-100 {
   margin-top: 100px;
@@ -31,7 +47,7 @@
   margin-top: 100px;
   margin-bottom: 100px;
 }
-.my-40{
+.my-40 {
   margin-top: 40px;
   margin-bottom: 40px;
 }
@@ -77,24 +93,23 @@
   width: 760px;
   padding: 30px 20px;
 }
-.btn-761{
+.btn-761 {
   width: 760px;
   padding: 30px 20px;
 }
 .text-white {
- color: white;
+  color: white;
 }
 .text-purple3 {
-  color: #dbd7ff,
-  ;
+  color: #dbd7ff;
 }
 
-
-.w-1060, .w-1061 {
- width: 1060px; 
+.w-1060,
+.w-1061 {
+  width: 1060px;
 }
 .w-800 {
-  width:800px;
+  width: 800px;
 }
 .w-795 {
   width: 795px;
@@ -138,7 +153,6 @@
 }
 .h-120 {
   height: 120px;
-
 }
 .h-100 {
   height: 100px;
@@ -150,8 +164,7 @@
   height: 40px;
 }
 .wh-250 {
-  width:300px;
-  
+  width: 300px;
 }
 .wh-200 {
   width: 250px;
@@ -163,7 +176,7 @@
 }
 
 .bg-bk {
-  background-color: #000 ;
+  background-color: #000;
 }
 .bg-white {
   background-color: #fff;
@@ -195,20 +208,18 @@
 }
 
 .card {
-  border: 1px solid #685beb;  
+  border: 1px solid #685beb;
   padding: 0px;
   // margin-right: 1px;
   background-color: black;
-  
-  
 }
 .center-item {
-  display:flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
 .centerItem {
-  display:flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
@@ -223,11 +234,10 @@
   justify-content: center;
   align-items: center;
 }
-.item 
-.text-center-x {
-  text-align: center; 
+.item .text-center-x {
+  text-align: center;
 }
-.columnCenter{
+.columnCenter {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -254,7 +264,6 @@
   width: 456px;
   height: 456px;
   object-fit: fill;
-  
 }
 .pic2 {
   width: 166px;
@@ -263,16 +272,16 @@
 }
 
 // 手機
-@media screen and (max-width:390px){
+@media screen and (max-width: 390px) {
   // <CarouselIndex />
   .h-725 {
-   height: 200px;
+    height: 200px;
   }
   .indexImg {
     height: 200x;
     width: 390px;
   }
-// index
+  // index
   .mx-161 {
     margin-left: 28px;
     margin-right: 28px;
@@ -286,8 +295,7 @@
   }
   .ml-28 {
     margin-left: auto;
-   margin-right: auto;
-    
+    margin-right: auto;
   }
   //[pid]
   .mx-160 {
@@ -303,7 +311,7 @@
   .mt-80 {
     margin-top: 40px;
   }
-  
+
   .borderPurple3 {
     padding-bottom: 24px;
     border-bottom: 1px solid #dbd7ff;
@@ -324,13 +332,13 @@
   .w-1061 {
     width: 300px;
   }
-  .mb-40{
+  .mb-40 {
     margin-bottom: 0px;
   }
   .ml-20 {
     margin-left: 20px;
   }
-  
+
   .text18 {
     font-size: 18px;
     font-weight: 800;
@@ -347,18 +355,14 @@
     margin-bottom: 40px;
   }
 
-
   // payment
   .w-800 {
     width: 334px;
-   
   }
   .chb-h5 {
     font-size: 14px;
-  } 
+  }
   .chb-p {
     font-size: 12px;
-  } 
-  
-
+  }
 }

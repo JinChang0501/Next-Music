@@ -36,8 +36,10 @@ export default function List() {
   }, [])
 
   const handleSearchClick = () => {
-    const filtered = products.filter((product) =>
-      product.name.toLowerCase().includes(keyword) || product.activity.toLowerCase().includes(keyword)
+    const filtered = products.filter(
+      (product) =>
+        product.name.toLowerCase().includes(keyword) ||
+        product.activity.toLowerCase().includes(keyword)
     )
     setFilteredProducts(filtered)
   }
@@ -48,55 +50,67 @@ export default function List() {
       <CarouselIndex />
       <div className={`${styles['mx-161']} ${styles['my-100']}`}>
         <div className="row">
-
           <div className={`col-md-3 col-12 mb-3`}>
-          <div className="outline sticky-40"> 
-          <div className="col-10 mx-auto">
-          {/* 輸入框 */}
-          <div className="my-4 col-12 text-white chr-h6">請輸入商品名稱或活動名稱</div>
-          <div className="mt-4 mb-4 mb-md-4 col-12 input-group">
-            <input
-                  type="text"
-                  value={keyword}
-                  onChange={(e) => setKeyword(e.target.value)}
-                  className="form-control input-p3"
-                  placeholder="關鍵字"
-                />
-            <DesktopBlackPureIconBtnPurple
-                  onClick={handleSearchClick}
-                  icon={BsSearch}
-                iconWidth={22}
-                iconHeight={22}
-                />
-          </div>
-          {/* 輸入框 */}
-</div>
-          </div>   
+            <div className="outline sticky-40">
+              <div className="col-10 mx-auto">
+                {/* 輸入框 */}
+                <div className="my-4 col-12 text-white chr-h6">
+                  請輸入商品名稱或活動名稱
+                </div>
+                <div className="mt-4 mb-4 mb-md-4 col-12 input-group">
+                  <input
+                    type="text"
+                    value={keyword}
+                    onChange={(e) => setKeyword(e.target.value)}
+                    className="form-control input-p3"
+                    placeholder="關鍵字"
+                  />
+                  <DesktopBlackPureIconBtnPurple
+                    onClick={handleSearchClick}
+                    icon={BsSearch}
+                    iconWidth={22}
+                    iconHeight={22}
+                  />
+                </div>
+                {/* 輸入框 */}
+              </div>
+            </div>
           </div>
 
           <div className={`col-md-9`}>
-            <div className={`chb-h3 text-white ${styles['ml-28']}`}>所有商品</div>
-            <div className={`row row-cols-md-3 ${styles['ml-28']}`}>
+            <div className={`chb-h3 text-white ${styles['ml-28']} mb-3`}>
+              所有商品
+            </div>
+            <div className={`row ${styles['ml-28']}`}>
               {filteredProducts.map((product) => (
-                <div key={product.id} className={`card ${styles['card']} ${styles['mt-28']}`}>
-                  <img
-                    src={`/images/product/list/${product.picture}`}
-                    className="card-img-top"
-                    alt="Product"
-                  />
+                <div
+                  key={product.id}
+                  className={`card ${styles['card']} mb-3 me-3`}
+                  style={{ width: '370px' }}
+                >
+                  <Link href={`/product/${product.id}`}>
+                    <img
+                      src={`/images/product/list/${product.picture}`}
+                      className="card-img-top"
+                      alt="Product"
+                    />
+                  </Link>
                   <div className={`card-body ${styles['bg-bk']}`}>
-                    <p className={`card-text chb-h6 text-purple3 ${styles['text-center']}`}>
+                    <p className={`card-text chb-h5 text-purple3`}>
                       {product.name}
                     </p>
-                    <p className={`card-text chb-h6 text-white ${styles['text-center']}`}>
+                    <p className={`card-text chr-h7 text-white`}>
                       {product.activity}
                     </p>
-                    <p className={`card-text chb-h6 text-white ${styles['text-center']}`}>
+                    <p className={`card-text chb-h6 text-white`}>
                       NT$ {product.price}
                     </p>
                     <div className={`${styles['text-center']}`}>
                       <Link href={`/product/${product.id}`}>
-                        <DesktopBlackNoIconBtnPurple text="詳細資訊" className={`chb-p`} />
+                        <DesktopBlackNoIconBtnPurple
+                          text="詳細資訊"
+                          className={`chb-p`}
+                        />
                       </Link>
                     </div>
                   </div>
@@ -104,12 +118,11 @@ export default function List() {
               ))}
             </div>
           </div>
-
         </div>
       </div>
       <style jsx>{`
         .outline {
-          border: 1px solid #685BEB;
+          border: 1px solid #685beb;
         }
         .input-p3 {
           border: 1px solid #dbd7ff;
@@ -117,13 +130,17 @@ export default function List() {
           color: white;
         }
         ::placeholder {
-        color: white;
-        opacity: .5;
-        }     
-        input[type="date"]::-webkit-calendar-picker-indicator {
+          color: white;
+          opacity: 0.5;
+        }
+        input[type='date']::-webkit-calendar-picker-indicator {
           cursor: pointer;
-          {/* border-radius: 4px; */}
-          {/* margin-right: 2px; */}
+           {
+            /* border-radius: 4px; */
+          }
+           {
+            /* margin-right: 2px; */
+          }
           opacity: 1;
           filter: invert(1);
         }
