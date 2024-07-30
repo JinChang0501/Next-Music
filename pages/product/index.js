@@ -7,16 +7,72 @@ import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlack
 import { BsSearch } from 'react-icons/bs'
 import DesktopBlackPureIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackPureIconBtnPurple'
 import Link from 'next/link'
+import { useTotal } from '@/hooks/product/use-Total'
+import toast, { Toaster } from 'react-hot-toast'
+import { useRouter } from 'next/router'
 
 export default function List() {
+  const router = useRouter()
+  const [product, setProduct] = useState(null)
+  const [cartData, setCardData] = useState([])
+  const [itemCount, setItemCount] = useState(0)
   const [products, setProducts] = useState([])
   const [filteredProducts, setFilteredProducts] = useState([])
   const [keyword, setKeyword] = useState('')
-
+  const { addOne, setAddone, setTotalQty } = useTotal()
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
     { label: '周邊商城', href: '/product' },
   ]
+
+  const addToCart = (e, productId) => {
+    // 確保 productId 是有效的
+    if (!productId) return
+
+    // 創建 cartItem
+    const cartItem = {
+      id: productId,
+      name: products[productId].name,
+      price: products[productId].price,
+      quantity: 1,
+    }
+
+    // 從 localStorage 中獲取現有的購物車數據
+    const cartData = localStorage.getItem('makin-cart')
+    let cart = cartData ? JSON.parse(cartData) : []
+
+    // 查找是否已經存在於購物車中
+    const existingItem = cart.find((item) => item.id === cartItem.id)
+
+    if (existingItem) {
+      // 如果存在，增加數量
+      existingItem.quantity += 1
+    } else {
+      // 否則，將新項目推入購物車
+      cart.push(cartItem)
+    }
+
+    // 更新 localStorage 中的購物車數據
+    localStorage.setItem('makin-cart', JSON.stringify(cart))
+
+    // 更新 itemCount 狀態
+    const updatedQty = cart.reduce((sum, item) => sum + item.quantity, 0)
+    setItemCount(updatedQty)
+
+    // 提示成功加入購物車
+    toast.success('本商品已成功加入購物車')
+    setAddone(addOne + 1)
+
+    const countSum = () => {
+      let sum = 0
+
+      for (let i = 0; i < cart.length; i++) {
+        sum += cart[i].quantity
+      }
+      return sum
+    }
+    setTotalQty(countSum())
+  }
 
   useEffect(() => {
     fetch(GET_PRODUCTS, {
@@ -41,6 +97,44 @@ export default function List() {
     )
     setFilteredProducts(filtered)
   }
+
+  useEffect(() => {
+    if (router.isReady) {
+      fetch(`${GET_PRODUCTS}`, {
+        credentials: 'include',
+      })
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error('Failed to fetch')
+          }
+          return res.json()
+        })
+        .then((data) => {
+          const { pid } = products.id
+          const product = data.find((p) => p.id === Number(pid))
+          if (product) {
+            setProduct(product)
+          } else {
+            console.warn(`Product with id ${pid} not found`)
+          }
+          // 设置所有产品数据到 state 中，以便后续使用
+          setProducts(data)
+        })
+        .catch((error) => {
+          console.error('Error fetching products', error)
+        })
+    }
+  }, [router.isReady, products.id])
+
+  const checkCart = () => {
+    const cart = localStorage.getItem('makin-cart')
+    setCardData(cart)
+  }
+
+  useEffect(() => {
+    checkCart()
+    console.log(cartData)
+  }, [cartData, router])
 
   return (
     <>
@@ -104,12 +198,13 @@ export default function List() {
                       NT$ {product.price}
                     </p>
                     <div className={`${styles['text-center']}`}>
-                      <Link href={`/product/${product.id}`}>
-                        <DesktopBlackNoIconBtnPurple
-                          text="詳細資訊"
-                          className={`chb-p`}
-                        />
-                      </Link>
+                      <DesktopBlackNoIconBtnPurple
+                        text="加入購物車"
+                        className={`chb-p`}
+                        onClick={(e) => {
+                          addToCart(e, product.id)
+                        }}
+                      />
                     </div>
                   </div>
                 </div>
