@@ -25,15 +25,15 @@ export default function List() {
     { label: '周邊商城', href: '/product' },
   ]
 
-  const addToCart = (e, productId) => {
+  const addToCart = (e, index) => {
     // 確保 productId 是有效的
-    if (!productId) return
+    if (index < 0) return
 
     // 創建 cartItem
     const cartItem = {
-      id: productId,
-      name: products[productId].name,
-      price: products[productId].price,
+      id: products[index].id,
+      name: products[index].name,
+      price: products[index].price,
       quantity: 1,
     }
 
@@ -174,7 +174,7 @@ export default function List() {
               周邊商品
             </div>
             <div className={`row ${styles['ml-28']}`}>
-              {filteredProducts.map((product) => (
+              {filteredProducts.map((product, i) => (
                 <div
                   key={product.id}
                   className={`card ${styles['card']} mb-3 me-3`}
@@ -202,7 +202,7 @@ export default function List() {
                         text="加入購物車"
                         className={`chb-p`}
                         onClick={(e) => {
-                          addToCart(e, product.id)
+                          addToCart(e, i)
                         }}
                       />
                     </div>
