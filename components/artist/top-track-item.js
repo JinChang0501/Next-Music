@@ -13,7 +13,7 @@ export default function TopTrackItem({
   onPlay,
 }) {
   const [over, setOver] = useState(false)
-  const [play, setplay] = useState(false)
+  // const [play, setplay] = useState(false)
   return (
     <>
       <div
