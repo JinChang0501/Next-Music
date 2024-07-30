@@ -3,8 +3,6 @@ import { GET_PRODUCTS } from '@/configs/api-path'
 import styles from '@/styles/product/product.module.scss'
 import Breadcrumbs from '@/components/common/breadcrumb/Breadcrumbs'
 import CarouselIndex from '@/components/product/carousel-index'
-// import CardProduct from '@/components/product/card-product'
-// import LeftBar2 from '@/components/product/left-bar2'
 import DesktopBlackNoIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackNoIconBtnPurple'
 import { BsSearch } from 'react-icons/bs'
 import DesktopBlackPureIconBtnPurple from '@/components/common/button/desktopBlackButton/desktopBlackPureIconBtnPurple'
@@ -79,7 +77,7 @@ export default function List() {
 
           <div className={`col-md-9`}>
             <div className={`chb-h3 text-white ${styles['ml-28']} mb-3`}>
-              所有商品
+              周邊商品
             </div>
             <div className={`row ${styles['ml-28']}`}>
               {filteredProducts.map((product) => (

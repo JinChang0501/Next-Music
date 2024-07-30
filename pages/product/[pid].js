@@ -9,7 +9,6 @@ import Link from 'next/link'
 import SwiperBottom from '@/components/product/swiper-bottom'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules'
-import CardProduct from '@/components/product/card-product'
 import toast, { Toaster } from 'react-hot-toast'
 import { useTotal } from '@/hooks/product/use-Total'
 
