@@ -161,10 +161,12 @@
   background-image: url("https://i.postimg.cc/Bb7JvBYJ/temp-Imagejx-Wr-Mn.avif");
 }
 
-
-
-
-
+.copyright {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: rgba(255, 255, 255, .1);
+}
 
 @media (max-width: 390px) {
   .bannerSty {
