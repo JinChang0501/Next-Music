@@ -208,21 +208,20 @@ const PlaybackControl = ({
 
         {/* Playback controls */}
         <div className="d-flex justify-content-center align-items-center my-2">
-          <button onClick={onPreviousTrack} className="btn btn-link text-white">
+          <button onClick={onPreviousTrack} className="btn btn-link  btn-track">
             <BiSkipPrevious className="text-white eng-h4" />
           </button>
-          {isPlaying ? (
-            <BsPauseCircleFill
-              onClick={onPause}
-              className="text-white eng-h4 mx-2"
-            />
-          ) : (
-            <BsPlayCircle
-              onClick={handlePlay}
-              className="text-white eng-h4 mx-2"
-            />
-          )}
-          <button onClick={onNextTrack} className="btn btn-link text-white">
+          <button
+            className="btn-control"
+            onClick={isPlaying ? onPause : handlePlay}
+          >
+            {isPlaying ? (
+              <BsPauseCircleFill className="text-white eng-h2" />
+            ) : (
+              <BsPlayCircle className="text-white eng-h2" />
+            )}
+          </button>
+          <button onClick={onNextTrack} className="btn btn-link btn-track">
             <BiSkipNext className="text-white eng-h4" />
           </button>
         </div>
@@ -267,6 +266,24 @@ const PlaybackControl = ({
             top: 42%;
             right: 5%;
           }
+          .btn-control {
+            margin: 0;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            color: #888888;
+            border: none;
+            outline: none;
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          .btn-control:hover {
+            opacity: 0.8;
+          }
           .btn-mute {
             margin: 0px;
             padding: 0px;
@@ -286,6 +303,12 @@ const PlaybackControl = ({
             border: 1px solid transparent;
             outline: none;
             background: transparent;
+          }
+          .btn-track {
+            color: white;
+          }
+          .btn-track:hover {
+            opacity: 0.8;
           }
           .marquee {
             position: relative;
