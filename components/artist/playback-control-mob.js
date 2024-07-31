@@ -144,9 +144,9 @@ const PlaybackControlMob = ({
               onClick={isPlaying ? onPause : handlePlay}
             >
               {isPlaying ? (
-                <BsPauseCircleFill className="text-white eng-h2" />
+                <BsPauseCircleFill className="eng-h2" />
               ) : (
-                <BsPlayCircle className="text-white eng-h2" />
+                <BsPlayCircle className="eng-h2" />
               )}
             </button>
           </div>
@@ -163,7 +163,7 @@ const PlaybackControlMob = ({
             width: 40px;
             height: 40px;
             text-align: center;
-            color: #888888;
+            color: #a1a1a1;
             border: none;
             outline: none;
             background: transparent;
@@ -173,7 +173,7 @@ const PlaybackControlMob = ({
             justify-content: center;
           }
           .btn-control:hover {
-            opacity: 0.8;
+            color: white;
           }
           .marquee {
             position: relative;

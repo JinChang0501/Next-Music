@@ -36,27 +36,13 @@ export default function TopTrackItem({
           alt={song_name}
         />
         <div className="chr-h6 text-white text-fixed me-auto">{song_name}</div>
-        {isPlaying ? (
-          <BsPauseCircleFill
-            onClick={onPlay}
-            className="text-white icon-fixed eng-h3 me-md-4 me-2"
-          />
-        ) : (
-          <BsPlayCircle
-            onClick={onPlay}
-            className="text-white icon-fixed eng-h3 me-md-4 me-2"
-          />
-        )}
-        {/* {over ? (
-          <BsPlayCircleFill
-            className="text-white eng-h4 me-4"
-            onClick={() => {
-              setplay(true)
-            }}
-          />
-        ) : (
-          <BsPlayCircle className="text-white eng-h4 me-4" />
-        )} */}
+        <button className="btn-control me-3" onClick={onPlay}>
+          {isPlaying ? (
+            <BsPauseCircleFill className="eng-h2" />
+          ) : (
+            <BsPlayCircle className="eng-h2" />
+          )}
+        </button>
       </div>
       <style jsx>{`
         .img-size {
@@ -74,6 +60,24 @@ export default function TopTrackItem({
         }
         .icon-fixed {
           min-width: 100px;
+        }
+        .btn-control {
+          margin: 0;
+          padding: 0;
+          width: 40px;
+          height: 40px;
+          text-align: center;
+          color: #a1a1a1;
+          border: none;
+          outline: none;
+          background: transparent;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .btn-control:hover {
+          color: white;
         }
         @media (max-width: 390px) {
           .img-size {

@@ -208,21 +208,21 @@ const PlaybackControl = ({
 
         {/* Playback controls */}
         <div className="d-flex justify-content-center align-items-center my-2">
-          <button onClick={onPreviousTrack} className="btn btn-link  btn-track">
-            <BiSkipPrevious className="text-white eng-h4" />
+          <button onClick={onPreviousTrack} className="btn btn-link btn-track">
+            <BiSkipPrevious className="eng-h4" />
           </button>
           <button
             className="btn-control"
             onClick={isPlaying ? onPause : handlePlay}
           >
             {isPlaying ? (
-              <BsPauseCircleFill className="text-white eng-h2" />
+              <BsPauseCircleFill className="eng-h2" />
             ) : (
-              <BsPlayCircle className="text-white eng-h2" />
+              <BsPlayCircleFill className="eng-h2" />
             )}
           </button>
           <button onClick={onNextTrack} className="btn btn-link btn-track">
-            <BiSkipNext className="text-white eng-h4" />
+            <BiSkipNext className="eng-h4" />
           </button>
         </div>
 
@@ -272,7 +272,7 @@ const PlaybackControl = ({
             width: 40px;
             height: 40px;
             text-align: center;
-            color: #888888;
+            color: #ffffff;
             border: none;
             outline: none;
             background: transparent;
@@ -282,7 +282,7 @@ const PlaybackControl = ({
             justify-content: center;
           }
           .btn-control:hover {
-            opacity: 0.8;
+            transform: scale(1.065);
           }
           .btn-mute {
             margin: 0px;
@@ -305,10 +305,10 @@ const PlaybackControl = ({
             background: transparent;
           }
           .btn-track {
-            color: white;
+            color: #a1a1a1;
           }
           .btn-track:hover {
-            opacity: 0.8;
+            color: white;
           }
           .marquee {
             position: relative;
