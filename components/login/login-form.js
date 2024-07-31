@@ -210,12 +210,23 @@ export default function LoginForm({
   const quickLogin = () => {
     setUser({ email: 'jin@test.com', password: '123456' })
   }
+  const quickLoginBao = () => {
+    setUser({ email: 'castle@gg.com', password: '19970725' })
+  }
 
   const quickLoginRegister = () => {
     setUser({ email: 'iamjin910501@gmail.com', password: 'P@ssw0rd' })
   }
   return (
     <>
+      <button
+        className="bg-white text-black position-absolute"
+        onClick={() => {
+          quickLoginBao()
+        }}
+      >
+        <div className="chb-h3 text-white">登</div>
+      </button>
       <form onSubmit={handleLoginForm}>
         <div style={{ marginBottom: '20px' }}>
           <button
