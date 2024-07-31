@@ -30,6 +30,8 @@ const PlaybackControl = ({
   onVolumeChange,
 }) => {
   const [volume, setVolume] = useState(50)
+  const [isMuted, setIsMuted] = useState(false)
+  const [previousVolume, setPreviousVolume] = useState(50)
   const [progress, setProgress] = useState(0)
   const [duration, setDuration] = useState(0)
   const progressInterval = useRef(null)
@@ -39,6 +41,7 @@ const PlaybackControl = ({
     if (player) {
       player.getVolume().then((vol) => {
         setVolume(vol * 100)
+        setPreviousVolume(vol * 100)
       })
 
       const handleStateChange = (state) => {
@@ -109,7 +112,23 @@ const PlaybackControl = ({
 
   const handleVolumeChange = (newValue) => {
     setVolume(newValue)
+    setPreviousVolume(newValue)
+    setIsMuted(newValue === 0)
     onVolumeChange(newValue / 100)
+  }
+  const handleToggleMute = () => {
+    if (isMuted) {
+      // 如果當前是靜音狀態，恢復到之前的音量
+      setVolume(previousVolume)
+      setIsMuted(false)
+      onVolumeChange(previousVolume / 100)
+    } else {
+      // 如果當前不是靜音狀態，設置為靜音
+      setPreviousVolume(volume)
+      setVolume(0)
+      setIsMuted(true)
+      onVolumeChange(0)
+    }
   }
 
   // 手動控制時間軸的位置
@@ -189,28 +208,35 @@ const PlaybackControl = ({
 
         {/* Playback controls */}
         <div className="d-flex justify-content-center align-items-center my-2">
-          <button onClick={onPreviousTrack} className="btn btn-link text-white">
-            <BiSkipPrevious className="text-white eng-h4" />
+          <button onClick={onPreviousTrack} className="btn btn-link btn-track">
+            <BiSkipPrevious className="eng-h4" />
           </button>
-          {isPlaying ? (
-            <BsPauseCircleFill
-              onClick={onPause}
-              className="text-white eng-h4 mx-2"
-            />
-          ) : (
-            <BsPlayCircle
-              onClick={handlePlay}
-              className="text-white eng-h4 mx-2"
-            />
-          )}
-          <button onClick={onNextTrack} className="btn btn-link text-white">
-            <BiSkipNext className="text-white eng-h4" />
+          <button
+            className="btn-control"
+            onClick={isPlaying ? onPause : handlePlay}
+          >
+            {isPlaying ? (
+              <BsPauseCircleFill className="eng-h2" />
+            ) : (
+              <BsPlayCircleFill className="eng-h2" />
+            )}
+          </button>
+          <button onClick={onNextTrack} className="btn btn-link btn-track">
+            <BiSkipNext className="eng-h4" />
           </button>
         </div>
 
         {/* Volume control */}
         <div className="d-flex justify-content-center align-items-center">
-          <BsFillVolumeDownFill className="text-white eng-h5 me-2" />
+          <button className="btn-mute" onClick={handleToggleMute}>
+            {isMuted ? (
+              <BsVolumeMuteFill className="eng-h5 me-2" />
+            ) : volume > 50 ? (
+              <BsVolumeUpFill className="eng-h5 me-2" />
+            ) : (
+              <BsFillVolumeDownFill className="eng-h5 me-2" />
+            )}
+          </button>
           <Slider
             value={volume}
             min={0}
@@ -220,7 +246,6 @@ const PlaybackControl = ({
             onChange={handleVolumeChange}
             style={{ width: '120px' }}
           />
-          <BsVolumeUpFill className="text-white eng-h5 ms-2" />
         </div>
       </div>
       <style jsx>
@@ -240,6 +265,50 @@ const PlaybackControl = ({
           .pos-end {
             top: 42%;
             right: 5%;
+          }
+          .btn-control {
+            margin: 0;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            color: #ffffff;
+            border: none;
+            outline: none;
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          .btn-control:hover {
+            transform: scale(1.065);
+          }
+          .btn-mute {
+            margin: 0px;
+            padding: 0px;
+            width: 40px;
+            text-align: center;
+            color: #888888;
+            border: 1px solid transparent;
+            outline: none;
+            background: transparent;
+          }
+          .btn-mute:hover {
+            margin: 0px;
+            padding: 0px;
+            width: 40px;
+            text-align: center;
+            color: white;
+            border: 1px solid transparent;
+            outline: none;
+            background: transparent;
+          }
+          .btn-track {
+            color: #a1a1a1;
+          }
+          .btn-track:hover {
+            color: white;
           }
           .marquee {
             position: relative;

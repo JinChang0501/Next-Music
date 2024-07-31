@@ -139,17 +139,16 @@ const PlaybackControlMob = ({
             </>
           )}
           <div className="ms-auto me-2">
-            {isPlaying ? (
-              <BsPauseCircleFill
-                onClick={onPause}
-                className="text-white eng-h2 mx-2"
-              />
-            ) : (
-              <BsPlayCircle
-                onClick={handlePlay}
-                className="text-white eng-h2 mx-2"
-              />
-            )}
+            <button
+              className="btn-control"
+              onClick={isPlaying ? onPause : handlePlay}
+            >
+              {isPlaying ? (
+                <BsPauseCircleFill className="eng-h2" />
+              ) : (
+                <BsPlayCircle className="eng-h2" />
+              )}
+            </button>
           </div>
         </div>
       </div>
@@ -157,6 +156,24 @@ const PlaybackControlMob = ({
         {`
           .outline {
             border: 1px solid #dbd7ff;
+          }
+          .btn-control {
+            margin: 0;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            color: #a1a1a1;
+            border: none;
+            outline: none;
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          .btn-control:hover {
+            color: white;
           }
           .marquee {
             position: relative;
