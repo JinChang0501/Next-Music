@@ -90,6 +90,10 @@ export default function ForgetPassword({
     }
   }
 
+  const insertEmail = (e) => {
+    e.preventDefault()
+    setEmail('iamjin910501@gmail.com')
+  }
   // 處理重設密碼用
   const handleResetPassword = async () => {
     if (!email) {
@@ -133,7 +137,9 @@ export default function ForgetPassword({
 
           <div className="form-container sign-in">
             <form>
-              <div className="chb-h3">忘記密碼</div>
+              <button className="bg-transparent" onClick={insertEmail}>
+                <div className="chb-h3 text-black">忘記密碼</div>
+              </button>
               {/* 電子信箱 */}
               <div className="w-100 mt-3">
                 <label htmlFor="email">電子信箱:</label>
