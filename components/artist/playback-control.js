@@ -227,7 +227,7 @@ const PlaybackControl = ({
         </div>
 
         {/* Volume control */}
-        <div className="d-flex justify-content-center align-items-center">
+        <div className="d-flex ms-5 align-items-center">
           <button className="btn-mute" onClick={handleToggleMute}>
             {isMuted ? (
               <BsVolumeMuteFill className="eng-h5 me-2" />
@@ -244,7 +244,7 @@ const PlaybackControl = ({
             step={1}
             progress
             onChange={handleVolumeChange}
-            style={{ width: '120px' }}
+            style={{ width: '100px' }}
           />
         </div>
       </div>
