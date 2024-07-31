@@ -92,6 +92,10 @@ export default function ForgetPassword({
 
   // 處理重設密碼用
   const handleResetPassword = async () => {
+    if (!email) {
+      toast.error('未輸入Email')
+      return
+    }
     const res = await resetPassword(email, password, token)
     // 除錯用
     console.log(res.data)
