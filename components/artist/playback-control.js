@@ -230,7 +230,7 @@ const PlaybackControl = ({
         <div className="d-flex justify-content-center align-items-center">
           <button className="btn-mute" onClick={handleToggleMute}>
             {isMuted ? (
-              <BsVolumeMuteFill className=" eng-h5 me-2" />
+              <BsVolumeMuteFill className="eng-h5 me-2" />
             ) : volume > 50 ? (
               <BsVolumeUpFill className="eng-h5 me-2" />
             ) : (
