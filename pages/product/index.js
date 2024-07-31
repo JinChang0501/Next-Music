@@ -10,6 +10,9 @@ import Link from 'next/link'
 import { useTotal } from '@/hooks/product/use-Total'
 import toast, { Toaster } from 'react-hot-toast'
 import { useRouter } from 'next/router'
+// 判斷登入
+import { useAuth } from '@/hooks/use-auth'
+import { useLogin } from '@/hooks/use-login'
 
 export default function List() {
   const router = useRouter()
@@ -20,12 +23,20 @@ export default function List() {
   const [filteredProducts, setFilteredProducts] = useState([])
   const [keyword, setKeyword] = useState('')
   const { addOne, setAddone, setTotalQty } = useTotal()
+  // 會員相關
+  const { handleGotoMember, handleWakeLogin } = useLogin()
+  const { auth } = useAuth()
+
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
     { label: '周邊商城', href: '/product' },
   ]
 
   const addToCart = (e, index) => {
+    if (!auth.isAuth) {
+      handleWakeLogin();
+      return;
+    }
     // 確保 productId 是有效的
     if (index < 0) return
 

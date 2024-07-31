@@ -12,6 +12,10 @@ import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules'
 import toast, { Toaster } from 'react-hot-toast'
 import { useTotal } from '@/hooks/product/use-Total'
 
+// 判斷登入
+import { useAuth } from '@/hooks/use-auth'
+import { useLogin } from '@/hooks/use-login'
+
 export default function Detail() {
   const [product, setProduct] = useState(null)
   const [products, setProducts] = useState([])
@@ -23,6 +27,9 @@ export default function Detail() {
   const topRef = useRef(null)
   const [itemCount, setItemCount] = useState(0)
   const { addOne, setAddone, setTotalQty } = useTotal()
+  // 會員相關
+  const { handleGotoMember, handleWakeLogin } = useLogin()
+  const { auth } = useAuth()
 
   const breadcrumbsURL = [
     { label: '首頁', href: '/' },
@@ -83,6 +90,10 @@ export default function Detail() {
     setCardData(cart)
   }
   const addToCart = () => {
+    if (!auth.isAuth) {
+      handleWakeLogin();
+      return;
+    }
     if (!product) return
 
     const cartItem = {
