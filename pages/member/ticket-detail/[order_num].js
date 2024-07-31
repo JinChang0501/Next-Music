@@ -8,7 +8,7 @@ export default function TicketDetailPage() {
   const router = useRouter()
 
   const [ticketData, setTicketData] = useState([])
-
+  console.log(ticketData)
   const [data, setData] = useState({
     success: false,
     data: {},

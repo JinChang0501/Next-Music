@@ -20,21 +20,10 @@ export default function TicketDetailCard({
   actdate = '',
   acttime = '',
   picinfrontend = '',
+  index = '',
 }) {
   //偵測螢幕寬度
   const [isDesktop, setIsDesktop] = useState(true)
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsDesktop(window.innerWidth > 576) // 螢幕寬度 > 576px 為電腦板
-    }
-
-    handleResize() // 初始設定一次
-
-    window.addEventListener('resize', handleResize) // 監聽視窗大小變化
-
-    return () => window.removeEventListener('resize', handleResize) // 清除事件監聽器
-  }, [])
 
   const [showTicket, setShowTicket] = useState(false)
 
@@ -46,33 +35,68 @@ export default function TicketDetailCard({
     setShowTicket(false)
   }
 
+  const formatTid = (tid) => {
+    return tid.toString().padStart(4, 0)
+  }
+
   //更改時間格式
   const formateActdate = moment(actdate).tz('Asia/Taipei').format('YYYY/MM/DD')
 
   const formatteActtime = moment(acttime, 'HH:mm:ss').format('HH:mm')
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth > 576) // 螢幕寬度 > 576px 為電腦板
+    }
+
+    handleResize() // 初始設定一次
+
+    window.addEventListener('resize', handleResize) // 監聽視窗大小變化
+
+    return () => window.removeEventListener('resize', handleResize) // 清除事件監聽器
+  }, [])
   return (
     <>
       <div className="row text-center my-3">
-        <div className="col d-flex justify-content-center">
-          <img
-            src={`/images/Activity/${picinfrontend}`}
-            className={styles.img160}
-            alt=""
-          />
-        </div>
-        <div className="col my-auto p-0 chr-h7 text-nowrap">
-          {seat_area
-            ? `${seat_area}區${seat_row}排${seat_number}號`
-            : '全區站席'}
-        </div>
-        <div className="col my-auto p-0 chr-h7">${price}</div>
-        <div className="col my-auto p-0 mx-auto d-flex justify-content-center">
-          <DesktopWhiteNoIconBtnPurple
-            className="px-1 px-md-4 py-2"
-            text="查看票券"
-            onClick={handleWakeTicket}
-          />
-        </div>
+        {isDesktop ? (
+          <>
+            <div className="col my-auto p-0 chr-h6 text-nowrap">
+              No.{formatTid(tid)}
+            </div>
+            <div className="col my-auto p-0 chr-h6 text-nowrap">
+              {seat_area
+                ? `${seat_area}區${seat_row}排${seat_number}號`
+                : '全區站席'}
+            </div>
+            <div className="col my-auto p-0 chr-h6">${price}</div>
+            <div className="col my-auto p-0 mx-auto d-flex justify-content-center">
+              <DesktopWhiteNoIconBtnPurple
+                className="px-1 px-md-4 py-2 chr-h7"
+                text="查看票券"
+                onClick={handleWakeTicket}
+              />
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="col my-auto p-0 chr-p text-nowrap">
+              No.{formatTid(tid)}
+            </div>
+            <div className="col my-auto p-0 chr-p text-nowrap">
+              {seat_area
+                ? `${seat_area}區${seat_row}排${seat_number}號`
+                : '全區站席'}
+            </div>
+            <div className="col my-auto p-0 chr-p">${price}</div>
+            <div className="col my-auto p-0 mx-auto d-flex justify-content-center">
+              <DesktopWhiteNoIconBtnPurple
+                className="px-1 px-md-4 py-2 chr-p"
+                text="查看票券"
+                onClick={handleWakeTicket}
+              />
+            </div>
+          </>
+        )}
+
         {isDesktop ? (
           <div
             className={`${
@@ -107,7 +131,7 @@ export default function TicketDetailCard({
                 <div className={`${style.ticketTitle} text-white`}>
                   <div className="chb-h6">{actname}</div>
                   <div className="chb-p">{art_name}</div>
-                  <div className="chb-p">#0000{tid}</div>
+                  <div className="chb-p">No.{formatTid(tid)}</div>
                 </div>
                 <div className={`${style.ticketSeat} chb-h5 text-white`}>
                   {seat_area
@@ -165,9 +189,9 @@ export default function TicketDetailCard({
                 <div className={`${style.ticketTitle} text-white`}>
                   <div className="chb-h6">{actname}</div>
                   <div className="chb-p">{art_name}</div>
-                  <div className="chb-p">#0000{tid}</div>
+                  <div className="chb-p">No.{formatTid(tid)}</div>
                 </div>
-                <div className={`${style.ticketSeat} chb-h5 text-white`}>
+                <div className={`${style.ticketSeat} chb-h6 text-white`}>
                   {seat_area
                     ? `${seat_area}區${seat_row}排${seat_number}號`
                     : '全區站席'}

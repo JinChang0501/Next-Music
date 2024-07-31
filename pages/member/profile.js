@@ -99,6 +99,15 @@ export default function Profile() {
     setUserProfile({ ...userProfile, [e.target.name]: e.target.value })
   }
 
+  const insertNewData = () => {
+    setUserProfile((prevProfile) => ({
+      ...prevProfile,
+      mobile: '0915148159',
+      birthday: '2000-01-01',
+      gender: 'male',
+      address: '台北市大安區仁愛路三段160號',
+    }))
+  }
   // 送出表單用
   const handleSubmit = async (e) => {
     // 阻擋表單預設送出行為
@@ -164,7 +173,9 @@ export default function Profile() {
   console.log(userProfile.avatar)
   return (
     <>
-      <p className="chb-h4 text-purple1">個人資料</p>
+      <button className="bg-transparent" onClick={insertNewData}>
+        <span className="chb-h4 text-purple1">個人資料</span>
+      </button>
       <hr className="custom-hr" />
       {/* ------------------------------------------------------------------------------------------------------- */}
       <form>

@@ -105,9 +105,17 @@ export default function TicketDetail({ ticketData }) {
                 <div className="col chb-h5">活動資訊</div>
               </div>
             </div>
-            <div className="col-12  py-2">
+            <div className="col-3">
+              <img
+                src={`/images/Activity/${ticketData[0].picinfrontend}`}
+                alt=""
+                className="p-2"
+              />
+            </div>
+
+            <div className="col-12 col-md-9 my-auto">
               {/* 活動名稱 */}
-              <div className="px-sm-5 m-0 fs-3 d-flex justify-content-between">
+              <div className="px-sm-5 py-2 m-0 d-flex justify-content-between">
                 <div className="d-flex">
                   <div className="">
                     <BsFillTicketPerforatedFill className="pe-3 chb-h2" />
@@ -121,14 +129,14 @@ export default function TicketDetail({ ticketData }) {
                     ref={textRef}
                     className={`${styles['marqee-content']} ${
                       isMarquee ? styles.marqee : ''
-                    } chr-h6`}
+                    } chr-h5`}
                   >
                     {ticketData[0].actname}
                   </span>
                 </div>
               </div>
               {/* 演出藝人 */}
-              <div className="px-sm-5 m-0 fs-3 d-flex justify-content-between">
+              <div className="px-sm-5 py-2 m-0 d-flex justify-content-between">
                 <div className="d-flex">
                   <div className="">
                     <BsMusicNoteBeamed className="pe-3 chb-h2" />
@@ -138,13 +146,13 @@ export default function TicketDetail({ ticketData }) {
                   </div>
                 </div>
                 <div>
-                  <span className="text-center p-0 m-0 chr-h6">
+                  <span className="text-center p-0 m-0 chr-h5">
                     {ticketData[0].art_name}
                   </span>
                 </div>
               </div>
               {/* 活動地點 */}
-              <div className="px-sm-5 m-0 fs-3 d-flex justify-content-between">
+              <div className="px-sm-5 py-2 m-0 d-flex justify-content-between">
                 <div className="d-flex">
                   <div className="">
                     <BsFillGeoAltFill className="pe-3 chb-h2" />
@@ -154,13 +162,13 @@ export default function TicketDetail({ ticketData }) {
                   </div>
                 </div>
                 <div>
-                  <span className="text-center p-0 m-0 chr-h6">
+                  <span className="text-center p-0 m-0 chr-h5">
                     {ticketData[0].location}
                   </span>
                 </div>
               </div>
               {/* 活動時間 */}
-              <div className="px-sm-5 m-0 fs-3 d-flex justify-content-between">
+              <div className="px-sm-5 py-2 m-0 d-flex justify-content-between">
                 <div className="d-flex">
                   <div className="">
                     <BsClockFill className="pe-3 chb-h2" />
@@ -170,7 +178,7 @@ export default function TicketDetail({ ticketData }) {
                   </div>
                 </div>
                 <div>
-                  <span className="text-center p-0 m-0 chr-h6">
+                  <span className="text-center p-0 m-0 chr-h5">
                     {`${formateActdate} ${formatteActtime}`}
                   </span>
                 </div>
@@ -200,6 +208,7 @@ export default function TicketDetail({ ticketData }) {
                     actdate={v.actdate}
                     acttime={v.acttime}
                     picinfrontend={v.picinfrontend}
+                    index={i}
                   />
                 )
               })}
