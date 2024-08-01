@@ -213,6 +213,7 @@ export default function Collection() {
               <CollectionCard
                 actname={v.actname}
                 cover={v.cover}
+                picinfrontend={v.picinfrontend}
                 descriptions={v.descriptions}
                 activity_id={v.activity_id}
                 actClass={v.actClass}

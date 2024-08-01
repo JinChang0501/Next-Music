@@ -12,6 +12,7 @@ export default function CollectionCard({
   actClass = '',
   activity_id = '',
   setActids,
+  picinfrontend = '',
   handleDelete = () => {},
 }) {
   // const getFavID = (activity_id) => {
@@ -30,7 +31,11 @@ export default function CollectionCard({
           >
             <BsFillXCircleFill className="chr-h5" />
           </button>
-          <img src={cover} className={`card-img-top`} alt="..." />
+          <img
+            src={`/images/Activity/${picinfrontend}`}
+            className={`card-img-top`}
+            alt="..."
+          />
           <div className="card-body p-2 p-md-3">
             <div
               className={`${styles['text-truncate-ellipsis']} ${styles['card-title']}`}
