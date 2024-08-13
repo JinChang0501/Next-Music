@@ -14,35 +14,6 @@ export const googleLogin = async (providerData = {}) => {
 }
 
 /**
- * LINE Login登入用，要求line登入的網址
- */
-export const lineLoginRequest = async () => {
-  // 向後端(express/node)伺服器要求line登入的網址，因密鑰的關係需要由後端產生
-  axiosInstance.get('/line-login/login').then((res) => {
-    console.log(res.data.url)
-    // 重定向到line 登入頁
-    if (res.data.url) {
-      window.location.href = res.data.url
-    }
-  })
-}
-/**
- * LINE Login登入用，處理line方登入後，向我們的伺服器進行登入動作。query為router.query
- */
-export const lineLoginCallback = async (query) => {
-  const qs = new URLSearchParams({
-    ...query,
-  }).toString()
-
-  return await axiosInstance.get(`/line-login/callback?${qs}`)
-}
-/**
- * LINE 登出用
- */
-export const lineLogout = async (line_uid) => {
-  return await axiosInstance.get(`/line-login/logout?line_uid=${line_uid}`)
-}
-/**
  * 登入用，loginData = { username, passsword }
  */
 // export const login = async (loginData = {}) => {
