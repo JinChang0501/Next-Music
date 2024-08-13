@@ -1,19 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { IoEyeSharp } from 'react-icons/io5'
 import { IoEyeOffSharp } from 'react-icons/io5'
-import toast, { Toaster } from 'react-hot-toast'
+import toast from 'react-hot-toast'
 import { initUserData, useAuth } from '@/hooks/use-auth'
 import { FcGoogle } from 'react-icons/fc'
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
-import styles from './login-form.module.scss'
-import {
-  checkAuth,
-  login,
-  getUserById,
-  googleLogin,
-  parseJwt,
-} from '@/services/user' //checkAuth logout
+
+import { login, getUserById, googleLogin, parseJwt } from '@/services/user' //checkAuth logout
 import useFirebase from '@/hooks/use-firebase'
 import DesktopWhiteNoIconBtnBlack from '../common/button/desktopWhiteButton/desktopWhiteNoIconBtnBlack'
 
@@ -24,9 +16,9 @@ export default function LoginForm({
   setWakeLogin,
 }) {
   const [showPassword, setShowPassword] = useState(false)
-  // const [hasShownToast, setHasShownToast] = useState(false)
+
   const [googleTrigger, setGoogleTrigger] = useState(0)
-  const hasShownToast = useRef(false)
+
   const toggleShowPassword = (e) => {
     setShowPassword(!showPassword)
     e.preventDefault()
