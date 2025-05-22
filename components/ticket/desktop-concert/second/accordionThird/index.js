@@ -48,7 +48,20 @@ export default function AccordionThird() {
                     }`}
                     onClick={() => handleCircleClick('ecPay')}
                   ></button>
-                  <div className="chb-h6">綠界</div>
+                  <div
+                    className="chb-h6"
+                    role="button" // 告訴螢幕閱讀器這是按鈕
+                    tabIndex={0} // 讓鍵盤能選中它（聚焦）
+                    onKeyDown={(e) => {
+                      // 用鍵盤操作時按下 Enter 或 Space 就執行事件
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        handleCircleClick('ecPay')
+                      }
+                    }}
+                    onClick={() => handleCircleClick('ecPay')} // 滑鼠點擊事件
+                  >
+                    綠界
+                  </div>
                 </div>
                 <div className={style.ecPayImage}>
                   <Image
@@ -67,7 +80,19 @@ export default function AccordionThird() {
                     }`}
                     onClick={() => handleCircleClick('linePay')}
                   ></button>
-                  <div className="chb-h6">LINE PAY</div>
+                  <div
+                    className="chb-h6"
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => handleCircleClick('linePay')}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        handleCircleClick('linePay')
+                      }
+                    }}
+                  >
+                    LINE PAY
+                  </div>
                 </div>
                 <div className={style.linePayImage}>
                   <Image

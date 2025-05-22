@@ -109,7 +109,7 @@
 }
 
 .custom-bg-02 {
-  background-image: url('https://i.postimg.cc/dVqGYcnh/temp-Image-FAo-ZMq.avif');
+  background-image: url('https://i.postimg.cc/x10Z6H4y/Banner16.jpg');
   background-size: cover;
   background-position: center;
   height: 25rem;
@@ -162,10 +162,18 @@
 }
 
 .copyright {
+  background-color: transparent;
   position: absolute;
   bottom: 0;
   right: 0;
-  color: rgba(255, 255, 255, .1);
+  color: rgba(255, 255, 255, 0.1);
+}
+
+.copyright:hover {
+  color: rgba(255, 99, 71, 0.7);
+  font-size: 22px;
+  transition: all 0.3s ease;
+  font-weight: bolder;
 }
 
 @media (max-width: 390px) {

@@ -32,9 +32,11 @@ import Footer from '@/components/layout/homeLayout/footer'
 import { motion } from 'framer-motion'
 import LogoLoader from '@/components/layout/homeLayout/logoLoader'
 import ThreeDBtn from '@/components/3Dbtn'
+import Swal from 'sweetalert2'
 
 export default function Index() {
   const [isDesktop, setIsDesktop] = useState(true)
+  const [hovered, setHovered] = useState(false)
 
   useEffect(() => {
     const handleResize = () => {
@@ -216,6 +218,85 @@ export default function Index() {
     threshold: 0.1,
   })
 
+  const handleClearTickets = () => {
+    Swal.fire({
+      title: '確定重置演唱會座位嗎?',
+      text: '您將無法恢復此操作！',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: 'tomato',
+      cancelButtonColor: '#685BEB',
+      confirmButtonText: '確定',
+      cancelButtonText: '取消',
+      allowOutsideClick: false,
+      reverseButtons: true,
+    }).then((result) => {
+      if (!result.isConfirmed) {
+        Swal.fire({
+          title: '已取消',
+          text: '演唱會座位成功保留 :)',
+          icon: 'info',
+          confirmButtonColor: '#685BEB',
+        })
+        return
+      }
+
+      // ✅ 呼叫後端 API
+      fetch(`${API_SERVER}/api/ticket/clear-all`, {
+        method: 'PUT',
+        credentials: 'include', // ✅ cookie 帶過去
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          // 🛑 後端回傳未授權（認證失敗）
+          if (data.status === 'error' && data.message.includes('授權失敗')) {
+            Swal.fire({
+              title: '請先登入',
+              text: '您必須登入後才能重置演唱會座位。',
+              icon: 'info',
+              confirmButtonColor: '#685BEB',
+            })
+            return
+          }
+
+          // ✅ 成功處理資料
+          if (data.success && data.affectedRows > 0) {
+            Swal.fire({
+              title: '刪除成功',
+              text: `所有票券資料已清空（共 ${data.affectedRows} 筆）`,
+              icon: 'success',
+              confirmButtonColor: '#685BEB',
+            })
+          } else if (data.success && data.affectedRows === 0) {
+            Swal.fire({
+              title: '沒有清除任何票券',
+              text: '目前沒有需要清除的資料',
+              icon: 'info',
+              confirmButtonColor: '#685BEB',
+            })
+          } else {
+            Swal.fire({
+              title: '錯誤',
+              text: '清空票券失敗',
+              icon: 'error',
+              confirmButtonColor: 'tomato',
+            })
+          }
+        })
+        .catch(() => {
+          Swal.fire({
+            title: '錯誤',
+            text: '發生網路或伺服器錯誤',
+            icon: 'error',
+            confirmButtonColor: 'tomato',
+          })
+        })
+    })
+  }
+
   return (
     <>
       <LogoLoader />
@@ -245,7 +326,14 @@ export default function Index() {
             onClick={auth.isAuth ? handleGotoMember : handleWakeLogin}
           />
         </div>
-        <div className={`${styles.copyright}`}>非商業使用</div>
+        <button
+          className={styles.copyright}
+          onClick={handleClearTickets}
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+        >
+          {hovered ? '重置演唱會座位' : '非商業使用'}
+        </button>
       </div>
 
       {/* banner（影片輪播） end */}
