@@ -42,10 +42,10 @@ export default function PreviewUploadImage({
     }
 
     if (avatarImg) {
-      return avatarBaseUrl + '/' + avatarImg
+      return avatarImg
     }
 
-    return avatarBaseUrl + '/' + defaultImg
+    return `${avatarBaseUrl}/${defaultImg}`
   }
 
   return (

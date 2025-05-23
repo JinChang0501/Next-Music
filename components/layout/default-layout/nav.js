@@ -208,7 +208,7 @@ export default function Nav() {
                         <div className="rounded-circle my-auto">
                           {/* newFileName */}
                           <img
-                            src={`${API_SERVER}/avatar/${newFileName}`}
+                            src={newFileName}
                             style={{ width: '30px', height: '30px' }}
                             className="rounded-circle"
                           />
@@ -217,7 +217,7 @@ export default function Nav() {
                         <div className="rounded-circle my-auto">
                           {/* newFileName */}
                           <img
-                            src={`${API_SERVER}/avatar/${memberPicData}`}
+                            src={memberPicData}
                             style={{ width: '30px', height: '30px' }}
                             className="rounded-circle"
                           />

@@ -185,10 +185,13 @@ export default function Profile() {
               <PreviewUploadImage
                 // avatarImg={userProfile.avatar}
                 avatarImg={
-                  userProfile.avatar
+                  userProfile.avatar?.startsWith('http')
                     ? `${userProfile.avatar}?t=${new Date().getTime()}`
-                    : 'default.png'
-                } // 根据条件添加时间戳或使用默认头像
+                    : `${avatarBaseUrl}${
+                        userProfile.avatar
+                      }?t=${new Date().getTime()}`
+                }
+                // 根据条件添加时间戳或使用默认头像
                 //avatarImg={`${userProfile.avatar}?t=${new Date().getTime()}`} // 添加時間戳
                 avatarBaseUrl={avatarBaseUrl}
                 setSelectedFile={setSelectedFile}
